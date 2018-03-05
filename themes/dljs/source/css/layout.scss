@@ -1,0 +1,32 @@
+$header-height: 64px;
+$footer-height: 64px;
+
+$main-padding: 32px;
+
+body {
+  margin: 0;
+
+  
+
+  .main {
+    min-height: calc(100vh - #{$header-height} - #{$footer-height} - #{$main-padding * 2});
+    background-color: papayawhip;
+    padding: $main-padding;
+  }
+  
+  nav {
+    a {
+      padding: 10px;
+    }
+  }
+
+  .sidebar {
+    .mdc-toolbar__title {        
+      margin: 0;
+    }
+  }
+
+  footer {
+    background-color: palegreen;
+  }
+}
