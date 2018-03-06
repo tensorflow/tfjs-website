@@ -2,3 +2,5 @@ node_modules
 public
 .cache
 db.json
+libs
+.DS_Store
