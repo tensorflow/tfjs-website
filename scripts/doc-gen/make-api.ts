@@ -34,6 +34,10 @@ commander.option('--in <path>', 'main source entry')
     .option('--out <path>', 'Output Path')
     .parse(process.argv);
 
+console.log('make-api params', [
+  commander.in, commander.package, commander.src, commander.bundle,
+  commander.github, commander.out
+])
 
 const allParamsPresent = [
   commander.in, commander.package, commander.src, commander.bundle,

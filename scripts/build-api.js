@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const shell = require('shelljs');
+const commander = require('commander');
 
 // Get package.json of union package
 // const unionPackage = JSON.parse(fs.readFileSync('node_modules/tfjs/package.json'));
@@ -19,6 +20,17 @@ function bailOnFail(exitCode, msg) {
   }
 }
 
+// Get command line params
+commander.option('--in [path]', 'main source entry')
+    .option('--package [path]', 'Package.json path')
+    .option('--src [path]', 'Path to src folder of repo')
+    .option('--repo [path]', 'Path to repo')
+    .option('--bundle  [path]', 'JS Bundle Path')
+    .option('--github [url]', 'Github repository URL')
+    .option('--out [path]', 'Output Path')
+    .option('--branch [branch name]', 'branch to build from')
+    .parse(process.argv);
+
 // Get the version strings from the libray
 // const coreVersion = `v${getVersion(unionPackage.dependencies['tfjs-core'])}`;
 // const layersVersion = `v${getVersion(unionPackage.dependencies['tfjs-layers'])}`;
@@ -33,12 +45,20 @@ const docGenScript = 'scripts/doc-gen/make-api.ts';
 const coreOutputPath =
     path.resolve(`source/_data/api/${unionPackageVersion}/core-docs.json`);
 
+
+const pr = path.resolve;
+
 let opts = {
-  input: path.resolve('libs/tfjs-core/src/index.ts'),
-  pkg: path.resolve('libs/tfjs-core/package.json'),
-  src: path.resolve('libs/tfjs-core/src/'),
-  repo: path.resolve('libs/tfjs-core/'),
-  bundle: path.resolve('libs/tfjs-core/dist/deeplearn.js'),
+  input: (commander.in && pr(commander.in)) ||
+      path.resolve('libs/tfjs-core/src/index.ts'),
+  pkg: (commander.package && pr(commander.package)) ||
+      path.resolve('libs/tfjs-core/package.json'),
+  src: (commander.src && pr(commander.src)) ||
+      path.resolve('libs/tfjs-core/src/'),
+  repo:
+      (commander.repo && pr(commander.repo)) || path.resolve('libs/tfjs-core/'),
+  bundle: (commander.bundle && pr(commander.bundle)) ||
+      path.resolve('libs/tfjs-core/dist/deeplearn.js'),
   github: 'https://github.com/PAIR-code/deeplearnjs',
   out: coreOutputPath,
 }
