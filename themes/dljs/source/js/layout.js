@@ -1,8 +1,7 @@
 document.addEventListener('DOMContentLoaded', function(e) {
-
   function initNavDraw() {
     const drawer = new mdc.drawer.MDCTemporaryDrawer(
-      document.querySelector('.mdc-drawer--temporary'));
+        document.querySelector('.mdc-drawer--temporary'));
 
     const drawerButton = document.getElementById('nav-menu-button');
 
@@ -12,5 +11,5 @@ document.addEventListener('DOMContentLoaded', function(e) {
     });
   }
 
-  initNavDraw();  
+  initNavDraw();
 });
