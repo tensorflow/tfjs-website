@@ -26,6 +26,8 @@
     "hexo-renderer-sass": "~0.3.2",
     "hexo-renderer-stylus": "~0.3.1",
     "hexo-server": "~0.2.0",
+    "highlight.js": "^9.12.0",
+    "markdown-it": "^8.4.1",
     "mkdirp": "~0.5.1",
     "shelljs": "~0.8.1",
     "ts-node": "~4.1.0",
