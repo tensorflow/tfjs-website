@@ -6,14 +6,14 @@ $main-padding: 32px;
 body {
   margin: 0;
 
-  
+
 
   .main {
     min-height: calc(100vh - #{$header-height} - #{$footer-height} - #{$main-padding * 2});
-    background-color: papayawhip;
+    background-color: white;
     padding: $main-padding;
   }
-  
+
   nav {
     a {
       padding: 10px;
@@ -21,7 +21,7 @@ body {
   }
 
   .sidebar {
-    .mdc-toolbar__title {        
+    .mdc-toolbar__title {
       margin: 0;
     }
   }
