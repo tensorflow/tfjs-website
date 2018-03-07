@@ -1,7 +1,9 @@
+
 const fs = require('fs');
 const path = require('path');
 const shell = require('shelljs');
 const commander = require('commander');
+const mkdirp = require('mkdirp');
 
 // Get package.json of union package
 // const unionPackage =
@@ -19,6 +21,11 @@ function bailOnFail(exitCode, msg) {
     console.log(`${msg || 'Error building docs json'}`);
     process.exit(1);
   }
+}
+
+function sh(cmd, errMsg) {
+  const ret = shell.exec(cmd);
+  bailOnFail(ret.code, errMsg);
 }
 
 // Get command line params
@@ -42,7 +49,7 @@ const coreVersion = `master`;
 // const layersVersion = `v${'0.5.0'}`;
 
 // Build JSON
-const docGenScript = 'scripts/doc-gen/make-api.ts';
+const docGenScript = 'build-scripts/doc-gen/make-api.ts';
 
 const coreOutputPath =
     path.resolve(`source/_data/api/${unionPackageVersion}/core-docs.json`);
@@ -96,13 +103,30 @@ fs.writeFileSync(
     `source/_data/api/${unionPackageVersion}/docs_manifest.json`,
     JSON.stringify(docsManifest, null, 2));
 
-// Add to the list of versions
-// We will have a file that lists all the build versions in sorted array
+// Load api docs manifest
+// If the docs version we just generated is not present, generate a new
+// hexo page for that version and add it to the versions.
+const apiManifestPath = 'source/_data/api/api_manifest.json';
+const apiManifest = JSON.parse(fs.readFileSync(apiManifestPath));
 
-// load file, add this version. turn it into a set. turn back to a list. sort
+if (!apiManifest.versions.includes(unionPackageVersion)) {
+  // Do not reformat the string below. It is yaml 'front-matter' format
+  const pageTemplate = `---
+title: 0.0.1
+date: 2018-03-06 23:17:41
+layout: api
+---
+\n
+`;
 
+  mkdirp.sync(`source/api/${unionPackageVersion}`);
+  const newApiPagePath = `source/api/${unionPackageVersion}/index.md`
+  fs.writeFileSync(newApiPagePath, pageTemplate);
 
-// If the version is new we should create a new hexo page .
-// hexo new page api ${unionPackageVersion} --path source/api/
+  apiManifest.versions.unshift(unionPackageVersion);
+  // TODO semver sort.
+
+  fs.writeFileSync(apiManifestPath, JSON.stringify(apiManifest, null, 2));
+}
 
 // A this point a website build should be able to produce an api docs page
