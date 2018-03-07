@@ -22,7 +22,6 @@ import * as ts from 'typescript';
 import * as util from './api-util';
 // tslint:disable-next-line:max-line-length
 import {DocClass, DocFunction, DocFunctionParam, DocHeading, Docs} from './view';
-import { ReduceProgram } from '../../libs/tfjs-core/src/kernels/webgl/reduce_gpu';
 
 const DOCUMENTATION_DECORATOR = '@doc';
 const DOCUMENTATION_TYPE_ALIAS = 'docalias';
@@ -31,8 +30,9 @@ const DOCUMENTATION_LINK_ALIAS = 'doclink';
 /**
  * Parses the program.
  */
-export function parse(programRoot: string, srcRoot: string, repoPath: string, githubRoot: string):
-    {docs: Docs, docLinkAliases: {[symbolName: string]: string}} {  
+export function parse(
+    programRoot: string, srcRoot: string, repoPath: string, githubRoot: string):
+    {docs: Docs, docLinkAliases: {[symbolName: string]: string}} {
   if (!fs.existsSync(programRoot)) {
     throw new Error(
         `Program root ${programRoot} does not exist. Please run this script ` +
@@ -140,8 +140,9 @@ export function parse(programRoot: string, srcRoot: string, repoPath: string, gi
   const docLinkAliases: {[symbolName: string]: string} = {};
 
   // Use the same compiler options that we use to compile the library here.
-  const tsconfig = JSON.parse(fs.readFileSync(path.join(repoPath ,'tsconfig.json'), 'utf8'));
-  
+  const tsconfig =
+      JSON.parse(fs.readFileSync(path.join(repoPath, 'tsconfig.json'), 'utf8'));
+
   const program = ts.createProgram([programRoot], tsconfig.compilerOptions);
   const checker = program.getTypeChecker();
 
@@ -171,9 +172,8 @@ function visitNode(
     subclassMethodMap: {[subclass: string]: DocFunction[]},
     docTypeAliases: {[type: string]: string},
     docLinkAliases: {[symbolName: string]: string}, checker: ts.TypeChecker,
-    node: ts.Node, sourceFile: ts.SourceFile,
-    srcRoot: string, repoPath: string, githubRoot: string) {
-  
+    node: ts.Node, sourceFile: ts.SourceFile, srcRoot: string, repoPath: string,
+    githubRoot: string) {
   if (ts.isMethodDeclaration(node)) {
     const docInfo = util.getDocDecorator(node, DOCUMENTATION_DECORATOR);
 
@@ -181,8 +181,8 @@ function visitNode(
       const subheading =
           util.fillHeadingsAndGetSubheading(docInfo, docHeadings);
 
-      const docFunction =
-          serializeMethod(checker, node, docInfo, sourceFile, repoPath, srcRoot, githubRoot);
+      const docFunction = serializeMethod(
+          checker, node, docInfo, sourceFile, repoPath, srcRoot, githubRoot);
 
       // Static methods are top-level functions,
       if (util.isStatic(node)) {
@@ -211,8 +211,9 @@ function visitNode(
       const subheading =
           util.fillHeadingsAndGetSubheading(docInfo, docHeadings);
 
-      subheading.symbols.push(
-          serializeClass(checker, node, docInfo, sourceFile, docHeadings, repoPath, srcRoot, githubRoot));
+      subheading.symbols.push(serializeClass(
+          checker, node, docInfo, sourceFile, docHeadings, repoPath, srcRoot,
+          githubRoot));
     }
 
     // You can't use both doc link aliases and @doc decorators.
@@ -249,7 +250,8 @@ export function serializeClass(
   const docClass: DocClass = {
     symbolName: name,
     namespace: docInfo.namespace,
-    documentation: ts.displayPartsToString(symbol.getDocumentationComment(undefined)),
+    documentation:
+        ts.displayPartsToString(symbol.getDocumentationComment(undefined)),
     fileName: displayFilename,
     githubUrl,
     methods: [],
@@ -260,11 +262,10 @@ export function serializeClass(
   node.members.forEach(member => {
     if (ts.isMethodDeclaration(member) && !util.isStatic(member)) {
       const docInfo = util.getDocDecorator(member, DOCUMENTATION_DECORATOR);
-      if (docInfo != null) {        
-        docClass.methods.push(            
-            serializeMethod(
-                checker, member, docInfo, sourceFile, repoPath, srcRoot,
-                githubRoot));
+      if (docInfo != null) {
+        docClass.methods.push(serializeMethod(
+            checker, member, docInfo, sourceFile, repoPath, srcRoot,
+            githubRoot));
       }
     }
   });
@@ -274,13 +275,14 @@ export function serializeClass(
 
 export function serializeMethod(
     checker: ts.TypeChecker, node: ts.MethodDeclaration, docInfo: util.DocInfo,
-    sourceFile: ts.SourceFile, repoPath: string, srcRoot: string, githubRoot: string): DocFunction {
-  if (!sourceFile.fileName.startsWith(repoPath)) {    
+    sourceFile: ts.SourceFile, repoPath: string, srcRoot: string,
+    githubRoot: string): DocFunction {
+  if (!sourceFile.fileName.startsWith(repoPath)) {
     throw new Error(
         `Error: source file ${sourceFile.fileName} ` +
         `does not start with srcPath provided ${repoPath}.`);
   }
-  
+
   const symbol = checker.getSymbolAtLocation(node.name);
   const type =
       checker.getTypeOfSymbolAtLocation(symbol, symbol.valueDeclaration!);
