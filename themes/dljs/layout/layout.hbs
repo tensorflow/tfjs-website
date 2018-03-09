@@ -18,18 +18,25 @@ limitations under the License.
     <meta charset="UTF-8">
     <title>Tensorflow.js</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Roboto:200,300,400,500" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500" rel="stylesheet">
 
     {{!-- <link rel="stylesheet" href="/css/material-components-web.css" /> --}}
     <link rel="stylesheet" href="/css/layout.css" />
 
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
     <script src="/js/vendor/material-components-web.js"></script>
+    <script src="/js/vendor/tf.min.js"></script>
+    <script>
+      window.dl = window.tf
+    </script>
     <script src="/js/layout.js"></script>
 
     {{#if (isApiPage path)}}
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/railscasts.min.css">
       <link rel="stylesheet" href="/css/api.css" />
       <script src="/js/api.js"></script>
+    {{else}}
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
     {{/if}}
   </head>
 

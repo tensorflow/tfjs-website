@@ -60,6 +60,7 @@ body {
 
     .hero-title {
       @include mdc-typography("display4");
+      font-weight: 100;
       color: white;
     }
   }
@@ -166,5 +167,35 @@ body {
         }
       }
     }
+
+    .getting-started {
+      .gs-code {
+        display: flex;
+        flex-direction: row;
+
+        font-size: 120%;
+
+        pre {
+          margin:0;
+          padding: 0;
+          margin-right: 30px;
+        }
+
+        code {
+          // padding: 12px;
+          border: 1px solid #dedede;
+          border-radius: 4px;
+        }
+
+        h3 {
+          @include mdc-typography("subheading1");
+        }
+      }
+    }
+
+    .getting-help {
+      margin-bottom: 100px;
+    }
+
   }
 }

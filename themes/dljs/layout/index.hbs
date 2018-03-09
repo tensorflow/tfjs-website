@@ -100,11 +100,53 @@
 
     <div id="getting-started" class="getting-started">
       <h1>Getting Started</h1>
+      <p>
+        You can use TensorFlow.js by installing it from NPM or via script tags.
+      </p>
+
+      <h3>Installation</h3>
+      <div class="gs-code">
+        <pre><code class="lang-shell">yarn add @tensorflow/tfjs</code></pre>
+        <pre><code class="lang-shell">npm install @tensorflow/tfjs</code></pre>
+      </div>
+
+      <div class="gs-code">
+        <pre>
+          <code class="lang-html">&lt;script src="https://cdn.jsdelivr.net/npm/tfjs@{{latestVersion}}"&gt;&lt;/script&gt;</code>
+        </pre>
+      </div>
+
+
+      <h3>Usage</h3>
+      <p>
+        See our <a href='/tutorials'>tutorials</a>,
+        <a href='https://github.com/tensorflow/tfjs-examples'>examples</a>
+        and <a href="/api/{{latestVersion}}/">documentation</a> for more details,
+        but let's look at what it looks like to add two tensors in TensorFlow.js
+      </p>
+      <div class="gs-code">
+<pre>
+  <code class="lang-js">
+  const a = dl.tensor1d([1, 2, 3]);
+  const b = dl.scalar(2);
+  const result = a.add(b); // a is not modified, result is a new tensor
+
+  // Option 1: With a Promise.
+  result.data().then(data => console.log(data)); // Float32Array([3, 4, 5])
+
+  // Option 2: Synchronous download of data. Blocks the UI.
+  console.log(result.dataSync()
+  </code>
+</pre>
+      </div>
     </div>
 
     <div class="getting-help">
       <h1>Need Help?</h1>
+      <p>Some text here about where to get help</p>
     </div>
 
   </div>
+
+  <script>hljs.initHighlightingOnLoad();</script>
 </div>
