@@ -25,6 +25,8 @@ export interface DocInfo {
   subheading: string;
   namespace?: string;
   subclasses?: string[];
+  useDocsFrom?: string;
+  configParamIndices?: number[];
 }
 
 export function getDocDecorator(node: ts.Node, decoratorName: string): DocInfo {
@@ -84,10 +86,43 @@ export function addSubclassMethods(
   });
 }
 
+export function unpackConfigParams(docHeadings, configInterfaceParamMap) {
+  foreachDocFunction(docHeadings, docFunction => {
+    if (docFunction.docInfo.configParamIndices != null) {
+      const params = [];
+      for (let i = 0; i < docFunction.parameters.length; i++) {
+        params.push(docFunction.parameters[i]);
+
+        if (docFunction.docInfo.configParamIndices.indexOf(i) != -1) {
+          const configParams =
+              configInterfaceParamMap[docFunction.parameters[i].type];
+          configParams.forEach(configParam => {
+            params.push(configParam);
+          });
+        }
+      }
+      docFunction.parameters = params;
+    }
+  });
+}
+
+
+export function replaceUseDocsFromDocStrings(
+    docHeadings: DocHeading[],
+    globalSymbolDocMap: {[symbolName: string]: string}) {
+  foreachDocFunction(docHeadings, docFunction => {
+    if (docFunction.docInfo.useDocsFrom != null &&
+        globalSymbolDocMap[docFunction.docInfo.useDocsFrom] != null) {
+      docFunction.documentation =
+          globalSymbolDocMap[docFunction.docInfo.useDocsFrom];
+    }
+  });
+}
+
 // Parse the file info, github URL and filename from a node.
 export function getFileInfo(
-    node: ts.Node, sourceFile: ts.SourceFile, repoPath: string,
-    srcRoot: string, githubRoot: string): {displayFilename: string, githubUrl: string} {
+    node: ts.Node, sourceFile: ts.SourceFile, repoPath: string, srcRoot: string,
+    githubRoot: string): {displayFilename: string, githubUrl: string} {
   // Line numbers are 0-indexed.
   const startLine =
       sourceFile.getLineAndCharacterOfPosition(node.getStart()).line + 1;
@@ -155,6 +190,9 @@ export function sortMethods(docHeadings: DocHeading[]) {
     const heading = docHeadings[i];
     for (let j = 0; j < heading.subheadings.length; j++) {
       const subheading = heading.subheadings[j];
+      if (subheading.symbols == null) {
+        subheading.symbols = [];
+      }
 
       // Pin the symbols in order of the pins.
       const pinnedSymbols = [];
@@ -193,6 +231,7 @@ export function kind(node: ts.Node): string {
       return keys[i];
     }
   }
+  return null;
 }
 
 export function isStatic(node: ts.MethodDeclaration): boolean {
@@ -212,7 +251,7 @@ export function isStatic(node: ts.MethodDeclaration): boolean {
 export function getJsdoc(
     checker: ts.TypeChecker,
     node: ts.InterfaceDeclaration|ts.TypeAliasDeclaration|ts.ClassDeclaration,
-    tag: string) {
+    tag: string): string {
   const symbol = checker.getSymbolAtLocation(node.name);
   const docs = symbol.getDocumentationComment(undefined);
   const tags = symbol.getJsDocTags();
@@ -222,6 +261,7 @@ export function getJsdoc(
       return jsdocTag.text.trim();
     }
   }
+  return null;
 }
 
 /**
@@ -310,7 +350,13 @@ export function getIdentifierGenericMap(
 export function foreachDocFunction(
     docHeadings: DocHeading[], fn: (docFunction: DocFunction) => void) {
   docHeadings.forEach(heading => {
+    if (heading.subheadings == null) {
+      return;
+    }
     heading.subheadings.forEach(subheading => {
+      if (subheading.symbols == null) {
+        return;
+      }
       subheading.symbols.forEach(untypedSymbol => {
         if (untypedSymbol['isClass']) {
           const symbol = untypedSymbol as DocClass;

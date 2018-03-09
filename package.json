@@ -10,7 +10,7 @@
     "serve": "hexo server",
     "build": "hexo generate",
     "prep-dist": "babel public/js --out-dir public/js",
-    "build-api": "node build-scripts/build-api.js"
+    "build-api": "hexo clean && node build-scripts/build-api.js"
   },
   "dependencies": {
     "babel-cli": "~6.26.0",

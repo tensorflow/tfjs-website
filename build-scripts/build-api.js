@@ -57,18 +57,33 @@ const coreOutputPath =
 
 const pr = path.resolve;
 
+// let opts = {
+//   input: (commander.in && pr(commander.in)) ||
+//       path.resolve('libs/tfjs-core/src/index.ts'),
+//   pkg: (commander.package && pr(commander.package)) ||
+//       path.resolve('libs/tfjs-core/package.json'),
+//   src: (commander.src && pr(commander.src)) ||
+//       path.resolve('libs/tfjs-core/src/'),
+//   repo:
+//       (commander.repo && pr(commander.repo)) ||
+//       path.resolve('libs/tfjs-core/'),
+//   bundle: (commander.bundle && pr(commander.bundle)) ||
+//       path.resolve('libs/tfjs-core/dist/deeplearn.js'),
+//   github: 'https://github.com/PAIR-code/deeplearnjs',
+//   out: coreOutputPath,
+// }
 let opts = {
   input: (commander.in && pr(commander.in)) ||
-      path.resolve('libs/tfjs-core/src/index.ts'),
+      path.resolve('libs/tfjs-layers/src/index.ts'),
   pkg: (commander.package && pr(commander.package)) ||
-      path.resolve('libs/tfjs-core/package.json'),
+      path.resolve('libs/tfjs-layers/package.json'),
   src: (commander.src && pr(commander.src)) ||
-      path.resolve('libs/tfjs-core/src/'),
-  repo:
-      (commander.repo && pr(commander.repo)) || path.resolve('libs/tfjs-core/'),
+      path.resolve('libs/tfjs-layers/src/'),
+  repo: (commander.repo && pr(commander.repo)) ||
+      path.resolve('libs/tfjs-layers/'),
   bundle: (commander.bundle && pr(commander.bundle)) ||
-      path.resolve('libs/tfjs-core/dist/deeplearn.js'),
-  github: 'https://github.com/PAIR-code/deeplearnjs',
+      path.resolve('libs/tfjs-layers/dist/deeplearn.js'),
+  github: 'https://github.com/tensorflow/tfjs-layers',
   out: coreOutputPath,
 }
 
@@ -77,7 +92,7 @@ const coreDocGenCommand = `ts-node ${docGenScript} --in ${
     opts.bundle} --github ${opts.github} --out ${opts.out} --repo ${opts.repo}`;
 
 
-const coreBuild = shell.exec(`cd libs/tfjs-core && git checkout ${
+const coreBuild = shell.exec(`cd libs/tfjs-layers && git checkout ${
     coreVersion} && yarn && cd ../.. && ${coreDocGenCommand}`);
 bailOnFail(coreBuild.code, 'Error building core docs');
 

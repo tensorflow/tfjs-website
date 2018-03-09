@@ -1,3 +1,5 @@
+import {DocInfo} from './api-util';
+
 /**
  * @license
  * Copyright 2018 Google Inc. All Rights Reserved.
@@ -37,11 +39,14 @@ export interface DocSubheading {
 export type DocSymbol = DocFunction|DocClass;
 
 export interface DocClass {
+  docInfo: DocInfo;
+
   symbolName: string;
   namespace: string;
   documentation: string;
   fileName: string;
   githubUrl: string;
+
   methods: DocFunction[];
 
   isClass: true;
@@ -52,13 +57,15 @@ export interface DocClass {
 }
 
 export interface DocFunction {
+  docInfo: DocInfo;
+
   symbolName: string;
   namespace: string;
   documentation: string;
   fileName: string;
   githubUrl: string;
-  parameters: DocFunctionParam[];
 
+  parameters: DocFunctionParam[];
   paramStr: string;
   returnType: string;
 

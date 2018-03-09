@@ -1,3 +1,6 @@
 [submodule "libs/tfjs-core"]
 	path = libs/tfjs-core
 	url = git@github.com:PAIR-code/deeplearnjs.git
+[submodule "libs/tfjs-layers"]
+	path = libs/tfjs-layers
+	url = git@github.com:tensorflow/tfjs-layers.git

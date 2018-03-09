@@ -138,6 +138,9 @@ export function parse(
   const subclassMethodMap: {[subclass: string]: DocFunction[]} = {};
   const docTypeAliases: {[type: string]: string} = {};
   const docLinkAliases: {[symbolName: string]: string} = {};
+  const globalSymbolDocMap: {[symbolName: string]: string} = {};
+  const configInterfaceParamMap:
+      {[interfaceName: string]: DocFunctionParam[]} = {};
 
   // Use the same compiler options that we use to compile the library here.
   const tsconfig =
@@ -153,10 +156,15 @@ export function parse(
           sourceFile,
           node => visitNode(
               docHeadings, subclassMethodMap, docTypeAliases, docLinkAliases,
-              checker, node, sourceFile, srcRoot, repoPath, githubRoot));
+              globalSymbolDocMap, configInterfaceParamMap, checker, node,
+              sourceFile, srcRoot, repoPath, githubRoot));
     }
   }
 
+  // console.log(configInterfaceParamMap);
+
+  util.unpackConfigParams(docHeadings, configInterfaceParamMap);
+  util.replaceUseDocsFromDocStrings(docHeadings, globalSymbolDocMap);
   util.addSubclassMethods(docHeadings, subclassMethodMap);
   util.sortMethods(docHeadings);
   util.replaceDocTypeAliases(docHeadings, docTypeAliases);
@@ -171,9 +179,11 @@ function visitNode(
     docHeadings: DocHeading[],
     subclassMethodMap: {[subclass: string]: DocFunction[]},
     docTypeAliases: {[type: string]: string},
-    docLinkAliases: {[symbolName: string]: string}, checker: ts.TypeChecker,
-    node: ts.Node, sourceFile: ts.SourceFile, srcRoot: string, repoPath: string,
-    githubRoot: string) {
+    docLinkAliases: {[symbolName: string]: string},
+    globalSymbolDocMap: {[symbolName: string]: string},
+    configInterfaceParamMap: {[interfaceName: string]: DocFunctionParam[]},
+    checker: ts.TypeChecker, node: ts.Node, sourceFile: ts.SourceFile,
+    srcRoot: string, repoPath: string, githubRoot: string) {
   if (ts.isMethodDeclaration(node)) {
     const docInfo = util.getDocDecorator(node, DOCUMENTATION_DECORATOR);
 
@@ -231,11 +241,44 @@ function visitNode(
     }
   }
 
+  // Map all symbols to their documentation so we can map useDocFrom aliases.
+  if (ts.isMethodDeclaration(node) || ts.isFunctionDeclaration(node) ||
+      ts.isClassDeclaration(node) || ts.isInterfaceDeclaration(node) ||
+      ts.isTypeAliasDeclaration(node)) {
+    const symbol = checker.getSymbolAtLocation(node.name);
+    const name = symbol.getName();
+    const documentation =
+        ts.displayPartsToString(symbol.getDocumentationComment(undefined));
+    if (documentation != '') {
+      globalSymbolDocMap[name] = documentation;
+    }
+  }
+
+  // Map interfaces to their parameter list so we can unpack configuration
+  // objects.
+  if (ts.isInterfaceDeclaration(node)) {
+    const symbol = checker.getSymbolAtLocation(node.name);
+    const params = [];
+    node.forEachChild(child => {
+      if (ts.isPropertySignature(child)) {
+        const childSymbol = checker.getSymbolAtLocation(child.name);
+        // We don't support generics on interfaces yet, so pass an empty generic
+        // map.
+        const identifierGenericMap = {};
+
+        params.push(
+            serializeParameter(checker, childSymbol, identifierGenericMap));
+      }
+    });
+    configInterfaceParamMap[symbol.getName()] = params;
+  }
+
   ts.forEachChild(
       node,
       node => visitNode(
           docHeadings, subclassMethodMap, docTypeAliases, docLinkAliases,
-          checker, node, sourceFile, srcRoot, repoPath, githubRoot));
+          globalSymbolDocMap, configInterfaceParamMap, checker, node,
+          sourceFile, srcRoot, repoPath, githubRoot));
 }
 
 export function serializeClass(
@@ -248,6 +291,7 @@ export function serializeClass(
   const {displayFilename, githubUrl} =
       util.getFileInfo(node, sourceFile, repoPath, srcRoot, githubRoot);
   const docClass: DocClass = {
+    docInfo: docInfo,
     symbolName: name,
     namespace: docInfo.namespace,
     documentation:
@@ -318,6 +362,7 @@ export function serializeMethod(
   returnType = util.sanitizeTypeString(returnType, identifierGenericMap);
 
   const method: DocFunction = {
+    docInfo: docInfo,
     symbolName: symbol.name,
     namespace: docInfo.namespace,
     paramStr,
