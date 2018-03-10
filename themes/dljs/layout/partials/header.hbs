@@ -4,14 +4,14 @@
     <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
       <button id="nav-menu-button" class="material-icons mdc-toolbar__menu-icon">menu</button>
       <span class="mdc-toolbar__title">
-        <a href="/">TensorFlow.js</a>
+        <a href="{{url_for ''}}">TensorFlow.js</a>
       </span>
     </section>
     <section class="mdc-toolbar__section">
       <nav>
-        <a href="/#getting-started">Getting Started</a>
-        <a href="/tutorials/">Tutorials</a>
-        <a href="/api/{{latestVersion}}/">Documentation</a>
+        <a href="{{url_for '/#getting-started'}}">Getting Started</a>
+        <a href="{{url_for 'tutorials/'}}">Tutorials</a>
+        <a href="{{url_for (concat 'api/' (latestVersion))}}/">Documentation</a>
 
       </nav>
     </section>
@@ -26,7 +26,7 @@
 <aside class="sidebar mdc-drawer mdc-drawer--temporary">
   <nav class="mdc-drawer__drawer">
     <div class="mdc-drawer__toolbar-spacer">
-      <span class="mdc-toolbar__title">Site Title</span>
+      <span class="mdc-toolbar__title">TensorFlow.js</span>
     </div>
 
 
