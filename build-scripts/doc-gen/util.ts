@@ -129,8 +129,8 @@ export function replaceUseDocsFromDocStrings(
         globalSymbolDocMap[docFunction.docInfo.useDocsFrom] != null) {
       docFunction.documentation =
           globalSymbolDocMap[docFunction.docInfo.useDocsFrom].docs;
-      docFunction.parameters =
-          globalSymbolDocMap[docFunction.docInfo.useDocsFrom].params;
+      const params = globalSymbolDocMap[docFunction.docInfo.useDocsFrom].params
+      docFunction.parameters = params ? params : [];
     }
   });
 }

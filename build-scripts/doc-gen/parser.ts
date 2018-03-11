@@ -165,14 +165,20 @@ function visitNode(
 
     const signature = type.getCallSignatures()[0];
 
-    const identifierGenericMap = ts.isMethodDeclaration(node) ?
-        util.getIdentifierGenericMap(node, symbol.name) :
-        {};
+    let params = [];
+    if (signature != null && signature.parameters != null) {
+      const identifierGenericMap = ts.isMethodDeclaration(node) ?
+          util.getIdentifierGenericMap(node, symbol.name) :
+          {};
 
-    const isConfigParam = false;
-    const params = signature.parameters.map(
-        symbol => serializeParameter(
-            checker, symbol, identifierGenericMap, isConfigParam));
+      const isConfigParam = false;
+      params = signature.parameters != null ?
+          signature.parameters.map(
+              symbol => serializeParameter(
+                  checker, symbol, identifierGenericMap, isConfigParam)) :
+          [];
+    }
+
     globalSymbolDocMap[name] = {docs: documentation, params};
   }
 
