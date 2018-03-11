@@ -129,8 +129,17 @@ export function replaceUseDocsFromDocStrings(
         globalSymbolDocMap[docFunction.docInfo.useDocsFrom] != null) {
       docFunction.documentation =
           globalSymbolDocMap[docFunction.docInfo.useDocsFrom].docs;
-      const params = globalSymbolDocMap[docFunction.docInfo.useDocsFrom].params
-      docFunction.parameters = params ? params : [];
+      const params =
+          globalSymbolDocMap[docFunction.docInfo.useDocsFrom].params || [];
+
+      // Replace params from useDocsFrom only when param names line up.
+      for (let i = 0; i < docFunction.parameters.length; i++) {
+        params.forEach(param => {
+          if (param.name === docFunction.parameters[i].name) {
+            docFunction.parameters[i] = param;
+          }
+        });
+      }
     }
   });
 }
