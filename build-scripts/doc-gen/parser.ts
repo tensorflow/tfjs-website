@@ -46,18 +46,21 @@ export function parse(
   const subclassMethodMap: {[subclass: string]: DocFunction[]} = {};
   const docTypeAliases: {[type: string]: string} = {};
   const docLinkAliases: {[symbolName: string]: string} = {};
-  const globalSymbolDocMap: {[symbolName: string]: string} = {};
+  const globalSymbolDocMap:
+      {[symbolName: string]: {docs: string, params: DocFunctionParam[]}} = {};
   const configInterfaceParamMap:
       {[interfaceName: string]: DocFunctionParam[]} = {};
 
-  // Use the same compiler options that we use to compile the library here.
+  // Use the same compiler options that we use to compile the library
+  // here.
   const tsconfig =
       JSON.parse(fs.readFileSync(path.join(repoPath, 'tsconfig.json'), 'utf8'));
 
   const program = ts.createProgram([programRoot], tsconfig.compilerOptions);
   const checker = program.getTypeChecker();
 
-  // Visit all the nodes that are transitively linked from the source root.
+  // Visit all the nodes that are transitively linked from the source
+  // root.
   for (const sourceFile of program.getSourceFiles()) {
     if (!sourceFile.isDeclarationFile) {
       ts.forEachChild(
@@ -85,7 +88,8 @@ function visitNode(
     subclassMethodMap: {[subclass: string]: DocFunction[]},
     docTypeAliases: {[type: string]: string},
     docLinkAliases: {[symbolName: string]: string},
-    globalSymbolDocMap: {[symbolName: string]: string},
+    globalSymbolDocMap:
+        {[symbolName: string]: {docs: string, params: DocFunctionParam[]}},
     configInterfaceParamMap: {[interfaceName: string]: DocFunctionParam[]},
     checker: ts.TypeChecker, node: ts.Node, sourceFile: ts.SourceFile,
     srcRoot: string, repoPath: string, githubRoot: string) {
@@ -153,12 +157,23 @@ function visitNode(
       ts.isClassDeclaration(node) || ts.isInterfaceDeclaration(node) ||
       ts.isTypeAliasDeclaration(node)) {
     const symbol = checker.getSymbolAtLocation(node.name);
+    const type =
+        checker.getTypeOfSymbolAtLocation(symbol, symbol.valueDeclaration!);
     const name = symbol.getName();
     const documentation =
         ts.displayPartsToString(symbol.getDocumentationComment(undefined));
-    if (documentation != '') {
-      globalSymbolDocMap[name] = documentation;
-    }
+
+    const signature = type.getCallSignatures()[0];
+
+    const identifierGenericMap = ts.isMethodDeclaration(node) ?
+        util.getIdentifierGenericMap(node, symbol.name) :
+        {};
+
+    const isConfigParam = false;
+    const params = signature.parameters.map(
+        symbol => serializeParameter(
+            checker, symbol, identifierGenericMap, isConfigParam));
+    globalSymbolDocMap[name] = {docs: documentation, params};
   }
 
   // Map interfaces to their parameter list so we can unpack configuration
@@ -169,8 +184,8 @@ function visitNode(
     node.forEachChild(child => {
       if (ts.isPropertySignature(child)) {
         const childSymbol = checker.getSymbolAtLocation(child.name);
-        // We don't support generics on interfaces yet, so pass an empty generic
-        // map.
+        // We don't support generics on interfaces yet, so pass an empty
+        // generic map.
         const identifierGenericMap = {};
         const isConfigParam = true;
         params.push(serializeParameter(

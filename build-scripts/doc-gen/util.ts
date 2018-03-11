@@ -122,12 +122,15 @@ export function unpackConfigParams(
 
 export function replaceUseDocsFromDocStrings(
     docHeadings: DocHeading[],
-    globalSymbolDocMap: {[symbolName: string]: string}) {
+    globalSymbolDocMap:
+        {[symbolName: string]: {docs: string, params: DocFunctionParam[]}}) {
   foreachDocFunction(docHeadings, docFunction => {
     if (docFunction.docInfo.useDocsFrom != null &&
         globalSymbolDocMap[docFunction.docInfo.useDocsFrom] != null) {
       docFunction.documentation =
-          globalSymbolDocMap[docFunction.docInfo.useDocsFrom];
+          globalSymbolDocMap[docFunction.docInfo.useDocsFrom].docs;
+      docFunction.parameters =
+          globalSymbolDocMap[docFunction.docInfo.useDocsFrom].params;
     }
   });
 }

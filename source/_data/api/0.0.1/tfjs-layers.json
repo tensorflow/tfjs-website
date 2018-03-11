@@ -16,8 +16,168 @@
                 "symbolName": "Model",
                 "documentation": "The `Model` class adds training & evaluation routines to a `Container`.\n\nA `Model` is the basic unit of training, inference and evaluation in\nTensorFlow.js. `tf.model` is a factory function that creates an instance\nof `Model`.\n\nTo create a `Model`, specify its input(s) and output(s). Inputs are\n`SymbolicTensor`s provided by `Input` layers. Outputs are `SymbolicTensor`s\nprovided by other layers that perform mathematical and neural-network\noperations.\n\nFor example, the following code snippet defines a model consisting of\ntwo `dense` layers, with of 10 and 4 units, respectively.\n\n```js\n// Define input, which has a size of 5 (not including batch dimension).\nconst input = tf.input({shape: [5]});\n\n// First dense layer uses relu activation.\nconst denseLayer1 = tf.layers.dense({units: 10, activation: 'relu'});\n// Second dense layer uses softmax activation.\nconst denseLayer2 = tf.layers.dense({units: 2, activation: 'softmax'});\n\n// Obtain the output symbolic tensor by applying the layers on the input.\nconst output = denseLayer2.apply(denseLayer1.apply(input));\n\n// Create the model based on the inputs.\nconst model = tf.model({inputs: input, outputs: output});\n\n// The model can be used for training, evaluation and prediction.\n// For example, the following line runs prediction with the model on\n// some fake data.\nmodel.predict(tf.ones([2, 5])).print();\n```\n\nSee also:\n   `Sequential`, `modelFromJSON`, `loadModel`.",
                 "fileName": "#613",
-                "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/engine/training.ts#L613-L1574",
-                "methods": [],
+                "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/engine/training.ts#L613-L1579",
+                "methods": [
+                  {
+                    "docInfo": {
+                      "heading": "Models",
+                      "subheading": "Classes"
+                    },
+                    "symbolName": "compile",
+                    "paramStr": "(config)",
+                    "parameters": [
+                      {
+                        "name": "config",
+                        "documentation": "",
+                        "type": "ModelCompileConfig",
+                        "optional": false,
+                        "isConfigParam": false
+                      }
+                    ],
+                    "returnType": "void",
+                    "documentation": "",
+                    "fileName": "#644",
+                    "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/engine/training.ts#L644-L836",
+                    "isFunction": true
+                  },
+                  {
+                    "docInfo": {
+                      "heading": "Models",
+                      "subheading": "Classes"
+                    },
+                    "symbolName": "evaluate",
+                    "paramStr": "(x, y, batchSize?, verbose?, sampleWeight?, steps?)",
+                    "parameters": [
+                      {
+                        "name": "x",
+                        "documentation": "Tensor of test data, or list of Tensors if the model has\nmultiple inputs.",
+                        "type": "Tensor|Tensor[]",
+                        "optional": false,
+                        "isConfigParam": false
+                      },
+                      {
+                        "name": "y",
+                        "documentation": "Tensor of target data, or list of Tensors if the model has\nmultiple outputs.",
+                        "type": "Tensor|Tensor[]",
+                        "optional": false,
+                        "isConfigParam": false
+                      },
+                      {
+                        "name": "batchSize",
+                        "documentation": "If unspecified, it will default to 32.",
+                        "type": "number",
+                        "optional": true,
+                        "isConfigParam": false
+                      },
+                      {
+                        "name": "verbose",
+                        "documentation": "Verbosity mode. Defaults to true.",
+                        "type": "ModelLoggingVerbosity",
+                        "optional": true,
+                        "isConfigParam": false
+                      },
+                      {
+                        "name": "sampleWeight",
+                        "documentation": "Tensor of weights to weight the contribution\nof different samples to the loss and metrics.",
+                        "type": "Tensor",
+                        "optional": true,
+                        "isConfigParam": false
+                      },
+                      {
+                        "name": "steps",
+                        "documentation": "Integer: total number of steps (batches of samples)\nbefore declaring the evaluation round finished. When `steps` is not\nprovided, will perform evaluation on all exapmles in `x` and `y` and\ndeclare evaluation finished.",
+                        "type": "number",
+                        "optional": true,
+                        "isConfigParam": false
+                      }
+                    ],
+                    "returnType": "Scalar|Scalar[]",
+                    "documentation": "Returns the loss value & metrics values for the model in test mode.\n\nLoss and metrics are specified during `compile()`, which needs to happen\nbefore calls to `evaluate()`.\n\nComputation is done in batches.",
+                    "fileName": "#886",
+                    "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/engine/training.ts#L886-L904",
+                    "isFunction": true
+                  },
+                  {
+                    "docInfo": {
+                      "heading": "Models",
+                      "subheading": "Classes"
+                    },
+                    "symbolName": "predict",
+                    "paramStr": "(x, batchSize?, verbose?)",
+                    "parameters": [
+                      {
+                        "name": "x",
+                        "documentation": "The input data, as an Tensor (or `Array` of `Tensor`s if the\nmodel has multiple outputs).",
+                        "type": "Tensor|Tensor[]",
+                        "optional": false,
+                        "isConfigParam": false
+                      },
+                      {
+                        "name": "batchSize",
+                        "documentation": "Integer. If unspecified, it will default to 32.",
+                        "type": "number",
+                        "optional": true,
+                        "isConfigParam": false
+                      },
+                      {
+                        "name": "verbose",
+                        "documentation": "Verbosity mode. Defaults to false.",
+                        "type": "boolean",
+                        "optional": true,
+                        "isConfigParam": false
+                      }
+                    ],
+                    "returnType": "Tensor\n      |Tensor[]",
+                    "documentation": "Generates output predictions for the input samples.\n\nComputation is done in batches.\n\nPorting Note: the \"step\" mode of predict() is currently not supported.\nThis is because the TensorFow.js core backend is imperative only.",
+                    "fileName": "#1023",
+                    "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/engine/training.ts#L1023-L1032",
+                    "isFunction": true
+                  },
+                  {
+                    "docInfo": {
+                      "heading": "Models",
+                      "subheading": "Classes"
+                    },
+                    "symbolName": "predictOnBatch",
+                    "paramStr": "(x)",
+                    "parameters": [
+                      {
+                        "name": "x",
+                        "documentation": ": Input samples, as an Tensor",
+                        "type": "Tensor",
+                        "optional": false,
+                        "isConfigParam": false
+                      }
+                    ],
+                    "returnType": "Tensor|Tensor[]",
+                    "documentation": "Returns predictions for a single batch of samples.",
+                    "fileName": "#1040",
+                    "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/engine/training.ts#L1040-L1046",
+                    "isFunction": true
+                  },
+                  {
+                    "docInfo": {
+                      "heading": "Models",
+                      "subheading": "Classes"
+                    },
+                    "symbolName": "fit",
+                    "paramStr": "(config)",
+                    "parameters": [
+                      {
+                        "name": "config",
+                        "documentation": "",
+                        "type": "ModelFitConfig",
+                        "optional": false,
+                        "isConfigParam": false
+                      }
+                    ],
+                    "returnType": "Promise",
+                    "documentation": "Trains the model for a fixed number of epochs (iterations on a dataset).",
+                    "fileName": "#1384",
+                    "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/engine/training.ts#L1384-L1578",
+                    "isFunction": true
+                  }
+                ],
                 "isClass": true
               },
               {
@@ -27,9 +187,147 @@
                 },
                 "symbolName": "Sequential",
                 "documentation": "A model with a stack of layers, feeding linearly from one to the next.\n\n`tf.sequential` is a factory function that creates an instance of\n`Sequential`.\n\n# Arguments",
-                "fileName": "#150",
-                "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/models.ts#L150-L474",
-                "methods": [],
+                "fileName": "#212",
+                "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/models.ts#L212-L540",
+                "methods": [
+                  {
+                    "docInfo": {
+                      "heading": "Models",
+                      "subheading": "Classes"
+                    },
+                    "symbolName": "add",
+                    "paramStr": "(layer)",
+                    "parameters": [
+                      {
+                        "name": "layer",
+                        "documentation": "Layer instance.",
+                        "type": "Layer",
+                        "optional": false,
+                        "isConfigParam": false
+                      }
+                    ],
+                    "returnType": "void",
+                    "documentation": "Adds a layer instance on top of the layer stack.",
+                    "fileName": "#244",
+                    "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/models.ts#L244-L319",
+                    "isFunction": true
+                  },
+                  {
+                    "docInfo": {
+                      "heading": "Models",
+                      "subheading": "Classes"
+                    },
+                    "symbolName": "evaluate",
+                    "paramStr": "(x, y, batchSize?, verbose?, sampleWeight?, steps?)",
+                    "parameters": [
+                      {
+                        "name": "x",
+                        "documentation": "Tensor of test data, or list of Tensors if the model has\nmultiple inputs.",
+                        "type": "Tensor|Tensor[]",
+                        "optional": false,
+                        "isConfigParam": false
+                      },
+                      {
+                        "name": "y",
+                        "documentation": "Tensor of target data, or list of Tensors if the model has\nmultiple outputs.",
+                        "type": "Tensor|Tensor[]",
+                        "optional": false,
+                        "isConfigParam": false
+                      },
+                      {
+                        "name": "batchSize",
+                        "documentation": "If unspecified, it will default to 32.",
+                        "type": "number",
+                        "optional": true,
+                        "isConfigParam": false
+                      },
+                      {
+                        "name": "verbose",
+                        "documentation": "Verbosity mode. Defaults to true.",
+                        "type": "ModelLoggingVerbosity",
+                        "optional": true,
+                        "isConfigParam": false
+                      },
+                      {
+                        "name": "sampleWeight",
+                        "documentation": "Tensor of weights to weight the contribution\nof different samples to the loss and metrics.",
+                        "type": "Tensor",
+                        "optional": true,
+                        "isConfigParam": false
+                      },
+                      {
+                        "name": "steps",
+                        "documentation": "Optional integer: total number of steps (batches of samples)\nbefore declaring the evaluation round finished. Ignored with the default\nvalue of `undefined`.",
+                        "type": "number",
+                        "optional": true,
+                        "isConfigParam": false
+                      }
+                    ],
+                    "returnType": "Scalar|Scalar[]",
+                    "documentation": "Returns the loss value & metrics values for the model in test mode.\n\nLoss and metrics are specified during `compile()`, which needs to happen\nbefore calls to `evaluate()`.\n\nComputation is done in batches.",
+                    "fileName": "#437",
+                    "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/models.ts#L437-L447",
+                    "isFunction": true
+                  },
+                  {
+                    "docInfo": {
+                      "heading": "Models",
+                      "subheading": "Classes"
+                    },
+                    "symbolName": "predict",
+                    "paramStr": "(x, batchSize?, verbose?)",
+                    "parameters": [
+                      {
+                        "name": "x",
+                        "documentation": "The input data, as an Tensor (or list of Tensors if the model\nhas multiple outputs).",
+                        "type": "Tensor|Tensor[]",
+                        "optional": false,
+                        "isConfigParam": false
+                      },
+                      {
+                        "name": "batchSize",
+                        "documentation": "Integer. If unspecified, it will default to 32.",
+                        "type": "number",
+                        "optional": true,
+                        "isConfigParam": false
+                      },
+                      {
+                        "name": "verbose",
+                        "documentation": "Verbosity mode. Defaults to false.",
+                        "type": "boolean",
+                        "optional": true,
+                        "isConfigParam": false
+                      }
+                    ],
+                    "returnType": "Tensor\n      |Tensor[]",
+                    "documentation": "Generates output predictions for the input samples.\n\nComputation is done in batches.",
+                    "fileName": "#460",
+                    "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/models.ts#L460-L467",
+                    "isFunction": true
+                  },
+                  {
+                    "docInfo": {
+                      "heading": "Models",
+                      "subheading": "Classes"
+                    },
+                    "symbolName": "fit",
+                    "paramStr": "(config)",
+                    "parameters": [
+                      {
+                        "name": "config",
+                        "documentation": "",
+                        "type": "ModelFitConfig",
+                        "optional": false,
+                        "isConfigParam": false
+                      }
+                    ],
+                    "returnType": "Promise",
+                    "documentation": "Trains the model for a fixed number of epochs (iterations on a dataset).",
+                    "fileName": "#507",
+                    "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/models.ts#L507-L515",
+                    "isFunction": true
+                  }
+                ],
                 "isClass": true
               }
             ]
@@ -133,70 +431,23 @@
                 "docInfo": {
                   "heading": "Models",
                   "subheading": "Loading",
-                  "useDocsFrom": "loadModelInternal",
-                  "configParamIndices": [
-                    0
-                  ]
+                  "useDocsFrom": "loadModelInternal"
                 },
                 "symbolName": "loadModel",
-                "paramStr": "(modelAndWeights)",
+                "paramStr": "(modelPath)",
                 "parameters": [
                   {
-                    "name": "modelAndWeights",
+                    "name": "modelPath",
                     "documentation": "",
-                    "type": "ModelAndWeightsConfig",
+                    "type": "string",
                     "optional": false,
                     "isConfigParam": false
-                  },
-                  {
-                    "name": "modelAndWeights.modelTopology",
-                    "documentation": "",
-                    "type": "JsonValue|string",
-                    "optional": false,
-                    "isConfigParam": true
-                  },
-                  {
-                    "name": "modelAndWeights.weightsManifest",
-                    "documentation": "",
-                    "type": "WeightsManifestConfig",
-                    "optional": false,
-                    "isConfigParam": true
                   }
                 ],
                 "returnType": "Promise",
-                "documentation": "Load a model, including its topology and weights.",
+                "documentation": "Load a model, including its topology and optionally weights.",
                 "fileName": "#61",
-                "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L61-L69",
-                "isFunction": true
-              },
-              {
-                "docInfo": {
-                  "heading": "Models",
-                  "subheading": "Loading",
-                  "useDocsFrom": "modelFromJSONInternal"
-                },
-                "symbolName": "modelFromJSON",
-                "paramStr": "(jsonString, customObjects?)",
-                "parameters": [
-                  {
-                    "name": "jsonString",
-                    "documentation": "",
-                    "type": "JsonValue|string",
-                    "optional": false,
-                    "isConfigParam": false
-                  },
-                  {
-                    "name": "customObjects",
-                    "documentation": "",
-                    "type": "ConfigDict",
-                    "optional": true,
-                    "isConfigParam": false
-                  }
-                ],
-                "returnType": "Model",
-                "documentation": "Parses a JSON model configuration file and returns a model instance.\n  ",
-                "fileName": "#71",
-                "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L71-L79",
+                "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L61-L68",
                 "isFunction": true
               }
             ]
@@ -261,8 +512,8 @@
                 ],
                 "returnType": "SymbolicTensor",
                 "documentation": "`Input()` is used to instantiate a SymbolicTensor, and represents\nthe input to a model.\n\nExample:\n\n     // this is a logistic regression in TF.js Layers:\n     x = new Input(shape=[32]);\n     y = new Dense(16, activation='softmax').apply(x);\n     model = new Model(x, y);",
-                "fileName": "#81",
-                "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L81-L89",
+                "fileName": "#70",
+                "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L70-L78",
                 "isFunction": true
               },
               {
@@ -329,8 +580,8 @@
                 ],
                 "returnType": "InputLayer",
                 "documentation": "Layer to be used as an entry point into a graph.",
-                "fileName": "#91",
-                "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L91-L99",
+                "fileName": "#80",
+                "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L80-L88",
                 "isFunction": true
               }
             ]
@@ -473,8 +724,8 @@
                 ],
                 "returnType": "Conv1D",
                 "documentation": "1D convolution layer (e.g., temporal convolution).\n\nThis layer creates a convolution kernel that is convolved\nwith the layer input over a single spatial (or temporal) dimension\nto produce a tensor of outputs.\nIf `use_bias` is True, a bias vector is created and added to the outputs.\nFinally, if `activation` is not `null` or `undefined`,\nit is applied to the outputs as well.\nWhen using this layer as the first layer in a model,\nprovide an `inputShape` argument Array or `null`, e.g.\n`[10, 128]` for sequences of 10 vectors of 128-dimensional vectors,\nor `[null, 128]` for variable-length sequences of 128-dimensional vectors.",
-                "fileName": "#109",
-                "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L109-L118",
+                "fileName": "#98",
+                "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L98-L107",
                 "isFunction": true
               },
               {
@@ -606,8 +857,8 @@
                 ],
                 "returnType": "Conv2D",
                 "documentation": "2D convolution layer (e.g. spatial convolution over images).\n\nThis layer creates a convolution kernel that is convolved\nwith the layer input to produce a tensor of outputs.\n\nIf `useBias` is True, a bias vector is created and added to the outputs.\n\nIf `activation` is not `None`, it is applied to the outputs as well.\n\nWhen using this layer as the first layer in a model,\nprovide the keyword argument `inputShape`\n(Array of integers, does not include the sample axis),\ne.g. `inputShape=[128, 128, 3]` for 128x128 RGB pictures\nin `dataFormat=DataFormat.CHANNEL_LAST`.",
-                "fileName": "#120",
-                "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L120-L129",
+                "fileName": "#109",
+                "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L109-L118",
                 "isFunction": true
               },
               {
@@ -669,8 +920,8 @@
                 ],
                 "returnType": "DepthwiseConv2D",
                 "documentation": "Depthwise separable 2D convolution.\n\nDepthwise Separable convolutions consists in performing just the first step\nin a depthwise spatial convolution (which acts on each input channel\nseparately). The `depthMultplier` argument controls how many output channels\nare generated per input channel in the depthwise step.",
-                "fileName": "#133",
-                "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L133-L142",
+                "fileName": "#122",
+                "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L122-L131",
                 "isFunction": true
               }
             ]
@@ -709,8 +960,8 @@
                 ],
                 "returnType": "Activation",
                 "documentation": "Applies an activation function to an output.",
-                "fileName": "#145",
-                "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L145-L154",
+                "fileName": "#134",
+                "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L134-L143",
                 "isFunction": true
               },
               {
@@ -814,8 +1065,8 @@
                 ],
                 "returnType": "Dense",
                 "documentation": "Just your regular densely-connected NN layer.\n   `Dense` implements the operation:\n   `output = activation(dot(input, kernel) + bias)`\n   where `activation` is the element-wise activation function\n   passed as the `activation` argument, `kernel` is a weights matrix\n   created by the layer, and `bias` is a bias vector created by the layer\n   (only applicable if `useBias` is `true`).\n   Note: if the input to the layer has a rank greater than 2, then\n   it is flattened prior to the initial dot product with `kernel`.\n\nInput shape\n   nD tensor with shape: `(batchSize, ..., inputDim)`.\n   The most common situation would be\n   a 2D input with shape `(batchSize, inputDim)`.\nOutput shape\n   nD tensor with shape: `(batchSize, ..., units)`.\n   For instance, for a 2D input with shape `(batchSize, inputDim)`,\n   the output would have shape `(batchSize, units)`.",
-                "fileName": "#156",
-                "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L156-L165",
+                "fileName": "#145",
+                "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L145-L154",
                 "isFunction": true
               },
               {
@@ -863,8 +1114,8 @@
                 ],
                 "returnType": "Dropout",
                 "documentation": "Applies Dropout to the input.\n\nDropout consists in randomly setting\na fraction `rate` of input units to 0 at each update during training time,\nwhich helps prevent overfitting.\n\nReferences\n- [Dropout: A Simple Way to Prevent Neural Networks from\nOverfitting](http://www.cs.toronto.edu/~rsalakhu/papers/srivastava14a.pdf)",
-                "fileName": "#167",
-                "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L167-L176",
+                "fileName": "#156",
+                "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L156-L165",
                 "isFunction": true
               },
               {
@@ -954,8 +1205,8 @@
                 ],
                 "returnType": "Flatten",
                 "documentation": "Flattens the input. Does not affect the batch size.\n\nA `Flatten` layer flattens each batch sample in its inputs to 1D (hence the\noutput is 2D total).\n\nFor example:\n\n```js\nconst input = tf.input({shape: [4, 3]});\nconst flattenLayer = tf.layers.flatten();\n// Inspect the inferred output shape of the flatten layer, which\n// equals `[null, 12]`. The 2nd dimension is 4 * 3, i.e., the result of the\n// flattening. (The 1st dimension is the undermined batch size.)\nconsole.log(flattenLayer.apply(input).shape);\n```",
-                "fileName": "#178",
-                "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L178-L187",
+                "fileName": "#167",
+                "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L167-L176",
                 "isFunction": true
               },
               {
@@ -989,8 +1240,8 @@
                 ],
                 "returnType": "RepeatVector",
                 "documentation": "Repeat the input n times.",
-                "fileName": "#189",
-                "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L189-L198",
+                "fileName": "#178",
+                "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L178-L187",
                 "isFunction": true
               },
               {
@@ -1073,8 +1324,8 @@
                 ],
                 "returnType": "Embedding",
                 "documentation": "Turns positive integers (indexes) into dense vectors of fixed size.\neg. [[4], [20]] -> [[0.25, 0.1], [0.6, -0.2]]\n\n   # Input shape\n       2D tensor with shape: `[batchSize, sequenceLength]`.\n\n   # Output shape\n       3D tensor with shape: `[batchSize, sequenceLength, outputDim]`.",
-                "fileName": "#200",
-                "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L200-L209",
+                "fileName": "#189",
+                "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L189-L198",
                 "isFunction": true
               }
             ]
@@ -1106,8 +1357,8 @@
                 ],
                 "returnType": "Add",
                 "documentation": "Layer that adds a list of inputs.\n\nIt takes as input a list of tensors, all of the same shape, and returns a\nsingle tensor (also of the same shape).",
-                "fileName": "#213",
-                "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L213-L222",
+                "fileName": "#202",
+                "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L202-L211",
                 "isFunction": true
               },
               {
@@ -1134,8 +1385,8 @@
                 ],
                 "returnType": "Average",
                 "documentation": "Layer that averages a list of inputs.\n\nIt takes as input a list of tensors, all of the same shape, and returns a\nsingle tensor (also of the same shape).",
-                "fileName": "#224",
-                "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L224-L233",
+                "fileName": "#213",
+                "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L213-L222",
                 "isFunction": true
               },
               {
@@ -1169,8 +1420,8 @@
                 ],
                 "returnType": "Concatenate",
                 "documentation": "Layer that concatenates a list of inputs.\n\nIt takes a list of tensors, all of the same shape except for the\nconcatenation axis, and returns a single tensor, the concatenation\nof all inputs.",
-                "fileName": "#235",
-                "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L235-L244",
+                "fileName": "#224",
+                "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L224-L233",
                 "isFunction": true
               },
               {
@@ -1197,8 +1448,8 @@
                 ],
                 "returnType": "Maximum",
                 "documentation": "Layer that computes the maximum (element-wise) a list of inputs.\n\nIt takes as input a list of tensors, all of the same shape and returns a\nsingle tensor (also of the same shape).",
-                "fileName": "#246",
-                "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L246-L255",
+                "fileName": "#235",
+                "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L235-L244",
                 "isFunction": true
               },
               {
@@ -1225,8 +1476,8 @@
                 ],
                 "returnType": "Minimum",
                 "documentation": "Layer that computes the minimum (element-wise) a list of inputs.\n\nIt takes as input a list of tensors, all of the same shape and returns a\nsingle tensor (also of the same shape).",
-                "fileName": "#257",
-                "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L257-L266",
+                "fileName": "#246",
+                "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L246-L255",
                 "isFunction": true
               },
               {
@@ -1253,8 +1504,8 @@
                 ],
                 "returnType": "Multiply",
                 "documentation": "Layer that multiplies (element-wise) an Array of inputs.\n\nIt takes as input an Array of tensors, all of the same\nshape, and returns a single tensor (also of the same shape).",
-                "fileName": "#268",
-                "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L268-L277",
+                "fileName": "#257",
+                "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L257-L266",
                 "isFunction": true
               }
             ]
@@ -1377,8 +1628,8 @@
                 ],
                 "returnType": "BatchNormalization",
                 "documentation": "Batch normalization layer (Ioffe and Szegedy, 2014).\n\nNormalize the activations of the previous layer at each batch,\ni.e. applies a transformation that maintains the mean activation\nclose to 0 and the activation standard deviation close to 1.\n\nInput shape:\n   Arbitrary. Use the keyword argument `inputShape` (Array of integers, does\n   not include the sample axis) when calling the constructor of this class,\n   if this layer is used as a first layer in a model.\n\nOutput shape:\n   Same shape as input.\n\nReferences:\n   - [Batch Normalization: Accelerating Deep Network Training by Reducing\nInternal Covariate Shift](https://arxiv.org/abs/1502.03167)",
-                "fileName": "#281",
-                "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L281-L291",
+                "fileName": "#270",
+                "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L270-L280",
                 "isFunction": true
               }
             ]
@@ -1431,8 +1682,8 @@
                 ],
                 "returnType": "AvgPooling1D",
                 "documentation": "Average pooling operation for spatial data.\n   Input shape:  `[batchSize, inLength, channels]`\n   Output shape: `[batchSize, pooledLength, channels]`",
-                "fileName": "#294",
-                "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L294-L303",
+                "fileName": "#283",
+                "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L283-L292",
                 "isFunction": true
               },
               {
@@ -1487,8 +1738,8 @@
                 ],
                 "returnType": "AvgPooling2D",
                 "documentation": "Average pooling operation for spatial data.\n   Input shape\n      - If `dataFormat === CHANNEL_LAST`:\n          4D tensor with shape:\n          `[batchSize, rows, cols, channels]`\n      - If `dataFormat === CHANNEL_FIRST`:\n          4D tensor with shape:\n          `[batchSize, channels, rows, cols]`\n   Output shape\n      - If `dataFormat === CHANNEL_LAST`:\n          4D tensor with shape:\n          `[batchSize, pooleRows, pooledCols, channels]`\n      - If `dataFormat === CHANNEL_FIRST`:\n          4D tensor with shape:\n          `[batchSize, channels, pooleRows, pooledCols]`",
-                "fileName": "#305",
-                "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L305-L314",
+                "fileName": "#294",
+                "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L294-L303",
                 "isFunction": true
               },
               {
@@ -1578,8 +1829,8 @@
                 ],
                 "returnType": "GlobalAveragePooling1D",
                 "documentation": "Global average pooling operation for temporal data.\nInput Shape:\n   3D tensor with shape: `[batchSize, steps, features]`.\nOutput Shape:\n   2D tensor with shape: `[batchSize, features]`.",
-                "fileName": "#316",
-                "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L316-L325",
+                "fileName": "#305",
+                "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L305-L314",
                 "isFunction": true
               },
               {
@@ -1613,8 +1864,8 @@
                 ],
                 "returnType": "GlobalAveragePooling2D",
                 "documentation": "Global average pooling operation for spatial data.\n\nInput shape:\n   If `dataFormat` is `CHANNEL_LAST`:\n     4D tensor with shape: `[batchSize, rows, cols, channels]`.\n   If `dataFormat` is `CHANNEL_FIRST`:\n     4D tensor with shape: `[batchSize, channels, rows, cols]`.\n\nOutput shape:\n   2D tensor with shape: `[batchSize, channels]`.",
-                "fileName": "#327",
-                "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L327-L337",
+                "fileName": "#316",
+                "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L316-L326",
                 "isFunction": true
               },
               {
@@ -1704,8 +1955,8 @@
                 ],
                 "returnType": "GlobalMaxPooling1D",
                 "documentation": "Global max pooling operation for temporal data.\nInput Shape:\n   3D tensor with shape: `[batchSize, steps, features]`.\nOutput Shape:\n   2D tensor with shape: `[batchSize, features]`.",
-                "fileName": "#339",
-                "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L339-L348",
+                "fileName": "#328",
+                "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L328-L337",
                 "isFunction": true
               },
               {
@@ -1739,8 +1990,8 @@
                 ],
                 "returnType": "GlobalMaxPooling2D",
                 "documentation": "Global max pooling operation for spatial data.\n\nInput shape:\n   If `dataFormat` is `CHANNEL_LAST`:\n     4D tensor with shape: `[batchSize, rows, cols, channels]`.\n   If `dataFormat` is `CHANNEL_FIRST`:\n     4D tensor with shape: `[batchSize, channels, rows, cols]`.\n\nOutput shape:\n   2D tensor with shape: `[batchSize, channels]`.",
-                "fileName": "#350",
-                "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L350-L360",
+                "fileName": "#339",
+                "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L339-L349",
                 "isFunction": true
               },
               {
@@ -1788,8 +2039,8 @@
                 ],
                 "returnType": "MaxPooling1D",
                 "documentation": "Max pooling operation for temporal data.\n   Input shape:  `[batchSize, inLength, channels]`\n   Output shape: `[batchSize, pooledLength, channels]`",
-                "fileName": "#362",
-                "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L362-L371",
+                "fileName": "#351",
+                "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L351-L360",
                 "isFunction": true
               },
               {
@@ -1844,8 +2095,8 @@
                 ],
                 "returnType": "MaxPooling2D",
                 "documentation": "Max pooling operation for spatial data.\n   Input shape\n      - If `dataFormat === CHANNEL_LAST`:\n          4D tensor with shape:\n          `[batchSize, rows, cols, channels]`\n      - If `dataFormat === CHANNEL_FIRST`:\n         4D tensor with shape:\n          `[batchSize, channels, rows, cols]`\n   Output shape\n      - If `dataFormat=CHANNEL_LAST`:\n          4D tensor with shape:\n          `[batchSize, pooleRows, pooledCols, channels]`\n      - If `dataFormat=CHANNEL_FIRST`:\n          4D tensor with shape:\n          `[batchSize, channels, pooleRows, pooledCols]`",
-                "fileName": "#373",
-                "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L373-L382",
+                "fileName": "#362",
+                "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L362-L371",
                 "isFunction": true
               }
             ]
@@ -1884,8 +2135,8 @@
                 ],
                 "returnType": "GRU",
                 "documentation": "Gated Recurrent Unit - Cho et al. 2014.",
-                "fileName": "#386",
-                "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L386-L395",
+                "fileName": "#375",
+                "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L375-L384",
                 "isFunction": true
               },
               {
@@ -1926,8 +2177,8 @@
                 ],
                 "returnType": "GRUCell",
                 "documentation": "Cell class for the GRU layer.",
-                "fileName": "#397",
-                "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L397-L406",
+                "fileName": "#386",
+                "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L386-L395",
                 "isFunction": true
               },
               {
@@ -1968,8 +2219,8 @@
                 ],
                 "returnType": "LSTM",
                 "documentation": "Long-Short Term Memory layer - Hochreiter 1997.",
-                "fileName": "#408",
-                "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L408-L417",
+                "fileName": "#397",
+                "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L397-L406",
                 "isFunction": true
               },
               {
@@ -2017,8 +2268,8 @@
                 ],
                 "returnType": "LSTMCell",
                 "documentation": "Cell class for the LSTM layer.",
-                "fileName": "#419",
-                "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L419-L428",
+                "fileName": "#408",
+                "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L408-L417",
                 "isFunction": true
               },
               {
@@ -2143,8 +2394,8 @@
                 ],
                 "returnType": "SimpleRNN",
                 "documentation": "Fully-connected RNN where the output is to be fed back to input.",
-                "fileName": "#430",
-                "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L430-L439",
+                "fileName": "#419",
+                "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L419-L428",
                 "isFunction": true
               },
               {
@@ -2269,8 +2520,8 @@
                 ],
                 "returnType": "SimpleRNNCell",
                 "documentation": "",
-                "fileName": "#441",
-                "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L441-L450",
+                "fileName": "#430",
+                "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L430-L439",
                 "isFunction": true
               }
             ]
@@ -2316,8 +2567,8 @@
                 ],
                 "returnType": "Bidirectional",
                 "documentation": "",
-                "fileName": "#454",
-                "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L454-L463",
+                "fileName": "#443",
+                "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L443-L452",
                 "isFunction": true
               },
               {
@@ -2351,8 +2602,8 @@
                 ],
                 "returnType": "TimeDistributed",
                 "documentation": "This wrapper applies a layer to every temporal slice of an input.\n\nThe input should be at least 3D,  and the dimension of the index `1` will be\nconsidered to be the temporal dimension.\n\nConsider a batch of 32 samples, where each sample is a sequence of 10 vectors\nof 16 dimensions. The batch input shape of the layer is then `[32,  10,\n16]`, and the `inputShape`, not including the sample dimension, is\n`[10, 16]`.\n\nYou can then use `TimeDistributed` to apply a `Dense` layer to each of the 10\ntimesteps, independently:\n\n```typescript\nconst model = new Sequential();\nmodel.add(new TimeDistributed({\n   layer: new Dense({units: 8}),\n   inputShape: [10, 16],\n});\n// Now model.outputShape = [null, 10, 8].\n```\n\nThe output will then have shape `[32, 10, 8]`.\n\nIn subsequent layers, there is no need for `inputShape`:\n```typescript\nmodel.add(new TimeDistributed({layer: new Dense(32)});\n// Now model.outputShape = [null, 10, 32].\n```\n\nThe output will then have shape `[32, 10, 32]`.\n\n`TimeDistributed` can be used with arbitrary layers, not just `Dense`, for\ninstance a `Conv2D` layer.\n\n```typescript\nconst model = new Sequential();\nmodel.add(new TimeDistributed({\n   layer: new Conv2D({filter: 64, kernelSize: [3, 3]}),\n   inputShape: [10, 299, 299, 3]\n});\n```",
-                "fileName": "#465",
-                "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L465-L474",
+                "fileName": "#454",
+                "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L454-L463",
                 "isFunction": true
               }
             ]

@@ -83,7 +83,8 @@ libs.forEach(lib => {
   const version = 'master';
   const coreBuild = shell.exec(
       `cd libs/${lib.repo} && ` +
-      `git checkout ${version} && yarn && cd ../.. && ${docGenCommand}`);
+      //`git checkout ${version} && ` +
+      `yarn && cd ../.. && ${docGenCommand}`);
   bailOnFail(coreBuild.code, `Error building docs for ${lib.repo}`);
   outputPaths.push(outputPath);
 });
