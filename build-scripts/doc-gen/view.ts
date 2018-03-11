@@ -1,5 +1,3 @@
-import {DocInfo} from './api-util';
-
 /**
  * @license
  * Copyright 2018 Google Inc. All Rights Reserved.
@@ -16,10 +14,15 @@ import {DocInfo} from './api-util';
  * limitations under the License.
  * =============================================================================
  */
-export interface Docs {
-  headings: DocHeading[];
-  bundleJsPath?: string;
+import {DocInfo} from './util';
+
+// Docs for a single repo.
+export interface RepoDocsAndMetadata {
+  docs: Docs;
+  docLinkAliases: {[symbolName: string]: string};
 }
+
+export interface Docs { headings: DocHeading[]; }
 
 export interface DocHeading {
   name: string;
@@ -31,9 +34,6 @@ export interface DocSubheading {
   name: string;
   description?: string;
   symbols?: DocSymbol[];
-  // Only used at initialization for sort-order. Pins by displayName, not symbol
-  // name (so that we use namespaces).
-  pin?: string[];
 }
 
 export type DocSymbol = DocFunction|DocClass;
@@ -81,4 +81,5 @@ export interface DocFunctionParam {
   type: string;
   optional: boolean;
   documentation: string;
+  isConfigParam: boolean;
 }

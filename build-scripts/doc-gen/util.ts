@@ -17,7 +17,7 @@
 import * as ts from 'typescript';
 
 // tslint:disable-next-line:max-line-length
-import {DocClass, DocFunction, DocHeading, Docs, DocSubheading} from './view';
+import {DocClass, DocFunction, DocFunctionParam, DocHeading, Docs, DocSubheading} from './view';
 
 // Mirrors the info argument to @doc in decorators.ts.
 export interface DocInfo {
@@ -86,17 +86,30 @@ export function addSubclassMethods(
   });
 }
 
-export function unpackConfigParams(docHeadings, configInterfaceParamMap) {
+export function unpackConfigParams(
+    docHeadings: DocHeading[],
+    configInterfaceParamMap: {[interfaceName: string]: DocFunctionParam[]}) {
   foreachDocFunction(docHeadings, docFunction => {
     if (docFunction.docInfo.configParamIndices != null) {
       const params = [];
       for (let i = 0; i < docFunction.parameters.length; i++) {
+        const configParamName = docFunction.parameters[i].name;
         params.push(docFunction.parameters[i]);
 
         if (docFunction.docInfo.configParamIndices.indexOf(i) != -1) {
           const configParams =
               configInterfaceParamMap[docFunction.parameters[i].type];
+          if (configParams == null) {
+            throw new Error(
+                `Could not find config interface definition for ` +
+                `${docFunction.symbolName}, config type ` +
+                `${docFunction.parameters[i].type}, param ` +
+                `${configParamName} index ${i}. Please make sure ` +
+                `configParamIndices is set properly and the config interface ` +
+                `is documented.`);
+          }
           configParams.forEach(configParam => {
+            configParam.name = configParamName + '.' + configParam.name;
             params.push(configParam);
           });
         }
@@ -184,7 +197,9 @@ export function computeStatistics(docs: Docs):
 }
 
 // Sorts the doc headings.
-export function sortMethods(docHeadings: DocHeading[]) {
+export function sortMethods(
+    docs: Docs, pins: {[heading: string]: {[subheading: string]: string[]}}) {
+  const docHeadings = docs.headings;
   // Sort the methods by name.
   for (let i = 0; i < docHeadings.length; i++) {
     const heading = docHeadings[i];
@@ -196,8 +211,10 @@ export function sortMethods(docHeadings: DocHeading[]) {
 
       // Pin the symbols in order of the pins.
       const pinnedSymbols = [];
-      if (subheading.pin != null) {
-        subheading.pin.forEach(pinnedSymbolName => {
+      if (pins[heading.name] != null &&
+          pins[heading.name][subheading.name] != null) {
+        const pin = pins[heading.name][subheading.name];
+        pin.forEach(pinnedSymbolName => {
           // Loop backwards so we remove symbols.
           for (let k = subheading.symbols.length - 1; k >= 0; k--) {
             const symbol = subheading.symbols[k];
@@ -250,7 +267,8 @@ export function isStatic(node: ts.MethodDeclaration): boolean {
  */
 export function getJsdoc(
     checker: ts.TypeChecker,
-    node: ts.InterfaceDeclaration|ts.TypeAliasDeclaration|ts.ClassDeclaration,
+    node: ts.InterfaceDeclaration|ts.TypeAliasDeclaration|ts.ClassDeclaration|
+    ts.EnumDeclaration,
     tag: string): string {
   const symbol = checker.getSymbolAtLocation(node.name);
   const docs = symbol.getDocumentationComment(undefined);
@@ -404,9 +422,9 @@ export interface SymbolAndUrl {
 }
 
 /**
- * Adds markdown links for reference symbols in documentation, parameter types,
- * and return types. Uses @doclink aliases to link displayed symbols to another
- * symbol's documentation.
+ * Adds markdown links for reference symbols in documentation, parameter
+ * types, and return types. Uses @doclink aliases to link displayed symbols to
+ * another symbol's documentation.
  */
 export function linkSymbols(
     docs: Docs, symbols: SymbolAndUrl[], toplevelNamespace: string,

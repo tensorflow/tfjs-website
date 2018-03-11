@@ -48,64 +48,59 @@ commander.option('--in [path]', 'main source entry')
 const coreVersion = `master`;
 // const layersVersion = `v${'0.5.0'}`;
 
-// Build JSON
 const docGenScript = 'build-scripts/doc-gen/make-api.ts';
-
-const coreOutputPath =
-    path.resolve(`source/_data/api/${unionPackageVersion}/core-docs.json`);
-
 
 const pr = path.resolve;
 
-// let opts = {
-//   input: (commander.in && pr(commander.in)) ||
-//       path.resolve('libs/tfjs-core/src/index.ts'),
-//   pkg: (commander.package && pr(commander.package)) ||
-//       path.resolve('libs/tfjs-core/package.json'),
-//   src: (commander.src && pr(commander.src)) ||
-//       path.resolve('libs/tfjs-core/src/'),
-//   repo:
-//       (commander.repo && pr(commander.repo)) ||
-//       path.resolve('libs/tfjs-core/'),
-//   bundle: (commander.bundle && pr(commander.bundle)) ||
-//       path.resolve('libs/tfjs-core/dist/deeplearn.js'),
-//   github: 'https://github.com/PAIR-code/deeplearnjs',
-//   out: coreOutputPath,
-// }
-let opts = {
-  input: (commander.in && pr(commander.in)) ||
-      path.resolve('libs/tfjs-layers/src/index.ts'),
-  pkg: (commander.package && pr(commander.package)) ||
-      path.resolve('libs/tfjs-layers/package.json'),
-  src: (commander.src && pr(commander.src)) ||
-      path.resolve('libs/tfjs-layers/src/'),
-  repo: (commander.repo && pr(commander.repo)) ||
-      path.resolve('libs/tfjs-layers/'),
-  bundle: (commander.bundle && pr(commander.bundle)) ||
-      path.resolve('libs/tfjs-layers/dist/deeplearn.js'),
-  github: 'https://github.com/tensorflow/tfjs-layers',
-  out: coreOutputPath,
-}
+// TODO(nsthorat): Remove 'github' once deeplearn.js moves into TensorFlow.
+const libs = [
+  {repo: 'tfjs-core', github: 'https://github.com/PAIR-code/deeplearnjs'},
+  {repo: 'tfjs-layers', github: 'https://github.com/tensorflow/tfjs-layers'}
+];
+const outputPaths = [];
+libs.forEach(lib => {
+  const outputPath =
+      path.resolve(`source/_data/api/${unionPackageVersion}/${lib.repo}.json`);
+  const opts = {
+    input: (commander.in && pr(commander.in)) ||
+        path.resolve(`libs/${lib.repo}/src/index.ts`),
+    pkg: (commander.package && pr(commander.package)) ||
+        path.resolve(`libs/${lib.repo}/package.json`),
+    src: (commander.src && pr(commander.src)) ||
+        path.resolve(`libs/${lib.repo}/src/`),
+    repo: (commander.repo && pr(commander.repo)) ||
+        path.resolve(`libs/${lib.repo}/`),
+    github: lib.github,
+    out: outputPath,
+  }
 
-const coreDocGenCommand = `ts-node ${docGenScript} --in ${
-    opts.input} --package ${opts.pkg} --src ${opts.src} --bundle ${
-    opts.bundle} --github ${opts.github} --out ${opts.out} --repo ${opts.repo}`;
+  const docGenCommand = `ts-node ${docGenScript} --in ${opts.input} --package ${
+      opts.pkg} --src ${opts.src} --bundle ${opts.bundle} --github ${
+      opts.github} --out ${opts.out} --repo ${opts.repo}`;
 
+  console.log(`********* Generating docs for ${lib.repo} *********`);
+  // TODO: Swap this version with the version from the union package.
+  const version = 'master';
+  const coreBuild = shell.exec(
+      `cd libs/${lib.repo} && ` +
+      `git checkout ${version} && yarn && cd ../.. && ${docGenCommand}`);
+  bailOnFail(coreBuild.code, `Error building docs for ${lib.repo}`);
+  outputPaths.push(outputPath);
+});
 
-const coreBuild = shell.exec(`cd libs/tfjs-layers && git checkout ${
-    coreVersion} && yarn && cd ../.. && ${coreDocGenCommand}`);
-bailOnFail(coreBuild.code, 'Error building core docs');
+console.log(`********* Merging docs *********`);
 
-// const layersOutputPath = path.resolve(
-//     `../source/_data/api/${unionPackage.version}/layers-docs.json`);
-// const layersBuild = shell.exec(`cd libs/tfjs-layers && git checkout tags/${
-//     layersVersion} && yarn && yarn run build-api ${layersOutputPath}`);
-// bailOnFail(layersBuild.code, 'Error building layer docs');
-
-// Merge JSON (and add header descriptions.
-// const mergeResult = shell.exec(
-//     `yarn run merge-docs-json ${coreOutputPath} ${layersOutputPath}`);
-// bailOnFail(mergeResult.code, 'Error merging jsons');
+const mergeScript = 'build-scripts/doc-gen/merge-api.ts';
+const mergeOutput = `source/_data/api/${unionPackageVersion}/docs.json`;
+const skeletonPath = `source/_data/api/${unionPackageVersion}/skeleton.json`;
+// TODO: Use the union package.
+const bundlePath = commander.bundle && pr(commander.bundle) ||
+    path.resolve('libs/tfjs-core/dist/deeplearn.js');
+// Merge the docs for each repo.
+const mergeResult = shell.exec(
+    `ts-node ${mergeScript} --out ${mergeOutput} --skeleton ${skeletonPath} \
+    --bundlePath ${bundlePath} ${outputPaths.join(' ')}`);
+bailOnFail(mergeResult.code, 'Error merging doc JSONs.');
 
 // Write docs manifest.
 const docsManifest = {
