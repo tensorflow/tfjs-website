@@ -1770,7 +1770,7 @@
                 {
                   "name": "config.layers",
                   "documentation": "Stack of layers for the model. ",
-                  "type": "Layer[]",
+                  "type": "[Layer](#class:tf.Layer)[]",
                   "optional": true,
                   "isConfigParam": true
                 },
@@ -2209,7 +2209,7 @@
                     {
                       "name": "layer",
                       "documentation": "Layer instance.",
-                      "type": "Layer",
+                      "type": "[Layer](#class:tf.Layer)",
                       "optional": false,
                       "isConfigParam": false
                     }
@@ -2780,6 +2780,55 @@
           ]
         },
         {
+          "name": "Classes",
+          "symbols": [
+            {
+              "docInfo": {
+                "heading": "Layers",
+                "subheading": "Classes"
+              },
+              "symbolName": "Layer",
+              "documentation": "Abstract base layer class.",
+              "fileName": "#323",
+              "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/engine/topology.ts#L323-L1165",
+              "methods": [
+                {
+                  "docInfo": {
+                    "heading": "Models",
+                    "subheading": "Classes"
+                  },
+                  "symbolName": "apply",
+                  "paramStr": "(inputs, kwargs?)",
+                  "parameters": [
+                    {
+                      "name": "inputs",
+                      "documentation": "Can be a tensor or list/tuple of tensors.",
+                      "type": "[Tensor](#class:tf.Tensor)|[Tensor](#class:tf.Tensor)[]|[SymbolicTensor](#class:tf.SymbolicTensor)|[SymbolicTensor](#class:tf.SymbolicTensor)[]",
+                      "optional": false,
+                      "isConfigParam": false
+                    },
+                    {
+                      "name": "kwargs",
+                      "documentation": "Additional keyword arguments to be passed to `call()`.",
+                      "type": "any",
+                      "optional": true,
+                      "isConfigParam": false
+                    }
+                  ],
+                  "returnType": "[Tensor](#class:tf.Tensor)|[Tensor](#class:tf.Tensor)[]|[SymbolicTensor](#class:tf.SymbolicTensor)|[SymbolicTensor](#class:tf.SymbolicTensor)[]",
+                  "documentation": "Wrapper around this.call(), for handling internal references.\n\nThis is a replacement for __call__() in Python.\n\nIf a [SymbolicTensor](#class:tf.SymbolicTensor) is passed:\n   - We call this.addInboundNode().\n   - If necessary, we `build` the layer to match\n       the shape of the input(s).\n   - We update the shape of every input tensor with\n       its new shape (obtained via self.computeOutputShape).\n       This is done as part of addInboundNode().\n   - We update the history of the output tensor(s)\n       with the current layer.\n       This is done as part of addInboundNode().",
+                  "fileName": "#772",
+                  "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/engine/topology.ts#L772-L886",
+                  "isFunction": true
+                }
+              ],
+              "isClass": true,
+              "displayName": "tf.Layer",
+              "urlHash": "class:tf.Layer"
+            }
+          ]
+        },
+        {
           "name": "Convolutional",
           "symbols": [
             {
@@ -3044,7 +3093,7 @@
                   "isConfigParam": true
                 }
               ],
-              "returnType": "Conv2D",
+              "returnType": "[Layer](#class:tf.Layer)",
               "documentation": "2D convolution layer (e.g. spatial convolution over images).\n\nThis layer creates a convolution kernel that is convolved\nwith the layer input to produce a tensor of outputs.\n\nIf `useBias` is True, a bias vector is created and added to the outputs.\n\nIf [tf.layers.activation()](#tf.layers.activation) is not `None`, it is applied to the outputs as well.\n\nWhen using this layer as the first layer in a model,\nprovide the keyword argument `inputShape`\n(Array of integers, does not include the sample axis),\ne.g. `inputShape=[128, 128, 3]` for 128x128 RGB pictures\nin `dataFormat=DataFormat.CHANNEL_LAST`.",
               "fileName": "#109",
               "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L109-L118",
@@ -4428,7 +4477,7 @@
                 {
                   "name": "config.layer",
                   "documentation": "The layer to be wrapped.",
-                  "type": "Layer",
+                  "type": "[Layer](#class:tf.Layer)",
                   "optional": false,
                   "isConfigParam": true
                 }

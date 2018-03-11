@@ -72,6 +72,8 @@ export function parse(
     }
   }
 
+  console.log(docTypeAliases);
+
   util.unpackConfigParams(docHeadings, configInterfaceParamMap);
   util.replaceUseDocsFromDocStrings(docHeadings, globalSymbolDocMap);
   util.addSubclassMethods(docHeadings, subclassMethodMap);
@@ -142,9 +144,10 @@ function visitNode(
           `Class ${node.name.getText()} has both a ` +
           `doc link alias and a doc decorator.`);
     }
-  } else if (
-      ts.isInterfaceDeclaration(node) || ts.isTypeAliasDeclaration(node) ||
-      ts.isEnumDeclaration(node)) {
+  }
+
+  if (ts.isInterfaceDeclaration(node) || ts.isTypeAliasDeclaration(node) ||
+      ts.isEnumDeclaration(node) || ts.isClassDeclaration(node)) {
     const docAlias = util.getJsdoc(checker, node, DOCUMENTATION_TYPE_ALIAS);
     if (docAlias != null) {
       const symbol = checker.getSymbolAtLocation(node.name);
