@@ -145,7 +145,7 @@ export function getFileInfo(
   const displayFilename = fileName.substring(srcRoot.length) + '#' + startLine;
 
   const githubUrl =
-      `${githubRoot}blob/master/${fileName}#L${startLine}-L${endLine}`;
+      `${githubRoot}/blob/master/${fileName}#L${startLine}-L${endLine}`;
   return {displayFilename, githubUrl};
 }
 

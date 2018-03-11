@@ -25,7 +25,6 @@ module.exports = function(hexo) {
     },
 
     getApi: function(siteData, versionString) {
-      // TODO(nsthorat): Update this to the merged docs.
       return siteData[`api/${versionString}/docs`];
     },
 
