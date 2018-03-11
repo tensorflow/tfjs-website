@@ -41,7 +41,7 @@
               "returnType": "[Tensor](#class:tf.Tensor)",
               "documentation": "Creates a [Tensor](#class:tf.Tensor) with the provided values, shape and dtype.\n\n```js\n// Pass an array of values to create a vector.\ndl.tensor([1, 2, 3, 4]).print();\n```\n\n```js\n// Pass a nested array of values to make a matrix or a higher\n// dimensional tensor.\ndl.tensor([[1, 2], [3, 4]]).print();\n```\n\n```js\n// Pass a flat array and specify a shape yourself.\ndl.tensor([1, 2, 3, 4], [2, 2]).print();\n```",
               "fileName": "#59",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/ops/array_ops.ts#L59-L78",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/array_ops.ts#L59-L78",
               "isFunction": true,
               "displayName": "tf.tensor",
               "urlHash": "tf.tensor"
@@ -72,7 +72,7 @@
               "returnType": "Scalar",
               "documentation": "Creates rank-0 [Tensor](#class:tf.Tensor) (scalar) with the provided value and dtype.\n\nThis method is mainly for self documentation and TypeScript typings as the\nsame functionality can be achieved with [tf.tensor()](#tf.tensor). In general, we recommend\nusing this method as it makes code more readable.\n\n```js\ndl.scalar(3.14).print();\n```",
               "fileName": "#94",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/ops/array_ops.ts#L94-L102",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/array_ops.ts#L94-L102",
               "isFunction": true,
               "displayName": "tf.scalar",
               "urlHash": "tf.scalar"
@@ -103,7 +103,7 @@
               "returnType": "Tensor1D",
               "documentation": "Creates rank-1 [Tensor](#class:tf.Tensor) with the provided values, shape and dtype.\n\nThis method is mainly for self documentation and TypeScript typings as the\nsame functionality can be achieved with [tf.tensor()](#tf.tensor). In general, we recommend\nusing this method as it makes code more readable.\n\n```js\ndl.tensor1d([1, 2, 3]).print();\n```",
               "fileName": "#119",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/ops/array_ops.ts#L119-L127",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/array_ops.ts#L119-L127",
               "isFunction": true,
               "displayName": "tf.tensor1d",
               "urlHash": "tf.tensor1d"
@@ -141,7 +141,7 @@
               "returnType": "Tensor2D",
               "documentation": "Creates rank-2 [Tensor](#class:tf.Tensor) with the provided values, shape and dtype.\n\nThis method is mainly for self documentation and TypeScript typings as the\nsame functionality can be achieved with [tf.tensor()](#tf.tensor). In general, we recommend\nusing this method as it makes code more readable.\n\n  ```js\n// Pass a nested array.\ndl.tensor2d([[1, 2], [3, 4]]).print();\n```\n```js\n// Pass a flat array and specify a shape.\ndl.tensor2d([1, 2, 3, 4], [2, 2]).print();\n```",
               "fileName": "#151",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/ops/array_ops.ts#L151-L163",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/array_ops.ts#L151-L163",
               "isFunction": true,
               "displayName": "tf.tensor2d",
               "urlHash": "tf.tensor2d"
@@ -179,7 +179,7 @@
               "returnType": "Tensor3D",
               "documentation": "Creates rank-3 [Tensor](#class:tf.Tensor) with the provided values, shape and dtype.\n\nThis method is mainly for self documentation and TypeScript typings as\nthe same functionality can be achieved with [tf.tensor()](#tf.tensor). In general, we\nrecommend using this method as it makes code more readable.\n\n  ```js\n// Pass a nested array.\ndl.tensor3d([[[1], [2]], [[3], [4]]]).print();\n```\n```js\n// Pass a flat array and specify a shape.\ndl.tensor3d([1, 2, 3, 4], [2, 2, 1]).print();\n```",
               "fileName": "#187",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/ops/array_ops.ts#L187-L199",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/array_ops.ts#L187-L199",
               "isFunction": true,
               "displayName": "tf.tensor3d",
               "urlHash": "tf.tensor3d"
@@ -217,7 +217,7 @@
               "returnType": "Tensor4D",
               "documentation": "Creates rank-4 [Tensor](#class:tf.Tensor) with the provided values, shape and dtype.\n  ```js\n// Pass a nested array.\ndl.tensor4d([[[[1], [2]], [[3], [4]]]]).print();\n```\n```js\n// Pass a flat array and specify a shape.\ndl.tensor4d([1, 2, 3, 4], [1, 2, 2, 1]).print();\n```",
               "fileName": "#218",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/ops/array_ops.ts#L218-L230",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/array_ops.ts#L218-L230",
               "isFunction": true,
               "displayName": "tf.tensor4d",
               "urlHash": "tf.tensor4d"
@@ -255,7 +255,7 @@
               "returnType": "[TensorBuffer](#class:tf.TensorBuffer)",
               "documentation": "Creates an empty [TensorBuffer](#class:tf.TensorBuffer) with the specified `shape` and `dtype`.\n\nThe values are stored in cpu as [TypedArray](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray). Fill the buffer using\n`buffer.set()`, or by modifying directly `buffer.values`. When done,\ncall `buffer.toTensor()` to get an immutable [Tensor](#class:tf.Tensor) with those values.\n\nWhen done, call `buffer.toTensor()` to get an immutable [Tensor](#class:tf.Tensor) with those\nvalues.\n\n```js\n// Create a buffer and set values at particular indices.\nconst buffer = dl.buffer([2, 2]);\nbuffer.set(3, 0, 0);\nbuffer.set(5, 1, 0);\n\n// Convert the buffer back to a tensor.\nbuffer.toTensor().print();\n```",
               "fileName": "#1031",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/ops/array_ops.ts#L1031-L1036",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/array_ops.ts#L1031-L1036",
               "isFunction": true,
               "displayName": "tf.buffer",
               "urlHash": "tf.buffer"
@@ -279,7 +279,7 @@
               "returnType": "[Tensor](#class:tf.Tensor)",
               "documentation": "Creates a new tensor with the same values and shape as the specified\ntensor.\n\n```js\nconst x = dl.tensor([1, 2]);\nx.clone().print();\n```",
               "fileName": "#337",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/ops/array_ops.ts#L337-L341",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/array_ops.ts#L337-L341",
               "isFunction": true,
               "displayName": "tf.clone",
               "urlHash": "tf.clone"
@@ -317,7 +317,7 @@
               "returnType": "[Tensor](#class:tf.Tensor)",
               "documentation": "Creates a [Tensor](#class:tf.Tensor) filled with a scalar value.\n\n```js\ndl.fill([2, 2], 4).print();\n```",
               "fileName": "#282",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/ops/array_ops.ts#L282-L291",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/array_ops.ts#L282-L291",
               "isFunction": true,
               "displayName": "tf.fill",
               "urlHash": "tf.fill"
@@ -348,7 +348,7 @@
               "returnType": "Tensor3D",
               "documentation": "Creates a [Tensor](#class:tf.Tensor) from an image.\n\n```js\nconst image = new ImageData(1, 1);\nimage.data[0] = 100;\nimage.data[1] = 150;\nimage.data[2] = 200;\nimage.data[3] = 255;\n\ndl.fromPixels(image).print();\n```",
               "fileName": "#561",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/ops/array_ops.ts#L561-L571",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/array_ops.ts#L561-L571",
               "isFunction": true,
               "displayName": "tf.fromPixels",
               "urlHash": "tf.fromPixels"
@@ -386,7 +386,7 @@
               "returnType": "Tensor1D",
               "documentation": "Return an evenly spaced sequence of numbers over the given interval.\n\n```js\ndl.linspace(0, 9, 10).print();\n```",
               "fileName": "#938",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/ops/array_ops.ts#L938-L954",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/array_ops.ts#L938-L954",
               "isFunction": true,
               "displayName": "tf.linspace",
               "urlHash": "tf.linspace"
@@ -431,7 +431,7 @@
               "returnType": "Tensor2D",
               "documentation": "Creates a one-hot [Tensor](#class:tf.Tensor). The locations represented by `indices` take\nvalue `onValue` (defaults to 1), while all other locations take value\n`offValue` (defaults to 0).\n\n```js\ndl.oneHot(dl.tensor1d([0, 1]), 3).print();\n```",
               "fileName": "#531",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/ops/array_ops.ts#L531-L541",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/array_ops.ts#L531-L541",
               "isFunction": true,
               "displayName": "tf.oneHot",
               "urlHash": "tf.oneHot"
@@ -462,7 +462,7 @@
               "returnType": "[Tensor](#class:tf.Tensor)",
               "documentation": "Creates a [Tensor](#class:tf.Tensor) with all elements set to 1.\n\n```js\ndl.ones([2, 2]).print();\n```",
               "fileName": "#243",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/ops/array_ops.ts#L243-L249",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/array_ops.ts#L243-L249",
               "isFunction": true,
               "displayName": "tf.ones",
               "urlHash": "tf.ones"
@@ -486,7 +486,7 @@
               "returnType": "[Tensor](#class:tf.Tensor)",
               "documentation": "Creates a [Tensor](#class:tf.Tensor) with all elements set to 1 with the same shape as the\ngiven tensor.\n\n```js\nconst x = dl.tensor([1, 2]);\ndl.onesLike(x).print();\n```",
               "fileName": "#303",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/ops/array_ops.ts#L303-L307",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/array_ops.ts#L303-L307",
               "isFunction": true,
               "displayName": "tf.onesLike",
               "urlHash": "tf.onesLike"
@@ -517,7 +517,7 @@
               "returnType": "void",
               "documentation": "Prints information about the [Tensor](#class:tf.Tensor) including its data.\n\n```js\nconst verbose = true;\ndl.tensor2d([1, 2, 3, 4], [2, 2]).print(verbose);\n```",
               "fileName": "#1049",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/ops/array_ops.ts#L1049-L1052",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/array_ops.ts#L1049-L1052",
               "isFunction": true,
               "displayName": "tf.print",
               "urlHash": "tf.print"
@@ -569,7 +569,7 @@
               "returnType": "[Tensor](#class:tf.Tensor)",
               "documentation": "Creates a [Tensor](#class:tf.Tensor) with values sampled from a normal distribution.\n\n```js\ndl.randomNormal([2, 2]).print();\n```",
               "fileName": "#356",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/ops/array_ops.ts#L356-L371",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/array_ops.ts#L356-L371",
               "isFunction": true,
               "displayName": "tf.randomNormal",
               "urlHash": "tf.randomNormal"
@@ -614,7 +614,7 @@
               "returnType": "[Tensor](#class:tf.Tensor)",
               "documentation": "Creates a [Tensor](#class:tf.Tensor) with values sampled from a uniform distribution.\n\nThe generated values follow a uniform distribution in the range [minval,\nmaxval). The lower bound minval is included in the range, while the upper\nbound maxval is excluded.\n\n```js\ndl.randomUniform([2, 2]).print();\n```",
               "fileName": "#426",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/ops/array_ops.ts#L426-L436",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/array_ops.ts#L426-L436",
               "isFunction": true,
               "displayName": "tf.randomUniform",
               "urlHash": "tf.randomUniform"
@@ -659,7 +659,7 @@
               "returnType": "Tensor1D",
               "documentation": "Creates a new `Tensor1D` filled with the numbers in the range provided.\n\nThe tensor is a is half-open interval meaning it includes start, but\nexcludes stop. Decrementing ranges and negative step values are also\nsupported.\n\n```js\ndl.range(0, 9, 2).print();\n```",
               "fileName": "#972",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/ops/array_ops.ts#L972-L1005",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/array_ops.ts#L972-L1005",
               "isFunction": true,
               "displayName": "tf.range",
               "urlHash": "tf.range"
@@ -711,7 +711,7 @@
               "returnType": "[Tensor](#class:tf.Tensor)",
               "documentation": "Creates a [Tensor](#class:tf.Tensor) with values sampled from a truncated normal\ndistribution.\n\n```js\ndl.truncatedNormal([2, 2]).print();\n```\n\nThe generated values follow a normal distribution with specified mean and\nstandard deviation, except that values whose magnitude is more than 2\nstandard deviations from the mean are dropped and re-picked.",
               "fileName": "#391",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/ops/array_ops.ts#L391-L406",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/array_ops.ts#L391-L406",
               "isFunction": true,
               "displayName": "tf.truncatedNormal",
               "urlHash": "tf.truncatedNormal"
@@ -756,7 +756,7 @@
               "returnType": "[Variable](#class:tf.Variable)",
               "documentation": "Creates a new variable with the provided initial value.\n```js\nconst x = dl.variable(dl.tensor([1, 2, 3]));\nx.assign(dl.tensor([4, 5, 6]));\n\nx.print();\n```",
               "fileName": "#884",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/tensor.ts#L884-L892",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/tensor.ts#L884-L892",
               "isFunction": true,
               "displayName": "tf.variable",
               "urlHash": "tf.variable"
@@ -787,7 +787,7 @@
               "returnType": "[Tensor](#class:tf.Tensor)",
               "documentation": "Creates a [Tensor](#class:tf.Tensor) with all elements set to 0.\n\n```js\ndl.zeros([2, 2]).print();\n```",
               "fileName": "#262",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/ops/array_ops.ts#L262-L268",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/array_ops.ts#L262-L268",
               "isFunction": true,
               "displayName": "tf.zeros",
               "urlHash": "tf.zeros"
@@ -811,7 +811,7 @@
               "returnType": "[Tensor](#class:tf.Tensor)",
               "documentation": "Creates a [Tensor](#class:tf.Tensor) with all elements set to 0 with the same shape as the\ngiven tensor.\n\n```js\nconst x = dl.tensor([1, 2]);\ndl.zerosLike(x).print();\n```",
               "fileName": "#320",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/ops/array_ops.ts#L320-L324",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/array_ops.ts#L320-L324",
               "isFunction": true,
               "displayName": "tf.zerosLike",
               "urlHash": "tf.zerosLike"
@@ -830,7 +830,7 @@
               "symbolName": "Tensor",
               "documentation": "A [Tensor](#class:tf.Tensor) object represents an immutable, multidimensional array of numbers\nthat has a shape and a data type.\n\nSee [tf.tensor()](#tf.tensor) for details on how to create a [Tensor](#class:tf.Tensor).",
               "fileName": "#153",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/tensor.ts#L153-L836",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/tensor.ts#L153-L836",
               "methods": [
                 {
                   "docInfo": {
@@ -843,7 +843,7 @@
                   "returnType": "Tensor1D",
                   "documentation": "Flatten a Tensor to a 1D array. ",
                   "fileName": "#213",
-                  "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/tensor.ts#L213-L217",
+                  "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/tensor.ts#L213-L217",
                   "isFunction": true
                 },
                 {
@@ -857,7 +857,7 @@
                   "returnType": "Scalar",
                   "documentation": "Converts a size-1 [Tensor](#class:tf.Tensor) to a `Scalar`. ",
                   "fileName": "#220",
-                  "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/tensor.ts#L220-L225",
+                  "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/tensor.ts#L220-L225",
                   "isFunction": true
                 },
                 {
@@ -871,7 +871,7 @@
                   "returnType": "Tensor1D",
                   "documentation": "Converts a [Tensor](#class:tf.Tensor) to a `Tensor1D`. ",
                   "fileName": "#228",
-                  "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/tensor.ts#L228-L232",
+                  "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/tensor.ts#L228-L232",
                   "isFunction": true
                 },
                 {
@@ -900,7 +900,7 @@
                   "returnType": "Tensor2D",
                   "documentation": "Converts a [Tensor](#class:tf.Tensor) to a `Tensor2D`.",
                   "fileName": "#240",
-                  "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/tensor.ts#L240-L244",
+                  "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/tensor.ts#L240-L244",
                   "isFunction": true
                 },
                 {
@@ -936,7 +936,7 @@
                   "returnType": "Tensor3D",
                   "documentation": "Converts a [Tensor](#class:tf.Tensor) to a `Tensor3D`.",
                   "fileName": "#253",
-                  "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/tensor.ts#L253-L257",
+                  "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/tensor.ts#L253-L257",
                   "isFunction": true
                 },
                 {
@@ -979,7 +979,7 @@
                   "returnType": "Tensor4D",
                   "documentation": "Converts a [Tensor](#class:tf.Tensor) to a `Tensor4D`.",
                   "fileName": "#267",
-                  "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/tensor.ts#L267-L271",
+                  "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/tensor.ts#L267-L271",
                   "isFunction": true
                 },
                 {
@@ -1001,7 +1001,7 @@
                   "returnType": "this",
                   "documentation": "Casts a [Tensor](#class:tf.Tensor) to a specified dtype.",
                   "fileName": "#278",
-                  "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/tensor.ts#L278-L282",
+                  "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/tensor.ts#L278-L282",
                   "isFunction": true
                 },
                 {
@@ -1015,7 +1015,7 @@
                   "returnType": "[TensorBuffer](#class:tf.TensorBuffer)",
                   "documentation": "Returns a [TensorBuffer](#class:tf.TensorBuffer) that holds the underlying data. ",
                   "fileName": "#308",
-                  "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/tensor.ts#L308-L311",
+                  "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/tensor.ts#L308-L311",
                   "isFunction": true
                 },
                 {
@@ -1029,7 +1029,7 @@
                   "returnType": "Promise",
                   "documentation": "Asynchronously downloads the values from the [Tensor](#class:tf.Tensor). Returns a promise of\n[TypedArray](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray) that resolves when the computation has finished.",
                   "fileName": "#317",
-                  "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/tensor.ts#L317-L321",
+                  "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/tensor.ts#L317-L321",
                   "isFunction": true
                 },
                 {
@@ -1043,7 +1043,7 @@
                   "returnType": "[TypedArray](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray)",
                   "documentation": "Synchronously downloads the values from the [Tensor](#class:tf.Tensor). This blocks the UI\nthread until the values are ready, which can cause performance issues.",
                   "fileName": "#327",
-                  "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/tensor.ts#L327-L331",
+                  "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/tensor.ts#L327-L331",
                   "isFunction": true
                 },
                 {
@@ -1057,7 +1057,7 @@
                   "returnType": "void",
                   "documentation": "Disposes [Tensor](#class:tf.Tensor) from memory.",
                   "fileName": "#336",
-                  "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/tensor.ts#L336-L343",
+                  "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/tensor.ts#L336-L343",
                   "isFunction": true
                 },
                 {
@@ -1071,7 +1071,7 @@
                   "returnType": "this",
                   "documentation": "Casts the array to type `float32` ",
                   "fileName": "#353",
-                  "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/tensor.ts#L353-L356",
+                  "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/tensor.ts#L353-L356",
                   "isFunction": true
                 },
                 {
@@ -1085,7 +1085,7 @@
                   "returnType": "this",
                   "documentation": "Casts the array to type `int32` ",
                   "fileName": "#359",
-                  "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/tensor.ts#L359-L362",
+                  "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/tensor.ts#L359-L362",
                   "isFunction": true
                 },
                 {
@@ -1099,7 +1099,7 @@
                   "returnType": "this",
                   "documentation": "Casts the array to type `bool` ",
                   "fileName": "#365",
-                  "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/tensor.ts#L365-L368",
+                  "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/tensor.ts#L365-L368",
                   "isFunction": true
                 },
                 {
@@ -1121,7 +1121,7 @@
                   "returnType": "void",
                   "documentation": "Prints the [Tensor](#class:tf.Tensor). See [tf.print()](#tf.print) for details.",
                   "fileName": "#376",
-                  "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/tensor.ts#L376-L379",
+                  "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/tensor.ts#L376-L379",
                   "isFunction": true
                 },
                 {
@@ -1143,7 +1143,7 @@
                   "returnType": "[Tensor](#class:tf.Tensor)",
                   "documentation": "Reshapes the tensor into the provided shape.\nSee [tf.reshape()](#tf.reshape) for more details.",
                   "fileName": "#387",
-                  "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/tensor.ts#L387-L391",
+                  "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/tensor.ts#L387-L391",
                   "isFunction": true
                 },
                 {
@@ -1165,7 +1165,7 @@
                   "returnType": "[Tensor](#class:tf.Tensor)",
                   "documentation": "Reshapes the tensor into the shape of the provided tensor.",
                   "fileName": "#398",
-                  "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/tensor.ts#L398-L402",
+                  "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/tensor.ts#L398-L402",
                   "isFunction": true
                 },
                 {
@@ -1187,7 +1187,7 @@
                   "returnType": "[Tensor](#class:tf.Tensor)",
                   "documentation": "Returns a [Tensor](#class:tf.Tensor) that has expanded rank, by inserting a dimension\ninto the tensor's shape. See [tf.expandDims()](#tf.expandDims) for details.",
                   "fileName": "#411",
-                  "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/tensor.ts#L411-L414",
+                  "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/tensor.ts#L411-L414",
                   "isFunction": true
                 },
                 {
@@ -1209,7 +1209,7 @@
                   "returnType": "[Tensor](#class:tf.Tensor)",
                   "documentation": "Returns a [Tensor](#class:tf.Tensor) with dimensions of size 1 removed from the shape.\nSee [tf.squeeze()](#tf.squeeze) for more details.",
                   "fileName": "#424",
-                  "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/tensor.ts#L424-L428",
+                  "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/tensor.ts#L424-L428",
                   "isFunction": true
                 },
                 {
@@ -1223,7 +1223,7 @@
                   "returnType": "[Tensor](#class:tf.Tensor)",
                   "documentation": "Returns a copy of the tensor. See [tf.clone()](#tf.clone) for details. ",
                   "fileName": "#431",
-                  "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/tensor.ts#L431-L435",
+                  "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/tensor.ts#L431-L435",
                   "isFunction": true
                 },
                 {
@@ -1237,7 +1237,7 @@
                   "returnType": "string",
                   "documentation": "Returns a human-readable description of the tensor. Useful for logging. ",
                   "fileName": "#438",
-                  "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/tensor.ts#L438-L441",
+                  "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/tensor.ts#L438-L441",
                   "isFunction": true
                 }
               ],
@@ -1253,7 +1253,7 @@
               "symbolName": "Variable",
               "documentation": "A mutable [Tensor](#class:tf.Tensor), useful for persisting state, e.g. for training.",
               "fileName": "#847",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/tensor.ts#L847-L916",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/tensor.ts#L847-L916",
               "methods": [
                 {
                   "docInfo": {
@@ -1274,7 +1274,7 @@
                   "returnType": "void",
                   "documentation": "Assign a new [Tensor](#class:tf.Tensor) to this variable. The new [Tensor](#class:tf.Tensor) must have the\nsame shape and dtype as the old [Tensor](#class:tf.Tensor).",
                   "fileName": "#900",
-                  "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/tensor.ts#L900-L915",
+                  "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/tensor.ts#L900-L915",
                   "isFunction": true
                 }
               ],
@@ -1290,7 +1290,7 @@
               "symbolName": "TensorBuffer",
               "documentation": "A mutable object, similar to [Tensor](#class:tf.Tensor), that allows users to set values\nat locations before converting to an immutable [Tensor](#class:tf.Tensor).\n\nSee [tf.buffer()](#tf.buffer) for creating a tensor buffer.",
               "fileName": "#37",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/tensor.ts#L37-L135",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/tensor.ts#L37-L135",
               "methods": [
                 {
                   "docInfo": {
@@ -1318,7 +1318,7 @@
                   "returnType": "void",
                   "documentation": "Sets a value in the buffer at a given location.",
                   "fileName": "#66",
-                  "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/tensor.ts#L66-L77",
+                  "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/tensor.ts#L66-L77",
                   "isFunction": true
                 },
                 {
@@ -1340,7 +1340,7 @@
                   "returnType": "number",
                   "documentation": "Returns the value in the buffer at the provided location.",
                   "fileName": "#84",
-                  "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/tensor.ts#L84-L94",
+                  "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/tensor.ts#L84-L94",
                   "isFunction": true
                 },
                 {
@@ -1354,7 +1354,7 @@
                   "returnType": "[Tensor](#class:tf.Tensor)",
                   "documentation": "Creates an immutable [Tensor](#class:tf.Tensor) object from the buffer.",
                   "fileName": "#131",
-                  "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/tensor.ts#L131-L134",
+                  "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/tensor.ts#L131-L134",
                   "isFunction": true
                 }
               ],
@@ -1394,7 +1394,7 @@
               "returnType": "[Tensor](#class:tf.Tensor)",
               "documentation": "Casts a [Tensor](#class:tf.Tensor) to a new dtype.\n\n```js\nconst x = dl.tensor1d([1.5, 2.5, 3]);\ndl.cast(x, 'int32').print();\n```",
               "fileName": "#640",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/ops/array_ops.ts#L640-L661",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/array_ops.ts#L640-L661",
               "isFunction": true,
               "displayName": "tf.cast",
               "urlHash": "tf.cast"
@@ -1425,7 +1425,7 @@
               "returnType": "[Tensor](#class:tf.Tensor)",
               "documentation": "Returns a [Tensor](#class:tf.Tensor) that has expanded rank, by inserting a dimension\ninto the tensor's shape.\n\n```js\nconst x = dl.tensor1d([1, 2, 3, 4]);\nconst axis = 1;\nx.expandDims(axis).print();\n```",
               "fileName": "#917",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/ops/array_ops.ts#L917-L924",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/array_ops.ts#L917-L924",
               "isFunction": true,
               "displayName": "tf.expandDims",
               "urlHash": "tf.expandDims"
@@ -1463,7 +1463,7 @@
               "returnType": "[Tensor](#class:tf.Tensor)",
               "documentation": "Pads a [Tensor](#class:tf.Tensor) with a given value and paddings.\n\nThis operation currently only implements the `CONSTANT` mode from\nTensorflow's [tf.pad()](#tf.pad) operation.\n\n```js\nconst x = dl.tensor1d([1, 2, 3, 4]);\nx.pad([[1, 2]]).print();\n```",
               "fileName": "#847",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/ops/array_ops.ts#L847-L863",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/array_ops.ts#L847-L863",
               "isFunction": true,
               "displayName": "tf.pad",
               "urlHash": "tf.pad"
@@ -1494,7 +1494,7 @@
               "returnType": "[Tensor](#class:tf.Tensor)",
               "documentation": "Reshapes a [Tensor](#class:tf.Tensor) to a given shape.\n\nGiven a input tensor, returns a new tensor with the same values as the\ninput tensor with shape `shape`.\n\nIf one component of shape is the special value -1, the size of that\ndimension is computed so that the total size remains constant. In\nparticular, a shape of [-1] flattens into 1-D. At most one component of\nshape can be -1.\n\nIf shape is 1-D or higher, then the operation returns a tensor with shape\nshape filled with the values of tensor. In this case, the number of\nelements implied by shape must be the same as the number of elements in\ntensor.\n\n```js\nconst x = dl.tensor1d([1, 2, 3, 4]);\nx.reshape([2, 2]).print();\n```",
               "fileName": "#597",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/ops/array_ops.ts#L597-L610",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/array_ops.ts#L597-L610",
               "isFunction": true,
               "displayName": "tf.reshape",
               "urlHash": "tf.reshape"
@@ -1525,7 +1525,7 @@
               "returnType": "[Tensor](#class:tf.Tensor)",
               "documentation": "Removes dimensions of size 1 from the shape of a [Tensor](#class:tf.Tensor).\n\n```js\nconst x = dl.tensor([1, 2, 3, 4], [1, 1, 4]);\nx.squeeze().print();\n```",
               "fileName": "#625",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/ops/array_ops.ts#L625-L628",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/array_ops.ts#L625-L628",
               "isFunction": true,
               "displayName": "tf.squeeze",
               "urlHash": "tf.squeeze"
@@ -1562,7 +1562,7 @@
               "returnType": "[Tensor](#class:tf.Tensor)",
               "documentation": "Concatenates a list of [Tensor](#class:tf.Tensor)s along a given axis.\n\nThe tensors ranks and types must match, and their sizes must match in all\ndimensions except `axis`.\n\n```js\nconst a = dl.tensor1d([1, 2]);\nconst b = dl.tensor1d([3, 4]);\na.concat(b).print();  // or a.concat(b)\n```\n\n```js\nconst a = dl.tensor1d([1, 2]);\nconst b = dl.tensor1d([3, 4]);\nconst c = dl.tensor1d([5, 6]);\ndl.concat([a, b, c]).print();\n```\n\n```js\nconst a = dl.tensor2d([[1, 2], [10, 20]]);\nconst b = dl.tensor2d([[3, 4], [30, 40]]);\nconst axis = 1;\ndl.concat([a, b], axis).print();\n```",
               "fileName": "#146",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/ops/concat.ts#L146-L157",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/concat.ts#L146-L157",
               "isFunction": true,
               "displayName": "tf.concat",
               "urlHash": "tf.concat"
@@ -1600,7 +1600,7 @@
               "returnType": "[Tensor](#class:tf.Tensor)",
               "documentation": "Gather slices from tensor `x`'s axis `axis` according to `indices`.\n\n```js\nconst x = dl.tensor1d([1, 2, 3, 4]);\nconst indices = dl.tensor1d([1, 3, 3]);\n\nx.gather(indices).print();\n```\n\n```js\nconst x = dl.tensor2d([1, 2, 3, 4], [2, 2]);\nconst indices = dl.tensor1d([1, 1, 0]);\n\nx.gather(indices).print();\n```",
               "fileName": "#766",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/ops/array_ops.ts#L766-L772",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/array_ops.ts#L766-L772",
               "isFunction": true,
               "displayName": "tf.gather",
               "urlHash": "tf.gather"
@@ -1631,7 +1631,7 @@
               "returnType": "[Tensor](#class:tf.Tensor)",
               "documentation": "Reverses a [Tensor](#class:tf.Tensor) along a specified axis.\n\n```js\nconst x = dl.tensor1d([1, 2, 3, 4]);\n\nx.reverse().print();\n```\n\n```js\nconst x = dl.tensor2d([1, 2, 3, 4], [2, 2]);\n\nconst axis = 1;\nx.reverse(axis).print();\n```",
               "fileName": "#93",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/ops/reverse.ts#L93-L106",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/reverse.ts#L93-L106",
               "isFunction": true,
               "displayName": "tf.reverse",
               "urlHash": "tf.reverse"
@@ -1669,7 +1669,7 @@
               "returnType": "[Tensor](#class:tf.Tensor)",
               "documentation": "Extracts a slice from a [Tensor](#class:tf.Tensor) starting at coordinates `begin`\nand is of size `size`.\n\nAlso available are stricter rank-specific methods with the same signature\nas this method that assert that `x` is of the given rank:\n   - `dl.slice1d`\n   - `dl.slice2d`\n   - `dl.slice3d`\n   - `dl.slice4d`\n\n```js\nconst x = dl.tensor1d([1, 2, 3, 4]);\n\nx.slice([1], [2]).print();\n```\n\n```js\nconst x = dl.tensor2d([1, 2, 3, 4], [2, 2]);\n\nx.slice([1, 0], [1, 2]).print();\n```",
               "fileName": "#104",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/ops/slice.ts#L104-L128",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/slice.ts#L104-L128",
               "isFunction": true,
               "displayName": "tf.slice",
               "urlHash": "tf.slice"
@@ -1700,7 +1700,7 @@
               "returnType": "[Tensor](#class:tf.Tensor)",
               "documentation": "Stacks a list of rank-`R` [Tensor](#class:tf.Tensor)s into one rank-`(R+1)` [Tensor](#class:tf.Tensor).\n\n```js\nconst a = dl.tensor1d([1, 2]);\nconst b = dl.tensor1d([3, 4]);\nconst c = dl.tensor1d([5, 6]);\ndl.stack([a, b, c]).print();\n```",
               "fileName": "#878",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/ops/array_ops.ts#L878-L901",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/array_ops.ts#L878-L901",
               "isFunction": true,
               "displayName": "tf.stack",
               "urlHash": "tf.stack"
@@ -1731,7 +1731,7 @@
               "returnType": "[Tensor](#class:tf.Tensor)",
               "documentation": "Construct an tensor by repeating it the number of times given by reps.\n\nThis operation creates a new tensor by replicating [tf.input()](#tf.input) `reps`\ntimes. The output tensor's i'th dimension has `input.shape[i] *\nreps[i]` elements, and the values of [tf.input()](#tf.input) are replicated\n`reps[i]` times along the i'th dimension. For example, tiling\n`[a, b, c, d]` by `[2]` produces `[a, b, c, d, a, b, c, d]`.\n\n```js\nconst a = dl.tensor1d([1, 2]);\n\na.tile([2]).print();    // or a.tile([2])\n```\n\n```js\nconst a = dl.tensor2d([1, 2, 3, 4], [2, 2]);\n\na.tile([1, 2]).print();  // or a.tile([1, 2])\n```",
               "fileName": "#686",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/ops/array_ops.ts#L686-L744",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/array_ops.ts#L686-L744",
               "isFunction": true,
               "displayName": "tf.tile",
               "urlHash": "tf.tile"
@@ -1785,7 +1785,7 @@
               "returnType": "[Sequential](#class:tf.Sequential)",
               "documentation": "A model with a stack of layers, feeding linearly from one to the next.\n\n`tf.sequential` is a factory function that creates an instance of\n[Sequential](#class:tf.Sequential).\n\n# Arguments",
               "fileName": "#51",
-              "githubUrl": "https://github.com/tensorflow/tfjs-layersblob/master/src/exports.ts#L51-L59",
+              "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L51-L59",
               "isFunction": true,
               "displayName": "tf.sequential",
               "urlHash": "tf.sequential"
@@ -1834,7 +1834,7 @@
               "returnType": "[Model](#class:tf.Model)",
               "documentation": "The [Model](#class:tf.Model) class adds training & evaluation routines to a `Container`.\n\nA [Model](#class:tf.Model) is the basic unit of training, inference and evaluation in\nTensorFlow.js. `tf.model` is a factory function that creates an instance\nof [Model](#class:tf.Model).\n\nTo create a [Model](#class:tf.Model), specify its input(s) and output(s). Inputs are\n`SymbolicTensor`s provided by `Input` layers. Outputs are `SymbolicTensor`s\nprovided by other layers that perform mathematical and neural-network\noperations.\n\nFor example, the following code snippet defines a model consisting of\ntwo [tf.layers.dense()](#tf.layers.dense) layers, with of 10 and 4 units, respectively.\n\n```js\n// Define input, which has a size of 5 (not including batch dimension).\nconst input = tf.input({shape: [5]});\n\n// First dense layer uses relu activation.\nconst denseLayer1 = tf.layers.dense({units: 10, activation: 'relu'});\n// Second dense layer uses softmax activation.\nconst denseLayer2 = tf.layers.dense({units: 2, activation: 'softmax'});\n\n// Obtain the output symbolic tensor by applying the layers on the input.\nconst output = denseLayer2.apply(denseLayer1.apply(input));\n\n// Create the model based on the inputs.\nconst model = tf.model({inputs: input, outputs: output});\n\n// The model can be used for training, evaluation and prediction.\n// For example, the following line runs prediction with the model on\n// some fake data.\nmodel.predict(tf.ones([2, 5])).print();\n```\n\nSee also:\n   [Sequential](#class:tf.Sequential), [tf.modelFromJSON()](#tf.modelFromJSON), [tf.loadModel()](#tf.loadModel).",
               "fileName": "#41",
-              "githubUrl": "https://github.com/tensorflow/tfjs-layersblob/master/src/exports.ts#L41-L49",
+              "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L41-L49",
               "isFunction": true,
               "displayName": "tf.model",
               "urlHash": "tf.model"
@@ -1902,8 +1902,8 @@
               ],
               "returnType": "SymbolicTensor",
               "documentation": "`Input()` is used to instantiate a SymbolicTensor, and represents\nthe input to a model.\n\nExample:\n\n     // this is a logistic regression in TF.js Layers:\n     x = new Input(shape=[32]);\n     y = new Dense(16, activation='softmax').apply(x);\n     model = new Model(x, y);",
-              "fileName": "#80",
-              "githubUrl": "https://github.com/tensorflow/tfjs-layersblob/master/src/exports.ts#L80-L88",
+              "fileName": "#81",
+              "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L81-L89",
               "isFunction": true,
               "displayName": "tf.input",
               "urlHash": "tf.input"
@@ -1972,8 +1972,8 @@
               ],
               "returnType": "InputLayer",
               "documentation": "Layer to be used as an entry point into a graph.",
-              "fileName": "#90",
-              "githubUrl": "https://github.com/tensorflow/tfjs-layersblob/master/src/exports.ts#L90-L98",
+              "fileName": "#91",
+              "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L91-L99",
               "isFunction": true,
               "displayName": "tf.inputLayer",
               "urlHash": "tf.inputLayer"
@@ -2021,7 +2021,7 @@
               "returnType": "Promise",
               "documentation": "Load a model, including its topology and weights.",
               "fileName": "#61",
-              "githubUrl": "https://github.com/tensorflow/tfjs-layersblob/master/src/exports.ts#L61-L69",
+              "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L61-L69",
               "isFunction": true,
               "displayName": "tf.loadModel",
               "urlHash": "tf.loadModel"
@@ -2038,7 +2038,7 @@
                 {
                   "name": "jsonString",
                   "documentation": "",
-                  "type": "string",
+                  "type": "JsonValue|string",
                   "optional": false,
                   "isConfigParam": false
                 },
@@ -2053,7 +2053,7 @@
               "returnType": "[Model](#class:tf.Model)",
               "documentation": "Parses a JSON model configuration file and returns a model instance.\n  ",
               "fileName": "#71",
-              "githubUrl": "https://github.com/tensorflow/tfjs-layersblob/master/src/exports.ts#L71-L78",
+              "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L71-L79",
               "isFunction": true,
               "displayName": "tf.modelFromJSON",
               "urlHash": "tf.modelFromJSON"
@@ -2071,7 +2071,7 @@
               "symbolName": "Model",
               "documentation": "The [Model](#class:tf.Model) class adds training & evaluation routines to a `Container`.\n\nA [Model](#class:tf.Model) is the basic unit of training, inference and evaluation in\nTensorFlow.js. `tf.model` is a factory function that creates an instance\nof [Model](#class:tf.Model).\n\nTo create a [Model](#class:tf.Model), specify its input(s) and output(s). Inputs are\n`SymbolicTensor`s provided by `Input` layers. Outputs are `SymbolicTensor`s\nprovided by other layers that perform mathematical and neural-network\noperations.\n\nFor example, the following code snippet defines a model consisting of\ntwo [tf.layers.dense()](#tf.layers.dense) layers, with of 10 and 4 units, respectively.\n\n```js\n// Define input, which has a size of 5 (not including batch dimension).\nconst input = tf.input({shape: [5]});\n\n// First dense layer uses relu activation.\nconst denseLayer1 = tf.layers.dense({units: 10, activation: 'relu'});\n// Second dense layer uses softmax activation.\nconst denseLayer2 = tf.layers.dense({units: 2, activation: 'softmax'});\n\n// Obtain the output symbolic tensor by applying the layers on the input.\nconst output = denseLayer2.apply(denseLayer1.apply(input));\n\n// Create the model based on the inputs.\nconst model = tf.model({inputs: input, outputs: output});\n\n// The model can be used for training, evaluation and prediction.\n// For example, the following line runs prediction with the model on\n// some fake data.\nmodel.predict(tf.ones([2, 5])).print();\n```\n\nSee also:\n   [Sequential](#class:tf.Sequential), [tf.modelFromJSON()](#tf.modelFromJSON), [tf.loadModel()](#tf.loadModel).",
               "fileName": "#613",
-              "githubUrl": "https://github.com/tensorflow/tfjs-layersblob/master/src/engine/training.ts#L613-L1574",
+              "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/engine/training.ts#L613-L1574",
               "methods": [],
               "isClass": true,
               "displayName": "tf.Model",
@@ -2085,7 +2085,7 @@
               "symbolName": "Sequential",
               "documentation": "A model with a stack of layers, feeding linearly from one to the next.\n\n`tf.sequential` is a factory function that creates an instance of\n[Sequential](#class:tf.Sequential).\n\n# Arguments",
               "fileName": "#150",
-              "githubUrl": "https://github.com/tensorflow/tfjs-layersblob/master/src/models.ts#L150-L474",
+              "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/models.ts#L150-L474",
               "methods": [],
               "isClass": true,
               "displayName": "tf.Sequential",
@@ -2134,8 +2134,8 @@
               ],
               "returnType": "Activation",
               "documentation": "Applies an activation function to an output.",
-              "fileName": "#144",
-              "githubUrl": "https://github.com/tensorflow/tfjs-layersblob/master/src/exports.ts#L144-L153",
+              "fileName": "#145",
+              "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L145-L154",
               "isFunction": true,
               "displayName": "tf.layers.activation",
               "urlHash": "tf.layers.activation"
@@ -2241,8 +2241,8 @@
               ],
               "returnType": "Dense",
               "documentation": "Just your regular densely-connected NN layer.\n   `Dense` implements the operation:\n   `output = activation(dot(input, kernel) + bias)`\n   where [tf.layers.activation()](#tf.layers.activation) is the element-wise activation function\n   passed as the [tf.layers.activation()](#tf.layers.activation) argument, `kernel` is a weights matrix\n   created by the layer, and `bias` is a bias vector created by the layer\n   (only applicable if `useBias` is `true`).\n   Note: if the input to the layer has a rank greater than 2, then\n   it is flattened prior to the initial dot product with `kernel`.\n\nInput shape\n   nD tensor with shape: `(batchSize, ..., inputDim)`.\n   The most common situation would be\n   a 2D input with shape `(batchSize, inputDim)`.\nOutput shape\n   nD tensor with shape: `(batchSize, ..., units)`.\n   For instance, for a 2D input with shape `(batchSize, inputDim)`,\n   the output would have shape `(batchSize, units)`.",
-              "fileName": "#155",
-              "githubUrl": "https://github.com/tensorflow/tfjs-layersblob/master/src/exports.ts#L155-L164",
+              "fileName": "#156",
+              "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L156-L165",
               "isFunction": true,
               "displayName": "tf.layers.dense",
               "urlHash": "tf.layers.dense"
@@ -2292,8 +2292,8 @@
               ],
               "returnType": "Dropout",
               "documentation": "Applies Dropout to the input.\n\nDropout consists in randomly setting\na fraction `rate` of input units to 0 at each update during training time,\nwhich helps prevent overfitting.\n\nReferences\n- [Dropout: A Simple Way to Prevent Neural Networks from\nOverfitting](http://www.cs.toronto.edu/~rsalakhu/papers/srivastava14a.pdf)",
-              "fileName": "#166",
-              "githubUrl": "https://github.com/tensorflow/tfjs-layersblob/master/src/exports.ts#L166-L175",
+              "fileName": "#167",
+              "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L167-L176",
               "isFunction": true,
               "displayName": "tf.layers.dropout",
               "urlHash": "tf.layers.dropout"
@@ -2378,8 +2378,8 @@
               ],
               "returnType": "Embedding",
               "documentation": "Turns positive integers (indexes) into dense vectors of fixed size.\neg. [[4], [20]] -> [[0.25, 0.1], [0.6, -0.2]]\n\n   # Input shape\n       2D tensor with shape: `[batchSize, sequenceLength]`.\n\n   # Output shape\n       3D tensor with shape: `[batchSize, sequenceLength, outputDim]`.",
-              "fileName": "#199",
-              "githubUrl": "https://github.com/tensorflow/tfjs-layersblob/master/src/exports.ts#L199-L208",
+              "fileName": "#200",
+              "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L200-L209",
               "isFunction": true,
               "displayName": "tf.layers.embedding",
               "urlHash": "tf.layers.embedding"
@@ -2449,7 +2449,7 @@
                 },
                 {
                   "name": "config.config.config.updatable",
-                  "documentation": "TODO(michaelterry): Document this. ",
+                  "documentation": "",
                   "type": "boolean",
                   "optional": true,
                   "isConfigParam": true
@@ -2471,8 +2471,8 @@
               ],
               "returnType": "Flatten",
               "documentation": "Flattens the input. Does not affect the batch size.\n\nA `Flatten` layer flattens each batch sample in its inputs to 1D (hence the\noutput is 2D total).\n\nFor example:\n\n```js\nconst input = tf.input({shape: [4, 3]});\nconst flattenLayer = tf.layers.flatten();\n// Inspect the inferred output shape of the flatten layer, which\n// equals `[null, 12]`. The 2nd dimension is 4 * 3, i.e., the result of the\n// flattening. (The 1st dimension is the undermined batch size.)\nconsole.log(flattenLayer.apply(input).shape);\n```",
-              "fileName": "#177",
-              "githubUrl": "https://github.com/tensorflow/tfjs-layersblob/master/src/exports.ts#L177-L186",
+              "fileName": "#178",
+              "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L178-L187",
               "isFunction": true,
               "displayName": "tf.layers.flatten",
               "urlHash": "tf.layers.flatten"
@@ -2508,8 +2508,8 @@
               ],
               "returnType": "RepeatVector",
               "documentation": "Repeat the input n times.",
-              "fileName": "#188",
-              "githubUrl": "https://github.com/tensorflow/tfjs-layersblob/master/src/exports.ts#L188-L197",
+              "fileName": "#189",
+              "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L189-L198",
               "isFunction": true,
               "displayName": "tf.layers.repeatVector",
               "urlHash": "tf.layers.repeatVector"
@@ -2648,8 +2648,8 @@
               ],
               "returnType": "Conv1D",
               "documentation": "1D convolution layer (e.g., temporal convolution).\n\nThis layer creates a convolution kernel that is convolved\nwith the layer input over a single spatial (or temporal) dimension\nto produce a tensor of outputs.\nIf `use_bias` is True, a bias vector is created and added to the outputs.\nFinally, if [tf.layers.activation()](#tf.layers.activation) is not `null` or `undefined`,\nit is applied to the outputs as well.\nWhen using this layer as the first layer in a model,\nprovide an `inputShape` argument Array or `null`, e.g.\n`[10, 128]` for sequences of 10 vectors of 128-dimensional vectors,\nor `[null, 128]` for variable-length sequences of 128-dimensional vectors.",
-              "fileName": "#108",
-              "githubUrl": "https://github.com/tensorflow/tfjs-layersblob/master/src/exports.ts#L108-L117",
+              "fileName": "#109",
+              "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L109-L118",
               "isFunction": true,
               "displayName": "tf.layers.conv1d",
               "urlHash": "tf.layers.conv1d"
@@ -2783,8 +2783,8 @@
               ],
               "returnType": "Conv2D",
               "documentation": "2D convolution layer (e.g. spatial convolution over images).\n\nThis layer creates a convolution kernel that is convolved\nwith the layer input to produce a tensor of outputs.\n\nIf `useBias` is True, a bias vector is created and added to the outputs.\n\nIf [tf.layers.activation()](#tf.layers.activation) is not `None`, it is applied to the outputs as well.\n\nWhen using this layer as the first layer in a model,\nprovide the keyword argument `inputShape`\n(Array of integers, does not include the sample axis),\ne.g. `inputShape=[128, 128, 3]` for 128x128 RGB pictures\nin `dataFormat=DataFormat.CHANNEL_LAST`.",
-              "fileName": "#119",
-              "githubUrl": "https://github.com/tensorflow/tfjs-layersblob/master/src/exports.ts#L119-L128",
+              "fileName": "#120",
+              "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L120-L129",
               "isFunction": true,
               "displayName": "tf.layers.conv2d",
               "urlHash": "tf.layers.conv2d"
@@ -2848,8 +2848,8 @@
               ],
               "returnType": "DepthwiseConv2D",
               "documentation": "Depthwise separable 2D convolution.\n\nDepthwise Separable convolutions consists in performing just the first step\nin a depthwise spatial convolution (which acts on each input channel\nseparately). The `depthMultplier` argument controls how many output channels\nare generated per input channel in the depthwise step.",
-              "fileName": "#132",
-              "githubUrl": "https://github.com/tensorflow/tfjs-layersblob/master/src/exports.ts#L132-L141",
+              "fileName": "#133",
+              "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L133-L142",
               "isFunction": true,
               "displayName": "tf.layers.depthwiseConv2d",
               "urlHash": "tf.layers.depthwiseConv2d"
@@ -2882,9 +2882,9 @@
                 }
               ],
               "returnType": "Add",
-              "documentation": "Layer that adds a list of inputs.\n\nIt takes as input a list of tensors, all of the same shape, and returns a\nsingle tensor (also of the same shape).\n\n// TODO(cais): Add examples.",
-              "fileName": "#212",
-              "githubUrl": "https://github.com/tensorflow/tfjs-layersblob/master/src/exports.ts#L212-L221",
+              "documentation": "Layer that adds a list of inputs.\n\nIt takes as input a list of tensors, all of the same shape, and returns a\nsingle tensor (also of the same shape).",
+              "fileName": "#213",
+              "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L213-L222",
               "isFunction": true,
               "displayName": "tf.layers.add",
               "urlHash": "tf.layers.add"
@@ -2913,8 +2913,8 @@
               ],
               "returnType": "Average",
               "documentation": "Layer that averages a list of inputs.\n\nIt takes as input a list of tensors, all of the same shape, and returns a\nsingle tensor (also of the same shape).",
-              "fileName": "#223",
-              "githubUrl": "https://github.com/tensorflow/tfjs-layersblob/master/src/exports.ts#L223-L232",
+              "fileName": "#224",
+              "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L224-L233",
               "isFunction": true,
               "displayName": "tf.layers.average",
               "urlHash": "tf.layers.average"
@@ -2950,8 +2950,8 @@
               ],
               "returnType": "Concatenate",
               "documentation": "Layer that concatenates a list of inputs.\n\nIt takes a list of tensors, all of the same shape except for the\nconcatenation axis, and returns a single tensor, the concatenation\nof all inputs.",
-              "fileName": "#234",
-              "githubUrl": "https://github.com/tensorflow/tfjs-layersblob/master/src/exports.ts#L234-L243",
+              "fileName": "#235",
+              "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L235-L244",
               "isFunction": true,
               "displayName": "tf.layers.concatenate",
               "urlHash": "tf.layers.concatenate"
@@ -2980,8 +2980,8 @@
               ],
               "returnType": "Maximum",
               "documentation": "Layer that computes the maximum (element-wise) a list of inputs.\n\nIt takes as input a list of tensors, all of the same shape and returns a\nsingle tensor (also of the same shape).",
-              "fileName": "#245",
-              "githubUrl": "https://github.com/tensorflow/tfjs-layersblob/master/src/exports.ts#L245-L254",
+              "fileName": "#246",
+              "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L246-L255",
               "isFunction": true,
               "displayName": "tf.layers.maximum",
               "urlHash": "tf.layers.maximum"
@@ -3010,8 +3010,8 @@
               ],
               "returnType": "Minimum",
               "documentation": "Layer that computes the minimum (element-wise) a list of inputs.\n\nIt takes as input a list of tensors, all of the same shape and returns a\nsingle tensor (also of the same shape).",
-              "fileName": "#256",
-              "githubUrl": "https://github.com/tensorflow/tfjs-layersblob/master/src/exports.ts#L256-L265",
+              "fileName": "#257",
+              "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L257-L266",
               "isFunction": true,
               "displayName": "tf.layers.minimum",
               "urlHash": "tf.layers.minimum"
@@ -3040,8 +3040,8 @@
               ],
               "returnType": "Multiply",
               "documentation": "Layer that multiplies (element-wise) an Array of inputs.\n\nIt takes as input an Array of tensors, all of the same\nshape, and returns a single tensor (also of the same shape).",
-              "fileName": "#267",
-              "githubUrl": "https://github.com/tensorflow/tfjs-layersblob/master/src/exports.ts#L267-L276",
+              "fileName": "#268",
+              "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L268-L277",
               "isFunction": true,
               "displayName": "tf.layers.multiply",
               "urlHash": "tf.layers.multiply"
@@ -3110,64 +3110,64 @@
                 {
                   "name": "config.betaInitializer",
                   "documentation": "Initializer for the beta weight.\nDefault: 'Zeros'.",
-                  "type": "string|Initializer",
+                  "type": "string|initializers.Initializer",
                   "optional": true,
                   "isConfigParam": true
                 },
                 {
                   "name": "config.gammaInitializer",
                   "documentation": "Initializer for the gamma weight.\nDefault: 'Ones'.",
-                  "type": "string|Initializer",
+                  "type": "string|initializers.Initializer",
                   "optional": true,
                   "isConfigParam": true
                 },
                 {
                   "name": "config.movingMeanInitializer",
                   "documentation": "Initializer for the moving mean.\nDefault: 'Zeros'",
-                  "type": "string|Initializer",
+                  "type": "string|initializers.Initializer",
                   "optional": true,
                   "isConfigParam": true
                 },
                 {
                   "name": "config.movingVarianceInitializer",
                   "documentation": "Initializer for the moving variance.\nDefault: 'Ones'.",
-                  "type": "string|Initializer",
+                  "type": "string|initializers.Initializer",
                   "optional": true,
                   "isConfigParam": true
                 },
                 {
                   "name": "config.betaConstraint",
                   "documentation": "Optional constraint for the beta weight.",
-                  "type": "string|Constraint",
+                  "type": "string|constraints.Constraint",
                   "optional": true,
                   "isConfigParam": true
                 },
                 {
                   "name": "config.gammaConstraint",
                   "documentation": "Optional constraint for gamma weight.",
-                  "type": "string|Constraint",
+                  "type": "string|constraints.Constraint",
                   "optional": true,
                   "isConfigParam": true
                 },
                 {
                   "name": "config.betaRegularizer",
                   "documentation": "Optional regularizer for the beta weight.",
-                  "type": "string|Regularizer",
+                  "type": "string|regularizers.Regularizer",
                   "optional": true,
                   "isConfigParam": true
                 },
                 {
                   "name": "config.gammaRegularizer",
                   "documentation": "Optional regularizer for the gamma weight.",
-                  "type": "string|Regularizer",
+                  "type": "string|regularizers.Regularizer",
                   "optional": true,
                   "isConfigParam": true
                 }
               ],
               "returnType": "BatchNormalization",
               "documentation": "Batch normalization layer (Ioffe and Szegedy, 2014).\n\nNormalize the activations of the previous layer at each batch,\ni.e. applies a transformation that maintains the mean activation\nclose to 0 and the activation standard deviation close to 1.\n\nInput shape:\n   Arbitrary. Use the keyword argument `inputShape` (Array of integers, does\n   not include the sample axis) when calling the constructor of this class,\n   if this layer is used as a first layer in a model.\n\nOutput shape:\n   Same shape as input.\n\nReferences:\n   - [Batch Normalization: Accelerating Deep Network Training by Reducing\nInternal Covariate Shift](https://arxiv.org/abs/1502.03167)",
-              "fileName": "#280",
-              "githubUrl": "https://github.com/tensorflow/tfjs-layersblob/master/src/exports.ts#L280-L290",
+              "fileName": "#281",
+              "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L281-L291",
               "isFunction": true,
               "displayName": "tf.layers.batchNormalization",
               "urlHash": "tf.layers.batchNormalization"
@@ -3222,8 +3222,8 @@
               ],
               "returnType": "AvgPooling1D",
               "documentation": "Average pooling operation for spatial data.\n   Input shape:  `[batchSize, inLength, channels]`\n   Output shape: `[batchSize, pooledLength, channels]`",
-              "fileName": "#293",
-              "githubUrl": "https://github.com/tensorflow/tfjs-layersblob/master/src/exports.ts#L293-L302",
+              "fileName": "#294",
+              "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L294-L303",
               "isFunction": true,
               "displayName": "tf.layers.avgPooling1d",
               "urlHash": "tf.layers.avgPooling1d"
@@ -3280,8 +3280,8 @@
               ],
               "returnType": "AvgPooling2D",
               "documentation": "Average pooling operation for spatial data.\n   Input shape\n      - If `dataFormat === CHANNEL_LAST`:\n          4D tensor with shape:\n          `[batchSize, rows, cols, channels]`\n      - If `dataFormat === CHANNEL_FIRST`:\n          4D tensor with shape:\n          `[batchSize, channels, rows, cols]`\n   Output shape\n      - If `dataFormat === CHANNEL_LAST`:\n          4D tensor with shape:\n          `[batchSize, pooleRows, pooledCols, channels]`\n      - If `dataFormat === CHANNEL_FIRST`:\n          4D tensor with shape:\n          `[batchSize, channels, pooleRows, pooledCols]`",
-              "fileName": "#304",
-              "githubUrl": "https://github.com/tensorflow/tfjs-layersblob/master/src/exports.ts#L304-L313",
+              "fileName": "#305",
+              "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L305-L314",
               "isFunction": true,
               "displayName": "tf.layers.avgPooling2d",
               "urlHash": "tf.layers.avgPooling2d"
@@ -3351,7 +3351,7 @@
                 },
                 {
                   "name": "config.config.config.updatable",
-                  "documentation": "TODO(michaelterry): Document this. ",
+                  "documentation": "",
                   "type": "boolean",
                   "optional": true,
                   "isConfigParam": true
@@ -3373,8 +3373,8 @@
               ],
               "returnType": "GlobalAveragePooling1D",
               "documentation": "Global average pooling operation for temporal data.\nInput Shape:\n   3D tensor with shape: `[batchSize, steps, features]`.\nOutput Shape:\n   2D tensor with shape: `[batchSize, features]`.",
-              "fileName": "#315",
-              "githubUrl": "https://github.com/tensorflow/tfjs-layersblob/master/src/exports.ts#L315-L324",
+              "fileName": "#316",
+              "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L316-L325",
               "isFunction": true,
               "displayName": "tf.layers.globalAveragePooling1d",
               "urlHash": "tf.layers.globalAveragePooling1d"
@@ -3410,8 +3410,8 @@
               ],
               "returnType": "GlobalAveragePooling2D",
               "documentation": "Global average pooling operation for spatial data.\n\nInput shape:\n   If `dataFormat` is `CHANNEL_LAST`:\n     4D tensor with shape: `[batchSize, rows, cols, channels]`.\n   If `dataFormat` is `CHANNEL_FIRST`:\n     4D tensor with shape: `[batchSize, channels, rows, cols]`.\n\nOutput shape:\n   2D tensor with shape: `[batchSize, channels]`.",
-              "fileName": "#326",
-              "githubUrl": "https://github.com/tensorflow/tfjs-layersblob/master/src/exports.ts#L326-L336",
+              "fileName": "#327",
+              "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L327-L337",
               "isFunction": true,
               "displayName": "tf.layers.globalAveragePooling2d",
               "urlHash": "tf.layers.globalAveragePooling2d"
@@ -3481,7 +3481,7 @@
                 },
                 {
                   "name": "config.config.config.updatable",
-                  "documentation": "TODO(michaelterry): Document this. ",
+                  "documentation": "",
                   "type": "boolean",
                   "optional": true,
                   "isConfigParam": true
@@ -3503,8 +3503,8 @@
               ],
               "returnType": "GlobalMaxPooling1D",
               "documentation": "Global max pooling operation for temporal data.\nInput Shape:\n   3D tensor with shape: `[batchSize, steps, features]`.\nOutput Shape:\n   2D tensor with shape: `[batchSize, features]`.",
-              "fileName": "#338",
-              "githubUrl": "https://github.com/tensorflow/tfjs-layersblob/master/src/exports.ts#L338-L347",
+              "fileName": "#339",
+              "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L339-L348",
               "isFunction": true,
               "displayName": "tf.layers.globalMaxPooling1d",
               "urlHash": "tf.layers.globalMaxPooling1d"
@@ -3540,8 +3540,8 @@
               ],
               "returnType": "GlobalMaxPooling2D",
               "documentation": "Global max pooling operation for spatial data.\n\nInput shape:\n   If `dataFormat` is `CHANNEL_LAST`:\n     4D tensor with shape: `[batchSize, rows, cols, channels]`.\n   If `dataFormat` is `CHANNEL_FIRST`:\n     4D tensor with shape: `[batchSize, channels, rows, cols]`.\n\nOutput shape:\n   2D tensor with shape: `[batchSize, channels]`.",
-              "fileName": "#349",
-              "githubUrl": "https://github.com/tensorflow/tfjs-layersblob/master/src/exports.ts#L349-L359",
+              "fileName": "#350",
+              "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L350-L360",
               "isFunction": true,
               "displayName": "tf.layers.globalMaxPooling2d",
               "urlHash": "tf.layers.globalMaxPooling2d"
@@ -3591,8 +3591,8 @@
               ],
               "returnType": "MaxPooling1D",
               "documentation": "Max pooling operation for temporal data.\n   Input shape:  `[batchSize, inLength, channels]`\n   Output shape: `[batchSize, pooledLength, channels]`",
-              "fileName": "#361",
-              "githubUrl": "https://github.com/tensorflow/tfjs-layersblob/master/src/exports.ts#L361-L370",
+              "fileName": "#362",
+              "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L362-L371",
               "isFunction": true,
               "displayName": "tf.layers.maxPooling1d",
               "urlHash": "tf.layers.maxPooling1d"
@@ -3649,8 +3649,8 @@
               ],
               "returnType": "MaxPooling2D",
               "documentation": "Max pooling operation for spatial data.\n   Input shape\n      - If `dataFormat === CHANNEL_LAST`:\n          4D tensor with shape:\n          `[batchSize, rows, cols, channels]`\n      - If `dataFormat === CHANNEL_FIRST`:\n         4D tensor with shape:\n          `[batchSize, channels, rows, cols]`\n   Output shape\n      - If `dataFormat=CHANNEL_LAST`:\n          4D tensor with shape:\n          `[batchSize, pooleRows, pooledCols, channels]`\n      - If `dataFormat=CHANNEL_FIRST`:\n          4D tensor with shape:\n          `[batchSize, channels, pooleRows, pooledCols]`",
-              "fileName": "#372",
-              "githubUrl": "https://github.com/tensorflow/tfjs-layersblob/master/src/exports.ts#L372-L381",
+              "fileName": "#373",
+              "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L373-L382",
               "isFunction": true,
               "displayName": "tf.layers.maxPooling2d",
               "urlHash": "tf.layers.maxPooling2d"
@@ -3691,8 +3691,8 @@
               ],
               "returnType": "GRU",
               "documentation": "Gated Recurrent Unit - Cho et al. 2014.",
-              "fileName": "#385",
-              "githubUrl": "https://github.com/tensorflow/tfjs-layersblob/master/src/exports.ts#L385-L394",
+              "fileName": "#386",
+              "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L386-L395",
               "isFunction": true,
               "displayName": "tf.layers.gru",
               "urlHash": "tf.layers.gru"
@@ -3735,8 +3735,8 @@
               ],
               "returnType": "GRUCell",
               "documentation": "Cell class for the GRU layer.",
-              "fileName": "#396",
-              "githubUrl": "https://github.com/tensorflow/tfjs-layersblob/master/src/exports.ts#L396-L405",
+              "fileName": "#397",
+              "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L397-L406",
               "isFunction": true,
               "displayName": "tf.layers.gruCell",
               "urlHash": "tf.layers.gruCell"
@@ -3779,8 +3779,8 @@
               ],
               "returnType": "LSTM",
               "documentation": "Long-Short Term Memory layer - Hochreiter 1997.",
-              "fileName": "#407",
-              "githubUrl": "https://github.com/tensorflow/tfjs-layersblob/master/src/exports.ts#L407-L416",
+              "fileName": "#408",
+              "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L408-L417",
               "isFunction": true,
               "displayName": "tf.layers.lstm",
               "urlHash": "tf.layers.lstm"
@@ -3830,8 +3830,8 @@
               ],
               "returnType": "LSTMCell",
               "documentation": "Cell class for the LSTM layer.",
-              "fileName": "#418",
-              "githubUrl": "https://github.com/tensorflow/tfjs-layersblob/master/src/exports.ts#L418-L427",
+              "fileName": "#419",
+              "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L419-L428",
               "isFunction": true,
               "displayName": "tf.layers.lstmCell",
               "urlHash": "tf.layers.lstmCell"
@@ -3958,8 +3958,8 @@
               ],
               "returnType": "SimpleRNN",
               "documentation": "Fully-connected RNN where the output is to be fed back to input.",
-              "fileName": "#429",
-              "githubUrl": "https://github.com/tensorflow/tfjs-layersblob/master/src/exports.ts#L429-L438",
+              "fileName": "#430",
+              "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L430-L439",
               "isFunction": true,
               "displayName": "tf.layers.simpleRNN",
               "urlHash": "tf.layers.simpleRNN"
@@ -4086,8 +4086,8 @@
               ],
               "returnType": "SimpleRNNCell",
               "documentation": "",
-              "fileName": "#440",
-              "githubUrl": "https://github.com/tensorflow/tfjs-layersblob/master/src/exports.ts#L440-L449",
+              "fileName": "#441",
+              "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L441-L450",
               "isFunction": true,
               "displayName": "tf.layers.simpleRNNCell",
               "urlHash": "tf.layers.simpleRNNCell"
@@ -4135,8 +4135,8 @@
               ],
               "returnType": "Bidirectional",
               "documentation": "",
-              "fileName": "#453",
-              "githubUrl": "https://github.com/tensorflow/tfjs-layersblob/master/src/exports.ts#L453-L462",
+              "fileName": "#454",
+              "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L454-L463",
               "isFunction": true,
               "displayName": "tf.layers.bidirectional",
               "urlHash": "tf.layers.bidirectional"
@@ -4172,8 +4172,8 @@
               ],
               "returnType": "TimeDistributed",
               "documentation": "This wrapper applies a layer to every temporal slice of an input.\n\nThe input should be at least 3D,  and the dimension of the index `1` will be\nconsidered to be the temporal dimension.\n\nConsider a batch of 32 samples, where each sample is a sequence of 10 vectors\nof 16 dimensions. The batch input shape of the layer is then `[32,  10,\n16]`, and the `inputShape`, not including the sample dimension, is\n`[10, 16]`.\n\nYou can then use `TimeDistributed` to apply a `Dense` layer to each of the 10\ntimesteps, independently:\n\n```typescript\nconst model = new Sequential();\nmodel.add(new TimeDistributed({\n   layer: new Dense({units: 8}),\n   inputShape: [10, 16],\n});\n// Now model.outputShape = [null, 10, 8].\n```\n\nThe output will then have shape `[32, 10, 8]`.\n\nIn subsequent layers, there is no need for `inputShape`:\n```typescript\nmodel.add(new TimeDistributed({layer: new Dense(32)});\n// Now model.outputShape = [null, 10, 32].\n```\n\nThe output will then have shape `[32, 10, 32]`.\n\n`TimeDistributed` can be used with arbitrary layers, not just `Dense`, for\ninstance a `Conv2D` layer.\n\n```typescript\nconst model = new Sequential();\nmodel.add(new TimeDistributed({\n   layer: new Conv2D({filter: 64, kernelSize: [3, 3]}),\n   inputShape: [10, 299, 299, 3]\n});\n```",
-              "fileName": "#464",
-              "githubUrl": "https://github.com/tensorflow/tfjs-layersblob/master/src/exports.ts#L464-L473",
+              "fileName": "#465",
+              "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L465-L474",
               "isFunction": true,
               "displayName": "tf.layers.timeDistributed",
               "urlHash": "tf.layers.timeDistributed"
@@ -4216,7 +4216,7 @@
               "returnType": "[Tensor](#class:tf.Tensor)",
               "documentation": "Adds two [Tensor](#class:tf.Tensor)s element-wise, A + B. Supports broadcasting.\n\nWe also expose `addStrict` which has the same signature as this op and\nasserts that `a` and `b` are the same shape (does not broadcast).\n\n```js\nconst a = dl.tensor1d([1, 2, 3, 4]);\nconst b = dl.tensor1d([10, 20, 30, 40]);\n\na.add(b).print();  // or dl.add(a, b)\n```\n\n```js\n// Broadcast add a with b.\nconst a = dl.scalar(5);\nconst b = dl.tensor1d([10, 20, 30, 40]);\n\na.add(b).print();  // or dl.add(a, b)\n```",
               "fileName": "#51",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/ops/binary_ops.ts#L51-L78",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/binary_ops.ts#L51-L78",
               "isFunction": true,
               "displayName": "tf.add",
               "urlHash": "tf.add"
@@ -4247,7 +4247,7 @@
               "returnType": "[Tensor](#class:tf.Tensor)",
               "documentation": "Subtracts two [Tensor](#class:tf.Tensor)s element-wise, A - B. Supports broadcasting.\n\nWe also expose `subStrict` which has the same signature as this op and\nasserts that `a` and `b` are the same shape (does not broadcast).\n\n```js\nconst a = dl.tensor1d([10, 20, 30, 40]);\nconst b = dl.tensor1d([1, 2, 3, 4]);\n\na.sub(b).print();  // or dl.sub(a, b)\n```\n\n```js\n// Broadcast subtract a with b.\nconst a = dl.tensor1d([10, 20, 30, 40]);\nconst b = dl.scalar(5);\n\na.sub(b).print();  // or dl.sub(a, b)\n```",
               "fileName": "#118",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/ops/binary_ops.ts#L118-L146",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/binary_ops.ts#L118-L146",
               "isFunction": true,
               "displayName": "tf.sub",
               "urlHash": "tf.sub"
@@ -4278,7 +4278,7 @@
               "returnType": "[Tensor](#class:tf.Tensor)",
               "documentation": "Multiplies two [Tensor](#class:tf.Tensor)s element-wise, A * B. Supports broadcasting.\n\nWe also expose `mulStrict` which has the same signature as this op and\nasserts that `a` and `b` are the same shape (does not broadcast).\n\n```js\nconst a = dl.tensor1d([1, 2, 3, 4]);\nconst b = dl.tensor1d([2, 3, 4, 5]);\n\na.mul(b).print();  // or dl.mul(a, b)\n```\n\n```js\n// Broadcast mul a with b.\nconst a = dl.tensor1d([1, 2, 3, 4]);\nconst b = dl.scalar(5);\n\na.mul(b).print();  // or dl.mul(a, b)\n```",
               "fileName": "#249",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/ops/binary_ops.ts#L249-L277",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/binary_ops.ts#L249-L277",
               "isFunction": true,
               "displayName": "tf.mul",
               "urlHash": "tf.mul"
@@ -4309,7 +4309,7 @@
               "returnType": "[Tensor](#class:tf.Tensor)",
               "documentation": "Divides two [Tensor](#class:tf.Tensor)s element-wise, A / B. Supports broadcasting.\n\nWe also expose `divStrict` which has the same signature as this op and\nasserts that `a` and `b` are the same shape (does not broadcast).\n\n```js\nconst a = dl.tensor1d([1, 4, 9, 16]);\nconst b = dl.tensor1d([1, 2, 3, 4]);\n\na.div(b).print();  // or dl.div(a, b)\n```\n\n```js\n// Broadcast div a with b.\nconst a = dl.tensor1d([2, 4, 6, 8]);\nconst b = dl.scalar(2);\n\na.div(b).print();  // or dl.div(a, b)\n```",
               "fileName": "#319",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/ops/binary_ops.ts#L319-L346",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/binary_ops.ts#L319-L346",
               "isFunction": true,
               "displayName": "tf.div",
               "urlHash": "tf.div"
@@ -4340,7 +4340,7 @@
               "returnType": "[Tensor](#class:tf.Tensor)",
               "documentation": "Returns the max of a and b (`a > b ? a : b`) element-wise.\nSupports broadcasting.\n\nWe also expose `maximumStrict` which has the same signature as this op and\nasserts that `a` and `b` are the same shape (does not broadcast).\n\n```js\nconst a = dl.tensor1d([1, 4, 3, 16]);\nconst b = dl.tensor1d([1, 2, 9, 4]);\n\na.maximum(b).print();  // or dl.maximum(a, b)\n```\n\n```js\n// Broadcast maximum a with b.\nconst a = dl.tensor1d([2, 4, 6, 8]);\nconst b = dl.scalar(5);\n\na.maximum(b).print();  // or dl.maximum(a, b)\n```",
               "fileName": "#438",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/ops/binary_ops.ts#L438-L450",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/binary_ops.ts#L438-L450",
               "isFunction": true,
               "displayName": "tf.maximum",
               "urlHash": "tf.maximum"
@@ -4371,7 +4371,7 @@
               "returnType": "[Tensor](#class:tf.Tensor)",
               "documentation": "Returns the min of a and b (`a < b ? a : b`) element-wise.\nSupports broadcasting.\n\nWe also expose `minimumStrict` which has the same signature as this op and\nasserts that `a` and `b` are the same shape (does not broadcast).\n\n```js\nconst a = dl.tensor1d([1, 4, 3, 16]);\nconst b = dl.tensor1d([1, 2, 9, 4]);\n\na.minimum(b).print();  // or dl.minimum(a, b)\n```\n\n```js\n// Broadcast minimum a with b.\nconst a = dl.tensor1d([2, 4, 6, 8]);\nconst b = dl.scalar(5);\n\na.minimum(b).print();  // or dl.minimum(a, b)\n```",
               "fileName": "#386",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/ops/binary_ops.ts#L386-L398",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/binary_ops.ts#L386-L398",
               "isFunction": true,
               "displayName": "tf.minimum",
               "urlHash": "tf.minimum"
@@ -4402,7 +4402,7 @@
               "returnType": "[Tensor](#class:tf.Tensor)",
               "documentation": "Computes the power of one [Tensor](#class:tf.Tensor) to another. Supports broadcasting.\n\nGiven a [Tensor](#class:tf.Tensor) x and a [Tensor](#class:tf.Tensor) y, this operation computes x^y for\ncorresponding elements in x and y.\n\n```js\nconst a = dl.tensor([[2, 3], [4, 5]])\nconst b = dl.tensor([[1, 2], [3, 0]]).toInt();\n\na.pow(b).print();  // or dl.pow(a, b)\n```\n\n```js\nconst a = dl.tensor([[1, 2], [3, 4]])\nconst b = dl.tensor(2).toInt();\n\na.pow(b).print();  // or dl.pow(a, b)\n```\nWe also expose `powStrict` which has the same signature as this op and\nasserts that `base` and [tf.exp()](#tf.exp) are the same shape (does not broadcast).",
               "fileName": "#188",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/ops/binary_ops.ts#L188-L209",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/binary_ops.ts#L188-L209",
               "isFunction": true,
               "displayName": "tf.pow",
               "urlHash": "tf.pow"
@@ -4432,7 +4432,7 @@
               "returnType": "[Tensor](#class:tf.Tensor)",
               "documentation": "Computes absolute value element-wise: `abs(x)`\n\n```js\nconst x = dl.tensor1d([-1, 2, -3, 4]);\n\nx.abs().print();  // or dl.abs(x)\n```",
               "fileName": "#177",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/ops/unary_ops.ts#L177-L184",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/unary_ops.ts#L177-L184",
               "isFunction": true,
               "displayName": "tf.abs",
               "urlHash": "tf.abs"
@@ -4456,7 +4456,7 @@
               "returnType": "[Tensor](#class:tf.Tensor)",
               "documentation": "Computes acos of the input [Tensor](#class:tf.Tensor) element-wise: `acos(x)`\n\n```js\nconst x = dl.tensor1d([0, 1, -1, .7]);\n\nx.acos().print();  // or dl.acos(x)\n```",
               "fileName": "#450",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/ops/unary_ops.ts#L450-L461",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/unary_ops.ts#L450-L461",
               "isFunction": true,
               "displayName": "tf.acos",
               "urlHash": "tf.acos"
@@ -4480,7 +4480,7 @@
               "returnType": "[Tensor](#class:tf.Tensor)",
               "documentation": "Computes asin of the input [Tensor](#class:tf.Tensor) element-wise: `asin(x)`\n\n```js\nconst x = dl.tensor1d([0, 1, -1, .7]);\n\nx.asin().print();  // or dl.asin(x)\n```",
               "fileName": "#428",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/ops/unary_ops.ts#L428-L438",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/unary_ops.ts#L428-L438",
               "isFunction": true,
               "displayName": "tf.asin",
               "urlHash": "tf.asin"
@@ -4504,7 +4504,7 @@
               "returnType": "[Tensor](#class:tf.Tensor)",
               "documentation": "Computes atan of the input [Tensor](#class:tf.Tensor) element-wise: `atan(x)`\n\n```js\nconst x = dl.tensor1d([0, 1, -1, .7]);\n\nx.atan().print();  // or dl.atan(x)\n```",
               "fileName": "#473",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/ops/unary_ops.ts#L473-L480",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/unary_ops.ts#L473-L480",
               "isFunction": true,
               "displayName": "tf.atan",
               "urlHash": "tf.atan"
@@ -4528,7 +4528,7 @@
               "returnType": "[Tensor](#class:tf.Tensor)",
               "documentation": "Computes ceiling of input [Tensor](#class:tf.Tensor) element-wise: `ceil(x)`\n\n```js\nconst x = dl.tensor1d([.6, 1.1, -3.3]);\n\nx.ceil().print();  // or dl.ceil(x)\n```",
               "fileName": "#58",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/ops/unary_ops.ts#L58-L66",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/unary_ops.ts#L58-L66",
               "isFunction": true,
               "displayName": "tf.ceil",
               "urlHash": "tf.ceil"
@@ -4566,7 +4566,7 @@
               "returnType": "[Tensor](#class:tf.Tensor)",
               "documentation": "Clips values element-wise. `max(min(x, clipValueMax), clipValueMin)`\n\n```js\nconst x = dl.tensor1d([-1, 2, -3, 4]);\n\nx.clipByValue(-2, 3).print();  // or dl.clipByValue(x, -2, 3)\n```",
               "fileName": "#198",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/ops/unary_ops.ts#L198-L218",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/unary_ops.ts#L198-L218",
               "isFunction": true,
               "displayName": "tf.clipByValue",
               "urlHash": "tf.clipByValue"
@@ -4590,7 +4590,7 @@
               "returnType": "[Tensor](#class:tf.Tensor)",
               "documentation": "Computes cos of the input [Tensor](#class:tf.Tensor) element-wise: `cos(x)`\n\n```js\nconst x = dl.tensor1d([0, Math.PI / 2, Math.PI * 3 / 4]);\n\nx.cos().print();  // or dl.cos(x)\n```",
               "fileName": "#390",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/ops/unary_ops.ts#L390-L397",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/unary_ops.ts#L390-L397",
               "isFunction": true,
               "displayName": "tf.cos",
               "urlHash": "tf.cos"
@@ -4614,7 +4614,7 @@
               "returnType": "[Tensor](#class:tf.Tensor)",
               "documentation": "Computes hyperbolic cos of the input [Tensor](#class:tf.Tensor) element-wise: `cosh(x)`\n\n```js\nconst x = dl.tensor1d([0, 1, -1, .7]);\n\nx.cosh().print();  // or dl.cosh(x)\n```",
               "fileName": "#511",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/ops/unary_ops.ts#L511-L518",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/unary_ops.ts#L511-L518",
               "isFunction": true,
               "displayName": "tf.cosh",
               "urlHash": "tf.cosh"
@@ -4638,7 +4638,7 @@
               "returnType": "[Tensor](#class:tf.Tensor)",
               "documentation": "Computes exponential linear element-wise, `x > 0 ? e ^ x - 1 : 0`\n\n```js\nconst x = dl.tensor1d([-1, 1, -3, 2]);\n\nx.elu().print();  // or dl.elu(x)\n```",
               "fileName": "#250",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/ops/unary_ops.ts#L250-L257",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/unary_ops.ts#L250-L257",
               "isFunction": true,
               "displayName": "tf.elu",
               "urlHash": "tf.elu"
@@ -4662,7 +4662,7 @@
               "returnType": "[Tensor](#class:tf.Tensor)",
               "documentation": "Computes exponential of the input [Tensor](#class:tf.Tensor) element-wise. `e ^ x`\n\n```js\nconst x = dl.tensor1d([1, 2, -3]);\n\nx.exp().print();  // or dl.exp(x)\n```",
               "fileName": "#99",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/ops/unary_ops.ts#L99-L108",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/unary_ops.ts#L99-L108",
               "isFunction": true,
               "displayName": "tf.exp",
               "urlHash": "tf.exp"
@@ -4686,7 +4686,7 @@
               "returnType": "[Tensor](#class:tf.Tensor)",
               "documentation": "Computes floor of input [Tensor](#class:tf.Tensor) element-wise: `floor(x)`.\n\n```js\nconst x = dl.tensor1d([.6, 1.1, -3.3]);\n\nx.floor().print();  // or dl.floor(x)\n```",
               "fileName": "#78",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/ops/unary_ops.ts#L78-L87",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/unary_ops.ts#L78-L87",
               "isFunction": true,
               "displayName": "tf.floor",
               "urlHash": "tf.floor"
@@ -4717,7 +4717,7 @@
               "returnType": "[Tensor](#class:tf.Tensor)",
               "documentation": "Computes leaky rectified linear element-wise.\n\nSee\n[http://web.stanford.edu/~awni/papers/relu_hybrid_icml2013_final.pdf](\n     http://web.stanford.edu/~awni/papers/relu_hybrid_icml2013_final.pdf)\n\n```js\nconst x = dl.tensor1d([-1, 2, -3, 4]);\n\nx.leakyRelu(0.1).print();  // or dl.leakyRelu(x, 0.1)\n```",
               "fileName": "#307",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/ops/unary_ops.ts#L307-L315",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/unary_ops.ts#L307-L315",
               "isFunction": true,
               "displayName": "tf.leakyRelu",
               "urlHash": "tf.leakyRelu"
@@ -4741,7 +4741,7 @@
               "returnType": "[Tensor](#class:tf.Tensor)",
               "documentation": "Computes natural logarithm of the input [Tensor](#class:tf.Tensor) element-wise: `ln(x)`\n\n```js\nconst x = dl.tensor1d([1, 2, Math.E]);\n\nx.log().print();  // or dl.log(x)\n```",
               "fileName": "#120",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/ops/unary_ops.ts#L120-L127",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/unary_ops.ts#L120-L127",
               "isFunction": true,
               "displayName": "tf.log",
               "urlHash": "tf.log"
@@ -4765,7 +4765,7 @@
               "returnType": "[Tensor](#class:tf.Tensor)",
               "documentation": "Computes `-1 * x` element-wise.\n\n```js\nconst x = dl.tensor2d([1, 2, -2, 0], [2, 2]);\n\nx.neg().print();  // or dl.neg(x)\n```",
               "fileName": "#39",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/ops/unary_ops.ts#L39-L46",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/unary_ops.ts#L39-L46",
               "isFunction": true,
               "displayName": "tf.neg",
               "urlHash": "tf.neg"
@@ -4796,7 +4796,7 @@
               "returnType": "[Tensor](#class:tf.Tensor)",
               "documentation": "Computes leaky rectified linear element-wise with parametric alphas.\n\n`x < 0 ? alpha * x : f(x) = x`\n\n```js\nconst x = dl.tensor1d([-1, 2, -3, 4]);\nconst alpha = dl.scalar(0.1);\n\nx.prelu(alpha).print();  // or dl.prelu(x, alpha)\n```",
               "fileName": "#331",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/ops/unary_ops.ts#L331-L338",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/unary_ops.ts#L331-L338",
               "isFunction": true,
               "displayName": "tf.prelu",
               "urlHash": "tf.prelu"
@@ -4820,7 +4820,7 @@
               "returnType": "[Tensor](#class:tf.Tensor)",
               "documentation": "Computes rectified linear element-wise: `max(x, 0)`\n\n```js\nconst x = dl.tensor1d([-1, 2, -3, 4]);\n\nx.relu().print();  // or dl.relu(x)\n```",
               "fileName": "#230",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/ops/unary_ops.ts#L230-L238",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/unary_ops.ts#L230-L238",
               "isFunction": true,
               "displayName": "tf.relu",
               "urlHash": "tf.relu"
@@ -4844,7 +4844,7 @@
               "returnType": "[Tensor](#class:tf.Tensor)",
               "documentation": "Computes scaled exponential linear element-wise.\n\n`x < 0 ? scale * alpha * (exp(x) - 1) : x`\n\n```js\nconst x = dl.tensor1d([-1, 2, -3, 4]);\n\nx.selu().print();  // or dl.selu(x)\n```",
               "fileName": "#271",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/ops/unary_ops.ts#L271-L290",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/unary_ops.ts#L271-L290",
               "isFunction": true,
               "displayName": "tf.selu",
               "urlHash": "tf.selu"
@@ -4868,7 +4868,7 @@
               "returnType": "[Tensor](#class:tf.Tensor)",
               "documentation": "Computes sigmoid element-wise, `1 / (1 + exp(-x))`\n\n```js\nconst x = dl.tensor1d([0, -1, 2, -3]);\n\nx.sigmoid().print();  // or dl.sigmoid(x)\n```",
               "fileName": "#350",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/ops/unary_ops.ts#L350-L359",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/unary_ops.ts#L350-L359",
               "isFunction": true,
               "displayName": "tf.sigmoid",
               "urlHash": "tf.sigmoid"
@@ -4892,7 +4892,7 @@
               "returnType": "[Tensor](#class:tf.Tensor)",
               "documentation": "Computes sin of the input Tensor element-wise: `sin(x)`\n\n```js\nconst x = dl.tensor1d([0, Math.PI / 2, Math.PI * 3 / 4]);\n\nx.sin().print();  // or dl.sin(x)\n```",
               "fileName": "#371",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/ops/unary_ops.ts#L371-L378",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/unary_ops.ts#L371-L378",
               "isFunction": true,
               "displayName": "tf.sin",
               "urlHash": "tf.sin"
@@ -4916,7 +4916,7 @@
               "returnType": "[Tensor](#class:tf.Tensor)",
               "documentation": "Computes hyperbolic sin of the input [Tensor](#class:tf.Tensor) element-wise: `sinh(x)`\n\n```js\nconst x = dl.tensor1d([0, 1, -1, .7]);\n\nx.sinh().print();  // or dl.sinh(x)\n```",
               "fileName": "#492",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/ops/unary_ops.ts#L492-L499",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/unary_ops.ts#L492-L499",
               "isFunction": true,
               "displayName": "tf.sinh",
               "urlHash": "tf.sinh"
@@ -4940,7 +4940,7 @@
               "returnType": "[Tensor](#class:tf.Tensor)",
               "documentation": "Computes square root of the input [Tensor](#class:tf.Tensor) element-wise: `y = sqrt(x)`\n\n```js\nconst x = dl.tensor1d([1, 2, 4, -1]);\n\nx.sqrt().print();  // or dl.sqrt(x)\n```",
               "fileName": "#139",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/ops/unary_ops.ts#L139-L146",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/unary_ops.ts#L139-L146",
               "isFunction": true,
               "displayName": "tf.sqrt",
               "urlHash": "tf.sqrt"
@@ -4964,7 +4964,7 @@
               "returnType": "[Tensor](#class:tf.Tensor)",
               "documentation": "Computes square of `x` element-wise: `x ^ 2`\n\n```js\nconst x = dl.tensor1d([1, 2, Math.sqrt(2), -1]);\n\nx.square().print();  // or dl.square(x)\n```",
               "fileName": "#158",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/ops/unary_ops.ts#L158-L165",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/unary_ops.ts#L158-L165",
               "isFunction": true,
               "displayName": "tf.square",
               "urlHash": "tf.square"
@@ -4995,7 +4995,7 @@
               "returnType": "[Tensor](#class:tf.Tensor)",
               "documentation": "Computes step of the input [Tensor](#class:tf.Tensor) element-wise: `x > 0 ? 1 : alpha * x`\n\n```js\nconst x = dl.tensor1d([0, 2, -1, -3]);\n\nx.step(.5).print();  // or dl.step(x, .5)\n```",
               "fileName": "#552",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/ops/unary_ops.ts#L552-L560",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/unary_ops.ts#L552-L560",
               "isFunction": true,
               "displayName": "tf.step",
               "urlHash": "tf.step"
@@ -5019,7 +5019,7 @@
               "returnType": "[Tensor](#class:tf.Tensor)",
               "documentation": "Computes tan of the input [Tensor](#class:tf.Tensor) element-wise, `tan(x)`\n\n```js\nconst x = dl.tensor1d([0, Math.PI / 2, Math.PI * 3 / 4]);\n\nx.tan().print();  // or dl.tan(x)\n```",
               "fileName": "#409",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/ops/unary_ops.ts#L409-L416",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/unary_ops.ts#L409-L416",
               "isFunction": true,
               "displayName": "tf.tan",
               "urlHash": "tf.tan"
@@ -5043,7 +5043,7 @@
               "returnType": "[Tensor](#class:tf.Tensor)",
               "documentation": "Computes hyperbolic tangent of the input [Tensor](#class:tf.Tensor) element-wise: `tanh(x)`\n\n```js\nconst x = dl.tensor1d([0, 1, -1, 70]);\n\nx.tanh().print();  // or dl.tanh(x)\n```",
               "fileName": "#530",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/ops/unary_ops.ts#L530-L539",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/unary_ops.ts#L530-L539",
               "isFunction": true,
               "displayName": "tf.tanh",
               "urlHash": "tf.tanh"
@@ -5094,7 +5094,7 @@
               "returnType": "Tensor2D",
               "documentation": "Computes the dot product of two matrices, A * B. These must be matrices.\n\n```js\nconst a = dl.tensor2d([1, 2], [1, 2]);\nconst b = dl.tensor2d([1, 2, 3, 4], [2, 2]);\n\na.matMul(b).print();  // or dl.matMul(a, b)\n```",
               "fileName": "#39",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/ops/matmul.ts#L39-L70",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/matmul.ts#L39-L70",
               "isFunction": true,
               "displayName": "tf.matMul",
               "urlHash": "tf.matMul"
@@ -5139,7 +5139,7 @@
               "returnType": "[Tensor](#class:tf.Tensor)",
               "documentation": "Computes the norm of scalar, vectors, and matrices.\nThis function can compute several different vector norms (the 1-norm, the\nEuclidean or 2-norm, the inf-norm, and in general the p-norm for p > 0)\nand matrix norms (Frobenius, 1-norm, and inf-norm).\n\n```js\nconst x = dl.tensor1d([1, 2, 3, 4]);\n\nx.norm().print();  // or dl.norm(x)\n```",
               "fileName": "#62",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/ops/norm.ts#L62-L74",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/norm.ts#L62-L74",
               "isFunction": true,
               "displayName": "tf.norm",
               "urlHash": "tf.norm"
@@ -5170,7 +5170,7 @@
               "returnType": "Tensor2D",
               "documentation": "Computes the outer product of two vectors, v1 and v2.\n\n```js\nconst a = dl.tensor1d([1, 2, 3]);\nconst b = dl.tensor1d([3, 4, 5]);\n\ndl.outerProduct(a, b).print();\n```",
               "fileName": "#151",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/ops/matmul.ts#L151-L160",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/matmul.ts#L151-L160",
               "isFunction": true,
               "displayName": "tf.outerProduct",
               "urlHash": "tf.outerProduct"
@@ -5201,7 +5201,7 @@
               "returnType": "[Tensor](#class:tf.Tensor)",
               "documentation": "Transposes the [Tensor](#class:tf.Tensor). Permutes the dimensions according to `perm`.\n\nThe returned [Tensor](#class:tf.Tensor)'s dimension `i` will correspond to the input\ndimension `perm[i]`. If `perm` is not given, it is set to `[n-1...0]`,\nwhere `n` is the rank of the input [Tensor](#class:tf.Tensor). Hence by default, this\noperation performs a regular matrix transpose on 2-D input [Tensor](#class:tf.Tensor)s.\n\n```js\nconst a = dl.tensor2d([1, 2, 3, 4, 5, 6], [2, 3]);\n\na.transpose().print();  // or dl.transpose(a)\n```",
               "fileName": "#43",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/ops/transpose.ts#L43-L59",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/transpose.ts#L43-L59",
               "isFunction": true,
               "displayName": "tf.transpose",
               "urlHash": "tf.transpose"
@@ -5259,7 +5259,7 @@
               "returnType": "Tensor3D|Tensor4D",
               "documentation": "Computes the 2D average pooling of an image.",
               "fileName": "#213",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/ops/pool.ts#L213-L249",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/pool.ts#L213-L249",
               "isFunction": true,
               "displayName": "tf.avgPool",
               "urlHash": "tf.avgPool"
@@ -5311,7 +5311,7 @@
               "returnType": "Tensor2D|Tensor3D",
               "documentation": "Computes a 1D convolution over the input x.",
               "fileName": "#47",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/ops/conv.ts#L47-L91",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/conv.ts#L47-L91",
               "isFunction": true,
               "displayName": "tf.conv1d",
               "urlHash": "tf.conv1d"
@@ -5363,7 +5363,7 @@
               "returnType": "Tensor3D|Tensor4D",
               "documentation": "Computes a 2D convolution over the input x.",
               "fileName": "#115",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/ops/conv.ts#L115-L166",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/conv.ts#L115-L166",
               "isFunction": true,
               "displayName": "tf.conv2d",
               "urlHash": "tf.conv2d"
@@ -5422,7 +5422,7 @@
               "returnType": "Tensor3D|Tensor4D",
               "documentation": "Computes the transposed 2D convolution of an image, also known as a\ndeconvolution.",
               "fileName": "#334",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/ops/conv.ts#L334-L343",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/conv.ts#L334-L343",
               "isFunction": true,
               "displayName": "tf.conv2dTranspose",
               "urlHash": "tf.conv2dTranspose"
@@ -5481,7 +5481,7 @@
               "returnType": "Tensor3D|Tensor4D",
               "documentation": "Depthwise 2D convolution.\n\nGiven a 4D [tf.input()](#tf.input) array and a `filter` array of shape\n`[filterHeight, filterWidth, inChannels, channelMultiplier]` containing\n`inChannels` convolutional filters of depth 1, this op applies a\ndifferent filter to each input channel (expanding from 1 channel to\n`channelMultiplier` channels for each), then concatenates the results\ntogether. The output has `inChannels * channelMultiplier` channels.\n\nSee\n[https://www.tensorflow.org/api_docs/python/tf/nn/depthwise_conv2d](\n     https://www.tensorflow.org/api_docs/python/tf/nn/depthwise_conv2d)\nfor more details.",
               "fileName": "#385",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/ops/conv.ts#L385-L435",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/conv.ts#L385-L435",
               "isFunction": true,
               "displayName": "tf.depthwiseConv2d",
               "urlHash": "tf.depthwiseConv2d"
@@ -5533,7 +5533,7 @@
               "returnType": "Tensor3D|Tensor4D",
               "documentation": "Computes the 2D max pooling of an image.",
               "fileName": "#45",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/ops/pool.ts#L45-L80",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/pool.ts#L45-L80",
               "isFunction": true,
               "displayName": "tf.maxPool",
               "urlHash": "tf.maxPool"
@@ -5585,7 +5585,7 @@
               "returnType": "Tensor3D|Tensor4D",
               "documentation": "Computes the 2D min pooling of an image.",
               "fileName": "#163",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/ops/pool.ts#L163-L192",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/pool.ts#L163-L192",
               "isFunction": true,
               "displayName": "tf.minPool",
               "urlHash": "tf.minPool"
@@ -5622,7 +5622,7 @@
               "returnType": "[Tensor](#class:tf.Tensor)",
               "documentation": "Returns the indices of the maximum values along an `axis`.\n\nThe result has the same shape as [tf.input()](#tf.input) with the dimension along `axis`\nremoved.\n\n```js\nconst x = dl.tensor1d([1, 2, 3]);\n\nx.argMax().print();  // or dl.argMax(x)\n```\n\n```js\nconst x = dl.tensor2d([1, 2, 4, 3], [2, 2]);\n\nconst axis = 1;\nx.argMax(axis).print();  // or dl.argMax(x, axis)\n```",
               "fileName": "#350",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/ops/reduction_ops.ts#L350-L361",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/reduction_ops.ts#L350-L361",
               "isFunction": true,
               "displayName": "tf.argMax",
               "urlHash": "tf.argMax"
@@ -5653,7 +5653,7 @@
               "returnType": "[Tensor](#class:tf.Tensor)",
               "documentation": "Returns the indices of the minimum values along an `axis`.\n\nThe result has the same shape as [tf.input()](#tf.input) with the dimension along `axis`\nremoved.\n\n```js\nconst x = dl.tensor1d([1, 2, 3]);\n\nx.argMin().print();  // or dl.argMin(x)\n```\n\n```js\nconst x = dl.tensor2d([1, 2, 4, 3], [2, 2]);\n\nconst axis = 1;\nx.argMin(axis).print();  // or dl.argMin(x, axis)\n```",
               "fileName": "#315",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/ops/reduction_ops.ts#L315-L325",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/reduction_ops.ts#L315-L325",
               "isFunction": true,
               "displayName": "tf.argMin",
               "urlHash": "tf.argMin"
@@ -5691,7 +5691,7 @@
               "returnType": "[Tensor](#class:tf.Tensor)",
               "documentation": "Computes the log(sum(exp(elements across the reduction dimensions)).\n\nReduces the input along the dimensions given in `axis`. Unless `keepDims`\nis true, the rank of the array is reduced by 1 for each entry in `axis`.\nIf `keepDims` is true, the reduced dimensions are retained with length 1.\nIf `axis` has no entries, all dimensions are reduced, and an array with a\nsingle element is returned.\n\n```js\nconst x = dl.tensor1d([1, 2, 3]);\n\nx.logSumExp().print();  // or dl.logSumExp(x)\n```\n\n```js\nconst x = dl.tensor2d([1, 2, 3, 4], [2, 2]);\n\nconst axis = 1;\nx.logSumExp(axis).print();  // or dl.logSumExp(a, axis)\n```",
               "fileName": "#55",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/ops/reduction_ops.ts#L55-L72",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/reduction_ops.ts#L55-L72",
               "isFunction": true,
               "displayName": "tf.logSumExp",
               "urlHash": "tf.logSumExp"
@@ -5729,7 +5729,7 @@
               "returnType": "[Tensor](#class:tf.Tensor)",
               "documentation": "Computes the maximum of elements across dimensions of a [Tensor](#class:tf.Tensor).\n\nReduces the input along the dimensions given in `axes`. Unless `keepDims`\nis true, the rank of the [Tensor](#class:tf.Tensor) is reduced by 1 for each entry in `axes`.\nIf `keepDims` is true, the reduced dimensions are retained with length 1.\nIf `axes` has no entries, all dimensions are reduced, and an [Tensor](#class:tf.Tensor) with\na single element is returned.\n\n```js\nconst x = dl.tensor1d([1, 2, 3]);\n\nx.max().print();  // or dl.max(x)\n```\n\n```js\nconst x = dl.tensor2d([1, 2, 3, 4], [2, 2]);\n\nconst axis = 1;\nx.max(axis).print();  // or dl.max(x, axis)\n```",
               "fileName": "#272",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/ops/reduction_ops.ts#L272-L289",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/reduction_ops.ts#L272-L289",
               "isFunction": true,
               "displayName": "tf.max",
               "urlHash": "tf.max"
@@ -5767,7 +5767,7 @@
               "returnType": "[Tensor](#class:tf.Tensor)",
               "documentation": "Computes the mean of elements across dimensions of a [Tensor](#class:tf.Tensor).\n\nReduces `x` along the dimensions given in `axis`. Unless `keepDims` is\ntrue, the rank of the [Tensor](#class:tf.Tensor) is reduced by 1 for each entry in `axis`.\nIf `keepDims` is true, the reduced dimensions are retained with length 1.\nIf `axis` has no entries, all dimensions are reduced, and a [Tensor](#class:tf.Tensor) with\na single element is returned.\n\n```js\nconst x = dl.tensor1d([1, 2, 3]);\n\nx.mean().print();  // or dl.logSumExp(a)\n```\n\n```js\nconst x = dl.tensor2d([1, 2, 3, 4], [2, 2]);\n\nconst axis = 1;\nx.mean(axis).print();  // or dl.mean(x, axis)\n```",
               "fileName": "#167",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/ops/reduction_ops.ts#L167-L197",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/reduction_ops.ts#L167-L197",
               "isFunction": true,
               "displayName": "tf.mean",
               "urlHash": "tf.mean"
@@ -5805,7 +5805,7 @@
               "returnType": "[Tensor](#class:tf.Tensor)",
               "documentation": "Computes the minimum value from the input.\n\nReduces the input along the dimensions given in `axes`. Unless `keepDims`\nis true, the rank of the array is reduced by 1 for each entry in `axes`.\nIf `keepDims` is true, the reduced dimensions are retained with length 1.\nIf `axes` has no entries, all dimensions are reduced, and an array with a\nsingle element is returned.\n\n```js\nconst x = dl.tensor1d([1, 2, 3]);\n\nx.min().print();  // or dl.min(x)\n```\n\n```js\nconst x = dl.tensor2d([1, 2, 3, 4], [2, 2]);\n\nconst axis = 1;\nx.min(axis).print();  // or dl.min(x, axis)\n```",
               "fileName": "#226",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/ops/reduction_ops.ts#L226-L243",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/reduction_ops.ts#L226-L243",
               "isFunction": true,
               "displayName": "tf.min",
               "urlHash": "tf.min"
@@ -5843,7 +5843,7 @@
               "returnType": "[Tensor](#class:tf.Tensor)",
               "documentation": "Computes the sum of elements across dimensions of a [Tensor](#class:tf.Tensor).\n\nReduces the input along the dimensions given in `axes`. Unless `keepDims`\nis true, the rank of the [Tensor](#class:tf.Tensor) is reduced by 1 for each entry in `axes`.\nIf `keepDims` is true, the reduced dimensions are retained with length 1.\nIf axes has no entries, all dimensions are reduced, and a [Tensor](#class:tf.Tensor) with a\nsingle element is returned.\n\n```js\nconst x = dl.tensor1d([1, 2, 3]);\n\nx.sum().print();  // or dl.logSumExp(x)\n```\n\n```js\nconst x = dl.tensor2d([1, 2, 3, 4], [2, 2]);\n\nconst axis = 1;\nx.sum(axis).print();  // or dl.sum(x, axis)\n```",
               "fileName": "#101",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/ops/reduction_ops.ts#L101-L138",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/reduction_ops.ts#L101-L138",
               "isFunction": true,
               "displayName": "tf.sum",
               "urlHash": "tf.sum"
@@ -5908,7 +5908,7 @@
               "returnType": "[Tensor](#class:tf.Tensor)",
               "documentation": "Batch normalization.\n\nAs described in\n[http://arxiv.org/abs/1502.03167](http://arxiv.org/abs/1502.03167).\n\nMean, variance, scale, and offset can be of two\nshapes:\n   - The same shape as the input.\n   - In the common case, the depth dimension is the last dimension of x, so\n     the values would be an `Tensor1D` of shape [depth].",
               "fileName": "#180",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/ops/batchnorm.ts#L180-L203",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/batchnorm.ts#L180-L203",
               "isFunction": true,
               "displayName": "tf.batchNormalization",
               "urlHash": "tf.batchNormalization"
@@ -5967,7 +5967,7 @@
               "returnType": "Tensor3D|Tensor4D",
               "documentation": "Normalizes the activation of a local neighborhood across or within\nchannels.",
               "fileName": "#40",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/ops/lrn.ts#L40-L68",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/lrn.ts#L40-L68",
               "isFunction": true,
               "displayName": "tf.localResponseNormalization",
               "urlHash": "tf.localResponseNormalization"
@@ -6005,7 +6005,7 @@
               "returnType": "{mean: [Tensor](#class:tf.Tensor), variance: [Tensor](#class:tf.Tensor)}",
               "documentation": "Calculates the mean and variance of `x`. The mean and variance are\ncalculated by aggregating the contents of `x` across `axes`. If `x` is\n1-D and `axes = [0]` this is just the mean and variance of a vector.",
               "fileName": "#375",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/ops/reduction_ops.ts#L375-L388",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/reduction_ops.ts#L375-L388",
               "isFunction": true,
               "displayName": "tf.moments",
               "urlHash": "tf.moments"
@@ -6036,7 +6036,7 @@
               "returnType": "[Tensor](#class:tf.Tensor)",
               "documentation": "Computes the softmax normalized vector given the logits.\n\n```js\nconst a = dl.tensor1d([1, 2, 3]);\n\na.softmax().print();  // or dl.softmax(a)\n```\n\n```js\nconst a = dl.tensor2d([2, 4, 6, 1, 2, 3], [2, 3]);\n\na.softmax().print();  // or dl.softmax(a)\n```",
               "fileName": "#47",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/ops/softmax.ts#L47-L77",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/softmax.ts#L47-L77",
               "isFunction": true,
               "displayName": "tf.softmax",
               "urlHash": "tf.softmax"
@@ -6082,7 +6082,7 @@
               "returnType": "Tensor3D|Tensor4D",
               "documentation": "Bilinear resize a batch of 3D images to a new shape.",
               "fileName": "#37",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/ops/image_ops.ts#L37-L65",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/image_ops.ts#L37-L65",
               "isFunction": true,
               "displayName": "tf.image.resizeBilinear",
               "urlHash": "tf.image.resizeBilinear"
@@ -6147,7 +6147,7 @@
               "returnType": "[Tensor2D, Tensor2D]",
               "documentation": "Computes the next state and output of a BasicLSTMCell.\n\nReturns `[newC, newH]`.\n\nDerived from tf.contrib.rnn.BasicLSTMCell.",
               "fileName": "#80",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/ops/lstm.ts#L80-L102",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/lstm.ts#L80-L102",
               "isFunction": true,
               "displayName": "tf.basicLSTMCell",
               "urlHash": "tf.basicLSTMCell"
@@ -6192,7 +6192,7 @@
               "returnType": "[Tensor2D[], Tensor2D[]]",
               "documentation": "Computes the next states and outputs of a stack of LSTMCells.\n\nEach cell output is used as input to the next cell.\n\nReturns `[cellState, cellOutput]`.\n\nDerived from tf.contrib.rn.MultiRNNCell.",
               "fileName": "#44",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/ops/lstm.ts#L44-L64",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/lstm.ts#L44-L64",
               "isFunction": true,
               "displayName": "tf.multiRNNCell",
               "urlHash": "tf.multiRNNCell"
@@ -6229,7 +6229,7 @@
               "returnType": "[Tensor](#class:tf.Tensor)",
               "documentation": "Returns the truth value of (a == b) element-wise. Supports broadcasting.\n\nWe also expose `equalStrict` which has the same signature as this op\nand asserts that `a` and `b` are the same shape (does not broadcast).",
               "fileName": "#97",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/ops/compare.ts#L97-L103",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/compare.ts#L97-L103",
               "isFunction": true,
               "displayName": "tf.equal",
               "urlHash": "tf.equal"
@@ -6260,7 +6260,7 @@
               "returnType": "[Tensor](#class:tf.Tensor)",
               "documentation": "Returns the truth value of (a > b) element-wise. Supports broadcasting.\n\nWe also expose `greaterStrict` which has the same signature as this\nop and asserts that `a` and `b` are the same shape (does not broadcast).",
               "fileName": "#144",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/ops/compare.ts#L144-L150",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/compare.ts#L144-L150",
               "isFunction": true,
               "displayName": "tf.greater",
               "urlHash": "tf.greater"
@@ -6291,7 +6291,7 @@
               "returnType": "[Tensor](#class:tf.Tensor)",
               "documentation": "Returns the truth value of (a >= b) element-wise. Supports broadcasting.\n\nWe also expose `greaterStrict` which has the same signature as this\nop and asserts that `a` and `b` are the same shape (does not broadcast).",
               "fileName": "#167",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/ops/compare.ts#L167-L174",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/compare.ts#L167-L174",
               "isFunction": true,
               "displayName": "tf.greaterEqual",
               "urlHash": "tf.greaterEqual"
@@ -6322,7 +6322,7 @@
               "returnType": "[Tensor](#class:tf.Tensor)",
               "documentation": "Returns the truth value of (a < b) element-wise. Supports broadcasting.\n\nWe also expose `lessStrict` which has the same signature as this op and\nasserts that `a` and `b` are the same shape (does not broadcast).",
               "fileName": "#66",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/ops/compare.ts#L66-L72",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/compare.ts#L66-L72",
               "isFunction": true,
               "displayName": "tf.less",
               "urlHash": "tf.less"
@@ -6353,7 +6353,7 @@
               "returnType": "[Tensor](#class:tf.Tensor)",
               "documentation": "Returns the truth value of (a <= b) element-wise. Supports broadcasting.\n\nWe also expose `lessEqualStrict` which has the same signature as this op\nand asserts that `a` and `b` are the same shape (does not broadcast).",
               "fileName": "#120",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/ops/compare.ts#L120-L127",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/compare.ts#L120-L127",
               "isFunction": true,
               "displayName": "tf.lessEqual",
               "urlHash": "tf.lessEqual"
@@ -6384,7 +6384,7 @@
               "returnType": "[Tensor](#class:tf.Tensor)",
               "documentation": "Returns the truth value of a AND b element-wise. Supports broadcasting.",
               "fileName": "#45",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/ops/logical_ops.ts#L45-L54",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/logical_ops.ts#L45-L54",
               "isFunction": true,
               "displayName": "tf.logicalAnd",
               "urlHash": "tf.logicalAnd"
@@ -6408,7 +6408,7 @@
               "returnType": "[Tensor](#class:tf.Tensor)",
               "documentation": "Returns the truth value of `NOT x` element-wise.",
               "fileName": "#32",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/ops/logical_ops.ts#L32-L37",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/logical_ops.ts#L32-L37",
               "isFunction": true,
               "displayName": "tf.logicalNot",
               "urlHash": "tf.logicalNot"
@@ -6439,7 +6439,7 @@
               "returnType": "[Tensor](#class:tf.Tensor)",
               "documentation": "Returns the truth value of `a OR b` element-wise. Supports broadcasting.",
               "fileName": "#62",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/ops/logical_ops.ts#L62-L71",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/logical_ops.ts#L62-L71",
               "isFunction": true,
               "displayName": "tf.logicalOr",
               "urlHash": "tf.logicalOr"
@@ -6470,7 +6470,7 @@
               "returnType": "[Tensor](#class:tf.Tensor)",
               "documentation": "Returns the truth value of `a XOR b` element-wise. Supports broadcasting.",
               "fileName": "#79",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/ops/logical_ops.ts#L79-L88",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/logical_ops.ts#L79-L88",
               "isFunction": true,
               "displayName": "tf.logicalXor",
               "urlHash": "tf.logicalXor"
@@ -6501,7 +6501,7 @@
               "returnType": "[Tensor](#class:tf.Tensor)",
               "documentation": "Returns the truth value of (a != b) element-wise. Supports broadcasting.\n\nWe also expose `notEqualStrict` which has the same signature as this op and\nasserts that `a` and `b` are the same shape (does not broadcast).",
               "fileName": "#35",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/ops/compare.ts#L35-L41",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/compare.ts#L35-L41",
               "isFunction": true,
               "displayName": "tf.notEqual",
               "urlHash": "tf.notEqual"
@@ -6539,7 +6539,7 @@
               "returnType": "[Tensor](#class:tf.Tensor)",
               "documentation": "Returns the elements, either `a` or `b` depending on the `condition`.\n\nIf the condition is true, select from `a`, otherwise select from `b`.",
               "fileName": "#100",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/ops/logical_ops.ts#L100-L125",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/logical_ops.ts#L100-L125",
               "isFunction": true,
               "displayName": "tf.where",
               "urlHash": "tf.where"
@@ -6575,7 +6575,7 @@
               "returnType": "(x: [Tensor](#class:tf.Tensor), dy?: [Tensor](#class:tf.Tensor)) => [Tensor](#class:tf.Tensor)",
               "documentation": "Provided `f(x)`, returns another function `g(x, dy?)`, which gives the\ngradient of `f(x)` with respect to `x`.\n\nIf `dy` is provided, the gradient of `f(x).mul(dy).sum()` with respect to\n`x` is computed instead. `f(x)` must take a single tensor `x` and return a\nsingle tensor `y`. If `f()` takes multiple inputs, use [tf.grads()](#tf.grads) instead.\n\n```js\n// f(x) = x ^ 2\nconst f = x => x.square();\n// f'(x) = 2x\nconst g = dl.grad(f);\n\nconst x = dl.tensor1d([2, 3]);\ng(x).print();\n```\n\n```js\n// f(x) = x ^ 3\nconst f = x => x.pow(dl.scalar(3, 'int32'));\n// f'(x) = 3x ^ 2\nconst g = dl.grad(f);\n// f''(x) = 6x\nconst gg = dl.grad(g);\n\nconst x = dl.tensor1d([2, 3]);\ngg(x).print();\n```",
               "fileName": "#76",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/gradients.ts#L76-L98",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/gradients.ts#L76-L98",
               "isFunction": true,
               "displayName": "tf.grad",
               "urlHash": "tf.grad"
@@ -6599,7 +6599,7 @@
               "returnType": "(args: [Tensor](#class:tf.Tensor)[], dy?: [Tensor](#class:tf.Tensor)) => [Tensor](#class:tf.Tensor)[]",
               "documentation": "Provided `f(x1, x2,...)`, returns another function `g([x1, x2,...], dy?)`,\nwhich gives an array of gradients of `f()` with respect to each input\n[`x1`,`x2`,...].\n\nIf `dy` is passed when calling `g()`, the gradient of\n`f(x1,...).mul(dy).sum()` with respect to each input is computed instead.\nThe provided `f` must take one or more tensors and return a single tensor\n`y`. If `f()` takes a single input, we recommend using [tf.grad()](#tf.grad) instead.\n\n```js\n// f(a, b) = a * b\nconst f = (a, b) => a.mul(b);\n// df / da = b, df / db = a\nconst g = dl.grads(f);\n\nconst a = dl.tensor1d([2, 3]);\nconst b = dl.tensor1d([-2, -3]);\nconst [da, db] = g([a, b]);\nconsole.log('da');\nda.print();\nconsole.log('db');\ndb.print();\n```",
               "fileName": "#127",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/gradients.ts#L127-L150",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/gradients.ts#L127-L150",
               "isFunction": true,
               "displayName": "tf.grads",
               "urlHash": "tf.grads"
@@ -6623,7 +6623,7 @@
               "returnType": "(...args: [Tensor](#class:tf.Tensor)[]) => [Tensor](#class:tf.Tensor)",
               "documentation": "Overrides the gradient computation of a function `f`.\n\nTakes a function\n`f(...inputs) => {value: Tensor, gradFunc: dy => Tensor[]}` and returns\nanother function `g(...inputs)` which takes the same inputs as `f`. When\ncalled, `g` returns `f().value`. In backward mode, custom gradients with\nrespect to each input of `f` are computed using `f().gradFunc`.\n\n```js\nconst customOp = dl.customGrad(x => {\n   // Override gradient of our custom x ^ 2 op to be dy * abs(x);\n   return {value: x.square(), gradFunc: dy => [dy.mul(x.abs())]};\n});\n\nconst x = dl.tensor1d([-1, -2, 3]);\nconst dx = dl.grad(x => customOp(x));\n\nconsole.log(`f(x):`);\ncustomOp(x).print();\nconsole.log(`f'(x):`);\ndx(x).print();\n```",
               "fileName": "#353",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/gradients.ts#L353-L357",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/gradients.ts#L353-L357",
               "isFunction": true,
               "displayName": "tf.customGrad",
               "urlHash": "tf.customGrad"
@@ -6647,7 +6647,7 @@
               "returnType": "(x: [Tensor](#class:tf.Tensor), dy?: [Tensor](#class:tf.Tensor)) => {\n        value: [Tensor](#class:tf.Tensor);\n        grad: [Tensor](#class:tf.Tensor);\n      }",
               "documentation": "Like `dl.grad`, but also returns the value of `f()`. Useful when `f()`\nreturns a metric you want to show.\n\nThe result is a rich object with the following properties:\n- grad: The gradient of `f(x)` w.r.t `x` (result of [tf.grad()](#tf.grad)).\n- value: The value returned by `f(x)`.\n\n```js\n// f(x) = x ^ 2\nconst f = x => x.square();\n// f'(x) = 2x\nconst g = dl.valueAndGrad(f);\n\nconst x = dl.tensor1d([2, 3]);\nconst {value, grad} = g(x);\n\nconsole.log('value');\nvalue.print();\nconsole.log('grad');\ngrad.print();\n```",
               "fileName": "#175",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/gradients.ts#L175-L195",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/gradients.ts#L175-L195",
               "isFunction": true,
               "displayName": "tf.valueAndGrad",
               "urlHash": "tf.valueAndGrad"
@@ -6671,7 +6671,7 @@
               "returnType": "(args: [Tensor](#class:tf.Tensor)[], dy?: [Tensor](#class:tf.Tensor)) => {\n        grads: [Tensor](#class:tf.Tensor)[];\n        value: [Tensor](#class:tf.Tensor);\n      }",
               "documentation": "Like [tf.grads()](#tf.grads), but returns also the value of `f()`. Useful when `f()`\nreturns a metric you want to show.\n\nThe result is a rich object with the following properties:\n- grads: The gradients of `f()` w.r.t each input (result of [tf.grads()](#tf.grads)).\n- value: The value returned by `f(x)`.\n\n```js\n// f(a, b) = a * b\nconst f = (a, b) => a.mul(b);\n// df/da = b, df/db = a\nconst g = dl.valueAndGrads(f);\n\nconst a = dl.tensor1d([2, 3]);\nconst b = dl.tensor1d([-2, -3]);\nconst {value, grads} = g([a, b]);\n\nconst [da, db] = grads;\n\nconsole.log('value');\nvalue.print();\n\nconsole.log('da');\nda.print();\nconsole.log('db');\ndb.print();\n```",
               "fileName": "#226",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/gradients.ts#L226-L252",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/gradients.ts#L226-L252",
               "isFunction": true,
               "displayName": "tf.valueAndGrads",
               "urlHash": "tf.valueAndGrads"
@@ -6702,7 +6702,7 @@
               "returnType": "{value: Scalar, grads: {[name: string]: [Tensor](#class:tf.Tensor)}}",
               "documentation": "Computes and returns the gradient of f(x) with respect to the list of\ntrainable variables provided by `varList`. If no list is provided, it\ndefaults to all trainable variables.\n\n```js\nconst a = dl.variable(dl.tensor1d([3, 4]));\nconst b = dl.variable(dl.tensor1d([5, 6]));\nconst x = dl.tensor1d([1, 2]);\n\n// f(a, b) = a * x ^ 2 + b * x\nconst f = () => a.mul(x.square()).add(b.mul(x)).sum();\n// df/da = x ^ 2, df/db = x\nconst {value, grads} = dl.variableGrads(f);\n\nObject.keys(grads).forEach(varName => grads[varName].print());\n```",
               "fileName": "#275",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/gradients.ts#L275-L323",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/gradients.ts#L275-L323",
               "isFunction": true,
               "displayName": "tf.variableGrads",
               "urlHash": "tf.variableGrads"
@@ -6734,7 +6734,7 @@
               "returnType": "[SGDOptimizer](#class:tf.train.Optimizer)",
               "documentation": "Constructs a [SGDOptimizer](#class:tf.train.Optimizer) that uses stochastic gradient descent.\n\n```js\n// Fit a quadratic function by learning the coefficients a, b, c.\nconst xs = dl.tensor1d([0, 1, 2, 3]);\nconst ys = dl.tensor1d([1.1, 5.9, 16.8, 33.9]);\n\nconst a = dl.scalar(Math.random()).variable();\nconst b = dl.scalar(Math.random()).variable();\nconst c = dl.scalar(Math.random()).variable();\n\n// y = a * x^2 + b * x + c.\nconst f = x => a.mul(x.square()).add(b.mul(x)).add(c);\nconst loss = (pred, label) => pred.sub(label).square().mean();\n\nconst learningRate = 0.01;\nconst optimizer = dl.train.sgd(learningRate);\n\n// Train the model.\nfor (let i = 0; i < 10; i++) {\n   optimizer.minimize(() => loss(f(xs), ys));\n}\n\n// Make predictions.\nconsole.log(\n     `a: ${a.dataSync()}, b: ${b.dataSync()}, c: ${c.dataSync()}`);\nconst preds = f(xs).dataSync();\npreds.forEach((pred, i) => {\n   console.log(`x: ${i}, pred: ${pred}`);\n});\n```",
               "fileName": "#64",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/optimizers/optimizer_constructors.ts#L64-L67",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/optimizers/optimizer_constructors.ts#L64-L67",
               "isFunction": true,
               "displayName": "tf.train.sgd",
               "urlHash": "tf.train.sgd"
@@ -6774,7 +6774,7 @@
               "returnType": "[MomentumOptimizer](#class:tf.train.Optimizer)",
               "documentation": "Constructs a [MomentumOptimizer](#class:tf.train.Optimizer) that uses momentum gradient\ndescent.\n\nSee\n[http://proceedings.mlr.press/v28/sutskever13.pdf](\nhttp://proceedings.mlr.press/v28/sutskever13.pdf)",
               "fileName": "#82",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/optimizers/optimizer_constructors.ts#L82-L86",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/optimizers/optimizer_constructors.ts#L82-L86",
               "isFunction": true,
               "displayName": "tf.train.momentum",
               "urlHash": "tf.train.momentum"
@@ -6807,7 +6807,7 @@
               "returnType": "[AdagradOptimizer](#class:tf.train.Optimizer)",
               "documentation": "Constructs a [AdagradOptimizer](#class:tf.train.Optimizer) that uses the Adagrad algorithm.\nSee\n[http://www.jmlr.org/papers/volume12/duchi11a/duchi11a.pdf](\nhttp://www.jmlr.org/papers/volume12/duchi11a/duchi11a.pdf)\nor\n[http://ruder.io/optimizing-gradient-descent/index.html#adagrad](\nhttp://ruder.io/optimizing-gradient-descent/index.html#adagrad)",
               "fileName": "#175",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/optimizers/optimizer_constructors.ts#L175-L179",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/optimizers/optimizer_constructors.ts#L175-L179",
               "isFunction": true,
               "displayName": "tf.train.adagrad",
               "urlHash": "tf.train.adagrad"
@@ -6847,7 +6847,7 @@
               "returnType": "[AdadeltaOptimizer](#class:tf.train.Optimizer)",
               "documentation": "Constructs a [AdadeltaOptimizer](#class:tf.train.Optimizer) that uses the Adadelta algorithm.\nSee [https://arxiv.org/abs/1212.5701](https://arxiv.org/abs/1212.5701)",
               "fileName": "#137",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/optimizers/optimizer_constructors.ts#L137-L141",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/optimizers/optimizer_constructors.ts#L137-L141",
               "isFunction": true,
               "displayName": "tf.train.adadelta",
               "urlHash": "tf.train.adadelta"
@@ -6894,7 +6894,7 @@
               "returnType": "AdamOptimizer",
               "documentation": "Constructs a `AdamOptimizer` that uses the Adam algorithm.\nSee [https://arxiv.org/abs/1412.6980](https://arxiv.org/abs/1412.6980)",
               "fileName": "#121",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/optimizers/optimizer_constructors.ts#L121-L125",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/optimizers/optimizer_constructors.ts#L121-L125",
               "isFunction": true,
               "displayName": "tf.train.adam",
               "urlHash": "tf.train.adam"
@@ -6948,7 +6948,7 @@
               "returnType": "AdamaxOptimizer",
               "documentation": "Constructs a `AdamaxOptimizer` that uses the Adamax algorithm.\nSee [https://arxiv.org/abs/1412.6980](https://arxiv.org/abs/1412.6980)",
               "fileName": "#154",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/optimizers/optimizer_constructors.ts#L154-L159",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/optimizers/optimizer_constructors.ts#L154-L159",
               "isFunction": true,
               "displayName": "tf.train.adamax",
               "urlHash": "tf.train.adamax"
@@ -6995,7 +6995,7 @@
               "returnType": "[RMSPropOptimizer](#class:tf.train.Optimizer)",
               "documentation": "Constructs a [RMSPropOptimizer](#class:tf.train.Optimizer) that uses RMSProp gradient\ndescent. This implementation uses plain momentum and is not centered\nversion of RMSProp.\n\nSee\n[http://www.cs.toronto.edu/~tijmen/csc321/slides/lecture_slides_lec6.pdf](\nhttp://www.cs.toronto.edu/~tijmen/csc321/slides/lecture_slides_lec6.pdf)",
               "fileName": "#104",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/optimizers/optimizer_constructors.ts#L104-L109",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/optimizers/optimizer_constructors.ts#L104-L109",
               "isFunction": true,
               "displayName": "tf.train.rmsprop",
               "urlHash": "tf.train.rmsprop"
@@ -7041,7 +7041,7 @@
               "returnType": "[Tensor](#class:tf.Tensor)",
               "documentation": "Computes softmax cross entropy between logits and labels.\n\nMeasures the probability error in discrete classification tasks in which\nthe classes are mutually exclusive (each entry is in exactly one class).\nFor example, each CIFAR-10 image is labeled with one and only one label: an\nimage can be a dog or a truck, but not both.\n\n`NOTE`: While the classes are mutually exclusive, their probabilities need\nnot be. All that is required is that each row of labels is a valid\nprobability distribution. If they are not, the computation of the gradient\nwill be incorrect.\n\n`WARNING`: This op expects unscaled logits, since it performs a softmax on\nlogits internally for efficiency. Do not call this op with the output of\nsoftmax, as it will produce incorrect results.\n\nlogits and labels must have the same shape, e.g. [batch_size, num_classes]\nand the same dtype.",
               "fileName": "#103",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/ops/softmax.ts#L103-L136",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/softmax.ts#L103-L136",
               "isFunction": true,
               "displayName": "tf.losses.softmaxCrossEntropy",
               "urlHash": "tf.losses.softmaxCrossEntropy"
@@ -7062,7 +7062,7 @@
               "namespace": "train",
               "documentation": "",
               "fileName": "#23",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/optimizers/optimizer.ts#L23-L75",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/optimizers/optimizer.ts#L23-L75",
               "methods": [
                 {
                   "docInfo": {
@@ -7097,7 +7097,7 @@
                   "returnType": "Scalar\n      |null",
                   "documentation": "Executes `f()` and minimizes the scalar output of `f()` by computing\ngradients of y with respect to the list of trainable variables provided by\n`varList`. If no list is provided, it defaults to all trainable variables.",
                   "fileName": "#36",
-                  "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/optimizers/optimizer.ts#L36-L53",
+                  "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/optimizers/optimizer.ts#L36-L53",
                   "isFunction": true
                 }
               ],
@@ -7150,7 +7150,7 @@
               "returnType": "void|number|string|[Tensor](#class:tf.Tensor)|[Tensor](#class:tf.Tensor)[]|{[key:\nstring]:[Tensor](#class:tf.Tensor)|number|string}",
               "documentation": "Executes the provided function `f` and after it is executed, cleans up all\nintermediate tensors allocated by `f` except those returned by `f`.\n`f` must not return a Promise (async functions not allowed).\nThe returned result can be a complex object, however tidy only walks the\ntop-level properties (depth 1) of that object to search for tensors, or\nlists of tensors that need to be tracked in the parent scope.\n\nUsing this method helps avoid memory leaks. In general, wrap calls to\noperations in [tf.tidy()](#tf.tidy) for automatic memory cleanup.\n\nWhen in safe mode, you must enclose all [Tensor](#class:tf.Tensor) creation and ops\ninside a [tf.tidy()](#tf.tidy) to prevent memory leaks.\n\n```js\n// y = 2 ^ 2 + 1\nconst y = dl.tidy(() => {\n   // a, b, and one will be cleaned up when the tidy ends.\n   const one = dl.scalar(1);\n   const a = dl.scalar(2);\n   const b = a.square();\n\n   console.log('numTensors (in tidy): ' + dl.memory().numTensors);\n\n   // The value returned inside the tidy function will return\n   // through the tidy, in this case to the variable y.\n   return b.add(one);\n});\n\nconsole.log('numTensors (outside tidy): ' + dl.memory().numTensors);\ny.print();\n```",
               "fileName": "#66",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/tracking.ts#L66-L99",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/tracking.ts#L66-L99",
               "isFunction": true,
               "displayName": "tf.tidy",
               "urlHash": "tf.tidy"
@@ -7174,7 +7174,7 @@
               "returnType": "[Tensor](#class:tf.Tensor)",
               "documentation": "Keeps a [Tensor](#class:tf.Tensor) generated inside a [tf.tidy()](#tf.tidy) from being disposed\nautomatically.\n\n```js\nlet b;\nconst y = dl.tidy(() => {\n   const one = dl.scalar(1);\n   const a = dl.scalar(2);\n\n   // b will not be cleaned up by the tidy. a and one will be cleaned up\n   // when the tidy ends.\n   b = dl.keep(a.square());\n\n   console.log('numTensors (in tidy): ' + dl.memory().numTensors);\n\n   // The value returned inside the tidy function will return\n   // through the tidy, in this case to the variable y.\n   return b.add(one);\n});\n\nconsole.log('numTensors (outside tidy): ' + dl.memory().numTensors);\nconsole.log('y:');\ny.print();\nconsole.log('b:');\nb.print();\n```",
               "fileName": "#146",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/tracking.ts#L146-L149",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/tracking.ts#L146-L149",
               "isFunction": true,
               "displayName": "tf.keep",
               "urlHash": "tf.keep"
@@ -7190,7 +7190,7 @@
               "returnType": "MemoryInfo",
               "documentation": "Returns memory info at the current time in the program. The result is an\nobject with the following properties:\n\n- `numBytes`: Number of bytes allocated (undisposed) at this time.\n- `numTensors`: Number of unique tensors allocated.\n- `numDataBuffers`: Number of unique data buffers allocated\n   (undisposed) at this time, which is ≤ the number of tensors\n   (e.g. `a.reshape(newShape)` makes a new Tensor that shares the same\n   data buffer with `a`).\n- `unreliable`: `Optional` `boolean`:\n    - On WebGL, not present (always reliable).\n    - On CPU, true. Due to automatic garbage collection, these numbers\n     represent undisposed tensors, i.e. not wrapped in `dl.tidy()`, or\n     lacking a call to `tensor.dispose()`.",
               "fileName": "#256",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/environment.ts#L256-L259",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/environment.ts#L256-L259",
               "isFunction": true,
               "displayName": "tf.memory",
               "urlHash": "tf.memory"
@@ -7220,7 +7220,7 @@
               "returnType": "Promise",
               "documentation": "Executes `f()` and returns a promise that resolves with timing\ninformation.\n\nThe result is an object with the following properties:\n\n- `wallMs`: Wall execution time.\n- `kernelMs`: Kernel execution time, ignoring data transfer.\n- On `WebGL` The following additional properties exist:\n   - `uploadWaitMs`: CPU blocking time on texture uploads.\n   - `downloadWaitMs`: CPU blocking time on texture downloads (readPixels).\n\n```js\nconst x = dl.randomNormal([20, 20]);\nconst time = await dl.time(() => x.matMul(x));\n\nconsole.log(`kernelMs: ${time.kernelMs}, wallTimeMs: ${time.wallMs}`);\n```",
               "fileName": "#172",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/tracking.ts#L172-L175",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/tracking.ts#L172-L175",
               "isFunction": true,
               "displayName": "tf.time",
               "urlHash": "tf.time"
@@ -7236,7 +7236,7 @@
               "returnType": "Promise",
               "documentation": "Returns a promise that resolve when a requestAnimationFrame has completed.\n\nThis is simply a sugar method so that users can do the following:\n`await dl.nextFrame();`",
               "fileName": "#26",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/browser_util.ts#L26-L29",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/browser_util.ts#L26-L29",
               "isFunction": true,
               "displayName": "tf.nextFrame",
               "urlHash": "tf.nextFrame"
@@ -7279,7 +7279,7 @@
               "returnType": "void",
               "documentation": "Sets the backend (cpu, webgl, etc) responsible for creating tensors and\nexecuting operations on those tensors.",
               "fileName": "#222",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/environment.ts#L222-L228",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/environment.ts#L222-L228",
               "isFunction": true,
               "displayName": "tf.setBackend",
               "urlHash": "tf.setBackend"
@@ -7295,7 +7295,7 @@
               "returnType": "'webgl'|'cpu'",
               "documentation": "Returns the current backend (cpu, webgl, etc). The backend is responsible\nfor creating tensors and executing operations on those tensors.",
               "fileName": "#234",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjsblob/master/src/environment.ts#L234-L238",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/environment.ts#L234-L238",
               "isFunction": true,
               "displayName": "tf.getBackend",
               "urlHash": "tf.getBackend"
