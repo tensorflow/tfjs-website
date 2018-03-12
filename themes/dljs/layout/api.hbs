@@ -7,7 +7,7 @@
       <div class="parameter-heading">Parameters:</div>
       <ul>
         {{#parameters}}
-        <li class="parameter">
+        <li class="parameter{{#if isConfigParam}} config-parameter{{/if}}">
           <span class="param-name">
             {{name}}:&nbsp;{{{markdownInner type}}}
           </span>
@@ -28,7 +28,6 @@
 
 
     <div class="api-docs">
-
       <div class="content-area">
         <div class="toc">
           <div class="section">

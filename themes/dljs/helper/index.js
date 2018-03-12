@@ -25,7 +25,7 @@ module.exports = function(hexo) {
     },
 
     getApi: function(siteData, versionString) {
-      return siteData[`api/${versionString}/core-docs`];
+      return siteData[`api/${versionString}/docs`];
     },
 
     markdown: function(attr) {

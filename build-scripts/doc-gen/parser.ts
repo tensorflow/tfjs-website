@@ -19,9 +19,9 @@ import * as fs from 'fs';
 import * as path from 'path';
 import * as ts from 'typescript';
 
-import * as util from './api-util';
+import * as util from './util';
 // tslint:disable-next-line:max-line-length
-import {DocClass, DocFunction, DocFunctionParam, DocHeading, Docs} from './view';
+import {DocClass, DocFunction, DocFunctionParam, DocHeading, Docs, RepoDocsAndMetadata} from './view';
 
 const DOCUMENTATION_DECORATOR = '@doc';
 const DOCUMENTATION_TYPE_ALIAS = 'docalias';
@@ -31,134 +31,50 @@ const DOCUMENTATION_LINK_ALIAS = 'doclink';
  * Parses the program.
  */
 export function parse(
-    programRoot: string, srcRoot: string, repoPath: string, githubRoot: string):
-    {docs: Docs, docLinkAliases: {[symbolName: string]: string}} {
+    programRoot: string, srcRoot: string, repoPath: string,
+    githubRoot: string): RepoDocsAndMetadata {
   if (!fs.existsSync(programRoot)) {
     throw new Error(
         `Program root ${programRoot} does not exist. Please run this script ` +
         `from the root of repository.`);
   }
 
-  // Initialize the doc headings so we control sort order.
-
-  // TODO separate this out
-  const docHeadings: DocHeading[] = [
-    {
-      name: 'Tensors',
-      description: '',
-      subheadings: [
-        {
-          name: 'Creation',
-          description: `<p>Tensors are the core datastructure of deeplearn.js.
-             They are a generalization of vectors and matrices to potentially
-             higher dimensions.
-             </p>
-             <p>We have utility functions for common cases like Scalar, 1D,
-             2D, 3D and 4D tensors, as well a number of functions to initialize
-             tensors in ways useful for machine learning.</p>`,
-          pin: [
-            'tensor', 'scalar', 'tensor1d', 'tensor2d', 'tensor3d', 'tensor4d'
-          ]
-        },
-        {
-          name: 'Classes',
-          description: `<p>
-          This section shows the main Tensor related classes in deeplearn.js and
-          the methods we expose on them.
-          </p>`,
-          pin: ['Tensor', 'Variable', 'TensorBuffer']
-        },
-        {
-          name: 'Transformations',
-          description: `<p>This section describes some common Tensor
-              transformations for reshaping and type-casting.</p>`
-        },
-        {
-          name: 'Slicing and Joining',
-          description: `<p>deeplearn.js provides several operations
-              to slice or extract parts of a tensor, or join multiple
-              tensors together.`
-        }
-      ]
-    },
-    {
-      name: 'Operations',
-      description: '',
-      subheadings: [
-        {
-          name: 'Arithmetic',
-          description:
-              `<p>To perform mathematical computation on Tensors, we use
-              operations. Tensors are immutable, so all operations always return
-              new Tensors and never modify input Tensors.</p>`,
-          pin: ['add', 'sub', 'mul', 'div']
-        },
-        {name: 'Basic math'}, {name: 'Matrices'}, {name: 'Convolution'},
-        {name: 'Reduction'}, {name: 'Normalization'}, {name: 'Images'},
-        {name: 'RNN'}, {name: 'Logical'}
-      ]
-    },
-    {
-      name: 'Training',
-      description: `<p>We also provide an API to do perform training, and
-      compute gradients. We compute gradients eagerly, users provide a function
-      that is a combination of operations and we automatically differentiate
-      that function's output with respect to its inputs.
-
-      <p>For those familiar with TensorFlow, the API we expose exactly mirrors
-      the TensorFlow Eager API.
-      </p>`,
-      subheadings: [
-        {
-          name: 'Gradients',
-          pin: ['grad', 'grads', 'valAndGrad', 'valAndGrads', 'customGrad']
-        },
-        {name: 'Optimizers', pin: ['sgd', 'momentum', 'adagrad', 'adadelta']},
-        {name: 'Losses'}, {name: 'Classes'}
-      ]
-    },
-    {
-      name: 'Performance',
-      description: `<p>`,
-      subheadings:
-          [{name: 'Memory', pin: ['tidy']}, {name: 'Timing', pin: ['time']}]
-    },
-    {
-      name: 'Environment',
-      description: `<p>deeplearn.js can run mathematical operations on
-          different backends. Currently, we support WebGL and JavaScript
-          CPU. By default, we choose the 'best' backend available, but
-          allow users to customize their backend.`,
-      subheadings: [{name: '', pin: ['setBackend']}]
-    }
-  ];
+  const docHeadings: DocHeading[] = [];
 
   // We keep an auxillary map of explicitly marked "subclass" fields on
   // @doc to the method entries
   const subclassMethodMap: {[subclass: string]: DocFunction[]} = {};
   const docTypeAliases: {[type: string]: string} = {};
   const docLinkAliases: {[symbolName: string]: string} = {};
+  const globalSymbolDocMap:
+      {[symbolName: string]: {docs: string, params: DocFunctionParam[]}} = {};
+  const configInterfaceParamMap:
+      {[interfaceName: string]: DocFunctionParam[]} = {};
 
-  // Use the same compiler options that we use to compile the library here.
+  // Use the same compiler options that we use to compile the library
+  // here.
   const tsconfig =
       JSON.parse(fs.readFileSync(path.join(repoPath, 'tsconfig.json'), 'utf8'));
 
   const program = ts.createProgram([programRoot], tsconfig.compilerOptions);
   const checker = program.getTypeChecker();
 
-  // Visit all the nodes that are transitively linked from the source root.
+  // Visit all the nodes that are transitively linked from the source
+  // root.
   for (const sourceFile of program.getSourceFiles()) {
     if (!sourceFile.isDeclarationFile) {
       ts.forEachChild(
           sourceFile,
           node => visitNode(
               docHeadings, subclassMethodMap, docTypeAliases, docLinkAliases,
-              checker, node, sourceFile, srcRoot, repoPath, githubRoot));
+              globalSymbolDocMap, configInterfaceParamMap, checker, node,
+              sourceFile, srcRoot, repoPath, githubRoot));
     }
   }
 
+  util.unpackConfigParams(docHeadings, configInterfaceParamMap);
+  util.replaceUseDocsFromDocStrings(docHeadings, globalSymbolDocMap);
   util.addSubclassMethods(docHeadings, subclassMethodMap);
-  util.sortMethods(docHeadings);
   util.replaceDocTypeAliases(docHeadings, docTypeAliases);
 
   const docs: Docs = {headings: docHeadings};
@@ -171,10 +87,14 @@ function visitNode(
     docHeadings: DocHeading[],
     subclassMethodMap: {[subclass: string]: DocFunction[]},
     docTypeAliases: {[type: string]: string},
-    docLinkAliases: {[symbolName: string]: string}, checker: ts.TypeChecker,
-    node: ts.Node, sourceFile: ts.SourceFile, srcRoot: string, repoPath: string,
-    githubRoot: string) {
+    docLinkAliases: {[symbolName: string]: string},
+    globalSymbolDocMap:
+        {[symbolName: string]: {docs: string, params: DocFunctionParam[]}},
+    configInterfaceParamMap: {[interfaceName: string]: DocFunctionParam[]},
+    checker: ts.TypeChecker, node: ts.Node, sourceFile: ts.SourceFile,
+    srcRoot: string, repoPath: string, githubRoot: string) {
   if (ts.isMethodDeclaration(node)) {
+    const symbol = checker.getSymbolAtLocation(node.name);
     const docInfo = util.getDocDecorator(node, DOCUMENTATION_DECORATOR);
 
     if (docInfo != null) {
@@ -222,8 +142,10 @@ function visitNode(
           `Class ${node.name.getText()} has both a ` +
           `doc link alias and a doc decorator.`);
     }
-  } else if (
-      ts.isInterfaceDeclaration(node) || ts.isTypeAliasDeclaration(node)) {
+  }
+
+  if (ts.isInterfaceDeclaration(node) || ts.isTypeAliasDeclaration(node) ||
+      ts.isEnumDeclaration(node) || ts.isClassDeclaration(node)) {
     const docAlias = util.getJsdoc(checker, node, DOCUMENTATION_TYPE_ALIAS);
     if (docAlias != null) {
       const symbol = checker.getSymbolAtLocation(node.name);
@@ -231,11 +153,61 @@ function visitNode(
     }
   }
 
+  // Map all symbols to their documentation so we can map useDocFrom aliases.
+  if (ts.isMethodDeclaration(node) || ts.isFunctionDeclaration(node) ||
+      ts.isClassDeclaration(node) || ts.isInterfaceDeclaration(node) ||
+      ts.isTypeAliasDeclaration(node)) {
+    const symbol = checker.getSymbolAtLocation(node.name);
+    const type =
+        checker.getTypeOfSymbolAtLocation(symbol, symbol.valueDeclaration!);
+    const name = symbol.getName();
+    const documentation =
+        ts.displayPartsToString(symbol.getDocumentationComment(undefined));
+
+    const signature = type.getCallSignatures()[0];
+
+    let params = [];
+    if (signature != null && signature.parameters != null) {
+      const identifierGenericMap = ts.isMethodDeclaration(node) ?
+          util.getIdentifierGenericMap(node, symbol.name) :
+          {};
+
+      const isConfigParam = false;
+      params = signature.parameters != null ?
+          signature.parameters.map(
+              symbol => serializeParameter(
+                  checker, symbol, identifierGenericMap, isConfigParam)) :
+          [];
+    }
+
+    globalSymbolDocMap[name] = {docs: documentation, params};
+  }
+
+  // Map interfaces to their parameter list so we can unpack configuration
+  // objects.
+  if (ts.isInterfaceDeclaration(node)) {
+    const symbol = checker.getSymbolAtLocation(node.name);
+    const params = [];
+    node.forEachChild(child => {
+      if (ts.isPropertySignature(child)) {
+        const childSymbol = checker.getSymbolAtLocation(child.name);
+        // We don't support generics on interfaces yet, so pass an empty
+        // generic map.
+        const identifierGenericMap = {};
+        const isConfigParam = true;
+        params.push(serializeParameter(
+            checker, childSymbol, identifierGenericMap, isConfigParam));
+      }
+    });
+    configInterfaceParamMap[symbol.getName()] = params;
+  }
+
   ts.forEachChild(
       node,
       node => visitNode(
           docHeadings, subclassMethodMap, docTypeAliases, docLinkAliases,
-          checker, node, sourceFile, srcRoot, repoPath, githubRoot));
+          globalSymbolDocMap, configInterfaceParamMap, checker, node,
+          sourceFile, srcRoot, repoPath, githubRoot));
 }
 
 export function serializeClass(
@@ -248,6 +220,7 @@ export function serializeClass(
   const {displayFilename, githubUrl} =
       util.getFileInfo(node, sourceFile, repoPath, srcRoot, githubRoot);
   const docClass: DocClass = {
+    docInfo: docInfo,
     symbolName: name,
     namespace: docInfo.namespace,
     documentation:
@@ -290,8 +263,10 @@ export function serializeMethod(
 
   const identifierGenericMap = util.getIdentifierGenericMap(node, symbol.name);
 
+  const isConfigParam = false;
   const parameters = signature.parameters.map(
-      symbol => serializeParameter(checker, symbol, identifierGenericMap));
+      symbol => serializeParameter(
+          checker, symbol, identifierGenericMap, isConfigParam));
   const paramStr = '(' +
       parameters.map(param => param.name + (param.optional ? '?' : ''))
           .join(', ') +
@@ -318,6 +293,7 @@ export function serializeMethod(
   returnType = util.sanitizeTypeString(returnType, identifierGenericMap);
 
   const method: DocFunction = {
+    docInfo: docInfo,
     symbolName: symbol.name,
     namespace: docInfo.namespace,
     paramStr,
@@ -335,13 +311,15 @@ export function serializeMethod(
 
 function serializeParameter(
     checker: ts.TypeChecker, symbol: ts.Symbol,
-    identifierGenericMap: {[identifier: string]: string}): DocFunctionParam {
+    identifierGenericMap: {[identifier: string]: string},
+    isConfigParam: boolean): DocFunctionParam {
   return {
     name: symbol.getName(),
     documentation:
         ts.displayPartsToString(symbol.getDocumentationComment(undefined)),
     type: util.parameterTypeToString(checker, symbol, identifierGenericMap),
     optional: checker.isOptionalParameter(
-        symbol.valueDeclaration as ts.ParameterDeclaration)
+        symbol.valueDeclaration as ts.ParameterDeclaration),
+    isConfigParam
   };
 }

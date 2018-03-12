@@ -17,7 +17,7 @@
 import * as ts from 'typescript';
 
 // tslint:disable-next-line:max-line-length
-import {DocClass, DocFunction, DocHeading, Docs, DocSubheading} from './view';
+import {DocClass, DocFunction, DocFunctionParam, DocHeading, Docs, DocSubheading} from './view';
 
 // Mirrors the info argument to @doc in decorators.ts.
 export interface DocInfo {
@@ -25,6 +25,8 @@ export interface DocInfo {
   subheading: string;
   namespace?: string;
   subclasses?: string[];
+  useDocsFrom?: string;
+  configParamIndices?: number[];
 }
 
 export function getDocDecorator(node: ts.Node, decoratorName: string): DocInfo {
@@ -84,10 +86,68 @@ export function addSubclassMethods(
   });
 }
 
+export function unpackConfigParams(
+    docHeadings: DocHeading[],
+    configInterfaceParamMap: {[interfaceName: string]: DocFunctionParam[]}) {
+  foreachDocFunction(docHeadings, docFunction => {
+    if (docFunction.docInfo.configParamIndices != null) {
+      const params = [];
+      for (let i = 0; i < docFunction.parameters.length; i++) {
+        const configParamName = docFunction.parameters[i].name;
+        params.push(docFunction.parameters[i]);
+
+        if (docFunction.docInfo.configParamIndices.indexOf(i) != -1) {
+          const configParams =
+              configInterfaceParamMap[docFunction.parameters[i].type];
+          if (configParams == null) {
+            throw new Error(
+                `Could not find config interface definition for ` +
+                `${docFunction.symbolName}, config type ` +
+                `${docFunction.parameters[i].type}, param ` +
+                `${configParamName} index ${i}. Please make sure ` +
+                `configParamIndices is set properly and the config interface ` +
+                `is documented.`);
+          }
+          configParams.forEach(configParam => {
+            configParam.name = configParamName + '.' + configParam.name;
+            params.push(configParam);
+          });
+        }
+      }
+      docFunction.parameters = params;
+    }
+  });
+}
+
+
+export function replaceUseDocsFromDocStrings(
+    docHeadings: DocHeading[],
+    globalSymbolDocMap:
+        {[symbolName: string]: {docs: string, params: DocFunctionParam[]}}) {
+  foreachDocFunction(docHeadings, docFunction => {
+    if (docFunction.docInfo.useDocsFrom != null &&
+        globalSymbolDocMap[docFunction.docInfo.useDocsFrom] != null) {
+      docFunction.documentation =
+          globalSymbolDocMap[docFunction.docInfo.useDocsFrom].docs;
+      const params =
+          globalSymbolDocMap[docFunction.docInfo.useDocsFrom].params || [];
+
+      // Replace params from useDocsFrom only when param names line up.
+      for (let i = 0; i < docFunction.parameters.length; i++) {
+        params.forEach(param => {
+          if (param.name === docFunction.parameters[i].name) {
+            docFunction.parameters[i] = param;
+          }
+        });
+      }
+    }
+  });
+}
+
 // Parse the file info, github URL and filename from a node.
 export function getFileInfo(
-    node: ts.Node, sourceFile: ts.SourceFile, repoPath: string,
-    srcRoot: string, githubRoot: string): {displayFilename: string, githubUrl: string} {
+    node: ts.Node, sourceFile: ts.SourceFile, repoPath: string, srcRoot: string,
+    githubRoot: string): {displayFilename: string, githubUrl: string} {
   // Line numbers are 0-indexed.
   const startLine =
       sourceFile.getLineAndCharacterOfPosition(node.getStart()).line + 1;
@@ -97,7 +157,7 @@ export function getFileInfo(
   const displayFilename = fileName.substring(srcRoot.length) + '#' + startLine;
 
   const githubUrl =
-      `${githubRoot}blob/master/${fileName}#L${startLine}-L${endLine}`;
+      `${githubRoot}/blob/master/${fileName}#L${startLine}-L${endLine}`;
   return {displayFilename, githubUrl};
 }
 
@@ -149,17 +209,24 @@ export function computeStatistics(docs: Docs):
 }
 
 // Sorts the doc headings.
-export function sortMethods(docHeadings: DocHeading[]) {
+export function sortMethods(
+    docs: Docs, pins: {[heading: string]: {[subheading: string]: string[]}}) {
+  const docHeadings = docs.headings;
   // Sort the methods by name.
   for (let i = 0; i < docHeadings.length; i++) {
     const heading = docHeadings[i];
     for (let j = 0; j < heading.subheadings.length; j++) {
       const subheading = heading.subheadings[j];
+      if (subheading.symbols == null) {
+        subheading.symbols = [];
+      }
 
       // Pin the symbols in order of the pins.
       const pinnedSymbols = [];
-      if (subheading.pin != null) {
-        subheading.pin.forEach(pinnedSymbolName => {
+      if (pins[heading.name] != null &&
+          pins[heading.name][subheading.name] != null) {
+        const pin = pins[heading.name][subheading.name];
+        pin.forEach(pinnedSymbolName => {
           // Loop backwards so we remove symbols.
           for (let k = subheading.symbols.length - 1; k >= 0; k--) {
             const symbol = subheading.symbols[k];
@@ -193,6 +260,7 @@ export function kind(node: ts.Node): string {
       return keys[i];
     }
   }
+  return null;
 }
 
 export function isStatic(node: ts.MethodDeclaration): boolean {
@@ -211,8 +279,9 @@ export function isStatic(node: ts.MethodDeclaration): boolean {
  */
 export function getJsdoc(
     checker: ts.TypeChecker,
-    node: ts.InterfaceDeclaration|ts.TypeAliasDeclaration|ts.ClassDeclaration,
-    tag: string) {
+    node: ts.InterfaceDeclaration|ts.TypeAliasDeclaration|ts.ClassDeclaration|
+    ts.EnumDeclaration,
+    tag: string): string {
   const symbol = checker.getSymbolAtLocation(node.name);
   const docs = symbol.getDocumentationComment(undefined);
   const tags = symbol.getJsDocTags();
@@ -222,6 +291,7 @@ export function getJsdoc(
       return jsdocTag.text.trim();
     }
   }
+  return null;
 }
 
 /**
@@ -310,7 +380,13 @@ export function getIdentifierGenericMap(
 export function foreachDocFunction(
     docHeadings: DocHeading[], fn: (docFunction: DocFunction) => void) {
   docHeadings.forEach(heading => {
+    if (heading.subheadings == null) {
+      return;
+    }
     heading.subheadings.forEach(subheading => {
+      if (subheading.symbols == null) {
+        return;
+      }
       subheading.symbols.forEach(untypedSymbol => {
         if (untypedSymbol['isClass']) {
           const symbol = untypedSymbol as DocClass;
@@ -358,9 +434,9 @@ export interface SymbolAndUrl {
 }
 
 /**
- * Adds markdown links for reference symbols in documentation, parameter types,
- * and return types. Uses @doclink aliases to link displayed symbols to another
- * symbol's documentation.
+ * Adds markdown links for reference symbols in documentation, parameter
+ * types, and return types. Uses @doclink aliases to link displayed symbols to
+ * another symbol's documentation.
  */
 export function linkSymbols(
     docs: Docs, symbols: SymbolAndUrl[], toplevelNamespace: string,

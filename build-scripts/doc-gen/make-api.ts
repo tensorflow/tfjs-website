@@ -15,15 +15,15 @@
  * =============================================================================
  */
 
+import * as commander from 'commander';
 import * as fs from 'fs';
-import * as path from 'path';
 import * as mkdirp from 'mkdirp';
+import * as path from 'path';
 import * as shell from 'shelljs';
 import * as ts from 'typescript';
-import * as commander from 'commander';
 
-import * as parser from './api-parser';
-import * as util from './api-util';
+import * as parser from './parser';
+import * as util from './util';
 
 commander.option('--in <path>', 'main source entry')
     .option('--package <path>', 'Package.json path')
@@ -49,70 +49,28 @@ if (!allParamsPresent) {
   process.exit(1);
 }
 
-
-    const outputDir = path.dirname(commander.out);
+const outputDir = path.dirname(commander.out);
 mkdirp(outputDir, (err: any) => {
   if (err) {
-    console.log("Error creating output dir", outputDir);
+    console.log('Error creating output dir', outputDir);
     process.exit(1);
   }
 });
 
-
 // Parse the library for docs.
-const {docs, docLinkAliases} = parser.parse(commander.in, 
-  commander.src, 
-  commander.repo,
-  commander.github);
-docs.bundleJsPath = commander.bundle;
-
-
-const TOPLEVEL_NAMESPACE = 'dl';
-// Predefine some custom type links.
-// TODO: Move this somewhere else
-const symbols: util.SymbolAndUrl[] = [
-  {
-    symbolName: 'TypedArray',
-    url: 'https://developer.mozilla.org/en-US/docs/Web/' +
-        'JavaScript/Reference/Global_Objects/TypedArray',
-    type: 'class'
-  },
-  {
-    symbolName: 'ImageData',
-    url: 'https://developer.mozilla.org/en-US/docs/Web/API/ImageData',
-    type: 'class'
-  },
-  {
-    symbolName: 'HTMLImageElement',
-    url: 'https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement',
-    type: 'class'
-  },
-  {
-    symbolName: 'HTMLCanvasElement',
-    url: 'https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement',
-    type: 'class'
-  },
-  {
-    symbolName: 'HTMLVideoElement',
-    url: 'https://developer.mozilla.org/en-US/docs/Web/API/HTMLVideoElement',
-    type: 'class'
-  }
-];
-util.linkSymbols(docs, symbols, TOPLEVEL_NAMESPACE, docLinkAliases);
+const repoDocsAndMetadata =
+    parser.parse(commander.in, commander.src, commander.repo, commander.github);
 
 // Write the JSON.
 mkdirp.sync(path.dirname(commander.out));
-fs.writeFileSync(commander.out, JSON.stringify(docs, null, 2));
+fs.writeFileSync(commander.out, JSON.stringify(repoDocsAndMetadata, null, 2));
 
 // Compute some statics and render them.
 const {headingsCount, subheadingsCount, methodCount} =
-    util.computeStatistics(docs);
+    util.computeStatistics(repoDocsAndMetadata.docs);
 console.log(
     `API reference written to ${commander.out}\n` +
     `Found: \n` +
     `  ${headingsCount} headings\n` +
     `  ${subheadingsCount} subheadings\n` +
     `  ${methodCount} methods`);
-
-
-
