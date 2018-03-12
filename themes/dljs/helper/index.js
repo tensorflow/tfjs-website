@@ -42,6 +42,14 @@ module.exports = function(hexo) {
 
         return asMd;
       }
+    },
+
+    latestVersion: function() {
+      return hexo.locals.cache.data['api/api_manifest'].versions[0];
+    },
+
+    concat: function(a, b) {
+      return a + b;
     }
   };
 };
