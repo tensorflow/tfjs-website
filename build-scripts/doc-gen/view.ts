@@ -14,10 +14,15 @@
  * limitations under the License.
  * =============================================================================
  */
-export interface Docs {
-  headings: DocHeading[];
-  bundleJsPath?: string;
+import {DocInfo} from './util';
+
+// Docs for a single repo.
+export interface RepoDocsAndMetadata {
+  docs: Docs;
+  docLinkAliases: {[symbolName: string]: string};
 }
+
+export interface Docs { headings: DocHeading[]; }
 
 export interface DocHeading {
   name: string;
@@ -29,19 +34,19 @@ export interface DocSubheading {
   name: string;
   description?: string;
   symbols?: DocSymbol[];
-  // Only used at initialization for sort-order. Pins by displayName, not symbol
-  // name (so that we use namespaces).
-  pin?: string[];
 }
 
 export type DocSymbol = DocFunction|DocClass;
 
 export interface DocClass {
+  docInfo: DocInfo;
+
   symbolName: string;
   namespace: string;
   documentation: string;
   fileName: string;
   githubUrl: string;
+
   methods: DocFunction[];
 
   isClass: true;
@@ -52,13 +57,15 @@ export interface DocClass {
 }
 
 export interface DocFunction {
+  docInfo: DocInfo;
+
   symbolName: string;
   namespace: string;
   documentation: string;
   fileName: string;
   githubUrl: string;
-  parameters: DocFunctionParam[];
 
+  parameters: DocFunctionParam[];
   paramStr: string;
   returnType: string;
 
@@ -74,4 +81,5 @@ export interface DocFunctionParam {
   type: string;
   optional: boolean;
   documentation: string;
+  isConfigParam: boolean;
 }
