@@ -3,10 +3,10 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: dljs spike
+title: TensorFlow.js
 subtitle:
 description:
-author: John Doe
+author:
 language:
 timezone:
 
@@ -65,3 +65,10 @@ theme: dljs
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type:
+
+browsersync:
+  logLevel: "warn"
+  ghostMode:
+    scroll: true
+  notify: false
+
