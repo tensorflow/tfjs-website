@@ -72,8 +72,6 @@ export function parse(
     }
   }
 
-  console.log(docTypeAliases);
-
   util.unpackConfigParams(docHeadings, configInterfaceParamMap);
   util.replaceUseDocsFromDocStrings(docHeadings, globalSymbolDocMap);
   util.addSubclassMethods(docHeadings, subclassMethodMap);
