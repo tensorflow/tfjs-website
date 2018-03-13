@@ -109,8 +109,10 @@ export function unpackConfigParams(
                 `is documented.`);
           }
           configParams.forEach(configParam => {
-            configParam.name = configParamName + '.' + configParam.name;
-            params.push(configParam);
+            // Deep copy configParam.
+            const configParamCopy = JSON.parse(JSON.stringify(configParam));
+            configParamCopy.name = configParamName + '.' + configParamCopy.name;
+            params.push(configParamCopy);
           });
         }
       }
