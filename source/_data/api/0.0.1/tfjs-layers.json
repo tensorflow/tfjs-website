@@ -77,105 +77,105 @@
                     "isConfigParam": false
                   },
                   {
-                    "name": "config.config.kernelSize",
+                    "name": "config.kernelSize",
                     "documentation": "The dimensions of the convolution window. If kernelSize is a number, the\nconvolutional window will be square.",
                     "type": "number|number[]",
                     "optional": false,
                     "isConfigParam": true
                   },
                   {
-                    "name": "config.config.filters",
+                    "name": "config.filters",
                     "documentation": "The dimensionality of the output space (i.e. the number output of\nfilters in the convolution).",
                     "type": "number",
                     "optional": true,
                     "isConfigParam": true
                   },
                   {
-                    "name": "config.config.strides",
+                    "name": "config.strides",
                     "documentation": "The strides of the convolution. If strides is a number, strides in both\ndimensions are equal.\n\nSpecifying any stride value != 1 is incompatible with specifying any\n`dilationRate` value != 1.",
                     "type": "number|number[]",
                     "optional": true,
                     "isConfigParam": true
                   },
                   {
-                    "name": "config.config.padding",
+                    "name": "config.padding",
                     "documentation": "Padding mode.",
                     "type": "PaddingMode",
                     "optional": true,
                     "isConfigParam": true
                   },
                   {
-                    "name": "config.config.dataFormat",
+                    "name": "config.dataFormat",
                     "documentation": "Format of the data, e.g., CHANNEL_LAST.\n   The ordering of the dimensions in the inputs.\n   `channels_last` corresponds to inputs with shape\n   `(batch, ..., channels)` while `channels_first` corresponds to\n   inputs with shape `(batch, channels, ...)`.\n   Defaults to \"channels_last\".",
                     "type": "DataFormat",
                     "optional": true,
                     "isConfigParam": true
                   },
                   {
-                    "name": "config.config.dilationRate",
+                    "name": "config.dilationRate",
                     "documentation": "An integer or array of integers, specifying\n   the dilation rate to use for dilated convolution.\n   Currently, specifying any `dilationRate` value != 1 is\n   incompatible with specifying any `strides` value != 1.",
                     "type": "number|number[]",
                     "optional": true,
                     "isConfigParam": true
                   },
                   {
-                    "name": "config.config.activation",
+                    "name": "config.activation",
                     "documentation": "Activation function of the layer.\n\nIf you don't specify the activation, none is applied\n   (ie. \"linear\" activation: `a(x) = x`).",
                     "type": "string",
                     "optional": true,
                     "isConfigParam": true
                   },
                   {
-                    "name": "config.config.useBias",
+                    "name": "config.useBias",
                     "documentation": "Whether the layer uses a bias vector. Defaults to false.",
                     "type": "boolean",
                     "optional": true,
                     "isConfigParam": true
                   },
                   {
-                    "name": "config.config.kernelInitializer",
+                    "name": "config.kernelInitializer",
                     "documentation": "Initializer for the `kernel` weights matrix.",
                     "type": "string|Initializer",
                     "optional": true,
                     "isConfigParam": true
                   },
                   {
-                    "name": "config.config.biasInitializer",
+                    "name": "config.biasInitializer",
                     "documentation": "Initializer for the bias vector.",
                     "type": "string|Initializer",
                     "optional": true,
                     "isConfigParam": true
                   },
                   {
-                    "name": "config.config.kernelConstraint",
+                    "name": "config.kernelConstraint",
                     "documentation": "Constraint for the kernel weights.",
                     "type": "string|Constraint",
                     "optional": true,
                     "isConfigParam": true
                   },
                   {
-                    "name": "config.config.biasConstraint",
+                    "name": "config.biasConstraint",
                     "documentation": "Constraint for the bias vector.",
                     "type": "string|Constraint",
                     "optional": true,
                     "isConfigParam": true
                   },
                   {
-                    "name": "config.config.kernelRegularizer",
+                    "name": "config.kernelRegularizer",
                     "documentation": "Regularizer function applied to the `kernel` weights matrix.",
                     "type": "string|Regularizer",
                     "optional": true,
                     "isConfigParam": true
                   },
                   {
-                    "name": "config.config.biasRegularizer",
+                    "name": "config.biasRegularizer",
                     "documentation": "Regularizer function applied to the bias vector.",
                     "type": "string|Regularizer",
                     "optional": true,
                     "isConfigParam": true
                   },
                   {
-                    "name": "config.config.activityRegularizer",
+                    "name": "config.activityRegularizer",
                     "documentation": "Regularizer function applied to the activation.",
                     "type": "string|Regularizer",
                     "optional": true,
@@ -210,105 +210,105 @@
                     "isConfigParam": false
                   },
                   {
-                    "name": "config.config.kernelSize",
+                    "name": "config.kernelSize",
                     "documentation": "The dimensions of the convolution window. If kernelSize is a number, the\nconvolutional window will be square.",
                     "type": "number|number[]",
                     "optional": false,
                     "isConfigParam": true
                   },
                   {
-                    "name": "config.config.filters",
+                    "name": "config.filters",
                     "documentation": "The dimensionality of the output space (i.e. the number output of\nfilters in the convolution).",
                     "type": "number",
                     "optional": true,
                     "isConfigParam": true
                   },
                   {
-                    "name": "config.config.strides",
+                    "name": "config.strides",
                     "documentation": "The strides of the convolution. If strides is a number, strides in both\ndimensions are equal.\n\nSpecifying any stride value != 1 is incompatible with specifying any\n`dilationRate` value != 1.",
                     "type": "number|number[]",
                     "optional": true,
                     "isConfigParam": true
                   },
                   {
-                    "name": "config.config.padding",
+                    "name": "config.padding",
                     "documentation": "Padding mode.",
                     "type": "PaddingMode",
                     "optional": true,
                     "isConfigParam": true
                   },
                   {
-                    "name": "config.config.dataFormat",
+                    "name": "config.dataFormat",
                     "documentation": "Format of the data, e.g., CHANNEL_LAST.\n   The ordering of the dimensions in the inputs.\n   `channels_last` corresponds to inputs with shape\n   `(batch, ..., channels)` while `channels_first` corresponds to\n   inputs with shape `(batch, channels, ...)`.\n   Defaults to \"channels_last\".",
                     "type": "DataFormat",
                     "optional": true,
                     "isConfigParam": true
                   },
                   {
-                    "name": "config.config.dilationRate",
+                    "name": "config.dilationRate",
                     "documentation": "An integer or array of integers, specifying\n   the dilation rate to use for dilated convolution.\n   Currently, specifying any `dilationRate` value != 1 is\n   incompatible with specifying any `strides` value != 1.",
                     "type": "number|number[]",
                     "optional": true,
                     "isConfigParam": true
                   },
                   {
-                    "name": "config.config.activation",
+                    "name": "config.activation",
                     "documentation": "Activation function of the layer.\n\nIf you don't specify the activation, none is applied\n   (ie. \"linear\" activation: `a(x) = x`).",
                     "type": "string",
                     "optional": true,
                     "isConfigParam": true
                   },
                   {
-                    "name": "config.config.useBias",
+                    "name": "config.useBias",
                     "documentation": "Whether the layer uses a bias vector. Defaults to false.",
                     "type": "boolean",
                     "optional": true,
                     "isConfigParam": true
                   },
                   {
-                    "name": "config.config.kernelInitializer",
+                    "name": "config.kernelInitializer",
                     "documentation": "Initializer for the `kernel` weights matrix.",
                     "type": "string|Initializer",
                     "optional": true,
                     "isConfigParam": true
                   },
                   {
-                    "name": "config.config.biasInitializer",
+                    "name": "config.biasInitializer",
                     "documentation": "Initializer for the bias vector.",
                     "type": "string|Initializer",
                     "optional": true,
                     "isConfigParam": true
                   },
                   {
-                    "name": "config.config.kernelConstraint",
+                    "name": "config.kernelConstraint",
                     "documentation": "Constraint for the kernel weights.",
                     "type": "string|Constraint",
                     "optional": true,
                     "isConfigParam": true
                   },
                   {
-                    "name": "config.config.biasConstraint",
+                    "name": "config.biasConstraint",
                     "documentation": "Constraint for the bias vector.",
                     "type": "string|Constraint",
                     "optional": true,
                     "isConfigParam": true
                   },
                   {
-                    "name": "config.config.kernelRegularizer",
+                    "name": "config.kernelRegularizer",
                     "documentation": "Regularizer function applied to the `kernel` weights matrix.",
                     "type": "string|Regularizer",
                     "optional": true,
                     "isConfigParam": true
                   },
                   {
-                    "name": "config.config.biasRegularizer",
+                    "name": "config.biasRegularizer",
                     "documentation": "Regularizer function applied to the bias vector.",
                     "type": "string|Regularizer",
                     "optional": true,
                     "isConfigParam": true
                   },
                   {
-                    "name": "config.config.activityRegularizer",
+                    "name": "config.activityRegularizer",
                     "documentation": "Regularizer function applied to the activation.",
                     "type": "string|Regularizer",
                     "optional": true,
@@ -600,63 +600,63 @@
                     "isConfigParam": false
                   },
                   {
-                    "name": "config.config.config.inputShape",
+                    "name": "config.inputShape",
                     "documentation": "If defined, will be used to create an input layer to insert before this\nlayer. If both inputShape and batchInputShape are defined, batchInputShape\nwill be used. Only applicable to input layers.",
                     "type": "number[]",
                     "optional": true,
                     "isConfigParam": true
                   },
                   {
-                    "name": "config.config.config.batchInputShape",
+                    "name": "config.batchInputShape",
                     "documentation": "If defined, will be used to create an input layer to insert before this\nlayer. If both inputShape and batchInputShape are defined, batchInputShape\nwill be used. Only applicable to input layers.",
                     "type": "number[]",
                     "optional": true,
                     "isConfigParam": true
                   },
                   {
-                    "name": "config.config.config.batchSize",
+                    "name": "config.batchSize",
                     "documentation": "If inputShape is specified, but not batchInputShape, batchSize is used\nto construct the batchInputShape: [batchSize].concat(inputShape)",
                     "type": "number",
                     "optional": true,
                     "isConfigParam": true
                   },
                   {
-                    "name": "config.config.config.dtype",
+                    "name": "config.dtype",
                     "documentation": "DType for this layer. If not specified, defaults to K.floatx(). Only\napplicable to input layers.",
                     "type": "'float32'|'int32'|'bool'",
                     "optional": true,
                     "isConfigParam": true
                   },
                   {
-                    "name": "config.config.config.name",
+                    "name": "config.name",
                     "documentation": "Optional name for this layer. ",
                     "type": "string",
                     "optional": true,
                     "isConfigParam": true
                   },
                   {
-                    "name": "config.config.config.trainable",
+                    "name": "config.trainable",
                     "documentation": "Whether this layer is trainable. If not specified, defaults to true. ",
                     "type": "boolean",
                     "optional": true,
                     "isConfigParam": true
                   },
                   {
-                    "name": "config.config.config.updatable",
+                    "name": "config.updatable",
                     "documentation": "",
                     "type": "boolean",
                     "optional": true,
                     "isConfigParam": true
                   },
                   {
-                    "name": "config.config.config.weights",
+                    "name": "config.weights",
                     "documentation": "If defined, the layer's initial weight values will be set to this argument.",
                     "type": "Tensor[]",
                     "optional": true,
                     "isConfigParam": true
                   },
                   {
-                    "name": "config.config.config.inputDType",
+                    "name": "config.inputDType",
                     "documentation": "Legacy support. Do not use for new code. ",
                     "type": "'float32'|'int32'|'bool'",
                     "optional": true,
@@ -1119,21 +1119,21 @@
                     "isConfigParam": false
                   },
                   {
-                    "name": "config.config.poolSize",
+                    "name": "config.poolSize",
                     "documentation": "Integer size of the window to pool over.",
                     "type": "number",
                     "optional": true,
                     "isConfigParam": true
                   },
                   {
-                    "name": "config.config.strides",
+                    "name": "config.strides",
                     "documentation": "Period at which to sample the pooled values.\n   If None, it will default to `poolSize`.",
                     "type": "number",
                     "optional": true,
                     "isConfigParam": true
                   },
                   {
-                    "name": "config.config.padding",
+                    "name": "config.padding",
                     "documentation": "PaddingMode.VALID or PaddingMode.SAME ",
                     "type": "PaddingMode",
                     "optional": true,
@@ -1168,28 +1168,28 @@
                     "isConfigParam": false
                   },
                   {
-                    "name": "config.config.poolSize",
+                    "name": "config.poolSize",
                     "documentation": "poolSize: integer or tuple of 2 integers,\n   factors by which to downscale [vertical, horizontal].\n   [2, 2] will halve the input in both spatial dimension.\n   If only one integer is specified, the same window length\n   will be used for both dimensions.",
                     "type": "[number, number]",
                     "optional": true,
                     "isConfigParam": true
                   },
                   {
-                    "name": "config.config.strides",
+                    "name": "config.strides",
                     "documentation": "strides: Integer, tuple of 2 integers, or None.\n   Strides values.\n   If None, it will default to `poolSize`.",
                     "type": "[number, number]",
                     "optional": true,
                     "isConfigParam": true
                   },
                   {
-                    "name": "config.config.padding",
+                    "name": "config.padding",
                     "documentation": "",
                     "type": "PaddingMode",
                     "optional": true,
                     "isConfigParam": true
                   },
                   {
-                    "name": "config.config.dataFormat",
+                    "name": "config.dataFormat",
                     "documentation": "",
                     "type": "DataFormat",
                     "optional": true,
@@ -1224,63 +1224,63 @@
                     "isConfigParam": false
                   },
                   {
-                    "name": "config.config.config.inputShape",
+                    "name": "config.inputShape",
                     "documentation": "If defined, will be used to create an input layer to insert before this\nlayer. If both inputShape and batchInputShape are defined, batchInputShape\nwill be used. Only applicable to input layers.",
                     "type": "number[]",
                     "optional": true,
                     "isConfigParam": true
                   },
                   {
-                    "name": "config.config.config.batchInputShape",
+                    "name": "config.batchInputShape",
                     "documentation": "If defined, will be used to create an input layer to insert before this\nlayer. If both inputShape and batchInputShape are defined, batchInputShape\nwill be used. Only applicable to input layers.",
                     "type": "number[]",
                     "optional": true,
                     "isConfigParam": true
                   },
                   {
-                    "name": "config.config.config.batchSize",
+                    "name": "config.batchSize",
                     "documentation": "If inputShape is specified, but not batchInputShape, batchSize is used\nto construct the batchInputShape: [batchSize].concat(inputShape)",
                     "type": "number",
                     "optional": true,
                     "isConfigParam": true
                   },
                   {
-                    "name": "config.config.config.dtype",
+                    "name": "config.dtype",
                     "documentation": "DType for this layer. If not specified, defaults to K.floatx(). Only\napplicable to input layers.",
                     "type": "'float32'|'int32'|'bool'",
                     "optional": true,
                     "isConfigParam": true
                   },
                   {
-                    "name": "config.config.config.name",
+                    "name": "config.name",
                     "documentation": "Optional name for this layer. ",
                     "type": "string",
                     "optional": true,
                     "isConfigParam": true
                   },
                   {
-                    "name": "config.config.config.trainable",
+                    "name": "config.trainable",
                     "documentation": "Whether this layer is trainable. If not specified, defaults to true. ",
                     "type": "boolean",
                     "optional": true,
                     "isConfigParam": true
                   },
                   {
-                    "name": "config.config.config.updatable",
+                    "name": "config.updatable",
                     "documentation": "",
                     "type": "boolean",
                     "optional": true,
                     "isConfigParam": true
                   },
                   {
-                    "name": "config.config.config.weights",
+                    "name": "config.weights",
                     "documentation": "If defined, the layer's initial weight values will be set to this argument.",
                     "type": "Tensor[]",
                     "optional": true,
                     "isConfigParam": true
                   },
                   {
-                    "name": "config.config.config.inputDType",
+                    "name": "config.inputDType",
                     "documentation": "Legacy support. Do not use for new code. ",
                     "type": "'float32'|'int32'|'bool'",
                     "optional": true,
@@ -1315,7 +1315,7 @@
                     "isConfigParam": false
                   },
                   {
-                    "name": "config.config.dataFormat",
+                    "name": "config.dataFormat",
                     "documentation": "One of `CHANNEL_LAST` (default) or `CHANNEL_FIRST`.\nThe ordering of the dimensions in the inputs. `CHANNEL_LAST` corresponds\nto inputs with shape `[batch, height, width, channels[` while\n`CHANNEL_FIRST` corresponds to inputs with shape\n`[batch, channels, height, width]`.",
                     "type": "DataFormat",
                     "optional": true,
@@ -1350,63 +1350,63 @@
                     "isConfigParam": false
                   },
                   {
-                    "name": "config.config.config.inputShape",
+                    "name": "config.inputShape",
                     "documentation": "If defined, will be used to create an input layer to insert before this\nlayer. If both inputShape and batchInputShape are defined, batchInputShape\nwill be used. Only applicable to input layers.",
                     "type": "number[]",
                     "optional": true,
                     "isConfigParam": true
                   },
                   {
-                    "name": "config.config.config.batchInputShape",
+                    "name": "config.batchInputShape",
                     "documentation": "If defined, will be used to create an input layer to insert before this\nlayer. If both inputShape and batchInputShape are defined, batchInputShape\nwill be used. Only applicable to input layers.",
                     "type": "number[]",
                     "optional": true,
                     "isConfigParam": true
                   },
                   {
-                    "name": "config.config.config.batchSize",
+                    "name": "config.batchSize",
                     "documentation": "If inputShape is specified, but not batchInputShape, batchSize is used\nto construct the batchInputShape: [batchSize].concat(inputShape)",
                     "type": "number",
                     "optional": true,
                     "isConfigParam": true
                   },
                   {
-                    "name": "config.config.config.dtype",
+                    "name": "config.dtype",
                     "documentation": "DType for this layer. If not specified, defaults to K.floatx(). Only\napplicable to input layers.",
                     "type": "'float32'|'int32'|'bool'",
                     "optional": true,
                     "isConfigParam": true
                   },
                   {
-                    "name": "config.config.config.name",
+                    "name": "config.name",
                     "documentation": "Optional name for this layer. ",
                     "type": "string",
                     "optional": true,
                     "isConfigParam": true
                   },
                   {
-                    "name": "config.config.config.trainable",
+                    "name": "config.trainable",
                     "documentation": "Whether this layer is trainable. If not specified, defaults to true. ",
                     "type": "boolean",
                     "optional": true,
                     "isConfigParam": true
                   },
                   {
-                    "name": "config.config.config.updatable",
+                    "name": "config.updatable",
                     "documentation": "",
                     "type": "boolean",
                     "optional": true,
                     "isConfigParam": true
                   },
                   {
-                    "name": "config.config.config.weights",
+                    "name": "config.weights",
                     "documentation": "If defined, the layer's initial weight values will be set to this argument.",
                     "type": "Tensor[]",
                     "optional": true,
                     "isConfigParam": true
                   },
                   {
-                    "name": "config.config.config.inputDType",
+                    "name": "config.inputDType",
                     "documentation": "Legacy support. Do not use for new code. ",
                     "type": "'float32'|'int32'|'bool'",
                     "optional": true,
@@ -1441,7 +1441,7 @@
                     "isConfigParam": false
                   },
                   {
-                    "name": "config.config.dataFormat",
+                    "name": "config.dataFormat",
                     "documentation": "One of `CHANNEL_LAST` (default) or `CHANNEL_FIRST`.\nThe ordering of the dimensions in the inputs. `CHANNEL_LAST` corresponds\nto inputs with shape `[batch, height, width, channels[` while\n`CHANNEL_FIRST` corresponds to inputs with shape\n`[batch, channels, height, width]`.",
                     "type": "DataFormat",
                     "optional": true,
@@ -1476,21 +1476,21 @@
                     "isConfigParam": false
                   },
                   {
-                    "name": "config.config.poolSize",
+                    "name": "config.poolSize",
                     "documentation": "Integer size of the window to pool over.",
                     "type": "number",
                     "optional": true,
                     "isConfigParam": true
                   },
                   {
-                    "name": "config.config.strides",
+                    "name": "config.strides",
                     "documentation": "Period at which to sample the pooled values.\n   If None, it will default to `poolSize`.",
                     "type": "number",
                     "optional": true,
                     "isConfigParam": true
                   },
                   {
-                    "name": "config.config.padding",
+                    "name": "config.padding",
                     "documentation": "PaddingMode.VALID or PaddingMode.SAME ",
                     "type": "PaddingMode",
                     "optional": true,
@@ -1525,28 +1525,28 @@
                     "isConfigParam": false
                   },
                   {
-                    "name": "config.config.poolSize",
+                    "name": "config.poolSize",
                     "documentation": "poolSize: integer or tuple of 2 integers,\n   factors by which to downscale [vertical, horizontal].\n   [2, 2] will halve the input in both spatial dimension.\n   If only one integer is specified, the same window length\n   will be used for both dimensions.",
                     "type": "[number, number]",
                     "optional": true,
                     "isConfigParam": true
                   },
                   {
-                    "name": "config.config.strides",
+                    "name": "config.strides",
                     "documentation": "strides: Integer, tuple of 2 integers, or None.\n   Strides values.\n   If None, it will default to `poolSize`.",
                     "type": "[number, number]",
                     "optional": true,
                     "isConfigParam": true
                   },
                   {
-                    "name": "config.config.padding",
+                    "name": "config.padding",
                     "documentation": "",
                     "type": "PaddingMode",
                     "optional": true,
                     "isConfigParam": true
                   },
                   {
-                    "name": "config.config.dataFormat",
+                    "name": "config.dataFormat",
                     "documentation": "",
                     "type": "DataFormat",
                     "optional": true,
