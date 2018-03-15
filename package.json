@@ -6,7 +6,7 @@
     "version": "3.6.0"
   },
   "scripts": {
-    "prep": "git submodule init && git submodule update && yarn",
+    "prep": "git submodule init && git submodule update && git submodule foreach git pull origin master && yarn",
     "serve": "hexo clean && hexo server",
     "build": "hexo clean && hexo generate",
     "prep-dist": "babel public/js --out-dir public/js",
