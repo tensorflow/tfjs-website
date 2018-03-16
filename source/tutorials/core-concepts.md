@@ -103,12 +103,6 @@ model.fit({x: data, y: labels)});
 
 Layers come in various flavours depending on the kind of operation they do on their input and there are many different kinds of layers available in TensorFlow.js. A few examples include, `tf.layers.simpleRNN`, `tf.layers.gru`, and `tf.layers.lstm`.
 
-## Training
-
-At the heart machine learning problems is the question of actually _training_ the machine to do some task. We typically train a model by giving it input for which we know the desired output. During training, we compare the models current predictions with what we expect and adjust the model parameters accordingly.
-
-The lower level API for this is driven by _optimizers_ and requires manually feeding the optimizer and doing the comparison with expected output. The higher level **tf.model** api provides a `fit()` method to train the model that encapsulates all this work.
-
 ## Memory Management: Dispose &amp; Tidy
 
 Because TensorFlow.js uses the GPU to accelerate math operations there is a need to manage GPU memory when dealing with tensors and variables.
