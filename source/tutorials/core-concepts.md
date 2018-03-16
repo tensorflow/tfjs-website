@@ -62,7 +62,7 @@ const avg = tf.mean(tf.square(tf.sub(a, b)));
 
 Conceptually a model is a function that given some input will produce some _desireable_ output.
 
-In TensorFlow.js there are _two ways_ to create models. You can use `operations` directly to represent the work the model does. This might looks something like this
+In TensorFlow.js there are _two ways_ to create models. You can use _operations_ directly to represent the work the model does. This might looks something like this
 
 ```js
 function predict(input) {
@@ -81,7 +81,7 @@ function predict(input) {
 
 <br />
 
-You can also use a high level API `tf.model` to construct a model out of _layers_, which are a a popular abstraction in deep learning. Below we construct a `tf.sequential` model.
+You can also use the high level API `tf.model` to construct a model out of _layers_, which are a a popular abstraction in deep learning. Below we construct a `tf.sequential` model.
 
 
 ```js
