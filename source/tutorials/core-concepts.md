@@ -101,27 +101,7 @@ model.compile({optimizer, loss: 'categoricalCrossentropy'});
 model.fit({x: data, y: labels)});
 ```
 
-Layers come in various flavours depending on the kind of operation they do on their input and there are many different kinds of layers available in TensorFlow.js. A few examples are shown
-
-```js
-const rnn = tf.layers.simpleRNN({
-  units: hiddenSize,
-  recurrentInitializer: 'GlorotNormal',
-  inputShape: [maxLen, vocabularySize]
-});
-
-const gru = tf.layers.gru({
-  units: hiddenSize,
-  recurrentInitializer: 'GlorotNormal',
-  inputShape: [maxLen, vocabularySize]
-}));
-
-const lstm = tf.layers.lstm({
-  units: hiddenSize,
-  recurrentInitializer: 'GlorotNormal',
-  inputShape: [maxLen, vocabularySize]
-});
-```
+Layers come in various flavours depending on the kind of operation they do on their input and there are many different kinds of layers available in TensorFlow.js. A few examples include, `tf.layers.simpleRNN`, `tf.layers.gru`, and `tf.layers.lstm`.
 
 ## Training
 
