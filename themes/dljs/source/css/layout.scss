@@ -2,17 +2,19 @@
 
 $header-height: 64px;
 $footer-height: 64px;
-
-$main-padding: 0px;
-
 body {
   margin: 0;
   @include mdc-typography-base();
 
   .main {
-    min-height: calc(100vh - #{$header-height} - #{$footer-height} - #{$main-padding * 2});
+    min-height: calc(100vh - #{$header-height} - #{$footer-height});
     background-color: white;
-    padding: $main-padding;
+    padding: 0;
+  }
+
+  .page {
+    padding: 64px;
+    max-width: 800px;
   }
 
   header {
@@ -43,10 +45,44 @@ body {
   footer {
     background-color: white;
   }
+
+  h1 {
+    @include mdc-typography('display3');
+    color: #FF9000;
+    font-weight: 300;
+    margin-top: 64px;
+  }
+
+  h2 {
+    @include mdc-typography('headline');
+    // color: #FF9000;
+    font-weight: 300;
+    margin-top: 64px;
+  }
+
+  h3 {
+    @include mdc-typography('title');
+    margin-top: 24px;
+  }
+
+  p{
+    // @include mdc-typography('body1');
+    line-height: 1.5em;
+  }
+
+  code {
+    padding: 2px;
+    border: 1px solid #dedede;
+    border-radius: 4px;
+    font-size: 110%;
+  }
 }
 
 
 .index-page {
+  padding: 0 !important;
+  max-width: none !important;
+
   .hero {
     display: flex;
     background-image: url('../images/placeholder.png');
@@ -88,8 +124,9 @@ body {
       flex-direction: row;
 
       .proposition {
-        @include mdc-typography("subheading1");
+        // @include mdc-typography("subheading1");
         padding: 35px;
+        line-height: 1.45em;
 
         &:last-of-type {
           padding-right:0;
@@ -182,7 +219,7 @@ body {
         }
 
         code {
-          // padding: 12px;
+          padding: 2px;
           border: 1px solid #dedede;
           border-radius: 4px;
         }
@@ -197,5 +234,13 @@ body {
       margin-bottom: 100px;
     }
 
+  }
+}
+
+.page-tutorials {
+
+
+  h2 {
+    margin-top: 64px;
   }
 }
