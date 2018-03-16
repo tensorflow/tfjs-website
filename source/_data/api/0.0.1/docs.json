@@ -1742,11 +1742,11 @@
     },
     {
       "name": "Models",
-      "description": "<p>Models are one of the core abstractions used in\nTensorflow.js Layers and usually serve as the main point of \ninteraction between the application you're writing and the \nTensorflow.js library.</p>\n<p>Models are typically a collection of Layers, either wired together\nmanually using Model or auto-wired with Sequential when the output of\neach layer feeds directly into the input of the next.</p>\n<p>Once the model has been configured, it is typically used in\ntraining contexts with fit and evaluate, or in live applications\nwith predict.</p>",
+      "description": "<p>Models are one of the primary abstractions used in\nTensorflow.js Layers.  Models can be trained, evaluated, and used\nfor prediction.  A model's state (topology, and optionally, trained\nweights) can be restored from various formats.</p>\n<p>Models are a collection of Layers, see Model Creation for\nfor details about how Layers can be connected.</p>",
       "subheadings": [
         {
           "name": "Creation",
-          "description": "<p>There are two primary ways of creating models.</p>\n<ul><li>Sequential &mdash; Easiest, works if the models is a\nsimple stack of each layer's input resting on the top of the\nprevious layer's output.</li>\n<li>Model &mdash; Offers more control if the layers need to be\nwired together in more complex ways &emdash; multiple 'towers',\nlayers that skip a layer, etc.</li></ul>",
+          "description": "<p>There are two primary ways of creating models.</p>\n<ul><li>Sequential &mdash; Easiest, works if the models is a\nsimple stack of each layer's input resting on the top of the\nprevious layer's output.</li>\n<li>Model &mdash; Offers more control if the layers need to be\nwired together in graph-like ways &emdash; multiple 'towers',\nlayers that skip a layer, etc.</li></ul>",
           "symbols": [
             {
               "docInfo": {
@@ -2360,7 +2360,7 @@
     },
     {
       "name": "Layers",
-      "description": "<p>Layers are the primary building block within \nTensorflow.js Layers.  They are composed into Models.  Under routine\nuse, a layer is configured entirely at construction time and then\nadded to a Model.</p>\n<p>While the internals of a Layer can typically be treated as a\nblack box, for debugging purposes most of the internal variables\ncan be inspected via calls to\nlayerObject.weights[someIndex].read().dataSync().  See the\ndocumentation of individual Layers for details on the mapping of the\nweight index to internal variables.</p>",
+      "description": "<p>Layers are the primary building block for \nconstructing a Model.  Each layer will typically perform some\ncomputation to transform its input to its output.</p>\n<p>Layers will automatically take care of creating and initializing\nthe various internal variables/weights they need to function.</p>",
       "subheadings": [
         {
           "name": "Core",
@@ -7632,7 +7632,7 @@
     },
     {
       "name": "Constraints",
-      "description": "<p>Constraints are added to attributes\nof a Layer(such as weights, kernels, or biases) at\nconstruction time to clamp, or otherwise enforce an allowed range,\nof values for different components of the Layer.</p>",
+      "description": "<p>Constraints are added to attributes\nof a Layer (such as weights, kernels, or biases) at\nconstruction time to clamp, or otherwise enforce an allowed range,\nof values for different components of the Layer.</p>",
       "subheadings": [
         {
           "name": "",
