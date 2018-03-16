@@ -39,11 +39,24 @@
   },
   {
     "name": "Models",
-    "description": [],
+    "description": ["<p>Models are one of the core abstractions used in",
+      "Tensorflow.js Layers and usually serve as the main point of interaction",
+    "between the application you're writing and the Tensorflow.js library.</p>",
+  "<p>Models are typically a collection of Layers, either wired together",
+"manually using Model or auto-wired with Sequential when the output of each",
+"layer feeds directly into the input of the next.</p>",
+"Once the model has been configured, it is typically used in training contexts",
+"with fit and evaluate, or in live applications with predict.</p>"],
     "subheadings": [
       {
         "name": "Creation",
-        "description": [],
+        "description": ["<p>There are two primary ways of creating models.</p>",
+          "<ul><li>Sequential &mdash; Easiest, works if the models is a simple",
+          "stack of each layer's input resting on the top of the previous",
+          "layer's output.</li>",
+        "<li>Model &mdash; Offers more control if the layers need to be wired",
+      "together in more complex ways &emdash; multiple 'towers', layers",
+    "that skip a layer, etc.</li></ul>"],
         "pin": ["sequential", "model"]
       },
       {
@@ -58,7 +71,14 @@
   },
   {
     "name": "Layers",
-    "description": [],
+    "description": ["<p>Layers are the primary building block within Tensorflow.js",
+    "Layers.  They are composed into Models.  Under routine use, a layer is",
+   "configured entirely at construction time and then added to a Model.</p>",
+  "<p>While the internals of a Layer can typically be treated as a black box, for",
+"debugging purposes most of the internal variables can be inspected via calls",
+"to layerObject.weights[someIndex].read().dataSync().  See the documentation",
+"of individual Layers for details on the mapping of the weight index to",
+"internal variables.</p>"],
     "subheadings": [
       {
         "name": "Core",
@@ -111,7 +131,32 @@
     "description": ["<p>TensorFlow.js can run mathematical operations on",
         "different backends. Currently, we support WebGL and JavaScript",
         "CPU. By default, we choose the 'best' backend available, but",
-        "allow users to customize their backend."],
+        "allow users to customize their backend.</p>"],
     "subheadings": [{"name": "", "pin": ["setBackend"]}]
+  },
+  {
+    "name": "Constraints",
+    "description": ["<p>Constraints are added to attributes",
+      "of a Layer(such as weights, kernels, or biases) at",
+      "construction time to clamp, or otherwise enforce an allowed range",
+      "of values for different components of the Layer.</p>"],
+    "subheadings": [{"name": ""}]
+  },
+  {
+    "name": "Initializers",
+    "description": ["<p>Initializers are used in Layers",
+      "to establish the starting the values of weights, biases, kernels, ",
+      "etc.</p>"],
+    "subheadings": [{"name": ""}]
+  },
+  {
+    "name": "Regularizers",
+    "description": ["<p>Regularizers can be attached to various components",
+      "of a Layer to add a 'scoring' function to help drive weights, or ",
+      "other trainable values, away from excessive large values.  They're",
+      "typically used to promote a notion that a 'simpler' model is better",
+      "than a complicated model, assuming equal performance.</p>"],
+    "subheadings": [{"name": ""}]
   }
+
 ]
