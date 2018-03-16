@@ -33,11 +33,13 @@ render_drafts: false
 post_asset_folder: false
 relative_link: true
 future: true
+
 highlight:
   enable: true
-  line_number: true
+  line_number: false
   auto_detect: false
-  tab_replace:
+  hljs: true
+  tab: true
 
 # Category & Tag
 default_category: uncategorized
@@ -72,3 +74,5 @@ browsersync:
     scroll: true
   notify: false
 
+
+markdown: 'commonmark'
