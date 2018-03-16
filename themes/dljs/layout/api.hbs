@@ -58,6 +58,8 @@
         <div class="reference">
           {{#headings}}
           <div class="section">
+            <div id="{{name}}" name="{{name}}" class="symbol-name section-title mdl-typography--display-3">{{name}}</div>
+            <div class="section-description mdl-typography--headline">{{{description}}}</div>
             {{#subheadings}}
             <div class="subsection">
               <div id="{{../name}}-{{name}}" name="{{../name}}-{{name}}" class="symbol-name subsection-title mdl-typography--display-3">{{../name}} &nbsp;/&nbsp; {{name}}</div>
