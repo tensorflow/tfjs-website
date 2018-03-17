@@ -203,7 +203,6 @@ might look like from a trained model of the digit "7".
 |----------|---|---|---|---|---|---|---|---|---|---|
 |label     | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 0 |
 |prediction|.1 |.01|.01|.01|.20|.01|.01|.60|.03|.02|
-|          |   |   |   |   |   |   |   |   |   |   |
 
 `categoricalCrossentropy` gives a lower loss value if the prediction is closer
 to high probability of 7, and higher loss value if the prediction is lower probability of 7.
