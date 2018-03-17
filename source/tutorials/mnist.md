@@ -5,11 +5,16 @@ date: 2018-03-17 13:28:23
 
 # Training on images — Recognizing Handwritten Digits with a Convolutional Neural Network
 
-In previous tutorials, we learned how to use tensors and operations to perform basic linear algebra. In this tutorial, we will learn the basic building blocks of a TensorFlow.js model to recognize handwritten digits with a deep convolutional classifier. The dataset we will be using is the MNIST handwriting dataset.
+In the [core concepts tutorial](./core-concepts.html), we learned how to use tensors and operations to perform basic linear algebra. In this tutorial, we will learn the basic building blocks of a TensorFlow.js model to recognize handwritten digits with a deep convolutional classifier. The dataset we will be using is the [MNIST handwriting dataset](http://yann.lecun.com/exdb/mnist/).
 
 ## About this tutorial
 
-This tutorial will explain the [MNIST example](https://github.com/tensorflow/tfjs-examples/tree/master/mnist) in our examples repository. You can run the code for the example by cloning the repo and building the demo:
+This tutorial will explain the [tfjs-examples/mnist example](https://github.com/tensorflow/tfjs-examples/tree/master/mnist) in our examples repository.
+
+The difference between this and the [mnist-core](https://github.com/tensorflow/tfjs-examples/tree/master/mnist-core)
+example is that this uses the higher-level API (`Model`, `Layer`s) while mnist-core uses the low-lower linear algebra ops to build a neural network.
+
+You can run the code for the example by cloning the repo and building the demo:
 
 ```sh
 git clone https://github.com/tensorflow/tfjs-examples
@@ -18,17 +23,18 @@ yarn
 yarn watch
 ```
 
-The MNIST directory above is completely standalone, so you can copy it to your own project.
+The `tfjs-examples/mnist` directory above is completely standalone so you can copy it to your own project.
 
 ### What we will accomplish in this tutorial
 
-- Create a convolutional classifier to recognize the digit (0-9) images of handwritten digits
-- Train the classifier by having it “look” at thousands of examples
-- Check the model’s accuracy with our test data
+- Create a convolutional classifier using supervised learning to recognize the digit (0-9) images of handwritten digits
+- Train the classifier by having it “look” at thousands of handwritten digit images and their labels
+- Evaluate the model's accuracy using test data that the model has never seen
 
 ## Data
 
-The MNIST example linked above has a file, data.js, that contains a class `MnistData` which fetches random batches of images from a dataset on a server we provide for convenience.
+The MNIST example linked above has a file, [data.js](https://github.com/tensorflow/tfjs-examples/blob/master/mnist-core/data.js),
+that contains a class `MnistData` which fetches random batches of images from a dataset on a server we provide for convenience.
 
 `MnistData` splits the entire dataset into training data and test data. When we train the model, the classifier will only see the training set, and when we evaluate it we will only evaluate it with the data from the test set. By hiding the test set from the model during training, we can better see how well it has trained by evaluating it on unseen data.
 
@@ -41,13 +47,18 @@ When training the MNIST classifier, it is important that the data is randomly sh
 
 ## Building the model
 
-Before we feed the model any data, we will set up the model. We will use a sequential model, which means tensors will be consecutively passed from each layer to the next.
+In this section, we're going to build a convolutional image classifier model.
+
+To do this, we will use a `sequential` model which is the simplest type of model where tensors will be consecutively passed from each layer to the next.
 
 ```js
 const model = tf.sequential();
 ```
 
-Now that we have created a model, let's add layers to it. The first layer we’re going to add is a convolutional layer. Convolutions slide a filter window over the image to learn transformations that are spatially invariant (this means that patterns or objects in different parts of the image will be treated the same):
+Now that we have created a model, let's add layers to it. The first layer we’re going to add is a convolutional layer.
+
+Convolutions slide a filter window over the image to learn transformations that are spatially invariant (this means that patterns or objects in different parts of the image will be treated the same). For more information about convolutions, check out
+[this article](http://colah.github.io/posts/2014-07-Understanding-Convolutions/).
 
 ```js
 model.add(tf.layers.conv2d({
@@ -68,7 +79,18 @@ inputShape: [28, 28, 1]
 
 The first layer of a model must define an input shape. This is the shape of the data that flows into the first layer of our model. In this case, our MNIST images we want to classify are 28x28 grayscale images. The canonical image format is [row, column, depth], so the input shape of the first layer is [28, 28, 1].
 
-*Note: Notice that there is no outer batch dimension defined. When data is actually passed through the model during training, we will feed it images of [batchSize, 28, 28, 1].*
+To take full advantage of the GPU to parallelize computation, we want to batch
+several inputs together and feed them through the network using a single
+feed-forward call.
+
+Another reason we batch our computation is that during optimization, we update
+internal parameters (taking a step) only after averaging gradients from several
+examples. This helps us avoid taking a step in the wrong direction because of
+an outlier example (e.g. mislabeled).
+
+To do this, we introduce a tensor of rank D+1 where D is the dimensionality of a single input. In this case we will feed in a tensor of rank 4 with shape [64, 28, 28, 1] which represents 64 grayscale images, each image is 28x28 pixels.
+
+*Note: Notice that the inputShape in the config of the conv2d did not specify the batch size (64). Configs are agnostic of batch size, to remain flexible and be able to take arbitrary batch size.*
 
 ```js
 kernelSize: 5
@@ -172,12 +194,15 @@ The activation function of the last layer for a classification task is usually a
 To actually drive the training of the model, we need to construct an optimizer, and define a loss function
 
 ```js
-const LEARNING_RATE = 0.01;
-const optimizer = tf.train.adam(LEARNING_RATE);
+const LEARNING_RATE = 0.15;
+const optimizer = tf.train.sgd(LEARNING_RATE);
 ```
 
-The optimizer we’re going to use is Adam (the details of the optimizer are
-unimportant for this tutorial). Optimizers take a learning rate argument, which determines how big of an update to make during training. Too low a learning rate and training will be slow. Too high a learning rate and the model might oscillate.
+The optimizer we’re going to use is "sgd" or "Stochastic Gradient Descent" (the
+details of the optimizer are unimportant for this tutorial). Optimizers take a
+learning rate argument, which determines how big of an update to make during
+training. Too low a learning rate and training will be slow. Too high a
+learning rate and the model might oscillate.
 
 Now we compile the model, which makes the model trainable.
 
@@ -264,15 +289,9 @@ Let's break this down.
 const batch = data.nextTrainBatch(BATCH_SIZE);
 ```
 
-This gets a batch of training examples. When training our model, we will be
-feeding examples in batches. We do those for two reasons.
-1) before making
-a parameter update, we "look" at a batch of images and average the gradients. Intuitively this means one outlier (mislabeled or weird) example means we won't step in the wrong direction.
-2) batching allows us to take advantage of the GPU to parallelize the computation.
-
-Batches are always the outer-most dimension of our tensors. In MNIST, this
-means our images will be of shape `[batchSize, 28, 28, 1]` and our labels will
-be of shape `[batchSize, 10]`.
+This fetches a batch of training examples. Recall from above that we batch examples
+to take advantage of GPU parallelization and to average evidence from many
+examples before making a parameter update.
 
 ```js
 testBatch = data.nextTestBatch(TEST_BATCH_SIZE);
@@ -304,7 +323,8 @@ const history = await model.fit({
 `model.fit` is where the parameters actually get updated. The entirely MNIST
 dataset doesn't fit into memory, so we have our own outer for loop that
 iteratively feeds `fit` batches of `(image, label)` pairs. If the entire
-dataset were to fit in memory, we could call `fit` a single time with the entire dataset. Internally, `fit` would shuffle.
+dataset were to fit into GPU memory, we could call `fit` a single time with the
+entire dataset. Internally, `fit` would shuffle.
 
 Breaking down the arguments again:
 ```js
