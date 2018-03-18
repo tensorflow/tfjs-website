@@ -9,9 +9,9 @@ In the [core concepts tutorial](./core-concepts.html), we learned how to use ten
 
 ## About this tutorial
 
-This tutorial will explain the [tfjs-examples/mnist example](https://github.com/tensorflow/tfjs-examples/tree/master/mnist) in our examples repository.
+This tutorial will explain the [tfjs-examples/mnist](https://github.com/tensorflow/tfjs-examples/tree/master/mnist) example in our examples repository.
 
-The difference between this and the [mnist-core](https://github.com/tensorflow/tfjs-examples/tree/master/mnist-core)
+The difference between this and the [tfjs-examples/mnist-core](https://github.com/tensorflow/tfjs-examples/tree/master/mnist-core)
 example is that this uses the higher-level API (`Model`, `Layer`s) while mnist-core uses the low-lower linear algebra ops to build a neural network.
 
 You can run the code for the example by cloning the repo and building the demo:
@@ -23,13 +23,20 @@ yarn
 yarn watch
 ```
 
-The `tfjs-examples/mnist` directory above is completely standalone so you can copy it to your own project.
+The [tfjs-examples/mnist](https://github.com/tensorflow/tfjs-examples/tree/master/mnist)
+directory above is completely standalone so you can copy it to your own project.
 
 ### What we will accomplish in this tutorial
 
 - Create a convolutional classifier using supervised learning to recognize the digit (0-9) images of handwritten digits
 - Train the classifier by having it “look” at thousands of handwritten digit images and their labels
 - Evaluate the model's accuracy using test data that the model has never seen
+
+The handwritten MNIST digits we will learn to classify look like this:
+
+<img src="../images/mnist_4.png" alt="mnist 4" style="width: 100px"/>
+<img src="../images/mnist_3.png" alt="mnist 4" style="width: 100px"/>
+<img src="../images/mnist_8.png" alt="mnist 4" style="width: 100px"/>
 
 ## Data
 
@@ -38,7 +45,7 @@ that contains a class `MnistData` which fetches random batches of images from a 
 
 `MnistData` splits the entire dataset into training data and test data. When we train the model, the classifier will only see the training set, and when we evaluate it we will only evaluate it with the data from the test set. By hiding the test set from the model during training, we can better see how well it has trained by evaluating it on unseen data.
 
-When training the MNIST classifier, it is important that the data is randomly shuffled so the model isn’t affected by the ordering of the images we feed. If we were to feed all of the “1”s digits first, the model might learn to simply predict “1” always and so we haven’t actually learned anything.
+When training the MNIST classifier, it is important that the data is randomly shuffled so the model isn’t affected by the ordering of the images we feed. For example, we were to feed all of the “1”s digits first, the model might learn to simply predict “1” always and so we haven’t actually learned anything.
 
 `MnistData` has two public methods:
 
@@ -320,11 +327,12 @@ const history = await model.fit({
 });
 ```
 
-`model.fit` is where the parameters actually get updated. The entirely MNIST
-dataset doesn't fit into memory, so we have our own outer for loop that
-iteratively feeds `fit` batches of `(image, label)` pairs. If the entire
-dataset were to fit into GPU memory, we could call `fit` a single time with the
-entire dataset. Internally, `fit` would shuffle.
+`model.fit` is where the parameters actually get updated.
+
+Calling model.fit() once with the whole dataset, will result in uploading the
+whole dataset to the GPU, which could freeze the application. To avoid uploading
+large amounts of data to the GPU, and risk freezing the application, we recommend
+calling model.fit() inside a for loop, passing a single batch of data at a time.
 
 Breaking down the arguments again:
 ```js
