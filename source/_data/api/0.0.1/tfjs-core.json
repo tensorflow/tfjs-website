@@ -208,7 +208,7 @@
                   {
                     "name": "indices",
                     "documentation": "The indices of the values to extract.",
-                    "type": "Tensor1D",
+                    "type": "Tensor<Rank.R1>",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -336,7 +336,7 @@
                   {
                     "name": "values",
                     "documentation": "The values of the tensor. Can be nested array of numbers,\nor a flat array, or a `TypedArray`.",
-                    "type": "TypedArray|Array",
+                    "type": "Float32Array|Uint8Array|Array",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -401,7 +401,7 @@
                   {
                     "name": "values",
                     "documentation": "The values of the tensor. Can be array of numbers,\nor a `TypedArray`.",
-                    "type": "TypedArray|Array",
+                    "type": "Float32Array|Uint8Array|Array",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -430,7 +430,7 @@
                   {
                     "name": "values",
                     "documentation": "The values of the tensor. Can be nested array of numbers,\nor a flat array, or a `TypedArray`.",
-                    "type": "TypedArray|Array",
+                    "type": "Float32Array|Uint8Array|Array",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -466,7 +466,7 @@
                   {
                     "name": "values",
                     "documentation": "The values of the tensor. Can be nested array of numbers,\nor a flat array, or a `TypedArray`.",
-                    "type": "TypedArray|Array",
+                    "type": "Float32Array|Uint8Array|Array",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -502,7 +502,7 @@
                   {
                     "name": "values",
                     "documentation": "The values of the tensor. Can be nested array of numbers,\nor a flat array, or a `TypedArray`.",
-                    "type": "TypedArray|Array",
+                    "type": "Float32Array|Uint8Array|Array",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -841,7 +841,7 @@
                   {
                     "name": "indices",
                     "documentation": "1D Array of indices.",
-                    "type": "Tensor1D",
+                    "type": "Tensor<Rank.R1>",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -1006,7 +1006,7 @@
                   {
                     "name": "values",
                     "documentation": "The values of the buffer as `TypedArray`. Defaults to zeros.",
-                    "type": "TypedArray",
+                    "type": "Float32Array|Uint8Array",
                     "optional": true,
                     "isConfigParam": false
                   }
@@ -1327,6 +1327,7 @@
                     "isFunction": true
                   }
                 ],
+                "inheritsFrom": "",
                 "isClass": true
               },
               {
@@ -1748,6 +1749,7 @@
                     "isFunction": true
                   }
                 ],
+                "inheritsFrom": "",
                 "isClass": true
               },
               {
@@ -1783,6 +1785,7 @@
                     "isFunction": true
                   }
                 ],
+                "inheritsFrom": "Tensor<R>",
                 "isClass": true
               }
             ]
@@ -1814,14 +1817,14 @@
                   {
                     "name": "mean",
                     "documentation": "A mean Tensor.",
-                    "type": "Tensor|Tensor1D",
+                    "type": "Tensor|Tensor<Rank.R1>",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
                     "name": "variance",
                     "documentation": "A variance Tensor.",
-                    "type": "Tensor|Tensor1D",
+                    "type": "Tensor|Tensor<Rank.R1>",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -1835,14 +1838,14 @@
                   {
                     "name": "scale",
                     "documentation": "A scale Tensor.",
-                    "type": "Tensor|Tensor1D",
+                    "type": "Tensor|Tensor<Rank.R1>",
                     "optional": true,
                     "isConfigParam": false
                   },
                   {
                     "name": "offset",
                     "documentation": "An offset Tensor.",
-                    "type": "Tensor|Tensor1D",
+                    "type": "Tensor|Tensor<Rank.R1>",
                     "optional": true,
                     "isConfigParam": false
                   }
@@ -1864,7 +1867,7 @@
                   {
                     "name": "x",
                     "documentation": "The input tensor. The 4-D input tensor is treated as a 3-D array\nof 1D vectors (along the last dimension), and each vector is\nnormalized independently.",
-                    "type": "Tensor3D|Tensor4D",
+                    "type": "Tensor<Rank.R3>|Tensor<Rank.R4>",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -2523,14 +2526,14 @@
                   {
                     "name": "input",
                     "documentation": "The input tensor, of rank 3 or rank 2, of shape\n`[batch, width, inChannels]`. If rank 2, batch of 1 is assumed.",
-                    "type": "Tensor2D|Tensor3D",
+                    "type": "Tensor<Rank.R2>|Tensor<Rank.R3>",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
                     "name": "filter",
                     "documentation": "The filter, rank 3, of shape\n`[filterWidth, inDepth, outDepth]`.",
-                    "type": "Tensor3D",
+                    "type": "Tensor<Rank.R3>",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -2573,14 +2576,14 @@
                   {
                     "name": "x",
                     "documentation": "The input tensor, of rank 4 or rank 3, of shape\n`[batch, height, width, inChannels]`. If rank 3, batch of 1 is\nassumed.",
-                    "type": "Tensor3D|Tensor4D",
+                    "type": "Tensor<Rank.R3>|Tensor<Rank.R4>",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
                     "name": "filter",
                     "documentation": "The filter, rank 4, of shape\n`[filterHeight, filterWidth, inDepth, outDepth]`.",
-                    "type": "Tensor4D",
+                    "type": "Tensor<Rank.R4>",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -2623,14 +2626,14 @@
                   {
                     "name": "x",
                     "documentation": "The input image, of rank 4 or rank 3, of shape\n`[batch, height, width, inDepth]`. If rank 3, batch of 1 is assumed.",
-                    "type": "Tensor3D|Tensor4D",
+                    "type": "Tensor<Rank.R3>|Tensor<Rank.R4>",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
                     "name": "filter",
                     "documentation": "The filter, rank 4, of shape\n`[filterHeight, filterWidth, outDepth, inDepth]`.\n`inDepth` must match `inDepth` in `x`.",
-                    "type": "Tensor4D",
+                    "type": "Tensor<Rank.R4>",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -2680,14 +2683,14 @@
                   {
                     "name": "input",
                     "documentation": "The input tensor, of rank 4 or rank 3, of shape\n`[batch, height, width, inChannels]`. If rank 3, batch of 1 is\nassumed.",
-                    "type": "Tensor3D|Tensor4D",
+                    "type": "Tensor<Rank.R3>|Tensor<Rank.R4>",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
                     "name": "filter",
                     "documentation": "The filter tensor, rank 4, of shape\n`[filterHeight, filterWidth, inChannels, channelMultiplier]`.",
-                    "type": "Tensor4D",
+                    "type": "Tensor<Rank.R4>",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -2737,7 +2740,7 @@
                   {
                     "name": "x",
                     "documentation": "The input tensor, of rank 4 or rank 3 of shape\n`[batch, height, width, inChannels]`. If rank 3, batch of 1 is assumed.",
-                    "type": "Tensor3D|Tensor4D",
+                    "type": "Tensor<Rank.R3>|Tensor<Rank.R4>",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -2787,7 +2790,7 @@
                   {
                     "name": "input",
                     "documentation": "The input tensor, of rank 4 or rank 3 of shape\n`[batch, height, width, inChannels]`. If rank 3, batch of 1 is assumed.",
-                    "type": "Tensor3D|Tensor4D",
+                    "type": "Tensor<Rank.R3>|Tensor<Rank.R4>",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -2837,7 +2840,7 @@
                   {
                     "name": "x",
                     "documentation": "The input tensor, of rank 4 or rank 3 of shape\n`[batch, height, width, inChannels]`. If rank 3, batch of 1 is assumed.",
-                    "type": "Tensor3D|Tensor4D",
+                    "type": "Tensor<Rank.R3>|Tensor<Rank.R4>",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -2894,7 +2897,7 @@
                   {
                     "name": "images",
                     "documentation": "The images, of rank 4 or rank 3, of shape\n`[batch, height, width, inChannels]`. If rank 3, batch of 1 is assumed.",
-                    "type": "Tensor3D|Tensor4D",
+                    "type": "Tensor<Rank.R3>|Tensor<Rank.R4>",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -2935,28 +2938,28 @@
                   {
                     "name": "lstmCells",
                     "documentation": "Array of LSTMCell functions.",
-                    "type": "(data: Tensor2D, c: Tensor2D, h: Tensor2D): [Tensor2D, Tensor2D][]",
+                    "type": "(data: Tensor<Rank.R2>, c: Tensor<Rank.R2>, h: Tensor<Rank.R2>): [Tensor<Rank.R2>, Tensor<Rank.R2>][]",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
                     "name": "data",
                     "documentation": "The input to the cell.",
-                    "type": "Tensor2D",
+                    "type": "Tensor<Rank.R2>",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
                     "name": "c",
                     "documentation": "Array of previous cell states.",
-                    "type": "Tensor2D[]",
+                    "type": "Tensor<Rank.R2>[]",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
                     "name": "h",
                     "documentation": "Array of previous cell outputs.",
-                    "type": "Tensor2D[]",
+                    "type": "Tensor<Rank.R2>[]",
                     "optional": false,
                     "isConfigParam": false
                   }
@@ -2978,42 +2981,42 @@
                   {
                     "name": "forgetBias",
                     "documentation": "Forget bias for the cell.",
-                    "type": "Scalar",
+                    "type": "Tensor<Rank.R0>",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
                     "name": "lstmKernel",
                     "documentation": "The weights for the cell.",
-                    "type": "Tensor2D",
+                    "type": "Tensor<Rank.R2>",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
                     "name": "lstmBias",
                     "documentation": "The bias for the cell.",
-                    "type": "Tensor1D",
+                    "type": "Tensor<Rank.R1>",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
                     "name": "data",
                     "documentation": "The input to the cell.",
-                    "type": "Tensor2D",
+                    "type": "Tensor<Rank.R2>",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
                     "name": "c",
                     "documentation": "Previous cell state.",
-                    "type": "Tensor2D",
+                    "type": "Tensor<Rank.R2>",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
                     "name": "h",
                     "documentation": "Previous cell output.",
-                    "type": "Tensor2D",
+                    "type": "Tensor<Rank.R2>",
                     "optional": false,
                     "isConfigParam": false
                   }
@@ -3040,14 +3043,14 @@
                   {
                     "name": "a",
                     "documentation": "First matrix in dot product operation.",
-                    "type": "Tensor2D",
+                    "type": "Tensor<Rank.R2>",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
                     "name": "b",
                     "documentation": "Second matrix in dot product operation.",
-                    "type": "Tensor2D",
+                    "type": "Tensor<Rank.R2>",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -3083,14 +3086,14 @@
                   {
                     "name": "v1",
                     "documentation": "The first vector in the outer product operation.",
-                    "type": "Tensor1D",
+                    "type": "Tensor<Rank.R1>",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
                     "name": "v2",
                     "documentation": "The second vector in the dot product operation.",
-                    "type": "Tensor1D",
+                    "type": "Tensor<Rank.R1>",
                     "optional": false,
                     "isConfigParam": false
                   }
@@ -4159,7 +4162,7 @@
                   {
                     "name": "f",
                     "documentation": "The function to execute. f() should return a scalar.",
-                    "type": "() => Scalar",
+                    "type": "() => Tensor<Rank.R0>",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -4227,7 +4230,7 @@
                       {
                         "name": "f",
                         "documentation": "The function to execute and whose output to minimize.",
-                        "type": "() => Scalar",
+                        "type": "() => Tensor<Rank.R0>",
                         "optional": false,
                         "isConfigParam": false
                       },
@@ -4253,6 +4256,7 @@
                     "isFunction": true
                   }
                 ],
+                "inheritsFrom": "",
                 "isClass": true
               }
             ]

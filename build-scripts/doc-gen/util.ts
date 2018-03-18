@@ -109,11 +109,10 @@ export function unpackConfigParams(
                 `is documented.`);
           }
           configParams.forEach(configParam => {
-            // Deep copy configParam.
-            const configParamCopy = JSON.parse(JSON.stringify(configParam));
-            configParamCopy.name = configParamName + '.' + configParamCopy.name;
-            params.push(configParamCopy);
+            params.push(configParam);
           });
+          // Hide the original type of the config.
+          docFunction.parameters[i].type = '';
         }
       }
       docFunction.parameters = params;
@@ -428,6 +427,18 @@ export function replaceDocTypeAlias(
   return docTypeString;
 }
 
+export function inlineTypes(
+    docHeadings: DocHeading[], types: {[typeName: string]: string}) {
+  Object.keys(types).forEach(typeName => {
+    const re = getSymbolReplaceRegex(typeName, false /** isMarkdown */);
+    foreachDocFunction(docHeadings, docFunction => {
+      docFunction.parameters.forEach(param => {
+        param.type = param.type.replace(re, types[typeName]);
+      });
+    });
+  });
+}
+
 export interface SymbolAndUrl {
   symbolName: string;
   url: string;
@@ -489,10 +500,16 @@ export function linkSymbols(
         if (symbol['isClass']) {
           symbol.documentation = replaceSymbolsWithLinks(
               symbol.documentation, symbols, true /** isMarkdown */);
+          const classSymbol = symbol as DocClass;
+          if (classSymbol.inheritsFrom != null) {
+            classSymbol.inheritsFrom = replaceSymbolsWithLinks(
+                classSymbol.inheritsFrom, symbols, false /** isMarkdown */);
+          }
         }
       });
     });
   });
+
   foreachDocFunction(docs.headings, method => {
     method.documentation = replaceSymbolsWithLinks(
         method.documentation, symbols, true /** isMarkdown */);
@@ -511,8 +528,7 @@ function replaceSymbolsWithLinks(
     input: string, symbolsAndUrls: SymbolAndUrl[],
     isMarkdown: boolean): string {
   symbolsAndUrls.forEach(symbolAndUrl => {
-    const wrapper = isMarkdown ? '\`' : '\\b(?![\'\:])';
-    const re = new RegExp(wrapper + symbolAndUrl.symbolName + wrapper, 'g');
+    const re = getSymbolReplaceRegex(symbolAndUrl.symbolName, isMarkdown);
 
     let displayText;
     if (symbolAndUrl.type === 'function') {
@@ -525,4 +541,10 @@ function replaceSymbolsWithLinks(
     input = input.replace(re, `[${displayText}](${symbolAndUrl.url})`);
   });
   return input;
+}
+
+function getSymbolReplaceRegex(symbolName: string, isMarkdown: boolean) {
+  const wrapper = isMarkdown ? '\`' : '\\b(?![\'\:])';
+  const re = new RegExp(wrapper + symbolName + wrapper, 'g');
+  return re;
 }
