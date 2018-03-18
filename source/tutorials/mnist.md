@@ -34,9 +34,10 @@ directory above is completely standalone so you can copy it to your own project.
 
 The handwritten MNIST digits we will learn to classify look like this:
 
-<img src="../images/mnist_4.png" alt="mnist 4" style="width: 100px"/>
-<img src="../images/mnist_3.png" alt="mnist 4" style="width: 100px"/>
-<img src="../images/mnist_8.png" alt="mnist 4" style="width: 100px"/>
+
+<img src="../images/mnist_4.png?s=100" alt="mnist 4" style="width: 100px"/>
+<img src="../images/mnist_3.png?s=100" alt="mnist 3" style="width: 100px"/>
+<img src="../images/mnist_8.png?s=100" alt="mnist 8" style="width: 100px"/>
 
 ## Data
 
