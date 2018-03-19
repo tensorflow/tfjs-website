@@ -1783,7 +1783,8 @@
                     "isFunction": true
                   }
                 ],
-                "isClass": true
+                "isClass": true,
+                "inheritsFrom": "Tensor"
               }
             ]
           }
