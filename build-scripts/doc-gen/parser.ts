@@ -26,6 +26,7 @@ import {DocClass, DocFunction, DocFunctionParam, DocHeading, Docs, RepoDocsAndMe
 const DOCUMENTATION_DECORATOR = '@doc';
 const DOCUMENTATION_TYPE_ALIAS = 'docalias';
 const DOCUMENTATION_LINK_ALIAS = 'doclink';
+const DOCUMENTATION_INLINE = 'docinline';
 
 /**
  * Parses the program.
@@ -207,12 +208,16 @@ function visitNode(
 
   // Map types to their text so we inline them.
   if (ts.isTypeAliasDeclaration(node)) {
-    const symbol = checker.getSymbolAtLocation(node.name);
-    node.forEachChild(child => {
-      if (ts.isTypeNode(child)) {
-        types[symbol.getName()] = child.getText();
-      }
-    });
+    const docInline = util.getJsdoc(checker, node, DOCUMENTATION_INLINE);
+
+    if (docInline != null) {
+      const symbol = checker.getSymbolAtLocation(node.name);
+      node.forEachChild(child => {
+        if (ts.isTypeNode(child)) {
+          types[symbol.getName()] = child.getText();
+        }
+      });
+    }
   }
 
   ts.forEachChild(

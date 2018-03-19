@@ -289,7 +289,7 @@ export function getJsdoc(
   for (let i = 0; i < tags.length; i++) {
     const jsdocTag = tags[i];
     if (jsdocTag.name === tag) {
-      return jsdocTag.text.trim();
+      return jsdocTag.text != null ? jsdocTag.text.trim() : '';
     }
   }
   return null;
