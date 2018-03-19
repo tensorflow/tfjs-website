@@ -5,7 +5,12 @@ date: 2018-03-17 13:28:23
 
 # Training on images — Recognizing Handwritten Digits with a Convolutional Neural Network
 
-In the [core concepts tutorial](./core-concepts.html), we learned how to use tensors and operations to perform basic linear algebra. In this tutorial, we will learn the basic building blocks of a TensorFlow.js model to recognize handwritten digits with a deep convolutional classifier. The dataset we will be using is the [MNIST handwriting dataset](http://yann.lecun.com/exdb/mnist/).
+In the [core concepts tutorial](./core-concepts.html), we learned how to use tensors and operations to perform basic linear algebra.
+
+In the [polynomial tutorial](./fit-curve.html), we learned how to use the TensorFlow.js core API
+to learn the coefficients of a polynomial.
+
+In this tutorial, we will learn the basic building blocks of a TensorFlow.js model to recognize handwritten digits with a convolutional neural network. The dataset we will be using is the [MNIST handwriting dataset](http://yann.lecun.com/exdb/mnist/).
 
 ## About this tutorial
 
@@ -24,7 +29,7 @@ yarn watch
 ```
 
 The [tfjs-examples/mnist](https://github.com/tensorflow/tfjs-examples/tree/master/mnist)
-directory above is completely standalone so you can copy it to your own project.
+directory above is completely standalone so you copy it to start your own project.
 
 ### What we will accomplish in this tutorial
 
@@ -43,7 +48,13 @@ that contains a class `MnistData` which fetches random batches of images from a 
 
 `MnistData` splits the entire dataset into training data and test data. When we train the model, the classifier will only see the training set, and when we evaluate it we will only evaluate it with the data from the test set. By hiding the test set from the model during training, we can better see how well it has trained by evaluating it on unseen data.
 
-When training the MNIST classifier, it is important that the data is randomly shuffled so the model isn’t affected by the ordering of the images we feed. For example, we were to feed all of the “1”s digits first, the model might learn to simply predict “1” always and so we haven’t actually learned anything.
+When training the MNIST classifier, it is important that the data is randomly shuffled so the model isn’t affected by the ordering of the images we feed. For example, we were to feed all of the “1”s digits first, during this phase of training, the model might learn to simply predict “1”
+(since this minimizes the cost). If we then fed it "2"s, it might simply switch
+to predicting only "2" and never predict a "1" (since this minimizes the cost for
+this new set of images). The model wouldn't then be able to make an accurate
+prediction over any digit.
+
+ and so we haven’t actually learned anything.
 
 `MnistData` has two public methods:
 
@@ -91,9 +102,17 @@ feed-forward call.
 Another reason we batch our computation is that during optimization, we update
 internal parameters (taking a step) only after averaging gradients from several
 examples. This helps us avoid taking a step in the wrong direction because of
-an outlier example (e.g. mislabeled).
+an outlier example (e.g. a mislabeled digit).
 
-To do this, we introduce a tensor of rank D+1 where D is the dimensionality of a single input. In this case we will feed in a tensor of rank 4 with shape [64, 28, 28, 1] which represents 64 grayscale images, each image is 28x28 pixels.
+To do this, we introduce a tensor of rank D+1 where D is the dimensionality of
+a single input.
+
+The dimensionality of a single image in this case is [28, 28, 1],
+where the canonical format for images is [rows, columns, depth]. The image is
+28x28 grayscale image, and thus has a depth of 1.
+
+We will 64 grayscale images at a time, so the shape of this batch of 64 images
+is [64, 28, 28, 1] (the batch is always the outer-most dimension).
 
 *Note: Notice that the inputShape in the config of the conv2d did not specify the batch size (64). Configs are agnostic of batch size, to remain flexible and be able to take arbitrary batch size.*
 
@@ -253,6 +272,9 @@ const TEST_BATCH_SIZE = 1000;
 const TEST_ITERATION_FREQUENCY = 5;
 ```
 
+`TEST_BATCH_SIZE` is defined to be 1000, so we be test the model accuracy
+against 1000 random examples every few steps.
+
 ### Training loop
 
 Now we're ready to train the model. Here is the code for the training loop:
@@ -310,9 +332,6 @@ Every 5 steps, we will compute the accuracy by constructing `validationData`
 which is an array of two elements containing a batch of MNIST images and their
 corresponding labels.
 
-`TEST_BATCH_SIZE` was defined to be 1000 above, so we will
-be testing the model accuracy against 1000 random examples every few steps.
-
 ```js
 // The entire dataset doesn't fit into memory so we call fit repeatedly
 // with batches.
@@ -325,7 +344,7 @@ const history = await model.fit({
 });
 ```
 
-`model.fit` is where the parameters actually get updated.
+`model.fit` is where the model is trained and parameters actually get updated.
 
 Calling model.fit() once with the whole dataset, will result in uploading the
 whole dataset to the GPU, which could freeze the application. To avoid uploading
@@ -340,9 +359,7 @@ Breaking down the arguments again:
 ```
 
 Remember that we are feeding examples in batches so we must tell the
-`fit` function how large our batch is.
-
-`MnistData.nextTrainBatch`
+`fit` function how large our batch is. `MnistData.nextTrainBatch`
 returns images with shape `[BATCH_SIZE, 784]`, but our model expects a different
 shape, so here we must reshape it.
 
@@ -352,6 +369,7 @@ shape, so here we must reshape it.
 
 By defining `validationData`, we are providing examples for `fit` to compute
 our metrics over, in this case accuracy.
+
 
 ```js
   epochs: 1
