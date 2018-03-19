@@ -236,7 +236,7 @@ export function serializeClass(
   const name = symbol.getName();
 
   // Parse inheritance clauses if they exist.
-  let inheritsFrom = '';
+  let inheritsFrom = null;
   if (node.heritageClauses != null) {
     const extendsSymbols: string[] = [];
     node.heritageClauses.forEach(heritageClause => {
@@ -258,9 +258,14 @@ export function serializeClass(
     fileName: displayFilename,
     githubUrl,
     methods: [],
-    inheritsFrom,
     isClass: true
   };
+  if (inheritsFrom != null) {
+    // Identifier generic map can be undefined here because we just want to
+    // remove generics from the type.
+    const identifierGenericMap = {};
+    docClass.inheritsFrom = util.sanitizeTypeString(inheritsFrom, {});
+  }
 
   // Parse the methods that are annotated with @doc.
   node.members.forEach(member => {

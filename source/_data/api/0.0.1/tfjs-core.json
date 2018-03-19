@@ -1327,7 +1327,6 @@
                     "isFunction": true
                   }
                 ],
-                "inheritsFrom": "",
                 "isClass": true
               },
               {
@@ -1749,7 +1748,6 @@
                     "isFunction": true
                   }
                 ],
-                "inheritsFrom": "",
                 "isClass": true
               },
               {
@@ -1785,8 +1783,8 @@
                     "isFunction": true
                   }
                 ],
-                "inheritsFrom": "Tensor<R>",
-                "isClass": true
+                "isClass": true,
+                "inheritsFrom": "Tensor"
               }
             ]
           }
@@ -4256,7 +4254,6 @@
                     "isFunction": true
                   }
                 ],
-                "inheritsFrom": "",
                 "isClass": true
               }
             ]
