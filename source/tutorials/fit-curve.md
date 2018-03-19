@@ -5,11 +5,11 @@ date: 2018-03-16 16:28:23
 
 # Training First Steps: Fitting a Curve to Synthetic Data
 
-In this first example we will try to have a model learn the parameters for a curve that we want to fit to some data. For this toy example we will generate a synthetic data using a polynomial function with some noise added. We will then have the model try to learn the coefficients used to generate the data.
+In this first example we will have a model learn the parameters for a curve that we want to fit to some data. For this toy example we will generate a synthetic data using a polynomial function with some noise added. We will then have the model try to learn the coefficients used to generate the data.
 
 The **full code** for this tutorial can be found [here](https://github.com/tensorflow/tfjs-examples/tree/master/polynomial-regression-core), we will just look at the interesting parts here and leave out parts like data generation and chart plotting.
 
-To run the code locally do the following
+To run the code locally do the following:
 
 ```
 git clone https://github.com/tensorflow/tfjs-examples
@@ -22,11 +22,11 @@ The tfjs-examples/polynomial-regression-core directory above is completely stand
 
 ## Input Data
 
-Our data are x-y coordinates that look like this
+Our data are x-y coordinates that look like this:
 
 <img src="../images/fit_curve_data.png" alt="Input data scatterplot" style="max-width: 500px;"/>
 
-Here is the polynomial we used.
+Here is the polynomial we used:
 
 <img src="../images/fit_curve_function.png" alt="polynomial function" style="max-width: 300px;"/>
 
@@ -67,13 +67,13 @@ If we were to plot a curve using these random numbers in our polynomial function
 
 ## Train our model
 
-The final step is to have the model learn good values for the co-efficients. To do this we need two things, first a `loss` function that tells us how good we are doing and second a 'train loop' that will actually run our training data through our model.
+The final step is to have the model learn good values for the coefficients. To do this we need two things, a 'loss' function that tells us how good we are doing and a 'train loop' that will actually run our training data through our model.
 
 ```js
 function loss(prediction, labels) {
-  // Having a good error metric is key for training a machine learning model
-  const error = prediction.sub(labels).square().mean();
-  return error;
+  // Having a good loss function is key for training a machine learning model
+  const meanSquareError = prediction.sub(labels).square().mean();
+  return meanSquareError;
 }
 ```
 
