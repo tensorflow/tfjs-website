@@ -23,7 +23,7 @@ import * as util from './util';
 // tslint:disable-next-line:max-line-length
 import {DocClass, DocFunction, DocFunctionParam, DocHeading, Docs, RepoDocsAndMetadata} from './view';
 
-const DOCUMENTATION_DECORATOR = '@doc';
+const DOCUMENTATION_DECORATOR = 'doc';
 const DOCUMENTATION_TYPE_ALIAS = 'docalias';
 const DOCUMENTATION_LINK_ALIAS = 'doclink';
 const DOCUMENTATION_INLINE = 'docinline';

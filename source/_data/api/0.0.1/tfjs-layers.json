@@ -2531,14 +2531,14 @@
                   },
                   {
                     "name": "units",
-                    "documentation": "units: Positive integer, dimensionality of the output space.",
+                    "documentation": "Positive integer, dimensionality of the output space.",
                     "type": "number",
                     "optional": false,
                     "isConfigParam": true
                   },
                   {
                     "name": "activation",
-                    "documentation": "Activation function to use (see [activations](../activations.md)).\nDefault: hyperbolic tangent (`tanh`).\nIf you pass `null`, no activation will be applied\n(i.e., \"linear\" activation: `a(x) = x`).",
+                    "documentation": "Activation function to use.\n\nDefaults to  hyperbolic tangent (`tanh`)\n\nIf you pass `null`, no activation will be applied.",
                     "type": "'elu'|'hardsigmoid'|'linear'|'relu'|'relu6'|\n    'selu'|'sigmoid'|'softmax'|'softplus'|'softsign'|'tanh'|string",
                     "optional": true,
                     "isConfigParam": true
@@ -2552,77 +2552,77 @@
                   },
                   {
                     "name": "kernelInitializer",
-                    "documentation": "Initializer for the `kernel` weights matrix, used for the linear\ntransformation of the inputs (see [initializers](../initializers.md)).",
+                    "documentation": "Initializer for the `kernel` weights matrix, used for the linear\ntransformation of the inputs.",
                     "type": "'Constant'|'GlorotNormal'|'GlorotUniform'|\n    'HeNormal'|'Identity'|'LeCunNormal'|'Ones'|'RandomNormal'|'RandomUniform'|\n    'TruncatedNormal'|'VarianceScaling'|'Zeros'|string|Initializer",
                     "optional": true,
                     "isConfigParam": true
                   },
                   {
                     "name": "recurrentInitializer",
-                    "documentation": "Initializer for the `recurrentKernel` weights matrix, used for\nlinear transformation of the recurrent state\n(see [initializers](../initializers.md)).",
+                    "documentation": "Initializer for the `recurrentKernel` weights matrix, used for\nlinear transformation of the recurrent state.",
                     "type": "'Constant'|'GlorotNormal'|'GlorotUniform'|\n    'HeNormal'|'Identity'|'LeCunNormal'|'Ones'|'RandomNormal'|'RandomUniform'|\n    'TruncatedNormal'|'VarianceScaling'|'Zeros'|string|Initializer",
                     "optional": true,
                     "isConfigParam": true
                   },
                   {
                     "name": "biasInitializer",
-                    "documentation": "Initializer for the bias vector (see [initializers](../initializers.md)).",
+                    "documentation": "Initializer for the bias vector.",
                     "type": "'Constant'|'GlorotNormal'|'GlorotUniform'|\n    'HeNormal'|'Identity'|'LeCunNormal'|'Ones'|'RandomNormal'|'RandomUniform'|\n    'TruncatedNormal'|'VarianceScaling'|'Zeros'|string|Initializer",
                     "optional": true,
                     "isConfigParam": true
                   },
                   {
                     "name": "kernelRegularizer",
-                    "documentation": "Regularizer function applied to the `kernel` weights matrix\n(see [regularizer](../regularizers.md)).",
+                    "documentation": "Regularizer function applied to the kernel weights matrix.",
                     "type": "'L1L2'|string|Regularizer",
                     "optional": true,
                     "isConfigParam": true
                   },
                   {
                     "name": "recurrentRegularizer",
-                    "documentation": "Regularizer function applied to the `recurrent_kernel` weights matrix.\n(see [regularizer](../regularizers.md))",
+                    "documentation": "Regularizer function applied to the recurrentKernel weights matrix.",
                     "type": "'L1L2'|string|Regularizer",
                     "optional": true,
                     "isConfigParam": true
                   },
                   {
                     "name": "biasRegularizer",
-                    "documentation": "Regularizer function applied to the bias vector.\n(see [regularizer](../regularizers.md))",
+                    "documentation": "Regularizer function applied to the bias vector.",
                     "type": "'L1L2'|string|Regularizer",
                     "optional": true,
                     "isConfigParam": true
                   },
                   {
                     "name": "kernelConstraint",
-                    "documentation": "Constraint function applied to the `kernel` weights matrix.\n(see [constraints](../constraints.md)).",
+                    "documentation": "Constraint function applied to the kernel weights matrix.",
                     "type": "'MaxNorm'|'MinMaxNorm'|'NonNeg'|'UnitNorm'|string|Constraint",
                     "optional": true,
                     "isConfigParam": true
                   },
                   {
                     "name": "recurrentConstraint",
-                    "documentation": "Constraint function applied to the `recurrentKernel` weights matrix.\n(see [constraints](../constraints.md)).",
+                    "documentation": "Constraint function applied to the recurrentKernel weights matrix.",
                     "type": "'MaxNorm'|'MinMaxNorm'|'NonNeg'|'UnitNorm'|string|Constraint",
                     "optional": true,
                     "isConfigParam": true
                   },
                   {
                     "name": "biasConstraint",
-                    "documentation": "Constraintfunction applied to the bias vector.\n(see [constraints](../constraints.md)).",
+                    "documentation": "Constraint function applied to the bias vector.",
                     "type": "'MaxNorm'|'MinMaxNorm'|'NonNeg'|'UnitNorm'|string|Constraint",
                     "optional": true,
                     "isConfigParam": true
                   },
                   {
                     "name": "dropout",
-                    "documentation": "Float number between 0 and 1. Fraction of the units to drop for the linear\ntransformation of the inputs.",
+                    "documentation": "Number between 0 and 1. Fraction of the units to drop for the linear\ntransformation of the inputs.",
                     "type": "number",
                     "optional": true,
                     "isConfigParam": true
                   },
                   {
                     "name": "recurrentDropout",
-                    "documentation": "Float number between 0 and 1. Fraction of the units to drop for the linear\ntransformation of the recurrent state.",
+                    "documentation": "Number between 0 and 1. Fraction of the units to drop for the linear\ntransformation of the recurrent state.",
                     "type": "number",
                     "optional": true,
                     "isConfigParam": true
@@ -2942,9 +2942,9 @@
                   "subheading": "Classes"
                 },
                 "symbolName": "Model",
-                "documentation": "The `Model` class adds training & evaluation routines to a `Container`.\n\nA `Model` is the basic unit of training, inference and evaluation in\nTensorFlow.js. To create a `Model, use `model`.\n\nWhen creating a `Model`, specify its input(s) and output(s). Inputs are\n`SymbolicTensor`s provided by `Input` layers. Outputs are `SymbolicTensor`s\nprovided by other layers that perform mathematical and neural-network\noperations.\n\nFor example, the following code snippet defines a model consisting of\ntwo `dense` layers, with of 10 and 4 units, respectively.\n\n```js\n// Define input, which has a size of 5 (not including batch dimension).\nconst input = tf.input({shape: [5]});\n\n// First dense layer uses relu activation.\nconst denseLayer1 = tf.layers.dense({units: 10, activation: 'relu'});\n// Second dense layer uses softmax activation.\nconst denseLayer2 = tf.layers.dense({units: 2, activation: 'softmax'});\n\n// Obtain the output symbolic tensor by applying the layers on the input.\nconst output = denseLayer2.apply(denseLayer1.apply(input));\n\n// Create the model based on the inputs.\nconst model = tf.model({inputs: input, outputs: output});\n\n// The model can be used for training, evaluation and prediction.\n// For example, the following line runs prediction with the model on\n// some fake data.\n(await model.predict(tf.ones([2, 5]))).print();\n```\n\nSee also:\n   `Sequential`, `loadModel`.",
+                "documentation": "The `Model` class adds training & evaluation routines to a `Container`.\n\nA `Model` is the basic unit of training, inference and evaluation in\nTensorFlow.js. To create a `Model, use `model`.\n\nWhen creating a `Model`, specify its input(s) and output(s). Inputs are\n`SymbolicTensor`s provided by `Input` layers. Outputs are `SymbolicTensor`s\nprovided by other layers that perform mathematical and neural-network\noperations.\n\nFor example, the following code snippet defines a model consisting of\ntwo `dense` layers, with of 10 and 4 units, respectively.\n\n```js\n// Define input, which has a size of 5 (not including batch dimension).\nconst input = tf.input({shape: [5]});\n\n// First dense layer uses relu activation.\nconst denseLayer1 = tf.layers.dense({units: 10, activation: 'relu'});\n// Second dense layer uses softmax activation.\nconst denseLayer2 = tf.layers.dense({units: 2, activation: 'softmax'});\n\n// Obtain the output symbolic tensor by applying the layers on the input.\nconst output = denseLayer2.apply(denseLayer1.apply(input));\n\n// Create the model based on the inputs.\nconst model = tf.model({inputs: input, outputs: output});\n\n// The model can be used for training, evaluation and prediction.\n// For example, the following line runs prediction with the model on\n// some fake data.\nmodel.predict(tf.ones([2, 5])).print();\n```\n\nSee also:\n   `Sequential`, `loadModel`.",
                 "fileName": "#649",
-                "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/engine/training.ts#L649-L1638",
+                "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/engine/training.ts#L649-L1637",
                 "methods": [
                   {
                     "docInfo": {
@@ -3029,10 +3029,10 @@
                         "isConfigParam": true
                       }
                     ],
-                    "returnType": "Promise",
-                    "documentation": "Returns the loss value & metrics values for the model in test mode.\n\nLoss and metrics are specified during `compile()`, which needs to happen\nbefore calls to `evaluate()`.\n\nComputation is done in batches.\n\n```js\nconst model = tf.sequential({\n   layers: [tf.layers.dense({units: 1, inputShape: [10]})]\n});\nmodel.compile({optimizer: 'sgd', loss: 'meanSquaredError'});\nconst result = await model.evaluate(tf.ones([8, 10]), tf.ones([8, 1]), {\n   batchSize: 4,\n});\nresult.print();\n```",
-                    "fileName": "#928",
-                    "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/engine/training.ts#L928-L945",
+                    "returnType": "Scalar|Scalar[]",
+                    "documentation": "Returns the loss value & metrics values for the model in test mode.\n\nLoss and metrics are specified during `compile()`, which needs to happen\nbefore calls to `evaluate()`.\n\nComputation is done in batches.\n\n```js\nconst model = tf.sequential({\n   layers: [tf.layers.dense({units: 1, inputShape: [10]})]\n});\nmodel.compile({optimizer: 'sgd', loss: 'meanSquaredError'});\nconst result = model.evaluate(\n     tf.ones([8, 10]), tf.ones([8, 1]), {batchSize: 4});\nresult.print();\n```",
+                    "fileName": "#927",
+                    "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/engine/training.ts#L927-L944",
                     "isFunction": true
                   },
                   {
@@ -3075,10 +3075,10 @@
                         "isConfigParam": true
                       }
                     ],
-                    "returnType": "Promise",
+                    "returnType": "Tensor\n      |Tensor[]",
                     "documentation": "Generates output predictions for the input samples.\n\nComputation is done in batches.\n\nNote: the \"step\" mode of predict() is currently not supported.\n   This is because the TensorFow.js core backend is imperative only.\n\n```js\nconst model = tf.sequential({\n   layers: [tf.layers.dense({units: 1, inputShape: [10]})]\n});\nmodel.predict(tf.ones([8, 10]), {batchSize: 4}).print();\n```",
-                    "fileName": "#1070",
-                    "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/engine/training.ts#L1070-L1080",
+                    "fileName": "#1069",
+                    "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/engine/training.ts#L1069-L1079",
                     "isFunction": true
                   },
                   {
@@ -3099,8 +3099,8 @@
                     ],
                     "returnType": "Tensor|Tensor[]",
                     "documentation": "Returns predictions for a single batch of samples.",
-                    "fileName": "#1088",
-                    "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/engine/training.ts#L1088-L1094",
+                    "fileName": "#1087",
+                    "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/engine/training.ts#L1087-L1093",
                     "isFunction": true
                   },
                   {
@@ -3222,8 +3222,8 @@
                     ],
                     "returnType": "Promise",
                     "documentation": "Trains the model for a fixed number of epochs (iterations on a dataset).\n\n```js\nconst model = tf.sequential({\n   layers: [tf.layers.dense({units: 1, inputShape: [10]})]\n});\nmodel.compile({optimizer: 'sgd', loss: 'meanSquaredError'});\nconst history = await model.fit(tf.ones([8, 10]), tf.ones([8, 1]), {\n   batchSize: 4,\n   epochs: 3\n});",
-                    "fileName": "#1454",
-                    "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/engine/training.ts#L1454-L1637",
+                    "fileName": "#1453",
+                    "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/engine/training.ts#L1453-L1636",
                     "isFunction": true
                   }
                 ],
@@ -3323,8 +3323,8 @@
                         "isConfigParam": true
                       }
                     ],
-                    "returnType": "Promise",
-                    "documentation": "Returns the loss value & metrics values for the model in test mode.\n\nLoss and metrics are specified during `compile()`, which needs to happen\nbefore calls to `evaluate()`.\n\nComputation is done in batches.\n\n```js\nconst model = tf.sequential({\n   layers: [tf.layers.dense({units: 1, inputShape: [10]})]\n});\nmodel.compile({optimizer: 'sgd', loss: 'meanSquaredError'});\nconst result = await model.evaluate(tf.ones([8, 10]), tf.ones([8, 1]), {\n   batchSize: 4,\n});\nresult.print();\n```",
+                    "returnType": "Scalar|Scalar[]",
+                    "documentation": "Returns the loss value & metrics values for the model in test mode.\n\nLoss and metrics are specified during `compile()`, which needs to happen\nbefore calls to `evaluate()`.\n\nComputation is done in batches.\n\n```js\nconst model = tf.sequential({\n   layers: [tf.layers.dense({units: 1, inputShape: [10]})]\n});\nmodel.compile({optimizer: 'sgd', loss: 'meanSquaredError'});\nconst result = model.evaluate(tf.ones([8, 10]), tf.ones([8, 1]), {\n   batchSize: 4,\n});\nresult.print();\n```",
                     "fileName": "#436",
                     "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/models.ts#L436-L445",
                     "isFunction": true
@@ -3369,8 +3369,8 @@
                         "isConfigParam": true
                       }
                     ],
-                    "returnType": "Promise",
-                    "documentation": "Generates output predictions for the input samples.\n\nComputation is done in batches.\n\nNote: the \"step\" mode of predict() is currently not supported.\n   This is because the TensorFow.js core backend is imperative only.\n\n```js\nconst model = tf.sequential({\n   layers: [tf.layers.dense({units: 1, inputShape: [10]})]\n});\n(await model.predict(tf.ones([2, 5]))).print();\n```",
+                    "returnType": "Tensor\n      |Tensor[]",
+                    "documentation": "Generates output predictions for the input samples.\n\nComputation is done in batches.\n\nNote: the \"step\" mode of predict() is currently not supported.\n   This is because the TensorFow.js core backend is imperative only.\n\n```js\nconst model = tf.sequential({\n   layers: [tf.layers.dense({units: 1, inputShape: [10]})]\n});\nmodel.predict(tf.ones([2, 5])).print();\n```",
                     "fileName": "#472",
                     "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/models.ts#L472-L479",
                     "isFunction": true
@@ -3549,7 +3549,7 @@
                   }
                 ],
                 "returnType": "Model",
-                "documentation": "The `Model` class adds training & evaluation routines to a `Container`.\n\nA `Model` is the basic unit of training, inference and evaluation in\nTensorFlow.js. To create a `Model, use `model`.\n\nWhen creating a `Model`, specify its input(s) and output(s). Inputs are\n`SymbolicTensor`s provided by `Input` layers. Outputs are `SymbolicTensor`s\nprovided by other layers that perform mathematical and neural-network\noperations.\n\nFor example, the following code snippet defines a model consisting of\ntwo `dense` layers, with of 10 and 4 units, respectively.\n\n```js\n// Define input, which has a size of 5 (not including batch dimension).\nconst input = tf.input({shape: [5]});\n\n// First dense layer uses relu activation.\nconst denseLayer1 = tf.layers.dense({units: 10, activation: 'relu'});\n// Second dense layer uses softmax activation.\nconst denseLayer2 = tf.layers.dense({units: 2, activation: 'softmax'});\n\n// Obtain the output symbolic tensor by applying the layers on the input.\nconst output = denseLayer2.apply(denseLayer1.apply(input));\n\n// Create the model based on the inputs.\nconst model = tf.model({inputs: input, outputs: output});\n\n// The model can be used for training, evaluation and prediction.\n// For example, the following line runs prediction with the model on\n// some fake data.\n(await model.predict(tf.ones([2, 5]))).print();\n```\n\nSee also:\n   `Sequential`, `loadModel`.",
+                "documentation": "The `Model` class adds training & evaluation routines to a `Container`.\n\nA `Model` is the basic unit of training, inference and evaluation in\nTensorFlow.js. To create a `Model, use `model`.\n\nWhen creating a `Model`, specify its input(s) and output(s). Inputs are\n`SymbolicTensor`s provided by `Input` layers. Outputs are `SymbolicTensor`s\nprovided by other layers that perform mathematical and neural-network\noperations.\n\nFor example, the following code snippet defines a model consisting of\ntwo `dense` layers, with of 10 and 4 units, respectively.\n\n```js\n// Define input, which has a size of 5 (not including batch dimension).\nconst input = tf.input({shape: [5]});\n\n// First dense layer uses relu activation.\nconst denseLayer1 = tf.layers.dense({units: 10, activation: 'relu'});\n// Second dense layer uses softmax activation.\nconst denseLayer2 = tf.layers.dense({units: 2, activation: 'softmax'});\n\n// Obtain the output symbolic tensor by applying the layers on the input.\nconst output = denseLayer2.apply(denseLayer1.apply(input));\n\n// Create the model based on the inputs.\nconst model = tf.model({inputs: input, outputs: output});\n\n// The model can be used for training, evaluation and prediction.\n// For example, the following line runs prediction with the model on\n// some fake data.\nmodel.predict(tf.ones([2, 5])).print();\n```\n\nSee also:\n   `Sequential`, `loadModel`.",
                 "fileName": "#44",
                 "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L44-L52",
                 "isFunction": true

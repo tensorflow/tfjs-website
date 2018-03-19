@@ -45,8 +45,9 @@ export function parseDocDecorators(
   let docInfo: DocInfo = null;
   decorators.map(decorator => {
     const decoratorStr = decorator.getText();
-    if (decoratorStr.startsWith(decoratorName)) {
-      const decoratorConfigStr = decoratorStr.substring(decoratorName.length);
+    if (decoratorStr.startsWith('@' + decoratorName)) {
+      const decoratorConfigStr =
+          decoratorStr.substring(decoratorName.length + 1);
       docInfo = eval(decoratorConfigStr);
       if (docInfo.subheading == null) {
         docInfo.subheading = '';
