@@ -24,11 +24,11 @@ The tfjs-examples/polynomial-regression-core directory above is completely stand
 
 Our data are x-y coordinates that look like this:
 
-<img src="../images/fit_curve_data.png" alt="Input data scatterplot" style="max-width: 500px;"/>
+<img src="../images/fit_curve_data.png" alt="Input data scatterplot" style="max-width: 500px;" max-width="500px"/>
 
 Here is the polynomial we used:
 
-<img src="../images/fit_curve_function.png" alt="polynomial function" style="max-width: 300px;"/>
+<img src="../images/fit_curve_function.png" alt="polynomial function" style="max-width: 300px;" max-width="300px"/>
 
 The thing we want to learn are the values of 'a', 'b', 'c', and 'd' that produces a nice curve that fits the data.
 
@@ -63,7 +63,7 @@ The code above implements the math in our polynomial function. Using the variabl
 
 If we were to plot a curve using these random numbers in our polynomial function, we might get something like this. The orange line represents the values predicted by our model.
 
-<img src="../images/fit_curve_random.png" alt="random coefficients scatterplot" style="max-width: 500px;"/>
+<img src="../images/fit_curve_random.png" alt="random coefficients scatterplot" style="max-width: 500px;" max-width="500px"/>
 
 ## Train our model
 
@@ -85,15 +85,15 @@ function train(xs, ys, numIterations) {
 
   for (let iter = 0; iter < numIterations; iter++) {
     optimizer.minimize(() => {
-      const pred = predict(xs);
-      return loss(pred, ys);
+      const predsYs = predict(xs);
+      return loss(predsYs, ys);
     });
 }
 ```
 
 ## See the results!
 
-Once this is done we can take the final values of our variable a, b, c, and d and use them to plot a curve.
+Once this is done, we can take the final values of our variable a, b, c, and d and use them to plot a curve.
 
 <img src="../images/fit_curve_learned.png" alt="Input data scatterplot" style="max-width: 500px;"/>
 
