@@ -7,7 +7,18 @@ date: 2018-03-16 16:28:23
 
 In this first example we will try to have a model learn the parameters for a curve that we want to fit to some data. For this toy example we will generate a synthetic data using a polynomial function with some noise added. We will then have the model try to learn the coefficients used to generate the data.
 
-The **full code** for this tutorial can be found at ..., we will just look at the interesting parts here and leave out parts like data generation and chart plotting.
+The **full code** for this tutorial can be found [here](https://github.com/tensorflow/tfjs-examples/tree/master/polynomial-regression-core), we will just look at the interesting parts here and leave out parts like data generation and chart plotting.
+
+To run the code locally do the following
+
+```
+git clone https://github.com/tensorflow/tfjs-examples
+cd tfjs-examples/polynomial-regression-core
+yarn
+yarn watch
+```
+
+The tfjs-examples/polynomial-regression-core directory above is completely standalone so you can copy it to start your own project.
 
 ## Input Data
 
@@ -25,7 +36,7 @@ Lets take a look at how we might learn those values, known as _coefficients_, us
 
 ## Set up variables
 
-Our first step will be to create some variables to hold our current best guess of these values.
+Our first step will be to create some variables to hold our current best guess of these values. Note that we start with random guesses for these values.
 
 ```js
 const a = tf.variable(tf.scalar(Math.random()));
@@ -33,10 +44,6 @@ const b = tf.variable(tf.scalar(Math.random()));
 const c = tf.variable(tf.scalar(Math.random()));
 const d = tf.variable(tf.scalar(Math.random()));
 ```
-
-We will start with random numbers for each coefficient. If we were to plot a curve using these random numbers in our polynomial function, we might get a plot like this.
-
-<img src="../images/fit_curve_random.png" alt="random coefficients scatterplot" style="max-width: 500px;"/>
 
 ## Write our model
 
@@ -53,6 +60,10 @@ function predict(x) {
 ```
 
 The code above implements the math in our polynomial function. Using the variables as coefficients. At the start we will get pretty bad results as the values of a, b, c, and d are random.
+
+If we were to plot a curve using these random numbers in our polynomial function, we might get something like this. The orange line represents the values predicted by our model.
+
+<img src="../images/fit_curve_random.png" alt="random coefficients scatterplot" style="max-width: 500px;"/>
 
 ## Train our model
 
@@ -86,5 +97,5 @@ Once this is done we can take the final values of our variable a, b, c, and d an
 
 <img src="../images/fit_curve_learned.png" alt="Input data scatterplot" style="max-width: 500px;"/>
 
-Much Better than random! The **full code** for this tutorial can be found at ... feel free to download it and experiment with some of the different variables in the code.
+Much Better than random! The **full code** for this tutorial can be found [here](https://github.com/tensorflow/tfjs-examples/tree/master/polynomial-regression-core) feel free to download it and experiment with some of the different variables in the code.
 
