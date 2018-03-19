@@ -1,52 +1,57 @@
 <div class="page index-page">
   <div class="hero">
     <div class="hero-title">
-      TensorFlow.js
+      <h1>
+         TensorFlow.js
+      </h1>
+      <p>
+        A WebGL accelerated, browser based JavaScript library for training and deploying ML models.
+        <br>
+
+        <br>
+
+      </p>
     </div>
   </div>
 
   <div class="content">
-    <div class="initial-blurb">
+    {{!-- <div class="initial-blurb">
        TensorFlow.js is a machine learning framework for JavaScript developers. It supports building ML models in JavaScript, and
       training and deploying them in the browser for execution using WebGL acceleration. It is compatible with TensorFlow, and
       supports importing saved TensorFlow models. It permits execution of models on data kept at client-side, thus enabling applications
       where data privacy and regulations may require this. Also, In the future, it will also include support for running models
       in a Node.js runtime with TensorFlow backend.
       <hr />
-    </div>
+    </div> --}}
 
     <div class="value-props">
       <div class="proposition">
-        <div class="title">TensorFlow Compatible</div>
+        <div class="title">Develop ML in the Browser</div>
         <span>
-          Using included converters, existing saved TensorFlow (and Keras) models can be converted into a TensorFlow.js compatible format. These imported models can then be executed in a web application. This is useful for ML beginners who are  experimenting with ML methods, as well as for data scientists who want to run existing ML models on their client-side data with no ML infrastructure needing to be installed.
-          </span>
-      </div>
-
-      <div class="proposition">
-        <div class="title">Retraining</div>
-        <span>
-           An application developer with moderate ML and JS knowledge can take an imported ML model and retrain/modify it to develop
-          a new model which can be used in their intended application. Principle advantages this affords is easy access to local sensor
-          data attached to the browser (eg, webcams and microphones), as well as the interactivity and visualization capabilities of
-          a browser development environment.
-
+          Use flexible and intuitive APIs to build models from scratch using the low-level JavaScript linear algebra library or the
+          high-level layers API
         </span>
       </div>
 
       <div class="proposition">
-        <div class="title">Train in the browser</div>
+        <div class="title">Run Existing models</div>
         <span>
-           A JavaScript developer familiar with ML wanting to design and develop new models and methods can use the powerful, flexible,
-          and intuitive APIs to build models from scratch or clone existing projects. The developed solutions can be executed in browser
-          with native web acceleration. Or when scaling up these models for more compute resources, the models can be executed with
-          Node.js bindings to a TensorFlow backend.
+          Use TensorFlow.js model converters to run pre-existing TensorFlow models right in the browser.
         </span>
       </div>
+
+      <div class="proposition">
+        <div class="title">Retrain Existing models</div>
+        <span>
+          Retrain pre-existing ML models using sensor data connected to the browser, or on client-side data.
+        </span>
+      </div>
+
+
     </div>
 
     <div class="demos">
-
+      <h1>Demos</h1>
       <div class="demo-block">
         <div class="info">
           <div class="title">
@@ -134,15 +139,33 @@
   result.data().then(data => console.log(data)); // Float32Array([3, 4, 5])
 
   // Option 2: Synchronous download of data. Blocks the UI.
-  console.log(result.dataSync()
+  console.log(result.dataSync());
   </code>
 </pre>
       </div>
     </div>
 
     <div class="getting-help">
-      <h1>Need Help?</h1>
-      <p>Some text here about where to get help</p>
+      <h1>Need Help? Want to connect with others?</h1>
+      <p>
+        Feel free to file issues on our <a href="">GitHub Repository</a> if you run into bugs using the library.
+        We also have a <a href="">community mailing list</a> for people to ask questions and share what they are doing with
+        TensorFlow.js! To keep up to date with TensorFlow.js news follow us on <a href="">twitter</a> or join the <a href="">announcement only</a> mailing list.
+        <ul>
+          <li>
+            <a href="">GitHub Issues</a>
+          </li>
+          <li>
+            <a href="">Community Discussion List</a>
+          </li>
+          <li>
+            <a href="">Announcement only mailing list</a>
+          </li>
+          <li>
+            <a href="">Twitter</a>
+          </li>
+        </ul>
+      </p>
     </div>
 
   </div>

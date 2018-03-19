@@ -2,6 +2,9 @@
 
 $header-height: 64px;
 $footer-height: 64px;
+
+$brand-color-main: #FB7923;
+
 body {
   margin: 0;
   @include mdc-typography-base();
@@ -17,15 +20,44 @@ body {
     max-width: 800px;
   }
 
+  a {
+    color: blue;
+    &:visited {
+      color: blue;
+    }
+  }
+
   header {
     padding-right: 24px;
+    background-color: $brand-color-main !important;
+    border-bottom: 1px solid rgba(255,255,255, 0.3);
     a {
-      padding: 10px 15px 10px 15px;
+      padding: 10px 0px 22px 0px;
+      margin: 0px 20px 0px 20px;
+
       color: white;
+      text-decoration: none;
+      border-bottom: 1px solid;
+      border-color: rgba(255,255,255, 0.0);
+
+      transition: border-color 200ms;
+
+      &:visited {
+        color: white
+      }
 
       &.cta {
         padding: 10px 25px 10px 25px;
-        background-color: #3367D6;
+        background-color: #6200ee;
+        border-radius: 4px;
+      }
+
+      &:hover {
+        border-color: white;
+      }
+
+      &.button-link {
+        border-bottom: none;
       }
     }
 
@@ -44,12 +76,18 @@ body {
 
   footer {
     background-color: white;
+
+    a {
+      padding: 10px 0px 22px 0px;
+      margin: 0px 20px 0px 20px;
+      color: black;
+    }
   }
 
   h1 {
-    @include mdc-typography('display3');
-    color: #FF9000;
-    font-weight: 300;
+    @include mdc-typography('display1');
+    color: $brand-color-main;
+    // font-weight: 300;
     margin-top: 64px;
   }
 
@@ -85,25 +123,43 @@ body {
 
   .hero {
     display: flex;
-    background-image: url('../images/placeholder.png');
-    background-size: cover;
+    background: linear-gradient(#FB7923, #FBC000);
+
+
+
     width: 100%;
-    height: 375px;
+    height: 400px;
     // background: green;
 
     align-items: center;
     justify-content: center;
 
     .hero-title {
-      @include mdc-typography("display4");
-      font-weight: 100;
       color: white;
+
+      display: flex;
+      flex-direction: column;
+
+      align-items: center;
+      text-align: center;
+      h1 {
+        @include mdc-typography("display3");
+        // font-weight: 100;
+        margin: 0;
+        color: white;
+      }
+
+      p {
+        @include mdc-typography("title");
+        max-width: 70%;
+        // margin: 0;
+      }
     }
   }
 
   .content {
     margin: 0 auto;
-    margin-top: 100px;
+    margin-top: 60px;
     max-width: 960px;
 
     .initial-blurb {
@@ -119,22 +175,24 @@ body {
 
     .value-props {
       display: flex;
-      margin-top: 60px;
+      margin-top: 80px;
       margin-bottom: 100px;
       flex-direction: row;
+      justify-content: space-around;
 
       .proposition {
         // @include mdc-typography("subheading1");
-        padding: 35px;
+        // padding: 35px;
         line-height: 1.45em;
+        width: 28%;
 
-        &:last-of-type {
-          padding-right:0;
-        }
+        // &:last-of-type {
+        //   padding-right:0;
+        // }
 
-        &:first-of-type {
-          padding-left:0;
-        }
+        // &:first-of-type {
+        //   padding-left:0;
+        // }
 
         .title {
           @include mdc-typography("title");
