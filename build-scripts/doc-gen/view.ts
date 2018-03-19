@@ -48,6 +48,7 @@ export interface DocClass {
   githubUrl: string;
 
   methods: DocFunction[];
+  inheritsFrom?: string;
 
   isClass: true;
 
