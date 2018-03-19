@@ -12,7 +12,7 @@ Also learn a few useful tips about memory management and writing "tidy" code.
 
 <h2><a href="./fit-curve.html">Training First Steps: Fitting a Curve to Synthetic Data</a></h2>
 
-In this tutorial we will build a small toy model completely from scratch using TensorFlow.js operations. We will try to fit a curve to some synthetic data that will will generate using a polynomial function.
+In this tutorial we will build a small toy model completely from scratch using TensorFlow.js operations. We will fit a curve to some synthetic data that we generate using a polynomial function.
 
 <h2><a href="http://google.com">Training on images — Recognizing Handwritten Digits with a Convolutional Neural Network</a></h2>
 

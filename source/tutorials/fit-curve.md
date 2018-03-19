@@ -24,11 +24,11 @@ The tfjs-examples/polynomial-regression-core directory above is completely stand
 
 Our data are x-y coordinates that look like this:
 
-<img src="../images/fit_curve_data.png" alt="Input data scatterplot" style="max-width: 500px;" max-width="500px"/>
+<img src="../images/fit_curve_data.png" alt="Input data scatterplot" style="max-width: 500px;" width="500"/>
 
 Here is the polynomial we used:
 
-<img src="../images/fit_curve_function.png" alt="polynomial function" style="maxWidth: 300px;" max-width="300px"/>
+<img src="../images/fit_curve_function.png" alt="polynomial function" style="maxWidth: 300px;" width="300"/>
 
 The thing we want to learn are the values of 'a', 'b', 'c', and 'd' that produces a nice curve that fits the data.
 
@@ -63,7 +63,7 @@ The code above implements the math in our polynomial function. Using the variabl
 
 If we were to plot a curve using these random numbers in our polynomial function, we might get something like this. The orange line represents the values predicted by our model.
 
-<img src="../images/fit_curve_random.png" alt="random coefficients scatterplot" style="maxWidth: 500px;" max-width="500px"/>
+<img src="../images/fit_curve_random.png" alt="random coefficients scatterplot" style="maxWidth: 500px;" width="500"/>
 
 ## Train our model
 
@@ -95,7 +95,7 @@ function train(xs, ys, numIterations) {
 
 Once this is done, we can take the final values of our variable a, b, c, and d and use them to plot a curve.
 
-<img src="../images/fit_curve_learned.png" alt="Input data scatterplot" style="maxWidth: 500px;"/>
+<img src="../images/fit_curve_learned.png" alt="Input data scatterplot" style="maxWidth: 500px;" width="500"/>
 
 Much Better than random! The **full code** for this tutorial can be found [here](https://github.com/tensorflow/tfjs-examples/tree/master/polynomial-regression-core) feel free to download it and experiment with some of the different variables in the code.
 
