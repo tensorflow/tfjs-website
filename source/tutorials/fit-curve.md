@@ -107,7 +107,7 @@ The `learningRate` controls how big the models adjustments will be when its tryi
 const optimizer = tf.train.sgd(learningRate);
 ```
 
-The optimizer is responsible for the algorithm that will actually to the learning. This example uses [Stochastic Gradient Descent](https://developers.google.com/machine-learning/crash-course/glossary#SGD)  (SGD) to do the learning. These algorithms are called optimizers because their goal is to optimize the variables we set up earlier to produce high quality predictions.
+An optimizer implements a specific algorithm that drives learning. This example uses [Stochastic Gradient Descent](https://developers.google.com/machine-learning/crash-course/glossary#SGD) (SGD). These algorithms are called optimizers because their goal is to optimize the variables we set up earlier to produce high quality predictions.
 
 <br/>
 
