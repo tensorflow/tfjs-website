@@ -9,8 +9,9 @@
         {{#parameters}}
         <li class="parameter{{#if isConfigParam}} config-parameter{{/if}}">
           <span class="param-name">
-            {{name}}:&nbsp;{{{markdownInner type}}}
+            {{name}}{{#if type}}:&nbsp;{{{markdownInner type}}}{{/if}}
           </span>
+          <span> {{#unless type}} an object with properties:{{/unless}}</span>
           <span class="param-docs">
             {{{markdownInner documentation}}}
           </span>
@@ -75,6 +76,11 @@
                   <a class="symbol-name" name="{{urlHash}}" href="#{{urlHash}}">{{displayName}}</a>{{paramStr}}
                 </h5>
 
+                {{#if isClass}}
+                  {{#if inheritsFrom}}
+                    <span>extends {{{markdownInner inheritsFrom}}}</span>
+                  {{/if}}
+                {{/if}}
                 <div class="documentation">{{{markdown documentation}}}</div>
 
                 {{#isFunction}}

@@ -23,9 +23,10 @@ import * as util from './util';
 // tslint:disable-next-line:max-line-length
 import {DocClass, DocFunction, DocFunctionParam, DocHeading, Docs, RepoDocsAndMetadata} from './view';
 
-const DOCUMENTATION_DECORATOR = '@doc';
+const DOCUMENTATION_DECORATOR = 'doc';
 const DOCUMENTATION_TYPE_ALIAS = 'docalias';
 const DOCUMENTATION_LINK_ALIAS = 'doclink';
+const DOCUMENTATION_INLINE = 'docinline';
 
 /**
  * Parses the program.
@@ -50,6 +51,7 @@ export function parse(
       {[symbolName: string]: {docs: string, params: DocFunctionParam[]}} = {};
   const configInterfaceParamMap:
       {[interfaceName: string]: DocFunctionParam[]} = {};
+  const types: {[typeName: string]: string} = {};
 
   // Use the same compiler options that we use to compile the library
   // here.
@@ -67,7 +69,7 @@ export function parse(
           sourceFile,
           node => visitNode(
               docHeadings, subclassMethodMap, docTypeAliases, docLinkAliases,
-              globalSymbolDocMap, configInterfaceParamMap, checker, node,
+              globalSymbolDocMap, configInterfaceParamMap, types, checker, node,
               sourceFile, srcRoot, repoPath, githubRoot));
     }
   }
@@ -76,6 +78,7 @@ export function parse(
   util.replaceUseDocsFromDocStrings(docHeadings, globalSymbolDocMap);
   util.addSubclassMethods(docHeadings, subclassMethodMap);
   util.replaceDocTypeAliases(docHeadings, docTypeAliases);
+  util.inlineTypes(docHeadings, types);
 
   const docs: Docs = {headings: docHeadings};
 
@@ -91,8 +94,9 @@ function visitNode(
     globalSymbolDocMap:
         {[symbolName: string]: {docs: string, params: DocFunctionParam[]}},
     configInterfaceParamMap: {[interfaceName: string]: DocFunctionParam[]},
-    checker: ts.TypeChecker, node: ts.Node, sourceFile: ts.SourceFile,
-    srcRoot: string, repoPath: string, githubRoot: string) {
+    types: {[typeName: string]: string}, checker: ts.TypeChecker, node: ts.Node,
+    sourceFile: ts.SourceFile, srcRoot: string, repoPath: string,
+    githubRoot: string) {
   if (ts.isMethodDeclaration(node)) {
     const symbol = checker.getSymbolAtLocation(node.name);
     const docInfo = util.getDocDecorator(node, DOCUMENTATION_DECORATOR);
@@ -202,11 +206,25 @@ function visitNode(
     configInterfaceParamMap[symbol.getName()] = params;
   }
 
+  // Map types to their text so we inline them.
+  if (ts.isTypeAliasDeclaration(node)) {
+    const docInline = util.getJsdoc(checker, node, DOCUMENTATION_INLINE);
+
+    if (docInline != null) {
+      const symbol = checker.getSymbolAtLocation(node.name);
+      node.forEachChild(child => {
+        if (ts.isTypeNode(child)) {
+          types[symbol.getName()] = child.getText();
+        }
+      });
+    }
+  }
+
   ts.forEachChild(
       node,
       node => visitNode(
           docHeadings, subclassMethodMap, docTypeAliases, docLinkAliases,
-          globalSymbolDocMap, configInterfaceParamMap, checker, node,
+          globalSymbolDocMap, configInterfaceParamMap, types, checker, node,
           sourceFile, srcRoot, repoPath, githubRoot));
 }
 
@@ -216,6 +234,18 @@ export function serializeClass(
     srcRoot: string, githubRoot: string): DocClass {
   const symbol = checker.getSymbolAtLocation(node.name);
   const name = symbol.getName();
+
+  // Parse inheritance clauses if they exist.
+  let inheritsFrom = null;
+  if (node.heritageClauses != null) {
+    const extendsSymbols: string[] = [];
+    node.heritageClauses.forEach(heritageClause => {
+      heritageClause.types.forEach(type => {
+        extendsSymbols.push(type.getText());
+      });
+    });
+    inheritsFrom = extendsSymbols.join('|');
+  }
 
   const {displayFilename, githubUrl} =
       util.getFileInfo(node, sourceFile, repoPath, srcRoot, githubRoot);
@@ -230,6 +260,12 @@ export function serializeClass(
     methods: [],
     isClass: true
   };
+  if (inheritsFrom != null) {
+    // Identifier generic map can be undefined here because we just want to
+    // remove generics from the type.
+    const identifierGenericMap = {};
+    docClass.inheritsFrom = util.sanitizeTypeString(inheritsFrom, {});
+  }
 
   // Parse the methods that are annotated with @doc.
   node.members.forEach(member => {
