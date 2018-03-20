@@ -54,8 +54,6 @@ to predicting only "2" and never predict a "1" (since this minimizes the cost fo
 this new set of images). The model wouldn't then be able to make an accurate
 prediction over any digit.
 
- and so we haven’t actually learned anything.
-
 `MnistData` has two public methods:
 
 1. `nextTrainBatch(batchSize)`: returns a batch of images and their labels from the training set
