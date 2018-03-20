@@ -10,7 +10,9 @@ date: 2018-03-02 11:45:36
 Learn about core concepts in TensorFlow.js such tensors, operations, models, layers and training.
 Also learn a few useful tips about memory management and writing "tidy" code.
 
-<h2><a href="http://google.com">Training First Steps — Fitting a curve to synthetic data</a></h2>
+<h2><a href="./fit-curve.html">Training First Steps: Fitting a Curve to Synthetic Data</a></h2>
+
+In this tutorial we will build a small toy model completely from scratch using TensorFlow.js operations. We will fit a curve to some synthetic data that we generate using a polynomial function.
 
 <h2><a href="./mnist.html">Training on images — Recognizing Handwritten Digits with a Convolutional Neural Network</a></h2>
 
