@@ -12,7 +12,11 @@ Also learn a few useful tips about memory management and writing "tidy" code.
 
 <h2><a href="http://google.com">Training First Steps — Fitting a curve to synthetic data</a></h2>
 
-<h2><a href="http://google.com">Training on images — Recognizing Handwritten Digits with a Convolutional Neural Network</a></h2>
+<h2><a href="./mnist.html">Training on images — Recognizing Handwritten Digits with a Convolutional Neural Network</a></h2>
+
+In this tutorial we will build a convolutional neural network to recognize
+handwritten digits in images (MNIST). We will use the TensorFlow.js layers API
+to construct, train, and evaluate the model.
 
 <h2><a href="http://google.com">How to import a Keras Model into Tensorflow.js</a></h2>
 
