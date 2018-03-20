@@ -12,12 +12,15 @@
         <a href="{{url_for '/#getting-started'}}">Getting Started</a>
         <a href="{{url_for '/tutorials/'}}">Tutorials</a>
         <a href="{{url_for (concat '/api/' (latestVersion))}}/">Documentation</a>
+        <a href="{{url_for '/faq/'}}">FAQ</a>
 
       </nav>
     </section>
     <section class="mdc-toolbar__section mdc-toolbar__section mdc-toolbar__section--align-end">
       <nav>
-        <a class="cta" target='_blank' href="https://github.com/tensorflow/tfjs">GITHUB</a>
+        <a class='button-link' href="https://github.com/tensorflow/tfjs">
+          <button class="mdc-button mdc-button--raised">GitHub</button>
+        </a>
       </nav>
     </section>
   </div>
