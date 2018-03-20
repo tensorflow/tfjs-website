@@ -14,7 +14,9 @@ date: 2018-03-14 16:28:23
 
 The central unit of data in **TensorFlow.js** is the `Tensor`. A `Tensor` consists of a set of numerical values shaped into an array of one or more dimensions. The `shape` attribute defines their shape (i.e. how many values in each dimension of the tensor).
 
-The library provides sugar functions to create for low-rank Tensors: `tf.scalar`, `tf.tensor1D`, `tf.tensor2D`, `tf.tensor3D` and `tf.tensor4D`, as well as helper functions to construct them.
+The primary Tensor constructor is the `tf.tensor` function, however the library
+also provides sugar functions to create low-rank Tensors: `tf.scalar`,
+`tf.tensor1d`, `tf.tensor2d`, `tf.tensor3d` and `tf.tensor4d`.
 
 Example usage with a 2x3 matrix:
 
