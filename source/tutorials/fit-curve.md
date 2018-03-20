@@ -5,7 +5,7 @@ date: 2018-03-16 16:28:23
 
 # Training First Steps: Fitting a Curve to Synthetic Data
 
-In this first example we will have a model learn the parameters for a curve that we want to fit to some data. For this toy example we will generate a synthetic data using a polynomial function with some noise added. We will then have the model try to learn the coefficients used to generate the data.
+In this first example we will have a model learn the parameters for a curve that we want to fit to some data. For this toy example we will generate a synthetic dataset using a polynomial function with some noise added. We will then have the model learn the coefficients used to generate the data.
 
 The **full code** for this tutorial can be found [here](https://github.com/tensorflow/tfjs-examples/tree/master/polynomial-regression-core), we will just look at the interesting parts here and leave out parts like data generation and chart plotting.
 
@@ -18,7 +18,7 @@ yarn
 yarn watch
 ```
 
-The tfjs-examples/polynomial-regression-core directory above is completely standalone so you can copy it to start your own project.
+The [tfjs-examples/polynomial-regression-core](https://github.com/tensorflow/tfjs-examples/tree/master/polynomial-regression-core) directory above is completely standalone so you can copy it to start your own project.
 
 ## Input Data
 
@@ -36,7 +36,7 @@ Lets take a look at how we might learn those values, known as _coefficients_, us
 
 ## Set up variables
 
-Our first step will be to create some variables to hold our current best guess of these values. Note that we start with random guesses for these values.
+Our first step will be to create some variables to hold our current best estimate of these values. Note that we start with random numbers for these values.
 
 ```js
 const a = tf.variable(tf.scalar(Math.random()));
@@ -51,7 +51,7 @@ const d = tf.variable(tf.scalar(Math.random()));
 function predict(x) {
   // y = a * x ^ 3 + b * x ^ 2 + c * x + d
   return tf.tidy(() => {
-    return a.mul(x.pow(tf.scalar(3, 'int32')))
+    return a.mul(x.pow(tf.scalar(3)))
       .add(b.mul(x.square()))
       .add(c.mul(x))
       .add(d);
@@ -67,7 +67,7 @@ If we were to plot a curve using these random numbers in our polynomial function
 
 ## Train our model
 
-The final step is to have the model learn good values for the coefficients. To do this we need two things, a 'loss' function that tells us how good we are doing and a 'train loop' that will actually run our training data through our model.
+The final step is to have the model learn good values for the coefficients. To do this we need two things, a _loss_ function that tells us how good the predictions of the model are, and a _train loop_ that will actually run our training data through our model.
 
 ```js
 function loss(prediction, labels) {
@@ -91,9 +91,39 @@ function train(xs, ys, numIterations) {
 }
 ```
 
+<br/>
+
+Lets take a closer look at a few of these lines
+
+```js
+const learningRate = 0.5;
+```
+
+The `learningRate` controls how big the models adjustments will be when its trying to improve its predictions. A low learning rate will make the learning process slow, while a high learning rate might result in the model oscillating around the right values and always overcorrecting.
+
+<br/>
+
+```js
+const optimizer = tf.train.sgd(learningRate);
+```
+
+The optimizer is responsible for the algorithm that will actually to the learning. This example uses [Stochastic Gradient Descent](https://developers.google.com/machine-learning/crash-course/glossary#SGD)  (SGD) to do the learning. These algorithms are called optimizers because their goal is to optimize the variables we set up earlier to produce high quality predictions.
+
+<br/>
+
+```js
+optimizer.minimize(() => {
+  const predsYs = predict(xs);
+  return loss(predsYs, ys);
+});
+```
+
+The minimize function is where the magic happens. It takes a function that __uses some variables__ and __returns a loss value__. The loss value is a single positive value (a scalar) that represents how good the model prediction was. In this examples, the predict function uses our variables and the loss function uses the [mean squared error](https://en.wikipedia.org/wiki/Mean_squared_error) metric to estimate quality. The optimizer will _automatically_ adjust any variables used within the callback function in order to _minimize_ loss.
+
+
 ## See the results!
 
-Once this is done, we can take the final values of our variable a, b, c, and d and use them to plot a curve.
+Once the program finishes running, we can take the final values of our variable a, b, c, and d and use them to plot a curve.
 
 <img src="../images/fit_curve_learned.png" alt="Input data scatterplot" style="maxWidth: 500px;" width="500"/>
 
