@@ -1,22 +1,22 @@
 <!-- Header -->
 <header class="mdc-toolbar">
   <div class="mdc-toolbar__row">
-    <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
+    <section class="mdc-toolbar__section mdc-toolbar__section--align-start mdc-toolbar__section--shrink-to-fit">
       <button id="nav-menu-button" class="material-icons mdc-toolbar__menu-icon">menu</button>
       <span class="mdc-toolbar__title">
         <a href="{{url_for ''}}">TensorFlow.js</a>
       </span>
+
     </section>
     <section class="mdc-toolbar__section">
       <nav>
         <a href="{{url_for '/#getting-started'}}">Getting Started</a>
         <a href="{{url_for '/tutorials/'}}">Tutorials</a>
-        <a href="{{url_for (concat '/api/' (latestVersion))}}/">Documentation</a>
+        <a href="{{url_for (concat '/api/' (latestVersion))}}/">API Reference</a>
         <a href="{{url_for '/faq/'}}">FAQ</a>
-
       </nav>
     </section>
-    <section class="mdc-toolbar__section mdc-toolbar__section mdc-toolbar__section--align-end">
+    <section class="mdc-toolbar__section mdc-toolbar__section mdc-toolbar__section--shrink-to-fit mdc-toolbar__section--align-end">
       <nav>
         <a class='button-link' href="https://github.com/tensorflow/tfjs">
           <button class="mdc-button mdc-button--raised">GitHub</button>
