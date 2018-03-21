@@ -1,127 +1,27 @@
-<div class="page">
-  {{#with (getApi page.site.data page.title)}}
-
-    <!-- Partials -->
-    {{#*inline "paramList"}} {{#if parameters.length}}
-    <div class="parameter-list">
-      <div class="parameter-heading">Parameters:</div>
-      <ul>
-        {{#parameters}}
-        <li class="parameter{{#if isConfigParam}} config-parameter{{/if}}">
-          <span class="param-name">
-            {{name}}{{#if type}}:&nbsp;{{{markdownInner type}}}{{/if}}
-          </span>
-          <span> {{#unless type}} an object with properties:{{/unless}}</span>
-          <span class="param-docs">
-            {{{markdownInner documentation}}}
-          </span>
-          {{#optional}}
-          <span class="chip">
-            Optional
-          </span>
-          {{/optional}}
-        </li>
-        {{/parameters}}
-      </ul>
-    </div>
-    {{/if}} {{/inline}}
-    <!-- END Partials -->
-
-
-    <div class="api-docs">
-      <div class="content-area">
-        <div class="toc">
-          <div class="section">
-            <div class='section-title mdl-typography--title'>API Reference </div>
-            <div class="sub-section-title mdl-typography--subhead-color-contrast">(v 0.5)</div>
-          </div>
-          {{#headings}}
-          <div class="section">
-            <div class="section-title mdl-typography--title">
-              <a href="#{{name}}-{{subheadings.0.name}}">{{name}}</a>
-            </div>
-            {{#subheadings}}
-            <div class="subsection">
-              <div class="sub-section-title mdl-typography--subhead">
-                <a href="#{{../name}}-{{name}}">{{name}}</a>
-              </div>
-              {{#symbols}}
-              <div class="symbol">
-                <a href="#{{urlHash}}">{{displayName}}</a>
-              </div>
-              {{/symbols}}
-            </div>
-            {{/subheadings}}
-          </div>
-          {{/headings}}
-        </div>
-
-        <div class="reference">
-          {{#headings}}
-          <div class="section">
-            <div id="{{name}}" name="{{name}}" class="symbol-name section-title mdl-typography--display-3">{{name}}</div>
-            <div class="section-description mdl-typography--headline">{{{description}}}</div>
-            {{#subheadings}}
-            <div class="subsection">
-              <div id="{{../name}}-{{name}}" name="{{../name}}-{{name}}" class="symbol-name subsection-title mdl-typography--display-3">{{../name}} &nbsp;/&nbsp; {{name}}</div>
-              <div class="subsection-description mdl-typography--headline">{{{description}}}</div>
-              {{#symbols}}
-              <div class="symbol">
-                <h5 id="{{urlHash}}">
-                  {{#if isClass}}
-                  <span class="chip">Class</span>
-                  {{else}}
-                  <span class="symbol-marker">&fnof;</span>
-                  {{/if}}
-                  <a class="symbol-name" name="{{urlHash}}" href="#{{urlHash}}">{{displayName}}</a>{{paramStr}}
-                </h5>
-
-                {{#if isClass}}
-                  {{#if inheritsFrom}}
-                    <span>extends {{{markdownInner inheritsFrom}}}</span>
-                  {{/if}}
-                {{/if}}
-                <div class="documentation">{{{markdown documentation}}}</div>
-
-                {{#isFunction}}
-
-                <!-- Params -->
-                {{> paramList }}
-
-                <div class="returns">
-                  <span class="returns-header">
-                    Returns:
-                  </span>
-                  <span class="return-type">{{{markdownInner returnType}}}</span>
-                </div>
-                {{/isFunction}} {{#isClass}}
-                <h6>Methods:</h6>
-                {{#methods}}
-                <div class="method">
-                  <span class="method-name">
-                    <code>{{symbolName}}{{paramStr}}</code>
-                  </span>
-                  <span class="method-docs">
-                    {{#optional}}(Optional){{/optional}} {{{markdownInner documentation}}}
-
-                    <!-- Params -->
-                    {{> paramList }}
-                  </span>
-                </div>
-                {{/methods}} {{/isClass}}
-
-                <div class="source-ref">
-                  Defined in
-                  <a href="{{githubUrl}}" target=_blank>{{fileName}}</a>
-                </div>
-              </div>
-              {{/symbols}}
-            </div>
-            {{/subheadings}}
-          </div>
-          {{/headings}}
-        </div>
+<div class="page api-docs">
+{{#with (getApi page.site.data page.title)}}
+  {{!-- Left Page TOC --}}
+  <div class="toc">
+     {{> apiToc }}
+  </div>
+  {{!-- Main Content Area --}}
+  <div class="reference">
+    {{#headings}}
+      <div class="api-section">
+        {{> apiHeading name=name desc=description}}
+        {{#subheadings}}
+          {{> apiSubhead name=name desc=description}}
+          {{#symbols}}
+            {{#if isClass}}
+              {{~> apiClass symbol=this~}}
+            {{else}}
+              {{~> apiFunction symbol=this ~}}
+            {{/if}}
+          {{/symbols}}
+        {{/subheadings}}
       </div>
-    </div>
-  {{/with}}
-
+    {{/headings}}
+  </div>
+  {{!-- End --}}
+ {{/with}}
+</div>

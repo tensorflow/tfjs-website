@@ -59,8 +59,8 @@
                 "parameters": [],
                 "returnType": "MemoryInfo",
                 "documentation": "Returns memory info at the current time in the program. The result is an\nobject with the following properties:\n\n- `numBytes`: Number of bytes allocated (undisposed) at this time.\n- `numTensors`: Number of unique tensors allocated.\n- `numDataBuffers`: Number of unique data buffers allocated\n   (undisposed) at this time, which is ≤ the number of tensors\n   (e.g. `a.reshape(newShape)` makes a new Tensor that shares the same\n   data buffer with `a`).\n- `unreliable`: `Optional` `boolean`:\n    - On WebGL, not present (always reliable).\n    - On CPU, true. Due to automatic garbage collection, these numbers\n     represent undisposed tensors, i.e. not wrapped in `dl.tidy()`, or\n     lacking a call to `tensor.dispose()`.",
-                "fileName": "#256",
-                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/environment.ts#L256-L259",
+                "fileName": "#262",
+                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/environment.ts#L262-L265",
                 "isFunction": true
               },
               {
@@ -1085,8 +1085,8 @@
                 ],
                 "returnType": "Variable",
                 "documentation": "Creates a new variable with the provided initial value.\n```js\nconst x = dl.variable(dl.tensor([1, 2, 3]));\nx.assign(dl.tensor([4, 5, 6]));\n\nx.print();\n```",
-                "fileName": "#884",
-                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/tensor.ts#L884-L892",
+                "fileName": "#888",
+                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/tensor.ts#L888-L896",
                 "isFunction": true
               }
             ]
@@ -1337,7 +1337,7 @@
                 "symbolName": "Tensor",
                 "documentation": "A `Tensor` object represents an immutable, multidimensional array of numbers\nthat has a shape and a data type.\n\nSee `tensor` for details on how to create a `Tensor`.",
                 "fileName": "#153",
-                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/tensor.ts#L153-L836",
+                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/tensor.ts#L153-L840",
                 "methods": [
                   {
                     "docInfo": {
@@ -1757,8 +1757,8 @@
                 },
                 "symbolName": "Variable",
                 "documentation": "A mutable `Tensor`, useful for persisting state, e.g. for training.",
-                "fileName": "#847",
-                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/tensor.ts#L847-L916",
+                "fileName": "#851",
+                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/tensor.ts#L851-L920",
                 "methods": [
                   {
                     "docInfo": {
@@ -1778,8 +1778,8 @@
                     ],
                     "returnType": "void",
                     "documentation": "Assign a new `Tensor` to this variable. The new `Tensor` must have the\nsame shape and dtype as the old `Tensor`.",
-                    "fileName": "#900",
-                    "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/tensor.ts#L900-L915",
+                    "fileName": "#904",
+                    "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/tensor.ts#L904-L919",
                     "isFunction": true
                   }
                 ],
@@ -3537,6 +3537,28 @@
                   "heading": "Operations",
                   "subheading": "Basic math"
                 },
+                "symbolName": "log1p",
+                "paramStr": "(x)",
+                "parameters": [
+                  {
+                    "name": "x",
+                    "documentation": "The input tensor.",
+                    "type": "Tensor",
+                    "optional": false,
+                    "isConfigParam": false
+                  }
+                ],
+                "returnType": "Tensor",
+                "documentation": "Computes natural logarithm of the input `Tensor` plus one\nelement-wise: `ln(1 + x)`\n\n```js\nconst x = dl.tensor1d([1, 2, Math.E - 1]);\n\nx.log1p().print();  // or dl.log1p(x)\n```",
+                "fileName": "#140",
+                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/unary_ops.ts#L140-L147",
+                "isFunction": true
+              },
+              {
+                "docInfo": {
+                  "heading": "Operations",
+                  "subheading": "Basic math"
+                },
                 "symbolName": "sqrt",
                 "paramStr": "(x)",
                 "parameters": [
@@ -3550,8 +3572,8 @@
                 ],
                 "returnType": "Tensor",
                 "documentation": "Computes square root of the input `Tensor` element-wise: `y = sqrt(x)`\n\n```js\nconst x = dl.tensor1d([1, 2, 4, -1]);\n\nx.sqrt().print();  // or dl.sqrt(x)\n```",
-                "fileName": "#139",
-                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/unary_ops.ts#L139-L146",
+                "fileName": "#159",
+                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/unary_ops.ts#L159-L166",
                 "isFunction": true
               },
               {
@@ -3572,8 +3594,8 @@
                 ],
                 "returnType": "Tensor",
                 "documentation": "Computes square of `x` element-wise: `x ^ 2`\n\n```js\nconst x = dl.tensor1d([1, 2, Math.sqrt(2), -1]);\n\nx.square().print();  // or dl.square(x)\n```",
-                "fileName": "#158",
-                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/unary_ops.ts#L158-L165",
+                "fileName": "#178",
+                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/unary_ops.ts#L178-L185",
                 "isFunction": true
               },
               {
@@ -3594,8 +3616,8 @@
                 ],
                 "returnType": "Tensor",
                 "documentation": "Computes absolute value element-wise: `abs(x)`\n\n```js\nconst x = dl.tensor1d([-1, 2, -3, 4]);\n\nx.abs().print();  // or dl.abs(x)\n```",
-                "fileName": "#177",
-                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/unary_ops.ts#L177-L184",
+                "fileName": "#197",
+                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/unary_ops.ts#L197-L204",
                 "isFunction": true
               },
               {
@@ -3630,8 +3652,8 @@
                 ],
                 "returnType": "Tensor",
                 "documentation": "Clips values element-wise. `max(min(x, clipValueMax), clipValueMin)`\n\n```js\nconst x = dl.tensor1d([-1, 2, -3, 4]);\n\nx.clipByValue(-2, 3).print();  // or dl.clipByValue(x, -2, 3)\n```",
-                "fileName": "#198",
-                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/unary_ops.ts#L198-L218",
+                "fileName": "#218",
+                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/unary_ops.ts#L218-L238",
                 "isFunction": true
               },
               {
@@ -3652,8 +3674,8 @@
                 ],
                 "returnType": "Tensor",
                 "documentation": "Computes rectified linear element-wise: `max(x, 0)`\n\n```js\nconst x = dl.tensor1d([-1, 2, -3, 4]);\n\nx.relu().print();  // or dl.relu(x)\n```",
-                "fileName": "#230",
-                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/unary_ops.ts#L230-L238",
+                "fileName": "#250",
+                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/unary_ops.ts#L250-L258",
                 "isFunction": true
               },
               {
@@ -3674,8 +3696,8 @@
                 ],
                 "returnType": "Tensor",
                 "documentation": "Computes exponential linear element-wise, `x > 0 ? e ^ x - 1 : 0`\n\n```js\nconst x = dl.tensor1d([-1, 1, -3, 2]);\n\nx.elu().print();  // or dl.elu(x)\n```",
-                "fileName": "#250",
-                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/unary_ops.ts#L250-L257",
+                "fileName": "#270",
+                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/unary_ops.ts#L270-L277",
                 "isFunction": true
               },
               {
@@ -3696,8 +3718,8 @@
                 ],
                 "returnType": "Tensor",
                 "documentation": "Computes scaled exponential linear element-wise.\n\n`x < 0 ? scale * alpha * (exp(x) - 1) : x`\n\n```js\nconst x = dl.tensor1d([-1, 2, -3, 4]);\n\nx.selu().print();  // or dl.selu(x)\n```",
-                "fileName": "#271",
-                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/unary_ops.ts#L271-L290",
+                "fileName": "#291",
+                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/unary_ops.ts#L291-L310",
                 "isFunction": true
               },
               {
@@ -3725,8 +3747,8 @@
                 ],
                 "returnType": "Tensor",
                 "documentation": "Computes leaky rectified linear element-wise.\n\nSee\n[http://web.stanford.edu/~awni/papers/relu_hybrid_icml2013_final.pdf](\n     http://web.stanford.edu/~awni/papers/relu_hybrid_icml2013_final.pdf)\n\n```js\nconst x = dl.tensor1d([-1, 2, -3, 4]);\n\nx.leakyRelu(0.1).print();  // or dl.leakyRelu(x, 0.1)\n```",
-                "fileName": "#307",
-                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/unary_ops.ts#L307-L315",
+                "fileName": "#327",
+                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/unary_ops.ts#L327-L335",
                 "isFunction": true
               },
               {
@@ -3754,8 +3776,8 @@
                 ],
                 "returnType": "Tensor",
                 "documentation": "Computes leaky rectified linear element-wise with parametric alphas.\n\n`x < 0 ? alpha * x : f(x) = x`\n\n```js\nconst x = dl.tensor1d([-1, 2, -3, 4]);\nconst alpha = dl.scalar(0.1);\n\nx.prelu(alpha).print();  // or dl.prelu(x, alpha)\n```",
-                "fileName": "#331",
-                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/unary_ops.ts#L331-L338",
+                "fileName": "#351",
+                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/unary_ops.ts#L351-L358",
                 "isFunction": true
               },
               {
@@ -3776,8 +3798,8 @@
                 ],
                 "returnType": "Tensor",
                 "documentation": "Computes sigmoid element-wise, `1 / (1 + exp(-x))`\n\n```js\nconst x = dl.tensor1d([0, -1, 2, -3]);\n\nx.sigmoid().print();  // or dl.sigmoid(x)\n```",
-                "fileName": "#350",
-                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/unary_ops.ts#L350-L359",
+                "fileName": "#370",
+                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/unary_ops.ts#L370-L379",
                 "isFunction": true
               },
               {
@@ -3798,8 +3820,8 @@
                 ],
                 "returnType": "Tensor",
                 "documentation": "Computes sin of the input Tensor element-wise: `sin(x)`\n\n```js\nconst x = dl.tensor1d([0, Math.PI / 2, Math.PI * 3 / 4]);\n\nx.sin().print();  // or dl.sin(x)\n```",
-                "fileName": "#371",
-                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/unary_ops.ts#L371-L378",
+                "fileName": "#391",
+                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/unary_ops.ts#L391-L398",
                 "isFunction": true
               },
               {
@@ -3820,8 +3842,8 @@
                 ],
                 "returnType": "Tensor",
                 "documentation": "Computes cos of the input `Tensor` element-wise: `cos(x)`\n\n```js\nconst x = dl.tensor1d([0, Math.PI / 2, Math.PI * 3 / 4]);\n\nx.cos().print();  // or dl.cos(x)\n```",
-                "fileName": "#390",
-                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/unary_ops.ts#L390-L397",
+                "fileName": "#410",
+                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/unary_ops.ts#L410-L417",
                 "isFunction": true
               },
               {
@@ -3842,8 +3864,8 @@
                 ],
                 "returnType": "Tensor",
                 "documentation": "Computes tan of the input `Tensor` element-wise, `tan(x)`\n\n```js\nconst x = dl.tensor1d([0, Math.PI / 2, Math.PI * 3 / 4]);\n\nx.tan().print();  // or dl.tan(x)\n```",
-                "fileName": "#409",
-                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/unary_ops.ts#L409-L416",
+                "fileName": "#429",
+                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/unary_ops.ts#L429-L436",
                 "isFunction": true
               },
               {
@@ -3864,8 +3886,8 @@
                 ],
                 "returnType": "Tensor",
                 "documentation": "Computes asin of the input `Tensor` element-wise: `asin(x)`\n\n```js\nconst x = dl.tensor1d([0, 1, -1, .7]);\n\nx.asin().print();  // or dl.asin(x)\n```",
-                "fileName": "#428",
-                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/unary_ops.ts#L428-L438",
+                "fileName": "#448",
+                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/unary_ops.ts#L448-L458",
                 "isFunction": true
               },
               {
@@ -3886,8 +3908,8 @@
                 ],
                 "returnType": "Tensor",
                 "documentation": "Computes acos of the input `Tensor` element-wise: `acos(x)`\n\n```js\nconst x = dl.tensor1d([0, 1, -1, .7]);\n\nx.acos().print();  // or dl.acos(x)\n```",
-                "fileName": "#450",
-                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/unary_ops.ts#L450-L461",
+                "fileName": "#470",
+                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/unary_ops.ts#L470-L481",
                 "isFunction": true
               },
               {
@@ -3908,8 +3930,8 @@
                 ],
                 "returnType": "Tensor",
                 "documentation": "Computes atan of the input `Tensor` element-wise: `atan(x)`\n\n```js\nconst x = dl.tensor1d([0, 1, -1, .7]);\n\nx.atan().print();  // or dl.atan(x)\n```",
-                "fileName": "#473",
-                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/unary_ops.ts#L473-L480",
+                "fileName": "#493",
+                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/unary_ops.ts#L493-L500",
                 "isFunction": true
               },
               {
@@ -3930,8 +3952,8 @@
                 ],
                 "returnType": "Tensor",
                 "documentation": "Computes hyperbolic sin of the input `Tensor` element-wise: `sinh(x)`\n\n```js\nconst x = dl.tensor1d([0, 1, -1, .7]);\n\nx.sinh().print();  // or dl.sinh(x)\n```",
-                "fileName": "#492",
-                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/unary_ops.ts#L492-L499",
+                "fileName": "#512",
+                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/unary_ops.ts#L512-L519",
                 "isFunction": true
               },
               {
@@ -3952,8 +3974,8 @@
                 ],
                 "returnType": "Tensor",
                 "documentation": "Computes hyperbolic cos of the input `Tensor` element-wise: `cosh(x)`\n\n```js\nconst x = dl.tensor1d([0, 1, -1, .7]);\n\nx.cosh().print();  // or dl.cosh(x)\n```",
-                "fileName": "#511",
-                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/unary_ops.ts#L511-L518",
+                "fileName": "#531",
+                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/unary_ops.ts#L531-L538",
                 "isFunction": true
               },
               {
@@ -3974,8 +3996,8 @@
                 ],
                 "returnType": "Tensor",
                 "documentation": "Computes hyperbolic tangent of the input `Tensor` element-wise: `tanh(x)`\n\n```js\nconst x = dl.tensor1d([0, 1, -1, 70]);\n\nx.tanh().print();  // or dl.tanh(x)\n```",
-                "fileName": "#530",
-                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/unary_ops.ts#L530-L539",
+                "fileName": "#550",
+                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/unary_ops.ts#L550-L559",
                 "isFunction": true
               },
               {
@@ -4003,8 +4025,8 @@
                 ],
                 "returnType": "Tensor",
                 "documentation": "Computes step of the input `Tensor` element-wise: `x > 0 ? 1 : alpha * x`\n\n```js\nconst x = dl.tensor1d([0, 2, -1, -3]);\n\nx.step(.5).print();  // or dl.step(x, .5)\n```",
-                "fileName": "#552",
-                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/unary_ops.ts#L552-L560",
+                "fileName": "#572",
+                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/unary_ops.ts#L572-L580",
                 "isFunction": true
               }
             ]
@@ -4570,8 +4592,8 @@
                 ],
                 "returnType": "void",
                 "documentation": "Sets the backend (cpu, webgl, etc) responsible for creating tensors and\nexecuting operations on those tensors.",
-                "fileName": "#222",
-                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/environment.ts#L222-L228",
+                "fileName": "#228",
+                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/environment.ts#L228-L234",
                 "isFunction": true
               },
               {
@@ -4584,8 +4606,8 @@
                 "parameters": [],
                 "returnType": "'webgl'|'cpu'",
                 "documentation": "Returns the current backend (cpu, webgl, etc). The backend is responsible\nfor creating tensors and executing operations on those tensors.",
-                "fileName": "#234",
-                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/environment.ts#L234-L238",
+                "fileName": "#240",
+                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/environment.ts#L240-L244",
                 "isFunction": true
               }
             ]
