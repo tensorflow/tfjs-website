@@ -78,8 +78,6 @@ document.addEventListener('DOMContentLoaded', function(e) {
       lastHighlightedTocElement = tocFound;
     }
   }
-  refArea.addEventListener('scroll', updateTocView)
-  refArea.addEventListener('resize', updateTocView)
-
-  console.log('ADD SCROLL')
+  refArea.addEventListener('scroll', updateTocView);
+  refArea.addEventListener('resize', updateTocView);
 });
