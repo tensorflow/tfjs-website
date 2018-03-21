@@ -44,7 +44,7 @@
                   {
                     "name": "config",
                     "documentation": "",
-                    "type": "",
+                    "type": "Object",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -86,7 +86,7 @@
                   {
                     "name": "config",
                     "documentation": "",
-                    "type": "",
+                    "type": "Object",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -138,7 +138,7 @@
                   {
                     "name": "config",
                     "documentation": "",
-                    "type": "",
+                    "type": "Object",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -197,8 +197,8 @@
                 "symbolName": "Initializer",
                 "namespace": "initializers",
                 "documentation": "Initializer base class.",
-                "fileName": "#47",
-                "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/initializers.ts#L47-L68",
+                "fileName": "#60",
+                "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/initializers.ts#L60-L81",
                 "methods": [],
                 "isClass": true
               }
@@ -258,7 +258,7 @@
                   {
                     "name": "config",
                     "documentation": "",
-                    "type": "",
+                    "type": "Object",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -293,7 +293,7 @@
                   {
                     "name": "config",
                     "documentation": "",
-                    "type": "",
+                    "type": "Object",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -342,7 +342,7 @@
                   {
                     "name": "config",
                     "documentation": "",
-                    "type": "",
+                    "type": "Object",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -391,7 +391,7 @@
                   {
                     "name": "config",
                     "documentation": "",
-                    "type": "",
+                    "type": "Object",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -440,7 +440,7 @@
                   {
                     "name": "config",
                     "documentation": "",
-                    "type": "",
+                    "type": "Object",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -475,7 +475,7 @@
                   {
                     "name": "config",
                     "documentation": "",
-                    "type": "",
+                    "type": "Object",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -489,14 +489,14 @@
                   {
                     "name": "mode",
                     "documentation": "Fanning mode for inputs and outputs. ",
-                    "type": "FanMode",
+                    "type": "'fanIn'|'fanOut'|'fanAvg'",
                     "optional": false,
                     "isConfigParam": true
                   },
                   {
                     "name": "distribution",
                     "documentation": "Probabilistic distribution of the values. ",
-                    "type": "Distribution",
+                    "type": "'normal'|'uniform'",
                     "optional": false,
                     "isConfigParam": true
                   },
@@ -531,7 +531,7 @@
                   {
                     "name": "config",
                     "documentation": "",
-                    "type": "",
+                    "type": "Object",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -566,7 +566,7 @@
                   {
                     "name": "config",
                     "documentation": "",
-                    "type": "",
+                    "type": "Object",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -601,7 +601,7 @@
                   {
                     "name": "config",
                     "documentation": "",
-                    "type": "",
+                    "type": "Object",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -636,7 +636,7 @@
                   {
                     "name": "config",
                     "documentation": "",
-                    "type": "",
+                    "type": "Object",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -845,7 +845,7 @@
                   {
                     "name": "config",
                     "documentation": "",
-                    "type": "",
+                    "type": "Object",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -873,14 +873,14 @@
                   {
                     "name": "padding",
                     "documentation": "Padding mode.",
-                    "type": "PaddingMode",
+                    "type": "'valid'|'same'|'casual'",
                     "optional": true,
                     "isConfigParam": true
                   },
                   {
                     "name": "dataFormat",
                     "documentation": "Format of the data, which determines the ordering of the dimensions in\nthe inputs.\n\n`channels_last` corresponds to inputs with shape\n   `(batch, ..., channels)`\n\n  `channels_first` corresponds to inputs with shape `(batch, channels,\n...)`.\n\nDefaults to `channels_last`.",
-                    "type": "DataFormat",
+                    "type": "'channelFirst'|'channelLast'",
                     "optional": true,
                     "isConfigParam": true
                   },
@@ -978,7 +978,7 @@
                   {
                     "name": "config",
                     "documentation": "",
-                    "type": "",
+                    "type": "Object",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -1006,14 +1006,14 @@
                   {
                     "name": "padding",
                     "documentation": "Padding mode.",
-                    "type": "PaddingMode",
+                    "type": "'valid'|'same'|'casual'",
                     "optional": true,
                     "isConfigParam": true
                   },
                   {
                     "name": "dataFormat",
                     "documentation": "Format of the data, which determines the ordering of the dimensions in\nthe inputs.\n\n`channels_last` corresponds to inputs with shape\n   `(batch, ..., channels)`\n\n  `channels_first` corresponds to inputs with shape `(batch, channels,\n...)`.\n\nDefaults to `channels_last`.",
-                    "type": "DataFormat",
+                    "type": "'channelFirst'|'channelLast'",
                     "optional": true,
                     "isConfigParam": true
                   },
@@ -1089,7 +1089,7 @@
                   }
                 ],
                 "returnType": "Layer",
-                "documentation": "2D convolution layer (e.g. spatial convolution over images).\n\nThis layer creates a convolution kernel that is convolved\nwith the layer input to produce a tensor of outputs.\n\nIf `useBias` is True, a bias vector is created and added to the outputs.\n\nIf `activation` is not `null`, it is applied to the outputs as well.\n\nWhen using this layer as the first layer in a model, `inputShape` should be\nspecified. `inputShape` is array of integers which does not include the\nsample axis.\n\ne.g. `inputShape=[128, 128, 3]` for 128x128 RGB pictures in\n`dataFormat=DataFormat.CHANNEL_LAST`.",
+                "documentation": "2D convolution layer (e.g. spatial convolution over images).\n\nThis layer creates a convolution kernel that is convolved\nwith the layer input to produce a tensor of outputs.\n\nIf `useBias` is True, a bias vector is created and added to the outputs.\n\nIf `activation` is not `null`, it is applied to the outputs as well.\n\nWhen using this layer as the first layer in a model,\nprovide the keyword argument `inputShape`\n(Array of integers, does not include the sample axis),\ne.g. `inputShape=[128, 128, 3]` for 128x128 RGB pictures\nin `dataFormat='channelLast'`.",
                 "fileName": "#115",
                 "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L115-L124",
                 "isFunction": true
@@ -1111,7 +1111,7 @@
                   {
                     "name": "config",
                     "documentation": "",
-                    "type": "",
+                    "type": "Object",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -1179,7 +1179,7 @@
                   {
                     "name": "config",
                     "documentation": "",
-                    "type": "",
+                    "type": "Object",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -1214,7 +1214,7 @@
                   {
                     "name": "config",
                     "documentation": "",
-                    "type": "",
+                    "type": "Object",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -1319,7 +1319,7 @@
                   {
                     "name": "config",
                     "documentation": "",
-                    "type": "",
+                    "type": "Object",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -1368,7 +1368,7 @@
                   {
                     "name": "config",
                     "documentation": "",
-                    "type": "",
+                    "type": "Object",
                     "optional": true,
                     "isConfigParam": false
                   },
@@ -1459,7 +1459,7 @@
                   {
                     "name": "config",
                     "documentation": "",
-                    "type": "",
+                    "type": "Object",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -1494,7 +1494,7 @@
                   {
                     "name": "config",
                     "documentation": "",
-                    "type": "",
+                    "type": "Object",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -1583,7 +1583,7 @@
                   {
                     "name": "config",
                     "documentation": "",
-                    "type": "",
+                    "type": "Object",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -1674,7 +1674,7 @@
                   {
                     "name": "config",
                     "documentation": "",
-                    "type": "",
+                    "type": "Object",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -1765,7 +1765,7 @@
                   {
                     "name": "config",
                     "documentation": "",
-                    "type": "",
+                    "type": "Object",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -1800,7 +1800,7 @@
                   {
                     "name": "config",
                     "documentation": "",
-                    "type": "",
+                    "type": "Object",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -1891,7 +1891,7 @@
                   {
                     "name": "config",
                     "documentation": "",
-                    "type": "",
+                    "type": "Object",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -1982,7 +1982,7 @@
                   {
                     "name": "config",
                     "documentation": "",
-                    "type": "",
+                    "type": "Object",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -2078,7 +2078,7 @@
                   {
                     "name": "config",
                     "documentation": "",
-                    "type": "",
+                    "type": "Object",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -2202,7 +2202,7 @@
                   {
                     "name": "config",
                     "documentation": "",
-                    "type": "",
+                    "type": "Object",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -2222,8 +2222,8 @@
                   },
                   {
                     "name": "padding",
-                    "documentation": "PaddingMode.VALID or PaddingMode.SAME ",
-                    "type": "PaddingMode",
+                    "documentation": "How to fill in data that's not an integer multiple of poolSize. ",
+                    "type": "'valid'|'same'|'casual'",
                     "optional": true,
                     "isConfigParam": true
                   }
@@ -2251,7 +2251,7 @@
                   {
                     "name": "config",
                     "documentation": "",
-                    "type": "",
+                    "type": "Object",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -2272,14 +2272,14 @@
                   {
                     "name": "padding",
                     "documentation": "The padding type to use for the pooling layer. ",
-                    "type": "PaddingMode",
+                    "type": "'valid'|'same'|'casual'",
                     "optional": true,
                     "isConfigParam": true
                   },
                   {
                     "name": "dataFormat",
                     "documentation": "The data format to use for the pooling layer. ",
-                    "type": "DataFormat",
+                    "type": "'channelFirst'|'channelLast'",
                     "optional": true,
                     "isConfigParam": true
                   }
@@ -2307,7 +2307,7 @@
                   {
                     "name": "config",
                     "documentation": "",
-                    "type": "",
+                    "type": "Object",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -2398,14 +2398,14 @@
                   {
                     "name": "config",
                     "documentation": "",
-                    "type": "",
+                    "type": "Object",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
                     "name": "dataFormat",
                     "documentation": "One of `CHANNEL_LAST` (default) or `CHANNEL_FIRST`.\n\nThe ordering of the dimensions in the inputs. `CHANNEL_LAST` corresponds\nto inputs with shape `[batch, height, width, channels[` while\n`CHANNEL_FIRST` corresponds to inputs with shape\n`[batch, channels, height, width]`.",
-                    "type": "DataFormat",
+                    "type": "'channelFirst'|'channelLast'",
                     "optional": true,
                     "isConfigParam": true
                   }
@@ -2433,7 +2433,7 @@
                   {
                     "name": "config",
                     "documentation": "",
-                    "type": "",
+                    "type": "Object",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -2524,14 +2524,14 @@
                   {
                     "name": "config",
                     "documentation": "",
-                    "type": "",
+                    "type": "Object",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
                     "name": "dataFormat",
                     "documentation": "One of `CHANNEL_LAST` (default) or `CHANNEL_FIRST`.\n\nThe ordering of the dimensions in the inputs. `CHANNEL_LAST` corresponds\nto inputs with shape `[batch, height, width, channels[` while\n`CHANNEL_FIRST` corresponds to inputs with shape\n`[batch, channels, height, width]`.",
-                    "type": "DataFormat",
+                    "type": "'channelFirst'|'channelLast'",
                     "optional": true,
                     "isConfigParam": true
                   }
@@ -2559,7 +2559,7 @@
                   {
                     "name": "config",
                     "documentation": "",
-                    "type": "",
+                    "type": "Object",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -2579,8 +2579,8 @@
                   },
                   {
                     "name": "padding",
-                    "documentation": "PaddingMode.VALID or PaddingMode.SAME ",
-                    "type": "PaddingMode",
+                    "documentation": "How to fill in data that's not an integer multiple of poolSize. ",
+                    "type": "'valid'|'same'|'casual'",
                     "optional": true,
                     "isConfigParam": true
                   }
@@ -2608,7 +2608,7 @@
                   {
                     "name": "config",
                     "documentation": "",
-                    "type": "",
+                    "type": "Object",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -2629,14 +2629,14 @@
                   {
                     "name": "padding",
                     "documentation": "The padding type to use for the pooling layer. ",
-                    "type": "PaddingMode",
+                    "type": "'valid'|'same'|'casual'",
                     "optional": true,
                     "isConfigParam": true
                   },
                   {
                     "name": "dataFormat",
                     "documentation": "The data format to use for the pooling layer. ",
-                    "type": "DataFormat",
+                    "type": "'channelFirst'|'channelLast'",
                     "optional": true,
                     "isConfigParam": true
                   }
@@ -2669,7 +2669,7 @@
                   {
                     "name": "config",
                     "documentation": "",
-                    "type": "",
+                    "type": "Object",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -2704,7 +2704,7 @@
                   {
                     "name": "config",
                     "documentation": "",
-                    "type": "",
+                    "type": "Object",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -2746,7 +2746,7 @@
                   {
                     "name": "config",
                     "documentation": "",
-                    "type": "",
+                    "type": "Object",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -2788,7 +2788,7 @@
                   {
                     "name": "config",
                     "documentation": "",
-                    "type": "",
+                    "type": "Object",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -2837,7 +2837,7 @@
                   {
                     "name": "config",
                     "documentation": "",
-                    "type": "",
+                    "type": "Object",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -2963,7 +2963,7 @@
                   {
                     "name": "config",
                     "documentation": "",
-                    "type": "",
+                    "type": "Object",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -3089,7 +3089,7 @@
                   {
                     "name": "config",
                     "documentation": "",
-                    "type": "",
+                    "type": "Object",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -3124,7 +3124,7 @@
                   {
                     "name": "config",
                     "documentation": "",
-                    "type": "",
+                    "type": "Object",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -3164,7 +3164,7 @@
                   {
                     "name": "config",
                     "documentation": "",
-                    "type": "",
+                    "type": "Object",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -3206,7 +3206,7 @@
                   {
                     "name": "config",
                     "documentation": "",
-                    "type": "",
+                    "type": "Object",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -3308,7 +3308,7 @@
                       {
                         "name": "config",
                         "documentation": "A `ModelEvaluateConfig`, containing optional fields.",
-                        "type": "",
+                        "type": "Object",
                         "optional": true,
                         "isConfigParam": false
                       },
@@ -3368,7 +3368,7 @@
                       {
                         "name": "config",
                         "documentation": "",
-                        "type": "",
+                        "type": "Object",
                         "optional": true,
                         "isConfigParam": false
                       },
@@ -3443,7 +3443,7 @@
                       {
                         "name": "config",
                         "documentation": "A `ModelFitConfig`, containing optional fields.",
-                        "type": "",
+                        "type": "Object",
                         "optional": true,
                         "isConfigParam": false
                       },
@@ -3602,7 +3602,7 @@
                       {
                         "name": "config",
                         "documentation": "A `ModelEvaluateConfig`, containing optional fields.",
-                        "type": "",
+                        "type": "Object",
                         "optional": true,
                         "isConfigParam": false
                       },
@@ -3662,7 +3662,7 @@
                       {
                         "name": "config",
                         "documentation": "",
-                        "type": "",
+                        "type": "Object",
                         "optional": true,
                         "isConfigParam": false
                       },
@@ -3715,7 +3715,7 @@
                       {
                         "name": "config",
                         "documentation": "A `ModelFitConfig`, containing optional fields.",
-                        "type": "",
+                        "type": "Object",
                         "optional": true,
                         "isConfigParam": false
                       },
@@ -3834,7 +3834,7 @@
                   {
                     "name": "config",
                     "documentation": "",
-                    "type": "",
+                    "type": "Object",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -3881,7 +3881,7 @@
                   {
                     "name": "config",
                     "documentation": "",
-                    "type": "",
+                    "type": "Object",
                     "optional": true,
                     "isConfigParam": false
                   },
@@ -4015,7 +4015,7 @@
                   {
                     "name": "config",
                     "documentation": "",
-                    "type": "",
+                    "type": "Object",
                     "optional": false,
                     "isConfigParam": false
                   },

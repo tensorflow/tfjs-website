@@ -1,0 +1,32 @@
+<div class="symbol function {{#if isMethod}}method{{/if}}">
+  <div class="symbol-header">
+    <a class="symbol-link" name="{{urlHash}}" href="#{{urlHash}}">
+      {{!-- TODO remove conditional once https://github.com/tensorflow/tfjs-website/issues/33 is fixed --}}
+      {{~#if displayName ~}}
+        {{~{displayName}~}}
+      {{~else~}}
+        {{~{symbolName}~}}
+      {{~/if~}}
+    </a>
+    <span class="signature">
+      {{~{paramStr}~}}
+    </span>
+    {{#if isMethod}}
+      <span class="symbol-marker">method</span>
+    {{else}}
+      <span class="symbol-marker">function</span>
+    {{/if}}
+  </div>
+
+  <div class="documentation">{{{markdown documentation}}}</div>
+
+  {{!-- Param List --}}
+  {{> apiParamList parameters=parameters}}
+
+  {{!-- Returns --}}
+  <div class="returns">
+    <span class="returns-header">Returns:</span>
+    <span class="return-type">{{{markdownInner returnType}}}</span>
+  </div>
+</div>
+
