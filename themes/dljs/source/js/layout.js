@@ -6,7 +6,6 @@ document.addEventListener('DOMContentLoaded', function(e) {
     const drawerButton = document.getElementById('nav-menu-button');
 
     drawerButton.addEventListener('click', () => {
-      console.log('clicked');
       drawer.open = true;
     });
   }
