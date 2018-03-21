@@ -1,0 +1,33 @@
+{{!-- Inline Helper --}}
+{{#*inline "param"}}
+  <span class="param-name">{{name}}</span>
+  <span class="param-type">({{{markdownInner type}}})</span>
+  <span class="param-docs">{{{markdownInner documentation}}}</span>
+  {{#optional}}
+    <span class="chip">
+      Optional
+    </span>
+  {{/optional}}
+{{/inline}}
+
+{{!-- Main template --}}
+{{#if parameters.length}}
+<div class="parameter-list">
+  <div class="heading">Parameters:</div>
+  <ul>
+    {{#parameters}}
+        {{#if isConfigParam}}
+          {{!-- for arguments passed through an opts-like object --}}
+          <li class="parameter config-param">
+            {{> param }}
+          </li>
+        {{else}}
+          <li class="parameter">
+            {{> param }}
+          </li>
+        {{/if}}
+    {{/parameters}}
+  </ul>
+</div>
+{{/if}}
+

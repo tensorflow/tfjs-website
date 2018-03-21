@@ -113,7 +113,7 @@ export function unpackConfigParams(
             params.push(configParam);
           });
           // Hide the original type of the config.
-          docFunction.parameters[i].type = '';
+          docFunction.parameters[i].type = 'Object';
         }
       }
       docFunction.parameters = params;

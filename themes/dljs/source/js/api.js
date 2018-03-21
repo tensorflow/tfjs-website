@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', function(e) {
   };
   // Find the symbol closest to the top of the page in the reference
   // section and highlight it in the TOC section.
-  var refSymbols = document.querySelectorAll('.symbol-name');
+  var refSymbols = document.querySelectorAll('.symbol-link');
   var refArea = document.querySelector('.reference');
   var tocArea = document.querySelector('.toc');
   var lastHighlightedTocElement;
@@ -78,6 +78,6 @@ document.addEventListener('DOMContentLoaded', function(e) {
       lastHighlightedTocElement = tocFound;
     }
   }
-  refArea.addEventListener('scroll', updateTocView)
-  refArea.addEventListener('resize', updateTocView)
+  refArea.addEventListener('scroll', updateTocView);
+  refArea.addEventListener('resize', updateTocView);
 });

@@ -1,0 +1,27 @@
+<div>
+  <div class="header">
+    <div>API Reference</div>
+    {{!-- TODO Make dynamic / Turn into version switcher --}}
+    <div class="version-string">version 0.0.1</div>
+  </div>
+
+  {{#headings}}
+  <div class="heading">
+    <a class="heading-name" href="#{{name}}">{{name}}</a>
+
+    {{#subheadings}}
+    <div class="subheading">
+      <a class="subheading-name" href="#{{../name}}-{{name}}">{{name}}</a>
+
+      {{#symbols}}
+      <div class="symbol">
+        <a href="#{{urlHash}}">{{displayName}}</a>
+      </div>
+      {{/symbols}}
+
+    </div>
+    {{/subheadings}}
+
+  </div>
+  {{/headings}}
+</div>
