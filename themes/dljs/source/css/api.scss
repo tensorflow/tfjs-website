@@ -115,14 +115,19 @@ body {
     }
 
     .symbol {
+      margin-top: 64px;
       background-color: #fafafa;
       padding: 32px;
       border-radius: 8px;
-    }
 
-    .symbol {
-      margin-top: 64px;
-      border-bottom: 4px solid white;
+      .source-link {
+        float:right;
+        text-align: right;
+        text-transform: lowercase;
+        font-weight: normal;
+        font-size: 12px;
+        padding: 8px;
+      }
 
       .symbol-marker {
         font-size: 12px;
