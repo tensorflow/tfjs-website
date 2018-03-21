@@ -7,69 +7,115 @@ date: 2018-03-14 16:28:23
 
 **TensorFlow.js** is an open source WebGL-accelerated JavaScript library for machine intelligence. It brings highly performant machine learning building blocks to your fingertips, allowing you to train neural networks in a browser or run pre-trained models in inference mode.
 
-**TensorFlow.js** provides low level building blocks for machine learning as well as a high level, Keras inspired API for writing neural networks. Let's take a look at some of the core concepts in the library.
-
+**TensorFlow.js** provides low level building blocks for machine learning as well as a high-level, Keras-inspired API for constructing neural networks. Let's take a look at some of the core components of the library.
 
 ## Tensors
 
-The central unit of data in **TensorFlow.js** is the `Tensor`. A `Tensor` consists of a set of numerical values shaped into an array of one or more dimensions. The `shape` attribute defines their shape (i.e. how many values in each dimension of the tensor).
+The central unit of data in **TensorFlow.js** is the `Tensor`. A `Tensor` consists of a set of numerical values shaped into an array of one or more dimensions. The `shape` attribute defines a `Tensor`'s shape (i.e., how many values are in each dimension of the array).
 
-The primary Tensor constructor is the `tf.tensor` function, however the library
-also provides sugar functions to create low-rank Tensors: `tf.scalar`,
-`tf.tensor1d`, `tf.tensor2d`, `tf.tensor3d` and `tf.tensor4d`.
+The primary `Tensor` constructor is the [`tf.tensor`](../api/0.0.1/index.html#tf.tensor) function:
 
-Example usage with a 2x3 matrix:
+```js
+// 2x3 Tensor
+const shape = [2, 3]; // 2 rows, 3 columns
+const a = tf.tensor([1.0, 2.0, 3.0, 10.0, 20.0, 30.0], shape);
+a.print(); // print Tensor values
+```
 
+However, for constructing low-rank `Tensor`s, we recommend using the following
+functions to enhance code readability: `tf.scalar`, `tf.tensor1d`, `tf.tensor2d`,
+`tf.tensor3d` and `tf.tensor4d`.
+
+The following example creates the same `Tensor` as above using `tf.tensor2d`:
 
 ```js
 const shape = [2, 3]; // 2 rows, 3 columns
-const a = tf.tensor2d([1.0, 2.0, 3.0, 10.0, 20.0, 30.0], shape);
+const b = tf.tensor2d([1.0, 2.0, 3.0, 10.0, 20.0, 30.0], shape);
+b.print();
 
-// The shape can also be inferred
-const b = tf.tensor2d([[0.0, 2.0], [4.0, 6.0]]);  // 2 rows, 2 columns
+The shape can also be inferred:
+
+```js
+const c = tf.tensor2d([[1.0, 2.0, 3.0], [10.0, 20.0, 30.0]])
+c.print();
 ```
 
-Tensors are immutable, that is, once created you cannot change their values. Instead you perform operations on them that generate new tensors.
+TensorFlow.js also provides convenience functions for creating `Tensor`s with all values
+set to 0 (`tf.zeros`) or all values set to 1 (`tf.ones`):
+
+```js
+// 3x5 Tensor with all values set to 0
+const zeros = tf.zeros([3, 5]);
+``` 
+
+`Tensor`s are immutable; once created, you cannot change their values. Instead you perform operations on them that generate new `Tensor`s.
 
 ## Variables
 
-Variables are mutable tensors, they allow us to update the values they store and are primarily used when training a model. As the model trains, it updates values stored in variables.
+Variables store a `Tensor` of values. Unlike `Tensor`s, their values are mutable; you can assign
+a new `Tensor` to an existing variable:
 
 ```js
-const initialValues = tf.zeros([10]);
-const biases = tf.variable(initialValues);
+const initialValues = tf.zeros([5]);
+const biases = tf.variable(initialValues); // initialize biases
+biases.print(); // output: [0, 0, 0, 0, 0]
+
+const updatedValues = tf.tensor1d([0, 1, 0, 1, 0]);
+biases.assign(updatedValues); // update values of biases
+biases.print(); // output: [0, 1, 0, 1, 0]
 ```
 
+Variables are primarily used to store and then update values during model training.
 
 ## Operations (Ops)
 
-While Tensors allow us to store data, ops allow us to manipulate data. **TensorFlow.js** comes with a wide variety of mathematical opearations suitable for linear algebra and machine learning. Because tensors are immutable, these operations do not change their input, they instead return new tensors.
+While Tensors allow us to store data, ops allow us to manipulate that data. **TensorFlow.js** provides a wide variety of mathematical operations suitable for linear algebra and machine learning that can be performed on `Tensor`s. Because `Tensor`s are immutable, these operations do not change their input; they instead return new `Tensor`s.
 
-These include unary ops like `square()` and binary ops like `add()` and `mul()`.
+Available operations include unary ops such as `square()`:
 
 ```js
-const a = tf.tensor2d([[1.0, 2.0], [3.0, 4.0]]);
-const b = tf.tensor2d([[0.0, 2.0], [4.0, 6.0]]);
-
-// The library has a chainable API allowing you to call operations
-// directly as methods on Tensors.
-const average = a.sub(b).square().mean();
-
-// All operations are also exposed as functions in the main namespace
-// so we could also do.
-const avg = tf.mean(tf.square(tf.sub(a, b)));
+const d = tf.tensor2d([[1.0, 2.0], [3.0, 4.0]]);
+const d_squared = d.square();
+d_squared.print();
+// Output: [[1, 4 ],
+//          [9, 16]]
 ```
 
-## Models & Layers
+And binary ops such as `add()` and `mul()`:
 
-Conceptually a model is a function that given some input will produce some _desireable_ output.
+```js
+const e = tf.tensor2d([[1.0, 2.0], [3.0, 4.0]]);
+const f = tf.tensor2d([[5.0, 6.0], [7.0, 8.0]]);
 
-In TensorFlow.js there are _two ways_ to create models. You can use _operations_ directly to represent the work the model does. This might looks something like this
+const e_plus_f = e.add(f);
+e_plus_f.print();
+// Output: [[6 , 8 ],
+//          [10, 12]]
+
+TensorFlow.js has a chainable API; you can call operations
+on the result of operations:
+
+```js
+const sq_sum = e.add(f).square();
+sq_sum.print();
+// Output: [[36 , 64 ],
+            [100, 144]]
+
+// All operations are also exposed as functions in the main namespace,
+// so you could also do the following:
+const sq_sum = tf.square(tf.add(e, f));
+```
+
+## Models and Layers
+
+Conceptually, a model is a function that given some input will produce some _desirable_ output.
+
+In TensorFlow.js there are _two ways_ to create models. You can use _operations_ directly to represent the work the model does. For example:
 
 ```js
 function predict(input) {
   // y = a * x ^ 2 + b * x + c
-  return dl.tidy(() => {
+  return tf.tidy(() => {
     const x = dl.scalar(input);
 
     const ax2 = a.mul(x.square());
@@ -83,12 +129,10 @@ function predict(input) {
 
 <br />
 
-You can also use the high level API `tf.model` to construct a model out of _layers_, which are a a popular abstraction in deep learning. Below we construct a `tf.sequential` model.
+You can also use the high-level API `tf.model` to construct a model out of _layers_, which are a a popular abstraction in deep learning. The following code constructs a `tf.sequential` model:
 
 
 ```js
-// Creating a model
-
 const model = tf.sequential();
 model.add(
   tf.layers.simpleRNN({
@@ -103,13 +147,13 @@ model.compile({optimizer, loss: 'categoricalCrossentropy'});
 model.fit({x: data, y: labels)});
 ```
 
-Layers come in various flavours depending on the kind of operation they do on their input and there are many different kinds of layers available in TensorFlow.js. A few examples include, `tf.layers.simpleRNN`, `tf.layers.gru`, and `tf.layers.lstm`.
+There are many different types of layers available in TensorFlow.js. A few examples include, `tf.layers.simpleRNN`, `tf.layers.gru`, and `tf.layers.lstm`.
 
 ## Memory Management: Dispose &amp; Tidy
 
-Because TensorFlow.js uses the GPU to accelerate math operations there is a need to manage GPU memory when dealing with tensors and variables.
+Because TensorFlow.js uses the GPU to accelerate math operations, it's necessary to manage GPU memory when dealing with tensors and variables.
 
-We provide two functions to help with this, `dispose()` and `tf.tidy`.
+TensorFlow.js provide two functions to help with this: `dispose()` and `tf.tidy`.
 
 ### dispose()
 
@@ -124,7 +168,7 @@ result.dispose();
 
 ### tf.tidy()
 
-Using `dispose()` can be cumbersome when doing a lot of tensor operations. We provide another function `tf.tidy()` that plays similar role to regular scopes in JavaScript, but for GPU backed tensors.
+Using `dispose()` can be cumbersome when doing a lot of tensor operations. TensorFlow.js provides another function, `tf.tidy()`, that plays a similar role to regular scopes in JavaScript, but for GPU backed tensors.
 
 `tf.tidy()` executes a function and disposes any intermediate tensors created. It does not dispose the return value of the inner function.
 
@@ -143,12 +187,15 @@ const average = tf.tidy(() => {
 });
 ```
 
-Using `tf.tidy()` will help prevent memory leaks in your application and can be used to more carefully control when memory is reclaimed. Note that the function passed to `tf.tidy()` should be synchronous and also not return a Promise. We suggest keeping code that updates the UI or makes remote requests outside of `tf.tidy()`
+Using `tf.tidy()` will help prevent memory leaks in your application and can be used to more carefully control when memory is reclaimed. Note that the function passed to `tf.tidy()` should be synchronous and also not return a Promise. We suggest keeping code that updates the UI or makes remote requests outside of `tf.tidy()`.
 
-Note: `tf.tidy` **will not** clean up **variables**. Variables typically last through the entire lifecycle of a machine learning model so we don't clean them up even if they are created in a tidy, however you can call dispose() on them manually.
+**Note:** `tf.tidy` **will not** clean up **variables**. Variables typically last through the entire lifecycle of a machine learning model, so TensorFlow.js doesn't clean them up even if they are created in a tidy; however, you can call dispose() on them manually.
 
-# Further Resources
+# Additional Resources
 
-Machine Learning is a wide field with many concepts that we are only lightly touching on here, for a more in depth look, take a look at the following resources.
+See the TensorFlow.js API reference for comprehensive documentation of the library.
 
- - [Google's Machine Learning Crash Course Glossary](https://developers.google.com/machine-learning/crash-course/glossary)
+For a more in-depth look at machine learning fundamentals, please see the following resources:
+
+* [Machine Learning Crash Course](https://developers.google.com/machine-learning/crash-course)
+* [Machine Learning Glossary(https://developers.google.com/machine-learning/glossary)
