@@ -4,6 +4,8 @@ $header-height: 65px;
 $muted-text-col: #616161;
 $dark-text-col: #212121;
 
+$brand-color-main: #FB7923;
+
 body {
   overflow: hidden;
 }
@@ -49,9 +51,13 @@ body {
     // background-color: #fafafa;
     padding-left: 16px;
 
+    .symbol {
+      margin: 4px 0 4px 0px;
+    }
+
     .header {
-      @include mdc-typography("headline");
-      margin-bottom: 32px;
+      // @include mdc-typography("headline");
+      margin-top: 28px;
 
       .version-string {
         font-weight: bold;
@@ -60,11 +66,13 @@ body {
     }
 
     .heading-name {
-      margin: 16px 0 4px 0;
+      margin: 32px 0 4px 0;
       font-weight: bold;
       text-transform: uppercase;
       display: inline-block;
       letter-spacing: 1.2px;
+      border-bottom: 2px solid #0277BD;
+      width: 200px;
     }
 
 
@@ -74,27 +82,25 @@ body {
 
     .subheading-name {
       display: inline-block;
-      margin: 8px 0 8px 0px;
+      margin: 24px 0 8px 0px;
+      border-bottom: 1px solid #0277BD;
     }
 
-    .symbol {
-      margin: 4px 0 4px 16px;
-    }
 
     a {
       font-weight: normal;
       text-decoration-color: lightgrey;
       text-decoration: none;
-      transition-property: color, text-decoration-color, padding;
+      transition-property: color, text-decoration-color, margin;
       transition-duration: 0.15s;
-      padding-left: 0;
+      margin-left: 0;
       color: $dark-text-col;
     }
 
     a.highlighted {
       color: #0277BD;
       text-decoration-color: #002b36;
-      padding-left: 6px;
+      margin-left: 6px;
       font-weight: bold;
     }
   }
@@ -103,26 +109,55 @@ body {
     .api-section {
       max-width: 780px;
 
-      .heading, .subheading {
+      .heading {
         .title {
           @include mdc-typography("headline");
+          margin-top: 64px;
+          border-bottom: 4px solid #0277BD;
+          font-weight: 700;
+
+          a {
+            text-decoration: none;
+          }
         }
 
         .description {
-          // @include mdc-typography("body2");
+          font-size: 16px;
+        }
+      }
+
+      .subheading {
+        .title {
+          @include mdc-typography("headline");
+          margin-top: 64px;
+
+          border-bottom: 1px solid #0277BD;
+
+          a {
+            text-decoration: none;
+          }
+        }
+
+        .description {
+          font-size: 16px;
         }
       }
     }
 
     .symbol {
+      margin-top: 64px;
       background-color: #fafafa;
       padding: 32px;
       border-radius: 8px;
-    }
 
-    .symbol {
-      margin-top: 64px;
-      border-bottom: 4px solid white;
+      .source-link {
+        float:right;
+        text-align: right;
+        text-transform: lowercase;
+        font-weight: normal;
+        font-size: 12px;
+        padding: 8px;
+      }
 
       .symbol-marker {
         font-size: 12px;
