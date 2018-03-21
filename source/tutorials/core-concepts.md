@@ -20,10 +20,14 @@ The primary `Tensor` constructor is the [`tf.tensor`](../api/0.0.1/index.html#tf
 const shape = [2, 3]; // 2 rows, 3 columns
 const a = tf.tensor([1.0, 2.0, 3.0, 10.0, 20.0, 30.0], shape);
 a.print(); // print Tensor values
+// Output: [[1 , 2 , 3 ],
+//          [10, 20, 30]]
 
 // The shape can also be inferred:
 const b = tf.tensor([[1.0, 2.0, 3.0], [10.0, 20.0, 30.0]]);
 b.print();
+// Output: [[1 , 2 , 3 ],
+//          [10, 20, 30]]
 ```
 
 However, for constructing low-rank `Tensor`s, we recommend using the following
@@ -34,6 +38,8 @@ The following example creates an identical `Tensor` to the one above using `tf.t
 ```js
 const c = tf.tensor2d([[1.0, 2.0, 3.0], [10.0, 20.0, 30.0]]);
 c.print();
+// Output: [[1 , 2 , 3 ],
+//          [10, 20, 30]]
 ```
 
 TensorFlow.js also provides convenience functions for creating `Tensor`s with all values
@@ -42,6 +48,9 @@ set to 0 (`tf.zeros`) or all values set to 1 (`tf.ones`):
 ```js
 // 3x5 Tensor with all values set to 0
 const zeros = tf.zeros([3, 5]);
+// Output: [[0, 0, 0, 0, 0],
+//          [0, 0, 0, 0, 0],
+//          [0, 0, 0, 0, 0]]
 ``` 
 
 `Tensor`s are immutable; once created, you cannot change their values. Instead you perform operations on them that generate new `Tensor`s.
@@ -178,8 +187,6 @@ Using `dispose` can be cumbersome when doing a lot of tensor operations. TensorF
 `tf.tidy()` executes a function and purges any intermediate tensors created, freeing up their GPU memoary. It does not purge the return value of the inner function.
 
 ```js
-const a = tf.tensor2d([1.0, 2.0, 3.0, 4.0]);
-
 // tf.tidy takes a function to tidy up after
 const average = tf.tidy(() => {
   // tf.tidy will clean up all the GPU memory used by tensors inside
@@ -188,11 +195,13 @@ const average = tf.tidy(() => {
   // Even in a short sequence of operations like the one below, a number
   // of intermediate tensors get created. So it is a good practice to
   // put your math ops in a tidy!
-  return a.sub(b).square().mean();
+  const y = tf.tensor1d([1.0, 2.0, 3.0, 4.0]);
+  const z = tf.ones([4]);
+
+  return y.sub(z).square().mean();
 });
 
-a.print() // Throws error
-average.print() // Displays return value of function
+average.print() // Output: 3.5
 ```
 
 Using `tf.tidy` will help prevent memory leaks in your application. It can also be used to more carefully control when memory is reclaimed. 
@@ -201,7 +210,7 @@ Two important notes:
 
 * The function passed to `tf.tidy` should be synchronous and also not return a Promise. We suggest keeping code that updates the UI or makes remote requests outside of `tf.tidy`.
 
-*  `tf.tidy` **will not** clean up **variables**. Variables typically last through the entire lifecycle of a machine learning model, so TensorFlow.js doesn't clean them up even if they are created in a tidy; however, you can call `dispose` on them manually.
+*  `tf.tidy` **will not** clean up `Variable`s. `Variable`s typically last through the entire lifecycle of a machine learning model, so TensorFlow.js doesn't clean them up even if they are created in a `tidy`; however, you can call `dispose` on them manually.
 
 # Additional Resources
 
