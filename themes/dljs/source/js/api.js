@@ -48,6 +48,7 @@ document.addEventListener('DOMContentLoaded', function(e) {
   // Find the symbol closest to the top of the page in the reference
   // section and highlight it in the TOC section.
   var refSymbols = document.querySelectorAll('.symbol-link');
+
   var refArea = document.querySelector('.reference');
   var tocArea = document.querySelector('.toc');
   var lastHighlightedTocElement;
@@ -65,17 +66,18 @@ document.addEventListener('DOMContentLoaded', function(e) {
     }
     if (found) {
       tocFound =
-          tocArea.querySelectorAll(`[href="#${found.getAttribute('name')}"]`)
-      // The first subheading in a section shares an href with its parent.
-      tocFound = tocFound.length > 1 ? tocFound[1] : tocFound[0];
-      if (lastHighlightedTocElement) {
-        lastHighlightedTocElement.classList.remove('highlighted');
+          tocArea.querySelector(`[href="#${found.getAttribute('name')}"]`)
+
+      if (tocFound) {
+        if (lastHighlightedTocElement) {
+          lastHighlightedTocElement.classList.remove('highlighted');
+        }
+        tocFound.classList.add('highlighted');
+        if (!isInViewport(tocFound)) {
+          tocFound.scrollIntoView(false);
+        }
+        lastHighlightedTocElement = tocFound;
       }
-      tocFound.classList.add('highlighted');
-      if (!isInViewport(tocFound)) {
-        tocFound.scrollIntoView(false);
-      }
-      lastHighlightedTocElement = tocFound;
     }
   }
   refArea.addEventListener('scroll', updateTocView);

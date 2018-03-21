@@ -1,14 +1,13 @@
 [
   {
     "name": "Tensors",
-    "description": [],
+    "description": ["<p>Tensors are the core datastructure of TensorFlow.js",
+      "They are a generalization of vectors and matrices to potentially",
+      "higher dimensions.</p>"],
     "subheadings": [
       {
         "name": "Creation",
-        "description": ["<p>Tensors are the core datastructure of TensorFlow.js",
-           "They are a generalization of vectors and matrices to potentially",
-           "higher dimensions.",
-           "</p>",
+        "description": [
            "<p>We have utility functions for common cases like Scalar, 1D,",
            "2D, 3D and 4D tensors, as well a number of functions to initialize",
            "tensors in ways useful for machine learning.</p>"],

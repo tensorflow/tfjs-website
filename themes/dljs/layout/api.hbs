@@ -10,7 +10,7 @@
       <div class="api-section">
         {{> apiHeading name=name desc=description}}
         {{#subheadings}}
-          {{> apiSubhead name=name desc=description}}
+          {{> apiSubhead name=name headingName=../name desc=description}}
           {{#symbols}}
             {{#if isClass}}
               {{~> apiClass symbol=this~}}
