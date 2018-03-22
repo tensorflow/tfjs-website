@@ -1,6 +1,7 @@
 ---
 title: tutorials
 date: 2018-03-02 11:45:36
+bannerText: Tutorials & Guides
 ---
 
 # Tutorials
