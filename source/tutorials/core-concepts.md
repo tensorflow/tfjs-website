@@ -218,5 +218,5 @@ See the [TensorFlow.js API reference](../api/0.0.1/index.html) for comprehensive
 
 For a more in-depth look at machine learning fundamentals, see the following resources:
 
-* [Machine Learning Crash Course](https://developers.google.com/machine-learning/crash-course). (Note: this course's exercises use TensorFlow's [Python API](https://www.tensorflow.org/api_docs/python/). However, the core machine learning concepts it teaches can be applied in equivalent fashion using TensorFlow.js.)
+* [Machine Learning Crash Course](https://developers.google.com/machine-learning/crash-course) (Note: this course's exercises use TensorFlow's [Python API](https://www.tensorflow.org/api_docs/python/). However, the core machine learning concepts it teaches can be applied in equivalent fashion using TensorFlow.js.)
 * [Machine Learning Glossary](https://developers.google.com/machine-learning/glossary)
