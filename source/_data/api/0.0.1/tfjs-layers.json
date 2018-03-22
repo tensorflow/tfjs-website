@@ -811,7 +811,7 @@
                 "namespace": "layers",
                 "documentation": "A layer is a grouping of operations and weights that can be composed to\ncreate a `Model`.\n\nLayers are constructed by using the functions under the\n[tf.layers](#Layers-Basic) namespace.",
                 "fileName": "#333",
-                "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/engine/topology.ts#L333-L1171",
+                "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/engine/topology.ts#L333-L1226",
                 "methods": [
                   {
                     "docInfo": {
@@ -837,9 +837,9 @@
                       }
                     ],
                     "returnType": "Tensor|Tensor[]|SymbolicTensor|SymbolicTensor[]",
-                    "documentation": "Builds or executes a `Layer's logic.\n\nWhen called with `Tensor`(s), execute the `Layer`s computation and\nreturn Tensor(s).\n\nWhen called with `SymbolicTensor`(s), this will prepare the layer for\nfuture execution.  This entails internal book-keeping on shapes of\nexpected Tensors, wiring layers together, and initializing weights.",
-                    "fileName": "#778",
-                    "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/engine/topology.ts#L778-L892",
+                    "documentation": "Builds or executes a `Layer's logic.\n\nWhen called with `Tensor`(s), execute the `Layer`s computation and\n<<<<<<< HEAD\nreturn Tensor(s).\n=======\nreturn Tensor(s). For example:\n\n```js\nconst denseLayer = tf.layers.dense({\n   units: 1,\n   kernelInitializer: 'zeros',\n   useBias: false\n});\n\n// Invoke the layer's apply() method with a `Tensor` (with concrete\n// numeric values).\nconst input = tf.ones([2, 2]);\nconst output = denseLayer.apply(input);\n\n// The output's value is expected to be [[0], [0]], due to the fact that\n// the dense layer has a kernel initialized to all-zeros and does not have\n// a bias.\noutput.print();\n```\n>>>>>>> 8e2bec285a64e1682b32a4960af03aa7fb3ffa19\n\nWhen called with `SymbolicTensor`(s), this will prepare the layer for\nfuture execution.  This entails internal book-keeping on shapes of\nexpected Tensors, wiring layers together, and initializing weights.\n\n<<<<<<< HEAD\n=======\nCalling `apply` with `SymbolicTensor`s are typically used during the\nbuilding of non-`Sequential` models. For example:\n\n```js\nconst flattenLayer = tf.layers.flatten();\nconst denseLayer = tf.layers.dense({units: 1});\n\n// Use tf.layers.input() to obtain a SymbolicTensor as input to apply().\nconst input = tf.input({shape: [2, 2]});\nconst output1 = flattenLayer.apply(input);\n\n// output1.shape is [null, 4]. The first dimension is the undetermined\n// batch size. The second dimension comes from flattening the [2, 2]\n// shape.\nconsole.log(output1.shape);\n\n// The output SymbolicTensor of the flatten layer can be used to call\n// the apply() of the dense layer:\nconst output2 = denseLayer.apply(output1);\n\n// output2.shape is [null, 1]. The first dimension is the undetermined\n// batch size. The second dimension matches the number of units of the\n// dense layer.\nconsole.log(output2.shape);\n\n// The input and output and be used to construct a model that consists\n// of the flatten and dense layers.\nconst model = tf.model({inputs: input, outputs: output2});\n```\n\n>>>>>>> 8e2bec285a64e1682b32a4960af03aa7fb3ffa19",
+                    "fileName": "#833",
+                    "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/engine/topology.ts#L833-L947",
                     "isFunction": true
                   }
                 ],
@@ -915,7 +915,7 @@
                   {
                     "name": "dataFormat",
                     "documentation": "Format of the data, which determines the ordering of the dimensions in\nthe inputs.\n\n`channels_last` corresponds to inputs with shape\n   `(batch, ..., channels)`\n\n  `channels_first` corresponds to inputs with shape `(batch, channels,\n...)`.\n\nDefaults to `channels_last`.",
-                    "type": "'channelFirst'|'channelLast'",
+                    "type": "'channelsFirst'|'channelsLast'",
                     "optional": true,
                     "isConfigParam": true
                   },
@@ -1048,7 +1048,7 @@
                   {
                     "name": "dataFormat",
                     "documentation": "Format of the data, which determines the ordering of the dimensions in\nthe inputs.\n\n`channels_last` corresponds to inputs with shape\n   `(batch, ..., channels)`\n\n  `channels_first` corresponds to inputs with shape `(batch, channels,\n...)`.\n\nDefaults to `channels_last`.",
-                    "type": "'channelFirst'|'channelLast'",
+                    "type": "'channelsFirst'|'channelsLast'",
                     "optional": true,
                     "isConfigParam": true
                   },
@@ -1124,7 +1124,7 @@
                   }
                 ],
                 "returnType": "Layer",
-                "documentation": "2D convolution layer (e.g. spatial convolution over images).\n\nThis layer creates a convolution kernel that is convolved\nwith the layer input to produce a tensor of outputs.\n\nIf `useBias` is True, a bias vector is created and added to the outputs.\n\nIf `activation` is not `null`, it is applied to the outputs as well.\n\nWhen using this layer as the first layer in a model,\nprovide the keyword argument `inputShape`\n(Array of integers, does not include the sample axis),\ne.g. `inputShape=[128, 128, 3]` for 128x128 RGB pictures\nin `dataFormat='channelLast'`.",
+                "documentation": "2D convolution layer (e.g. spatial convolution over images).\n\nThis layer creates a convolution kernel that is convolved\nwith the layer input to produce a tensor of outputs.\n\nIf `useBias` is True, a bias vector is created and added to the outputs.\n\nIf `activation` is not `null`, it is applied to the outputs as well.\n\nWhen using this layer as the first layer in a model,\nprovide the keyword argument `inputShape`\n(Array of integers, does not include the sample axis),\ne.g. `inputShape=[128, 128, 3]` for 128x128 RGB pictures\nin `dataFormat='channelsLast'`.",
                 "fileName": "#192",
                 "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L192-L201",
                 "isFunction": true
@@ -2314,7 +2314,7 @@
                   {
                     "name": "dataFormat",
                     "documentation": "The data format to use for the pooling layer. ",
-                    "type": "'channelFirst'|'channelLast'",
+                    "type": "'channelsFirst'|'channelsLast'",
                     "optional": true,
                     "isConfigParam": true
                   }
@@ -2440,7 +2440,7 @@
                   {
                     "name": "dataFormat",
                     "documentation": "One of `CHANNEL_LAST` (default) or `CHANNEL_FIRST`.\n\nThe ordering of the dimensions in the inputs. `CHANNEL_LAST` corresponds\nto inputs with shape `[batch, height, width, channels[` while\n`CHANNEL_FIRST` corresponds to inputs with shape\n`[batch, channels, height, width]`.",
-                    "type": "'channelFirst'|'channelLast'",
+                    "type": "'channelsFirst'|'channelsLast'",
                     "optional": true,
                     "isConfigParam": true
                   }
@@ -2566,7 +2566,7 @@
                   {
                     "name": "dataFormat",
                     "documentation": "One of `CHANNEL_LAST` (default) or `CHANNEL_FIRST`.\n\nThe ordering of the dimensions in the inputs. `CHANNEL_LAST` corresponds\nto inputs with shape `[batch, height, width, channels[` while\n`CHANNEL_FIRST` corresponds to inputs with shape\n`[batch, channels, height, width]`.",
-                    "type": "'channelFirst'|'channelLast'",
+                    "type": "'channelsFirst'|'channelsLast'",
                     "optional": true,
                     "isConfigParam": true
                   }
@@ -2671,7 +2671,7 @@
                   {
                     "name": "dataFormat",
                     "documentation": "The data format to use for the pooling layer. ",
-                    "type": "'channelFirst'|'channelLast'",
+                    "type": "'channelsFirst'|'channelsLast'",
                     "optional": true,
                     "isConfigParam": true
                   }
