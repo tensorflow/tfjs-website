@@ -77,6 +77,30 @@
       {
         "name": "Basic",
         "description": []
+      },
+      {
+        "name": "Convolutional",
+        "description": []
+      },
+      {
+        "name": "Merge",
+        "description": []
+      },
+      {
+        "name": "Normalization",
+        "description": []
+      },
+      {
+        "name": "Pooling",
+        "description": []
+      },
+      {
+        "name": "Recurrent",
+        "description": []
+      },
+      {
+        "name": "Wrapper",
+        "description": []
       }
     ]
   },

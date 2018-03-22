@@ -54,20 +54,6 @@
                   "heading": "Performance",
                   "subheading": "Memory"
                 },
-                "symbolName": "memory",
-                "paramStr": "()",
-                "parameters": [],
-                "returnType": "MemoryInfo",
-                "documentation": "Returns memory info at the current time in the program. The result is an\nobject with the following properties:\n\n- `numBytes`: Number of bytes allocated (undisposed) at this time.\n- `numTensors`: Number of unique tensors allocated.\n- `numDataBuffers`: Number of unique data buffers allocated\n   (undisposed) at this time, which is ≤ the number of tensors\n   (e.g. `a.reshape(newShape)` makes a new Tensor that shares the same\n   data buffer with `a`).\n- `unreliable`: `Optional` `boolean`:\n    - On WebGL, not present (always reliable).\n    - On CPU, true. Due to automatic garbage collection, these numbers\n     represent undisposed tensors, i.e. not wrapped in `dl.tidy()`, or\n     lacking a call to `tensor.dispose()`.",
-                "fileName": "#262",
-                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/environment.ts#L262-L265",
-                "isFunction": true
-              },
-              {
-                "docInfo": {
-                  "heading": "Performance",
-                  "subheading": "Memory"
-                },
                 "symbolName": "tidy",
                 "paramStr": "(nameOrFn, fn?, gradMode?)",
                 "parameters": [
@@ -119,6 +105,547 @@
                 "documentation": "Keeps a `Tensor` generated inside a `tidy` from being disposed\nautomatically.\n\n```js\nlet b;\nconst y = dl.tidy(() => {\n   const one = dl.scalar(1);\n   const a = dl.scalar(2);\n\n   // b will not be cleaned up by the tidy. a and one will be cleaned up\n   // when the tidy ends.\n   b = dl.keep(a.square());\n\n   console.log('numTensors (in tidy): ' + dl.memory().numTensors);\n\n   // The value returned inside the tidy function will return\n   // through the tidy, in this case to the variable y.\n   return b.add(one);\n});\n\nconsole.log('numTensors (outside tidy): ' + dl.memory().numTensors);\nconsole.log('y:');\ny.print();\nconsole.log('b:');\nb.print();\n```",
                 "fileName": "#146",
                 "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/tracking.ts#L146-L149",
+                "isFunction": true
+              },
+              {
+                "docInfo": {
+                  "heading": "Performance",
+                  "subheading": "Memory"
+                },
+                "symbolName": "memory",
+                "paramStr": "()",
+                "parameters": [],
+                "returnType": "MemoryInfo",
+                "documentation": "Returns memory info at the current time in the program. The result is an\nobject with the following properties:\n\n- `numBytes`: Number of bytes allocated (undisposed) at this time.\n- `numTensors`: Number of unique tensors allocated.\n- `numDataBuffers`: Number of unique data buffers allocated\n   (undisposed) at this time, which is ≤ the number of tensors\n   (e.g. `a.reshape(newShape)` makes a new Tensor that shares the same\n   data buffer with `a`).\n- `unreliable`: `Optional` `boolean`:\n    - On WebGL, not present (always reliable).\n    - On CPU, true. Due to automatic garbage collection, these numbers\n     represent undisposed tensors, i.e. not wrapped in `dl.tidy()`, or\n     lacking a call to `tensor.dispose()`.",
+                "fileName": "#262",
+                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/environment.ts#L262-L265",
+                "isFunction": true
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Training",
+        "description": "",
+        "subheadings": [
+          {
+            "name": "Gradients",
+            "symbols": [
+              {
+                "docInfo": {
+                  "heading": "Training",
+                  "subheading": "Gradients"
+                },
+                "symbolName": "grad",
+                "paramStr": "(f)",
+                "parameters": [
+                  {
+                    "name": "f",
+                    "documentation": "The function f(x), to compute gradient for.",
+                    "type": "(x: Tensor) => Tensor",
+                    "optional": false,
+                    "isConfigParam": false
+                  }
+                ],
+                "returnType": "(x: Tensor, dy?: Tensor) => Tensor",
+                "documentation": "Provided `f(x)`, returns another function `g(x, dy?)`, which gives the\ngradient of `f(x)` with respect to `x`.\n\nIf `dy` is provided, the gradient of `f(x).mul(dy).sum()` with respect to\n`x` is computed instead. `f(x)` must take a single tensor `x` and return a\nsingle tensor `y`. If `f()` takes multiple inputs, use `grads` instead.\n\n```js\n// f(x) = x ^ 2\nconst f = x => x.square();\n// f'(x) = 2x\nconst g = dl.grad(f);\n\nconst x = dl.tensor1d([2, 3]);\ng(x).print();\n```\n\n```js\n// f(x) = x ^ 3\nconst f = x => x.pow(dl.scalar(3, 'int32'));\n// f'(x) = 3x ^ 2\nconst g = dl.grad(f);\n// f''(x) = 6x\nconst gg = dl.grad(g);\n\nconst x = dl.tensor1d([2, 3]);\ngg(x).print();\n```",
+                "fileName": "#76",
+                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/gradients.ts#L76-L98",
+                "isFunction": true
+              },
+              {
+                "docInfo": {
+                  "heading": "Training",
+                  "subheading": "Gradients"
+                },
+                "symbolName": "grads",
+                "paramStr": "(f)",
+                "parameters": [
+                  {
+                    "name": "f",
+                    "documentation": "The function `f(x1, x2,...)` to compute gradients for.",
+                    "type": "(...args: Tensor[]) => Tensor",
+                    "optional": false,
+                    "isConfigParam": false
+                  }
+                ],
+                "returnType": "(args: Tensor[], dy?: Tensor) => Tensor[]",
+                "documentation": "Provided `f(x1, x2,...)`, returns another function `g([x1, x2,...], dy?)`,\nwhich gives an array of gradients of `f()` with respect to each input\n[`x1`,`x2`,...].\n\nIf `dy` is passed when calling `g()`, the gradient of\n`f(x1,...).mul(dy).sum()` with respect to each input is computed instead.\nThe provided `f` must take one or more tensors and return a single tensor\n`y`. If `f()` takes a single input, we recommend using `grad` instead.\n\n```js\n// f(a, b) = a * b\nconst f = (a, b) => a.mul(b);\n// df / da = b, df / db = a\nconst g = dl.grads(f);\n\nconst a = dl.tensor1d([2, 3]);\nconst b = dl.tensor1d([-2, -3]);\nconst [da, db] = g([a, b]);\nconsole.log('da');\nda.print();\nconsole.log('db');\ndb.print();\n```",
+                "fileName": "#127",
+                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/gradients.ts#L127-L150",
+                "isFunction": true
+              },
+              {
+                "docInfo": {
+                  "heading": "Training",
+                  "subheading": "Gradients"
+                },
+                "symbolName": "valueAndGrad",
+                "paramStr": "(f)",
+                "parameters": [
+                  {
+                    "name": "f",
+                    "documentation": "",
+                    "type": "(x: Tensor) => Tensor",
+                    "optional": false,
+                    "isConfigParam": false
+                  }
+                ],
+                "returnType": "(x: Tensor, dy?: Tensor) => {\n        value: Tensor;\n        grad: Tensor;\n      }",
+                "documentation": "Like `dl.grad`, but also returns the value of `f()`. Useful when `f()`\nreturns a metric you want to show.\n\nThe result is a rich object with the following properties:\n- grad: The gradient of `f(x)` w.r.t `x` (result of `grad`).\n- value: The value returned by `f(x)`.\n\n```js\n// f(x) = x ^ 2\nconst f = x => x.square();\n// f'(x) = 2x\nconst g = dl.valueAndGrad(f);\n\nconst x = dl.tensor1d([2, 3]);\nconst {value, grad} = g(x);\n\nconsole.log('value');\nvalue.print();\nconsole.log('grad');\ngrad.print();\n```",
+                "fileName": "#175",
+                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/gradients.ts#L175-L195",
+                "isFunction": true
+              },
+              {
+                "docInfo": {
+                  "heading": "Training",
+                  "subheading": "Gradients"
+                },
+                "symbolName": "valueAndGrads",
+                "paramStr": "(f)",
+                "parameters": [
+                  {
+                    "name": "f",
+                    "documentation": "",
+                    "type": "(...args: Tensor[]) => Tensor",
+                    "optional": false,
+                    "isConfigParam": false
+                  }
+                ],
+                "returnType": "(args: Tensor[], dy?: Tensor) => {\n        grads: Tensor[];\n        value: Tensor;\n      }",
+                "documentation": "Like `grads`, but returns also the value of `f()`. Useful when `f()`\nreturns a metric you want to show.\n\nThe result is a rich object with the following properties:\n- grads: The gradients of `f()` w.r.t each input (result of `grads`).\n- value: The value returned by `f(x)`.\n\n```js\n// f(a, b) = a * b\nconst f = (a, b) => a.mul(b);\n// df/da = b, df/db = a\nconst g = dl.valueAndGrads(f);\n\nconst a = dl.tensor1d([2, 3]);\nconst b = dl.tensor1d([-2, -3]);\nconst {value, grads} = g([a, b]);\n\nconst [da, db] = grads;\n\nconsole.log('value');\nvalue.print();\n\nconsole.log('da');\nda.print();\nconsole.log('db');\ndb.print();\n```",
+                "fileName": "#226",
+                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/gradients.ts#L226-L252",
+                "isFunction": true
+              },
+              {
+                "docInfo": {
+                  "heading": "Training",
+                  "subheading": "Gradients"
+                },
+                "symbolName": "variableGrads",
+                "paramStr": "(f, varList?)",
+                "parameters": [
+                  {
+                    "name": "f",
+                    "documentation": "The function to execute. f() should return a scalar.",
+                    "type": "() => Scalar",
+                    "optional": false,
+                    "isConfigParam": false
+                  },
+                  {
+                    "name": "varList",
+                    "documentation": "The list of trainable variables. Defaults to all variables.",
+                    "type": "Variable[]",
+                    "optional": true,
+                    "isConfigParam": false
+                  }
+                ],
+                "returnType": "{value: Scalar, grads: {[name: string]: Tensor}}",
+                "documentation": "Computes and returns the gradient of f(x) with respect to the list of\ntrainable variables provided by `varList`. If no list is provided, it\ndefaults to all trainable variables.\n\n```js\nconst a = dl.variable(dl.tensor1d([3, 4]));\nconst b = dl.variable(dl.tensor1d([5, 6]));\nconst x = dl.tensor1d([1, 2]);\n\n// f(a, b) = a * x ^ 2 + b * x\nconst f = () => a.mul(x.square()).add(b.mul(x)).sum();\n// df/da = x ^ 2, df/db = x\nconst {value, grads} = dl.variableGrads(f);\n\nObject.keys(grads).forEach(varName => grads[varName].print());\n```",
+                "fileName": "#275",
+                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/gradients.ts#L275-L323",
+                "isFunction": true
+              },
+              {
+                "docInfo": {
+                  "heading": "Training",
+                  "subheading": "Gradients"
+                },
+                "symbolName": "customGrad",
+                "paramStr": "(f)",
+                "parameters": [
+                  {
+                    "name": "f",
+                    "documentation": "The function to evaluate in forward mode, which should return\n`{value: Tensor, gradFunc: (dy) => Tensor[]}`, where `gradFunc` returns\nthe custom gradients of `f` with respect to its inputs.",
+                    "type": "(a: Tensor, b: Tensor,...) => {\nvalue: Tensor,\ngradFunc: (dy: Tensor) => Tensor|Tensor[]\n}",
+                    "optional": false,
+                    "isConfigParam": false
+                  }
+                ],
+                "returnType": "(...args: Tensor[]) => Tensor",
+                "documentation": "Overrides the gradient computation of a function `f`.\n\nTakes a function\n`f(...inputs) => {value: Tensor, gradFunc: dy => Tensor[]}` and returns\nanother function `g(...inputs)` which takes the same inputs as `f`. When\ncalled, `g` returns `f().value`. In backward mode, custom gradients with\nrespect to each input of `f` are computed using `f().gradFunc`.\n\n```js\nconst customOp = dl.customGrad(x => {\n   // Override gradient of our custom x ^ 2 op to be dy * abs(x);\n   return {value: x.square(), gradFunc: dy => [dy.mul(x.abs())]};\n});\n\nconst x = dl.tensor1d([-1, -2, 3]);\nconst dx = dl.grad(x => customOp(x));\n\nconsole.log(`f(x):`);\ncustomOp(x).print();\nconsole.log(`f'(x):`);\ndx(x).print();\n```",
+                "fileName": "#353",
+                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/gradients.ts#L353-L357",
+                "isFunction": true
+              }
+            ]
+          },
+          {
+            "name": "Losses",
+            "symbols": [
+              {
+                "docInfo": {
+                  "heading": "Training",
+                  "subheading": "Losses",
+                  "namespace": "losses"
+                },
+                "symbolName": "softmaxCrossEntropy",
+                "namespace": "losses",
+                "paramStr": "(labels, logits, dim?)",
+                "parameters": [
+                  {
+                    "name": "labels",
+                    "documentation": "The labels array.",
+                    "type": "Tensor",
+                    "optional": false,
+                    "isConfigParam": false
+                  },
+                  {
+                    "name": "logits",
+                    "documentation": "The logits array.",
+                    "type": "Tensor",
+                    "optional": false,
+                    "isConfigParam": false
+                  },
+                  {
+                    "name": "dim",
+                    "documentation": "The dimension softmax would be performed on. Defaults to `-1`\nwhich indicates the last dimension.",
+                    "type": "number",
+                    "optional": true,
+                    "isConfigParam": false
+                  }
+                ],
+                "returnType": "Tensor",
+                "documentation": "Computes softmax cross entropy between logits and labels.\n\nMeasures the probability error in discrete classification tasks in which\nthe classes are mutually exclusive (each entry is in exactly one class).\nFor example, each CIFAR-10 image is labeled with one and only one label: an\nimage can be a dog or a truck, but not both.\n\n`NOTE`: While the classes are mutually exclusive, their probabilities need\nnot be. All that is required is that each row of labels is a valid\nprobability distribution. If they are not, the computation of the gradient\nwill be incorrect.\n\n`WARNING`: This op expects unscaled logits, since it performs a softmax on\nlogits internally for efficiency. Do not call this op with the output of\nsoftmax, as it will produce incorrect results.\n\nlogits and labels must have the same shape, e.g. [batch_size, num_classes]\nand the same dtype.",
+                "fileName": "#103",
+                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/softmax.ts#L103-L136",
+                "isFunction": true
+              }
+            ]
+          },
+          {
+            "name": "Classes",
+            "symbols": [
+              {
+                "docInfo": {
+                  "heading": "Training",
+                  "subheading": "Classes",
+                  "namespace": "train"
+                },
+                "symbolName": "Optimizer",
+                "namespace": "train",
+                "documentation": "",
+                "fileName": "#23",
+                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/optimizers/optimizer.ts#L23-L75",
+                "methods": [
+                  {
+                    "docInfo": {
+                      "heading": "Training",
+                      "subheading": "Optimizers"
+                    },
+                    "symbolName": "minimize",
+                    "paramStr": "(f, returnCost?, varList?)",
+                    "parameters": [
+                      {
+                        "name": "f",
+                        "documentation": "The function to execute and whose output to minimize.",
+                        "type": "() => Scalar",
+                        "optional": false,
+                        "isConfigParam": false
+                      },
+                      {
+                        "name": "returnCost",
+                        "documentation": "Whether to return the scalar cost value produced by\nexecuting `f()`.",
+                        "type": "boolean",
+                        "optional": true,
+                        "isConfigParam": false
+                      },
+                      {
+                        "name": "varList",
+                        "documentation": "An optional list of variables to update. If specified, only\nthe trainable variables in varList will be updated by minimize. Defaults to\nall trainable variables.",
+                        "type": "Variable[]",
+                        "optional": true,
+                        "isConfigParam": false
+                      }
+                    ],
+                    "returnType": "Scalar\n      |null",
+                    "documentation": "Executes `f()` and minimizes the scalar output of `f()` by computing\ngradients of y with respect to the list of trainable variables provided by\n`varList`. If no list is provided, it defaults to all trainable variables.",
+                    "fileName": "#36",
+                    "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/optimizers/optimizer.ts#L36-L53",
+                    "isFunction": true
+                  }
+                ],
+                "isClass": true
+              }
+            ]
+          },
+          {
+            "name": "Optimizers",
+            "symbols": [
+              {
+                "docInfo": {
+                  "heading": "Training",
+                  "subheading": "Optimizers",
+                  "namespace": "train"
+                },
+                "symbolName": "sgd",
+                "namespace": "train",
+                "paramStr": "(learningRate)",
+                "parameters": [
+                  {
+                    "name": "learningRate",
+                    "documentation": "The learning rate to use for the SGD algorithm.",
+                    "type": "number",
+                    "optional": false,
+                    "isConfigParam": false
+                  }
+                ],
+                "returnType": "SGDOptimizer",
+                "documentation": "Constructs a `SGDOptimizer` that uses stochastic gradient descent.\n\n```js\n// Fit a quadratic function by learning the coefficients a, b, c.\nconst xs = dl.tensor1d([0, 1, 2, 3]);\nconst ys = dl.tensor1d([1.1, 5.9, 16.8, 33.9]);\n\nconst a = dl.scalar(Math.random()).variable();\nconst b = dl.scalar(Math.random()).variable();\nconst c = dl.scalar(Math.random()).variable();\n\n// y = a * x^2 + b * x + c.\nconst f = x => a.mul(x.square()).add(b.mul(x)).add(c);\nconst loss = (pred, label) => pred.sub(label).square().mean();\n\nconst learningRate = 0.01;\nconst optimizer = dl.train.sgd(learningRate);\n\n// Train the model.\nfor (let i = 0; i < 10; i++) {\n   optimizer.minimize(() => loss(f(xs), ys));\n}\n\n// Make predictions.\nconsole.log(\n     `a: ${a.dataSync()}, b: ${b.dataSync()}, c: ${c.dataSync()}`);\nconst preds = f(xs).dataSync();\npreds.forEach((pred, i) => {\n   console.log(`x: ${i}, pred: ${pred}`);\n});\n```",
+                "fileName": "#64",
+                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/optimizers/optimizer_constructors.ts#L64-L67",
+                "isFunction": true
+              },
+              {
+                "docInfo": {
+                  "heading": "Training",
+                  "subheading": "Optimizers",
+                  "namespace": "train"
+                },
+                "symbolName": "momentum",
+                "namespace": "train",
+                "paramStr": "(learningRate, momentum, useNesterov?)",
+                "parameters": [
+                  {
+                    "name": "learningRate",
+                    "documentation": "The learning rate to use for the Momentum gradient\ndescent algorithm.",
+                    "type": "number",
+                    "optional": false,
+                    "isConfigParam": false
+                  },
+                  {
+                    "name": "momentum",
+                    "documentation": "The momentum to use for the momentum gradient descent\nalgorithm.",
+                    "type": "number",
+                    "optional": false,
+                    "isConfigParam": false
+                  },
+                  {
+                    "name": "useNesterov",
+                    "documentation": "",
+                    "type": "boolean",
+                    "optional": true,
+                    "isConfigParam": false
+                  }
+                ],
+                "returnType": "MomentumOptimizer",
+                "documentation": "Constructs a `MomentumOptimizer` that uses momentum gradient\ndescent.\n\nSee\n[http://proceedings.mlr.press/v28/sutskever13.pdf](\nhttp://proceedings.mlr.press/v28/sutskever13.pdf)",
+                "fileName": "#82",
+                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/optimizers/optimizer_constructors.ts#L82-L86",
+                "isFunction": true
+              },
+              {
+                "docInfo": {
+                  "heading": "Training",
+                  "subheading": "Optimizers",
+                  "namespace": "train"
+                },
+                "symbolName": "rmsprop",
+                "namespace": "train",
+                "paramStr": "(learningRate, decay?, momentum?, epsilon?)",
+                "parameters": [
+                  {
+                    "name": "learningRate",
+                    "documentation": "The learning rate to use for the RMSProp gradient\ndescent algorithm.",
+                    "type": "number",
+                    "optional": false,
+                    "isConfigParam": false
+                  },
+                  {
+                    "name": "decay",
+                    "documentation": "The discounting factor for the history/coming gradient.",
+                    "type": "number",
+                    "optional": true,
+                    "isConfigParam": false
+                  },
+                  {
+                    "name": "momentum",
+                    "documentation": "The momentum to use for the RMSProp gradient descent\nalgorithm.",
+                    "type": "number",
+                    "optional": true,
+                    "isConfigParam": false
+                  },
+                  {
+                    "name": "epsilon",
+                    "documentation": "Small value to avoid zero denominator.",
+                    "type": "number",
+                    "optional": true,
+                    "isConfigParam": false
+                  }
+                ],
+                "returnType": "RMSPropOptimizer",
+                "documentation": "Constructs a `RMSPropOptimizer` that uses RMSProp gradient\ndescent. This implementation uses plain momentum and is not centered\nversion of RMSProp.\n\nSee\n[http://www.cs.toronto.edu/~tijmen/csc321/slides/lecture_slides_lec6.pdf](\nhttp://www.cs.toronto.edu/~tijmen/csc321/slides/lecture_slides_lec6.pdf)",
+                "fileName": "#104",
+                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/optimizers/optimizer_constructors.ts#L104-L109",
+                "isFunction": true
+              },
+              {
+                "docInfo": {
+                  "heading": "Training",
+                  "subheading": "Optimizers",
+                  "namespace": "train"
+                },
+                "symbolName": "adam",
+                "namespace": "train",
+                "paramStr": "(learningRate?, beta1?, beta2?, epsilon?)",
+                "parameters": [
+                  {
+                    "name": "learningRate",
+                    "documentation": "The learning rate to use for the Adam gradient\ndescent algorithm.",
+                    "type": "number",
+                    "optional": true,
+                    "isConfigParam": false
+                  },
+                  {
+                    "name": "beta1",
+                    "documentation": "The exponential decay rate for the 1st moment estimates.",
+                    "type": "number",
+                    "optional": true,
+                    "isConfigParam": false
+                  },
+                  {
+                    "name": "beta2",
+                    "documentation": "The exponential decay rate for the 2nd moment estimates.",
+                    "type": "number",
+                    "optional": true,
+                    "isConfigParam": false
+                  },
+                  {
+                    "name": "epsilon",
+                    "documentation": "A small constant for numerical stability.",
+                    "type": "number",
+                    "optional": true,
+                    "isConfigParam": false
+                  }
+                ],
+                "returnType": "AdamOptimizer",
+                "documentation": "Constructs a `AdamOptimizer` that uses the Adam algorithm.\nSee [https://arxiv.org/abs/1412.6980](https://arxiv.org/abs/1412.6980)",
+                "fileName": "#121",
+                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/optimizers/optimizer_constructors.ts#L121-L125",
+                "isFunction": true
+              },
+              {
+                "docInfo": {
+                  "heading": "Training",
+                  "subheading": "Optimizers",
+                  "namespace": "train"
+                },
+                "symbolName": "adadelta",
+                "namespace": "train",
+                "paramStr": "(learningRate?, rho?, epsilon?)",
+                "parameters": [
+                  {
+                    "name": "learningRate",
+                    "documentation": "The learning rate to use for the Adadelta gradient\ndescent algorithm.",
+                    "type": "number",
+                    "optional": true,
+                    "isConfigParam": false
+                  },
+                  {
+                    "name": "rho",
+                    "documentation": "The learning rate decay over each update.",
+                    "type": "number",
+                    "optional": true,
+                    "isConfigParam": false
+                  },
+                  {
+                    "name": "epsilon",
+                    "documentation": "A constant epsilon used to better condition the grad\nupdate.",
+                    "type": "number",
+                    "optional": true,
+                    "isConfigParam": false
+                  }
+                ],
+                "returnType": "AdadeltaOptimizer",
+                "documentation": "Constructs a `AdadeltaOptimizer` that uses the Adadelta algorithm.\nSee [https://arxiv.org/abs/1212.5701](https://arxiv.org/abs/1212.5701)",
+                "fileName": "#137",
+                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/optimizers/optimizer_constructors.ts#L137-L141",
+                "isFunction": true
+              },
+              {
+                "docInfo": {
+                  "heading": "Training",
+                  "subheading": "Optimizers",
+                  "namespace": "train"
+                },
+                "symbolName": "adamax",
+                "namespace": "train",
+                "paramStr": "(learningRate?, beta1?, beta2?, epsilon?, decay?)",
+                "parameters": [
+                  {
+                    "name": "learningRate",
+                    "documentation": "The learning rate to use for the Adamax gradient\ndescent algorithm.",
+                    "type": "number",
+                    "optional": true,
+                    "isConfigParam": false
+                  },
+                  {
+                    "name": "beta1",
+                    "documentation": "The exponential decay rate for the 1st moment estimates.",
+                    "type": "number",
+                    "optional": true,
+                    "isConfigParam": false
+                  },
+                  {
+                    "name": "beta2",
+                    "documentation": "The exponential decay rate for the 2nd moment estimates.",
+                    "type": "number",
+                    "optional": true,
+                    "isConfigParam": false
+                  },
+                  {
+                    "name": "epsilon",
+                    "documentation": "A small constant for numerical stability.",
+                    "type": "number",
+                    "optional": true,
+                    "isConfigParam": false
+                  },
+                  {
+                    "name": "decay",
+                    "documentation": "The learning rate decay over each update.",
+                    "type": "number",
+                    "optional": true,
+                    "isConfigParam": false
+                  }
+                ],
+                "returnType": "AdamaxOptimizer",
+                "documentation": "Constructs a `AdamaxOptimizer` that uses the Adamax algorithm.\nSee [https://arxiv.org/abs/1412.6980](https://arxiv.org/abs/1412.6980)",
+                "fileName": "#154",
+                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/optimizers/optimizer_constructors.ts#L154-L159",
+                "isFunction": true
+              },
+              {
+                "docInfo": {
+                  "heading": "Training",
+                  "subheading": "Optimizers",
+                  "namespace": "train"
+                },
+                "symbolName": "adagrad",
+                "namespace": "train",
+                "paramStr": "(learningRate, initialAccumulatorValue?)",
+                "parameters": [
+                  {
+                    "name": "learningRate",
+                    "documentation": "The learning rate to use for the Adagrad gradient\ndescent algorithm.",
+                    "type": "number",
+                    "optional": false,
+                    "isConfigParam": false
+                  },
+                  {
+                    "name": "initialAccumulatorValue",
+                    "documentation": "Starting value for the accumulators, must be\npositive.",
+                    "type": "number",
+                    "optional": true,
+                    "isConfigParam": false
+                  }
+                ],
+                "returnType": "AdagradOptimizer",
+                "documentation": "Constructs a `AdagradOptimizer` that uses the Adagrad algorithm.\nSee\n[http://www.jmlr.org/papers/volume12/duchi11a/duchi11a.pdf](\nhttp://www.jmlr.org/papers/volume12/duchi11a/duchi11a.pdf)\nor\n[http://ruder.io/optimizing-gradient-descent/index.html#adagrad](\nhttp://ruder.io/optimizing-gradient-descent/index.html#adagrad)",
+                "fileName": "#175",
+                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/optimizers/optimizer_constructors.ts#L175-L179",
                 "isFunction": true
               }
             ]
@@ -1085,8 +1612,8 @@
                 ],
                 "returnType": "Variable",
                 "documentation": "Creates a new variable with the provided initial value.\n```js\nconst x = dl.variable(dl.tensor([1, 2, 3]));\nx.assign(dl.tensor([4, 5, 6]));\n\nx.print();\n```",
-                "fileName": "#888",
-                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/tensor.ts#L888-L896",
+                "fileName": "#894",
+                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/tensor.ts#L894-L902",
                 "isFunction": true
               }
             ]
@@ -1337,7 +1864,7 @@
                 "symbolName": "Tensor",
                 "documentation": "A `Tensor` object represents an immutable, multidimensional array of numbers\nthat has a shape and a data type.\n\nSee `tensor` for details on how to create a `Tensor`.",
                 "fileName": "#153",
-                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/tensor.ts#L153-L840",
+                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/tensor.ts#L153-L846",
                 "methods": [
                   {
                     "docInfo": {
@@ -1757,8 +2284,8 @@
                 },
                 "symbolName": "Variable",
                 "documentation": "A mutable `Tensor`, useful for persisting state, e.g. for training.",
-                "fileName": "#851",
-                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/tensor.ts#L851-L920",
+                "fileName": "#857",
+                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/tensor.ts#L857-L926",
                 "methods": [
                   {
                     "docInfo": {
@@ -1778,8 +2305,8 @@
                     ],
                     "returnType": "void",
                     "documentation": "Assign a new `Tensor` to this variable. The new `Tensor` must have the\nsame shape and dtype as the old `Tensor`.",
-                    "fileName": "#904",
-                    "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/tensor.ts#L904-L919",
+                    "fileName": "#910",
+                    "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/tensor.ts#L910-L925",
                     "isFunction": true
                   }
                 ],
@@ -2519,7 +3046,7 @@
                   "subheading": "Convolution"
                 },
                 "symbolName": "conv1d",
-                "paramStr": "(input, filter, stride, pad, dimRoundingMode?)",
+                "paramStr": "(input, filter, stride, pad, dataFormat?, dilation?, dimRoundingMode?)",
                 "parameters": [
                   {
                     "name": "input",
@@ -2550,6 +3077,20 @@
                     "isConfigParam": false
                   },
                   {
+                    "name": "dataFormat",
+                    "documentation": "An optional string from \"NWC\", \"NCW\". Defaults to \"NWC\",\nthe data is stored in the order of [batch, in_width, in_channels]. Only\n\"NWC\" is currently supported.",
+                    "type": "'NWC'|'NCW'",
+                    "optional": true,
+                    "isConfigParam": false
+                  },
+                  {
+                    "name": "dilation",
+                    "documentation": "The dilation rate in which we sample input values in\natrous convolution. Defaults to `1`. If it is greater than 1, then\nstride must be `1`.",
+                    "type": "number",
+                    "optional": true,
+                    "isConfigParam": false
+                  },
+                  {
                     "name": "dimRoundingMode",
                     "documentation": "The rounding mode used when computing output\ndimensions if pad is a number. If none is provided, it will not round\nand error if the output is of fractional size.",
                     "type": "'floor'|'round'|'ceil'",
@@ -2559,8 +3100,8 @@
                 ],
                 "returnType": "Tensor2D|Tensor3D",
                 "documentation": "Computes a 1D convolution over the input x.",
-                "fileName": "#47",
-                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/conv.ts#L47-L91",
+                "fileName": "#53",
+                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/conv.ts#L53-L110",
                 "isFunction": true
               },
               {
@@ -2569,7 +3110,7 @@
                   "subheading": "Convolution"
                 },
                 "symbolName": "conv2d",
-                "paramStr": "(x, filter, strides, pad, dimRoundingMode?)",
+                "paramStr": "(x, filter, strides, pad, dataFormat?, dilations?, dimRoundingMode?)",
                 "parameters": [
                   {
                     "name": "x",
@@ -2600,6 +3141,20 @@
                     "isConfigParam": false
                   },
                   {
+                    "name": "dataFormat",
+                    "documentation": ": An optional string from: \"NHWC\", \"NCHW\". Defaults to\n\"NHWC\". Specify the data format of the input and output data. With the\ndefault format \"NHWC\", the data is stored in the order of: [batch,\nheight, width, channels]. Only \"NHWC\" is currently supported.",
+                    "type": "'NHWC'|'NCHW'",
+                    "optional": true,
+                    "isConfigParam": false
+                  },
+                  {
+                    "name": "dilations",
+                    "documentation": "The dilation rates: `[dilationHeight, dilationWidth]`\nin which we sample input values across the height and width dimensions\nin atrous convolution. Defaults to `[1, 1]`. If `dilations` is a single\nnumber, then `dilationHeight == dilationWidth`. If it is greater than\n1, then all values of `strides` must be 1.",
+                    "type": "[number, number]|number",
+                    "optional": true,
+                    "isConfigParam": false
+                  },
+                  {
                     "name": "dimRoundingMode",
                     "documentation": "The rounding mode used when computing output\ndimensions if pad is a number. If none is provided, it will not round\nand error if the output is of fractional size.",
                     "type": "'floor'|'round'|'ceil'",
@@ -2609,8 +3164,8 @@
                 ],
                 "returnType": "Tensor3D|Tensor4D",
                 "documentation": "Computes a 2D convolution over the input x.",
-                "fileName": "#115",
-                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/conv.ts#L115-L166",
+                "fileName": "#143",
+                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/conv.ts#L143-L207",
                 "isFunction": true
               },
               {
@@ -2666,8 +3221,8 @@
                 ],
                 "returnType": "Tensor3D|Tensor4D",
                 "documentation": "Computes the transposed 2D convolution of an image, also known as a\ndeconvolution.",
-                "fileName": "#334",
-                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/conv.ts#L334-L343",
+                "fileName": "#375",
+                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/conv.ts#L375-L384",
                 "isFunction": true
               },
               {
@@ -2676,7 +3231,7 @@
                   "subheading": "Convolution"
                 },
                 "symbolName": "depthwiseConv2d",
-                "paramStr": "(input, filter, strides, pad, dilations?, dimRoundingMode?)",
+                "paramStr": "(input, filter, strides, pad, dataFormat?, dilations?, dimRoundingMode?)",
                 "parameters": [
                   {
                     "name": "input",
@@ -2707,8 +3262,15 @@
                     "isConfigParam": false
                   },
                   {
+                    "name": "dataFormat",
+                    "documentation": ": An optional string from: \"NHWC\", \"NCHW\". Defaults to\n\"NHWC\". Specify the data format of the input and output data. With the\ndefault format \"NHWC\", the data is stored in the order of: [batch,\nheight, width, channels]. Only \"NHWC\" is currently supported.",
+                    "type": "'NHWC'|'NCHW'",
+                    "optional": true,
+                    "isConfigParam": false
+                  },
+                  {
                     "name": "dilations",
-                    "documentation": "The dilation rates: `[dilationHeight, dilationWidth]`\nin which we sample input values across the height and width dimensions\nin atrous convolution. Defaults to `[1, 1]`. If `dilations` is a single\nnumber, then `dilationHeight == dilationWidth`. If it is greater than\n1, then all values of `strides` must be 1.",
+                    "documentation": "The dilation rates: `[dilationHeight, dilationWidth]`\nin which we sample input values across the height and width dimensions\nin atrous convolution. Defaults to `[1, 1]`. If `rate` is a single\nnumber, then `dilationHeight == dilationWidth`. If it is greater than\n1, then all values of `strides` must be 1.",
                     "type": "[number, number]|number",
                     "optional": true,
                     "isConfigParam": false
@@ -2723,8 +3285,8 @@
                 ],
                 "returnType": "Tensor3D|Tensor4D",
                 "documentation": "Depthwise 2D convolution.\n\nGiven a 4D `input` array and a `filter` array of shape\n`[filterHeight, filterWidth, inChannels, channelMultiplier]` containing\n`inChannels` convolutional filters of depth 1, this op applies a\ndifferent filter to each input channel (expanding from 1 channel to\n`channelMultiplier` channels for each), then concatenates the results\ntogether. The output has `inChannels * channelMultiplier` channels.\n\nSee\n[https://www.tensorflow.org/api_docs/python/tf/nn/depthwise_conv2d](\n     https://www.tensorflow.org/api_docs/python/tf/nn/depthwise_conv2d)\nfor more details.",
-                "fileName": "#385",
-                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/conv.ts#L385-L435",
+                "fileName": "#430",
+                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/conv.ts#L430-L481",
                 "isFunction": true
               },
               {
@@ -4027,533 +4589,6 @@
                 "documentation": "Computes step of the input `Tensor` element-wise: `x > 0 ? 1 : alpha * x`\n\n```js\nconst x = dl.tensor1d([0, 2, -1, -3]);\n\nx.step(.5).print();  // or dl.step(x, .5)\n```",
                 "fileName": "#572",
                 "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/unary_ops.ts#L572-L580",
-                "isFunction": true
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "name": "Training",
-        "description": "",
-        "subheadings": [
-          {
-            "name": "Losses",
-            "symbols": [
-              {
-                "docInfo": {
-                  "heading": "Training",
-                  "subheading": "Losses",
-                  "namespace": "losses"
-                },
-                "symbolName": "softmaxCrossEntropy",
-                "namespace": "losses",
-                "paramStr": "(labels, logits, dim?)",
-                "parameters": [
-                  {
-                    "name": "labels",
-                    "documentation": "The labels array.",
-                    "type": "Tensor",
-                    "optional": false,
-                    "isConfigParam": false
-                  },
-                  {
-                    "name": "logits",
-                    "documentation": "The logits array.",
-                    "type": "Tensor",
-                    "optional": false,
-                    "isConfigParam": false
-                  },
-                  {
-                    "name": "dim",
-                    "documentation": "The dimension softmax would be performed on. Defaults to `-1`\nwhich indicates the last dimension.",
-                    "type": "number",
-                    "optional": true,
-                    "isConfigParam": false
-                  }
-                ],
-                "returnType": "Tensor",
-                "documentation": "Computes softmax cross entropy between logits and labels.\n\nMeasures the probability error in discrete classification tasks in which\nthe classes are mutually exclusive (each entry is in exactly one class).\nFor example, each CIFAR-10 image is labeled with one and only one label: an\nimage can be a dog or a truck, but not both.\n\n`NOTE`: While the classes are mutually exclusive, their probabilities need\nnot be. All that is required is that each row of labels is a valid\nprobability distribution. If they are not, the computation of the gradient\nwill be incorrect.\n\n`WARNING`: This op expects unscaled logits, since it performs a softmax on\nlogits internally for efficiency. Do not call this op with the output of\nsoftmax, as it will produce incorrect results.\n\nlogits and labels must have the same shape, e.g. [batch_size, num_classes]\nand the same dtype.",
-                "fileName": "#103",
-                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/softmax.ts#L103-L136",
-                "isFunction": true
-              }
-            ]
-          },
-          {
-            "name": "Gradients",
-            "symbols": [
-              {
-                "docInfo": {
-                  "heading": "Training",
-                  "subheading": "Gradients"
-                },
-                "symbolName": "grad",
-                "paramStr": "(f)",
-                "parameters": [
-                  {
-                    "name": "f",
-                    "documentation": "The function f(x), to compute gradient for.",
-                    "type": "(x: Tensor) => Tensor",
-                    "optional": false,
-                    "isConfigParam": false
-                  }
-                ],
-                "returnType": "(x: Tensor, dy?: Tensor) => Tensor",
-                "documentation": "Provided `f(x)`, returns another function `g(x, dy?)`, which gives the\ngradient of `f(x)` with respect to `x`.\n\nIf `dy` is provided, the gradient of `f(x).mul(dy).sum()` with respect to\n`x` is computed instead. `f(x)` must take a single tensor `x` and return a\nsingle tensor `y`. If `f()` takes multiple inputs, use `grads` instead.\n\n```js\n// f(x) = x ^ 2\nconst f = x => x.square();\n// f'(x) = 2x\nconst g = dl.grad(f);\n\nconst x = dl.tensor1d([2, 3]);\ng(x).print();\n```\n\n```js\n// f(x) = x ^ 3\nconst f = x => x.pow(dl.scalar(3, 'int32'));\n// f'(x) = 3x ^ 2\nconst g = dl.grad(f);\n// f''(x) = 6x\nconst gg = dl.grad(g);\n\nconst x = dl.tensor1d([2, 3]);\ngg(x).print();\n```",
-                "fileName": "#76",
-                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/gradients.ts#L76-L98",
-                "isFunction": true
-              },
-              {
-                "docInfo": {
-                  "heading": "Training",
-                  "subheading": "Gradients"
-                },
-                "symbolName": "grads",
-                "paramStr": "(f)",
-                "parameters": [
-                  {
-                    "name": "f",
-                    "documentation": "The function `f(x1, x2,...)` to compute gradients for.",
-                    "type": "(...args: Tensor[]) => Tensor",
-                    "optional": false,
-                    "isConfigParam": false
-                  }
-                ],
-                "returnType": "(args: Tensor[], dy?: Tensor) => Tensor[]",
-                "documentation": "Provided `f(x1, x2,...)`, returns another function `g([x1, x2,...], dy?)`,\nwhich gives an array of gradients of `f()` with respect to each input\n[`x1`,`x2`,...].\n\nIf `dy` is passed when calling `g()`, the gradient of\n`f(x1,...).mul(dy).sum()` with respect to each input is computed instead.\nThe provided `f` must take one or more tensors and return a single tensor\n`y`. If `f()` takes a single input, we recommend using `grad` instead.\n\n```js\n// f(a, b) = a * b\nconst f = (a, b) => a.mul(b);\n// df / da = b, df / db = a\nconst g = dl.grads(f);\n\nconst a = dl.tensor1d([2, 3]);\nconst b = dl.tensor1d([-2, -3]);\nconst [da, db] = g([a, b]);\nconsole.log('da');\nda.print();\nconsole.log('db');\ndb.print();\n```",
-                "fileName": "#127",
-                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/gradients.ts#L127-L150",
-                "isFunction": true
-              },
-              {
-                "docInfo": {
-                  "heading": "Training",
-                  "subheading": "Gradients"
-                },
-                "symbolName": "valueAndGrad",
-                "paramStr": "(f)",
-                "parameters": [
-                  {
-                    "name": "f",
-                    "documentation": "",
-                    "type": "(x: Tensor) => Tensor",
-                    "optional": false,
-                    "isConfigParam": false
-                  }
-                ],
-                "returnType": "(x: Tensor, dy?: Tensor) => {\n        value: Tensor;\n        grad: Tensor;\n      }",
-                "documentation": "Like `dl.grad`, but also returns the value of `f()`. Useful when `f()`\nreturns a metric you want to show.\n\nThe result is a rich object with the following properties:\n- grad: The gradient of `f(x)` w.r.t `x` (result of `grad`).\n- value: The value returned by `f(x)`.\n\n```js\n// f(x) = x ^ 2\nconst f = x => x.square();\n// f'(x) = 2x\nconst g = dl.valueAndGrad(f);\n\nconst x = dl.tensor1d([2, 3]);\nconst {value, grad} = g(x);\n\nconsole.log('value');\nvalue.print();\nconsole.log('grad');\ngrad.print();\n```",
-                "fileName": "#175",
-                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/gradients.ts#L175-L195",
-                "isFunction": true
-              },
-              {
-                "docInfo": {
-                  "heading": "Training",
-                  "subheading": "Gradients"
-                },
-                "symbolName": "valueAndGrads",
-                "paramStr": "(f)",
-                "parameters": [
-                  {
-                    "name": "f",
-                    "documentation": "",
-                    "type": "(...args: Tensor[]) => Tensor",
-                    "optional": false,
-                    "isConfigParam": false
-                  }
-                ],
-                "returnType": "(args: Tensor[], dy?: Tensor) => {\n        grads: Tensor[];\n        value: Tensor;\n      }",
-                "documentation": "Like `grads`, but returns also the value of `f()`. Useful when `f()`\nreturns a metric you want to show.\n\nThe result is a rich object with the following properties:\n- grads: The gradients of `f()` w.r.t each input (result of `grads`).\n- value: The value returned by `f(x)`.\n\n```js\n// f(a, b) = a * b\nconst f = (a, b) => a.mul(b);\n// df/da = b, df/db = a\nconst g = dl.valueAndGrads(f);\n\nconst a = dl.tensor1d([2, 3]);\nconst b = dl.tensor1d([-2, -3]);\nconst {value, grads} = g([a, b]);\n\nconst [da, db] = grads;\n\nconsole.log('value');\nvalue.print();\n\nconsole.log('da');\nda.print();\nconsole.log('db');\ndb.print();\n```",
-                "fileName": "#226",
-                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/gradients.ts#L226-L252",
-                "isFunction": true
-              },
-              {
-                "docInfo": {
-                  "heading": "Training",
-                  "subheading": "Gradients"
-                },
-                "symbolName": "variableGrads",
-                "paramStr": "(f, varList?)",
-                "parameters": [
-                  {
-                    "name": "f",
-                    "documentation": "The function to execute. f() should return a scalar.",
-                    "type": "() => Scalar",
-                    "optional": false,
-                    "isConfigParam": false
-                  },
-                  {
-                    "name": "varList",
-                    "documentation": "The list of trainable variables. Defaults to all variables.",
-                    "type": "Variable[]",
-                    "optional": true,
-                    "isConfigParam": false
-                  }
-                ],
-                "returnType": "{value: Scalar, grads: {[name: string]: Tensor}}",
-                "documentation": "Computes and returns the gradient of f(x) with respect to the list of\ntrainable variables provided by `varList`. If no list is provided, it\ndefaults to all trainable variables.\n\n```js\nconst a = dl.variable(dl.tensor1d([3, 4]));\nconst b = dl.variable(dl.tensor1d([5, 6]));\nconst x = dl.tensor1d([1, 2]);\n\n// f(a, b) = a * x ^ 2 + b * x\nconst f = () => a.mul(x.square()).add(b.mul(x)).sum();\n// df/da = x ^ 2, df/db = x\nconst {value, grads} = dl.variableGrads(f);\n\nObject.keys(grads).forEach(varName => grads[varName].print());\n```",
-                "fileName": "#275",
-                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/gradients.ts#L275-L323",
-                "isFunction": true
-              },
-              {
-                "docInfo": {
-                  "heading": "Training",
-                  "subheading": "Gradients"
-                },
-                "symbolName": "customGrad",
-                "paramStr": "(f)",
-                "parameters": [
-                  {
-                    "name": "f",
-                    "documentation": "The function to evaluate in forward mode, which should return\n`{value: Tensor, gradFunc: (dy) => Tensor[]}`, where `gradFunc` returns\nthe custom gradients of `f` with respect to its inputs.",
-                    "type": "(a: Tensor, b: Tensor,...) => {\nvalue: Tensor,\ngradFunc: (dy: Tensor) => Tensor|Tensor[]\n}",
-                    "optional": false,
-                    "isConfigParam": false
-                  }
-                ],
-                "returnType": "(...args: Tensor[]) => Tensor",
-                "documentation": "Overrides the gradient computation of a function `f`.\n\nTakes a function\n`f(...inputs) => {value: Tensor, gradFunc: dy => Tensor[]}` and returns\nanother function `g(...inputs)` which takes the same inputs as `f`. When\ncalled, `g` returns `f().value`. In backward mode, custom gradients with\nrespect to each input of `f` are computed using `f().gradFunc`.\n\n```js\nconst customOp = dl.customGrad(x => {\n   // Override gradient of our custom x ^ 2 op to be dy * abs(x);\n   return {value: x.square(), gradFunc: dy => [dy.mul(x.abs())]};\n});\n\nconst x = dl.tensor1d([-1, -2, 3]);\nconst dx = dl.grad(x => customOp(x));\n\nconsole.log(`f(x):`);\ncustomOp(x).print();\nconsole.log(`f'(x):`);\ndx(x).print();\n```",
-                "fileName": "#353",
-                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/gradients.ts#L353-L357",
-                "isFunction": true
-              }
-            ]
-          },
-          {
-            "name": "Classes",
-            "symbols": [
-              {
-                "docInfo": {
-                  "heading": "Training",
-                  "subheading": "Classes",
-                  "namespace": "train"
-                },
-                "symbolName": "Optimizer",
-                "namespace": "train",
-                "documentation": "",
-                "fileName": "#23",
-                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/optimizers/optimizer.ts#L23-L75",
-                "methods": [
-                  {
-                    "docInfo": {
-                      "heading": "Training",
-                      "subheading": "Optimizers"
-                    },
-                    "symbolName": "minimize",
-                    "paramStr": "(f, returnCost?, varList?)",
-                    "parameters": [
-                      {
-                        "name": "f",
-                        "documentation": "The function to execute and whose output to minimize.",
-                        "type": "() => Scalar",
-                        "optional": false,
-                        "isConfigParam": false
-                      },
-                      {
-                        "name": "returnCost",
-                        "documentation": "Whether to return the scalar cost value produced by\nexecuting `f()`.",
-                        "type": "boolean",
-                        "optional": true,
-                        "isConfigParam": false
-                      },
-                      {
-                        "name": "varList",
-                        "documentation": "An optional list of variables to update. If specified, only\nthe trainable variables in varList will be updated by minimize. Defaults to\nall trainable variables.",
-                        "type": "Variable[]",
-                        "optional": true,
-                        "isConfigParam": false
-                      }
-                    ],
-                    "returnType": "Scalar\n      |null",
-                    "documentation": "Executes `f()` and minimizes the scalar output of `f()` by computing\ngradients of y with respect to the list of trainable variables provided by\n`varList`. If no list is provided, it defaults to all trainable variables.",
-                    "fileName": "#36",
-                    "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/optimizers/optimizer.ts#L36-L53",
-                    "isFunction": true
-                  }
-                ],
-                "isClass": true
-              }
-            ]
-          },
-          {
-            "name": "Optimizers",
-            "symbols": [
-              {
-                "docInfo": {
-                  "heading": "Training",
-                  "subheading": "Optimizers",
-                  "namespace": "train"
-                },
-                "symbolName": "sgd",
-                "namespace": "train",
-                "paramStr": "(learningRate)",
-                "parameters": [
-                  {
-                    "name": "learningRate",
-                    "documentation": "The learning rate to use for the SGD algorithm.",
-                    "type": "number",
-                    "optional": false,
-                    "isConfigParam": false
-                  }
-                ],
-                "returnType": "SGDOptimizer",
-                "documentation": "Constructs a `SGDOptimizer` that uses stochastic gradient descent.\n\n```js\n// Fit a quadratic function by learning the coefficients a, b, c.\nconst xs = dl.tensor1d([0, 1, 2, 3]);\nconst ys = dl.tensor1d([1.1, 5.9, 16.8, 33.9]);\n\nconst a = dl.scalar(Math.random()).variable();\nconst b = dl.scalar(Math.random()).variable();\nconst c = dl.scalar(Math.random()).variable();\n\n// y = a * x^2 + b * x + c.\nconst f = x => a.mul(x.square()).add(b.mul(x)).add(c);\nconst loss = (pred, label) => pred.sub(label).square().mean();\n\nconst learningRate = 0.01;\nconst optimizer = dl.train.sgd(learningRate);\n\n// Train the model.\nfor (let i = 0; i < 10; i++) {\n   optimizer.minimize(() => loss(f(xs), ys));\n}\n\n// Make predictions.\nconsole.log(\n     `a: ${a.dataSync()}, b: ${b.dataSync()}, c: ${c.dataSync()}`);\nconst preds = f(xs).dataSync();\npreds.forEach((pred, i) => {\n   console.log(`x: ${i}, pred: ${pred}`);\n});\n```",
-                "fileName": "#64",
-                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/optimizers/optimizer_constructors.ts#L64-L67",
-                "isFunction": true
-              },
-              {
-                "docInfo": {
-                  "heading": "Training",
-                  "subheading": "Optimizers",
-                  "namespace": "train"
-                },
-                "symbolName": "momentum",
-                "namespace": "train",
-                "paramStr": "(learningRate, momentum, useNesterov?)",
-                "parameters": [
-                  {
-                    "name": "learningRate",
-                    "documentation": "The learning rate to use for the Momentum gradient\ndescent algorithm.",
-                    "type": "number",
-                    "optional": false,
-                    "isConfigParam": false
-                  },
-                  {
-                    "name": "momentum",
-                    "documentation": "The momentum to use for the momentum gradient descent\nalgorithm.",
-                    "type": "number",
-                    "optional": false,
-                    "isConfigParam": false
-                  },
-                  {
-                    "name": "useNesterov",
-                    "documentation": "",
-                    "type": "boolean",
-                    "optional": true,
-                    "isConfigParam": false
-                  }
-                ],
-                "returnType": "MomentumOptimizer",
-                "documentation": "Constructs a `MomentumOptimizer` that uses momentum gradient\ndescent.\n\nSee\n[http://proceedings.mlr.press/v28/sutskever13.pdf](\nhttp://proceedings.mlr.press/v28/sutskever13.pdf)",
-                "fileName": "#82",
-                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/optimizers/optimizer_constructors.ts#L82-L86",
-                "isFunction": true
-              },
-              {
-                "docInfo": {
-                  "heading": "Training",
-                  "subheading": "Optimizers",
-                  "namespace": "train"
-                },
-                "symbolName": "rmsprop",
-                "namespace": "train",
-                "paramStr": "(learningRate, decay?, momentum?, epsilon?)",
-                "parameters": [
-                  {
-                    "name": "learningRate",
-                    "documentation": "The learning rate to use for the RMSProp gradient\ndescent algorithm.",
-                    "type": "number",
-                    "optional": false,
-                    "isConfigParam": false
-                  },
-                  {
-                    "name": "decay",
-                    "documentation": "The discounting factor for the history/coming gradient.",
-                    "type": "number",
-                    "optional": true,
-                    "isConfigParam": false
-                  },
-                  {
-                    "name": "momentum",
-                    "documentation": "The momentum to use for the RMSProp gradient descent\nalgorithm.",
-                    "type": "number",
-                    "optional": true,
-                    "isConfigParam": false
-                  },
-                  {
-                    "name": "epsilon",
-                    "documentation": "Small value to avoid zero denominator.",
-                    "type": "number",
-                    "optional": true,
-                    "isConfigParam": false
-                  }
-                ],
-                "returnType": "RMSPropOptimizer",
-                "documentation": "Constructs a `RMSPropOptimizer` that uses RMSProp gradient\ndescent. This implementation uses plain momentum and is not centered\nversion of RMSProp.\n\nSee\n[http://www.cs.toronto.edu/~tijmen/csc321/slides/lecture_slides_lec6.pdf](\nhttp://www.cs.toronto.edu/~tijmen/csc321/slides/lecture_slides_lec6.pdf)",
-                "fileName": "#104",
-                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/optimizers/optimizer_constructors.ts#L104-L109",
-                "isFunction": true
-              },
-              {
-                "docInfo": {
-                  "heading": "Training",
-                  "subheading": "Optimizers",
-                  "namespace": "train"
-                },
-                "symbolName": "adam",
-                "namespace": "train",
-                "paramStr": "(learningRate?, beta1?, beta2?, epsilon?)",
-                "parameters": [
-                  {
-                    "name": "learningRate",
-                    "documentation": "The learning rate to use for the Adam gradient\ndescent algorithm.",
-                    "type": "number",
-                    "optional": true,
-                    "isConfigParam": false
-                  },
-                  {
-                    "name": "beta1",
-                    "documentation": "The exponential decay rate for the 1st moment estimates.",
-                    "type": "number",
-                    "optional": true,
-                    "isConfigParam": false
-                  },
-                  {
-                    "name": "beta2",
-                    "documentation": "The exponential decay rate for the 2nd moment estimates.",
-                    "type": "number",
-                    "optional": true,
-                    "isConfigParam": false
-                  },
-                  {
-                    "name": "epsilon",
-                    "documentation": "A small constant for numerical stability.",
-                    "type": "number",
-                    "optional": true,
-                    "isConfigParam": false
-                  }
-                ],
-                "returnType": "AdamOptimizer",
-                "documentation": "Constructs a `AdamOptimizer` that uses the Adam algorithm.\nSee [https://arxiv.org/abs/1412.6980](https://arxiv.org/abs/1412.6980)",
-                "fileName": "#121",
-                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/optimizers/optimizer_constructors.ts#L121-L125",
-                "isFunction": true
-              },
-              {
-                "docInfo": {
-                  "heading": "Training",
-                  "subheading": "Optimizers",
-                  "namespace": "train"
-                },
-                "symbolName": "adadelta",
-                "namespace": "train",
-                "paramStr": "(learningRate?, rho?, epsilon?)",
-                "parameters": [
-                  {
-                    "name": "learningRate",
-                    "documentation": "The learning rate to use for the Adadelta gradient\ndescent algorithm.",
-                    "type": "number",
-                    "optional": true,
-                    "isConfigParam": false
-                  },
-                  {
-                    "name": "rho",
-                    "documentation": "The learning rate decay over each update.",
-                    "type": "number",
-                    "optional": true,
-                    "isConfigParam": false
-                  },
-                  {
-                    "name": "epsilon",
-                    "documentation": "A constant epsilon used to better condition the grad\nupdate.",
-                    "type": "number",
-                    "optional": true,
-                    "isConfigParam": false
-                  }
-                ],
-                "returnType": "AdadeltaOptimizer",
-                "documentation": "Constructs a `AdadeltaOptimizer` that uses the Adadelta algorithm.\nSee [https://arxiv.org/abs/1212.5701](https://arxiv.org/abs/1212.5701)",
-                "fileName": "#137",
-                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/optimizers/optimizer_constructors.ts#L137-L141",
-                "isFunction": true
-              },
-              {
-                "docInfo": {
-                  "heading": "Training",
-                  "subheading": "Optimizers",
-                  "namespace": "train"
-                },
-                "symbolName": "adamax",
-                "namespace": "train",
-                "paramStr": "(learningRate?, beta1?, beta2?, epsilon?, decay?)",
-                "parameters": [
-                  {
-                    "name": "learningRate",
-                    "documentation": "The learning rate to use for the Adamax gradient\ndescent algorithm.",
-                    "type": "number",
-                    "optional": true,
-                    "isConfigParam": false
-                  },
-                  {
-                    "name": "beta1",
-                    "documentation": "The exponential decay rate for the 1st moment estimates.",
-                    "type": "number",
-                    "optional": true,
-                    "isConfigParam": false
-                  },
-                  {
-                    "name": "beta2",
-                    "documentation": "The exponential decay rate for the 2nd moment estimates.",
-                    "type": "number",
-                    "optional": true,
-                    "isConfigParam": false
-                  },
-                  {
-                    "name": "epsilon",
-                    "documentation": "A small constant for numerical stability.",
-                    "type": "number",
-                    "optional": true,
-                    "isConfigParam": false
-                  },
-                  {
-                    "name": "decay",
-                    "documentation": "The learning rate decay over each update.",
-                    "type": "number",
-                    "optional": true,
-                    "isConfigParam": false
-                  }
-                ],
-                "returnType": "AdamaxOptimizer",
-                "documentation": "Constructs a `AdamaxOptimizer` that uses the Adamax algorithm.\nSee [https://arxiv.org/abs/1412.6980](https://arxiv.org/abs/1412.6980)",
-                "fileName": "#154",
-                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/optimizers/optimizer_constructors.ts#L154-L159",
-                "isFunction": true
-              },
-              {
-                "docInfo": {
-                  "heading": "Training",
-                  "subheading": "Optimizers",
-                  "namespace": "train"
-                },
-                "symbolName": "adagrad",
-                "namespace": "train",
-                "paramStr": "(learningRate, initialAccumulatorValue?)",
-                "parameters": [
-                  {
-                    "name": "learningRate",
-                    "documentation": "The learning rate to use for the Adagrad gradient\ndescent algorithm.",
-                    "type": "number",
-                    "optional": false,
-                    "isConfigParam": false
-                  },
-                  {
-                    "name": "initialAccumulatorValue",
-                    "documentation": "Starting value for the accumulators, must be\npositive.",
-                    "type": "number",
-                    "optional": true,
-                    "isConfigParam": false
-                  }
-                ],
-                "returnType": "AdagradOptimizer",
-                "documentation": "Constructs a `AdagradOptimizer` that uses the Adagrad algorithm.\nSee\n[http://www.jmlr.org/papers/volume12/duchi11a/duchi11a.pdf](\nhttp://www.jmlr.org/papers/volume12/duchi11a/duchi11a.pdf)\nor\n[http://ruder.io/optimizing-gradient-descent/index.html#adagrad](\nhttp://ruder.io/optimizing-gradient-descent/index.html#adagrad)",
-                "fileName": "#175",
-                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/optimizers/optimizer_constructors.ts#L175-L179",
                 "isFunction": true
               }
             ]
