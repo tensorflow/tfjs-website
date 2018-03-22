@@ -127,29 +127,39 @@ util.sortMethods(mergedDocs, pins);
 const symbols: util.SymbolAndUrl[] = [
   {
     symbolName: 'TypedArray',
+    referenceName: 'TypedArray',
     url: 'https://developer.mozilla.org/en-US/docs/Web/' +
         'JavaScript/Reference/Global_Objects/TypedArray',
-    type: 'class'
+    type: 'class',
+    toplevelNamespace: ''
   },
   {
     symbolName: 'ImageData',
+    referenceName: 'ImageData',
     url: 'https://developer.mozilla.org/en-US/docs/Web/API/ImageData',
-    type: 'class'
+    type: 'class',
+    toplevelNamespace: ''
   },
   {
     symbolName: 'HTMLImageElement',
+    referenceName: 'HTMLImageElement',
     url: 'https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement',
-    type: 'class'
+    type: 'class',
+    toplevelNamespace: ''
   },
   {
     symbolName: 'HTMLCanvasElement',
+    referenceName: 'HTMLCanvasElement',
     url: 'https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement',
-    type: 'class'
+    type: 'class',
+    toplevelNamespace: ''
   },
   {
     symbolName: 'HTMLVideoElement',
+    referenceName: 'HTMLVideoElement',
     url: 'https://developer.mozilla.org/en-US/docs/Web/API/HTMLVideoElement',
-    type: 'class'
+    type: 'class',
+    toplevelNamespace: ''
   }
 ];
 util.linkSymbols(mergedDocs, symbols, TOPLEVEL_NAMESPACE, mergedDocLinkAliases);
