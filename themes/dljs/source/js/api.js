@@ -6,14 +6,19 @@ document.addEventListener('DOMContentLoaded', function(e) {
     window.location.href = link;
   });
 
-  function executeCodeSnippet(consoleLogElement, codeSnippet) {
+  async function executeCodeSnippet(consoleLogElement, codeSnippet) {
     consoleLogElement.innerText = '';
     var oldLog = console.log;
     console.log = function(logStr) {
       consoleLogElement.innerText += logStr + '\n';
     };
-    var snippet = 'dl.tidy(function() {' + codeSnippet + '});';
-    eval(snippet);
+
+    var snippet = `(async function() {${codeSnippet}})();`;
+
+    tf.ENV.engine.startScope();
+    await eval(snippet);
+    tf.ENV.engine.endScope();
+
     console.log = oldLog;
   };
 

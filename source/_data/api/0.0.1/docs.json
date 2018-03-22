@@ -2692,14 +2692,14 @@
                 {
                   "name": "kernelInitializer",
                   "documentation": "Initializer for the dense kernel weights matrix.",
-                  "type": "'constant'|'glorotNormal'|'glorotUniform'|\n    'heNormal'|'identity'|'leCunNormal'|'ones'|'randomNormal'|'randomUniform'|\n    'truncatedNormal'|'varianceScaling'|'zeros'|string|[Initializer](#class:tf.initializers.Initializer)",
+                  "type": "'constant'|'glorotNormal'|'glorotUniform'|\n    'heNormal'|'identity'|'leCunNormal'|'ones'|'orthogonal'|'randomNormal'|\n    'randomUniform'|'truncatedNormal'|'varianceScaling'|'zeros'|string|[Initializer](#class:tf.initializers.Initializer)",
                   "optional": true,
                   "isConfigParam": true
                 },
                 {
                   "name": "biasInitializer",
                   "documentation": "Initializer for the bias vector.",
-                  "type": "'constant'|'glorotNormal'|'glorotUniform'|\n    'heNormal'|'identity'|'leCunNormal'|'ones'|'randomNormal'|'randomUniform'|\n    'truncatedNormal'|'varianceScaling'|'zeros'|string|[Initializer](#class:tf.initializers.Initializer)",
+                  "type": "'constant'|'glorotNormal'|'glorotUniform'|\n    'heNormal'|'identity'|'leCunNormal'|'ones'|'orthogonal'|'randomNormal'|\n    'randomUniform'|'truncatedNormal'|'varianceScaling'|'zeros'|string|[Initializer](#class:tf.initializers.Initializer)",
                   "optional": true,
                   "isConfigParam": true
                 },
@@ -2843,7 +2843,7 @@
                 {
                   "name": "embeddingsInitializer",
                   "documentation": "Initializer for the `embeddings` matrix.",
-                  "type": "'constant'|'glorotNormal'|'glorotUniform'|\n    'heNormal'|'identity'|'leCunNormal'|'ones'|'randomNormal'|'randomUniform'|\n    'truncatedNormal'|'varianceScaling'|'zeros'|string|[Initializer](#class:tf.initializers.Initializer)",
+                  "type": "'constant'|'glorotNormal'|'glorotUniform'|\n    'heNormal'|'identity'|'leCunNormal'|'ones'|'orthogonal'|'randomNormal'|\n    'randomUniform'|'truncatedNormal'|'varianceScaling'|'zeros'|string|[Initializer](#class:tf.initializers.Initializer)",
                   "optional": true,
                   "isConfigParam": true
                 },
@@ -3079,7 +3079,7 @@
                 {
                   "name": "dataFormat",
                   "documentation": "Format of the data, which determines the ordering of the dimensions in\nthe inputs.\n\n`channels_last` corresponds to inputs with shape\n   `(batch, ..., channels)`\n\n  `channels_first` corresponds to inputs with shape `(batch, channels,\n...)`.\n\nDefaults to `channels_last`.",
-                  "type": "'channelFirst'|'channelLast'",
+                  "type": "'channelsFirst'|'channelsLast'",
                   "optional": true,
                   "isConfigParam": true
                 },
@@ -3107,14 +3107,14 @@
                 {
                   "name": "kernelInitializer",
                   "documentation": "Initializer for the convolutional kernel weights matrix.",
-                  "type": "'constant'|'glorotNormal'|'glorotUniform'|\n    'heNormal'|'identity'|'leCunNormal'|'ones'|'randomNormal'|'randomUniform'|\n    'truncatedNormal'|'varianceScaling'|'zeros'|string|[Initializer](#class:tf.initializers.Initializer)",
+                  "type": "'constant'|'glorotNormal'|'glorotUniform'|\n    'heNormal'|'identity'|'leCunNormal'|'ones'|'orthogonal'|'randomNormal'|\n    'randomUniform'|'truncatedNormal'|'varianceScaling'|'zeros'|string|[Initializer](#class:tf.initializers.Initializer)",
                   "optional": true,
                   "isConfigParam": true
                 },
                 {
                   "name": "biasInitializer",
                   "documentation": "Initializer for the bias vector.",
-                  "type": "'constant'|'glorotNormal'|'glorotUniform'|\n    'heNormal'|'identity'|'leCunNormal'|'ones'|'randomNormal'|'randomUniform'|\n    'truncatedNormal'|'varianceScaling'|'zeros'|string|[Initializer](#class:tf.initializers.Initializer)",
+                  "type": "'constant'|'glorotNormal'|'glorotUniform'|\n    'heNormal'|'identity'|'leCunNormal'|'ones'|'orthogonal'|'randomNormal'|\n    'randomUniform'|'truncatedNormal'|'varianceScaling'|'zeros'|string|[Initializer](#class:tf.initializers.Initializer)",
                   "optional": true,
                   "isConfigParam": true
                 },
@@ -3214,7 +3214,7 @@
                 {
                   "name": "dataFormat",
                   "documentation": "Format of the data, which determines the ordering of the dimensions in\nthe inputs.\n\n`channels_last` corresponds to inputs with shape\n   `(batch, ..., channels)`\n\n  `channels_first` corresponds to inputs with shape `(batch, channels,\n...)`.\n\nDefaults to `channels_last`.",
-                  "type": "'channelFirst'|'channelLast'",
+                  "type": "'channelsFirst'|'channelsLast'",
                   "optional": true,
                   "isConfigParam": true
                 },
@@ -3242,14 +3242,14 @@
                 {
                   "name": "kernelInitializer",
                   "documentation": "Initializer for the convolutional kernel weights matrix.",
-                  "type": "'constant'|'glorotNormal'|'glorotUniform'|\n    'heNormal'|'identity'|'leCunNormal'|'ones'|'randomNormal'|'randomUniform'|\n    'truncatedNormal'|'varianceScaling'|'zeros'|string|[Initializer](#class:tf.initializers.Initializer)",
+                  "type": "'constant'|'glorotNormal'|'glorotUniform'|\n    'heNormal'|'identity'|'leCunNormal'|'ones'|'orthogonal'|'randomNormal'|\n    'randomUniform'|'truncatedNormal'|'varianceScaling'|'zeros'|string|[Initializer](#class:tf.initializers.Initializer)",
                   "optional": true,
                   "isConfigParam": true
                 },
                 {
                   "name": "biasInitializer",
                   "documentation": "Initializer for the bias vector.",
-                  "type": "'constant'|'glorotNormal'|'glorotUniform'|\n    'heNormal'|'identity'|'leCunNormal'|'ones'|'randomNormal'|'randomUniform'|\n    'truncatedNormal'|'varianceScaling'|'zeros'|string|[Initializer](#class:tf.initializers.Initializer)",
+                  "type": "'constant'|'glorotNormal'|'glorotUniform'|\n    'heNormal'|'identity'|'leCunNormal'|'ones'|'orthogonal'|'randomNormal'|\n    'randomUniform'|'truncatedNormal'|'varianceScaling'|'zeros'|string|[Initializer](#class:tf.initializers.Initializer)",
                   "optional": true,
                   "isConfigParam": true
                 },
@@ -3290,7 +3290,7 @@
                 }
               ],
               "returnType": "[Layer](#class:tf.layers.Layer)",
-              "documentation": "2D convolution layer (e.g. spatial convolution over images).\n\nThis layer creates a convolution kernel that is convolved\nwith the layer input to produce a tensor of outputs.\n\nIf `useBias` is True, a bias vector is created and added to the outputs.\n\nIf [tf.layers.activation()](#tf.layers.activation) is not `null`, it is applied to the outputs as well.\n\nWhen using this layer as the first layer in a model,\nprovide the keyword argument `inputShape`\n(Array of integers, does not include the sample axis),\ne.g. `inputShape=[128, 128, 3]` for 128x128 RGB pictures\nin `dataFormat='channelLast'`.",
+              "documentation": "2D convolution layer (e.g. spatial convolution over images).\n\nThis layer creates a convolution kernel that is convolved\nwith the layer input to produce a tensor of outputs.\n\nIf `useBias` is True, a bias vector is created and added to the outputs.\n\nIf [tf.layers.activation()](#tf.layers.activation) is not `null`, it is applied to the outputs as well.\n\nWhen using this layer as the first layer in a model,\nprovide the keyword argument `inputShape`\n(Array of integers, does not include the sample axis),\ne.g. `inputShape=[128, 128, 3]` for 128x128 RGB pictures\nin `dataFormat='channelsLast'`.",
               "fileName": "#192",
               "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L192-L201",
               "isFunction": true,
@@ -3335,7 +3335,7 @@
                 {
                   "name": "depthwiseInitializer",
                   "documentation": "Initializer for the depthwise kernel matrix.\nDefault: GlorotNormal.",
-                  "type": "'constant'|'glorotNormal'|'glorotUniform'|\n    'heNormal'|'identity'|'leCunNormal'|'ones'|'randomNormal'|'randomUniform'|\n    'truncatedNormal'|'varianceScaling'|'zeros'|string|[Initializer](#class:tf.initializers.Initializer)",
+                  "type": "'constant'|'glorotNormal'|'glorotUniform'|\n    'heNormal'|'identity'|'leCunNormal'|'ones'|'orthogonal'|'randomNormal'|\n    'randomUniform'|'truncatedNormal'|'varianceScaling'|'zeros'|string|[Initializer](#class:tf.initializers.Initializer)",
                   "optional": true,
                   "isConfigParam": true
                 },
@@ -3935,28 +3935,28 @@
                 {
                   "name": "betaInitializer",
                   "documentation": "Initializer for the beta weight.\n  Defaults to 'zeros'.",
-                  "type": "'constant'|'glorotNormal'|'glorotUniform'|\n    'heNormal'|'identity'|'leCunNormal'|'ones'|'randomNormal'|'randomUniform'|\n    'truncatedNormal'|'varianceScaling'|'zeros'|string|[Initializer](#class:tf.initializers.Initializer)",
+                  "type": "'constant'|'glorotNormal'|'glorotUniform'|\n    'heNormal'|'identity'|'leCunNormal'|'ones'|'orthogonal'|'randomNormal'|\n    'randomUniform'|'truncatedNormal'|'varianceScaling'|'zeros'|string|[Initializer](#class:tf.initializers.Initializer)",
                   "optional": true,
                   "isConfigParam": true
                 },
                 {
                   "name": "gammaInitializer",
                   "documentation": "Initializer for the gamma weight.\n  Defaults to [tf.ones()](#tf.ones).",
-                  "type": "'constant'|'glorotNormal'|'glorotUniform'|\n    'heNormal'|'identity'|'leCunNormal'|'ones'|'randomNormal'|'randomUniform'|\n    'truncatedNormal'|'varianceScaling'|'zeros'|string|[Initializer](#class:tf.initializers.Initializer)",
+                  "type": "'constant'|'glorotNormal'|'glorotUniform'|\n    'heNormal'|'identity'|'leCunNormal'|'ones'|'orthogonal'|'randomNormal'|\n    'randomUniform'|'truncatedNormal'|'varianceScaling'|'zeros'|string|[Initializer](#class:tf.initializers.Initializer)",
                   "optional": true,
                   "isConfigParam": true
                 },
                 {
                   "name": "movingMeanInitializer",
                   "documentation": "Initializer for the moving mean.\nDefaults to [tf.zeros()](#tf.zeros)",
-                  "type": "'constant'|'glorotNormal'|'glorotUniform'|\n    'heNormal'|'identity'|'leCunNormal'|'ones'|'randomNormal'|'randomUniform'|\n    'truncatedNormal'|'varianceScaling'|'zeros'|string|[Initializer](#class:tf.initializers.Initializer)",
+                  "type": "'constant'|'glorotNormal'|'glorotUniform'|\n    'heNormal'|'identity'|'leCunNormal'|'ones'|'orthogonal'|'randomNormal'|\n    'randomUniform'|'truncatedNormal'|'varianceScaling'|'zeros'|string|[Initializer](#class:tf.initializers.Initializer)",
                   "optional": true,
                   "isConfigParam": true
                 },
                 {
                   "name": "movingVarianceInitializer",
                   "documentation": "Initializer for the moving variance.\n  Defaults to 'Ones'.",
-                  "type": "'constant'|'glorotNormal'|'glorotUniform'|\n    'heNormal'|'identity'|'leCunNormal'|'ones'|'randomNormal'|'randomUniform'|\n    'truncatedNormal'|'varianceScaling'|'zeros'|string|[Initializer](#class:tf.initializers.Initializer)",
+                  "type": "'constant'|'glorotNormal'|'glorotUniform'|\n    'heNormal'|'identity'|'leCunNormal'|'ones'|'orthogonal'|'randomNormal'|\n    'randomUniform'|'truncatedNormal'|'varianceScaling'|'zeros'|string|[Initializer](#class:tf.initializers.Initializer)",
                   "optional": true,
                   "isConfigParam": true
                 },
@@ -4099,7 +4099,7 @@
                 {
                   "name": "dataFormat",
                   "documentation": "The data format to use for the pooling layer. ",
-                  "type": "'channelFirst'|'channelLast'",
+                  "type": "'channelsFirst'|'channelsLast'",
                   "optional": true,
                   "isConfigParam": true
                 }
@@ -4229,7 +4229,7 @@
                 {
                   "name": "dataFormat",
                   "documentation": "One of `CHANNEL_LAST` (default) or `CHANNEL_FIRST`.\n\nThe ordering of the dimensions in the inputs. `CHANNEL_LAST` corresponds\nto inputs with shape `[batch, height, width, channels[` while\n`CHANNEL_FIRST` corresponds to inputs with shape\n`[batch, channels, height, width]`.",
-                  "type": "'channelFirst'|'channelLast'",
+                  "type": "'channelsFirst'|'channelsLast'",
                   "optional": true,
                   "isConfigParam": true
                 }
@@ -4359,7 +4359,7 @@
                 {
                   "name": "dataFormat",
                   "documentation": "One of `CHANNEL_LAST` (default) or `CHANNEL_FIRST`.\n\nThe ordering of the dimensions in the inputs. `CHANNEL_LAST` corresponds\nto inputs with shape `[batch, height, width, channels[` while\n`CHANNEL_FIRST` corresponds to inputs with shape\n`[batch, channels, height, width]`.",
-                  "type": "'channelFirst'|'channelLast'",
+                  "type": "'channelsFirst'|'channelsLast'",
                   "optional": true,
                   "isConfigParam": true
                 }
@@ -4468,7 +4468,7 @@
                 {
                   "name": "dataFormat",
                   "documentation": "The data format to use for the pooling layer. ",
-                  "type": "'channelFirst'|'channelLast'",
+                  "type": "'channelsFirst'|'channelsLast'",
                   "optional": true,
                   "isConfigParam": true
                 }
@@ -4745,21 +4745,21 @@
                 {
                   "name": "kernelInitializer",
                   "documentation": "Initializer for the `kernel` weights matrix, used for the linear\ntransformation of the inputs.",
-                  "type": "'constant'|'glorotNormal'|'glorotUniform'|\n    'heNormal'|'identity'|'leCunNormal'|'ones'|'randomNormal'|'randomUniform'|\n    'truncatedNormal'|'varianceScaling'|'zeros'|string|[Initializer](#class:tf.initializers.Initializer)",
+                  "type": "'constant'|'glorotNormal'|'glorotUniform'|\n    'heNormal'|'identity'|'leCunNormal'|'ones'|'orthogonal'|'randomNormal'|\n    'randomUniform'|'truncatedNormal'|'varianceScaling'|'zeros'|string|[Initializer](#class:tf.initializers.Initializer)",
                   "optional": true,
                   "isConfigParam": true
                 },
                 {
                   "name": "recurrentInitializer",
                   "documentation": "Initializer for the `recurrentKernel` weights matrix, used for\nlinear transformation of the recurrent state.",
-                  "type": "'constant'|'glorotNormal'|'glorotUniform'|\n    'heNormal'|'identity'|'leCunNormal'|'ones'|'randomNormal'|'randomUniform'|\n    'truncatedNormal'|'varianceScaling'|'zeros'|string|[Initializer](#class:tf.initializers.Initializer)",
+                  "type": "'constant'|'glorotNormal'|'glorotUniform'|\n    'heNormal'|'identity'|'leCunNormal'|'ones'|'orthogonal'|'randomNormal'|\n    'randomUniform'|'truncatedNormal'|'varianceScaling'|'zeros'|string|[Initializer](#class:tf.initializers.Initializer)",
                   "optional": true,
                   "isConfigParam": true
                 },
                 {
                   "name": "biasInitializer",
                   "documentation": "Initializer for the bias vector.",
-                  "type": "'constant'|'glorotNormal'|'glorotUniform'|\n    'heNormal'|'identity'|'leCunNormal'|'ones'|'randomNormal'|'randomUniform'|\n    'truncatedNormal'|'varianceScaling'|'zeros'|string|[Initializer](#class:tf.initializers.Initializer)",
+                  "type": "'constant'|'glorotNormal'|'glorotUniform'|\n    'heNormal'|'identity'|'leCunNormal'|'ones'|'orthogonal'|'randomNormal'|\n    'randomUniform'|'truncatedNormal'|'varianceScaling'|'zeros'|string|[Initializer](#class:tf.initializers.Initializer)",
                   "optional": true,
                   "isConfigParam": true
                 },
@@ -4873,21 +4873,21 @@
                 {
                   "name": "kernelInitializer",
                   "documentation": "Initializer for the `kernel` weights matrix, used for the linear\ntransformation of the inputs (see [initializers](../initializers.md)).",
-                  "type": "'constant'|'glorotNormal'|'glorotUniform'|\n    'heNormal'|'identity'|'leCunNormal'|'ones'|'randomNormal'|'randomUniform'|\n    'truncatedNormal'|'varianceScaling'|'zeros'|string|[Initializer](#class:tf.initializers.Initializer)",
+                  "type": "'constant'|'glorotNormal'|'glorotUniform'|\n    'heNormal'|'identity'|'leCunNormal'|'ones'|'orthogonal'|'randomNormal'|\n    'randomUniform'|'truncatedNormal'|'varianceScaling'|'zeros'|string|[Initializer](#class:tf.initializers.Initializer)",
                   "optional": true,
                   "isConfigParam": true
                 },
                 {
                   "name": "recurrentInitializer",
                   "documentation": "Initializer for the `recurrentKernel` weights matrix, used for\nlinear transformation of the recurrent state\n(see [initializers](../initializers.md)).",
-                  "type": "'constant'|'glorotNormal'|'glorotUniform'|\n    'heNormal'|'identity'|'leCunNormal'|'ones'|'randomNormal'|'randomUniform'|\n    'truncatedNormal'|'varianceScaling'|'zeros'|string|[Initializer](#class:tf.initializers.Initializer)",
+                  "type": "'constant'|'glorotNormal'|'glorotUniform'|\n    'heNormal'|'identity'|'leCunNormal'|'ones'|'orthogonal'|'randomNormal'|\n    'randomUniform'|'truncatedNormal'|'varianceScaling'|'zeros'|string|[Initializer](#class:tf.initializers.Initializer)",
                   "optional": true,
                   "isConfigParam": true
                 },
                 {
                   "name": "biasInitializer",
                   "documentation": "Initializer for the bias vector (see [initializers](../initializers.md)).",
-                  "type": "'constant'|'glorotNormal'|'glorotUniform'|\n    'heNormal'|'identity'|'leCunNormal'|'ones'|'randomNormal'|'randomUniform'|\n    'truncatedNormal'|'varianceScaling'|'zeros'|string|[Initializer](#class:tf.initializers.Initializer)",
+                  "type": "'constant'|'glorotNormal'|'glorotUniform'|\n    'heNormal'|'identity'|'leCunNormal'|'ones'|'orthogonal'|'randomNormal'|\n    'randomUniform'|'truncatedNormal'|'varianceScaling'|'zeros'|string|[Initializer](#class:tf.initializers.Initializer)",
                   "optional": true,
                   "isConfigParam": true
                 },
@@ -5095,7 +5095,7 @@
               "namespace": "layers",
               "documentation": "A layer is a grouping of operations and weights that can be composed to\ncreate a [Model](#class:tf.Model).\n\nLayers are constructed by using the functions under the\n[tf.layers](#Layers-Basic) namespace.",
               "fileName": "#333",
-              "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/engine/topology.ts#L333-L1171",
+              "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/engine/topology.ts#L333-L1226",
               "methods": [
                 {
                   "docInfo": {
@@ -5121,9 +5121,9 @@
                     }
                   ],
                   "returnType": "[Tensor](#class:tf.Tensor)|[Tensor](#class:tf.Tensor)[]|[SymbolicTensor](#class:tf.SymbolicTensor)|[SymbolicTensor](#class:tf.SymbolicTensor)[]",
-                  "documentation": "Builds or executes a `Layer's logic.\n\nWhen called with [Tensor](#class:tf.Tensor)(s), execute the [Layer](#class:tf.layers.Layer)s computation and\nreturn Tensor(s).\n\nWhen called with [SymbolicTensor](#class:tf.SymbolicTensor)(s), this will prepare the layer for\nfuture execution.  This entails internal book-keeping on shapes of\nexpected Tensors, wiring layers together, and initializing weights.",
-                  "fileName": "#778",
-                  "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/engine/topology.ts#L778-L892",
+                  "documentation": "Builds or executes a `Layer's logic.\n\nWhen called with [Tensor](#class:tf.Tensor)(s), execute the [Layer](#class:tf.layers.Layer)s computation and\n<<<<<<< HEAD\nreturn Tensor(s).\n=======\nreturn Tensor(s). For example:\n\n```js\nconst denseLayer = tf.layers.dense({\n   units: 1,\n   kernelInitializer: 'zeros',\n   useBias: false\n});\n\n// Invoke the layer's apply() method with a [Tensor](#class:tf.Tensor) (with concrete\n// numeric values).\nconst input = tf.ones([2, 2]);\nconst output = denseLayer.apply(input);\n\n// The output's value is expected to be [[0], [0]], due to the fact that\n// the dense layer has a kernel initialized to all-zeros and does not have\n// a bias.\noutput.print();\n```\n>>>>>>> 8e2bec285a64e1682b32a4960af03aa7fb3ffa19\n\nWhen called with [SymbolicTensor](#class:tf.SymbolicTensor)(s), this will prepare the layer for\nfuture execution.  This entails internal book-keeping on shapes of\nexpected Tensors, wiring layers together, and initializing weights.\n\n<<<<<<< HEAD\n=======\nCalling `apply` with [SymbolicTensor](#class:tf.SymbolicTensor)s are typically used during the\nbuilding of non-[Sequential](#class:tf.Sequential) models. For example:\n\n```js\nconst flattenLayer = tf.layers.flatten();\nconst denseLayer = tf.layers.dense({units: 1});\n\n// Use tf.layers.input() to obtain a SymbolicTensor as input to apply().\nconst input = tf.input({shape: [2, 2]});\nconst output1 = flattenLayer.apply(input);\n\n// output1.shape is [null, 4]. The first dimension is the undetermined\n// batch size. The second dimension comes from flattening the [2, 2]\n// shape.\nconsole.log(output1.shape);\n\n// The output SymbolicTensor of the flatten layer can be used to call\n// the apply() of the dense layer:\nconst output2 = denseLayer.apply(output1);\n\n// output2.shape is [null, 1]. The first dimension is the undetermined\n// batch size. The second dimension matches the number of units of the\n// dense layer.\nconsole.log(output2.shape);\n\n// The input and output and be used to construct a model that consists\n// of the flatten and dense layers.\nconst model = tf.model({inputs: input, outputs: output2});\n```\n\n>>>>>>> 8e2bec285a64e1682b32a4960af03aa7fb3ffa19",
+                  "fileName": "#833",
+                  "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/engine/topology.ts#L833-L947",
                   "isFunction": true
                 }
               ],
@@ -8592,7 +8592,7 @@
                   "name": "seed",
                   "documentation": "Random number generator seed. ",
                   "type": "number",
-                  "optional": false,
+                  "optional": true,
                   "isConfigParam": true
                 }
               ],
@@ -8629,7 +8629,7 @@
                   "name": "seed",
                   "documentation": "Random number generator seed. ",
                   "type": "number",
-                  "optional": false,
+                  "optional": true,
                   "isConfigParam": true
                 }
               ],
@@ -8666,7 +8666,7 @@
                   "name": "seed",
                   "documentation": "Random number generator seed. ",
                   "type": "number",
-                  "optional": false,
+                  "optional": true,
                   "isConfigParam": true
                 }
               ],
@@ -8740,7 +8740,7 @@
                   "name": "seed",
                   "documentation": "Random number generator seed. ",
                   "type": "number",
-                  "optional": false,
+                  "optional": true,
                   "isConfigParam": true
                 }
               ],
@@ -8770,6 +8770,43 @@
               "isFunction": true,
               "displayName": "tf.initializers.ones",
               "urlHash": "tf.initializers.ones"
+            },
+            {
+              "docInfo": {
+                "heading": "Initializers",
+                "namespace": "initializers",
+                "useDocsFrom": "Orthogonal",
+                "configParamIndices": [
+                  0
+                ],
+                "subheading": ""
+              },
+              "symbolName": "orthogonal",
+              "namespace": "initializers",
+              "paramStr": "(config)",
+              "parameters": [
+                {
+                  "name": "config",
+                  "documentation": "",
+                  "type": "Object",
+                  "optional": false,
+                  "isConfigParam": false
+                },
+                {
+                  "name": "gain",
+                  "documentation": "Multiplicative factor to apply to the orthogonal matrix. Defaults to 1.",
+                  "type": "number",
+                  "optional": true,
+                  "isConfigParam": true
+                }
+              ],
+              "returnType": "Orthogonal",
+              "documentation": "Initializer that generates a random orthogonal matrix.\n\nReference:\n[Saxe et al., http://arxiv.org/abs/1312.6120](http://arxiv.org/abs/1312.6120)",
+              "fileName": "#733",
+              "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L733-L741",
+              "isFunction": true,
+              "displayName": "tf.initializers.orthogonal",
+              "urlHash": "tf.initializers.orthogonal"
             },
             {
               "docInfo": {
@@ -9072,8 +9109,8 @@
               ],
               "returnType": "[L1L2](#class:tf.regularizers.L1L2)",
               "documentation": "Regularizer for L1 and L2 regularization.\n\nAdds a term to the loss to penalize large weights:\nloss += sum(l1 * abs(x)) + sum(l2 * x^2)",
-              "fileName": "#741",
-              "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L741-L745",
+              "fileName": "#751",
+              "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L751-L755",
               "isFunction": true,
               "displayName": "tf.regularizers.l1",
               "urlHash": "tf.regularizers.l1"
@@ -9099,8 +9136,8 @@
               ],
               "returnType": "[L1L2](#class:tf.regularizers.L1L2)",
               "documentation": "Regularizer for L1 and L2 regularization.\n\nAdds a term to the loss to penalize large weights:\nloss += sum(l1 * abs(x)) + sum(l2 * x^2)",
-              "fileName": "#735",
-              "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L735-L739",
+              "fileName": "#745",
+              "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L745-L749",
               "isFunction": true,
               "displayName": "tf.regularizers.l1l2",
               "urlHash": "tf.regularizers.l1l2"
@@ -9126,8 +9163,8 @@
               ],
               "returnType": "[L1L2](#class:tf.regularizers.L1L2)",
               "documentation": "Regularizer for L1 and L2 regularization.\n\nAdds a term to the loss to penalize large weights:\nloss += sum(l1 * abs(x)) + sum(l2 * x^2)",
-              "fileName": "#747",
-              "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L747-L751",
+              "fileName": "#757",
+              "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L757-L761",
               "isFunction": true,
               "displayName": "tf.regularizers.l2",
               "urlHash": "tf.regularizers.l2"
