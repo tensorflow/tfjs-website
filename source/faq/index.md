@@ -6,7 +6,7 @@ bannerText: Frequently Asked Questions
 
 ## Does TensorFlow.js support Node.js?
 
-Not yet! However we are actively working on creating node.js bindings to the TensorFlow C API. This will allow the same javascript code will work on both the browser and node.js while binding to the underlying TensorFlow implementation. We can’t provide a firm timeline for when this will be released but it is one of our top priorities.
+Not yet! However we are actively working on creating node.js bindings to the TensorFlow C API. This will allow the same JavaScript code to work on both the browser and node.js, while binding to the underlying TensorFlow implementation. We can’t provide a firm timeline for when this will be released but it is one of our top priorities.
 
 ## Can I import a TensorFlow or Keras model into the browser?
 
