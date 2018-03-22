@@ -1,4 +1,11 @@
 document.addEventListener('DOMContentLoaded', function(e) {
+  // Set up version selector
+  var select = new mdc.select.MDCSelect(document.querySelector('.mdc-select'));
+  select.listen('MDCSelect:change', () => {
+    var link = select.selectedOptions[0].getAttribute('data-link');
+    window.location.href = link;
+  });
+
   async function executeCodeSnippet(consoleLogElement, codeSnippet) {
     consoleLogElement.innerText = '';
     var oldLog = console.log;
