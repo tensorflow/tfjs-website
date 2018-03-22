@@ -32,7 +32,7 @@ body {
     background-color: $brand-color-main !important;
     border-bottom: 1px solid rgba(255,255,255, 0.3);
     a {
-      padding: 10px 0px 22px 0px;
+      padding: 10px 0px 23px 0px;
       margin: 0px 20px 0px 20px;
 
       color: white;
@@ -85,17 +85,13 @@ body {
   }
 
   h1 {
-    @include mdc-typography('display1');
-    color: $brand-color-main;
-    // font-weight: 300;
-    margin-top: 64px;
+    @include mdc-typography('headline');
+    margin-top: 32px;
   }
 
   h2 {
-    @include mdc-typography('headline');
-    // color: #FF9000;
-    font-weight: 300;
-    margin-top: 64px;
+    @include mdc-typography('title');
+    margin-top: 24px;
   }
 
   h3 {
@@ -113,6 +109,24 @@ body {
     border-radius: 4px;
     font-size: 110%;
   }
+
+  .page-banner {
+    display: flex;
+    background: linear-gradient(#FB7923, #FBC000);
+
+    width: 100%;
+    height: 200px;
+
+    align-items: center;
+    justify-content: center;
+
+    color: white;
+
+    h1 {
+      margin: 0;
+      color: white !important;
+    }
+  }
 }
 
 
@@ -122,7 +136,7 @@ body {
 
   .hero {
     display: flex;
-    background: linear-gradient(90deg,#FB7923, #FBC000);
+    background: linear-gradient(#FB7923, #FBC000);
 
     width: 100%;
     height: 300px;
