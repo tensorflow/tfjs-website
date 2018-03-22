@@ -1085,8 +1085,8 @@
                 ],
                 "returnType": "Variable",
                 "documentation": "Creates a new variable with the provided initial value.\n```js\nconst x = dl.variable(dl.tensor([1, 2, 3]));\nx.assign(dl.tensor([4, 5, 6]));\n\nx.print();\n```",
-                "fileName": "#888",
-                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/tensor.ts#L888-L896",
+                "fileName": "#894",
+                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/tensor.ts#L894-L902",
                 "isFunction": true
               }
             ]
@@ -1337,7 +1337,7 @@
                 "symbolName": "Tensor",
                 "documentation": "A `Tensor` object represents an immutable, multidimensional array of numbers\nthat has a shape and a data type.\n\nSee `tensor` for details on how to create a `Tensor`.",
                 "fileName": "#153",
-                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/tensor.ts#L153-L840",
+                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/tensor.ts#L153-L846",
                 "methods": [
                   {
                     "docInfo": {
@@ -1757,8 +1757,8 @@
                 },
                 "symbolName": "Variable",
                 "documentation": "A mutable `Tensor`, useful for persisting state, e.g. for training.",
-                "fileName": "#851",
-                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/tensor.ts#L851-L920",
+                "fileName": "#857",
+                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/tensor.ts#L857-L926",
                 "methods": [
                   {
                     "docInfo": {
@@ -1778,8 +1778,8 @@
                     ],
                     "returnType": "void",
                     "documentation": "Assign a new `Tensor` to this variable. The new `Tensor` must have the\nsame shape and dtype as the old `Tensor`.",
-                    "fileName": "#904",
-                    "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/tensor.ts#L904-L919",
+                    "fileName": "#910",
+                    "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/tensor.ts#L910-L925",
                     "isFunction": true
                   }
                 ],
@@ -2519,7 +2519,7 @@
                   "subheading": "Convolution"
                 },
                 "symbolName": "conv1d",
-                "paramStr": "(input, filter, stride, pad, dimRoundingMode?)",
+                "paramStr": "(input, filter, stride, pad, dataFormat?, dilation?, dimRoundingMode?)",
                 "parameters": [
                   {
                     "name": "input",
@@ -2550,6 +2550,20 @@
                     "isConfigParam": false
                   },
                   {
+                    "name": "dataFormat",
+                    "documentation": "An optional string from \"NWC\", \"NCW\". Defaults to \"NWC\",\nthe data is stored in the order of [batch, in_width, in_channels]. Only\n\"NWC\" is currently supported.",
+                    "type": "'NWC'|'NCW'",
+                    "optional": true,
+                    "isConfigParam": false
+                  },
+                  {
+                    "name": "dilation",
+                    "documentation": "The dilation rate in which we sample input values in\natrous convolution. Defaults to `1`. If it is greater than 1, then\nstride must be `1`.",
+                    "type": "number",
+                    "optional": true,
+                    "isConfigParam": false
+                  },
+                  {
                     "name": "dimRoundingMode",
                     "documentation": "The rounding mode used when computing output\ndimensions if pad is a number. If none is provided, it will not round\nand error if the output is of fractional size.",
                     "type": "'floor'|'round'|'ceil'",
@@ -2559,8 +2573,8 @@
                 ],
                 "returnType": "Tensor2D|Tensor3D",
                 "documentation": "Computes a 1D convolution over the input x.",
-                "fileName": "#47",
-                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/conv.ts#L47-L91",
+                "fileName": "#53",
+                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/conv.ts#L53-L110",
                 "isFunction": true
               },
               {
@@ -2569,7 +2583,7 @@
                   "subheading": "Convolution"
                 },
                 "symbolName": "conv2d",
-                "paramStr": "(x, filter, strides, pad, dimRoundingMode?)",
+                "paramStr": "(x, filter, strides, pad, dataFormat?, dilations?, dimRoundingMode?)",
                 "parameters": [
                   {
                     "name": "x",
@@ -2600,6 +2614,20 @@
                     "isConfigParam": false
                   },
                   {
+                    "name": "dataFormat",
+                    "documentation": ": An optional string from: \"NHWC\", \"NCHW\". Defaults to\n\"NHWC\". Specify the data format of the input and output data. With the\ndefault format \"NHWC\", the data is stored in the order of: [batch,\nheight, width, channels]. Only \"NHWC\" is currently supported.",
+                    "type": "'NHWC'|'NCHW'",
+                    "optional": true,
+                    "isConfigParam": false
+                  },
+                  {
+                    "name": "dilations",
+                    "documentation": "The dilation rates: `[dilationHeight, dilationWidth]`\nin which we sample input values across the height and width dimensions\nin atrous convolution. Defaults to `[1, 1]`. If `dilations` is a single\nnumber, then `dilationHeight == dilationWidth`. If it is greater than\n1, then all values of `strides` must be 1.",
+                    "type": "[number, number]|number",
+                    "optional": true,
+                    "isConfigParam": false
+                  },
+                  {
                     "name": "dimRoundingMode",
                     "documentation": "The rounding mode used when computing output\ndimensions if pad is a number. If none is provided, it will not round\nand error if the output is of fractional size.",
                     "type": "'floor'|'round'|'ceil'",
@@ -2609,8 +2637,8 @@
                 ],
                 "returnType": "Tensor3D|Tensor4D",
                 "documentation": "Computes a 2D convolution over the input x.",
-                "fileName": "#115",
-                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/conv.ts#L115-L166",
+                "fileName": "#143",
+                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/conv.ts#L143-L207",
                 "isFunction": true
               },
               {
@@ -2666,8 +2694,8 @@
                 ],
                 "returnType": "Tensor3D|Tensor4D",
                 "documentation": "Computes the transposed 2D convolution of an image, also known as a\ndeconvolution.",
-                "fileName": "#334",
-                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/conv.ts#L334-L343",
+                "fileName": "#375",
+                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/conv.ts#L375-L384",
                 "isFunction": true
               },
               {
@@ -2676,7 +2704,7 @@
                   "subheading": "Convolution"
                 },
                 "symbolName": "depthwiseConv2d",
-                "paramStr": "(input, filter, strides, pad, dilations?, dimRoundingMode?)",
+                "paramStr": "(input, filter, strides, pad, dataFormat?, dilations?, dimRoundingMode?)",
                 "parameters": [
                   {
                     "name": "input",
@@ -2707,8 +2735,15 @@
                     "isConfigParam": false
                   },
                   {
+                    "name": "dataFormat",
+                    "documentation": ": An optional string from: \"NHWC\", \"NCHW\". Defaults to\n\"NHWC\". Specify the data format of the input and output data. With the\ndefault format \"NHWC\", the data is stored in the order of: [batch,\nheight, width, channels]. Only \"NHWC\" is currently supported.",
+                    "type": "'NHWC'|'NCHW'",
+                    "optional": true,
+                    "isConfigParam": false
+                  },
+                  {
                     "name": "dilations",
-                    "documentation": "The dilation rates: `[dilationHeight, dilationWidth]`\nin which we sample input values across the height and width dimensions\nin atrous convolution. Defaults to `[1, 1]`. If `dilations` is a single\nnumber, then `dilationHeight == dilationWidth`. If it is greater than\n1, then all values of `strides` must be 1.",
+                    "documentation": "The dilation rates: `[dilationHeight, dilationWidth]`\nin which we sample input values across the height and width dimensions\nin atrous convolution. Defaults to `[1, 1]`. If `rate` is a single\nnumber, then `dilationHeight == dilationWidth`. If it is greater than\n1, then all values of `strides` must be 1.",
                     "type": "[number, number]|number",
                     "optional": true,
                     "isConfigParam": false
@@ -2723,8 +2758,8 @@
                 ],
                 "returnType": "Tensor3D|Tensor4D",
                 "documentation": "Depthwise 2D convolution.\n\nGiven a 4D `input` array and a `filter` array of shape\n`[filterHeight, filterWidth, inChannels, channelMultiplier]` containing\n`inChannels` convolutional filters of depth 1, this op applies a\ndifferent filter to each input channel (expanding from 1 channel to\n`channelMultiplier` channels for each), then concatenates the results\ntogether. The output has `inChannels * channelMultiplier` channels.\n\nSee\n[https://www.tensorflow.org/api_docs/python/tf/nn/depthwise_conv2d](\n     https://www.tensorflow.org/api_docs/python/tf/nn/depthwise_conv2d)\nfor more details.",
-                "fileName": "#385",
-                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/conv.ts#L385-L435",
+                "fileName": "#430",
+                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/conv.ts#L430-L481",
                 "isFunction": true
               },
               {
