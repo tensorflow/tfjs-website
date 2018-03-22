@@ -42,7 +42,7 @@ c.print();
 //          [10, 20, 30]]
 ```
 
-TensorFlow.js also provides convenience functions for creating `Tensor`s with all values
+**TensorFlow.js** also provides convenience functions for creating `Tensor`s with all values
 set to 0 ([`tf.zeros`](../api/0.0.1/index.html#tf.zeros)) or all values set to 1 ([`tf.ones`](../api/0.0.1/index.html#tf.ones)):
 
 ```js
@@ -96,7 +96,7 @@ e_plus_f.print();
 // Output: [[6 , 8 ],
 //          [10, 12]]
 
-TensorFlow.js has a chainable API; you can call ops
+**TensorFlow.js** has a chainable API; you can call ops
 on the result of ops:
 
 ```js
@@ -114,7 +114,7 @@ const sq_sum = tf.square(tf.add(e, f));
 
 Conceptually, a model is a function that given some input will produce some desired output.
 
-In TensorFlow.js there are _two ways_ to create models. You can *use ops directly* to represent the work the model does. For example:
+In **TensorFlow.js** there are _two ways_ to create models. You can *use ops directly* to represent the work the model does. For example:
 
 ```js
 // Define function
@@ -160,13 +160,13 @@ model.compile({optimizer, loss: 'categoricalCrossentropy'});
 model.fit({x: data, y: labels)});
 ```
 
-There are many different types of layers available in TensorFlow.js. A few examples include, [`tf.layers.simpleRNN`](../api/0.0.1/index.html#tf.layers.simpleRNN), [`tf.layers.gru`](../api/0.0.1/index.html#tf.layers.gru), and [`tf.layers.lstm`](../api/0.0.1/index.html#tf.layers.lstm).
+There are many different types of layers available in **TensorFlow.js**. A few examples include, [`tf.layers.simpleRNN`](../api/0.0.1/index.html#tf.layers.simpleRNN), [`tf.layers.gru`](../api/0.0.1/index.html#tf.layers.gru), and [`tf.layers.lstm`](../api/0.0.1/index.html#tf.layers.lstm).
 
 ## Memory Management: dispose and tf.tidy
 
-Because TensorFlow.js uses the GPU to accelerate math operations, it's necessary to manage GPU memory when working with `Tensor`s and `Variable`s.
+Because **TensorFlow.js** uses the GPU to accelerate math operations, it's necessary to manage GPU memory when working with `Tensor`s and `Variable`s.
 
-TensorFlow.js provide two functions to help with this: `dispose` and [`tf.tidy`](../api/0.0.1/index.html#tf.tidy).
+**TensorFlow.js** provide two functions to help with this: `dispose` and [`tf.tidy`](../api/0.0.1/index.html#tf.tidy).
 
 ### dispose
 
@@ -182,7 +182,7 @@ x_squared.dispose();
 
 ### tf.tidy
 
-Using `dispose` can be cumbersome when doing a lot of tensor operations. TensorFlow.js provides another function, `tf.tidy`, that plays a similar role to regular scopes in JavaScript, but for GPU-backed tensors.
+Using `dispose` can be cumbersome when doing a lot of tensor operations. **TensorFlow.js** provides another function, `tf.tidy`, that plays a similar role to regular scopes in JavaScript, but for GPU-backed tensors.
 
 `tf.tidy()` executes a function and purges any intermediate tensors created, freeing up their GPU memoary. It does not purge the return value of the inner function.
 
@@ -210,11 +210,11 @@ Two important notes:
 
 * The function passed to `tf.tidy` should be synchronous and also not return a Promise. We suggest keeping code that updates the UI or makes remote requests outside of `tf.tidy`.
 
-*  `tf.tidy` **will not** clean up `Variable`s. `Variable`s typically last through the entire lifecycle of a machine learning model, so TensorFlow.js doesn't clean them up even if they are created in a `tidy`; however, you can call `dispose` on them manually.
+*  `tf.tidy` **will not** clean up `Variable`s. `Variable`s typically last through the entire lifecycle of a machine learning model, so **TensorFlow.js** doesn't clean them up even if they are created in a `tidy`; however, you can call `dispose` on them manually.
 
 # Additional Resources
 
-See the [TensorFlow.js API reference](../api/0.0.1/index.html) for comprehensive documentation of the library.
+See the [**TensorFlow.js** API reference](../api/0.0.1/index.html) for comprehensive documentation of the library.
 
 For a more in-depth look at machine learning fundamentals, see the following resources:
 
