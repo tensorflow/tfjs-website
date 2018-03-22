@@ -1,10 +1,10 @@
 <div class="page api-docs">
-{{#with (getApi page.site.data page.title)}}
   {{!-- Left Page TOC --}}
   <div class="toc">
-     {{> apiToc }}
+      {{> apiToc }}
   </div>
   {{!-- Main Content Area --}}
+  {{#with (getApi page.site.data page.title)}}
   <div class="reference">
     {{#headings}}
       <div class="api-section">
@@ -22,6 +22,6 @@
       </div>
     {{/headings}}
   </div>
+  {{/with}}
   {{!-- End --}}
- {{/with}}
 </div>
