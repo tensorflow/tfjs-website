@@ -85,7 +85,7 @@ d_squared.print();
 //          [9, 16]]
 ```
 
-And binary ops such as [`add`](../api/0.0.1/index.html#tf.add), [`sub`](../api/0.0.1/index.html#tf.sub) and [`mul`](../api/0.0.1/index.html#tf.mul):
+And binary ops such as [`add`](../api/0.0.1/index.html#tf.add), [`sub`](../api/0.0.1/index.html#tf.sub), and [`mul`](../api/0.0.1/index.html#tf.mul):
 
 ```js
 const e = tf.tensor2d([[1.0, 2.0], [3.0, 4.0]]);
@@ -142,7 +142,7 @@ const result = predict(2);
 result.print() // Output: 24
 ```
 
-You can also use the high-level API [`tf.model`]((../api/0.0.1/index.html#tf.model) to construct a model out of _layers_, which are a a popular abstraction in deep learning. The following code constructs a [`tf.sequential`](../api/0.0.1/index.html#tf.sequential) model:
+You can also use the high-level API [`tf.model`](../api/0.0.1/index.html#tf.model) to construct a model out of _layers_, which are a popular abstraction in deep learning. The following code constructs a [`tf.sequential`](../api/0.0.1/index.html#tf.sequential) model:
 
 
 ```js
@@ -160,7 +160,7 @@ model.compile({optimizer, loss: 'categoricalCrossentropy'});
 model.fit({x: data, y: labels)});
 ```
 
-There are many different types of layers available in **TensorFlow.js**. A few examples include, [`tf.layers.simpleRNN`](../api/0.0.1/index.html#tf.layers.simpleRNN), [`tf.layers.gru`](../api/0.0.1/index.html#tf.layers.gru), and [`tf.layers.lstm`](../api/0.0.1/index.html#tf.layers.lstm).
+There are many different types of layers available in **TensorFlow.js**. A few examples include [`tf.layers.simpleRNN`](../api/0.0.1/index.html#tf.layers.simpleRNN), [`tf.layers.gru`](../api/0.0.1/index.html#tf.layers.gru), and [`tf.layers.lstm`](../api/0.0.1/index.html#tf.layers.lstm).
 
 ## Memory Management: dispose and tf.tidy
 
@@ -184,7 +184,7 @@ x_squared.dispose();
 
 Using `dispose` can be cumbersome when doing a lot of tensor operations. **TensorFlow.js** provides another function, `tf.tidy`, that plays a similar role to regular scopes in JavaScript, but for GPU-backed tensors.
 
-`tf.tidy()` executes a function and purges any intermediate tensors created, freeing up their GPU memoary. It does not purge the return value of the inner function.
+`tf.tidy` executes a function and purges any intermediate tensors created, freeing up their GPU memory. It does not purge the return value of the inner function.
 
 ```js
 // tf.tidy takes a function to tidy up after
@@ -206,7 +206,7 @@ average.print() // Output: 3.5
 
 Using `tf.tidy` will help prevent memory leaks in your application. It can also be used to more carefully control when memory is reclaimed. 
 
-Two important notes:
+#### Two important notes
 
 * The function passed to `tf.tidy` should be synchronous and also not return a Promise. We suggest keeping code that updates the UI or makes remote requests outside of `tf.tidy`.
 
@@ -219,4 +219,4 @@ See the [**TensorFlow.js** API reference](../api/0.0.1/index.html) for comprehen
 For a more in-depth look at machine learning fundamentals, see the following resources:
 
 * [Machine Learning Crash Course](https://developers.google.com/machine-learning/crash-course)
-* [Machine Learning Glossary(https://developers.google.com/machine-learning/glossary)
+* [Machine Learning Glossary](https://developers.google.com/machine-learning/glossary)
