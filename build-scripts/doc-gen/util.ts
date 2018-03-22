@@ -568,11 +568,7 @@ function replaceSymbolsWithLinks(
                            '') +
         symbolAndUrl.referenceName;
     if (symbolAndUrl.type === 'function' || symbolAndUrl.type === 'method') {
-      // displayText += symbolAndUrl.namespace ? symbolAndUrl.namespace : '';
       displayText += '()';
-      symbolAndUrl.symbolName + '()';
-    } else {
-      //  displayText += symbolAndUrl.symbolName;
     }
 
     input = input.replace(re, `[${displayText}](${symbolAndUrl.url})`);
