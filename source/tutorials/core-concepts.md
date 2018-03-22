@@ -5,7 +5,7 @@ date: 2018-03-14 16:28:23
 
 # Core Concepts in TensorFlow.js
 
-**TensorFlow.js** is an open source WebGL-accelerated JavaScript library for machine intelligence. It brings highly performant machine learning building blocks to your fingertips, allowing you to train neural networks in a browser or run pre-trained models in inference mode.
+**TensorFlow.js** is an open source WebGL-accelerated JavaScript library for machine intelligence. It brings highly performant machine learning building blocks to your fingertips, allowing you to train neural networks in a browser or run pre-trained models in inference mode. See [Getting Started](../index.html#getting-started) for a guide on installing/configuring **TensorFlow.js**.
 
 **TensorFlow.js** provides low-level building blocks for machine learning as well as a high-level, Keras-inspired API for constructing neural networks. Let's take a look at some of the core components of the library.
 
