@@ -130,36 +130,31 @@ const symbols: util.SymbolAndUrl[] = [
     referenceName: 'TypedArray',
     url: 'https://developer.mozilla.org/en-US/docs/Web/' +
         'JavaScript/Reference/Global_Objects/TypedArray',
-    type: 'class',
-    toplevelNamespace: ''
+    type: 'class'
   },
   {
     symbolName: 'ImageData',
     referenceName: 'ImageData',
     url: 'https://developer.mozilla.org/en-US/docs/Web/API/ImageData',
-    type: 'class',
-    toplevelNamespace: ''
+    type: 'class'
   },
   {
     symbolName: 'HTMLImageElement',
     referenceName: 'HTMLImageElement',
     url: 'https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement',
-    type: 'class',
-    toplevelNamespace: ''
+    type: 'class'
   },
   {
     symbolName: 'HTMLCanvasElement',
     referenceName: 'HTMLCanvasElement',
     url: 'https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement',
-    type: 'class',
-    toplevelNamespace: ''
+    type: 'class'
   },
   {
     symbolName: 'HTMLVideoElement',
     referenceName: 'HTMLVideoElement',
     url: 'https://developer.mozilla.org/en-US/docs/Web/API/HTMLVideoElement',
-    type: 'class',
-    toplevelNamespace: ''
+    type: 'class'
   }
 ];
 util.linkSymbols(mergedDocs, symbols, TOPLEVEL_NAMESPACE, mergedDocLinkAliases);

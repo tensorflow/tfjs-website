@@ -447,7 +447,7 @@ export interface SymbolAndUrl {
   symbolName: string;
   url: string;
   type: 'function'|'class'|'method';
-  toplevelNamespace: string;
+  toplevelNamespace?: string;
 }
 
 /**
@@ -563,8 +563,10 @@ function replaceSymbolsWithLinks(
                                 symbolAndUrl.referenceName,
         isMarkdown);
 
-    let displayText =
-        symbolAndUrl.toplevelNamespace + symbolAndUrl.referenceName;
+    let displayText = (symbolAndUrl.toplevelNamespace != null ?
+                           symbolAndUrl.toplevelNamespace + '.' :
+                           '') +
+        symbolAndUrl.referenceName;
     if (symbolAndUrl.type === 'function' || symbolAndUrl.type === 'method') {
       // displayText += symbolAndUrl.namespace ? symbolAndUrl.namespace : '';
       displayText += '()';
