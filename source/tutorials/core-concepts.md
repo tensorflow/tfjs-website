@@ -69,7 +69,7 @@ biases.assign(updatedValues); // update values of biases
 biases.print(); // output: [0, 1, 0, 1, 0]
 ```
 
-`Variable`s are primarily used to store and then update values during model training.
+Variables are primarily used to store and then update values during model training.
 
 ## Operations (Ops)
 
