@@ -505,7 +505,7 @@ export function linkSymbols(
       if (symbol.symbolName === docLinkAliases[docLinkAlias]) {
         symbols.push({
           symbolName: docLinkAlias,
-          referenceName: symbol.referenceName,
+          referenceName: docLinkAlias,
           url: symbol.url,
           type: symbol.type,
           toplevelNamespace: symbol.toplevelNamespace
