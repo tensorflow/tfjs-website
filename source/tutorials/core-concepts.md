@@ -43,7 +43,7 @@ c.print();
 ```
 
 TensorFlow.js also provides convenience functions for creating `Tensor`s with all values
-set to 0 (`tf.zeros`) or all values set to 1 (`tf.ones`):
+set to 0 ([`tf.zeros`](../api/0.0.1/index.html#tf.zeros)) or all values set to 1 ([`tf.ones`](../api/0.0.1/index.html#tf.ones)):
 
 ```js
 // 3x5 Tensor with all values set to 0
