@@ -73,7 +73,7 @@ Variables are primarily used to store and then update values during model traini
 
 ## Operations (Ops)
 
-While tensors allow you to store data, operations (ops) allow you to manipulate that data. TensorFlow.js provides a wide variety of ops suitable for linear algebra and machine learning that can be performed on tensors. Because tensors are immutable, these ops do not change their input; they instead return new tensors.
+While tensors allow you to store data, operations (ops) allow you to manipulate that data. TensorFlow.js provides a wide variety of ops suitable for linear algebra and machine learning that can be performed on tensors. Because tensors are immutable, these ops do not change their values; instead, ops return new tensors.
 
 Available ops include unary ops such as [`square`](../api/0.0.1/index.html#tf.square):
 
@@ -210,7 +210,7 @@ Using `tf.tidy` will help prevent memory leaks in your application. It can also 
 
 * The function passed to `tf.tidy` should be synchronous and also not return a Promise. We suggest keeping code that updates the UI or makes remote requests outside of `tf.tidy`.
 
-*  `tf.tidy` **will not** clean up `Variable`s. `Variable`s typically last through the entire lifecycle of a machine learning model, so TensorFlow.js doesn't clean them up even if they are created in a `tidy`; however, you can call `dispose` on them manually.
+*  `tf.tidy` _will not_ clean up variables. Variables typically last through the entire lifecycle of a machine learning model, so TensorFlow.js doesn't clean them up even if they are created in a `tidy`; however, you can call `dispose` on them manually.
 
 # Additional Resources
 
@@ -218,5 +218,5 @@ See the [TensorFlow.js API reference](../api/0.0.1/index.html) for comprehensive
 
 For a more in-depth look at machine learning fundamentals, see the following resources:
 
-* [Machine Learning Crash Course](https://developers.google.com/machine-learning/crash-course). (Note: this course's exercises use TensorFlow's [Python API](https://www.tensorflow.org/api_docs/python/). However, the core machine learning concepts taught here can be applied equally well using TensorFlow.js.)
+* [Machine Learning Crash Course](https://developers.google.com/machine-learning/crash-course). (Note: this course's exercises use TensorFlow's [Python API](https://www.tensorflow.org/api_docs/python/). However, the core machine learning concepts it teaches can be applied in equivalent fashion using TensorFlow.js.)
 * [Machine Learning Glossary](https://developers.google.com/machine-learning/glossary)
