@@ -25,3 +25,7 @@ to construct, train, and evaluate the model.
 
 This tutorial explains how to convert and serve an existing Keras model to run in the browser.
 
+<h2><a href="./import-keras.html">TensorFlow.js Layers API for Keras Users</a></h2>
+
+This tutorial explains the similarities and differences between the Layers API
+of TensorFlow.js and [Keras](https://keras.io/).
