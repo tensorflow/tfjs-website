@@ -51,7 +51,7 @@ const d = tf.variable(tf.scalar(Math.random()));
 ## Step 2: Build a Model
 
 We can represent our polynomial function *y* = *a*x<sup>3</sup> + *b*x<sup>2</sup> + *c*x + *d* in
-TensorFlow.js by chaining a series of mathematical operations: addition (`add`), multiplication (`mul`), and exponentiation (`pow` and `square`). 
+TensorFlow.js by chaining a series of mathematical operations: addition ([`add`](../api/0.0.1/index.html#tf.add)), multiplication ([`mul`](../api/0.0.1/index.html#tf.mul)), and exponentiation ([`pow`](../api/0.0.1/index.html#tf.pow) and [`square`](../api/0.0.1/index.html#tf.square)). 
 
 The following code constructs a `predict` function that takes `x` as input, and returns `y`:
 
