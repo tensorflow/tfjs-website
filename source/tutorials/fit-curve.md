@@ -105,7 +105,7 @@ For our optimizer, we'll use [Stochastic Gradient Descent](https://developers.go
 
 TensorFlow.js provides a convenience function for performing SGD, so that you don't have to worry about performing all these mathematical operations yourself. [`tf.train.sdg`](../api/0.0.1/index.html#tf.train.sgd) takes as input a desired learning rate, and returns an `SGDOptimizer` object, which can be invoked to optimize the value of the loss function.
 
-The _learning rate_ controls how big the model's adjustments will be when improving its predictions. A low learning rate will make the learning process slow (more training iterations needed to learn good coefficients), while a high learning rate will speed up learning but might result in the model oscillating around the right values, always overcorrecting.
+The _learning rate_ controls how big the model's adjustments will be when improving its predictions. A low learning rate will make the learning process run more slowly (more training iterations needed to learn good coefficients), while a high learning rate will speed up learning but might result in the model oscillating around the right values, always overcorrecting.
 
 The following code constructs an SGD optimizer with a learning rate of 0.5:
 
