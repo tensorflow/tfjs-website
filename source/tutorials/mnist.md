@@ -322,12 +322,18 @@ Each time we call `fit`, it returns a rich object that contains logs of our metr
   const accuracy = history.history.acc[0];
 ```
 
-## See the Results
+## See the Results!
 
 If you run the full code, you should see output like this:
 
-<img src="../images/mnist_learned.png" alt="Input data scatterplot" style="max-width: 500px;"/>
+<img src="../images/mnist_learned.png" alt="Two plots. The first plot shows loss vs. training batch, with loss trending downward from batch 0 to batch 100. The second plot shows accuracy vs. test batch, with accuracy trending upward from batch 0 to batch 100" style="max-width: 500px;"/>
 
 It looks like the model is predicting the right digit for most of the images. Great work!
 
 ## Additional Resources
+
+* For more on convolution, see [Understanding Convolutions](http://colah.github.io/posts/2014-07-Understanding-Convolutions/) by Chris Olah.
+
+* For more on loss, see [Descending into ML](https://developers.google.com/machine-learning/crash-course/descending-into-ml/) in [Machine Learning Crash Course](https://developers.google.com/machine-learning/crash-course/) for a more in-depth introduction to machine learning loss
+
+* For more on gradient descent and SGD, see [Reducing Loss](https://developers.google.com/machine-learning/crash-course/reducing-loss/) in [Machine Learning Crash Course](https://developers.google.com/machine-learning/crash-course/).
