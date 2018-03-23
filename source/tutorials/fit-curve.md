@@ -136,7 +136,7 @@ function train(xs, ys, numIterations) {
 
 <br/>
 
-Let's take a closer look at the code, step by step. First, our training function takes the *x* and *y* values of our dataset, as well as a specified number of iterations, as input:
+Let's take a closer look at the code, step by step. First, we define our training function to take the *x* and *y* values of our dataset, as well as a specified number of iterations, as input:
 
 ```js
 function train(xs, ys, numIterations) {
@@ -151,8 +151,19 @@ Next, we define the learning rate and SGD optimizer as discussed in the previous
   const optimizer = tf.train.sgd(learningRate);
 ```
 
-Finally, we set up a for loop that runs `numIterations` training iterations. In each iteration,
-we invoke [`minimize`](../api/0.0.1/index.html#class:tf.train.Optimizer) on the optimizer, which is where the magic happens. `minimize` takes a function that does two things:
+Finally, we set up a `for` loop that runs `numIterations` training iterations. In each iteration,
+we invoke [`minimize`](../api/0.0.1/index.html#class:tf.train.Optimizer) on the optimizer, which is where the magic happens: 
+
+```js
+  for (let iter = 0; iter < numIterations; iter++) {
+    optimizer.minimize(() => {
+      const predsYs = predict(xs);
+      return loss(predsYs, ys);
+    });
+  }
+```
+
+`minimize` takes a function that does two things:
 
 1. It predicts *y* values (`predYs`) for all the *x* values using the `predict` model function we defined earlier in Step 2. 
 
