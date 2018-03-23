@@ -302,50 +302,32 @@ const history = await model.fit({
 });
 ```
 
-
 Breaking down the arguments again:
-```js
-  x: batch.xs.reshape([BATCH_SIZE, 28, 28, 1])
-  y: batch.labels
-  batchSize: BATCH_SIZE
-```
 
-Remember that we are feeding examples in batches so we must tell the
-`fit` function how large our batch is. `MnistData.nextTrainBatch`
-returns images with shape `[BATCH_SIZE, 784]`, but our model expects a different
-shape, so here we must reshape it.
+* `x`. Our input image data. Remember that we are feeding examples in batches so we must tell the
+`fit` function how large our batch is. `MnistData.nextTrainBatch` returns images with shape `[BATCH_SIZE, 784]`—all the data for the image in a 1-D vector of length 784 (28 * 28). However, our model expects image data in the shape `[BATCH_SIZE, 28, 28, 1]`, so we [`reshape`](../api/0.0.1/index.html#tf.reshape) accordingly. 
 
-```js
-  validationData: validationData
-```
+* `y`. Our labels; the correct digit classifications for each image.
 
-By defining `validationData`, we are providing examples for `fit` to compute
-our metrics over, in this case accuracy.
+* `batchSize`. How many images to include in each training batch. Earlier we set a `BATCH_SIZE` of 64 to use here.
 
+* `validationData`. The validation set we construct every TEST_ITERATION_FREQUENCY (here, 5) batches. This data is in the shape `[TEST_BATCH_SIZE, 28, 28, 1]`. Earlier, we set a TEST_BATCH_SIZE of 1000. Our evaluation metric (accuracy) will be computed over this data set.
 
-```js
-  epochs: 1
-```
+* `epochs`. Number of training runs to perform on a batch. Since we are iteratively feeding batches to `fit`, we only want it to train from this batch a single time.
 
-Since we are iterative feeding batches to `fit`, we only want it to train from
-this batch a single time.
+Each time we call `fit`, it returns a rich object that contains logs of our metrics, which we story in `history`. We extract our loss and accuracy for each training iteration, so we can plot them on a graph: 
 
 ```js
   const loss = history.history.loss[0];
   const accuracy = history.history.acc[0];
 ```
 
-`fit` returns a rich object which contains logs from the fit call. The two we
-care about plotting are the loss of the training batch and the accuracy of the
-model over the 1000 test examples.
+## See the Results
 
-## See the results
-If
-you are following along in the example and have run it, you should see output
-like this:
+If you run the full code, you should see output like this:
 
 <img src="../images/mnist_learned.png" alt="Input data scatterplot" style="max-width: 500px;"/>
 
-It looks like the model is predicting the right digit for most of the images!
+It looks like the model is predicting the right digit for most of the images. Great work!
 
-The full code for this tutorial can be found [here](https://github.com/tensorflow/tfjs-examples/tree/master/mnist). Feel free to download it and tweak the parameters.
+## Additional Resources
