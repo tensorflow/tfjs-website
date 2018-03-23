@@ -53,7 +53,7 @@ const d = tf.variable(tf.scalar(Math.random()));
 We can represent our polynomial function *y* = *a*x<sup>3</sup> + *b*x<sup>2</sup> + *c*x + *d* in
 TensorFlow.js by chaining a series of mathematical operations: addition ([`add`](../api/0.0.1/index.html#tf.add)), multiplication ([`mul`](../api/0.0.1/index.html#tf.mul)), and exponentiation ([`pow`](../api/0.0.1/index.html#tf.pow) and [`square`](../api/0.0.1/index.html#tf.square)). 
 
-The following code constructs a `predict` function that takes `x` as input, and returns `y`:
+The following code constructs a `predict` function that takes `x` as input and returns `y`:
 
 ```js
 function predict(x) {
@@ -67,7 +67,7 @@ function predict(x) {
 }
 ```
 
-Let's go ahead and plot our polynomial function using the random values for *a*, *b*, *c*, and *d* that we set in step 1. Our plot will likely look something like this:
+Let's go ahead and plot our polynomial function using the random values for *a*, *b*, *c*, and *d* that we set in Step 1. Our plot will likely look something like this:
 
 <img src="../images/fit_curve_random.png" alt="Cubic function that poorly fits the data in the previous graph. The function hovers far above the data from x=-1.0 to x=0, and then zooms upward from x=0.2 to x=1.0, while the data points move downward." style="maxWidth: 500px;" width="500"/>
 
@@ -80,9 +80,9 @@ Our final step is to train the model to learn good values for the coefficients. 
 
 * A _loss function_, which measures how well a given polynomial fits the data. The lower the loss value, the better the polynomial fits the data.
 
-* An _optimizer_, which implements an algorithm for revising our coefficient values based on the results of the loss function. The optimizer's goal is to minimize the value of the loss function.
+* An _optimizer_, which implements an algorithm for revising our coefficient values based on the output of the loss function. The optimizer's goal is to minimize the output value of the loss function.
 
-* A _training loop_, which will iteratively run the optimizer until minimum loss is achieved.
+* A _training loop_, which will iteratively run the optimizer to minimize loss.
 
 ### Define the Loss Function
 
