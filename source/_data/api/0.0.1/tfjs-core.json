@@ -1612,8 +1612,8 @@
                 ],
                 "returnType": "Variable",
                 "documentation": "Creates a new variable with the provided initial value.\n```js\nconst x = dl.variable(dl.tensor([1, 2, 3]));\nx.assign(dl.tensor([4, 5, 6]));\n\nx.print();\n```",
-                "fileName": "#894",
-                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/tensor.ts#L894-L902",
+                "fileName": "#899",
+                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/tensor.ts#L899-L907",
                 "isFunction": true
               }
             ]
@@ -2284,8 +2284,8 @@
                 },
                 "symbolName": "Variable",
                 "documentation": "A mutable `Tensor`, useful for persisting state, e.g. for training.",
-                "fileName": "#857",
-                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/tensor.ts#L857-L926",
+                "fileName": "#862",
+                "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/tensor.ts#L862-L931",
                 "methods": [
                   {
                     "docInfo": {
@@ -2305,8 +2305,8 @@
                     ],
                     "returnType": "void",
                     "documentation": "Assign a new `Tensor` to this variable. The new `Tensor` must have the\nsame shape and dtype as the old `Tensor`.",
-                    "fileName": "#910",
-                    "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/tensor.ts#L910-L925",
+                    "fileName": "#915",
+                    "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/tensor.ts#L915-L930",
                     "isFunction": true
                   }
                 ],
@@ -4652,6 +4652,11 @@
     ]
   },
   "docLinkAliases": {
+    "Scalar": "Tensor",
+    "Tensor1D": "Tensor",
+    "Tensor2D": "Tensor",
+    "Tensor3D": "Tensor",
+    "Tensor4D": "Tensor",
     "AdadeltaOptimizer": "Optimizer",
     "AdagradOptimizer": "Optimizer",
     "SGDOptimizer": "Optimizer",
