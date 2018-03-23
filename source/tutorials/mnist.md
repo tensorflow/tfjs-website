@@ -3,76 +3,65 @@ title: mnist
 date: 2018-03-17 13:28:23
 ---
 
-# Training on images — Recognizing Handwritten Digits with a Convolutional Neural Network
+# Training on Images: Recognizing Handwritten Digits with a Convolutional Neural Network
 
-In the [core concepts tutorial](./core-concepts.html), we learned how to use tensors and operations to perform basic linear algebra.
+In this tutorial, we'll build a TensorFlow.js model to classify handwritten digits with a convolutional neural network. First, we'll train the classifier by having it “look” at thousands of handwritten digit images and their labels. Then we'll evaluate the classifier's accuracy using test data that the model has never seen.
 
-In the [polynomial tutorial](./fit-curve.html), we learned how to use the TensorFlow.js core API
-to learn the coefficients of a polynomial.
+TODO: add prereqs section
 
-In this tutorial, we will learn the basic building blocks of a TensorFlow.js model to recognize handwritten digits with a convolutional neural network. The dataset we will be using is the [MNIST handwriting dataset](http://yann.lecun.com/exdb/mnist/).
+## Running the Code
 
-## About this tutorial
-
-This tutorial will explain the [tfjs-examples/mnist](https://github.com/tensorflow/tfjs-examples/tree/master/mnist) example in our examples repository.
-
-The difference between this and the [tfjs-examples/mnist-core](https://github.com/tensorflow/tfjs-examples/tree/master/mnist-core)
-example is that this uses the higher-level API (`Model`, `Layer`s) while mnist-core uses the low-lower linear algebra ops to build a neural network.
+The full code for this tutorial can be found in the [tfjs-examples/mnist](https://github.com/tensorflow/tfjs-examples/tree/master/mnist) directory in the [TensorFlow.js examples repository](https://github.com/tensorflow/tfjs-examples/tree/master/mnist).
 
 You can run the code for the example by cloning the repo and building the demo:
 
 ```sh
-git clone https://github.com/tensorflow/tfjs-examples
-cd tfjs-examples/mnist
-yarn
-yarn watch
+$ git clone https://github.com/tensorflow/tfjs-examples
+$ cd tfjs-examples/mnist
+$ yarn
+$ yarn watch
 ```
 
 The [tfjs-examples/mnist](https://github.com/tensorflow/tfjs-examples/tree/master/mnist)
 directory above is completely standalone so you copy it to start your own project.
 
-### What we will accomplish in this tutorial
+**NOTE:** The difference between this tutorial's code and the [tfjs-examples/mnist-core](https://github.com/tensorflow/tfjs-examples/tree/master/mnist-core) example is that here we use the TensorFlow.js higher-level APIs (`Model`, `Layer`s) to construct the model, whereas mnist-core uses low-lower linear algebra ops to build a neural network.
 
-- Create a convolutional classifier using supervised learning to recognize the digit (0-9) images of handwritten digits
-- Train the classifier by having it “look” at thousands of handwritten digit images and their labels
-- Evaluate the model's accuracy using test data that the model has never seen
+## Data
 
+We will use the [MNIST handwriting dataset](http://yann.lecun.com/exdb/mnist/) for this tutorial.
 The handwritten MNIST digits we will learn to classify look like this:
 
 <img src="../images/mnist_4.png" alt="mnist 4" width=100/> <img src="../images/mnist_3.png" alt="mnist 3" width=100/> <img src="../images/mnist_8.png" alt="mnist 8" width=100/>
 
-## Data
+To preprocess our data, we've written [data.js](https://github.com/tensorflow/tfjs-examples/blob/master/mnist-core/data.js), which contains a class `MnistData` that fetches random batches of MNIST images from a hosted version of the MNIST dataset we provide for convenience. 
 
-The MNIST example linked above has a file, [data.js](https://github.com/tensorflow/tfjs-examples/blob/master/mnist-core/data.js),
-that contains a class `MnistData` which fetches random batches of images from a dataset on a server we provide for convenience.
-
-`MnistData` splits the entire dataset into training data and test data. When we train the model, the classifier will only see the training set, and when we evaluate it we will only evaluate it with the data from the test set. By hiding the test set from the model during training, we can better see how well it has trained by evaluating it on unseen data.
-
-When training the MNIST classifier, it is important that the data is randomly shuffled so the model isn’t affected by the ordering of the images we feed. For example, we were to feed all of the “1”s digits first, during this phase of training, the model might learn to simply predict “1”
-(since this minimizes the cost). If we then fed it "2"s, it might simply switch
-to predicting only "2" and never predict a "1" (since this minimizes the cost for
-this new set of images). The model wouldn't then be able to make an accurate
-prediction over any digit.
+`MnistData` splits the entire dataset into training data and test data. When we train the model, the classifier will see only the training set. When we evaluate the model, we'll use only the data in the test set, which the model has not yet seen, which will show us how well the model's predictions generalize to brand-new data.
 
 `MnistData` has two public methods:
 
-1. `nextTrainBatch(batchSize)`: returns a batch of images and their labels from the training set
+1. `nextTrainBatch(batchSize)`: returns a random batch of images and their labels from the training set
 2. `nextTestBatch(batchSize)`: returns a batch of images and their labels from the test set
 
-## Building the model
+NOTE: When training the MNIST classifier, it's important to randomly shuffle the data, so the model's predictions aren't affected by the order in which we feed it images. For example, if we were to feed the model all the “1” digits first, during this phase of training, the model might learn to simply predict “1” (since this minimizes the loss). If we were to then feed the model only "2"s, it might simply switch to predicting only "2" and never predict a "1" (since, again, this would minimize loss for the new set of images). The model would never learn to make an accurate prediction over a representative sample of digits.
 
-In this section, we're going to build a convolutional image classifier model.
+## Building the Model
 
-To do this, we will use a `sequential` model which is the simplest type of model where tensors will be consecutively passed from each layer to the next.
+In this section, we'll going to build a convolutional image classifier model. To do so, we'll use a `Sequential` model (the simplest type of model), in which tensors are consecutively passed from one layer to the next.
+
+First, let's instantiate our `Sequential` model with `tf.sequential`:
 
 ```js
 const model = tf.sequential();
 ```
 
-Now that we have created a model, let's add layers to it. The first layer we’re going to add is a convolutional layer.
+Now that we've created a model, let's add layers to it. 
 
-Convolutions slide a filter window over the image to learn transformations that are spatially invariant (this means that patterns or objects in different parts of the image will be treated the same). For more information about convolutions, check out
-[this article](http://colah.github.io/posts/2014-07-Understanding-Convolutions/).
+### Adding the First Layer
+
+The first layer we’ll add is a two-dimensional convolutional layer. Convolutions slide a filter window over an image to learn transformations that are spatially invariant (that is, patterns or objects in different parts of the image will be treated the same way). For more information about convolutions, see [this article](http://colah.github.io/posts/2014-07-Understanding-Convolutions/).
+
+We can create our 2-D convolutional layer using `tf.layers.conv2d`, which accepts a configuration object that defines the layer's structure:
 
 ```js
 model.add(tf.layers.conv2d({
@@ -85,62 +74,28 @@ model.add(tf.layers.conv2d({
 }));
 ```
 
-When we construct a layer, we pass a configuration object that defines the structure of the layer. Let’s break down each argument to the configuration object.
+Let’s break down each argument in the configuration object:
+
+* `inputShape`. The shape of the data that will flow into the first layer of the model. In this case, our MNIST examples are 28x28-pixel black-and-white images. The canonical image format is `[row, column, depth]`, so here we want to configure a shape of `[28, 28, 1]`—28 rows and columns for the number of pixels in each dimension, and a depth of 1 because our images have only 1 color channel:
 
 ```js
 inputShape: [28, 28, 1]
 ```
 
-The first layer of a model must define an input shape. This is the shape of the data that flows into the first layer of our model. In this case, our MNIST images we want to classify are 28x28 grayscale images. The canonical image format is [row, column, depth], so the input shape of the first layer is [28, 28, 1].
-
-To take full advantage of the GPU to parallelize computation, we want to batch
-several inputs together and feed them through the network using a single
-feed-forward call.
-
-Another reason we batch our computation is that during optimization, we update
-internal parameters (taking a step) only after averaging gradients from several
-examples. This helps us avoid taking a step in the wrong direction because of
-an outlier example (e.g. a mislabeled digit).
-
-To do this, we introduce a tensor of rank D+1 where D is the dimensionality of
-a single input.
-
-The dimensionality of a single image in this case is [28, 28, 1],
-where the canonical format for images is [rows, columns, depth]. The image is
-28x28 grayscale image, and thus has a depth of 1.
-
-We will 64 grayscale images at a time, so the shape of this batch of 64 images
-is [64, 28, 28, 1] (the batch is always the outer-most dimension).
-
-*Note: Notice that the inputShape in the config of the conv2d did not specify the batch size (64). Configs are agnostic of batch size, to remain flexible and be able to take arbitrary batch size.*
-
-```js
-kernelSize: 5
-filters: 8
-strides: 1
-```
-These arguments define the parameters to the convolution.
-
-`kernelSize` is the size of the sliding convolutional window, in this case it is a square 5x5 convolutional window.
-
-`filters` determines how many 5x5 filters to be applyed to the input and learned.
-
-`strides` determines the size of the step of the sliding window, in this case we will continually shift the window by 1 pixel.
+* `kernelSize`. The size of the sliding convolutional filter windows to be applied to the input data. Here, we set a `kernelSize` of `5`, which specifies a square, 5x5 convolutional window.
 
 
-```js
-activation: 'relu'
-```
+* `filters`. The number of filter windows of size `kernelSize` to apply to the input data. Here, we will apply 8 filters to the data.
 
-This line determines the activation function to apply after the convolution. In this case, we are using the Rectified Linear Unit, which is a very common activation function in ML models.
+* `strides`. The "step size" of the sliding window—i.e., how many pixels the filter will shift each time it moves over the image. Here, we specify `strides` of 1, which means that the filter will slide over the image in steps of 1 pixel.
 
-```js
-kernelInitializer: 'VarianceScaling'
-```
+* `activation`. The [activation function](https://developers.google.com/machine-learning/glossary/#activation_function) to apply to the data after the convolution is complete. In this case, we are applying a [Rectified Linear Unit (ReLU)](https://developers.google.com/machine-learning/glossary/#ReLU) function, which is a very common activation function in ML models.
 
-`kernelInitializer` determines how we randomly initialize the weights. The way we initialize weights is very important to training dynamics. We won’t go into the details of initialization here, but `VarianceScaling` is generally a good initializer.
+* `kernelInitializer`. The method to use for randomly initializing the model weights, which is very important to training dynamics. We won’t go into the details of initialization here, but `VarianceScaling` (used here) is generally a good initializer choice.
 
-Great! We’ve constructed our first layer. Let’s add the other layers. The next layer we’re going to add is a max pooling layer. This layer will downsample the result (also known as the activation) from the convolution by computing the maximum value for each sliding window.
+## Adding the Second Layer
+
+Let’s add a second layer to the model: a max pooling layer. This layer will downsample the result (also known as the activation) from the convolution by computing the maximum value for each sliding window.
 
 ```js
 model.add(tf.layers.maxPooling2d({
@@ -151,17 +106,11 @@ model.add(tf.layers.maxPooling2d({
 
 Let’s break down the arguments.
 
-```js
-poolSize: [2, 2]
-```
-
 Pool size, similar to the kernel size in the convolution, determines the size of the sliding pooling window. In this case, for each 2x2 window the pooling layer will output the maximum value in the activation.
 
-```js
-strides: [2, 2]
-```
-
 Strides determines the size of the step between pooling windows. Here, we’re using a stride of 2x2. Since the window is 2x2 and the stride is 2x2, the pooling windows will be completely non-overlapping. This means the activation from the previous layer will be shrunk by 2x.
+
+### Adding the Remaining Layers
 
 Now we do it again. Repeating layer structure is a common pattern in neural networks! Notice that the number of filters has doubled in this convolutional layer.
 
@@ -210,6 +159,27 @@ activation: 'softmax'
 ```
 
 The activation function of the last layer for a classification task is usually a softmax. This activation function normalizes the 10-dimensional vector into a probability distribution, which means we have a probability for each of the 10 output classes.
+
+## A Note about Batch Size
+
+To take full advantage of the GPU's ability to parallelize computation, we want to batch several inputs together and feed them through the network using a single feed-forward call.
+
+NOTE: Another reason we batch our computation is that during optimization, we update
+internal parameters (taking a step) only after averaging gradients from several
+examples. This helps us avoid taking a step in the wrong direction because of
+an outlier example (e.g. a mislabeled digit).
+
+To do this, we introduce a tensor of rank D+1 where D is the dimensionality of
+a single input.
+
+The dimensionality of a single image in this case is [28, 28, 1],
+where the canonical format for images is [rows, columns, depth]. The image is
+28x28 grayscale image, and thus has a depth of 1.
+
+We will 64 grayscale images at a time, so the shape of this batch of 64 images
+is [64, 28, 28, 1] (the batch is always the outer-most dimension).
+
+*Note: Notice that the inputShape in the config of the conv2d did not specify the batch size (64). Configs are agnostic of batch size, to remain flexible and be able to take arbitrary batch size.*
 
 ## Training the model
 
