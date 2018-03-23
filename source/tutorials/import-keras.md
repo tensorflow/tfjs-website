@@ -18,7 +18,10 @@ Importing a Keras model into TensorFlow.js is a two-step process. First, convert
 
 Keras models are usually saved via `model.save(filepath)`, which produces a single HDF5 (.h5) file containing both the model topology and the weights.  To convert such a file to TF.js Layers format, run the following command, where _`path/to/my_model.h5`_ is the source Keras .h5 file and _`path/to/tfjs_target_dir`_ is the target output directory for the TF.js files:
 
+
 ```sh
+# bash
+
 tensorflowjs_converter --input_format keras \
                        --output_format tensorflowjs \
                        path/to/my_model.h5 \
@@ -30,6 +33,8 @@ tensorflowjs_converter --input_format keras \
 If you have a Keras model in Python, you can export it directly to the TensorFlow.js Layers format as follows:
 
 ```py
+# Python
+
 import tensorflowjs as tfjs
 
 def train(...):
@@ -42,9 +47,13 @@ def train(...):
 
 ## Step 2: Load the model into TensorFlow.js
 
-Use a web server to serve the converted model files you generated in Step 1. Then load the model into TensorFlow.js by providing the URL to the model.json file:
+Use a web server to serve the converted model files you generated in Step 1.  Note that you may need to configure your server to [allow Cross-Origin Resource Sharing (CORS)](https://enable-cors.org/), in order to allow fetching the files in JavaScript.
+
+Then load the model into TensorFlow.js by providing the URL to the model.json file:
 
 ```js
+// JavaScript
+
 import * as tf from '@tensorflow/tfjs';
 
 const model = await tf.loadModel('https://foo.bar/tfjs_artifacts/model.json');
@@ -53,6 +62,8 @@ const model = await tf.loadModel('https://foo.bar/tfjs_artifacts/model.json');
 Now the model is ready for inference, evaluation, or re-training.  For instance, the loaded model can be immediately used to make a prediction:
 
 ```js
+// JavaScript
+
 const example = tf.fromPixels(webcamElement);  // for example
 const prediction = model.predict(example);
 ```
