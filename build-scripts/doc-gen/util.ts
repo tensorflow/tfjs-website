@@ -441,10 +441,13 @@ export function inlineTypes(
 }
 
 export interface SymbolAndUrl {
+  // How the symbol should be referred to in other locations in docs.
+  referenceName: string;
+  // The name of the symbol, no namespaces.
   symbolName: string;
   url: string;
-  type: 'function'|'class';
-  namespace?: string;
+  type: 'function'|'class'|'method';
+  toplevelNamespace?: string;
 }
 
 /**
@@ -459,22 +462,38 @@ export function linkSymbols(
   docs.headings.forEach(heading => {
     heading.subheadings.forEach(subheading => {
       subheading.symbols.forEach(symbol => {
-        const namespace = toplevelNamespace + '.' +
-            (symbol.namespace != null ? symbol.namespace + '.' : '');
-        symbol.displayName = namespace + symbol.symbolName;
+        const namespace =
+            (symbol.namespace != null && symbol.namespace != '' ?
+                 symbol.namespace + '.' :
+                 '');
 
-        if (symbol['isClass'] != null) {
-          symbol.urlHash = `class:${symbol.displayName}`;
-        } else {
-          symbol.urlHash = symbol.displayName;
-        }
+        symbol.displayName =
+            toplevelNamespace + '.' + namespace + symbol.symbolName;
+
+        const referenceName = namespace + symbol.symbolName;
+        symbol.urlHash = (symbol['isClass'] ? 'class:' : '') + referenceName;
 
         symbols.push({
+          referenceName,
           symbolName: symbol.symbolName,
           url: '#' + symbol.urlHash,
           type: symbol['isClass'] != null ? 'class' : 'function',
-          namespace
+          toplevelNamespace
         });
+
+        if (symbol['isClass'] != null) {
+          const docClass = symbol as DocClass;
+          docClass.methods.forEach(method => {
+            method.urlHash = docClass.displayName + '.' + method.symbolName;
+            symbols.push({
+              referenceName: referenceName + '.' + method.symbolName,
+              symbolName: method.symbolName,
+              url: '#' + method.urlHash,
+              type: 'method',
+              toplevelNamespace
+            });
+          });
+        }
       });
     });
   });
@@ -486,9 +505,10 @@ export function linkSymbols(
       if (symbol.symbolName === docLinkAliases[docLinkAlias]) {
         symbols.push({
           symbolName: docLinkAlias,
+          referenceName: docLinkAlias,
           url: symbol.url,
           type: symbol.type,
-          namespace: symbol.namespace
+          toplevelNamespace: symbol.toplevelNamespace
         });
       }
     });
@@ -500,11 +520,13 @@ export function linkSymbols(
       subheading.symbols.forEach(symbol => {
         if (symbol['isClass']) {
           symbol.documentation = replaceSymbolsWithLinks(
-              symbol.documentation, symbols, true /** isMarkdown */);
+              symbol.documentation, symbols, toplevelNamespace,
+              true /** isMarkdown */);
           const classSymbol = symbol as DocClass;
           if (classSymbol.inheritsFrom != null) {
             classSymbol.inheritsFrom = replaceSymbolsWithLinks(
-                classSymbol.inheritsFrom, symbols, false /** isMarkdown */);
+                classSymbol.inheritsFrom, symbols, toplevelNamespace,
+                false /** isMarkdown */);
           }
         }
       });
@@ -513,30 +535,40 @@ export function linkSymbols(
 
   foreachDocFunction(docs.headings, method => {
     method.documentation = replaceSymbolsWithLinks(
-        method.documentation, symbols, true /** isMarkdown */);
+        method.documentation, symbols, toplevelNamespace,
+        true /** isMarkdown */);
+
+    // Since automatic types do not have namespaces, we must replace using just
+    // the symbol names.
     method.returnType = replaceSymbolsWithLinks(
-        method.returnType, symbols, false /** isMarkdown */);
+        method.returnType, symbols, toplevelNamespace, false /** isMarkdown */,
+        true /** replaceFromSymbolName */);
     method.parameters.forEach(param => {
       param.documentation = replaceSymbolsWithLinks(
-          param.documentation, symbols, true /** isMarkdown */);
-      param.type =
-          replaceSymbolsWithLinks(param.type, symbols, false /** isMarkdown */);
+          param.documentation, symbols, toplevelNamespace,
+          true /** isMarkdown */);
+      param.type = replaceSymbolsWithLinks(
+          param.type, symbols, toplevelNamespace, false /** isMarkdown */,
+          true /** replaceFromSymbolName */);
     });
   });
 }
 
 function replaceSymbolsWithLinks(
-    input: string, symbolsAndUrls: SymbolAndUrl[],
-    isMarkdown: boolean): string {
+    input: string, symbolsAndUrls: SymbolAndUrl[], toplevelNamespace: string,
+    isMarkdown: boolean, replaceFromSymbolName = false): string {
   symbolsAndUrls.forEach(symbolAndUrl => {
-    const re = getSymbolReplaceRegex(symbolAndUrl.symbolName, isMarkdown);
+    const re = getSymbolReplaceRegex(
+        replaceFromSymbolName ? symbolAndUrl.symbolName :
+                                symbolAndUrl.referenceName,
+        isMarkdown);
 
-    let displayText;
-    if (symbolAndUrl.type === 'function') {
-      displayText = symbolAndUrl.namespace ? symbolAndUrl.namespace : '';
-      displayText += symbolAndUrl.symbolName + '()';
-    } else {
-      displayText = symbolAndUrl.symbolName;
+    let displayText = (symbolAndUrl.toplevelNamespace != null ?
+                           symbolAndUrl.toplevelNamespace + '.' :
+                           '') +
+        symbolAndUrl.referenceName;
+    if (symbolAndUrl.type === 'function' || symbolAndUrl.type === 'method') {
+      displayText += '()';
     }
 
     input = input.replace(re, `[${displayText}](${symbolAndUrl.url})`);

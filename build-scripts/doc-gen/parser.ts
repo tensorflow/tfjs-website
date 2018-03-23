@@ -125,11 +125,6 @@ function visitNode(
       }
     }
   } else if (ts.isClassDeclaration(node)) {
-    const docLinkAlias = util.getJsdoc(checker, node, DOCUMENTATION_LINK_ALIAS);
-    if (docLinkAlias != null) {
-      docLinkAliases[node.name.getText()] = docLinkAlias;
-    }
-
     const docInfo = util.getDocDecorator(node, DOCUMENTATION_DECORATOR);
     if (docInfo != null) {
       const subheading =
@@ -141,7 +136,8 @@ function visitNode(
     }
 
     // You can't use both doc link aliases and @doc decorators.
-    if (docInfo != null && docLinkAlias != null) {
+    if (docInfo != null &&
+        util.getJsdoc(checker, node, DOCUMENTATION_TYPE_ALIAS) != null) {
       throw new Error(
           `Class ${node.name.getText()} has both a ` +
           `doc link alias and a doc decorator.`);
@@ -150,10 +146,17 @@ function visitNode(
 
   if (ts.isInterfaceDeclaration(node) || ts.isTypeAliasDeclaration(node) ||
       ts.isEnumDeclaration(node) || ts.isClassDeclaration(node)) {
+    // @docalias
     const docAlias = util.getJsdoc(checker, node, DOCUMENTATION_TYPE_ALIAS);
     if (docAlias != null) {
       const symbol = checker.getSymbolAtLocation(node.name);
       docTypeAliases[symbol.getName()] = docAlias;
+    }
+
+    // @doclink
+    const docLinkAlias = util.getJsdoc(checker, node, DOCUMENTATION_LINK_ALIAS);
+    if (docLinkAlias != null) {
+      docLinkAliases[node.name.getText()] = docLinkAlias;
     }
   }
 
