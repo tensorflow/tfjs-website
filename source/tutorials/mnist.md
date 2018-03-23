@@ -95,7 +95,7 @@ inputShape: [28, 28, 1]
 
 ## Adding the Second Layer
 
-Let’s add a second layer to the model: a max pooling layer. This layer will downsample the result (also known as the activation) from the convolution by computing the maximum value for each sliding window.
+Let’s add a second layer to the model: a max pooling layer, which we'll create using [`tf.layers.maxPooling2d`](../api/0.0.1/index.html#tf.layers.maxPooling2d). This layer will downsample the result (also known as the activation) from the convolution by computing the maximum value for each sliding window:
 
 ```js
 model.add(tf.layers.maxPooling2d({
@@ -104,15 +104,17 @@ model.add(tf.layers.maxPooling2d({
 }));
 ```
 
-Let’s break down the arguments.
+Let’s break down the arguments:
 
-Pool size, similar to the kernel size in the convolution, determines the size of the sliding pooling window. In this case, for each 2x2 window the pooling layer will output the maximum value in the activation.
+* `poolSize`. The size of the sliding pooling windows to be applied to the input data. Here, we set a `poolSize` of `[2,2]`, which means that the pooling layer will apply 2x2 windows to the input data.
 
-Strides determines the size of the step between pooling windows. Here, we’re using a stride of 2x2. Since the window is 2x2 and the stride is 2x2, the pooling windows will be completely non-overlapping. This means the activation from the previous layer will be shrunk by 2x.
+* `strides`. The "step size" of the sliding pooling window—i.e., how many pixels the window will shift each time it moves over the input data. Here, we specify `strides` of `[2, 2]`, which means that the filter will slide over the image in steps of 2 pixels in both horizontal and vertical directions.
+
+**NOTE:** Since the pooling window is 2x2 and the stride is 2x2, the pooling windows will be completely non-overlapping. This means the pooling layer will cut the size of the activation from the previous layer in half.
 
 ### Adding the Remaining Layers
 
-Now we do it again. Repeating layer structure is a common pattern in neural networks! Notice that the number of filters has doubled in this convolutional layer.
+Repeating layer structure is a common pattern in neural networks. Let's add a second convolutional layer, followed by another pooling layer to our model. Note that in our second convolutional layer, we're doubling the number of filters from 8 to 16:
 
 ```js
 model.add(tf.layers.conv2d({
@@ -129,10 +131,15 @@ model.add(tf.layers.maxPooling2d({
 }));
 ```
 
-Finally, we add a flatten layer to flatten the output of the previous layer to a vector and a dense layer (also known as a fully connected layer) to do classification. Flattening the output of a convolution / pooling layer before a dense layer is another common pattern in neural networks.
+Next, let's add a [`flatten`](../api/0.0.1/index.html#tf.layers.flatten) layer to flatten the output of the previous layer to a vector:
 
 ```js
 model.add(tf.layers.flatten());
+```
+
+Lastly, let's add a [`dense`](../api/0.0.1/index.html#tf.layers.dense) layer (also known as a fully connected layer), which will perform the final classification. Flattening the output of a convolution+pooling layer pair before a dense layer is another common pattern in neural networks:
+
+```js
 model.add(tf.layers.dense({
   units: 10,
   kernelInitializer: 'VarianceScaling',
@@ -140,31 +147,70 @@ model.add(tf.layers.dense({
 }));
 ```
 
-Let’s break down the arguments to the dense layer.
+Let’s break down the arguments passed to the `dense` layer.
+
+* `units`. The size of the output activation. Since this is the final layer, and we’re doing a 10-class classification task (digits 0–9), we use 10 units here. (Sometimes units are referred to as the number of *neurons*, but we’ll avoid that terminology.)
+
+* `kernelInitializer`. We'll use the same `VarianceScaling` initialization strategy for the dense layer that we used for the convolutional layers.
+
+* `activation`. The activation function of the last layer for a classification task is usually [softmax](https://developers.google.com/machine-learning/glossary/#softmax). Softmax normalizes our 10-dimensional output vector into a probability distribution, which means we have a probability for each of the 10 classes.
+
+## Training the Model
+
+To actually drive training of the model, we'll need to construct an optimizer and define a loss function. We'll also define an evaluation metric to measure how well our model performs on the data.
+
+NOTE: For a deeper dive into optimizers and loss functions in TensorFlow.js, see the tutorial [Training First Steps(fit-curve.html).
+
+For our convolutional neural network model, we'll use a stochastic gradient descent (SGD) optimizer with a learning rate of 0.15:
 
 ```js
-units: 10
+const LEARNING_RATE = 0.15;
+const optimizer = tf.train.sgd(LEARNING_RATE);
 ```
 
-This is the the size of the output activation. Since this is the last layer, and we’re doing a 10-class classification task (0-9 digits of MNIST), we use 10 units here. Sometimes this is known as the number of neurons, but we’ll avoid that terminology.
+For our loss function, we'll use cross-entropy (`categoricalCrossentropy`), which is commonly used to optimize classification tasks. `categoricalCrossentropy` measures the error between the probability distribution generated by the last layer of our model and the probability distribution given by our label (which will be a distribution with 100% in the correct class label). For example, given the following label and prediction values for an example of the digit "7":
+
+|class     | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |
+|----------|---|---|---|---|---|---|---|---|---|---|
+|label     | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 0 |
+|prediction|.1 |.01|.01|.01|.20|.01|.01|.60|.03|.02|
+
+`categoricalCrossentropy` gives a lower loss value if the prediction is a high probability that the digit is 7, and a higher loss value if the prediction is a low probability of 7. During training, the model will update its internal parameters to minimize `categoricalCrossentropy` over the whole dataset.
+
+For our evaluation metric, we'll use accuracy, which measures the percentage of correct predictions out of all predictions.
+
+To compile the model, we pass it a configuration object with our `optimizer`, `loss` function, and a list of evaluation metrics (here, just `'accuracy'`):
 
 ```js
-kernelInitializer: 'VarianceScaling'
+model.compile({
+  optimizer: optimizer,
+  loss: 'categoricalCrossentropy',
+  metrics: ['accuracy'],
+});
 ```
 
-Just like the convolutional kernel, we use the same strategy to initialize dense layers as convolutional layers.
+Before we begin training, we need to define a few more parameters related to batch size:
 
 ```js
-activation: 'softmax'
+// How many examples the model should "see" before making a parameter update.
+const BATCH_SIZE = 64;
+// How many batches to train the model for.
+const TRAIN_BATCHES = 100;
+
+// Every few batches, test accuracy over many examples. Ideally, we'd compute
+// accuracy over the whole test set, but for performance we'll use a subset.
+const TEST_BATCH_SIZE = 1000;
+const TEST_ITERATION_FREQUENCY = 5;
 ```
 
-The activation function of the last layer for a classification task is usually a softmax. This activation function normalizes the 10-dimensional vector into a probability distribution, which means we have a probability for each of the 10 output classes.
+`TEST_BATCH_SIZE` is defined to be 1000, so we be test the model accuracy
+against 1000 random examples every few steps.
 
 ## A Note about Batch Size
 
 To take full advantage of the GPU's ability to parallelize computation, we want to batch several inputs together and feed them through the network using a single feed-forward call.
 
-NOTE: Another reason we batch our computation is that during optimization, we update
+Another reason we batch our computation is that during optimization, we update
 internal parameters (taking a step) only after averaging gradients from several
 examples. This helps us avoid taking a step in the wrong direction because of
 an outlier example (e.g. a mislabeled digit).
@@ -180,68 +226,6 @@ We will 64 grayscale images at a time, so the shape of this batch of 64 images
 is [64, 28, 28, 1] (the batch is always the outer-most dimension).
 
 *Note: Notice that the inputShape in the config of the conv2d did not specify the batch size (64). Configs are agnostic of batch size, to remain flexible and be able to take arbitrary batch size.*
-
-## Training the model
-
-To actually drive the training of the model, we need to construct an optimizer, and define a loss function
-
-```js
-const LEARNING_RATE = 0.15;
-const optimizer = tf.train.sgd(LEARNING_RATE);
-```
-
-The optimizer we’re going to use is "sgd" or "Stochastic Gradient Descent" (the
-details of the optimizer are unimportant for this tutorial). Optimizers take a
-learning rate argument, which determines how big of an update to make during
-training. Too low a learning rate and training will be slow. Too high a
-learning rate and the model might oscillate.
-
-Now we compile the model, which makes the model trainable.
-
-```js
-model.compile({
-  optimizer: optimizer,
-  loss: 'categoricalCrossentropy',
-  metrics: ['accuracy'],
-});
-```
-
-The loss function we’re using is `categoricalCrossentropy`. This loss function is commonly used for classification task and measures the error between the probability distribution generated by the last layer of our model and the probability distribution given by our label (which will be a distribution with 100% in the correct class label).
-
-We also want to compute accuracy, which is the percentage of examples the model
-predicted the correct label.
-
-For a 10-class classification problem, the label and predictions will both be
-vectors with 10 elements representing the probability of that class.
-Here is an example of what a label and a prediction
-might look like from a trained model of the digit "7".
-
-|class     | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |
-|----------|---|---|---|---|---|---|---|---|---|---|
-|label     | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 0 |
-|prediction|.1 |.01|.01|.01|.20|.01|.01|.60|.03|.02|
-
-`categoricalCrossentropy` gives a lower loss value if the prediction is closer
-to high probability of 7, and higher loss value if the prediction is lower probability of 7.
-
-During the training phase, the model will update the internal parameters to
-decrease this loss function over the whole dataset.
-
-Before we begin training, we need to define a few more parameters.
-```js
-// How many examples the model should "see" before making a parameter update.
-const BATCH_SIZE = 64;
-// How many batches to train the model for.
-const TRAIN_BATCHES = 100;
-
-// Every few batches, test accuracy over many examples. Ideally, we'd compute
-// accuracy over the whole test set, but for performance we'll use a subset.
-const TEST_BATCH_SIZE = 1000;
-const TEST_ITERATION_FREQUENCY = 5;
-```
-
-`TEST_BATCH_SIZE` is defined to be 1000, so we be test the model accuracy
-against 1000 random examples every few steps.
 
 ### Training loop
 
