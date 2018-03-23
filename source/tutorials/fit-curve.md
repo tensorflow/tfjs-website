@@ -5,11 +5,11 @@ date: 2018-03-16 16:28:23
 
 # Training First Steps: Fitting a Curve to Synthetic Data
 
-In this tutorial, we'll  use TensorFlow.js to train a model to fit a curve to a synthetic dataset. Given some data generated using a polynomial function with some noise added, our goal is to train a model to discover the coefficients used to generate the data.
+In this tutorial, we'll use TensorFlow.js to train a model to fit a curve to a synthetic dataset. Given some data generated using a polynomial function with some noise added, our goal is to train a model to discover the coefficients used to generate the data.
 
 ## Prerequisites
 
-ADD CONTENT ABOUT FIRST READING THE CORE CONCEPTS TUTORIAL HERE
+This tutorial assumes familiarity with the fundamental building blocks of TensorFlow.js introduced in [Core Concepts in TensorFlow.js](core-concepts.html): tensors, variables, and ops. We recommend completing Core Concepts before doing this tutorial.
 
 ## Running the Code
 
@@ -74,7 +74,7 @@ Let's go ahead and plot our polynomial function using the random values for *a*,
 Because we started with random values, our function is likely a very poor fit for the data set. The model has yet to learn better values for the coefficients.
 
 
-## Step 3: Train the model
+## Step 3: Train the Model
 
 Our final step is to train the model to learn good values for the coefficients. To train our model, we need to define three things: 
 
@@ -90,13 +90,11 @@ For this tutorial, we'll use [mean squared error (MSE)](https://devsite.googlepl
 
 We can define a MSE loss function in TensorFlow.js as follows:
 
-TODO: PREDICTION vs. PREDICTIONS (plural)
-
 ```js
-function loss(prediction, labels) {
+function loss(predictions, labels) {
   // Subtract our labels (actual values) from predictions, square the results,
   // and take the mean.
-  const meanSquareError = prediction.sub(labels).square().mean();
+  const meanSquareError = predictions.sub(labels).square().mean();
   return meanSquareError;
 }
 ```
@@ -123,9 +121,6 @@ const optimizer = tf.train.sgd(learningRate);
 ### Define the Training Loop
 
 Now that we've defined our loss function and optimizer, we can build a training loop, which iteratively performs SGD to refine our model's coefficients to minimize loss (MSE). Here's what our loop looks like:
-
-TODO: numIterations is necessary within the function?
-TODO: mention to Yannick the missing } in the for loop
 
 ```js
 function train(xs, ys, numIterations) {
@@ -160,34 +155,29 @@ Next, we define the learning rate and SGD optimizer as discussed in the previous
   const optimizer = tf.train.sgd(learningRate);
 ```
 
+Finally, we set up a for loop that runs `numIterations` training iterations. In each iteration,
+we invoke [`minimize`](../api/0.0.1/index.html#class:tf.train.Optimizer) on the optimizer, which is where the magic happens. `minimize` takes a function that does two things:
 
+1. It predicts *y* values (`predYs`) for all the *x* values using the `predict` model function we defined earlier in Step 2. 
 
-```js
-  for (let iter = 0; iter < numIterations; iter++) {
-    optimizer.minimize(() => {
-      const predsYs = predict(xs);
-      return loss(predsYs, ys);
-    });
-  }
-```
+2. It returns the mean squared error loss for those predictions using the loss function we defined earlier in **Define the Loss Function**. 
 
+`minimize` then automatically adjusts any variables used by this function (here, the coefficients `a`, `b`, `c`, and `d`) in order to minimize the return value (our loss). 
 
+After running our training loop, `a`, `b`, `c`, and `d` will contain the coefficient values learned by the model after 75 iterations of SGD.
 
-```js
-optimizer.minimize(() => {
-  const predsYs = predict(xs);
-  return loss(predsYs, ys);
-});
-```
+## See the Results!
 
-The minimize function is where the magic happens. It takes a function that __uses some variables__ and __returns a loss value__. The loss value is a single positive value (a scalar) that represents how good the model prediction was. In this examples, the predict function uses our variables and the loss function uses the [mean squared error](https://en.wikipedia.org/wiki/Mean_squared_error) metric to estimate quality. The optimizer will _automatically_ adjust any variables used within the callback function in order to _minimize_ loss.
+Once the program finishes running, we can take the final values of our variables `a`, `b`, `c`, and `d`, and use them to plot a curve:
 
+<img src="../images/fit_curve_learned.png" alt="A cubic curve that nicely approximates the shape of our data" style="maxWidth: 500px;" width="500"/>
 
-## See the results!
+The result is much better than the curve we originally plotted using random values for the coefficient.
 
-Once the program finishes running, we can take the final values of our variable a, b, c, and d and use them to plot a curve.
+## Additional Resources
 
-<img src="../images/fit_curve_learned.png" alt="Input data scatterplot" style="maxWidth: 500px;" width="500"/>
+* See ["Core Concepts in TensorFlow.js"](core-concepts.html) for an introduction to the core building blocks in TensorFlow.js: tensors, variables, and ops.
 
-Much Better than random! The **full code** for this tutorial can be found [here](https://github.com/tensorflow/tfjs-examples/tree/master/polynomial-regression-core) feel free to download it and experiment with some of the different variables in the code.
+* See ["Descending into ML"](https://developers.google.com/machine-learning/crash-course/descending-into-ml/) in [Machine Learning Crash Course](https://developers.google.com/machine-learning/crash-course/) for a more in-depth introduction to machine learning loss
+* See ["Reducing Loss"](https://developers.google.com/machine-learning/crash-course/reducing-loss/) in [Machine Learning Crash Course](https://developers.google.com/machine-learning/crash-course/) for a deeper dive into gradient descent and SGD.
 
