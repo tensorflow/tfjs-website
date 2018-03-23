@@ -23,4 +23,5 @@ to construct, train, and evaluate the model.
 
 <h2><a href="./import-keras.html">How to import a Keras Model into TensorFlow.js</a></h2>
 
+This tutorial explains how to convert and serve an existing Keras model to run in the browser.
 

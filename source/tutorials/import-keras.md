@@ -7,7 +7,7 @@ date: 2018-03-22 16:04:23
 
 Keras models (typically created via the Python API) may be saved in [one of several formats](https://keras.io/getting-started/faq/#how-can-i-save-a-keras-model).  The "whole model" format can be converted to TensorFlow.js Layers format, which can be loaded directly into TensorFlow.js for inference or for further training.
 
-The target TensorFlow.js Layers format is a directory containing a `model.json` file and a set of sharded weights files in binary format.  The `model.json` file contains both the model topology (aka "architecture" or "graph": a description of the layers and how they are connected) and a manifest of the weight files.
+The target TensorFlow.js Layers format is a directory containing a `model.json` file and a set of sharded weight files in binary format.  The `model.json` file contains both the model topology (aka "architecture" or "graph": a description of the layers and how they are connected) and a manifest of the weight files.
 
 ## Requirements
 The conversion procedure requires a Python environment; you may want to keep an isolated one using [pipenv](https://github.com/pypa/pipenv) or [virtualenv](https://virtualenv.pypa.io).  To install the converter, use `pip install tensorflowjs`.
@@ -59,7 +59,7 @@ const prediction = model.predict(example);
 
 Many of the [TensorFlow.js Examples](https://github.com/tensorflow/tfjs-examples) take this approach, using pretrained models that have been converted and hosted on Google Cloud Storage.
 
-Note that you refer to the entire model using the model.json filename.  `loadModel` fetches model.json, and then makes additional HTTP(S) requests to obtain the sharded weight files referenced in the model.json weight manifest.  This approach allows all of these files to be cached by the browser (and perhaps by additional caching servers on the internet), because the model.json and the weight shards are each smaller than the typical cache file size limit.  Thus a model is likely to load more quickly on subsequent occasions.
+Note that you refer to the entire model using the `model.json` filename.  `loadModel(...)` fetches `model.json`, and then makes additional HTTP(S) requests to obtain the sharded weight files referenced in the `model.json` weight manifest.  This approach allows all of these files to be cached by the browser (and perhaps by additional caching servers on the internet), because the `model.json` and the weight shards are each smaller than the typical cache file size limit.  Thus a model is likely to load more quickly on subsequent occasions.
 
 ## Supported features
 
