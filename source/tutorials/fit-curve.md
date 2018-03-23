@@ -5,7 +5,7 @@ date: 2018-03-16 16:28:23
 
 # Training First Steps: Fitting a Curve to Synthetic Data
 
-In this tutorial, we'll use TensorFlow.js to train a model to fit a curve to a synthetic dataset. Given some data generated using a polynomial function with some noise added, our goal is to train a model to discover the coefficients used to generate the data.
+In this tutorial, we'll use TensorFlow.js to fit a curve to a synthetic dataset. Given some data generated using a polynomial function with some noise added, we'll train a model to discover the coefficients used to generate the data.
 
 ## Prerequisites
 
