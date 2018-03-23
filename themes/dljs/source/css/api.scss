@@ -8,12 +8,24 @@ $brand-color-main: #FB7923;
 
 body {
   overflow: hidden;
+
+  @media (max-width: 720px) {
+    overflow: scroll;
+    width: 100vw;
+
+    footer {
+      display: none;
+    }
+  }
 }
 
 .main {
   margin: 0 !important;
   padding: 0 !important;
-  height: calc(100vh - (#{$header-height} * 2));
+  height: calc(100vh - (#{$header-height}));
+  overflow: hidden;
+
+
 }
 
 .page {
@@ -36,6 +48,7 @@ body {
     max-width: 350px;
     overflow-y: auto;
     overflow-x: hidden;
+    padding-bottom: 80px;
   }
 
   .reference {
@@ -43,6 +56,21 @@ body {
     overflow-y: auto;
     overflow-x: hidden;
     margin-left: 40px;
+    padding-bottom: 75vh
+  }
+
+  @media (max-width: 720px) {
+    flex-direction: column;
+
+    .toc {
+      display:none;
+    }
+
+    .reference {
+      margin: 10px;
+      overflow-x: hidden;
+      padding-bottom: 40px;
+    }
   }
 
   // Styles
