@@ -25,3 +25,8 @@ to construct, train, and evaluate the model.
 
 This tutorial explains how to convert and serve an existing Keras model to run in the browser.
 
+
+<h2><a href="https://github.com/tensorflow/tfjs-converter" target="_blank">How to import a TensorFlow SavedModel into TensorFlow.js</a></h2>
+
+__Developer Preview:__ This tutorial explains how to convert and serve an existing TensorFlow SavedModel to run in the browser.
+

@@ -22,13 +22,12 @@ In our experience, for inference, TensorFlow.js with WebGL is 1.5-2x slower than
 
 Please take a look at [this benchmark](https://github.com/tensorflow/tfjs-layers/blob/master/demos/benchmarks_demo.html) to get more detailed performance measurements.
 
-## Do you have any pre-trained models that I can use to get started?
+## What is the difference between this and deeplearn.js?
 
-Yes. We are working on organizing these a bit better, but you can take a look at …, … and ....
+TensorFlow.js is a successor to the deeplearn.js project. It take deeplearn.js 0.6.0 and adds new functionality such as the layers API. As part of the transition, it also joined the TensorFlow project at Google.
 
-You can also use almost any pre-trained Keras models in TensorFlow.js via our conversion scripts.
 
 ## I still have some questions
 
-Please feel free to look at our [issues tracker](https://github.com/tensorflow/tfjs/issues) and file a bug there. We also have a community mailing list for people to ask questions, get technical help, and share what they are doing with TensorFlow.js! To keep up to date with TensorFlow.js news follow us on twitter or join the announcement only mailing list.
+Please feel free to look at our [issues tracker](https://github.com/tensorflow/tfjs/issues) and file a bug there. We also have a <a href="https://groups.google.com/a/tensorflow.org/forum/#!forum/tfjs">community mailing list</a> for people to ask questions, get technical help, and share what they are doing with TensorFlow.js! To keep up to date with TensorFlow.js news follow us on twitter or join the <a href="https://groups.google.com/a/tensorflow.org/forum/#!forum/tfjs-announce">announcement only</a> mailing list.
 
