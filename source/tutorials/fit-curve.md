@@ -183,8 +183,9 @@ The result is much better than the curve we originally plotted using random valu
 
 ## Additional Resources
 
-* See ["Core Concepts in TensorFlow.js"](core-concepts.html) for an introduction to the core building blocks in TensorFlow.js: tensors, variables, and ops.
+* See [Core Concepts in TensorFlow.js](core-concepts.html) for an introduction to the core building blocks in TensorFlow.js: tensors, variables, and ops.
 
-* See ["Descending into ML"](https://developers.google.com/machine-learning/crash-course/descending-into-ml/) in [Machine Learning Crash Course](https://developers.google.com/machine-learning/crash-course/) for a more in-depth introduction to machine learning loss
-* See ["Reducing Loss"](https://developers.google.com/machine-learning/crash-course/reducing-loss/) in [Machine Learning Crash Course](https://developers.google.com/machine-learning/crash-course/) for a deeper dive into gradient descent and SGD.
+* See [Descending into ML](https://developers.google.com/machine-learning/crash-course/descending-into-ml/) in [Machine Learning Crash Course](https://developers.google.com/machine-learning/crash-course/) for a more in-depth introduction to machine learning loss
+
+* See [Reducing Loss](https://developers.google.com/machine-learning/crash-course/reducing-loss/) in [Machine Learning Crash Course](https://developers.google.com/machine-learning/crash-course/) for a deeper dive into gradient descent and SGD.
 
