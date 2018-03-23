@@ -1925,7 +1925,7 @@
                 }
               ],
               "returnType": "[tf.SymbolicTensor](#class:SymbolicTensor)",
-              "documentation": "`Input()` is used to instantiate a SymbolicTensor, and represents\nthe input to a model.\n\nExample:\n\n```js\n// Simple logistic regression:\nx = tf.input({shape: [32]});\ny = tf.layers.dense({units: 16, activation: 'softmax'}).apply(x);\nmodel = tf.model({inputs: x, outputs: y});\n```",
+              "documentation": "`Input()` is used to instantiate a [tf.SymbolicTensor](#class:SymbolicTensor), and represents\nthe input to a model.  Users should call the `input()` factory function for\nconsistency with other generator functions.\n\nExample:\n\n```js\n// Defines a simple logistic regression model with 32 dimensional input\n// and 3 dimensional output.\nx = tf.input({shape: [32]});\ny = tf.layers.dense({units: 3, activation: 'softmax'}).apply(x);\nmodel = tf.model({inputs: x, outputs: y});\nmodel.predict(tf.ones([2, 32])).print();\n```",
               "fileName": "#150",
               "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L150-L158",
               "isFunction": true,
@@ -1995,7 +1995,7 @@
                 }
               ],
               "returnType": "[tf.layers.Layer](#class:layers.Layer)",
-              "documentation": "Layer to be used as an entry point into a graph.",
+              "documentation": "An input layer is an entry point into a [tf.Model](#class:Model).\n\n`InputLayer` is generated automatically for [tf.Sequential](#class:Sequential) models by specifying\nthe `inputshape` or `batchInputShape` for the first layer.  It should not be\nspecified explicitly.\n\n```js\n// Define a model which simply adds two inputs.\nconst inputA = tf.input({shape: [3]});\nconst inputB = tf.input({shape: [3]});\nconst sum = tf.layers.add().apply([inputA, inputB]);\nconst model = tf.model({inputs: [inputA, inputB], outputs: sum});\nconst batchSize = 2;\nmodel.predict([tf.ones([batchSize, 3]), tf.ones([batchSize, 3])]).print();\n```",
               "fileName": "#160",
               "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L160-L168",
               "isFunction": true,
@@ -2044,30 +2044,54 @@
                 "subheading": "Classes"
               },
               "symbolName": "Model",
-              "documentation": "The [tf.Model](#class:Model) class adds training & evaluation routines to a `Container`.\n\nA [tf.Model](#class:Model) is the basic unit of training, inference and evaluation in\nTensorFlow.js. To create a `Model, use [tf.model()](#model).\n\nSee also:\n   [tf.Sequential](#class:Sequential), [tf.loadModel()](#loadModel).",
-              "fileName": "#620",
-              "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/engine/training.ts#L620-L1602",
+              "documentation": "A [tf.Model](#class:Model) is a directed, acyclic graph of `Layer`s plus methods for\ntraining, evaluation, prediction and saving.\n\nThe [tf.Model](#class:Model) is the basic unit of training, inference and evaluation in\nTensorFlow.js. To create a `Model, use [tf.model()](#model).\n\nSee also:\n   [tf.Sequential](#class:Sequential), [tf.loadModel()](#loadModel).",
+              "fileName": "#621",
+              "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/engine/training.ts#L621-L1621",
               "methods": [
                 {
                   "docInfo": {
                     "heading": "Models",
-                    "subheading": "Classes"
+                    "subheading": "Classes",
+                    "configParamIndices": [
+                      0
+                    ]
                   },
                   "symbolName": "compile",
                   "paramStr": "(config)",
                   "parameters": [
                     {
                       "name": "config",
-                      "documentation": "",
-                      "type": "ModelCompileConfig",
+                      "documentation": "a `ModelCompileConfig` specifying the loss, optimizer, and\nmetrics to be used for fitting and evaluating this model.",
+                      "type": "Object",
                       "optional": false,
                       "isConfigParam": false
+                    },
+                    {
+                      "name": "optimizer",
+                      "documentation": "An instance of `tf.train.Optimizer` or a string name for an Optimizer.",
+                      "type": "string|[tf.train.Optimizer](#class:train.Optimizer)",
+                      "optional": false,
+                      "isConfigParam": true
+                    },
+                    {
+                      "name": "loss",
+                      "documentation": "String (name of objective function) or objective function.\nIf the model has multiple outputs, you can use a different loss\non each output by passing a dictionary or an Array of losses.\nThe loss value that will be minimized by the model will then be the sum\nof all individual losses.",
+                      "type": "string|string[]|{[outputName: string]: string}",
+                      "optional": false,
+                      "isConfigParam": true
+                    },
+                    {
+                      "name": "metrics",
+                      "documentation": "List of metrics to be evaluated by the model during training and testing.\nTypically you will use `metrics=['accuracy']`.\nTo specify different metrics for different outputs of a multi-output\nmodel, you could also pass a dictionary.",
+                      "type": "string[]|{[outputName: string]: string}",
+                      "optional": true,
+                      "isConfigParam": true
                     }
                   ],
                   "returnType": "void",
-                  "documentation": "",
-                  "fileName": "#651",
-                  "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/engine/training.ts#L651-L845",
+                  "documentation": "Configures and prepares the model for training and evaluation.  Compiling\noutfits the model with an optimizer, loss, and/or metrics.  Calling `fit`\nor `evaluate` on an un-compiled model will throw an error.",
+                  "fileName": "#660",
+                  "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/engine/training.ts#L660-L854",
                   "isFunction": true,
                   "urlHash": "tf.Model.compile"
                 },
@@ -2134,8 +2158,8 @@
                   ],
                   "returnType": "[tf.Scalar](#class:Tensor)|[tf.Scalar](#class:Tensor)[]",
                   "documentation": "Returns the loss value & metrics values for the model in test mode.\n\nLoss and metrics are specified during `compile()`, which needs to happen\nbefore calls to `evaluate()`.\n\nComputation is done in batches.\n\n```js\nconst model = tf.sequential({\n   layers: [tf.layers.dense({units: 1, inputShape: [10]})]\n});\nmodel.compile({optimizer: 'sgd', loss: 'meanSquaredError'});\nconst result = model.evaluate(\n     tf.ones([8, 10]), tf.ones([8, 1]), {batchSize: 4});\nresult.print();\n```",
-                  "fileName": "#898",
-                  "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/engine/training.ts#L898-L915",
+                  "fileName": "#907",
+                  "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/engine/training.ts#L907-L924",
                   "isFunction": true,
                   "urlHash": "tf.Model.evaluate"
                 },
@@ -2159,7 +2183,7 @@
                     },
                     {
                       "name": "config",
-                      "documentation": "",
+                      "documentation": "A `ModelPredictConfig` object containing optional fields.",
                       "type": "Object",
                       "optional": true,
                       "isConfigParam": false
@@ -2180,9 +2204,9 @@
                     }
                   ],
                   "returnType": "[tf.Tensor](#class:Tensor)\n      |[tf.Tensor](#class:Tensor)[]",
-                  "documentation": "Generates output predictions for the input samples.\n\nComputation is done in batches.\n\nNote: the \"step\" mode of predict() is currently not supported.\n   This is because the TensorFow.js core backend is imperative only.\n\n```js\nconst model = tf.sequential({\n   layers: [tf.layers.dense({units: 1, inputShape: [10]})]\n});\nmodel.predict(tf.ones([8, 10]), {batchSize: 4}).print();\n```",
-                  "fileName": "#1040",
-                  "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/engine/training.ts#L1040-L1050",
+                  "documentation": "Generates output predictions for the input samples.\n\nComputation is done in batches.\n\nNote: the \"step\" mode of predict() is currently not supported.\n   This is because the TensorFlow.js core backend is imperative only.\n\n```js\nconst model = tf.sequential({\n   layers: [tf.layers.dense({units: 1, inputShape: [10]})]\n});\nmodel.predict(tf.ones([8, 10]), {batchSize: 4}).print();\n```",
+                  "fileName": "#1049",
+                  "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/engine/training.ts#L1049-L1059",
                   "isFunction": true,
                   "urlHash": "tf.Model.predict"
                 },
@@ -2203,9 +2227,9 @@
                     }
                   ],
                   "returnType": "[tf.Tensor](#class:Tensor)|[tf.Tensor](#class:Tensor)[]",
-                  "documentation": "Returns predictions for a single batch of samples.",
-                  "fileName": "#1058",
-                  "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/engine/training.ts#L1058-L1064",
+                  "documentation": "Returns predictions for a single batch of samples.\n\n```js\nconst model = tf.sequential({\n   layers: [tf.layers.dense({units: 1, inputShape: [10]})]\n});\nmodel.predictOnBatch(tf.ones([8, 10])).print();\n```",
+                  "fileName": "#1073",
+                  "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/engine/training.ts#L1073-L1079",
                   "isFunction": true,
                   "urlHash": "tf.Model.predictOnBatch"
                 },
@@ -2327,9 +2351,9 @@
                     }
                   ],
                   "returnType": "Promise",
-                  "documentation": "Trains the model for a fixed number of epochs (iterations on a dataset).\n\n```js\nconst model = tf.sequential({\n   layers: [tf.layers.dense({units: 1, inputShape: [10]})]\n});\nmodel.compile({optimizer: 'sgd', loss: 'meanSquaredError'});\nconst history = await model.fit(tf.ones([8, 10]), tf.ones([8, 1]), {\n   batchSize: 4,\n   epochs: 3\n});",
-                  "fileName": "#1427",
-                  "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/engine/training.ts#L1427-L1601",
+                  "documentation": "Trains the model for a fixed number of epochs (iterations on a dataset).\n\n```js\nconst model = tf.sequential({\n     layers: [tf.layers.dense({units: 1, inputShape: [10]})]\n});\nmodel.compile({optimizer: 'sgd', loss: 'meanSquaredError'});\nfor (i = 1; i < 5 ; ++i) {\n   const h = await model.fit(tf.ones([8, 10]), tf.ones([8, 1]), {\n       batchSize: 4,\n       epochs: 3\n   });\n   console.log(\"Loss after Epoch \" + i + \" : \" + h.history.loss[0]);\n}\n```",
+                  "fileName": "#1446",
+                  "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/engine/training.ts#L1446-L1620",
                   "isFunction": true,
                   "urlHash": "tf.Model.fit"
                 }
