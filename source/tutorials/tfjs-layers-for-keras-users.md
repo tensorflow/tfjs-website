@@ -156,7 +156,7 @@ keyword would make the code more bloated and 2) the “new” constructor is
 regarded as a “bad part” of JavaScript: a potential pitfall, as is argued in
 [*JavaScript: the Good Parts*](http://archive.oreilly.com/pub/a/javascript/excerpts/javascript-good-parts/bad-parts.html).
 To create models and layers in TensorFlow.js, you call factory methods, which
-have [lowerCamelCase](http://wiki.c2.com/?LowerCamelCase) names, for example:
+have lowerCamelCase names, for example:
 
 ```js
 // JavaScript:
@@ -270,4 +270,6 @@ package.
 const model = await tf.loadModel('https://foo.bar/model.json');
 ```
 
-Also note that `tf.loadModel()` is an `async` function.
+Also note that `tf.loadModel()` returns a
+[`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
+of [`tf.Model`](../api/0.0.1/index.html#class:tf.Model).
