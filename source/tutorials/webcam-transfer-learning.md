@@ -3,7 +3,7 @@ title: webcam-transfer-learning
 date: 2018-03-25 13:02:23
 ---
 
-# Transfer learning - Train a classifier from webcam data
+# Transfer learning - Train a neural network to predict from webcam data
 
 Before we begin, we highly recommend playing with the demo.
 [Try it here!](https://storage.googleapis.com/tfjs-examples/webcam-transfer-learning/dist/index.html)
@@ -16,20 +16,19 @@ to build a convolutional image classifier to recognize handwritten digits from
 MNIST dataset.
 
 In this tutorial, we will use transfer learning to predict user-defined classes
-from webcam data. We'll take that classifier and use it to play Pacman in the
+from webcam data (poses, objects, facial expressions, etc).
+We'll take that classifier and use it to play Pacman in the
 browser, assigning each of 4 user-defined classes to "up", "down", "left", and
 "right".
 
 ## About the game
 
-We hightly recommend playing the game before reading this tutorial.
-
 There are three phases of the game.
 
-1. Data collection. In this phase, the user will associate frames from the
+1. **Data collection:** the user will associate frames from the
 webcam with each of the 4 classes, up, down, left, and right.
-2. Training. In this phase, we'll train a model given this data.
-3. Inference / Playing. In this phase, we'll use the model we just trained to
+2. **Training:** train a neural network to predict the class from the input images.
+3. **Inference / Playing:** use the model we trained to
 make predictions from the webcam data for up, down, left, right and feed those
 into the pacman game!
 
@@ -67,6 +66,14 @@ yarn watch
 
 The [tfjs-examples/webcam-transfer-learning](https://github.com/tensorflow/tfjs-examples/tree/master/webcam-transfer-learning)
 directory above is completely standalone so you copy it to start your own project.
+
+*Note: This approach is different than the approach taken in
+[Teachable Machine](https://teachablemachine.withgoogle.com/). Teachable machine
+uses K-nearest neighbors on the predictions from a pretrained SqueezeNet model to do classification, while this approach uses a
+second neural network trained from an internal activation of MobileNet. The KNN
+image classifier works much better with smaller amounts of data, but
+a neural network with transfer learning generalizes much better. Go play with
+both demos and explore how the two different ways to do webcam prediction work!*
 
 ## Data
 
