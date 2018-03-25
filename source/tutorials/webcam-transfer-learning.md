@@ -84,7 +84,7 @@ Let's take a look at the `capture` method on `Webcam`.
       const croppedImage = this.cropImage(webcamImage);
       const batchedImage = croppedImage.expandDims(0);
 
-      return croppedImage.asType('float32').div(oneTwentySeven).sub(one);
+      return batchedImage.asType('float32').div(oneTwentySeven).sub(one);
     });
   }
 ```
@@ -177,7 +177,7 @@ use `model.layers` to print the layers of the model.
 Note: check out the [Importing a Keras model](./import-keras.html) tutorial for
 details on how to port a Keras model to TensorFlow.js.
 
-## Collecting the data
+## Phase 1: Collecting the data
 
 The first phase of the game is the data-collection phase. Here, the user will
 save frames from the webcam and associate them with each of the 4 classes:
@@ -230,7 +230,7 @@ addExample(example, label) {
 Let's break this function down.
 
 ```js
-const y = tf.oneHot(tf.tensor1d([label]), this.numClasses);
+const y = tf.tidy(() => tf.oneHot(tf.tensor1d([label]), this.numClasses));
 ```
 
 This line converts a number corresponding to the label to a one-hot
@@ -287,3 +287,195 @@ Then after a second call to `addExample` with `label = 2`, `ys` will look like:
 `xs` will have a similar shape, but of higher dimensionality because we are
 using a 3D activation (making `xs` be 4D where the outer most dimension is the
 number of examples collected).
+
+Now, coming back to `index.js` where the core logic is defined, we have defined:
+
+```js
+ui.setExampleHandler(label => {
+  tf.tidy(() => {
+    const img = webcam.capture();
+    controllerDataset.addExample(mobilenet.predict(img), label);
+    // ...
+  });
+});
+```
+
+In this block, we're registering a handler with the UI to handle when one of
+the up, down, left, or right buttons are pressed, where `label` corresponds to
+the class index: 0, 1, 2, or 3.
+
+In this block, we simply capture a frame from the webcam, feed it through our
+modified MobileNet which generates an internal activation, and we save that in
+our `ControllerDataset` object.
+
+## Phase 2: Training the model
+
+Once the user has collected all of the examples from webcam data with
+associated classes, we should train our model!
+
+First, let's set up the topology of our model. We'll create a 2-layer dense
+(fully connected) model, with a `relu` activation function after the first
+dense layer.
+
+```js
+model = tf.sequential({
+  layers: [
+    // Flattens the input to a vector so we can use it in a dense layer. While
+    // technically a layer, this only performs a reshape (and has no training
+    // parameters).
+    tf.layers.flatten({inputShape: [7, 7, 256]}),
+    // Layer 1
+    tf.layers.dense({
+      units: ui.getDenseUnits(),
+      activation: 'relu',
+      kernelInitializer: 'varianceScaling',
+      useBias: true
+    }),
+    // Layer 2. The number of units of the last layer should correspond
+    // to the number of classes we want to predict.
+    tf.layers.dense({
+      units: NUM_CLASSES,
+      kernelInitializer: 'varianceScaling',
+      useBias: false,
+      activation: 'softmax'
+    })
+  ]
+});
+```
+
+You'll notice the first layer of the model is actually a flatten layer. We
+need to flatten the input to a vector so we can use them in a dense layer. The
+`inputShape` argument to the flatten layer corresponds to the shape of the activation from our modified MobileNet.
+
+The next layer we'll add is a dense layer. We're going to initialize it
+with units chosen from the UI, use a `relu`
+activation function, use the `varianceScaling` kernel initializer, and we'll add bias.
+
+The last layer we'll add is another dense layer. We'll initialize this with the
+the number of units corresponding to the number of classes we want to predict.
+We'll use a softmax activation function which means we interpret the output of
+the last layer as a probability distribution over the possible classes.
+
+*Check out the [API reference](https://js.tensorflow.org/api/0.6.0/index.html#layers.dense)
+for details on the arguments to the layer constructors or check out the
+[convolutional MNIST tutorial](./mnist.html).*
+
+```js
+const optimizer = tf.train.adam(ui.getLearningRate());
+model.compile({optimizer: optimizer, loss: 'categoricalCrossentropy'});
+  ```
+
+Here is where we construct our optimizer, define our loss function, and compile
+the model to prepare it to be trained.
+
+We're using the `Adam` optimizer here, which emperically worked well for this
+task. Our loss function, `categoricalCrossentropy`, will measure the error
+between the predicted probability distribution over our 4 classes and the true
+label (the one-hot encoding label).
+
+```js
+const batchSize =
+    Math.floor(controllerDataset.xs.shape[0] * ui.getBatchSizeFraction());
+```
+
+Since our dataset is dynamic (the user defines how large of a dataset to collect),
+we adapt our batch size accordingly (the user will likely not collect thousands
+of examples).
+
+Now let's train the model!
+
+```js
+model.fit(controllerDataset.xs, controllerDataset.ys, {
+  batchSize,
+  epochs: ui.getEpochs(),
+  callbacks: {
+    onBatchEnd: async (batch, logs) => {
+      // Log the cost for every batch that is fed.
+      ui.trainStatus('Cost: ' + logs.loss.toFixed(5));
+      await tf.nextFrame();
+    }
+  }
+});
+```
+
+`model.fit` can take the entire dataset as `xs` and `ys`, which we pass from
+our controller dataset.
+
+We set the `epochs` from the UI, allowing the user to define how long to train the model for.
+
+We also register an `onBatchEnd` callback which gets called after the internal
+training loop of `fit` finishes training a batch, allowing us to show the user
+the intermediate cost value as the model is training. We `await tf.nextFrame()`
+to allow the UI to update during training.
+
+*Refer to the [convolutional MNIST tutorial](./mnist.html) for a tutorial
+describing more details of this loss function*
+
+## Phase 3: Playing Pacman
+
+Once our model is trained, and our cost value has gone down, we can make
+predictions from the webcam!
+
+Here is the prediction loop:
+
+```js
+while (isPredicting) {
+  const predictedClass = tf.tidy(() => {
+    const img = webcam.capture();
+    const act = mobilenet.predict(img);
+    const predictions = model.predict(act);
+    return predictions.as1D().argMax();
+  });
+
+  const classId = (await predictedClass.data())[0];
+
+  ui.predictClass(classId);
+  await tf.nextFrame();
+}
+```
+
+Let's break down the lines:
+
+```js
+const img = webcam.capture();
+```
+
+As we've seen before, this captures a frame from the webcam as a `Tensor`.
+
+```js
+const activation = mobilenet.predict(img);
+```
+
+Now, feed the webcam frame through our modified MobileNet model to get
+the internal MobileNet activation.
+
+```js
+const logits = model.predict(act);
+```
+
+Now, feed the activation through our trained model to get a set of predictions.
+This is a probability distribution over the output classes (each of the 4 values
+in this prediction vector represent a probability for that class).
+
+```js
+predictions.as1D().argMax();
+```
+
+Finally, flatten the output, and call `argMax`. This returns the index with the
+highest value (probability). This corresponds to the predicted class.
+
+```js
+const classId = (await predictedClass.data())[0];
+ui.predictClass(classId);
+```
+
+Now that we have a scalar `Tensor` with our prediction, download it and show
+it in the UI!
+
+## Wrapping up
+
+That's it! You've now learned how to train a neural network to predict from a
+set of user-defined classes. And the images never leave the browser!
+
+If you fork this demo to make modifications, you may have to change the model
+parameters to get to to work for your task.
