@@ -15,6 +15,9 @@ In the [convolutional image classifier tutorial](./mnist.html), we learned how
 to build a convolutional image classifier to recognize handwritten digits from
 MNIST dataset.
 
+In the [Importing a Keras model tutorial](./import-keras.html) we learned how
+to port an pretrained Keras model to the browser for inference.
+
 In this tutorial, we will use transfer learning to predict user-defined classes
 from webcam data (poses, objects, facial expressions, etc).
 We'll take that classifier and use it to play Pacman in the
@@ -32,7 +35,7 @@ webcam with each of the 4 classes, up, down, left, and right.
 make predictions from the webcam data for up, down, left, right and feed those
 into the pacman game!
 
-## About the model
+## About the model(s)
 
 To learn to classify different classes from the webcam in a reasonable amount of
 time, we will retrain, or "fine-tune", a pretrained MobileNet model, using an
@@ -46,12 +49,13 @@ this the "modified MobileNet model". This model does not get trained.
 
 The second
 model will take as input the output of the
-internal activation of the modified MobileNet model. This is the model we'll
-train.
+internal activation of the modified MobileNet model and will predict
+probabilities for each of the 4 output classes, up, down, left, and right. This
+is the model we'll actually train.
 
 By using an internal activation of MobileNet, we can reuse the features
-that MobileNet uses to predict the 1000 classes of ImageNet with a relatively
-small amount of retraining.
+that MobileNet has already learned to predict the 1000 classes of ImageNet with
+a relatively small amount of retraining.
 
 ## About this tutorial
 
@@ -73,27 +77,27 @@ uses K-nearest neighbors on the predictions from a pretrained SqueezeNet model t
 second neural network trained from an internal activation of MobileNet. The KNN
 image classifier works much better with smaller amounts of data, but
 a neural network with transfer learning generalizes much better. Go play with
-both demos and explore how the two different ways to do webcam prediction work!*
+both demos and explore how the two different ways to do webcam prediction differ!*
 
 ## Data
 
-Before we can train our model, we need a way to fetch Tensors from the webcam.
+Before we can train our model, we need a way to fetch `Tensor`s from the webcam.
 
 We've provided a class in `webcam.js` called `Webcam` which reads images from
-a \<video\> as a TensorFlow.js `Tensor`.
+a `\<video\>` tag as a TensorFlow.js `Tensor`.
 
 Let's take a look at the `capture` method on `Webcam`.
 
 ```js
-  capture() {
-    return tf.tidy(() => {
-      const webcamImage = tf.fromPixels(this.webcamElement);
-      const croppedImage = this.cropImage(webcamImage);
-      const batchedImage = croppedImage.expandDims(0);
+capture() {
+  return tf.tidy(() => {
+    const webcamImage = tf.fromPixels(this.webcamElement);
+    const croppedImage = this.cropImage(webcamImage);
+    const batchedImage = croppedImage.expandDims(0);
 
-      return batchedImage.asType('float32').div(oneTwentySeven).sub(one);
-    });
-  }
+    return batchedImage.toFloat().div(oneTwentySeven).sub(one);
+  });
+}
 ```
 
 Let's break down these lines.
@@ -102,43 +106,41 @@ Let's break down these lines.
 const webcamImage = tf.fromPixels(this.webcamElement);
 ```
 
-This line reads a single frame from the webcam \<video\> element and returns a
-`Tensor`. This Tensor will be of shape `[height, width, 3]`. The inner most
-dimension, `3`, corresponds to the three channels, RGB. `height` and `width`
-are both 224 in our example as that
+This line reads a single frame from the webcam `\<video\>` element and returns a
+`Tensor` of shape `[height, width, 3]`. The inner most
+dimension, `3`, corresponds to the three channels, RGB.
 
-See the [documentation for fromPixels](https://js.tensorflow.org/api/0.6.0/index.html#fromPixels) for supported input HTML element types.
+See the [documentation for fromPixels](https://js.tensorflow.org/api/0.6.0/index.html#tf.fromPixels) for supported input HTML element types.
 
 ```js
 const croppedImage = this.cropImage(webcamImage);
 ```
 
-When a webcam element is setup, the aspect ratio is rectangular, however the
-MobileNet model wants a square input image. This line crops out a square
-centered block from the webcam element. By default, webcam video elements pad
-the top and bottom of the image with white space. While this will probably
-still work, MobileNet was not trained on images with white padding, which may
-throw off the model and reduce overall performance.
+When a square webcam element is setup, the natural aspect ratio of the webcam
+feed is rectangular (the browser will put white space around the rectangular
+image to make it square).
+
+However, the MobileNet model wants a square input image. This line crops out a square
+centered block of size `[224, 224]` from the webcam element. Note that there is
+more code in `Webcam` which increases the size of the video element so we can
+crop a square `[224, 224]` block without getting white padding.
 
 ```js
 const batchedImage = croppedImage.expandDims(0);
 ```
 
-`expandDims` creates a new dimension of size 1. In this case, the image we read
-from the webcam is of shape `[224, 224, 3]`. Calling `expandDims(0)` reshapes
-this tensor to `[1, 224, 224, 3]`, which represents a batch of a single image. We do this because TensorFlow.js models expect a batch of inputs.
+`expandDims` creates a new outer dimension of size 1. In this case, the cropped
+image we read from the webcam is of shape `[224, 224, 3]`. Calling
+`expandDims(0)` reshapes this tensor to `[1, 224, 224, 3]`, which represents
+a batch of a single image. `Model`s in TensorFlow.js expect batched inputs.
 
 ```js
-croppedImage.asType('float32').div(oneTwentySeven).sub(one);
+batchedImage.toFloat().div(tf.scalar(127)).sub(tf.scalar(1));
 ```
 
-In one line, we cast the image to `float32` and normalize it between -1 and 1.
+In this line, we cast the image to floating point and normalize it between -1 and 1.
 We know the values from the image are between 0-255 by default, so to normalize
 between -1 and 1 we divide by 127 and subtract 1.
-
-Note: `oneTwentySeven` and `one` are constructed outside the `Webcam` so we
-don't have to continually create and destroy those Tensors inside of
-`capture()`.
 
 ```js
 return tf.tidy(() => {
@@ -162,7 +164,7 @@ Here is the code to do that:
 ```js
 async function loadMobilenet() {
   const mobilenet = await tf.loadModel(
-  'https://storage.googleapis.com/tfjs-models/tfjs/mobilenet_v1_0.25_224/model.json');
+      'https://storage.googleapis.com/tfjs-models/tfjs/mobilenet_v1_0.25_224/model.json');
 
   // Return a model that outputs an internal activation.
   const layer = mobilenet.getLayer('conv_pw_13_relu');
@@ -175,32 +177,32 @@ layer of the pretrained MobileNet model, and constructing a new model where the
 inputs are the same inputs of MobileNet, but output the layer that is the
 intermediate layer of MobileNet, named `conv_pw_13_relu`.
 
-Note: We chose this layer emperically - it worked well for our task. Generally
+*Note: We chose this layer emperically - it worked well for our task. Generally
 speaking, a layer towards the end of a pretrained model will perform better in
 transfer learning tasks as it contains higher-level semantic features of the
 input. Try choosing another layer and see how it affects model quality! You can
-use `model.layers` to print the layers of the model.
+use `model.layers` to print the layers of the model.*
 
-Note: check out the [Importing a Keras model](./import-keras.html) tutorial for
-details on how to port a Keras model to TensorFlow.js.
+*Note: check out the [Importing a Keras model](./import-keras.html) tutorial for
+details on how to port a Keras model to TensorFlow.js.*
 
 ## Phase 1: Collecting the data
 
-The first phase of the game is the data-collection phase. Here, the user will
+The first phase of the game is the data-collection phase. The user will
 save frames from the webcam and associate them with each of the 4 classes:
 up, down, left, and right.
 
 When we're collecting frames from the webcam, we're going to immediately feed
 them through the modified MobileNet model and save the activation `Tensor`s.
-We don't need to save the original images that are captured from the webcam - the model that we will train uses these activations as inputs. Later, when
+We don't need to save the original images that are captured from the webcam because the model that we will train onl needs these activations as inputs. Later, when
 we make a prediction from the webcam to actually play the game, we'll first
 feed the frames through the modified MobileNet model and then feed them through
 our second model.
 
 We've provided a `ControllerDataset` class which saves these activations so
 they can be used during our training phase. `ControllerDataset` has a single
-method, `addExample`. This will be called with the activation from our modified
-MobileNet.
+method, `addExample`. This will be called with the activation `Tensor` from our
+modified MobileNet and the associated `label` as a `number`.
 
 When new examples are added, we will keep two `Tensor`s that represent the
 entire dataset, `xs`, and `ys`. These will be used as inputs to the the model
@@ -274,9 +276,9 @@ any `tf.tidy()` that may wrap the call to `addExample`. See [Core Concepts](./co
 }
 ```
 
-When we have already added an example to our dataset, we'll concat the new
+When we have already added an example to our dataset, we'll `concat` the new
 example to the set of existing examples by calling `concat`, with the `axis`
-param set to `0`. This will stack all our input activations into `xs` and our
+param set to `0`. This continously stacks our input activations into `xs` and our
 labels into `ys`. We'll then dispose() any of the old values of `xs` and `ys`.
 
 For example if our first label (1) looked like:
@@ -311,7 +313,7 @@ In this block, we're registering a handler with the UI to handle when one of
 the up, down, left, or right buttons are pressed, where `label` corresponds to
 the class index: 0, 1, 2, or 3.
 
-In this block, we simply capture a frame from the webcam, feed it through our
+In this handler, we simply capture a frame from the webcam, feed it through our
 modified MobileNet which generates an internal activation, and we save that in
 our `ControllerDataset` object.
 
@@ -355,15 +357,15 @@ need to flatten the input to a vector so we can use them in a dense layer. The
 `inputShape` argument to the flatten layer corresponds to the shape of the activation from our modified MobileNet.
 
 The next layer we'll add is a dense layer. We're going to initialize it
-with units chosen from the UI, use a `relu`
+with units chosen by the user from the UI, use a `relu`
 activation function, use the `varianceScaling` kernel initializer, and we'll add bias.
 
 The last layer we'll add is another dense layer. We'll initialize this with the
 the number of units corresponding to the number of classes we want to predict.
-We'll use a softmax activation function which means we interpret the output of
+We'll use a `softmax` activation function which means we interpret the output of
 the last layer as a probability distribution over the possible classes.
 
-*Check out the [API reference](https://js.tensorflow.org/api/0.6.0/index.html#layers.dense)
+*Check out the [API reference](https://js.tensorflow.org/api/0.6.0/index.html#tf.layers.dense)
 for details on the arguments to the layer constructors or check out the
 [convolutional MNIST tutorial](./mnist.html).*
 
@@ -386,8 +388,8 @@ const batchSize =
 ```
 
 Since our dataset is dynamic (the user defines how large of a dataset to collect),
-we adapt our batch size accordingly (the user will likely not collect thousands
-of examples).
+we adapt our batch size accordingly. The user will likely not collect thousands
+of examples, so our batch size likely won't be too large.
 
 Now let's train the model!
 
@@ -416,7 +418,7 @@ the intermediate cost value as the model is training. We `await tf.nextFrame()`
 to allow the UI to update during training.
 
 *Refer to the [convolutional MNIST tutorial](./mnist.html) for a tutorial
-describing more details of this loss function*
+describing more details of this loss function.*
 
 ## Phase 3: Playing Pacman
 
