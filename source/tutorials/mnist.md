@@ -335,13 +335,8 @@ corresponding labels.
 // The entire dataset doesn't fit into memory so we call fit repeatedly
 // with batches.
   const history = await model.fit(
-      batch.xs.reshape([BATCH_SIZE, 28, 28, 1]),
-      batch.labels,
-      {
-        batchSize: BATCH_SIZE,
-        validationData,
-        epochs: 1
-      });
+      batch.xs.reshape([BATCH_SIZE, 28, 28, 1]), batch.labels,
+      {batchSize: BATCH_SIZE, validationData: validationData, epochs: 1});
 ```
 
 `model.fit` is where the model is trained and parameters actually get updated.
@@ -353,8 +348,7 @@ calling model.fit() inside a for loop, passing a single batch of data at a time.
 
 Breaking down the arguments again:
 ```js
-  batch.xs.reshape([BATCH_SIZE, 28, 28, 1])
-  batch.labels
+  batch.xs.reshape([BATCH_SIZE, 28, 28, 1]), batch.labels
 ```
 
 The first two arguments to `model.fit` are the `xs` and `ys` of our entire dataset.
