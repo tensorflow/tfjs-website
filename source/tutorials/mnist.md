@@ -98,7 +98,7 @@ inputShape: [28, 28, 1]
 
 * `kernelInitializer`. The method to use for randomly initializing the model weights, which is very important to training dynamics. We won’t go into the details of initialization here, but `VarianceScaling` (used here) is generally a good initializer choice.
 
-## Adding the Second Layer
+### Adding the Second Layer
 
 Let’s add a second layer to the model: a max pooling layer, which we'll create using [`tf.layers.maxPooling2d`](../api/0.0.1/index.html#tf.layers.maxPooling2d). This layer will downsample the result (also known as the activation) from the convolution by computing the maximum value for each sliding window:
 
@@ -202,7 +202,7 @@ model.compile({
 });
 ```
 
-## Configuring Batch Size
+### Configuring Batch Size
 
 Before we begin training, we need to define a few more parameters related to batch size:
 
