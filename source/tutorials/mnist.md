@@ -7,7 +7,12 @@ date: 2018-03-17 13:28:23
 
 In this tutorial, we'll build a TensorFlow.js model to classify handwritten digits with a convolutional neural network. First, we'll train the classifier by having it “look” at thousands of handwritten digit images and their labels. Then we'll evaluate the classifier's accuracy using test data that the model has never seen.
 
-TODO: add prereqs section
+## Prerequisites
+
+This tutorial assumes familiarity with the fundamental building blocks of TensorFlow.js (tensors, variables, and ops), as well as the concepts of optimization and loss. For more background on these topics, we recommend completing the following tutorials before this tutorial:
+
+* [Core Concepts in TensorFlow.js](core-concepts.html)
+* [Training First Steps: Fitting a Curve to Synthetic Data](mnist.html)
 
 ## Running the Code
 
