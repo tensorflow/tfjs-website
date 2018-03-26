@@ -119,8 +119,7 @@ const optimizer = tf.train.sgd(learningRate);
 Now that we've defined our loss function and optimizer, we can build a training loop, which iteratively performs SGD to refine our model's coefficients to minimize loss (MSE). Here's what our loop looks like:
 
 ```js
-function train(xs, ys, numIterations) {
-  const numIterations = 75;
+function train(xs, ys, numIterations = 75) {
 
   const learningRate = 0.5;
   const optimizer = tf.train.sgd(learningRate);
@@ -133,8 +132,6 @@ function train(xs, ys, numIterations) {
   }
 }
 ```
-
-<br/>
 
 Let's take a closer look at the code, step by step. First, we define our training function to take the *x* and *y* values of our dataset, as well as a specified number of iterations, as input:
 
