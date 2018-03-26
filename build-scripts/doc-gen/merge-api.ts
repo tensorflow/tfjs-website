@@ -127,27 +127,32 @@ util.sortMethods(mergedDocs, pins);
 const symbols: util.SymbolAndUrl[] = [
   {
     symbolName: 'TypedArray',
+    referenceName: 'TypedArray',
     url: 'https://developer.mozilla.org/en-US/docs/Web/' +
         'JavaScript/Reference/Global_Objects/TypedArray',
     type: 'class'
   },
   {
     symbolName: 'ImageData',
+    referenceName: 'ImageData',
     url: 'https://developer.mozilla.org/en-US/docs/Web/API/ImageData',
     type: 'class'
   },
   {
     symbolName: 'HTMLImageElement',
+    referenceName: 'HTMLImageElement',
     url: 'https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement',
     type: 'class'
   },
   {
     symbolName: 'HTMLCanvasElement',
+    referenceName: 'HTMLCanvasElement',
     url: 'https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement',
     type: 'class'
   },
   {
     symbolName: 'HTMLVideoElement',
+    referenceName: 'HTMLVideoElement',
     url: 'https://developer.mozilla.org/en-US/docs/Web/API/HTMLVideoElement',
     type: 'class'
   }

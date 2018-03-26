@@ -91,12 +91,12 @@ body {
   }
 
   footer {
-    background-color: white;
+    background-color: $brand-color-main;
+    color: white;
 
     a {
-      padding: 10px 0px 22px 0px;
       margin: 0px 20px 0px 20px;
-      color: black;
+      color: white !important;
     }
   }
 
