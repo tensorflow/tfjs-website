@@ -811,7 +811,7 @@
                 "namespace": "layers",
                 "documentation": "A layer is a grouping of operations and weights that can be composed to\ncreate a `Model`.\n\nLayers are constructed by using the functions under the\n[tf.layers](#Layers-Basic) namespace.",
                 "fileName": "#333",
-                "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/engine/topology.ts#L333-L1219",
+                "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/engine/topology.ts#L333-L1226",
                 "methods": [
                   {
                     "docInfo": {
@@ -837,9 +837,9 @@
                       }
                     ],
                     "returnType": "Tensor|Tensor[]|SymbolicTensor|SymbolicTensor[]",
-                    "documentation": "Builds or executes a `Layer's logic.\n\nWhen called with `Tensor`(s), execute the `Layer`s computation and\nreturn Tensor(s). For example:\n\n```js\nconst denseLayer = tf.layers.dense({\n   units: 1,\n   kernelInitializer: 'zeros',\n   useBias: false\n});\n\n// Invoke the layer's apply() method with a `Tensor` (with concrete\n// numeric values).\nconst input = tf.ones([2, 2]);\nconst output = denseLayer.apply(input);\n\n// The output's value is expected to be [[0], [0]], due to the fact that\n// the dense layer has a kernel initialized to all-zeros and does not have\n// a bias.\noutput.print();\n```\n\nWhen called with `SymbolicTensor`(s), this will prepare the layer for\nfuture execution.  This entails internal book-keeping on shapes of\nexpected Tensors, wiring layers together, and initializing weights.\n\nCalling `apply` with `SymbolicTensor`s are typically used during the\nbuilding of non-`Sequential` models. For example:\n\n```js\nconst flattenLayer = tf.layers.flatten();\nconst denseLayer = tf.layers.dense({units: 1});\n\n// Use tf.layers.input() to obtain a SymbolicTensor as input to apply().\nconst input = tf.input({shape: [2, 2]});\nconst output1 = flattenLayer.apply(input);\n\n// output1.shape is [null, 4]. The first dimension is the undetermined\n// batch size. The second dimension comes from flattening the [2, 2]\n// shape.\nconsole.log(output1.shape);\n\n// The output SymbolicTensor of the flatten layer can be used to call\n// the apply() of the dense layer:\nconst output2 = denseLayer.apply(output1);\n\n// output2.shape is [null, 1]. The first dimension is the undetermined\n// batch size. The second dimension matches the number of units of the\n// dense layer.\nconsole.log(output2.shape);\n\n// The input and output and be used to construct a model that consists\n// of the flatten and dense layers.\nconst model = tf.model({inputs: input, outputs: output2});\n```",
-                    "fileName": "#826",
-                    "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/engine/topology.ts#L826-L940",
+                    "documentation": "Builds or executes a `Layer's logic.\n\nWhen called with `Tensor`(s), execute the `Layer`s computation and\n<<<<<<< HEAD\nreturn Tensor(s).\n=======\nreturn Tensor(s). For example:\n\n```js\nconst denseLayer = tf.layers.dense({\n   units: 1,\n   kernelInitializer: 'zeros',\n   useBias: false\n});\n\n// Invoke the layer's apply() method with a `Tensor` (with concrete\n// numeric values).\nconst input = tf.ones([2, 2]);\nconst output = denseLayer.apply(input);\n\n// The output's value is expected to be [[0], [0]], due to the fact that\n// the dense layer has a kernel initialized to all-zeros and does not have\n// a bias.\noutput.print();\n```\n>>>>>>> a606166109f44b20fb66b9c89844411dcd271b73\n\nWhen called with `SymbolicTensor`(s), this will prepare the layer for\nfuture execution.  This entails internal book-keeping on shapes of\nexpected Tensors, wiring layers together, and initializing weights.\n\n<<<<<<< HEAD\n=======\nCalling `apply` with `SymbolicTensor`s are typically used during the\nbuilding of non-`Sequential` models. For example:\n\n```js\nconst flattenLayer = tf.layers.flatten();\nconst denseLayer = tf.layers.dense({units: 1});\n\n// Use tf.layers.input() to obtain a SymbolicTensor as input to apply().\nconst input = tf.input({shape: [2, 2]});\nconst output1 = flattenLayer.apply(input);\n\n// output1.shape is [null, 4]. The first dimension is the undetermined\n// batch size. The second dimension comes from flattening the [2, 2]\n// shape.\nconsole.log(output1.shape);\n\n// The output SymbolicTensor of the flatten layer can be used to call\n// the apply() of the dense layer:\nconst output2 = denseLayer.apply(output1);\n\n// output2.shape is [null, 1]. The first dimension is the undetermined\n// batch size. The second dimension matches the number of units of the\n// dense layer.\nconsole.log(output2.shape);\n\n// The input and output and be used to construct a model that consists\n// of the flatten and dense layers.\nconst model = tf.model({inputs: input, outputs: output2});\n```\n\n>>>>>>> a606166109f44b20fb66b9c89844411dcd271b73",
+                    "fileName": "#833",
+                    "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/engine/topology.ts#L833-L947",
                     "isFunction": true
                   }
                 ],
@@ -4052,7 +4052,7 @@
                   }
                 ],
                 "returnType": "SymbolicTensor",
-                "documentation": "`Input()` is used to instantiate a `SymbolicTensor`, and represents\nthe input to a model.  Users should call the `input()` factory function for\nconsistency with other generator functions.\n\nExample:\n\n```js\n// Defines a simple logistic regression model with 32 dimensional input\n// and 3 dimensional output.\nx = tf.input({shape: [32]});\ny = tf.layers.dense({units: 3, activation: 'softmax'}).apply(x);\nmodel = tf.model({inputs: x, outputs: y});\nmodel.predict(tf.ones([2, 32])).print();\n```",
+                "documentation": "`Input()` is used to instantiate a SymbolicTensor, and represents\nthe input to a model.\n\nExample:\n\n```js\n// Simple logistic regression:\nx = tf.input({shape: [32]});\ny = tf.layers.dense({units: 16, activation: 'softmax'}).apply(x);\nmodel = tf.model({inputs: x, outputs: y});\n```",
                 "fileName": "#150",
                 "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L150-L158",
                 "isFunction": true
@@ -4120,7 +4120,7 @@
                   }
                 ],
                 "returnType": "Layer",
-                "documentation": "An input layer is an entry point into a `Model`.\n\n`InputLayer` is generated automatically for `Sequential` models by specifying\nthe `inputshape` or `batchInputShape` for the first layer.  It should not be\nspecified explicitly.\n\n```js\n// Define a model which simply adds two inputs.\nconst inputA = tf.input({shape: [3]});\nconst inputB = tf.input({shape: [3]});\nconst sum = tf.layers.add().apply([inputA, inputB]);\nconst model = tf.model({inputs: [inputA, inputB], outputs: sum});\nconst batchSize = 2;\nmodel.predict([tf.ones([batchSize, 3]), tf.ones([batchSize, 3])]).print();\n```",
+                "documentation": "Layer to be used as an entry point into a graph.",
                 "fileName": "#160",
                 "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L160-L168",
                 "isFunction": true
