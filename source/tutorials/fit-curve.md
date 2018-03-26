@@ -86,7 +86,7 @@ Our final step is to train the model to learn good values for the coefficients. 
 
 ### Define the Loss Function
 
-For this tutorial, we'll use [mean squared error (MSE)](https://devsite.googleplex.com/machine-learning/glossary/#MSE) as our loss function. MSE is calculated by squaring the difference between the actual *y* value and the predicted *y* value for each *x* value in our data set, and then taking the mean of all the resulting terms.
+For this tutorial, we'll use [mean squared error (MSE)](https://developers.google.com/machine-learning/crash-course/glossary/#MSE) as our loss function. MSE is calculated by squaring the difference between the actual *y* value and the predicted *y* value for each *x* value in our data set, and then taking the mean of all the resulting terms.
 
 We can define a MSE loss function in TensorFlow.js as follows:
 
