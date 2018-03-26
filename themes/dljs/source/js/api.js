@@ -66,11 +66,13 @@ document.addEventListener('DOMContentLoaded', function(e) {
     var top = window.scrollY;
     var found;
     var tocFound;
+    var symbol;
+    var sTop;
 
     for (var i = 0; i < refSymbols.length; i++) {
-      var symbol = refSymbols[i];
-      var sTop = symbol.offsetTop;
-      if (sTop > top) {
+      symbol = refSymbols[i];
+      sTop = symbol.offsetTop;
+      if (sTop >= top) {
         found = symbol;
         break;
       }

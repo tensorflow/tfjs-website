@@ -36,6 +36,16 @@ footer {
   z-index: 100;
 }
 
+// Fix overlap of header with current target url fragment.
+:target::before {
+  display: block;
+  content: "";
+  margin-top: -128px;
+  height: 128px;
+  visibility: hidden;
+  pointer-events: none;
+}
+
 
 .api-docs {
   display: flex;
@@ -83,7 +93,7 @@ footer {
     padding-left: 16px;
 
     .symbol {
-      margin: 4px 0 4px 0px;
+      margin: 6px 0 6px 0px;
     }
 
     .header {
@@ -188,6 +198,11 @@ footer {
         font-weight: normal;
         font-size: 12px;
         padding: 8px;
+      }
+
+      .symbol-link:focus {
+        outline-color: transparent;
+        outline-style: none;
       }
 
       .symbol-marker {
