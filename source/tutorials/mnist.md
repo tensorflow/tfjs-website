@@ -28,9 +28,9 @@ $ yarn watch
 ```
 
 The [tfjs-examples/mnist](https://github.com/tensorflow/tfjs-examples/tree/master/mnist)
-directory above is completely standalone so you copy it to start your own project.
+directory above is completely standalone, so you can copy it to start your own project.
 
-**NOTE:** The difference between this tutorial's code and the [tfjs-examples/mnist-core](https://github.com/tensorflow/tfjs-examples/tree/master/mnist-core) example is that here we use the TensorFlow.js higher-level APIs (`Model`, `Layer`s) to construct the model, whereas mnist-core uses low-lower linear algebra ops to build a neural network.
+**NOTE:** The difference between this tutorial's code and the [tfjs-examples/mnist-core](https://github.com/tensorflow/tfjs-examples/tree/master/mnist-core) example is that here we use TensorFlow.js's higher-level APIs (`Model`, `Layer`s) to construct the model, whereas [mnist-core](https://github.com/tensorflow/tfjs-examples/tree/master/mnist-core) uses low-lower linear algebra ops to build a neural network.
 
 ## Data
 
@@ -39,16 +39,16 @@ The handwritten MNIST digits we will learn to classify look like this:
 
 <img src="../images/mnist_4.png" alt="mnist 4" width=100/> <img src="../images/mnist_3.png" alt="mnist 3" width=100/> <img src="../images/mnist_8.png" alt="mnist 8" width=100/>
 
-To preprocess our data, we've written [data.js](https://github.com/tensorflow/tfjs-examples/blob/master/mnist-core/data.js), which contains a class `MnistData` that fetches random batches of MNIST images from a hosted version of the MNIST dataset we provide for convenience. 
+To preprocess our data, we've written [data.js](https://github.com/tensorflow/tfjs-examples/blob/master/mnist-core/data.js), which contains the class `MnistData` that fetches random batches of MNIST images from a hosted version of the MNIST dataset we provide for convenience. 
 
-`MnistData` splits the entire dataset into training data and test data. When we train the model, the classifier will see only the training set. When we evaluate the model, we'll use only the data in the test set, which the model has not yet seen, which will show us how well the model's predictions generalize to brand-new data.
+`MnistData` splits the entire dataset into training data and test data. When we train the model, the classifier will see only the training set. When we evaluate the model, we'll use only the data in the test set, which the model has not yet seen, to see how well the model's predictions generalize to brand-new data.
 
 `MnistData` has two public methods:
 
-1. `nextTrainBatch(batchSize)`: returns a random batch of images and their labels from the training set
-2. `nextTestBatch(batchSize)`: returns a batch of images and their labels from the test set
+* `nextTrainBatch(batchSize)`: returns a random batch of images and their labels from the training set
+* `nextTestBatch(batchSize)`: returns a batch of images and their labels from the test set
 
-NOTE: When training the MNIST classifier, it's important to randomly shuffle the data, so the model's predictions aren't affected by the order in which we feed it images. For example, if we were to feed the model all the “1” digits first, during this phase of training, the model might learn to simply predict “1” (since this minimizes the loss). If we were to then feed the model only "2"s, it might simply switch to predicting only "2" and never predict a "1" (since, again, this would minimize loss for the new set of images). The model would never learn to make an accurate prediction over a representative sample of digits.
+**NOTE:** When training the MNIST classifier, it's important to randomly shuffle the data, so the model's predictions aren't affected by the order in which we feed it images. For example, if we were to feed the model all the *1* digits first, during this phase of training, the model might learn to simply predict *1* (since this minimizes the loss). If we were to then feed the model only *2*s, it might simply switch to predicting only *2* and never predict a *1* (since, again, this would minimize loss for the new set of images). The model would never learn to make an accurate prediction over a representative sample of digits.
 
 ## Building the Model
 
@@ -66,7 +66,7 @@ Now that we've created a model, let's add layers to it.
 
 The first layer we’ll add is a two-dimensional convolutional layer. Convolutions slide a filter window over an image to learn transformations that are spatially invariant (that is, patterns or objects in different parts of the image will be treated the same way). For more information about convolutions, see [this article](http://colah.github.io/posts/2014-07-Understanding-Convolutions/).
 
-We can create our 2-D convolutional layer using `tf.layers.conv2d`, which accepts a configuration object that defines the layer's structure:
+We can create our 2-D convolutional layer using [`tf.layers.conv2d`](https://bigpicture.teams.x20web.corp.google.com/js.tensorflow.org/api/0.0.1/index.html#layers.conv2d), which accepts a configuration object that defines the layer's structure:
 
 ```js
 model.add(tf.layers.conv2d({
@@ -81,7 +81,7 @@ model.add(tf.layers.conv2d({
 
 Let’s break down each argument in the configuration object:
 
-* `inputShape`. The shape of the data that will flow into the first layer of the model. In this case, our MNIST examples are 28x28-pixel black-and-white images. The canonical image format is `[row, column, depth]`, so here we want to configure a shape of `[28, 28, 1]`—28 rows and columns for the number of pixels in each dimension, and a depth of 1 because our images have only 1 color channel:
+* `inputShape`. The shape of the data that will flow into the first layer of the model. In this case, our MNIST examples are 28x28-pixel black-and-white images. The canonical format for image data is `[row, column, depth]`, so here we want to configure a shape of `[28, 28, 1]`—28 rows and columns for the number of pixels in each dimension, and a depth of 1 because our images have only 1 color channel:
 
 ```js
 inputShape: [28, 28, 1]
@@ -92,7 +92,7 @@ inputShape: [28, 28, 1]
 
 * `filters`. The number of filter windows of size `kernelSize` to apply to the input data. Here, we will apply 8 filters to the data.
 
-* `strides`. The "step size" of the sliding window—i.e., how many pixels the filter will shift each time it moves over the image. Here, we specify `strides` of 1, which means that the filter will slide over the image in steps of 1 pixel.
+* `strides`. The "step size" of the sliding window—i.e., how many pixels the filter will shift each time it moves over the image. Here, we specify strides of 1, which means that the filter will slide over the image in steps of 1 pixel.
 
 * `activation`. The [activation function](https://developers.google.com/machine-learning/glossary/#activation_function) to apply to the data after the convolution is complete. In this case, we are applying a [Rectified Linear Unit (ReLU)](https://developers.google.com/machine-learning/glossary/#ReLU) function, which is a very common activation function in ML models.
 
@@ -113,9 +113,9 @@ Let’s break down the arguments:
 
 * `poolSize`. The size of the sliding pooling windows to be applied to the input data. Here, we set a `poolSize` of `[2,2]`, which means that the pooling layer will apply 2x2 windows to the input data.
 
-* `strides`. The "step size" of the sliding pooling window—i.e., how many pixels the window will shift each time it moves over the input data. Here, we specify `strides` of `[2, 2]`, which means that the filter will slide over the image in steps of 2 pixels in both horizontal and vertical directions.
+* `strides`. The "step size" of the sliding pooling window—i.e., how many pixels the window will shift each time it moves over the input data. Here, we specify strides of `[2, 2]`, which means that the filter will slide over the image in steps of 2 pixels in both horizontal and vertical directions.
 
-**NOTE:** Since the pooling window is 2x2 and the stride is 2x2, the pooling windows will be completely non-overlapping. This means the pooling layer will cut the size of the activation from the previous layer in half.
+**NOTE:** Since both `poolSize` and `strides` are 2x2, the pooling windows will be completely non-overlapping. This means the pooling layer will cut the size of the activation from the previous layer in half.
 
 ### Adding the Remaining Layers
 
@@ -158,17 +158,17 @@ Let’s break down the arguments passed to the `dense` layer.
 
 * `kernelInitializer`. We'll use the same `VarianceScaling` initialization strategy for the dense layer that we used for the convolutional layers.
 
-* `activation`. The activation function of the last layer for a classification task is usually [softmax](https://developers.google.com/machine-learning/glossary/#softmax). Softmax normalizes our 10-dimensional output vector into a probability distribution, which means we have a probability for each of the 10 classes.
+* `activation`. The activation function of the last layer for a classification task is usually [softmax](https://developers.google.com/machine-learning/glossary/#softmax). Softmax normalizes our 10-dimensional output vector into a probability distribution, so that we have a probability for each of the 10 classes.
 
 ## Training the Model
 
 To actually drive training of the model, we'll need to construct an optimizer and define a loss function. We'll also define an evaluation metric to measure how well our model performs on the data.
 
-NOTE: For a deeper dive into optimizers and loss functions in TensorFlow.js, see the tutorial [Training First Steps(fit-curve.html).
+NOTE: For a deeper dive into optimizers and loss functions in TensorFlow.js, see the tutorial [Training First Steps](fit-curve.html).
 
 ### Defining the Optimizer
 
-For our convolutional neural network model, we'll use a stochastic gradient descent (SGD) optimizer with a learning rate of 0.15:
+For our convolutional neural network model, we'll use a [stochastic gradient descent (SGD) optimizer](https://developers.google.com/machine-learning/glossary/#SGD) with a learning rate of 0.15:
 
 ```js
 const LEARNING_RATE = 0.15;
