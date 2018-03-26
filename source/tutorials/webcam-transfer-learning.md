@@ -19,39 +19,40 @@ In the [Importing a Keras model tutorial](./import-keras.html) we learned how
 to port an pretrained Keras model to the browser for inference.
 
 In this tutorial, we will use transfer learning to predict user-defined classes
-from webcam data (poses, objects, facial expressions, etc).
-We'll take that classifier and use it to play Pacman in the
-browser, assigning each of 4 user-defined classes to "up", "down", "left", and
-"right".
+from webcam data (poses, objects, facial expressions, etc) and play Pacman by
+assigning each of those poses to "up", "down", "left", and "right".
 
 ## About the game
 
 There are three phases of the game.
 
-1. **Data collection:** the user will associate frames from the
+1. **Data collection:** the player will associate images from the
 webcam with each of the 4 classes, up, down, left, and right.
 2. **Training:** train a neural network to predict the class from the input images.
 3. **Inference / Playing:** use the model we trained to
 make predictions from the webcam data for up, down, left, right and feed those
-into the pacman game!
+into the Pacman game!
 
 ## About the model(s)
 
 To learn to classify different classes from the webcam in a reasonable amount of
-time, we will retrain, or "fine-tune", a pretrained MobileNet model, using an
-internal activation as input to our new model.
+time, we will *retrain*, or *fine-tune*, a pretrained
+[MobileNet](https://github.com/tensorflow/models/blob/master/research/slim/nets/mobilenet_v1.md)
+model, using an internal activation (the output from an internal layer of MobileNet)
+as input to our new model.
 
 To do this, we'll actually have two models on the page.
 
 One model will be the pretrained
-MobileNet model that is modified to output an internal activation. We'll call
-this the "modified MobileNet model". This model does not get trained.
+MobileNet model that is truncated to output an internal activation. We'll call
+this the "truncated MobileNet model". This model does not get trained after
+being loaded into the browser.
 
 The second
 model will take as input the output of the
-internal activation of the modified MobileNet model and will predict
+internal activation of the truncated MobileNet model and will predict
 probabilities for each of the 4 output classes, up, down, left, and right. This
-is the model we'll actually train.
+is the model we'll actually train in the browser.
 
 By using an internal activation of MobileNet, we can reuse the features
 that MobileNet has already learned to predict the 1000 classes of ImageNet with
@@ -72,19 +73,20 @@ The [tfjs-examples/webcam-transfer-learning](https://github.com/tensorflow/tfjs-
 directory above is completely standalone so you copy it to start your own project.
 
 *Note: This approach is different than the approach taken in
-[Teachable Machine](https://teachablemachine.withgoogle.com/). Teachable machine
-uses K-nearest neighbors on the predictions from a pretrained SqueezeNet model to do classification, while this approach uses a
-second neural network trained from an internal activation of MobileNet. The KNN
-image classifier works much better with smaller amounts of data, but
-a neural network with transfer learning generalizes much better. Go play with
-both demos and explore how the two different ways to do webcam prediction differ!*
+[Teachable Machine](https://teachablemachine.withgoogle.com/). Teachable
+machine uses K-nearest neighbors (KNN) on the predictions from a pretrained
+SqueezeNet model to do classification, while this approach uses a second neural
+network trained from an internal activation of MobileNet. The KNN image
+classifier works much better with smaller amounts of data, but a neural network
+with transfer learning generalizes much better. Go play with both demos and
+explore how the two different ways to do webcam prediction differ!*
 
 ## Data
 
 Before we can train our model, we need a way to fetch `Tensor`s from the webcam.
 
 We've provided a class in `webcam.js` called `Webcam` which reads images from
-a `\<video\>` tag as a TensorFlow.js `Tensor`.
+a `<video>` tag as a TensorFlow.js `Tensor`.
 
 Let's take a look at the `capture` method on `Webcam`.
 
@@ -106,11 +108,11 @@ Let's break down these lines.
 const webcamImage = tf.fromPixels(this.webcamElement);
 ```
 
-This line reads a single frame from the webcam `\<video\>` element and returns a
+This line reads a single frame from the webcam `<video>` element and returns a
 `Tensor` of shape `[height, width, 3]`. The inner most
 dimension, `3`, corresponds to the three channels, RGB.
 
-See the [documentation for fromPixels](https://js.tensorflow.org/api/0.6.0/index.html#tf.fromPixels) for supported input HTML element types.
+See the documentation for [tf.fromPixels](https://js.tensorflow.org/api/0.6.0/index.html#tf.fromPixels) for supported input HTML element types.
 
 ```js
 const croppedImage = this.cropImage(webcamImage);
@@ -132,13 +134,14 @@ const batchedImage = croppedImage.expandDims(0);
 `expandDims` creates a new outer dimension of size 1. In this case, the cropped
 image we read from the webcam is of shape `[224, 224, 3]`. Calling
 `expandDims(0)` reshapes this tensor to `[1, 224, 224, 3]`, which represents
-a batch of a single image. `Model`s in TensorFlow.js expect batched inputs.
+a batch of a single image. MobileNet expects batched inputs.
 
 ```js
 batchedImage.toFloat().div(tf.scalar(127)).sub(tf.scalar(1));
 ```
 
-In this line, we cast the image to floating point and normalize it between -1 and 1.
+In this line, we cast the image to floating point and normalize it between -1
+and 1 (this is how the model was trained).
 We know the values from the image are between 0-255 by default, so to normalize
 between -1 and 1 we divide by 127 and subtract 1.
 
@@ -177,7 +180,7 @@ layer of the pretrained MobileNet model, and constructing a new model where the
 inputs are the same inputs of MobileNet, but output the layer that is the
 intermediate layer of MobileNet, named `conv_pw_13_relu`.
 
-*Note: We chose this layer emperically - it worked well for our task. Generally
+*Note: We chose this layer empirically - it worked well for our task. Generally
 speaking, a layer towards the end of a pretrained model will perform better in
 transfer learning tasks as it contains higher-level semantic features of the
 input. Try choosing another layer and see how it affects model quality! You can
@@ -193,23 +196,25 @@ save frames from the webcam and associate them with each of the 4 classes:
 up, down, left, and right.
 
 When we're collecting frames from the webcam, we're going to immediately feed
-them through the modified MobileNet model and save the activation `Tensor`s.
-We don't need to save the original images that are captured from the webcam because the model that we will train onl needs these activations as inputs. Later, when
+them through the truncated MobileNet model and save the activation tensors
+We don't need to save the original images that are captured from the webcam because the model that we will train only needs these activations as inputs. Later, when
 we make a prediction from the webcam to actually play the game, we'll first
-feed the frames through the modified MobileNet model and then feed them through
-our second model.
+feed the frames through the truncated MobileNet model and then feed the output
+of the truncated Mobilenet model through our second model.
 
 We've provided a `ControllerDataset` class which saves these activations so
 they can be used during our training phase. `ControllerDataset` has a single
 method, `addExample`. This will be called with the activation `Tensor` from our
-modified MobileNet and the associated `label` as a `number`.
+truncated MobileNet and the associated `label` as a `number`.
 
 When new examples are added, we will keep two `Tensor`s that represent the
-entire dataset, `xs`, and `ys`. These will be used as inputs to the the model
+entire dataset, `xs` and `ys`. These will be used as inputs to the the model
 we're going to train.
 
-`xs` represents all of the activations for all
-of the collected data, and `ys` represents the labels for all of the collected data as a "one hot" representation. When we train our model, we will feed it the entire dataset of `xs` and `ys`.
+`xs` represents all of the activations from the truncated MobileNet for all
+of the collected data, and `ys` represents the labels for all of the collected
+data as a "one hot" representation. When we train our model, we will feed it
+the entire dataset of `xs` and `ys`.
 
 *For more details on one-hot encodings, checkout the [MLCC glossary](https://developers.google.com/machine-learning/crash-course/glossary#o).*
 
@@ -242,7 +247,7 @@ Let's break this function down.
 const y = tf.tidy(() => tf.oneHot(tf.tensor1d([label]), this.numClasses));
 ```
 
-This line converts a number corresponding to the label to a one-hot
+This line converts an integer corresponding to the label to a one-hot
 representation of that label.
 
 For example, if `label = 1` correspond to the "left" class, the one-hot
@@ -276,7 +281,7 @@ any `tf.tidy()` that may wrap the call to `addExample`. See [Core Concepts](./co
 }
 ```
 
-When we have already added an example to our dataset, we'll `concat` the new
+When we have already added an example to our dataset, we'll concatenate the new
 example to the set of existing examples by calling `concat`, with the `axis`
 param set to `0`. This continously stacks our input activations into `xs` and our
 labels into `ys`. We'll then dispose() any of the old values of `xs` and `ys`.
@@ -314,7 +319,7 @@ the up, down, left, or right buttons are pressed, where `label` corresponds to
 the class index: 0, 1, 2, or 3.
 
 In this handler, we simply capture a frame from the webcam, feed it through our
-modified MobileNet which generates an internal activation, and we save that in
+truncated MobileNet which generates an internal activation, and we save that in
 our `ControllerDataset` object.
 
 ## Phase 2: Training the model
@@ -333,14 +338,13 @@ model = tf.sequential({
     // technically a layer, this only performs a reshape (and has no training
     // parameters).
     tf.layers.flatten({inputShape: [7, 7, 256]}),
-    // Layer 1
     tf.layers.dense({
       units: ui.getDenseUnits(),
       activation: 'relu',
       kernelInitializer: 'varianceScaling',
       useBias: true
     }),
-    // Layer 2. The number of units of the last layer should correspond
+    // The number of units of the last layer should correspond
     // to the number of classes we want to predict.
     tf.layers.dense({
       units: NUM_CLASSES,
@@ -352,9 +356,10 @@ model = tf.sequential({
 });
 ```
 
-You'll notice the first layer of the model is actually a flatten layer. We
+You'll notice the first layer of the model is actually a `flatten` layer. We
 need to flatten the input to a vector so we can use them in a dense layer. The
-`inputShape` argument to the flatten layer corresponds to the shape of the activation from our modified MobileNet.
+`inputShape` argument to the flatten layer corresponds to the shape of the
+activation from our truncated MobileNet.
 
 The next layer we'll add is a dense layer. We're going to initialize it
 with units chosen by the user from the UI, use a `relu`
@@ -455,7 +460,7 @@ As we've seen before, this captures a frame from the webcam as a `Tensor`.
 const activation = mobilenet.predict(img);
 ```
 
-Now, feed the webcam frame through our modified MobileNet model to get
+Now, feed the webcam frame through our truncated MobileNet model to get
 the internal MobileNet activation.
 
 ```js
