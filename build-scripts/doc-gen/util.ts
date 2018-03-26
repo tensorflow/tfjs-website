@@ -98,8 +98,14 @@ export function unpackConfigParams(
         params.push(docFunction.parameters[i]);
 
         if (docFunction.docInfo.configParamIndices.indexOf(i) != -1) {
-          const configParams =
-              configInterfaceParamMap[docFunction.parameters[i].type];
+          const types = docFunction.parameters[i].type.split('|');
+          let configParams: DocFunctionParam[] = null;
+          types.forEach(underlyingType => {
+            underlyingType = underlyingType.trim();
+            if (configInterfaceParamMap[underlyingType] != null) {
+              configParams = configInterfaceParamMap[underlyingType];
+            }
+          })
           if (configParams == null) {
             throw new Error(
                 `Could not find config interface definition for ` +
