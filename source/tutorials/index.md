@@ -21,6 +21,11 @@ In this tutorial we will build a convolutional neural network to recognize
 handwritten digits in images (MNIST). We will use the TensorFlow.js layers API
 to construct, train, and evaluate the model.
 
-<h2><a href="http://google.com">How to import a Keras Model into Tensorflow.js</a></h2>
+<h2><a href="./import-keras.html">How to import a Keras Model into TensorFlow.js</a></h2>
 
+This tutorial explains how to convert and serve an existing Keras model to run in the browser.
 
+<h2><a href="./import-keras.html">TensorFlow.js Layers API for Keras Users</a></h2>
+
+This tutorial explains the similarities and differences between the Layers API
+of TensorFlow.js and [Keras](https://keras.io/).

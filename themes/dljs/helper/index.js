@@ -48,6 +48,14 @@ module.exports = function(hexo) {
       return hexo.locals.cache.data['api/api_manifest'].versions[0];
     },
 
+    docVersions: function() {
+      return hexo.locals.cache.data['api/api_manifest'].versions;
+    },
+
+    eq(a, b) {
+      return a === b;
+    },
+
     concat: function(a, b) {
       return a + b;
     }
