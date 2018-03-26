@@ -16,6 +16,10 @@ Yes! We have two tutorials for for importing Tensorflow models.  One for the [Te
 
 Not yet, but this is also one of our highest priorities. We are working on a format that will make it easy to load and save models that originated in the browser. Keep an eye on [this issue](https://github.com/tensorflow/tfjs/issues/13) to see when it is done.
 
+## How does this relate to TensorFlow
+
+TensorFlow.js has an API similar to the TensorFlow python API, however it does not support all of the functionality of the TensorFlow python API. We are working hard to achieve API parity where it makes sense but also strive to provide an idiomatic JS API.
+
 ## How does Tensorflow.js performance compare to the Python version?
 
 In our experience, for inference, TensorFlow.js with WebGL is 1.5-2x slower than Tensorflow Python with AVX. For training, we have seen small models train faster in the browser and large models train up to 10-15x slower in the browser, compared to TensorFlow Python with AVX.
@@ -25,7 +29,6 @@ Please take a look at [this benchmark](https://github.com/tensorflow/tfjs-layers
 ## What is the difference between this and deeplearn.js?
 
 TensorFlow.js, an ecosystem of JavaScript tools for machine learning, is the successor to deeplearn.js which is now called TensorFlow.js Core. TensorFlow.js also includes a Layers API, which is a higher level library for building machine learning models that uses Core, as well as tools for automatically porting TensorFlow SavedModels and Keras hdf5 models.
-
 
 ## I still have some questions
 
