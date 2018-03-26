@@ -5,6 +5,9 @@
   "hexo": {
     "version": "3.6.0"
   },
+  "engines": {
+    "node": ">=8.9.0"
+  },
   "scripts": {
     "prep": "git submodule init && git submodule update && git submodule foreach git pull origin master && yarn",
     "serve": "hexo clean && hexo server",

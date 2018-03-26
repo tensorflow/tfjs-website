@@ -91,9 +91,15 @@ libs.forEach(lib => {
 
 console.log(`********* Merging docs *********`);
 
+
 const mergeScript = 'build-scripts/doc-gen/merge-api.ts';
 const mergeOutput = `source/_data/api/${unionPackageVersion}/docs.json`;
 const skeletonPath = `source/_data/api/${unionPackageVersion}/skeleton.json`;
+
+// Copy master skeleton.json into version dir
+fs.copyFileSync('source/_data/api/skeleton.json', skeletonPath);
+
+
 // TODO: Use the union package.
 const bundlePath = commander.bundle && pr(commander.bundle) ||
     path.resolve('libs/tfjs-core/dist/deeplearn.js');
