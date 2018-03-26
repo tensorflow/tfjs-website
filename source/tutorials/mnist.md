@@ -52,7 +52,7 @@ To preprocess our data, we've written [data.js](https://github.com/tensorflow/tf
 
 ## Building the Model
 
-In this section, we'll going to build a convolutional image classifier model. To do so, we'll use a `Sequential` model (the simplest type of model), in which tensors are consecutively passed from one layer to the next.
+In this section, we'll build a convolutional image classifier model. To do so, we'll use a `Sequential` model (the simplest type of model), in which tensors are consecutively passed from one layer to the next.
 
 First, let's instantiate our `Sequential` model with `tf.sequential`:
 
@@ -66,7 +66,7 @@ Now that we've created a model, let's add layers to it.
 
 The first layer we’ll add is a two-dimensional convolutional layer. Convolutions slide a filter window over an image to learn transformations that are spatially invariant (that is, patterns or objects in different parts of the image will be treated the same way). For more information about convolutions, see [this article](http://colah.github.io/posts/2014-07-Understanding-Convolutions/).
 
-We can create our 2-D convolutional layer using [`tf.layers.conv2d`](https://bigpicture.teams.x20web.corp.google.com/js.tensorflow.org/api/0.0.1/index.html#layers.conv2d), which accepts a configuration object that defines the layer's structure:
+We can create our 2-D convolutional layer using [`tf.layers.conv2d`](../api/0.0.1/index.html#layers.conv2d), which accepts a configuration object that defines the layer's structure:
 
 ```js
 model.add(tf.layers.conv2d({
@@ -82,10 +82,6 @@ model.add(tf.layers.conv2d({
 Let’s break down each argument in the configuration object:
 
 * `inputShape`. The shape of the data that will flow into the first layer of the model. In this case, our MNIST examples are 28x28-pixel black-and-white images. The canonical format for image data is `[row, column, depth]`, so here we want to configure a shape of `[28, 28, 1]`—28 rows and columns for the number of pixels in each dimension, and a depth of 1 because our images have only 1 color channel:
-
-```js
-inputShape: [28, 28, 1]
-```
 
 * `kernelSize`. The size of the sliding convolutional filter windows to be applied to the input data. Here, we set a `kernelSize` of `5`, which specifies a square, 5x5 convolutional window.
 
