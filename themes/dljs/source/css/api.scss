@@ -7,8 +7,6 @@ $dark-text-col: #212121;
 $brand-color-main: #FB7923;
 
 body {
-  overflow: hidden;
-
   @media (max-width: 720px) {
     overflow: scroll;
     width: 100vw;
@@ -22,10 +20,6 @@ body {
 .main {
   margin: 0 !important;
   padding: 0 !important;
-  height: calc(100vh - (#{$header-height}));
-  overflow: hidden;
-
-
 }
 
 .page {
@@ -33,29 +27,38 @@ body {
   max-width: none !important;
 }
 
+header {
+  position: fixed !important;
+  z-index: 100;
+}
+
+footer {
+  z-index: 100;
+}
+
 
 .api-docs {
   display: flex;
   flex-direction: row;
-  height: inherit;
 
   font-size: 90%;
 
   // Page layout
   .toc {
-    width: 25%;
-    min-width: 250px;
-    max-width: 350px;
+    position: fixed;
+    height: calc(100vh - (#{$header-height * 2}));
+    top: calc(#{$header-height});
+    width: 300px;
     overflow-y: auto;
     overflow-x: hidden;
-    padding-bottom: 80px;
   }
 
   .reference {
     flex-grow: 1;
     overflow-y: auto;
     overflow-x: hidden;
-    margin-left: 40px;
+    margin-left: 340px;
+    margin-top: 64px;
     padding-bottom: 75vh
   }
 

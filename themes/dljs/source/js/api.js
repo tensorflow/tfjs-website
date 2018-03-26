@@ -60,14 +60,13 @@ document.addEventListener('DOMContentLoaded', function(e) {
   // Find the symbol closest to the top of the page in the reference
   // section and highlight it in the TOC section.
   var refSymbols = document.querySelectorAll('.symbol-link');
-
-  var refArea = document.querySelector('.reference');
   var tocArea = document.querySelector('.toc');
   var lastHighlightedTocElement;
   function updateTocView() {
-    var top = refArea && refArea.scrollTop
+    var top = window.scrollY;
     var found;
     var tocFound;
+
     for (var i = 0; i < refSymbols.length; i++) {
       var symbol = refSymbols[i];
       var sTop = symbol.offsetTop;
@@ -76,6 +75,7 @@ document.addEventListener('DOMContentLoaded', function(e) {
         break;
       }
     }
+
     if (found) {
       tocFound =
           tocArea.querySelector(`[href="#${found.getAttribute('name')}"]`)
@@ -92,6 +92,7 @@ document.addEventListener('DOMContentLoaded', function(e) {
       }
     }
   }
-  refArea.addEventListener('scroll', updateTocView);
-  refArea.addEventListener('resize', updateTocView);
+
+  window.addEventListener('scroll', updateTocView);
+  window.addEventListener('resize', updateTocView);
 });
