@@ -24,8 +24,9 @@ import * as util from './util';
 import {DocHeading, DocSubheading, RepoDocsAndMetadata} from './view';
 import {Docs} from './view';
 
-[tf];  // force typescript to not compile away the reference.
-
+const dl = tf;  // -core and -layers currently use different namespaces in docs
+[tf];           // force typescript to not compile away the reference.
+[dl];           // force typescript to not compile away the reference.
 const TOPLEVEL_NAMESPACE = 'tf';
 
 commander.option('--bundlePath <path>', 'path to the union bundle')
@@ -48,10 +49,10 @@ function runSnippet(heading: string, snippet: string): void {
   lines.shift();
   lines.pop();
   snippet = lines.join('\n');
-  //  const snippetAsAsyncFunction = `dl.tidy(function() {\n${snippet}\n});`;
+  const escapedSnippet = snippet.replace(/\n/g, '\\n');
   const snippetAsAsyncFunction =
       `(async function() {\n${snippet}\n})().catch(e => {console.warn('${
-          heading}');console.warn(e);});`;
+          heading}');console.warn("${escapedSnippet}");console.warn(e);});`;
 
   const wrappingLines = [
     'tf.setBackend(\'cpu\');', 'tf.ENV.engine.startScope();',
@@ -76,14 +77,9 @@ docsForRepos.forEach(docsForRepo => {
         const snippets = extractSnippets(symbol.documentation);
         if (snippets != null) {
           snippets.forEach(snippet => {
-            if (snippet.indexOf('ImageData')) {
-              runSnippet(
-                  `${heading.name} - ${subheading.name} - ${symbol.symbolName}`,
-                  snippet);
-            } else {
-              console.log(` SKIPPING ${heading.name} - ${subheading.name} - ${
-                  symbol.symbolName}`);
-            }
+            runSnippet(
+                `${heading.name} - ${subheading.name} - ${symbol.symbolName}`,
+                snippet);
           });
         }
       });
