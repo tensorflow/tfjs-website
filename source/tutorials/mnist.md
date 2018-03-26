@@ -164,7 +164,7 @@ Let’s break down the arguments passed to the `dense` layer.
 
 To actually drive training of the model, we'll need to construct an optimizer and define a loss function. We'll also define an evaluation metric to measure how well our model performs on the data.
 
-NOTE: For a deeper dive into optimizers and loss functions in TensorFlow.js, see the tutorial [Training First Steps](fit-curve.html).
+**NOTE:** For a deeper dive into optimizers and loss functions in TensorFlow.js, see the tutorial [Training First Steps](fit-curve.html).
 
 ### Defining the Optimizer
 
