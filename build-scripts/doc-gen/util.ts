@@ -105,7 +105,7 @@ export function unpackConfigParams(
             if (configInterfaceParamMap[underlyingType] != null) {
               configParams = configInterfaceParamMap[underlyingType];
             }
-          })
+          });
           if (configParams == null) {
             throw new Error(
                 `Could not find config interface definition for ` +
