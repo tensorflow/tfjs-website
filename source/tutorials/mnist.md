@@ -253,13 +253,14 @@ for (let i = 0; i < TRAIN_BATCHES; i++) {
  
   // The entire dataset doesn't fit into memory so we call fit repeatedly
   // with batches.
-  const history = await model.fit({
-    x: batch.xs.reshape([BATCH_SIZE, 28, 28, 1]),
-    y: batch.labels,
-    batchSize: BATCH_SIZE,
-    validationData,
-    epochs: 1
-  });
+  const history = await model.fit(
+      batch.xs.reshape([BATCH_SIZE, 28, 28, 1]),
+      batch.labels,
+      {
+        batchSize: BATCH_SIZE,
+        validationData,
+        epochs: 1
+      });
 
   const loss = history.history.loss[0];
   const accuracy = history.history.acc[0];
@@ -296,13 +297,9 @@ passing a single batch of data at a time, as shown below:
 ```js
 // The entire dataset doesn't fit into memory so we call fit repeatedly
 // with batches.
-const history = await model.fit({
-  x: batch.xs.reshape([BATCH_SIZE, 28, 28, 1]),
-  y: batch.labels,
-  batchSize: BATCH_SIZE,
-  validationData: validationData,
-  epochs: 1
-});
+  const history = await model.fit(
+      batch.xs.reshape([BATCH_SIZE, 28, 28, 1]), batch.labels,
+      {batchSize: BATCH_SIZE, validationData: validationData, epochs: 1});
 ```
 
 Let's break down the arguments again:
