@@ -24,10 +24,10 @@ Please take a look at [this benchmark](https://github.com/tensorflow/tfjs-layers
 
 ## What is the difference between this and deeplearn.js?
 
-TensorFlow.js is a successor to the deeplearn.js project. It take deeplearn.js 0.6.0 and adds new functionality such as the layers API. As part of the transition, it also joined the TensorFlow project at Google.
+TensorFlow.js, an ecosystem of JavaScript tools for machine learning, is the successor to deeplearn.js which is now called TensorFlow.js Core. TensorFlow.js also includes a Layers API, which is a higher level library for building machine learning models that uses Core, as well as tools for automatically porting TensorFlow SavedModels and Keras hdf5 models.
 
 
 ## I still have some questions
 
-Please feel free to look at our [issues tracker](https://github.com/tensorflow/tfjs/issues) and file a bug there. We also have a <a href="https://groups.google.com/a/tensorflow.org/forum/#!forum/tfjs">community mailing list</a> for people to ask questions, get technical help, and share what they are doing with TensorFlow.js! To keep up to date with TensorFlow.js news follow us on twitter or join the <a href="https://groups.google.com/a/tensorflow.org/forum/#!forum/tfjs-announce">announcement only</a> mailing list.
+Please feel free to look at our [issues tracker](https://github.com/tensorflow/tfjs/issues) and file a bug there. We also have a <a href="https://groups.google.com/a/tensorflow.org/forum/#!forum/tfjs">community mailing list</a> for people to ask questions, get technical help, and share what they are doing with TensorFlow.js! To keep up to date with TensorFlow.js news follow us on <a href="https://twitter.com/tensorflow" target="_blank">twitter</a> or join the <a href="https://groups.google.com/a/tensorflow.org/forum/#!forum/tfjs-announce">announcement only</a> mailing list.
 
