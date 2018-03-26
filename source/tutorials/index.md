@@ -5,7 +5,6 @@ bannerText: Tutorials & Guides
 ---
 
 # Tutorials
-
 <h2><a href="./core-concepts.html">Core Concepts in TensorFlow.js</a></h2>
 
 Learn about core concepts in TensorFlow.js such tensors, operations, models, layers and training.
@@ -25,7 +24,13 @@ to construct, train, and evaluate the model.
 
 This tutorial explains how to convert and serve an existing Keras model to run in the browser.
 
+
+<h2><a href="https://github.com/tensorflow/tfjs-converter" target="_blank">How to import a TensorFlow SavedModel into TensorFlow.js</a></h2>
+
+__Developer Preview:__ This tutorial explains how to convert and serve an existing TensorFlow SavedModel to run in the browser.
+
+# Guides
 <h2><a href="./import-keras.html">TensorFlow.js Layers API for Keras Users</a></h2>
 
-This tutorial explains the similarities and differences between the Layers API
+This guide explains the similarities and differences between the Layers API
 of TensorFlow.js and [Keras](https://keras.io/).
