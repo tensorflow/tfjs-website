@@ -3,76 +3,70 @@ title: mnist
 date: 2018-03-17 13:28:23
 ---
 
-# Training on images — Recognizing Handwritten Digits with a Convolutional Neural Network
+# Training on Images: Recognizing Handwritten Digits with a Convolutional Neural Network
 
-In the [core concepts tutorial](./core-concepts.html), we learned how to use tensors and operations to perform basic linear algebra.
+In this tutorial, we'll build a TensorFlow.js model to classify handwritten digits with a convolutional neural network. First, we'll train the classifier by having it “look” at thousands of handwritten digit images and their labels. Then we'll evaluate the classifier's accuracy using test data that the model has never seen.
 
-In the [polynomial tutorial](./fit-curve.html), we learned how to use the TensorFlow.js core API
-to learn the coefficients of a polynomial.
+## Prerequisites
 
-In this tutorial, we will learn the basic building blocks of a TensorFlow.js model to recognize handwritten digits with a convolutional neural network. The dataset we will be using is the [MNIST handwriting dataset](http://yann.lecun.com/exdb/mnist/).
+This tutorial assumes familiarity with the fundamental building blocks of TensorFlow.js (tensors, variables, and ops), as well as the concepts of optimization and loss. For more background on these topics, we recommend completing the following tutorials before this tutorial:
 
-## About this tutorial
+* [Core Concepts in TensorFlow.js](core-concepts.html)
+* [Training First Steps: Fitting a Curve to Synthetic Data](mnist.html)
 
-This tutorial will explain the [tfjs-examples/mnist](https://github.com/tensorflow/tfjs-examples/tree/master/mnist) example in our examples repository.
+## Running the Code
 
-The difference between this and the [tfjs-examples/mnist-core](https://github.com/tensorflow/tfjs-examples/tree/master/mnist-core)
-example is that this uses the higher-level API (`Model`, `Layer`s) while mnist-core uses the low-lower linear algebra ops to build a neural network.
+The full code for this tutorial can be found in the [tfjs-examples/mnist](https://github.com/tensorflow/tfjs-examples/tree/master/mnist) directory in the [TensorFlow.js examples repository](https://github.com/tensorflow/tfjs-examples/tree/master/mnist).
 
 You can run the code for the example by cloning the repo and building the demo:
 
 ```sh
-git clone https://github.com/tensorflow/tfjs-examples
-cd tfjs-examples/mnist
-yarn
-yarn watch
+$ git clone https://github.com/tensorflow/tfjs-examples
+$ cd tfjs-examples/mnist
+$ yarn
+$ yarn watch
 ```
 
 The [tfjs-examples/mnist](https://github.com/tensorflow/tfjs-examples/tree/master/mnist)
-directory above is completely standalone so you copy it to start your own project.
+directory above is completely standalone, so you can copy it to start your own project.
 
-### What we will accomplish in this tutorial
+**NOTE:** The difference between this tutorial's code and the [tfjs-examples/mnist-core](https://github.com/tensorflow/tfjs-examples/tree/master/mnist-core) example is that here we use TensorFlow.js's higher-level APIs (`Model`, `Layer`s) to construct the model, whereas [mnist-core](https://github.com/tensorflow/tfjs-examples/tree/master/mnist-core) uses low-lower linear algebra ops to build a neural network.
 
-- Create a convolutional classifier using supervised learning to recognize the digit (0-9) images of handwritten digits
-- Train the classifier by having it “look” at thousands of handwritten digit images and their labels
-- Evaluate the model's accuracy using test data that the model has never seen
+## Data
 
+We will use the [MNIST handwriting dataset](http://yann.lecun.com/exdb/mnist/) for this tutorial.
 The handwritten MNIST digits we will learn to classify look like this:
 
 <img src="../images/mnist_4.png" alt="mnist 4" width=100/> <img src="../images/mnist_3.png" alt="mnist 3" width=100/> <img src="../images/mnist_8.png" alt="mnist 8" width=100/>
 
-## Data
+To preprocess our data, we've written [data.js](https://github.com/tensorflow/tfjs-examples/blob/master/mnist-core/data.js), which contains the class `MnistData` that fetches random batches of MNIST images from a hosted version of the MNIST dataset we provide for convenience. 
 
-The MNIST example linked above has a file, [data.js](https://github.com/tensorflow/tfjs-examples/blob/master/mnist-core/data.js),
-that contains a class `MnistData` which fetches random batches of images from a dataset on a server we provide for convenience.
-
-`MnistData` splits the entire dataset into training data and test data. When we train the model, the classifier will only see the training set, and when we evaluate it we will only evaluate it with the data from the test set. By hiding the test set from the model during training, we can better see how well it has trained by evaluating it on unseen data.
-
-When training the MNIST classifier, it is important that the data is randomly shuffled so the model isn’t affected by the ordering of the images we feed. For example, we were to feed all of the “1”s digits first, during this phase of training, the model might learn to simply predict “1”
-(since this minimizes the cost). If we then fed it "2"s, it might simply switch
-to predicting only "2" and never predict a "1" (since this minimizes the cost for
-this new set of images). The model wouldn't then be able to make an accurate
-prediction over any digit.
+`MnistData` splits the entire dataset into training data and test data. When we train the model, the classifier will see only the training set. When we evaluate the model, we'll use only the data in the test set, which the model has not yet seen, to see how well the model's predictions generalize to brand-new data.
 
 `MnistData` has two public methods:
 
-1. `nextTrainBatch(batchSize)`: returns a batch of images and their labels from the training set
-2. `nextTestBatch(batchSize)`: returns a batch of images and their labels from the test set
+* `nextTrainBatch(batchSize)`: returns a random batch of images and their labels from the training set
+* `nextTestBatch(batchSize)`: returns a batch of images and their labels from the test set
 
-## Building the model
+**NOTE:** When training the MNIST classifier, it's important to randomly shuffle the data, so the model's predictions aren't affected by the order in which we feed it images. For example, if we were to feed the model all the *1* digits first, during this phase of training, the model might learn to simply predict *1* (since this minimizes the loss). If we were to then feed the model only *2*s, it might simply switch to predicting only *2* and never predict a *1* (since, again, this would minimize loss for the new set of images). The model would never learn to make an accurate prediction over a representative sample of digits.
 
-In this section, we're going to build a convolutional image classifier model.
+## Building the Model
 
-To do this, we will use a `sequential` model which is the simplest type of model where tensors will be consecutively passed from each layer to the next.
+In this section, we'll build a convolutional image classifier model. To do so, we'll use a `Sequential` model (the simplest type of model), in which tensors are consecutively passed from one layer to the next.
+
+First, let's instantiate our `Sequential` model with `tf.sequential`:
 
 ```js
 const model = tf.sequential();
 ```
 
-Now that we have created a model, let's add layers to it. The first layer we’re going to add is a convolutional layer.
+Now that we've created a model, let's add layers to it. 
 
-Convolutions slide a filter window over the image to learn transformations that are spatially invariant (this means that patterns or objects in different parts of the image will be treated the same). For more information about convolutions, check out
-[this article](http://colah.github.io/posts/2014-07-Understanding-Convolutions/).
+### Adding the First Layer
+
+The first layer we’ll add is a two-dimensional convolutional layer. Convolutions slide a filter window over an image to learn transformations that are spatially invariant (that is, patterns or objects in different parts of the image will be treated the same way). For more information about convolutions, see [this article](http://colah.github.io/posts/2014-07-Understanding-Convolutions/).
+
+We can create our 2-D convolutional layer using [`tf.layers.conv2d`](../api/0.0.1/index.html#layers.conv2d), which accepts a configuration object that defines the layer's structure:
 
 ```js
 model.add(tf.layers.conv2d({
@@ -85,62 +79,24 @@ model.add(tf.layers.conv2d({
 }));
 ```
 
-When we construct a layer, we pass a configuration object that defines the structure of the layer. Let’s break down each argument to the configuration object.
+Let’s break down each argument in the configuration object:
 
-```js
-inputShape: [28, 28, 1]
-```
+* `inputShape`. The shape of the data that will flow into the first layer of the model. In this case, our MNIST examples are 28x28-pixel black-and-white images. The canonical format for image data is `[row, column, depth]`, so here we want to configure a shape of `[28, 28, 1]`—28 rows and columns for the number of pixels in each dimension, and a depth of 1 because our images have only 1 color channel:
 
-The first layer of a model must define an input shape. This is the shape of the data that flows into the first layer of our model. In this case, our MNIST images we want to classify are 28x28 grayscale images. The canonical image format is [row, column, depth], so the input shape of the first layer is [28, 28, 1].
-
-To take full advantage of the GPU to parallelize computation, we want to batch
-several inputs together and feed them through the network using a single
-feed-forward call.
-
-Another reason we batch our computation is that during optimization, we update
-internal parameters (taking a step) only after averaging gradients from several
-examples. This helps us avoid taking a step in the wrong direction because of
-an outlier example (e.g. a mislabeled digit).
-
-To do this, we introduce a tensor of rank D+1 where D is the dimensionality of
-a single input.
-
-The dimensionality of a single image in this case is [28, 28, 1],
-where the canonical format for images is [rows, columns, depth]. The image is
-28x28 grayscale image, and thus has a depth of 1.
-
-We will 64 grayscale images at a time, so the shape of this batch of 64 images
-is [64, 28, 28, 1] (the batch is always the outer-most dimension).
-
-*Note: Notice that the inputShape in the config of the conv2d did not specify the batch size (64). Configs are agnostic of batch size, to remain flexible and be able to take arbitrary batch size.*
-
-```js
-kernelSize: 5
-filters: 8
-strides: 1
-```
-These arguments define the parameters to the convolution.
-
-`kernelSize` is the size of the sliding convolutional window, in this case it is a square 5x5 convolutional window.
-
-`filters` determines how many 5x5 filters to be applyed to the input and learned.
-
-`strides` determines the size of the step of the sliding window, in this case we will continually shift the window by 1 pixel.
+* `kernelSize`. The size of the sliding convolutional filter windows to be applied to the input data. Here, we set a `kernelSize` of `5`, which specifies a square, 5x5 convolutional window.
 
 
-```js
-activation: 'relu'
-```
+* `filters`. The number of filter windows of size `kernelSize` to apply to the input data. Here, we will apply 8 filters to the data.
 
-This line determines the activation function to apply after the convolution. In this case, we are using the Rectified Linear Unit, which is a very common activation function in ML models.
+* `strides`. The "step size" of the sliding window—i.e., how many pixels the filter will shift each time it moves over the image. Here, we specify strides of 1, which means that the filter will slide over the image in steps of 1 pixel.
 
-```js
-kernelInitializer: 'VarianceScaling'
-```
+* `activation`. The [activation function](https://developers.google.com/machine-learning/glossary/#activation_function) to apply to the data after the convolution is complete. In this case, we are applying a [Rectified Linear Unit (ReLU)](https://developers.google.com/machine-learning/glossary/#ReLU) function, which is a very common activation function in ML models.
 
-`kernelInitializer` determines how we randomly initialize the weights. The way we initialize weights is very important to training dynamics. We won’t go into the details of initialization here, but `VarianceScaling` is generally a good initializer.
+* `kernelInitializer`. The method to use for randomly initializing the model weights, which is very important to training dynamics. We won’t go into the details of initialization here, but `VarianceScaling` (used here) is generally a good initializer choice.
 
-Great! We’ve constructed our first layer. Let’s add the other layers. The next layer we’re going to add is a max pooling layer. This layer will downsample the result (also known as the activation) from the convolution by computing the maximum value for each sliding window.
+### Adding the Second Layer
+
+Let’s add a second layer to the model: a max pooling layer, which we'll create using [`tf.layers.maxPooling2d`](../api/0.0.1/index.html#tf.layers.maxPooling2d). This layer will downsample the result (also known as the activation) from the convolution by computing the maximum value for each sliding window:
 
 ```js
 model.add(tf.layers.maxPooling2d({
@@ -149,21 +105,17 @@ model.add(tf.layers.maxPooling2d({
 }));
 ```
 
-Let’s break down the arguments.
+Let’s break down the arguments:
 
-```js
-poolSize: [2, 2]
-```
+* `poolSize`. The size of the sliding pooling windows to be applied to the input data. Here, we set a `poolSize` of `[2,2]`, which means that the pooling layer will apply 2x2 windows to the input data.
 
-Pool size, similar to the kernel size in the convolution, determines the size of the sliding pooling window. In this case, for each 2x2 window the pooling layer will output the maximum value in the activation.
+* `strides`. The "step size" of the sliding pooling window—i.e., how many pixels the window will shift each time it moves over the input data. Here, we specify strides of `[2, 2]`, which means that the filter will slide over the image in steps of 2 pixels in both horizontal and vertical directions.
 
-```js
-strides: [2, 2]
-```
+**NOTE:** Since both `poolSize` and `strides` are 2x2, the pooling windows will be completely non-overlapping. This means the pooling layer will cut the size of the activation from the previous layer in half.
 
-Strides determines the size of the step between pooling windows. Here, we’re using a stride of 2x2. Since the window is 2x2 and the stride is 2x2, the pooling windows will be completely non-overlapping. This means the activation from the previous layer will be shrunk by 2x.
+### Adding the Remaining Layers
 
-Now we do it again. Repeating layer structure is a common pattern in neural networks! Notice that the number of filters has doubled in this convolutional layer.
+Repeating layer structure is a common pattern in neural networks. Let's add a second convolutional layer, followed by another pooling layer to our model. Note that in our second convolutional layer, we're doubling the number of filters from 8 to 16. Also note that we don't specify an `inputShape`, as it can be inferred from the shape of the output from the previous layer:
 
 ```js
 model.add(tf.layers.conv2d({
@@ -180,10 +132,15 @@ model.add(tf.layers.maxPooling2d({
 }));
 ```
 
-Finally, we add a flatten layer to flatten the output of the previous layer to a vector and a dense layer (also known as a fully connected layer) to do classification. Flattening the output of a convolution / pooling layer before a dense layer is another common pattern in neural networks.
+Next, let's add a [`flatten`](../api/0.0.1/index.html#tf.layers.flatten) layer to flatten the output of the previous layer to a vector:
 
 ```js
 model.add(tf.layers.flatten());
+```
+
+Lastly, let's add a [`dense`](../api/0.0.1/index.html#tf.layers.dense) layer (also known as a fully connected layer), which will perform the final classification. Flattening the output of a convolution+pooling layer pair before a dense layer is another common pattern in neural networks:
+
+```js
 model.add(tf.layers.dense({
   units: 10,
   kernelInitializer: 'VarianceScaling',
@@ -191,42 +148,47 @@ model.add(tf.layers.dense({
 }));
 ```
 
-Let’s break down the arguments to the dense layer.
+Let’s break down the arguments passed to the `dense` layer.
 
-```js
-units: 10
-```
+* `units`. The size of the output activation. Since this is the final layer, and we’re doing a 10-class classification task (digits 0–9), we use 10 units here. (Sometimes units are referred to as the number of *neurons*, but we’ll avoid that terminology.)
 
-This is the the size of the output activation. Since this is the last layer, and we’re doing a 10-class classification task (0-9 digits of MNIST), we use 10 units here. Sometimes this is known as the number of neurons, but we’ll avoid that terminology.
+* `kernelInitializer`. We'll use the same `VarianceScaling` initialization strategy for the dense layer that we used for the convolutional layers.
 
-```js
-kernelInitializer: 'VarianceScaling'
-```
+* `activation`. The activation function of the last layer for a classification task is usually [softmax](https://developers.google.com/machine-learning/glossary/#softmax). Softmax normalizes our 10-dimensional output vector into a probability distribution, so that we have a probability for each of the 10 classes.
 
-Just like the convolutional kernel, we use the same strategy to initialize dense layers as convolutional layers.
+## Training the Model
 
-```js
-activation: 'softmax'
-```
+To actually drive training of the model, we'll need to construct an optimizer and define a loss function. We'll also define an evaluation metric to measure how well our model performs on the data.
 
-The activation function of the last layer for a classification task is usually a softmax. This activation function normalizes the 10-dimensional vector into a probability distribution, which means we have a probability for each of the 10 output classes.
+**NOTE:** For a deeper dive into optimizers and loss functions in TensorFlow.js, see the tutorial [Training First Steps](fit-curve.html).
 
-## Training the model
+### Defining the Optimizer
 
-To actually drive the training of the model, we need to construct an optimizer, and define a loss function
+For our convolutional neural network model, we'll use a [stochastic gradient descent (SGD) optimizer](https://developers.google.com/machine-learning/glossary/#SGD) with a learning rate of 0.15:
 
 ```js
 const LEARNING_RATE = 0.15;
 const optimizer = tf.train.sgd(LEARNING_RATE);
 ```
 
-The optimizer we’re going to use is "sgd" or "Stochastic Gradient Descent" (the
-details of the optimizer are unimportant for this tutorial). Optimizers take a
-learning rate argument, which determines how big of an update to make during
-training. Too low a learning rate and training will be slow. Too high a
-learning rate and the model might oscillate.
+### Defining Loss
 
-Now we compile the model, which makes the model trainable.
+For our loss function, we'll use cross-entropy (`categoricalCrossentropy`), which is commonly used to optimize classification tasks. `categoricalCrossentropy` measures the error between the probability distribution generated by the last layer of our model and the probability distribution given by our label, which will be a distribution with 1 (100%) in the correct class label. For example, given the following label and prediction values for an example of the digit *7*:
+
+|class     | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |
+|----------|---|---|---|---|---|---|---|---|---|---|
+|label     | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 0 |
+|prediction|.1 |.01|.01|.01|.20|.01|.01|.60|.03|.02|
+
+`categoricalCrossentropy` gives a lower loss value if the prediction is a high probability that the digit is *7*, and a higher loss value if the prediction is a low probability of *7*. During training, the model will update its internal parameters to minimize `categoricalCrossentropy` over the whole dataset.
+
+### Defining the Evaluation Metric
+
+For our evaluation metric, we'll use accuracy, which measures the percentage of correct predictions out of all predictions.
+
+### Compiling the Model
+
+To compile the model, we pass it a configuration object with our optimizer, loss function, and a list of evaluation metrics (here, just `'accuracy'`):
 
 ```js
 model.compile({
@@ -236,46 +198,44 @@ model.compile({
 });
 ```
 
-The loss function we’re using is `categoricalCrossentropy`. This loss function is commonly used for classification task and measures the error between the probability distribution generated by the last layer of our model and the probability distribution given by our label (which will be a distribution with 100% in the correct class label).
+### Configuring Batch Size
 
-We also want to compute accuracy, which is the percentage of examples the model
-predicted the correct label.
+Before we begin training, we need to define a few more parameters related to batch size:
 
-For a 10-class classification problem, the label and predictions will both be
-vectors with 10 elements representing the probability of that class.
-Here is an example of what a label and a prediction
-might look like from a trained model of the digit "7".
-
-|class     | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |
-|----------|---|---|---|---|---|---|---|---|---|---|
-|label     | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 0 |
-|prediction|.1 |.01|.01|.01|.20|.01|.01|.60|.03|.02|
-
-`categoricalCrossentropy` gives a lower loss value if the prediction is closer
-to high probability of 7, and higher loss value if the prediction is lower probability of 7.
-
-During the training phase, the model will update the internal parameters to
-decrease this loss function over the whole dataset.
-
-Before we begin training, we need to define a few more parameters.
 ```js
 // How many examples the model should "see" before making a parameter update.
 const BATCH_SIZE = 64;
 // How many batches to train the model for.
 const TRAIN_BATCHES = 100;
 
-// Every few batches, test accuracy over many examples. Ideally, we'd compute
-// accuracy over the whole test set, but for performance we'll use a subset.
+// Every TEST_ITERATION_FREQUENCY batches, test accuracy over TEST_BATCH_SIZE examples. 
+// Ideally, we'd compute accuracy over the whole test set, but for performance 
+// reasons we'll use a subset.
 const TEST_BATCH_SIZE = 1000;
 const TEST_ITERATION_FREQUENCY = 5;
 ```
 
-`TEST_BATCH_SIZE` is defined to be 1000, so we be test the model accuracy
-against 1000 random examples every few steps.
+#### More About Batching and Batch Size
 
-### Training loop
+To take full advantage of the GPU's ability to parallelize computation, we want to batch multiple inputs together and feed them through the network using a single feed-forward call.
 
-Now we're ready to train the model. Here is the code for the training loop:
+Another reason we batch our computation is that during optimization, we update
+internal parameters (taking a step) only after averaging gradients from several
+examples. This helps us avoid taking a step in the wrong direction because of
+an outlier example (e.g., a mislabeled digit).
+
+When batching input data, we introduce a tensor of rank *D+1*, where *D* is the dimensionality of
+a single input.
+
+As discussed earlier, the dimensionality of a single image in our MNIST data set is `[28, 28, 1]`.
+When we set a `BATCH_SIZE` of 64, we're batching 64 images at a time, which means the actual
+shape of our data is `[64, 28, 28, 1]` (the batch is always the outermost dimension).
+
+*NOTE:** Recall that the `inputShape` in the config of our first `conv2d` did not specify the batch size (64). Configs are written to be batch-size-agnostic, so that they are able to accept batches of arbitrary size.
+
+### Coding the Training Loop
+
+Here is the code for the training loop:
 
 ```js
 for (let i = 0; i < TRAIN_BATCHES; i++) {
@@ -309,27 +269,30 @@ for (let i = 0; i < TRAIN_BATCHES; i++) {
 }
 ```
 
-Let's break this down.
+Let's break the code down. First, we fetch a batch of training examples. Recall from above that we batch examples to take advantage of GPU parallelization and to average evidence from many examples before making a parameter update:
 
 ```js
 const batch = data.nextTrainBatch(BATCH_SIZE);
 ```
 
-This fetches a batch of training examples. Recall from above that we batch examples
-to take advantage of GPU parallelization and to average evidence from many
-examples before making a parameter update.
+Every 5 steps (our `TEST_ITERATION_FREQUENCY`, we construct `validationData`, an array of two elements containing a batch of MNIST images from the test set and their corresponding labels. We'll use this data to evaluate the accuracy of the model:
 
 ```js
-testBatch = data.nextTestBatch(TEST_BATCH_SIZE);
-validationData = [
-  testBatch.xs.reshape([TEST_BATCH_SIZE, 28, 28, 1]),
-  testBatch.labels
-];
+if (i % TEST_ITERATION_FREQUENCY === 0) {
+  testBatch = data.nextTestBatch(TEST_BATCH_SIZE);
+  validationData = [
+    testBatch.xs.reshape([TEST_BATCH_SIZE, 28, 28, 1]),
+    testBatch.labels
+  ];
+}
 ```
 
-Every 5 steps, we will compute the accuracy by constructing `validationData`
-which is an array of two elements containing a batch of MNIST images and their
-corresponding labels.
+`model.fit` is where the model is trained and parameters actually get updated.
+
+**NOTE:** Calling `model.fit()` once on the whole dataset will result in uploading the
+whole dataset to the GPU, which could freeze the application. To avoid uploading
+too much data to the GPU, we recommend calling `model.fit()` inside a `for` loop, 
+passing a single batch of data at a time, as shown below:
 
 ```js
 // The entire dataset doesn't fit into memory so we call fit repeatedly
@@ -339,60 +302,38 @@ corresponding labels.
       {batchSize: BATCH_SIZE, validationData: validationData, epochs: 1});
 ```
 
-`model.fit` is where the model is trained and parameters actually get updated.
+Let's break down the arguments again:
 
-Calling model.fit() once with the whole dataset, will result in uploading the
-whole dataset to the GPU, which could freeze the application. To avoid uploading
-large amounts of data to the GPU, and risk freezing the application, we recommend
-calling model.fit() inside a for loop, passing a single batch of data at a time.
+* `x`. Our input image data. Remember that we are feeding examples in batches so we must tell the
+`fit` function how large our batch is. `MnistData.nextTrainBatch` returns images with shape `[BATCH_SIZE, 784]`—all the data for the image in a 1-D vector of length 784 (28 * 28). However, our model expects image data in the shape `[BATCH_SIZE, 28, 28, 1]`, so we [`reshape`](../api/0.0.1/index.html#tf.reshape) accordingly. 
 
-Breaking down the arguments again:
-```js
-  batch.xs.reshape([BATCH_SIZE, 28, 28, 1]), batch.labels
-```
+* `y`. Our labels; the correct digit classifications for each image.
 
-The first two arguments to `model.fit` are the `xs` and `ys` of our entire dataset.
+* `batchSize`. How many images to include in each training batch. Earlier we set a `BATCH_SIZE` of 64 to use here.
 
-```js
-  batchSize: BATCH_SIZE
-```
+* `validationData`. The validation set we construct every `TEST_ITERATION_FREQUENCY` (here, 5) batches. This data is in the shape `[TEST_BATCH_SIZE, 28, 28, 1]`. Earlier, we set a `TEST_BATCH_SIZE` of 1000. Our evaluation metric (accuracy) will be computed over this data set.
 
-Remember that we are feeding examples in batches so we must tell the
-`fit` function how large our batch is. `MnistData.nextTrainBatch`
-returns images with shape `[BATCH_SIZE, 784]`, but our model expects a different
-shape, so here we must reshape it.
+* `epochs`. Number of training runs to perform on a batch. Since we are iteratively feeding batches to `fit`, we only want it to train from this batch a single time.
 
-```js
-  validationData: validationData
-```
-
-By defining `validationData`, we are providing examples for `fit` to compute
-our metrics over, in this case accuracy.
-
-
-```js
-  epochs: 1
-```
-
-Since we are iterative feeding batches to `fit`, we only want it to train from
-this batch a single time.
+Each time we call `fit`, it returns a rich object that contains logs of our metrics, which we store in `history`. We extract our loss and accuracy for each training iteration, so we can plot them on a graph: 
 
 ```js
   const loss = history.history.loss[0];
   const accuracy = history.history.acc[0];
 ```
 
-`fit` returns a rich object which contains logs from the fit call. The two we
-care about plotting are the loss of the training batch and the accuracy of the
-model over the 1000 test examples.
+## See the Results!
 
-## See the results
-If
-you are following along in the example and have run it, you should see output
-like this:
+If you run the full code, you should see output like this:
 
-<img src="../images/mnist_learned.png" alt="Input data scatterplot" style="max-width: 500px;"/>
+<img src="../images/mnist_learned.png" alt="Two plots. The first plot shows loss vs. training batch, with loss trending downward from batch 0 to batch 100. The second plot shows accuracy vs. test batch, with accuracy trending upward from batch 0 to batch 100" style="max-width: 500px;"/>
 
-It looks like the model is predicting the right digit for most of the images!
+It looks like the model is predicting the right digit for most of the images. Great work!
 
-The full code for this tutorial can be found [here](https://github.com/tensorflow/tfjs-examples/tree/master/mnist). Feel free to download it and tweak the parameters.
+## Additional Resources
+
+* For more on convolution, see [Understanding Convolutions](http://colah.github.io/posts/2014-07-Understanding-Convolutions/) by Chris Olah.
+
+* For more on loss, see [Descending into ML](https://developers.google.com/machine-learning/crash-course/descending-into-ml/) in [Machine Learning Crash Course](https://developers.google.com/machine-learning/crash-course/) for a more in-depth introduction to machine learning loss.
+
+* For more on gradient descent and SGD, see [Reducing Loss](https://developers.google.com/machine-learning/crash-course/reducing-loss/) in [Machine Learning Crash Course](https://developers.google.com/machine-learning/crash-course/).
