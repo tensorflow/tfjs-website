@@ -24,6 +24,12 @@ to construct, train, and evaluate the model.
 
 This tutorial explains how to convert and serve an existing Keras model to run in the browser.
 
+<h2><a href="./import-keras.html">Transfer learning - Train a neural network to predict from webcam data</a></h2>
+
+This tutorial explains how to train a neural network to make predictions from
+webcam data. We'll use those predictions to play pacman!
+
+<h2><a href="./tf-layers-for-keras-users.html">TensorFlow.js Layers API for Keras Users</a></h2>
 
 <h2><a href="https://github.com/tensorflow/tfjs-converter" target="_blank">How to import a TensorFlow SavedModel into TensorFlow.js</a></h2>
 
