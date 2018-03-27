@@ -1,9 +1,16 @@
+// My main Sass file.
+$mdc-theme-primary: #0277BD;
+// $mdc-theme-secondary: #76ff03;
+// $mdc-theme-background: #fff;
+
 @import "material-components-web/material-components-web";
 
 $header-height: 64px;
 $footer-height: 64px;
 
-$brand-color-main: #FB7923;
+$brand-color-dark: #F16528;
+$brand-color-bright: #F7911F;
+
 
 body {
   margin: 0;
@@ -34,7 +41,7 @@ body {
 
   header {
     padding-right: 24px;
-    background-color: $brand-color-main !important;
+    background-color: $brand-color-dark !important;
     border-bottom: 1px solid rgba(255,255,255, 0.3);
     a {
       padding: 10px 0px 23px 0px;
@@ -91,7 +98,7 @@ body {
   }
 
   footer {
-    background-color: $brand-color-main;
+    background-color: $brand-color-dark;
     color: white;
 
     a {
@@ -128,7 +135,7 @@ body {
 
   .page-banner {
     display: flex;
-    background: linear-gradient(#FB7923, #FBC000);
+    background: linear-gradient($brand-color-dark, $brand-color-bright);
 
     width: 100%;
     height: 200px;
@@ -145,9 +152,10 @@ body {
   }
 }
 
-.hero {
+.index-hero {
   display: flex;
-  background: linear-gradient(#FB7923, #FBC000);
+  // background: linear-gradient($brand-color-dark, $brand-color-bright);
+  color: $brand-color-dark;
 
   width: 100%;
   height: 300px;
@@ -156,18 +164,16 @@ body {
   justify-content: center;
 
   .hero-title {
-    color: white;
-
     display: flex;
     flex-direction: column;
 
     align-items: center;
     text-align: center;
-    h1 {
-      @include mdc-typography("display3");
-      // font-weight: 100;
-      margin: 0;
-      color: white;
+
+    img {
+      margin-top: 50px;
+      max-width: 50vw;
+      min-width: 420px;
     }
 
     p {
@@ -249,11 +255,11 @@ body {
           .title {
             @include mdc-typography("title");
             text-transform: uppercase;
-            border-bottom: 2px solid blue;
+            border-bottom: 2px solid #0277BD;
 
 
             a {
-              color: blue;
+              color: #0277BD;
               text-decoration: none;
             }
           }
