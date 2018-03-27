@@ -12,11 +12,13 @@
     "prep": "git submodule init && git submodule update && git submodule foreach git pull origin master && yarn",
     "serve": "hexo clean && hexo server",
     "build": "hexo clean && hexo generate",
-    "prep-dist": "babel public/js --out-dir public/js",
-    "build-api": "hexo clean && node build-scripts/build-api.js",
-    "build-and-serve": "hexo clean && node build-scripts/build-api.js && hexo clean && hexo server"
+    "post-build": "babel public/js --out-dir public/js",
+    "build-api": "hexo clean && node build-scripts/build-api.js --local",
+    "build-and-serve": "yarn build-api && yarn serve",
+    "build-prod": "hexo clean && node build-scripts/build-api.js && yarn build && yarn post-build"
   },
   "dependencies": {
+    "@tensorflow/tfjs": "^0.0.7",
     "babel-cli": "~6.26.0",
     "babel-preset-es2015": "~6.24.1",
     "commander": "~2.14.1",
@@ -35,6 +37,7 @@
     "markdown-it": "^8.4.1",
     "material-components-web": "^0.32.0",
     "mkdirp": "~0.5.1",
+    "semver-compare": "^1.0.0",
     "shelljs": "~0.8.1",
     "ts-node": "~4.1.0",
     "typescript": "~2.7.2"
