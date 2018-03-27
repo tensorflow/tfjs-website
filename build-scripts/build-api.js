@@ -10,11 +10,6 @@ const cmp = require('semver-compare');
 // Helper functions
 //
 
-// This primarily exists to support github urls.
-function getVersion(depString) {
-  return depString.match(/([\d.]+)$/)[0];
-}
-
 function bailOnFail(exitCode, msg) {
   if (exitCode !== 0) {
     console.log(`${msg || 'Error building docs json'}`);
@@ -37,14 +32,15 @@ commander.option('--local', 'use a local build').parse(process.argv);
 // Get package.json of union package
 const unionPackage =
     JSON.parse(fs.readFileSync('node_modules/@tensorflow/tfjs/package.json'));
-const unionPackageVersion =
-    commander.local ? 'local' : getVersion(unionPackage.version);
+const unionPackageVersion = commander.local ? 'local' : unionPackage.version;
 
 // Get the version strings from the libray
-const coreVersion =
-    `v${getVersion(unionPackage.dependencies['@tensorflow/tfjs-core'])}`;
+const coreVersion = `v${unionPackage.dependencies['@tensorflow/tfjs-core']}`;
 const layersVersion =
-    `v${getVersion(unionPackage.dependencies['@tensorflow/tfjs-layers'])}`;
+    `v${unionPackage.dependencies['@tensorflow/tfjs-layers']}`;
+
+console.log(
+    'Union, core, layers', unionPackageVersion, coreVersion, layersVersion)
 
 const docGenScript = 'build-scripts/doc-gen/make-api.ts';
 
