@@ -218,7 +218,7 @@
                 "namespace": "initializers",
                 "paramStr": "()",
                 "parameters": [],
-                "returnType": "Initializer",
+                "returnType": "Zeros",
                 "documentation": "Initializer that generates tensors initialized to 0.",
                 "fileName": "#607",
                 "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L607-L614",
@@ -650,8 +650,8 @@
                 ],
                 "returnType": "Initializer",
                 "documentation": "LeCun normal initializer.\n\nIt draws samples from a truncated normal distribution centered on 0\nwith `stddev = sqrt(1 / fanIn)`\nwhere `fanIn` is the number of input units in the weight tensor.\n\nReferences:\n   [Self-Normalizing Neural Networks](https://arxiv.org/abs/1706.02515)\n   [Efficient Backprop](http://yann.lecun.com/exdb/publis/pdf/lecun-98b.pdf)",
-                "fileName": "#722",
-                "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L722-L731",
+                "fileName": "#721",
+                "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L721-L730",
                 "isFunction": true
               },
               {
@@ -683,10 +683,10 @@
                     "isConfigParam": true
                   }
                 ],
-                "returnType": "Orthogonal",
+                "returnType": "Initializer",
                 "documentation": "Initializer that generates a random orthogonal matrix.\n\nReference:\n[Saxe et al., http://arxiv.org/abs/1312.6120](http://arxiv.org/abs/1312.6120)",
-                "fileName": "#733",
-                "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L733-L741",
+                "fileName": "#732",
+                "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L732-L740",
                 "isFunction": true
               }
             ]
@@ -734,10 +734,10 @@
                     "isConfigParam": false
                   }
                 ],
-                "returnType": "L1L2",
+                "returnType": "Regularizer",
                 "documentation": "Regularizer for L1 and L2 regularization.\n\nAdds a term to the loss to penalize large weights:\nloss += sum(l1 * abs(x)) + sum(l2 * x^2)",
-                "fileName": "#745",
-                "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L745-L749",
+                "fileName": "#744",
+                "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L744-L748",
                 "isFunction": true
               },
               {
@@ -759,10 +759,10 @@
                     "isConfigParam": false
                   }
                 ],
-                "returnType": "L1L2",
+                "returnType": "Regularizer",
                 "documentation": "Regularizer for L1 and L2 regularization.\n\nAdds a term to the loss to penalize large weights:\nloss += sum(l1 * abs(x)) + sum(l2 * x^2)",
-                "fileName": "#751",
-                "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L751-L755",
+                "fileName": "#750",
+                "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L750-L754",
                 "isFunction": true
               },
               {
@@ -784,10 +784,10 @@
                     "isConfigParam": false
                   }
                 ],
-                "returnType": "L1L2",
+                "returnType": "Regularizer",
                 "documentation": "Regularizer for L1 and L2 regularization.\n\nAdds a term to the loss to penalize large weights:\nloss += sum(l1 * abs(x)) + sum(l2 * x^2)",
-                "fileName": "#757",
-                "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L757-L761",
+                "fileName": "#756",
+                "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L756-L760",
                 "isFunction": true
               }
             ]
@@ -811,7 +811,7 @@
                 "namespace": "layers",
                 "documentation": "A layer is a grouping of operations and weights that can be composed to\ncreate a `Model`.\n\nLayers are constructed by using the functions under the\n[tf.layers](#Layers-Basic) namespace.",
                 "fileName": "#333",
-                "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/engine/topology.ts#L333-L1226",
+                "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/engine/topology.ts#L333-L1219",
                 "methods": [
                   {
                     "docInfo": {
@@ -837,9 +837,9 @@
                       }
                     ],
                     "returnType": "Tensor|Tensor[]|SymbolicTensor|SymbolicTensor[]",
-                    "documentation": "Builds or executes a `Layer's logic.\n\nWhen called with `Tensor`(s), execute the `Layer`s computation and\n<<<<<<< HEAD\nreturn Tensor(s).\n=======\nreturn Tensor(s). For example:\n\n```js\nconst denseLayer = tf.layers.dense({\n   units: 1,\n   kernelInitializer: 'zeros',\n   useBias: false\n});\n\n// Invoke the layer's apply() method with a `Tensor` (with concrete\n// numeric values).\nconst input = tf.ones([2, 2]);\nconst output = denseLayer.apply(input);\n\n// The output's value is expected to be [[0], [0]], due to the fact that\n// the dense layer has a kernel initialized to all-zeros and does not have\n// a bias.\noutput.print();\n```\n>>>>>>> 8e2bec285a64e1682b32a4960af03aa7fb3ffa19\n\nWhen called with `SymbolicTensor`(s), this will prepare the layer for\nfuture execution.  This entails internal book-keeping on shapes of\nexpected Tensors, wiring layers together, and initializing weights.\n\n<<<<<<< HEAD\n=======\nCalling `apply` with `SymbolicTensor`s are typically used during the\nbuilding of non-`Sequential` models. For example:\n\n```js\nconst flattenLayer = tf.layers.flatten();\nconst denseLayer = tf.layers.dense({units: 1});\n\n// Use tf.layers.input() to obtain a SymbolicTensor as input to apply().\nconst input = tf.input({shape: [2, 2]});\nconst output1 = flattenLayer.apply(input);\n\n// output1.shape is [null, 4]. The first dimension is the undetermined\n// batch size. The second dimension comes from flattening the [2, 2]\n// shape.\nconsole.log(output1.shape);\n\n// The output SymbolicTensor of the flatten layer can be used to call\n// the apply() of the dense layer:\nconst output2 = denseLayer.apply(output1);\n\n// output2.shape is [null, 1]. The first dimension is the undetermined\n// batch size. The second dimension matches the number of units of the\n// dense layer.\nconsole.log(output2.shape);\n\n// The input and output and be used to construct a model that consists\n// of the flatten and dense layers.\nconst model = tf.model({inputs: input, outputs: output2});\n```\n\n>>>>>>> 8e2bec285a64e1682b32a4960af03aa7fb3ffa19",
-                    "fileName": "#833",
-                    "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/engine/topology.ts#L833-L947",
+                    "documentation": "Builds or executes a `Layer's logic.\n\nWhen called with `Tensor`(s), execute the `Layer`s computation and\nreturn Tensor(s). For example:\n\n```js\nconst denseLayer = tf.layers.dense({\n   units: 1,\n   kernelInitializer: 'zeros',\n   useBias: false\n});\n\n// Invoke the layer's apply() method with a `Tensor` (with concrete\n// numeric values).\nconst input = tf.ones([2, 2]);\nconst output = denseLayer.apply(input);\n\n// The output's value is expected to be [[0], [0]], due to the fact that\n// the dense layer has a kernel initialized to all-zeros and does not have\n// a bias.\noutput.print();\n```\n\nWhen called with `SymbolicTensor`(s), this will prepare the layer for\nfuture execution.  This entails internal book-keeping on shapes of\nexpected Tensors, wiring layers together, and initializing weights.\n\nCalling `apply` with `SymbolicTensor`s are typically used during the\nbuilding of non-`Sequential` models. For example:\n\n```js\nconst flattenLayer = tf.layers.flatten();\nconst denseLayer = tf.layers.dense({units: 1});\n\n// Use tf.layers.input() to obtain a SymbolicTensor as input to apply().\nconst input = tf.input({shape: [2, 2]});\nconst output1 = flattenLayer.apply(input);\n\n// output1.shape is [null, 4]. The first dimension is the undetermined\n// batch size. The second dimension comes from flattening the [2, 2]\n// shape.\nconsole.log(output1.shape);\n\n// The output SymbolicTensor of the flatten layer can be used to call\n// the apply() of the dense layer:\nconst output2 = denseLayer.apply(output1);\n\n// output2.shape is [null, 1]. The first dimension is the undetermined\n// batch size. The second dimension matches the number of units of the\n// dense layer.\nconsole.log(output2.shape);\n\n// The input and output and be used to construct a model that consists\n// of the flatten and dense layers.\nconst model = tf.model({inputs: input, outputs: output2});\n```",
+                    "fileName": "#826",
+                    "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/engine/topology.ts#L826-L940",
                     "isFunction": true
                   }
                 ],
@@ -3011,7 +3011,7 @@
                   },
                   {
                     "name": "activation",
-                    "documentation": "Activation function to use (see [activations](../activations.md)).\nDefault: hyperbolic tangent (`tanh`).\nIf you pass `null`,  'linear' activation will be applied.",
+                    "documentation": "Activation function to use.\nDefault: hyperbolic tangent ('tanh').\nIf you pass `null`,  'linear' activation will be applied.",
                     "type": "'elu'|'hardsigmoid'|'linear'|'relu'|'relu6'|\n    'selu'|'sigmoid'|'softmax'|'softplus'|'softsign'|'tanh'|string",
                     "optional": true,
                     "isConfigParam": true
@@ -3025,63 +3025,63 @@
                   },
                   {
                     "name": "kernelInitializer",
-                    "documentation": "Initializer for the `kernel` weights matrix, used for the linear\ntransformation of the inputs (see [initializers](../initializers.md)).",
+                    "documentation": "Initializer for the `kernel` weights matrix, used for the linear\ntransformation of the inputs.",
                     "type": "'constant'|'glorotNormal'|'glorotUniform'|\n    'heNormal'|'identity'|'leCunNormal'|'ones'|'orthogonal'|'randomNormal'|\n    'randomUniform'|'truncatedNormal'|'varianceScaling'|'zeros'|string|Initializer",
                     "optional": true,
                     "isConfigParam": true
                   },
                   {
                     "name": "recurrentInitializer",
-                    "documentation": "Initializer for the `recurrentKernel` weights matrix, used for\nlinear transformation of the recurrent state\n(see [initializers](../initializers.md)).",
+                    "documentation": "Initializer for the `recurrentKernel` weights matrix, used for\nlinear transformation of the recurrent state.",
                     "type": "'constant'|'glorotNormal'|'glorotUniform'|\n    'heNormal'|'identity'|'leCunNormal'|'ones'|'orthogonal'|'randomNormal'|\n    'randomUniform'|'truncatedNormal'|'varianceScaling'|'zeros'|string|Initializer",
                     "optional": true,
                     "isConfigParam": true
                   },
                   {
                     "name": "biasInitializer",
-                    "documentation": "Initializer for the bias vector (see [initializers](../initializers.md)).",
+                    "documentation": "Initializer for the bias vector.",
                     "type": "'constant'|'glorotNormal'|'glorotUniform'|\n    'heNormal'|'identity'|'leCunNormal'|'ones'|'orthogonal'|'randomNormal'|\n    'randomUniform'|'truncatedNormal'|'varianceScaling'|'zeros'|string|Initializer",
                     "optional": true,
                     "isConfigParam": true
                   },
                   {
                     "name": "kernelRegularizer",
-                    "documentation": "Regularizer function applied to the `kernel` weights matrix\n(see [regularizer](../regularizers.md)).",
+                    "documentation": "Regularizer function applied to the `kernel` weights matrix.",
                     "type": "'l1l2'|string|Regularizer",
                     "optional": true,
                     "isConfigParam": true
                   },
                   {
                     "name": "recurrentRegularizer",
-                    "documentation": "Regularizer function applied to the `recurrent_kernel` weights matrix.\n(see [regularizer](../regularizers.md))",
+                    "documentation": "Regularizer function applied to the `recurrent_kernel` weights matrix.",
                     "type": "'l1l2'|string|Regularizer",
                     "optional": true,
                     "isConfigParam": true
                   },
                   {
                     "name": "biasRegularizer",
-                    "documentation": "Regularizer function applied to the bias vector.\n(see [regularizer](../regularizers.md))",
+                    "documentation": "Regularizer function applied to the bias vector.",
                     "type": "'l1l2'|string|Regularizer",
                     "optional": true,
                     "isConfigParam": true
                   },
                   {
                     "name": "kernelConstraint",
-                    "documentation": "Constraint function applied to the `kernel` weights matrix.\n(see [constraints](../constraints.md)).",
+                    "documentation": "Constraint function applied to the `kernel` weights matrix.",
                     "type": "'maxNorm'|'minMaxNorm'|'nonNeg'|'unitNorm'|string|Constraint",
                     "optional": true,
                     "isConfigParam": true
                   },
                   {
                     "name": "recurrentConstraint",
-                    "documentation": "Constraint function applied to the `recurrentKernel` weights matrix.\n(see [constraints](../constraints.md)).",
+                    "documentation": "Constraint function applied to the `recurrentKernel` weights matrix.",
                     "type": "'maxNorm'|'minMaxNorm'|'nonNeg'|'unitNorm'|string|Constraint",
                     "optional": true,
                     "isConfigParam": true
                   },
                   {
                     "name": "biasConstraint",
-                    "documentation": "Constraintfunction applied to the bias vector.\n(see [constraints](../constraints.md)).",
+                    "documentation": "Constraintfunction applied to the bias vector.",
                     "type": "'maxNorm'|'minMaxNorm'|'nonNeg'|'unitNorm'|string|Constraint",
                     "optional": true,
                     "isConfigParam": true
@@ -3136,8 +3136,8 @@
                     "isConfigParam": true
                   }
                 ],
-                "returnType": "RNN",
-                "documentation": "Base class for recurrent layers.\n\nInput shape:\n   3D tensor with shape `[batchSize, timeSteps, inputDim]`.\n\nOutput shape:\n   - if `returnState`, an Array of tensors (i.e., `Tensor`s). The first\n     tensor is the output. The remaining tensors are the states at the\n     last time step, each with shape `[batchSize, units]`.\n   - if `returnSequences`, the output will have shape\n     `[batchSize, timeSteps, units]`.\n   - else, the output will have shape `[batchSize, units]`.\n\nMasking:\n   This layer supports masking for input data with a variable number\n   of timesteps. To introduce masks to your data,\n   use an [Embedding](embeddings.md) layer with the `mask_zero` parameter\n   set to `True`.\n\nNotes on using statefulness in RNNs:\n   You can set RNN layers to be 'stateful', which means that the states\n   computed for the samples in one batch will be reused as initial states\n   for the samples in the next batch. This assumes a one-to-one mapping\n   between samples in different successive batches.\n\n   To enable statefulness:\n     - specify `stateful: true` in the layer constructor.\n     - specify a fixed batch size for your model, by passing\n       if sequential model:\n         `batchInputShape=[...]` to the first layer in your model.\n       else for functional model with 1 or more Input layers:\n         `batchShape=[...]` to all the first layers in your model.\n       This is the expected shape of your inputs *including the batch size*.\n       It should be a tuple of integers, e.g. `(32, 10, 100)`.\n     - specify `shuffle=False` when calling fit().\n\n   To reset the states of your model, call `.reset_states()` on either\n   a specific layer, or on your entire model.\n\nNote on specifying the initial state of RNNs\n   You can specify the initial state of RNN layers symbolically by\n   calling them with the option `initialState`. The value of\n   `initialState` should be a tensor or list of tensors representing\n   the initial state of the RNN layer.\n\n   You can specify the initial state of RNN layers numerically by\n   calling `resetStates` with the keyword argument `states`. The value of\n   `states` should be a numpy array or list of numpy arrays representing\n   the initial state of the RNN layer.\n\nNote on passing external constants to RNNs\n   You can pass \"external\" constants to the cell using the `constants`\n   keyword argument of `RNN.call` method. This requires that the `cell.call`\n   method accepts the same keyword argument `constants`. Such constants\n   can be used to conditon the cell transformation on additional static inputs\n   (not changing over time), a.k.a an attention mechanism.",
+                "returnType": "Layer",
+                "documentation": "Base class for recurrent layers.\n\nInput shape:\n   3D tensor with shape `[batchSize, timeSteps, inputDim]`.\n\nOutput shape:\n   - if `returnState`, an Array of tensors (i.e., `Tensor`s). The first\n     tensor is the output. The remaining tensors are the states at the\n     last time step, each with shape `[batchSize, units]`.\n   - if `returnSequences`, the output will have shape\n     `[batchSize, timeSteps, units]`.\n   - else, the output will have shape `[batchSize, units]`.\n\nMasking:\n   This layer supports masking for input data with a variable number\n   of timesteps. To introduce masks to your data,\n   use an embedding layer with the `mask_zero` parameter\n   set to `True`.\n\nNotes on using statefulness in RNNs:\n   You can set RNN layers to be 'stateful', which means that the states\n   computed for the samples in one batch will be reused as initial states\n   for the samples in the next batch. This assumes a one-to-one mapping\n   between samples in different successive batches.\n\n   To enable statefulness:\n     - specify `stateful: true` in the layer constructor.\n     - specify a fixed batch size for your model, by passing\n       if sequential model:\n         `batchInputShape=[...]` to the first layer in your model.\n       else for functional model with 1 or more Input layers:\n         `batchShape=[...]` to all the first layers in your model.\n       This is the expected shape of your inputs *including the batch size*.\n       It should be a tuple of integers, e.g. `(32, 10, 100)`.\n     - specify `shuffle=False` when calling fit().\n\n   To reset the states of your model, call `.reset_states()` on either\n   a specific layer, or on your entire model.\n\nNote on specifying the initial state of RNNs\n   You can specify the initial state of RNN layers symbolically by\n   calling them with the option `initialState`. The value of\n   `initialState` should be a tensor or list of tensors representing\n   the initial state of the RNN layer.\n\n   You can specify the initial state of RNN layers numerically by\n   calling `resetStates` with the keyword argument `states`. The value of\n   `states` should be a numpy array or list of numpy arrays representing\n   the initial state of the RNN layer.\n\nNote on passing external constants to RNNs\n   You can pass \"external\" constants to the cell using the `constants`\n   keyword argument of `RNN.call` method. This requires that the `cell.call`\n   method accepts the same keyword argument `constants`. Such constants\n   can be used to conditon the cell transformation on additional static inputs\n   (not changing over time), a.k.a an attention mechanism.",
                 "fileName": "#521",
                 "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L521-L530",
                 "isFunction": true
@@ -3172,7 +3172,7 @@
                   }
                 ],
                 "returnType": "RNNCell",
-                "documentation": "Base class for recurrent layers.\n\nInput shape:\n   3D tensor with shape `[batchSize, timeSteps, inputDim]`.\n\nOutput shape:\n   - if `returnState`, an Array of tensors (i.e., `Tensor`s). The first\n     tensor is the output. The remaining tensors are the states at the\n     last time step, each with shape `[batchSize, units]`.\n   - if `returnSequences`, the output will have shape\n     `[batchSize, timeSteps, units]`.\n   - else, the output will have shape `[batchSize, units]`.\n\nMasking:\n   This layer supports masking for input data with a variable number\n   of timesteps. To introduce masks to your data,\n   use an [Embedding](embeddings.md) layer with the `mask_zero` parameter\n   set to `True`.\n\nNotes on using statefulness in RNNs:\n   You can set RNN layers to be 'stateful', which means that the states\n   computed for the samples in one batch will be reused as initial states\n   for the samples in the next batch. This assumes a one-to-one mapping\n   between samples in different successive batches.\n\n   To enable statefulness:\n     - specify `stateful: true` in the layer constructor.\n     - specify a fixed batch size for your model, by passing\n       if sequential model:\n         `batchInputShape=[...]` to the first layer in your model.\n       else for functional model with 1 or more Input layers:\n         `batchShape=[...]` to all the first layers in your model.\n       This is the expected shape of your inputs *including the batch size*.\n       It should be a tuple of integers, e.g. `(32, 10, 100)`.\n     - specify `shuffle=False` when calling fit().\n\n   To reset the states of your model, call `.reset_states()` on either\n   a specific layer, or on your entire model.\n\nNote on specifying the initial state of RNNs\n   You can specify the initial state of RNN layers symbolically by\n   calling them with the option `initialState`. The value of\n   `initialState` should be a tensor or list of tensors representing\n   the initial state of the RNN layer.\n\n   You can specify the initial state of RNN layers numerically by\n   calling `resetStates` with the keyword argument `states`. The value of\n   `states` should be a numpy array or list of numpy arrays representing\n   the initial state of the RNN layer.\n\nNote on passing external constants to RNNs\n   You can pass \"external\" constants to the cell using the `constants`\n   keyword argument of `RNN.call` method. This requires that the `cell.call`\n   method accepts the same keyword argument `constants`. Such constants\n   can be used to conditon the cell transformation on additional static inputs\n   (not changing over time), a.k.a an attention mechanism.",
+                "documentation": "Base class for recurrent layers.\n\nInput shape:\n   3D tensor with shape `[batchSize, timeSteps, inputDim]`.\n\nOutput shape:\n   - if `returnState`, an Array of tensors (i.e., `Tensor`s). The first\n     tensor is the output. The remaining tensors are the states at the\n     last time step, each with shape `[batchSize, units]`.\n   - if `returnSequences`, the output will have shape\n     `[batchSize, timeSteps, units]`.\n   - else, the output will have shape `[batchSize, units]`.\n\nMasking:\n   This layer supports masking for input data with a variable number\n   of timesteps. To introduce masks to your data,\n   use an embedding layer with the `mask_zero` parameter\n   set to `True`.\n\nNotes on using statefulness in RNNs:\n   You can set RNN layers to be 'stateful', which means that the states\n   computed for the samples in one batch will be reused as initial states\n   for the samples in the next batch. This assumes a one-to-one mapping\n   between samples in different successive batches.\n\n   To enable statefulness:\n     - specify `stateful: true` in the layer constructor.\n     - specify a fixed batch size for your model, by passing\n       if sequential model:\n         `batchInputShape=[...]` to the first layer in your model.\n       else for functional model with 1 or more Input layers:\n         `batchShape=[...]` to all the first layers in your model.\n       This is the expected shape of your inputs *including the batch size*.\n       It should be a tuple of integers, e.g. `(32, 10, 100)`.\n     - specify `shuffle=False` when calling fit().\n\n   To reset the states of your model, call `.reset_states()` on either\n   a specific layer, or on your entire model.\n\nNote on specifying the initial state of RNNs\n   You can specify the initial state of RNN layers symbolically by\n   calling them with the option `initialState`. The value of\n   `initialState` should be a tensor or list of tensors representing\n   the initial state of the RNN layer.\n\n   You can specify the initial state of RNN layers numerically by\n   calling `resetStates` with the keyword argument `states`. The value of\n   `states` should be a numpy array or list of numpy arrays representing\n   the initial state of the RNN layer.\n\nNote on passing external constants to RNNs\n   You can pass \"external\" constants to the cell using the `constants`\n   keyword argument of `RNN.call` method. This requires that the `cell.call`\n   method accepts the same keyword argument `constants`. Such constants\n   can be used to conditon the cell transformation on additional static inputs\n   (not changing over time), a.k.a an attention mechanism.",
                 "fileName": "#532",
                 "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L532-L541",
                 "isFunction": true
@@ -3289,30 +3289,54 @@
                   "subheading": "Classes"
                 },
                 "symbolName": "Model",
-                "documentation": "The `Model` class adds training & evaluation routines to a `Container`.\n\nA `Model` is the basic unit of training, inference and evaluation in\nTensorFlow.js. To create a `Model, use `model`.\n\nSee also:\n   `Sequential`, `loadModel`.",
-                "fileName": "#620",
-                "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/engine/training.ts#L620-L1602",
+                "documentation": "A `Model` is a directed, acyclic graph of `Layer`s plus methods for\ntraining, evaluation, prediction and saving.\n\nThe `Model` is the basic unit of training, inference and evaluation in\nTensorFlow.js. To create a `Model, use `model`.\n\nSee also:\n   `Sequential`, `loadModel`.",
+                "fileName": "#621",
+                "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/engine/training.ts#L621-L1621",
                 "methods": [
                   {
                     "docInfo": {
                       "heading": "Models",
-                      "subheading": "Classes"
+                      "subheading": "Classes",
+                      "configParamIndices": [
+                        0
+                      ]
                     },
                     "symbolName": "compile",
                     "paramStr": "(config)",
                     "parameters": [
                       {
                         "name": "config",
-                        "documentation": "",
-                        "type": "ModelCompileConfig",
+                        "documentation": "a `ModelCompileConfig` specifying the loss, optimizer, and\nmetrics to be used for fitting and evaluating this model.",
+                        "type": "Object",
                         "optional": false,
                         "isConfigParam": false
+                      },
+                      {
+                        "name": "optimizer",
+                        "documentation": "An instance of `tf.train.Optimizer` or a string name for an Optimizer.",
+                        "type": "string|Optimizer",
+                        "optional": false,
+                        "isConfigParam": true
+                      },
+                      {
+                        "name": "loss",
+                        "documentation": "String (name of objective function) or objective function.\nIf the model has multiple outputs, you can use a different loss\non each output by passing a dictionary or an Array of losses.\nThe loss value that will be minimized by the model will then be the sum\nof all individual losses.",
+                        "type": "string|string[]|{[outputName: string]: string}",
+                        "optional": false,
+                        "isConfigParam": true
+                      },
+                      {
+                        "name": "metrics",
+                        "documentation": "List of metrics to be evaluated by the model during training and testing.\nTypically you will use `metrics=['accuracy']`.\nTo specify different metrics for different outputs of a multi-output\nmodel, you could also pass a dictionary.",
+                        "type": "string[]|{[outputName: string]: string}",
+                        "optional": true,
+                        "isConfigParam": true
                       }
                     ],
                     "returnType": "void",
-                    "documentation": "",
-                    "fileName": "#651",
-                    "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/engine/training.ts#L651-L845",
+                    "documentation": "Configures and prepares the model for training and evaluation.  Compiling\noutfits the model with an optimizer, loss, and/or metrics.  Calling `fit`\nor `evaluate` on an un-compiled model will throw an error.",
+                    "fileName": "#660",
+                    "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/engine/training.ts#L660-L854",
                     "isFunction": true
                   },
                   {
@@ -3378,8 +3402,8 @@
                     ],
                     "returnType": "Scalar|Scalar[]",
                     "documentation": "Returns the loss value & metrics values for the model in test mode.\n\nLoss and metrics are specified during `compile()`, which needs to happen\nbefore calls to `evaluate()`.\n\nComputation is done in batches.\n\n```js\nconst model = tf.sequential({\n   layers: [tf.layers.dense({units: 1, inputShape: [10]})]\n});\nmodel.compile({optimizer: 'sgd', loss: 'meanSquaredError'});\nconst result = model.evaluate(\n     tf.ones([8, 10]), tf.ones([8, 1]), {batchSize: 4});\nresult.print();\n```",
-                    "fileName": "#898",
-                    "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/engine/training.ts#L898-L915",
+                    "fileName": "#907",
+                    "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/engine/training.ts#L907-L924",
                     "isFunction": true
                   },
                   {
@@ -3402,7 +3426,7 @@
                       },
                       {
                         "name": "config",
-                        "documentation": "",
+                        "documentation": "A `ModelPredictConfig` object containing optional fields.",
                         "type": "Object",
                         "optional": true,
                         "isConfigParam": false
@@ -3423,9 +3447,9 @@
                       }
                     ],
                     "returnType": "Tensor\n      |Tensor[]",
-                    "documentation": "Generates output predictions for the input samples.\n\nComputation is done in batches.\n\nNote: the \"step\" mode of predict() is currently not supported.\n   This is because the TensorFow.js core backend is imperative only.\n\n```js\nconst model = tf.sequential({\n   layers: [tf.layers.dense({units: 1, inputShape: [10]})]\n});\nmodel.predict(tf.ones([8, 10]), {batchSize: 4}).print();\n```",
-                    "fileName": "#1040",
-                    "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/engine/training.ts#L1040-L1050",
+                    "documentation": "Generates output predictions for the input samples.\n\nComputation is done in batches.\n\nNote: the \"step\" mode of predict() is currently not supported.\n   This is because the TensorFlow.js core backend is imperative only.\n\n```js\nconst model = tf.sequential({\n   layers: [tf.layers.dense({units: 1, inputShape: [10]})]\n});\nmodel.predict(tf.ones([8, 10]), {batchSize: 4}).print();\n```",
+                    "fileName": "#1049",
+                    "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/engine/training.ts#L1049-L1059",
                     "isFunction": true
                   },
                   {
@@ -3445,9 +3469,9 @@
                       }
                     ],
                     "returnType": "Tensor|Tensor[]",
-                    "documentation": "Returns predictions for a single batch of samples.",
-                    "fileName": "#1058",
-                    "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/engine/training.ts#L1058-L1064",
+                    "documentation": "Returns predictions for a single batch of samples.\n\n```js\nconst model = tf.sequential({\n   layers: [tf.layers.dense({units: 1, inputShape: [10]})]\n});\nmodel.predictOnBatch(tf.ones([8, 10])).print();\n```",
+                    "fileName": "#1073",
+                    "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/engine/training.ts#L1073-L1079",
                     "isFunction": true
                   },
                   {
@@ -3568,9 +3592,9 @@
                       }
                     ],
                     "returnType": "Promise",
-                    "documentation": "Trains the model for a fixed number of epochs (iterations on a dataset).\n\n```js\nconst model = tf.sequential({\n   layers: [tf.layers.dense({units: 1, inputShape: [10]})]\n});\nmodel.compile({optimizer: 'sgd', loss: 'meanSquaredError'});\nconst history = await model.fit(tf.ones([8, 10]), tf.ones([8, 1]), {\n   batchSize: 4,\n   epochs: 3\n});",
-                    "fileName": "#1427",
-                    "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/engine/training.ts#L1427-L1601",
+                    "documentation": "Trains the model for a fixed number of epochs (iterations on a dataset).\n\n```js\nconst model = tf.sequential({\n     layers: [tf.layers.dense({units: 1, inputShape: [10]})]\n});\nmodel.compile({optimizer: 'sgd', loss: 'meanSquaredError'});\nfor (i = 1; i < 5 ; ++i) {\n   const h = await model.fit(tf.ones([8, 10]), tf.ones([8, 1]), {\n       batchSize: 4,\n       epochs: 3\n   });\n   console.log(\"Loss after Epoch \" + i + \" : \" + h.history.loss[0]);\n}\n```",
+                    "fileName": "#1446",
+                    "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/engine/training.ts#L1446-L1620",
                     "isFunction": true
                   }
                 ],
@@ -3955,14 +3979,14 @@
                 "parameters": [
                   {
                     "name": "modelConfigPath",
-                    "documentation": "A path to the `ModelAndWeightsConfig` JSON describing\nthe model in the canonical TensorFlow.js format.\n\nThis provides the most convenient way to load a TensorFlow.js saved model.\n\nThe content of `model.json` is assumed to be a JSON object with the\nfollowing fields and values:\n- 'modelTopology': A JSON object that can be\n- a model architecture JSON consistent with the format of the return\nvalue of `keras.Model.to_json()`, or\n- a full model JSON in the format of `keras.models.save_model()`.\n- 'weightsManifest': A TensorFlow.js weights manifest.\nSee the Python converter function `save_model()` for more details.\n\nIt is also assumed that model weights can be accessed from relative paths\ndescribed by the `paths` fields in weights manifest.",
+                    "documentation": "A path to the `ModelAndWeightsConfig` JSON describing\nthe model in the canonical TensorFlow.js format.\n\nThe content of the JSON file is assumed to be a JSON object with the\nfollowing fields and values:\n- 'modelTopology': A JSON object that can be either of:\n1. a model architecture JSON consistent with the format of the return\nvalue of `keras.Model.to_json()`\n2. a full model JSON in the format of `keras.models.save_model()`.\n- 'weightsManifest': A TensorFlow.js weights manifest.\n\nSee the Python converter function `save_model()` for more details.\n\nIt is also assumed that model weights can be accessed from relative paths\ndescribed by the `paths` fields in weights manifest.",
                     "type": "string",
                     "optional": false,
                     "isConfigParam": false
                   }
                 ],
                 "returnType": "Promise",
-                "documentation": "Load a model, including its topology and optionally weights.",
+                "documentation": "Load a model, including its topology and optionally weights.  See the\nTutorial named \"How to import a Keras Model\" for usage examples.",
                 "fileName": "#141",
                 "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L141-L148",
                 "isFunction": true
@@ -4028,7 +4052,7 @@
                   }
                 ],
                 "returnType": "SymbolicTensor",
-                "documentation": "`Input()` is used to instantiate a SymbolicTensor, and represents\nthe input to a model.\n\nExample:\n\n```js\n// Simple logistic regression:\nx = tf.input({shape: [32]});\ny = tf.layers.dense({units: 16, activation: 'softmax'}).apply(x);\nmodel = tf.model({inputs: x, outputs: y});\n```",
+                "documentation": "`Input()` is used to instantiate a `SymbolicTensor`, and represents\nthe input to a model.  Users should call the `input()` factory function for\nconsistency with other generator functions.\n\nExample:\n\n```js\n// Defines a simple logistic regression model with 32 dimensional input\n// and 3 dimensional output.\nx = tf.input({shape: [32]});\ny = tf.layers.dense({units: 3, activation: 'softmax'}).apply(x);\nmodel = tf.model({inputs: x, outputs: y});\nmodel.predict(tf.ones([2, 32])).print();\n```",
                 "fileName": "#150",
                 "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L150-L158",
                 "isFunction": true
@@ -4096,7 +4120,7 @@
                   }
                 ],
                 "returnType": "Layer",
-                "documentation": "Layer to be used as an entry point into a graph.",
+                "documentation": "An input layer is an entry point into a `Model`.\n\n`InputLayer` is generated automatically for `Sequential` models by specifying\nthe `inputshape` or `batchInputShape` for the first layer.  It should not be\nspecified explicitly.\n\n```js\n// Define a model which simply adds two inputs.\nconst inputA = tf.input({shape: [3]});\nconst inputB = tf.input({shape: [3]});\nconst sum = tf.layers.add().apply([inputA, inputB]);\nconst model = tf.model({inputs: [inputA, inputB], outputs: sum});\nconst batchSize = 2;\nmodel.predict([tf.ones([batchSize, 3]), tf.ones([batchSize, 3])]).print();\n```",
                 "fileName": "#160",
                 "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L160-L168",
                 "isFunction": true

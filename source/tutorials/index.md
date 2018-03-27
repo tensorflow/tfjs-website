@@ -5,7 +5,6 @@ bannerText: Tutorials & Guides
 ---
 
 # Tutorials
-
 <h2><a href="./core-concepts.html">Core Concepts in TensorFlow.js</a></h2>
 
 Learn about core concepts in TensorFlow.js such tensors, operations, models, layers and training.
@@ -21,6 +20,23 @@ In this tutorial we will build a convolutional neural network to recognize
 handwritten digits in images (MNIST). We will use the TensorFlow.js layers API
 to construct, train, and evaluate the model.
 
-<h2><a href="http://google.com">How to import a Keras Model into Tensorflow.js</a></h2>
+<h2><a href="./import-keras.html">How to import a Keras Model into TensorFlow.js</a></h2>
 
+This tutorial explains how to convert and serve an existing Keras model to run in the browser.
 
+<h2><a href="./import-keras.html">Transfer learning - Train a neural network to predict from webcam data</a></h2>
+
+This tutorial explains how to train a neural network to make predictions from
+webcam data. We'll use those predictions to play pacman!
+
+<h2><a href="./tf-layers-for-keras-users.html">TensorFlow.js Layers API for Keras Users</a></h2>
+
+<h2><a href="https://github.com/tensorflow/tfjs-converter" target="_blank">How to import a TensorFlow SavedModel into TensorFlow.js</a></h2>
+
+__Developer Preview:__ This tutorial explains how to convert and serve an existing TensorFlow SavedModel to run in the browser.
+
+# Guides
+<h2><a href="./import-keras.html">TensorFlow.js Layers API for Keras Users</a></h2>
+
+This guide explains the similarities and differences between the Layers API
+of TensorFlow.js and [Keras](https://keras.io/).
