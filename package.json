@@ -15,7 +15,7 @@
     "post-build": "babel public/js --out-dir public/js",
     "build-api": "hexo clean && node build-scripts/build-api.js --local",
     "build-and-serve": "yarn build-api && yarn serve",
-    "build-prod": "hexo clean && node build-scripts/build-api.js && yarn build && yarn post-build"
+    "build-prod": "yarn prep && hexo clean && node build-scripts/build-api.js && yarn build && yarn post-build"
   },
   "dependencies": {
     "@tensorflow/tfjs": "^0.0.7",
