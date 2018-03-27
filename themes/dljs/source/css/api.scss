@@ -1,10 +1,16 @@
+$mdc-theme-primary: #0277BD;
+// $mdc-theme-secondary: #76ff03;
+// $mdc-theme-background: #fff;
+
 @import "material-components-web/material-components-web";
+
 $header-height: 64px;
 
 $muted-text-col: #616161;
 $dark-text-col: #212121;
 
-$brand-color-main: #FB7923;
+$brand-color-dark: #F16528;
+$brand-color-bright: #F7911F;
 
 body {
   @media (max-width: 720px) {
