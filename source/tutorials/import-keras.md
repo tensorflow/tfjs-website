@@ -23,7 +23,6 @@ Keras models are usually saved via `model.save(filepath)`, which produces a sing
 # bash
 
 tensorflowjs_converter --input_format keras \
-                       --output_format tensorflowjs \
                        path/to/my_model.h5 \
                        path/to/tfjs_target_dir
 ```
