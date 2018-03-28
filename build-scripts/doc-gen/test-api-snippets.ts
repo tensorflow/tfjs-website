@@ -46,7 +46,7 @@ const snippetRecord = {
   'fail': []
 };
 
-function updateResults(label, snippet, err) {
+function updateResults(label: string, snippet: string, err: Error) {
   snippetRecord['running']--;
   if (err == null) {
     snippetRecord['pass']++;
@@ -55,16 +55,20 @@ function updateResults(label, snippet, err) {
   }
 }
 
+function stripJsDocTags(snippet: string): string {
+  const lines = snippet.split('\n');
+  lines.shift();
+  lines.pop();
+  return lines.join('\n');
+}
+
 function runSnippet(heading: string, snippet: string): void {
   // Strip off the jsDoc markers.
   snippetRecord['running']++;
   var oldLog = console.log;
   console.log = function(logstr) {};
-  const lines = snippet.split('\n');
-  lines.shift();
-  lines.pop();
-  snippet = lines.join('\n');
-  const escapedSnippet = snippet.replace(/\n/g, '\\n');
+
+  snippet = stripJsDocTags(snippet);
   const snippetAsAsyncFunction = `(async function() {\n${snippet}\n})()`;
 
   //  const wrappingLines = [
