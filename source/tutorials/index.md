@@ -34,7 +34,7 @@ webcam data. We'll use those predictions to play [Pac-Man](https://en.wikipedia.
 __Developer Preview:__ This tutorial explains how to convert and serve an existing TensorFlow SavedModel to run in the browser.
 
 # Guides
-<h2><a href="./tf-layers-for-keras-users.html">TensorFlow.js Layers API for Keras Users</a></h2>
+<h2><a href="./tfjs-layers-for-keras-users.html">TensorFlow.js Layers API for Keras Users</a></h2>
 
 This guide explains the similarities and differences between the Layers API
 of TensorFlow.js and [Keras](https://keras.io/).
