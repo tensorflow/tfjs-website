@@ -36,8 +36,6 @@ Changing files in these two locations should immediately be reflected in the dev
 
 Updating the API docs is a bit more involved as they are built from the sources of tfjs-core and tfjs-layers. The template for api docs is `api.hbs` and each version of the docs has a corresponding folder in `_data`. Files in `_data` are automatically generated and shouldn't be edited.
 
-NOTE: Currently skeleton.json is in _data and will be moved out. See https://github.com/tensorflow/tfjs-website/issues/16 for details.
-
 To edit the docs and see changes reflected in the site you can edit the repositories that are located in `libs`. Note that these submodules behave like *regular git repositories* and have an origin pointing to the canonical repository for `tfjs-core` and `tfjs-layers`. Making an API doc change involves making a commit to the subproject repo and to this one. You may need to add a new git remote in the submodule if you want to make a PR from a fork of tfjs-website repo. Make sure to do `git checkout master` or make a new branch for your changes.
 
 There are two ways to regenerate the docs json.
@@ -74,4 +72,4 @@ To build the site run
 yarn build-prod
 ```
 
-Deploy instructions are go/tfjs-site-deploy (for googlers only)
+Deployment instructions are available internally. Contact @tafsiri for access. (Googlers only)
