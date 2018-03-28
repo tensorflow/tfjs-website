@@ -72,4 +72,4 @@ To build the site run
 yarn build-prod
 ```
 
-Deploy instructions are go/tfjs-site-deploy (for googlers only)
+Deployment instructions are available internally. Contact @tafsiri for access. (Googlers only)
