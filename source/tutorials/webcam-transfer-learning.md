@@ -112,7 +112,7 @@ This line reads a single frame from the webcam `<video>` element and returns a
 `Tensor` of shape `[height, width, 3]`. The inner most
 dimension, `3`, corresponds to the three channels, RGB.
 
-See the documentation for [tf.fromPixels](https://js.tensorflow.org/api/0.6.0/index.html#tf.fromPixels) for supported input HTML element types.
+See the documentation for [tf.fromPixels](../api/latest/index.html#tf.fromPixels) for supported input HTML element types.
 
 ```js
 const croppedImage = this.cropImage(webcamImage);
@@ -370,7 +370,7 @@ the number of units corresponding to the number of classes we want to predict.
 We'll use a `softmax` activation function which means we interpret the output of
 the last layer as a probability distribution over the possible classes.
 
-*Check out the [API reference](https://js.tensorflow.org/api/0.6.0/index.html#tf.layers.dense)
+*Check out the [API reference](../api/latest/index.html#tf.layers.dense)
 for details on the arguments to the layer constructors or check out the
 [convolutional MNIST tutorial](./mnist.html).*
 

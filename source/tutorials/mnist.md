@@ -39,7 +39,7 @@ The handwritten MNIST digits we will learn to classify look like this:
 
 <img src="../images/mnist_4.png" alt="mnist 4" width=100/> <img src="../images/mnist_3.png" alt="mnist 3" width=100/> <img src="../images/mnist_8.png" alt="mnist 8" width=100/>
 
-To preprocess our data, we've written [data.js](https://github.com/tensorflow/tfjs-examples/blob/master/mnist-core/data.js), which contains the class `MnistData` that fetches random batches of MNIST images from a hosted version of the MNIST dataset we provide for convenience. 
+To preprocess our data, we've written [data.js](https://github.com/tensorflow/tfjs-examples/blob/master/mnist-core/data.js), which contains the class `MnistData` that fetches random batches of MNIST images from a hosted version of the MNIST dataset we provide for convenience.
 
 `MnistData` splits the entire dataset into training data and test data. When we train the model, the classifier will see only the training set. When we evaluate the model, we'll use only the data in the test set, which the model has not yet seen, to see how well the model's predictions generalize to brand-new data.
 
@@ -60,13 +60,13 @@ First, let's instantiate our `Sequential` model with `tf.sequential`:
 const model = tf.sequential();
 ```
 
-Now that we've created a model, let's add layers to it. 
+Now that we've created a model, let's add layers to it.
 
 ### Adding the First Layer
 
 The first layer we’ll add is a two-dimensional convolutional layer. Convolutions slide a filter window over an image to learn transformations that are spatially invariant (that is, patterns or objects in different parts of the image will be treated the same way). For more information about convolutions, see [this article](http://colah.github.io/posts/2014-07-Understanding-Convolutions/).
 
-We can create our 2-D convolutional layer using [`tf.layers.conv2d`](../api/0.0.1/index.html#layers.conv2d), which accepts a configuration object that defines the layer's structure:
+We can create our 2-D convolutional layer using [`tf.layers.conv2d`](../api/latest/index.html#layers.conv2d), which accepts a configuration object that defines the layer's structure:
 
 ```js
 model.add(tf.layers.conv2d({
@@ -96,7 +96,7 @@ Let’s break down each argument in the configuration object:
 
 ### Adding the Second Layer
 
-Let’s add a second layer to the model: a max pooling layer, which we'll create using [`tf.layers.maxPooling2d`](../api/0.0.1/index.html#tf.layers.maxPooling2d). This layer will downsample the result (also known as the activation) from the convolution by computing the maximum value for each sliding window:
+Let’s add a second layer to the model: a max pooling layer, which we'll create using [`tf.layers.maxPooling2d`](../api/latest/index.html#tf.layers.maxPooling2d). This layer will downsample the result (also known as the activation) from the convolution by computing the maximum value for each sliding window:
 
 ```js
 model.add(tf.layers.maxPooling2d({
@@ -132,13 +132,13 @@ model.add(tf.layers.maxPooling2d({
 }));
 ```
 
-Next, let's add a [`flatten`](../api/0.0.1/index.html#tf.layers.flatten) layer to flatten the output of the previous layer to a vector:
+Next, let's add a [`flatten`](../api/latest/index.html#tf.layers.flatten) layer to flatten the output of the previous layer to a vector:
 
 ```js
 model.add(tf.layers.flatten());
 ```
 
-Lastly, let's add a [`dense`](../api/0.0.1/index.html#tf.layers.dense) layer (also known as a fully connected layer), which will perform the final classification. Flattening the output of a convolution+pooling layer pair before a dense layer is another common pattern in neural networks:
+Lastly, let's add a [`dense`](../api/latest/index.html#tf.layers.dense) layer (also known as a fully connected layer), which will perform the final classification. Flattening the output of a convolution+pooling layer pair before a dense layer is another common pattern in neural networks:
 
 ```js
 model.add(tf.layers.dense({
@@ -208,8 +208,8 @@ const BATCH_SIZE = 64;
 // How many batches to train the model for.
 const TRAIN_BATCHES = 100;
 
-// Every TEST_ITERATION_FREQUENCY batches, test accuracy over TEST_BATCH_SIZE examples. 
-// Ideally, we'd compute accuracy over the whole test set, but for performance 
+// Every TEST_ITERATION_FREQUENCY batches, test accuracy over TEST_BATCH_SIZE examples.
+// Ideally, we'd compute accuracy over the whole test set, but for performance
 // reasons we'll use a subset.
 const TEST_BATCH_SIZE = 1000;
 const TEST_ITERATION_FREQUENCY = 5;
@@ -291,7 +291,7 @@ if (i % TEST_ITERATION_FREQUENCY === 0) {
 
 **NOTE:** Calling `model.fit()` once on the whole dataset will result in uploading the
 whole dataset to the GPU, which could freeze the application. To avoid uploading
-too much data to the GPU, we recommend calling `model.fit()` inside a `for` loop, 
+too much data to the GPU, we recommend calling `model.fit()` inside a `for` loop,
 passing a single batch of data at a time, as shown below:
 
 ```js
@@ -305,7 +305,7 @@ passing a single batch of data at a time, as shown below:
 Let's break down the arguments again:
 
 * `x`. Our input image data. Remember that we are feeding examples in batches so we must tell the
-`fit` function how large our batch is. `MnistData.nextTrainBatch` returns images with shape `[BATCH_SIZE, 784]`—all the data for the image in a 1-D vector of length 784 (28 * 28). However, our model expects image data in the shape `[BATCH_SIZE, 28, 28, 1]`, so we [`reshape`](../api/0.0.1/index.html#tf.reshape) accordingly. 
+`fit` function how large our batch is. `MnistData.nextTrainBatch` returns images with shape `[BATCH_SIZE, 784]`—all the data for the image in a 1-D vector of length 784 (28 * 28). However, our model expects image data in the shape `[BATCH_SIZE, 28, 28, 1]`, so we [`reshape`](../api/latest/index.html#tf.reshape) accordingly.
 
 * `y`. Our labels; the correct digit classifications for each image.
 
@@ -315,7 +315,7 @@ Let's break down the arguments again:
 
 * `epochs`. Number of training runs to perform on a batch. Since we are iteratively feeding batches to `fit`, we only want it to train from this batch a single time.
 
-Each time we call `fit`, it returns a rich object that contains logs of our metrics, which we store in `history`. We extract our loss and accuracy for each training iteration, so we can plot them on a graph: 
+Each time we call `fit`, it returns a rich object that contains logs of our metrics, which we store in `history`. We extract our loss and accuracy for each training iteration, so we can plot them on a graph:
 
 ```js
   const loss = history.history.loss[0];
