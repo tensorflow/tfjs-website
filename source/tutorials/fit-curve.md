@@ -33,7 +33,7 @@ Our synthetic data set is composed of x- and y-coordinates that look as follows 
 
 <img src="../images/fit_curve_data.png" alt="Input data scatterplot. Data approximates a cubic function with a local minimum around (-0.6, 0) and a local maximum around (0.4, 1)" style="max-width: 500px;" width="500"/>
 
-This data was generated using a cubic function of the format *y* = *a*x<sup>3</sup> + *b*x<sup>2</sup> + *c*x + *d*. 
+This data was generated using a cubic function of the format *y* = *a*x<sup>3</sup> + *b*x<sup>2</sup> + *c*x + *d*.
 
 Our task is to learn the _coefficients_ of this function: the values of *a*, *b*, *c*, and *d* that best fit the data. Let's take a look at how we might learn those values using TensorFlow.js operations.
 
@@ -51,7 +51,7 @@ const d = tf.variable(tf.scalar(Math.random()));
 ## Step 2: Build a Model
 
 We can represent our polynomial function *y* = *a*x<sup>3</sup> + *b*x<sup>2</sup> + *c*x + *d* in
-TensorFlow.js by chaining a series of mathematical operations: addition ([`add`](../api/0.0.1/index.html#tf.add)), multiplication ([`mul`](../api/0.0.1/index.html#tf.mul)), and exponentiation ([`pow`](../api/0.0.1/index.html#tf.pow) and [`square`](../api/0.0.1/index.html#tf.square)). 
+TensorFlow.js by chaining a series of mathematical operations: addition ([`add`](../api/latest/index.html#tf.add)), multiplication ([`mul`](../api/latest/index.html#tf.mul)), and exponentiation ([`pow`](../api/latest/index.html#tf.pow) and [`square`](../api/latest/index.html#tf.square)).
 
 The following code constructs a `predict` function that takes `x` as input and returns `y`:
 
@@ -76,7 +76,7 @@ Because we started with random values, our function is likely a very poor fit fo
 
 ## Step 3: Train the Model
 
-Our final step is to train the model to learn good values for the coefficients. To train our model, we need to define three things: 
+Our final step is to train the model to learn good values for the coefficients. To train our model, we need to define three things:
 
 * A _loss function_, which measures how well a given polynomial fits the data. The lower the loss value, the better the polynomial fits the data.
 
@@ -101,9 +101,9 @@ function loss(predictions, labels) {
 
 ### Define the Optimizer
 
-For our optimizer, we'll use [Stochastic Gradient Descent](https://developers.google.com/machine-learning/crash-course/glossary#SGD) (SGD). SGD works by taking the [gradient](https://developers.google.com/machine-learning/crash-course/glossary#gradient) of a random point in our data set and using its value to inform whether to increase or decrease the value of our model coefficients. 
+For our optimizer, we'll use [Stochastic Gradient Descent](https://developers.google.com/machine-learning/crash-course/glossary#SGD) (SGD). SGD works by taking the [gradient](https://developers.google.com/machine-learning/crash-course/glossary#gradient) of a random point in our data set and using its value to inform whether to increase or decrease the value of our model coefficients.
 
-TensorFlow.js provides a convenience function for performing SGD, so that you don't have to worry about performing all these mathematical operations yourself. [`tf.train.sdg`](../api/0.0.1/index.html#tf.train.sgd) takes as input a desired learning rate, and returns an `SGDOptimizer` object, which can be invoked to optimize the value of the loss function.
+TensorFlow.js provides a convenience function for performing SGD, so that you don't have to worry about performing all these mathematical operations yourself. [`tf.train.sdg`](../api/latest/index.html#tf.train.sgd) takes as input a desired learning rate, and returns an `SGDOptimizer` object, which can be invoked to optimize the value of the loss function.
 
 The _learning rate_ controls how big the model's adjustments will be when improving its predictions. A low learning rate will make the learning process run more slowly (more training iterations needed to learn good coefficients), while a high learning rate will speed up learning but might result in the model oscillating around the right values, always overcorrecting.
 
@@ -149,7 +149,7 @@ Next, we define the learning rate and SGD optimizer as discussed in the previous
 ```
 
 Finally, we set up a `for` loop that runs `numIterations` training iterations. In each iteration,
-we invoke [`minimize`](../api/0.0.1/index.html#class:tf.train.Optimizer) on the optimizer, which is where the magic happens: 
+we invoke [`minimize`](../api/latest/index.html#class:tf.train.Optimizer) on the optimizer, which is where the magic happens:
 
 ```js
   for (let iter = 0; iter < numIterations; iter++) {
@@ -162,11 +162,11 @@ we invoke [`minimize`](../api/0.0.1/index.html#class:tf.train.Optimizer) on the 
 
 `minimize` takes a function that does two things:
 
-1. It predicts *y* values (`predYs`) for all the *x* values using the `predict` model function we defined earlier in Step 2. 
+1. It predicts *y* values (`predYs`) for all the *x* values using the `predict` model function we defined earlier in Step 2.
 
-2. It returns the mean squared error loss for those predictions using the loss function we defined earlier in **Define the Loss Function**. 
+2. It returns the mean squared error loss for those predictions using the loss function we defined earlier in **Define the Loss Function**.
 
-`minimize` then automatically adjusts any variables used by this function (here, the coefficients `a`, `b`, `c`, and `d`) in order to minimize the return value (our loss). 
+`minimize` then automatically adjusts any variables used by this function (here, the coefficients `a`, `b`, `c`, and `d`) in order to minimize the return value (our loss).
 
 After running our training loop, `a`, `b`, `c`, and `d` will contain the coefficient values learned by the model after 75 iterations of SGD.
 
