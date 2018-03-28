@@ -27,7 +27,6 @@ const TOPLEVEL_NAMESPACE = 'tf';
 
 commander.option('--out <path>', 'merged output JSON file')
     .option('--skeleton <path>', 'path to the skeleton JSON')
-    .option('--bundlePath <path>', 'path to the union bundle')
     .parse(process.argv);
 if (commander.out == null) {
   throw new Error(`No merged output JSON file target specified.`);
