@@ -4,4 +4,6 @@ public
 db.json
 libs
 .DS_Store
+source/_data/api/local
+source/api/local
 

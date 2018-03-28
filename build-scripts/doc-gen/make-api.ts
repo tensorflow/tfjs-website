@@ -29,19 +29,18 @@ commander.option('--in <path>', 'main source entry')
     .option('--package <path>', 'Package.json path')
     .option('--src <path>', 'Path to src folder of repo')
     .option('--repo <path>', 'Path to repo')
-    .option('--bundle  <path>', 'JS Bundle Path')
     .option('--github <url>', 'Github repository URL')
     .option('--out <path>', 'Output Path')
     .parse(process.argv);
 
 console.log('make-api params', [
-  commander.in, commander.package, commander.src, commander.bundle,
-  commander.github, commander.out
+  commander.in, commander.package, commander.src, commander.github,
+  commander.out
 ])
 
 const allParamsPresent = [
-  commander.in, commander.package, commander.src, commander.bundle,
-  commander.github, commander.out
+  commander.in, commander.package, commander.src, commander.github,
+  commander.out
 ].every((param) => param !== undefined);
 
 if (!allParamsPresent) {
