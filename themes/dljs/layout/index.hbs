@@ -157,7 +157,7 @@
         See our <a href='./tutorials'>tutorials</a>,
         <a href='https://github.com/tensorflow/tfjs-examples' target="_blank">examples</a>
         and <a href="./api/{{latestVersion}}/">documentation</a> for more details,
-        but let's look at what it looks like to train a simple model in TensorFlow.js
+        but let's see what it looks like to train a simple model in TensorFlow.js
       </p>
       <div class="gs-code">
 <pre>
@@ -165,7 +165,8 @@
   import * as tf from '@tensorflow/tfjs';
 
   // Define a model for linear regression.
-  const model = tf.sequential({layers: [tf.layers.dense({units: 1, inputShape: [1]})]});
+  const model = tf.sequential();
+  model.add(tf.layers.dense({units: 1, inputShape: [1]});
 
   // Prepare the model for training: Specify the loss and the optimizer.
   model.compile({loss: 'meanSquaredError', optimizer: 'sgd'});
