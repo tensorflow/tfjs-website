@@ -52,7 +52,7 @@
             "simple stack of each layer's input resting on the top of the",
             "previous layer's output.</li>",
             "<li>Model &mdash; Offers more control if the layers need to be",
-            "wired together in graph-like ways &emdash; multiple 'towers',",
+            "wired together in graph-like ways &mdash; multiple 'towers',",
             "layers that skip a layer, etc.</li></ul>"],
         "pin": ["sequential", "model"]
       },
