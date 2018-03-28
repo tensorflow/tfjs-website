@@ -12,7 +12,7 @@
     "prep": "git submodule init && git submodule update && git submodule foreach git pull origin master && yarn",
     "serve": "hexo clean && hexo server",
     "build": "hexo clean && hexo generate",
-    "post-build": "babel public/js --out-dir public/js",
+    "post-build": "babel public/js/*.js --out-dir public/js",
     "build-api": "hexo clean && node build-scripts/build-api.js --local",
     "build-and-serve": "yarn build-api && yarn serve",
     "build-prod": "yarn prep && hexo clean && node build-scripts/build-api.js && yarn build && yarn post-build"
