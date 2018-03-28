@@ -81,8 +81,9 @@ libs.forEach(lib => {
   // to what is in libs. Else we want to check out a tag that correspond to
   // to the version specified the component.
   if (!commander.local) {
-    const checkoutCommand = `cd libs/${
-        lib.repo} && git fetch --tags --force && git checkout ${lib.tag}`;
+    const checkoutCommand = `cd libs/${lib.repo} \
+      && git fetch --tags --force \
+      && git checkout ${lib.tag}`;
     sh(checkoutCommand, `Error checkout out ${lib.tag} for ${lib.repo}`);
   }
 
