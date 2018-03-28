@@ -40,9 +40,24 @@ function extractSnippets(documentation: string): string[] {
   return documentation.match(/```js[\s\S]*?```/g);
 }
 
+const snippetRecord = {
+  'running': 0,
+  'pass': 0,
+  'fail': []
+};
+
+function updateResults(label, snippet, err) {
+  snippetRecord['running']--;
+  if (err == null) {
+    snippetRecord['pass']++;
+  } else {
+    snippetRecord['fail'].push({label, snippet, exception: err});
+  }
+}
 
 function runSnippet(heading: string, snippet: string): void {
   // Strip off the jsDoc markers.
+  snippetRecord['running']++;
   var oldLog = console.log;
   console.log = function(logstr) {};
   const lines = snippet.split('\n');
@@ -50,22 +65,24 @@ function runSnippet(heading: string, snippet: string): void {
   lines.pop();
   snippet = lines.join('\n');
   const escapedSnippet = snippet.replace(/\n/g, '\\n');
-  const snippetAsAsyncFunction =
-      `(async function() {\n${snippet}\n})().catch(e => {console.warn('${
-          heading}');console.warn("${escapedSnippet}");console.warn(e);});`;
+  const snippetAsAsyncFunction = `(async function() {\n${snippet}\n})()`;
 
-  const wrappingLines = [
-    'tf.setBackend(\'cpu\');', 'tf.ENV.engine.startScope();',
-    `await eval(${snippetAsAsyncFunction});`, 'tf.ENV.engine.endScope([]);'
-  ];
-  snippet = wrappingLines.join('\n');
-
+  //  const wrappingLines = [
+  //    'tf.setBackend(\'cpu\');', 'tf.ENV.engine.startScope();',
+  //    `${snippetAsAsyncFunction}`, 'tf.ENV.engine.endScope([]);'
+  //  ];
+  //  const fullSnippet = wrappingLines.join('\n');
   try {
-    eval(snippetAsAsyncFunction);
+    eval(snippetAsAsyncFunction)
+        .then(e => {
+          updateResults(heading, snippet, e);
+        })
+        .catch(e => {
+          updateResults(heading, snippet, e);
+        });
   } catch (e) {
-    console.warn(heading);
-    console.warn(snippet);
-    console.warn(`Snippet failed ${e}`);
+    console.warn('failure SYNC branch');
+    updateResults(heading, snippet, e);
   }
   console.log = oldLog;
 }
@@ -77,12 +94,38 @@ docsForRepos.forEach(docsForRepo => {
         const snippets = extractSnippets(symbol.documentation);
         if (snippets != null) {
           snippets.forEach(snippet => {
-            runSnippet(
-                `${heading.name} - ${subheading.name} - ${symbol.symbolName}`,
-                snippet);
+            const label =
+                `${heading.name} - ${subheading.name} - ${symbol.symbolName}`;
+            runSnippet(label, snippet);
           });
         }
       });
     });
   });
 });
+
+
+function generateReport() {
+  const totalSnippets =
+      snippetRecord.fail.length + snippetRecord.pass + snippetRecord.running;
+  console.log(`====================================================`);
+  console.log(`Ran ${totalSnippets}`);
+  if (snippetRecord.running > 0) {
+    console.log(`Failed to finish ${snippetRecord.running}`);
+  }
+  if (snippetRecord.fail.length > 0) {
+    console.log(`FAILED: ${snippetRecord.fail.length}`);
+    snippetRecord.fail.forEach(entry => {
+      console.log(`====================================================`);
+      console.log(`${entry.label}`);
+      console.log(`${entry.exception}`);
+      console.log('');
+      console.log(`${entry.snippet}`);
+    })
+  }
+  console.log(`+====================================================`);
+}
+
+setTimeout(() => {
+  generateReport();
+}, 10000);
