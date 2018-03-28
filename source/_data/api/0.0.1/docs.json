@@ -69,7 +69,7 @@
                   "isConfigParam": false
                 }
               ],
-              "returnType": "[tf.Scalar](#class:Tensor)",
+              "returnType": "Scalar",
               "documentation": "Creates rank-0 [tf.Tensor](#class:Tensor) (scalar) with the provided value and dtype.\n\nThis method is mainly for self documentation and TypeScript typings as the\nsame functionality can be achieved with [tf.tensor()](#tensor). In general, we recommend\nusing this method as it makes code more readable.\n\n```js\ndl.scalar(3.14).print();\n```",
               "fileName": "#94",
               "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/array_ops.ts#L94-L102",
@@ -100,7 +100,7 @@
                   "isConfigParam": false
                 }
               ],
-              "returnType": "[tf.Tensor1D](#class:Tensor)",
+              "returnType": "Tensor1D",
               "documentation": "Creates rank-1 [tf.Tensor](#class:Tensor) with the provided values, shape and dtype.\n\nThis method is mainly for self documentation and TypeScript typings as the\nsame functionality can be achieved with [tf.tensor()](#tensor). In general, we recommend\nusing this method as it makes code more readable.\n\n```js\ndl.tensor1d([1, 2, 3]).print();\n```",
               "fileName": "#119",
               "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/array_ops.ts#L119-L127",
@@ -138,7 +138,7 @@
                   "isConfigParam": false
                 }
               ],
-              "returnType": "[tf.Tensor2D](#class:Tensor)",
+              "returnType": "Tensor2D",
               "documentation": "Creates rank-2 [tf.Tensor](#class:Tensor) with the provided values, shape and dtype.\n\nThis method is mainly for self documentation and TypeScript typings as the\nsame functionality can be achieved with [tf.tensor()](#tensor). In general, we recommend\nusing this method as it makes code more readable.\n\n  ```js\n// Pass a nested array.\ndl.tensor2d([[1, 2], [3, 4]]).print();\n```\n```js\n// Pass a flat array and specify a shape.\ndl.tensor2d([1, 2, 3, 4], [2, 2]).print();\n```",
               "fileName": "#151",
               "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/array_ops.ts#L151-L163",
@@ -176,7 +176,7 @@
                   "isConfigParam": false
                 }
               ],
-              "returnType": "[tf.Tensor3D](#class:Tensor)",
+              "returnType": "Tensor3D",
               "documentation": "Creates rank-3 [tf.Tensor](#class:Tensor) with the provided values, shape and dtype.\n\nThis method is mainly for self documentation and TypeScript typings as\nthe same functionality can be achieved with [tf.tensor()](#tensor). In general, we\nrecommend using this method as it makes code more readable.\n\n  ```js\n// Pass a nested array.\ndl.tensor3d([[[1], [2]], [[3], [4]]]).print();\n```\n```js\n// Pass a flat array and specify a shape.\ndl.tensor3d([1, 2, 3, 4], [2, 2, 1]).print();\n```",
               "fileName": "#187",
               "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/array_ops.ts#L187-L199",
@@ -214,7 +214,7 @@
                   "isConfigParam": false
                 }
               ],
-              "returnType": "[tf.Tensor4D](#class:Tensor)",
+              "returnType": "Tensor4D",
               "documentation": "Creates rank-4 [tf.Tensor](#class:Tensor) with the provided values, shape and dtype.\n  ```js\n// Pass a nested array.\ndl.tensor4d([[[[1], [2]], [[3], [4]]]]).print();\n```\n```js\n// Pass a flat array and specify a shape.\ndl.tensor4d([1, 2, 3, 4], [1, 2, 2, 1]).print();\n```",
               "fileName": "#218",
               "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/array_ops.ts#L218-L230",
@@ -345,7 +345,7 @@
                   "isConfigParam": false
                 }
               ],
-              "returnType": "[tf.Tensor3D](#class:Tensor)",
+              "returnType": "Tensor3D",
               "documentation": "Creates a [tf.Tensor](#class:Tensor) from an image.\n\n```js\nconst image = new ImageData(1, 1);\nimage.data[0] = 100;\nimage.data[1] = 150;\nimage.data[2] = 200;\nimage.data[3] = 255;\n\ndl.fromPixels(image).print();\n```",
               "fileName": "#561",
               "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/array_ops.ts#L561-L571",
@@ -383,7 +383,7 @@
                   "isConfigParam": false
                 }
               ],
-              "returnType": "[tf.Tensor1D](#class:Tensor)",
+              "returnType": "Tensor1D",
               "documentation": "Return an evenly spaced sequence of numbers over the given interval.\n\n```js\ndl.linspace(0, 9, 10).print();\n```",
               "fileName": "#938",
               "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/array_ops.ts#L938-L954",
@@ -402,7 +402,7 @@
                 {
                   "name": "indices",
                   "documentation": "1D Array of indices.",
-                  "type": "[tf.Tensor1D](#class:Tensor)",
+                  "type": "Tensor1D",
                   "optional": false,
                   "isConfigParam": false
                 },
@@ -428,7 +428,7 @@
                   "isConfigParam": false
                 }
               ],
-              "returnType": "[tf.Tensor2D](#class:Tensor)",
+              "returnType": "Tensor2D",
               "documentation": "Creates a one-hot [tf.Tensor](#class:Tensor). The locations represented by `indices` take\nvalue `onValue` (defaults to 1), while all other locations take value\n`offValue` (defaults to 0).\n\n```js\ndl.oneHot(dl.tensor1d([0, 1]), 3).print();\n```",
               "fileName": "#531",
               "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/array_ops.ts#L531-L541",
@@ -656,8 +656,8 @@
                   "isConfigParam": false
                 }
               ],
-              "returnType": "[tf.Tensor1D](#class:Tensor)",
-              "documentation": "Creates a new [tf.Tensor1D](#class:Tensor) filled with the numbers in the range provided.\n\nThe tensor is a is half-open interval meaning it includes start, but\nexcludes stop. Decrementing ranges and negative step values are also\nsupported.\n\n```js\ndl.range(0, 9, 2).print();\n```",
+              "returnType": "Tensor1D",
+              "documentation": "Creates a new `Tensor1D` filled with the numbers in the range provided.\n\nThe tensor is a is half-open interval meaning it includes start, but\nexcludes stop. Decrementing ranges and negative step values are also\nsupported.\n\n```js\ndl.range(0, 9, 2).print();\n```",
               "fileName": "#972",
               "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/array_ops.ts#L972-L1005",
               "isFunction": true,
@@ -755,8 +755,8 @@
               ],
               "returnType": "[tf.Variable](#class:Variable)",
               "documentation": "Creates a new variable with the provided initial value.\n```js\nconst x = dl.variable(dl.tensor([1, 2, 3]));\nx.assign(dl.tensor([4, 5, 6]));\n\nx.print();\n```",
-              "fileName": "#899",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/tensor.ts#L899-L907",
+              "fileName": "#894",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/tensor.ts#L894-L902",
               "isFunction": true,
               "displayName": "tf.variable",
               "urlHash": "variable"
@@ -840,7 +840,7 @@
                   "symbolName": "flatten",
                   "paramStr": "()",
                   "parameters": [],
-                  "returnType": "[tf.Tensor1D](#class:Tensor)",
+                  "returnType": "Tensor1D",
                   "documentation": "Flatten a Tensor to a 1D array. ",
                   "fileName": "#213",
                   "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/tensor.ts#L213-L217",
@@ -855,8 +855,8 @@
                   "symbolName": "asScalar",
                   "paramStr": "()",
                   "parameters": [],
-                  "returnType": "[tf.Scalar](#class:Tensor)",
-                  "documentation": "Converts a size-1 [tf.Tensor](#class:Tensor) to a [tf.Scalar](#class:Tensor). ",
+                  "returnType": "Scalar",
+                  "documentation": "Converts a size-1 [tf.Tensor](#class:Tensor) to a `Scalar`. ",
                   "fileName": "#220",
                   "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/tensor.ts#L220-L225",
                   "isFunction": true,
@@ -870,8 +870,8 @@
                   "symbolName": "as1D",
                   "paramStr": "()",
                   "parameters": [],
-                  "returnType": "[tf.Tensor1D](#class:Tensor)",
-                  "documentation": "Converts a [tf.Tensor](#class:Tensor) to a [tf.Tensor1D](#class:Tensor). ",
+                  "returnType": "Tensor1D",
+                  "documentation": "Converts a [tf.Tensor](#class:Tensor) to a `Tensor1D`. ",
                   "fileName": "#228",
                   "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/tensor.ts#L228-L232",
                   "isFunction": true,
@@ -887,21 +887,21 @@
                   "parameters": [
                     {
                       "name": "rows",
-                      "documentation": "Number of rows in [tf.Tensor2D](#class:Tensor).",
+                      "documentation": "Number of rows in `Tensor2D`.",
                       "type": "number",
                       "optional": false,
                       "isConfigParam": false
                     },
                     {
                       "name": "columns",
-                      "documentation": "Number of columns in [tf.Tensor2D](#class:Tensor).",
+                      "documentation": "Number of columns in `Tensor2D`.",
                       "type": "number",
                       "optional": false,
                       "isConfigParam": false
                     }
                   ],
-                  "returnType": "[tf.Tensor2D](#class:Tensor)",
-                  "documentation": "Converts a [tf.Tensor](#class:Tensor) to a [tf.Tensor2D](#class:Tensor).",
+                  "returnType": "Tensor2D",
+                  "documentation": "Converts a [tf.Tensor](#class:Tensor) to a `Tensor2D`.",
                   "fileName": "#240",
                   "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/tensor.ts#L240-L244",
                   "isFunction": true,
@@ -917,28 +917,28 @@
                   "parameters": [
                     {
                       "name": "rows",
-                      "documentation": "Number of rows in [tf.Tensor3D](#class:Tensor).",
+                      "documentation": "Number of rows in `Tensor3D`.",
                       "type": "number",
                       "optional": false,
                       "isConfigParam": false
                     },
                     {
                       "name": "columns",
-                      "documentation": "Number of columns in [tf.Tensor3D](#class:Tensor).",
+                      "documentation": "Number of columns in `Tensor3D`.",
                       "type": "number",
                       "optional": false,
                       "isConfigParam": false
                     },
                     {
                       "name": "depth",
-                      "documentation": "Depth of [tf.Tensor3D](#class:Tensor).",
+                      "documentation": "Depth of `Tensor3D`.",
                       "type": "number",
                       "optional": false,
                       "isConfigParam": false
                     }
                   ],
-                  "returnType": "[tf.Tensor3D](#class:Tensor)",
-                  "documentation": "Converts a [tf.Tensor](#class:Tensor) to a [tf.Tensor3D](#class:Tensor).",
+                  "returnType": "Tensor3D",
+                  "documentation": "Converts a [tf.Tensor](#class:Tensor) to a `Tensor3D`.",
                   "fileName": "#253",
                   "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/tensor.ts#L253-L257",
                   "isFunction": true,
@@ -954,35 +954,35 @@
                   "parameters": [
                     {
                       "name": "rows",
-                      "documentation": "Number of rows in [tf.Tensor4D](#class:Tensor).",
+                      "documentation": "Number of rows in `Tensor4D`.",
                       "type": "number",
                       "optional": false,
                       "isConfigParam": false
                     },
                     {
                       "name": "columns",
-                      "documentation": "Number of columns in [tf.Tensor4D](#class:Tensor).",
+                      "documentation": "Number of columns in `Tensor4D`.",
                       "type": "number",
                       "optional": false,
                       "isConfigParam": false
                     },
                     {
                       "name": "depth",
-                      "documentation": "Depth of [tf.Tensor4D](#class:Tensor).",
+                      "documentation": "Depth of `Tensor4D`.",
                       "type": "number",
                       "optional": false,
                       "isConfigParam": false
                     },
                     {
                       "name": "depth2",
-                      "documentation": "4th dimension of [tf.Tensor4D](#class:Tensor).",
+                      "documentation": "4th dimension of `Tensor4D`.",
                       "type": "number",
                       "optional": false,
                       "isConfigParam": false
                     }
                   ],
-                  "returnType": "[tf.Tensor4D](#class:Tensor)",
-                  "documentation": "Converts a [tf.Tensor](#class:Tensor) to a [tf.Tensor4D](#class:Tensor).",
+                  "returnType": "Tensor4D",
+                  "documentation": "Converts a [tf.Tensor](#class:Tensor) to a `Tensor4D`.",
                   "fileName": "#267",
                   "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/tensor.ts#L267-L271",
                   "isFunction": true,
@@ -1273,8 +1273,8 @@
               },
               "symbolName": "Variable",
               "documentation": "A mutable [tf.Tensor](#class:Tensor), useful for persisting state, e.g. for training.",
-              "fileName": "#862",
-              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/tensor.ts#L862-L931",
+              "fileName": "#857",
+              "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/tensor.ts#L857-L926",
               "methods": [
                 {
                   "docInfo": {
@@ -1294,8 +1294,8 @@
                   ],
                   "returnType": "void",
                   "documentation": "Assign a new [tf.Tensor](#class:Tensor) to this variable. The new [tf.Tensor](#class:Tensor) must have the\nsame shape and dtype as the old [tf.Tensor](#class:Tensor).",
-                  "fileName": "#915",
-                  "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/tensor.ts#L915-L930",
+                  "fileName": "#910",
+                  "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/tensor.ts#L910-L925",
                   "isFunction": true,
                   "urlHash": "tf.Variable.assign"
                 }
@@ -1611,7 +1611,7 @@
                 {
                   "name": "indices",
                   "documentation": "The indices of the values to extract.",
-                  "type": "[tf.Tensor1D](#class:Tensor)",
+                  "type": "Tensor1D",
                   "optional": false,
                   "isConfigParam": false
                 },
@@ -1925,7 +1925,7 @@
                 }
               ],
               "returnType": "[tf.SymbolicTensor](#class:SymbolicTensor)",
-              "documentation": "`Input()` is used to instantiate a [tf.SymbolicTensor](#class:SymbolicTensor), and represents\nthe input to a model.  Users should call the `input()` factory function for\nconsistency with other generator functions.\n\nExample:\n\n```js\n// Defines a simple logistic regression model with 32 dimensional input\n// and 3 dimensional output.\nx = tf.input({shape: [32]});\ny = tf.layers.dense({units: 3, activation: 'softmax'}).apply(x);\nmodel = tf.model({inputs: x, outputs: y});\nmodel.predict(tf.ones([2, 32])).print();\n```",
+              "documentation": "`Input()` is used to instantiate a SymbolicTensor, and represents\nthe input to a model.\n\nExample:\n\n```js\n// Simple logistic regression:\nx = tf.input({shape: [32]});\ny = tf.layers.dense({units: 16, activation: 'softmax'}).apply(x);\nmodel = tf.model({inputs: x, outputs: y});\n```",
               "fileName": "#150",
               "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L150-L158",
               "isFunction": true,
@@ -1995,7 +1995,7 @@
                 }
               ],
               "returnType": "[tf.layers.Layer](#class:layers.Layer)",
-              "documentation": "An input layer is an entry point into a [tf.Model](#class:Model).\n\n`InputLayer` is generated automatically for [tf.Sequential](#class:Sequential) models by specifying\nthe `inputshape` or `batchInputShape` for the first layer.  It should not be\nspecified explicitly.\n\n```js\n// Define a model which simply adds two inputs.\nconst inputA = tf.input({shape: [3]});\nconst inputB = tf.input({shape: [3]});\nconst sum = tf.layers.add().apply([inputA, inputB]);\nconst model = tf.model({inputs: [inputA, inputB], outputs: sum});\nconst batchSize = 2;\nmodel.predict([tf.ones([batchSize, 3]), tf.ones([batchSize, 3])]).print();\n```",
+              "documentation": "Layer to be used as an entry point into a graph.",
               "fileName": "#160",
               "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L160-L168",
               "isFunction": true,
@@ -2019,14 +2019,14 @@
               "parameters": [
                 {
                   "name": "modelConfigPath",
-                  "documentation": "A path to the `ModelAndWeightsConfig` JSON describing\nthe model in the canonical TensorFlow.js format.\n\nThe content of the JSON file is assumed to be a JSON object with the\nfollowing fields and values:\n- 'modelTopology': A JSON object that can be either of:\n1. a model architecture JSON consistent with the format of the return\nvalue of `keras.Model.to_json()`\n2. a full model JSON in the format of `keras.models.save_model()`.\n- 'weightsManifest': A TensorFlow.js weights manifest.\n\nSee the Python converter function `save_model()` for more details.\n\nIt is also assumed that model weights can be accessed from relative paths\ndescribed by the `paths` fields in weights manifest.",
+                  "documentation": "A path to the `ModelAndWeightsConfig` JSON describing\nthe model in the canonical TensorFlow.js format.\n\nThis provides the most convenient way to load a TensorFlow.js saved model.\n\nThe content of `model.json` is assumed to be a JSON object with the\nfollowing fields and values:\n- 'modelTopology': A JSON object that can be\n- a model architecture JSON consistent with the format of the return\nvalue of `keras.Model.to_json()`, or\n- a full model JSON in the format of `keras.models.save_model()`.\n- 'weightsManifest': A TensorFlow.js weights manifest.\nSee the Python converter function `save_model()` for more details.\n\nIt is also assumed that model weights can be accessed from relative paths\ndescribed by the `paths` fields in weights manifest.",
                   "type": "string",
                   "optional": false,
                   "isConfigParam": false
                 }
               ],
               "returnType": "Promise",
-              "documentation": "Load a model, including its topology and optionally weights.  See the\nTutorial named \"How to import a Keras Model\" for usage examples.",
+              "documentation": "Load a model, including its topology and optionally weights.",
               "fileName": "#141",
               "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L141-L148",
               "isFunction": true,
@@ -2044,54 +2044,30 @@
                 "subheading": "Classes"
               },
               "symbolName": "Model",
-              "documentation": "A [tf.Model](#class:Model) is a directed, acyclic graph of `Layer`s plus methods for\ntraining, evaluation, prediction and saving.\n\nThe [tf.Model](#class:Model) is the basic unit of training, inference and evaluation in\nTensorFlow.js. To create a `Model, use [tf.model()](#model).\n\nSee also:\n   [tf.Sequential](#class:Sequential), [tf.loadModel()](#loadModel).",
-              "fileName": "#621",
-              "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/engine/training.ts#L621-L1621",
+              "documentation": "The [tf.Model](#class:Model) class adds training & evaluation routines to a `Container`.\n\nA [tf.Model](#class:Model) is the basic unit of training, inference and evaluation in\nTensorFlow.js. To create a `Model, use [tf.model()](#model).\n\nSee also:\n   [tf.Sequential](#class:Sequential), [tf.loadModel()](#loadModel).",
+              "fileName": "#620",
+              "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/engine/training.ts#L620-L1602",
               "methods": [
                 {
                   "docInfo": {
                     "heading": "Models",
-                    "subheading": "Classes",
-                    "configParamIndices": [
-                      0
-                    ]
+                    "subheading": "Classes"
                   },
                   "symbolName": "compile",
                   "paramStr": "(config)",
                   "parameters": [
                     {
                       "name": "config",
-                      "documentation": "a `ModelCompileConfig` specifying the loss, optimizer, and\nmetrics to be used for fitting and evaluating this model.",
-                      "type": "Object",
+                      "documentation": "",
+                      "type": "ModelCompileConfig",
                       "optional": false,
                       "isConfigParam": false
-                    },
-                    {
-                      "name": "optimizer",
-                      "documentation": "An instance of `tf.train.Optimizer` or a string name for an Optimizer.",
-                      "type": "string|[tf.train.Optimizer](#class:train.Optimizer)",
-                      "optional": false,
-                      "isConfigParam": true
-                    },
-                    {
-                      "name": "loss",
-                      "documentation": "String (name of objective function) or objective function.\nIf the model has multiple outputs, you can use a different loss\non each output by passing a dictionary or an Array of losses.\nThe loss value that will be minimized by the model will then be the sum\nof all individual losses.",
-                      "type": "string|string[]|{[outputName: string]: string}",
-                      "optional": false,
-                      "isConfigParam": true
-                    },
-                    {
-                      "name": "metrics",
-                      "documentation": "List of metrics to be evaluated by the model during training and testing.\nTypically you will use `metrics=['accuracy']`.\nTo specify different metrics for different outputs of a multi-output\nmodel, you could also pass a dictionary.",
-                      "type": "string[]|{[outputName: string]: string}",
-                      "optional": true,
-                      "isConfigParam": true
                     }
                   ],
                   "returnType": "void",
-                  "documentation": "Configures and prepares the model for training and evaluation.  Compiling\noutfits the model with an optimizer, loss, and/or metrics.  Calling `fit`\nor `evaluate` on an un-compiled model will throw an error.",
-                  "fileName": "#660",
-                  "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/engine/training.ts#L660-L854",
+                  "documentation": "",
+                  "fileName": "#651",
+                  "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/engine/training.ts#L651-L845",
                   "isFunction": true,
                   "urlHash": "tf.Model.compile"
                 },
@@ -2156,10 +2132,10 @@
                       "isConfigParam": true
                     }
                   ],
-                  "returnType": "[tf.Scalar](#class:Tensor)|[tf.Scalar](#class:Tensor)[]",
+                  "returnType": "Scalar|Scalar[]",
                   "documentation": "Returns the loss value & metrics values for the model in test mode.\n\nLoss and metrics are specified during `compile()`, which needs to happen\nbefore calls to `evaluate()`.\n\nComputation is done in batches.\n\n```js\nconst model = tf.sequential({\n   layers: [tf.layers.dense({units: 1, inputShape: [10]})]\n});\nmodel.compile({optimizer: 'sgd', loss: 'meanSquaredError'});\nconst result = model.evaluate(\n     tf.ones([8, 10]), tf.ones([8, 1]), {batchSize: 4});\nresult.print();\n```",
-                  "fileName": "#907",
-                  "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/engine/training.ts#L907-L924",
+                  "fileName": "#898",
+                  "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/engine/training.ts#L898-L915",
                   "isFunction": true,
                   "urlHash": "tf.Model.evaluate"
                 },
@@ -2183,7 +2159,7 @@
                     },
                     {
                       "name": "config",
-                      "documentation": "A `ModelPredictConfig` object containing optional fields.",
+                      "documentation": "",
                       "type": "Object",
                       "optional": true,
                       "isConfigParam": false
@@ -2204,9 +2180,9 @@
                     }
                   ],
                   "returnType": "[tf.Tensor](#class:Tensor)\n      |[tf.Tensor](#class:Tensor)[]",
-                  "documentation": "Generates output predictions for the input samples.\n\nComputation is done in batches.\n\nNote: the \"step\" mode of predict() is currently not supported.\n   This is because the TensorFlow.js core backend is imperative only.\n\n```js\nconst model = tf.sequential({\n   layers: [tf.layers.dense({units: 1, inputShape: [10]})]\n});\nmodel.predict(tf.ones([8, 10]), {batchSize: 4}).print();\n```",
-                  "fileName": "#1049",
-                  "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/engine/training.ts#L1049-L1059",
+                  "documentation": "Generates output predictions for the input samples.\n\nComputation is done in batches.\n\nNote: the \"step\" mode of predict() is currently not supported.\n   This is because the TensorFow.js core backend is imperative only.\n\n```js\nconst model = tf.sequential({\n   layers: [tf.layers.dense({units: 1, inputShape: [10]})]\n});\nmodel.predict(tf.ones([8, 10]), {batchSize: 4}).print();\n```",
+                  "fileName": "#1040",
+                  "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/engine/training.ts#L1040-L1050",
                   "isFunction": true,
                   "urlHash": "tf.Model.predict"
                 },
@@ -2227,9 +2203,9 @@
                     }
                   ],
                   "returnType": "[tf.Tensor](#class:Tensor)|[tf.Tensor](#class:Tensor)[]",
-                  "documentation": "Returns predictions for a single batch of samples.\n\n```js\nconst model = tf.sequential({\n   layers: [tf.layers.dense({units: 1, inputShape: [10]})]\n});\nmodel.predictOnBatch(tf.ones([8, 10])).print();\n```",
-                  "fileName": "#1073",
-                  "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/engine/training.ts#L1073-L1079",
+                  "documentation": "Returns predictions for a single batch of samples.",
+                  "fileName": "#1058",
+                  "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/engine/training.ts#L1058-L1064",
                   "isFunction": true,
                   "urlHash": "tf.Model.predictOnBatch"
                 },
@@ -2351,9 +2327,9 @@
                     }
                   ],
                   "returnType": "Promise",
-                  "documentation": "Trains the model for a fixed number of epochs (iterations on a dataset).\n\n```js\nconst model = tf.sequential({\n     layers: [tf.layers.dense({units: 1, inputShape: [10]})]\n});\nmodel.compile({optimizer: 'sgd', loss: 'meanSquaredError'});\nfor (i = 1; i < 5 ; ++i) {\n   const h = await model.fit(tf.ones([8, 10]), tf.ones([8, 1]), {\n       batchSize: 4,\n       epochs: 3\n   });\n   console.log(\"Loss after Epoch \" + i + \" : \" + h.history.loss[0]);\n}\n```",
-                  "fileName": "#1446",
-                  "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/engine/training.ts#L1446-L1620",
+                  "documentation": "Trains the model for a fixed number of epochs (iterations on a dataset).\n\n```js\nconst model = tf.sequential({\n   layers: [tf.layers.dense({units: 1, inputShape: [10]})]\n});\nmodel.compile({optimizer: 'sgd', loss: 'meanSquaredError'});\nconst history = await model.fit(tf.ones([8, 10]), tf.ones([8, 1]), {\n   batchSize: 4,\n   epochs: 3\n});",
+                  "fileName": "#1427",
+                  "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/engine/training.ts#L1427-L1601",
                   "isFunction": true,
                   "urlHash": "tf.Model.fit"
                 }
@@ -2457,7 +2433,7 @@
                       "isConfigParam": true
                     }
                   ],
-                  "returnType": "[tf.Scalar](#class:Tensor)|[tf.Scalar](#class:Tensor)[]",
+                  "returnType": "Scalar|Scalar[]",
                   "documentation": "Returns the loss value & metrics values for the model in test mode.\n\nLoss and metrics are specified during `compile()`, which needs to happen\nbefore calls to `evaluate()`.\n\nComputation is done in batches.\n\n```js\nconst model = tf.sequential({\n   layers: [tf.layers.dense({units: 1, inputShape: [10]})]\n});\nmodel.compile({optimizer: 'sgd', loss: 'meanSquaredError'});\nconst result = model.evaluate(tf.ones([8, 10]), tf.ones([8, 1]), {\n   batchSize: 4,\n});\nresult.print();\n```",
                   "fileName": "#389",
                   "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/models.ts#L389-L398",
@@ -2750,14 +2726,14 @@
                 {
                   "name": "kernelInitializer",
                   "documentation": "Initializer for the dense kernel weights matrix.",
-                  "type": "'constant'|'glorotNormal'|'glorotUniform'|\n    'heNormal'|'identity'|'leCunNormal'|'ones'|'orthogonal'|'randomNormal'|\n    'randomUniform'|'truncatedNormal'|'varianceScaling'|'zeros'|string|[tf.initializers.Initializer](#class:initializers.Initializer)",
+                  "type": "'constant'|'glorotNormal'|'glorotUniform'|\n    'heNormal'|'identity'|'leCunNormal'|'ones'|'randomNormal'|'randomUniform'|\n    'truncatedNormal'|'varianceScaling'|'zeros'|string|[tf.initializers.Initializer](#class:initializers.Initializer)",
                   "optional": true,
                   "isConfigParam": true
                 },
                 {
                   "name": "biasInitializer",
                   "documentation": "Initializer for the bias vector.",
-                  "type": "'constant'|'glorotNormal'|'glorotUniform'|\n    'heNormal'|'identity'|'leCunNormal'|'ones'|'orthogonal'|'randomNormal'|\n    'randomUniform'|'truncatedNormal'|'varianceScaling'|'zeros'|string|[tf.initializers.Initializer](#class:initializers.Initializer)",
+                  "type": "'constant'|'glorotNormal'|'glorotUniform'|\n    'heNormal'|'identity'|'leCunNormal'|'ones'|'randomNormal'|'randomUniform'|\n    'truncatedNormal'|'varianceScaling'|'zeros'|string|[tf.initializers.Initializer](#class:initializers.Initializer)",
                   "optional": true,
                   "isConfigParam": true
                 },
@@ -2901,7 +2877,7 @@
                 {
                   "name": "embeddingsInitializer",
                   "documentation": "Initializer for the `embeddings` matrix.",
-                  "type": "'constant'|'glorotNormal'|'glorotUniform'|\n    'heNormal'|'identity'|'leCunNormal'|'ones'|'orthogonal'|'randomNormal'|\n    'randomUniform'|'truncatedNormal'|'varianceScaling'|'zeros'|string|[tf.initializers.Initializer](#class:initializers.Initializer)",
+                  "type": "'constant'|'glorotNormal'|'glorotUniform'|\n    'heNormal'|'identity'|'leCunNormal'|'ones'|'randomNormal'|'randomUniform'|\n    'truncatedNormal'|'varianceScaling'|'zeros'|string|[tf.initializers.Initializer](#class:initializers.Initializer)",
                   "optional": true,
                   "isConfigParam": true
                 },
@@ -3137,7 +3113,7 @@
                 {
                   "name": "dataFormat",
                   "documentation": "Format of the data, which determines the ordering of the dimensions in\nthe inputs.\n\n`channels_last` corresponds to inputs with shape\n   `(batch, ..., channels)`\n\n  `channels_first` corresponds to inputs with shape `(batch, channels,\n...)`.\n\nDefaults to `channels_last`.",
-                  "type": "'channelsFirst'|'channelsLast'",
+                  "type": "'channelFirst'|'channelLast'",
                   "optional": true,
                   "isConfigParam": true
                 },
@@ -3165,14 +3141,14 @@
                 {
                   "name": "kernelInitializer",
                   "documentation": "Initializer for the convolutional kernel weights matrix.",
-                  "type": "'constant'|'glorotNormal'|'glorotUniform'|\n    'heNormal'|'identity'|'leCunNormal'|'ones'|'orthogonal'|'randomNormal'|\n    'randomUniform'|'truncatedNormal'|'varianceScaling'|'zeros'|string|[tf.initializers.Initializer](#class:initializers.Initializer)",
+                  "type": "'constant'|'glorotNormal'|'glorotUniform'|\n    'heNormal'|'identity'|'leCunNormal'|'ones'|'randomNormal'|'randomUniform'|\n    'truncatedNormal'|'varianceScaling'|'zeros'|string|[tf.initializers.Initializer](#class:initializers.Initializer)",
                   "optional": true,
                   "isConfigParam": true
                 },
                 {
                   "name": "biasInitializer",
                   "documentation": "Initializer for the bias vector.",
-                  "type": "'constant'|'glorotNormal'|'glorotUniform'|\n    'heNormal'|'identity'|'leCunNormal'|'ones'|'orthogonal'|'randomNormal'|\n    'randomUniform'|'truncatedNormal'|'varianceScaling'|'zeros'|string|[tf.initializers.Initializer](#class:initializers.Initializer)",
+                  "type": "'constant'|'glorotNormal'|'glorotUniform'|\n    'heNormal'|'identity'|'leCunNormal'|'ones'|'randomNormal'|'randomUniform'|\n    'truncatedNormal'|'varianceScaling'|'zeros'|string|[tf.initializers.Initializer](#class:initializers.Initializer)",
                   "optional": true,
                   "isConfigParam": true
                 },
@@ -3272,7 +3248,7 @@
                 {
                   "name": "dataFormat",
                   "documentation": "Format of the data, which determines the ordering of the dimensions in\nthe inputs.\n\n`channels_last` corresponds to inputs with shape\n   `(batch, ..., channels)`\n\n  `channels_first` corresponds to inputs with shape `(batch, channels,\n...)`.\n\nDefaults to `channels_last`.",
-                  "type": "'channelsFirst'|'channelsLast'",
+                  "type": "'channelFirst'|'channelLast'",
                   "optional": true,
                   "isConfigParam": true
                 },
@@ -3300,14 +3276,14 @@
                 {
                   "name": "kernelInitializer",
                   "documentation": "Initializer for the convolutional kernel weights matrix.",
-                  "type": "'constant'|'glorotNormal'|'glorotUniform'|\n    'heNormal'|'identity'|'leCunNormal'|'ones'|'orthogonal'|'randomNormal'|\n    'randomUniform'|'truncatedNormal'|'varianceScaling'|'zeros'|string|[tf.initializers.Initializer](#class:initializers.Initializer)",
+                  "type": "'constant'|'glorotNormal'|'glorotUniform'|\n    'heNormal'|'identity'|'leCunNormal'|'ones'|'randomNormal'|'randomUniform'|\n    'truncatedNormal'|'varianceScaling'|'zeros'|string|[tf.initializers.Initializer](#class:initializers.Initializer)",
                   "optional": true,
                   "isConfigParam": true
                 },
                 {
                   "name": "biasInitializer",
                   "documentation": "Initializer for the bias vector.",
-                  "type": "'constant'|'glorotNormal'|'glorotUniform'|\n    'heNormal'|'identity'|'leCunNormal'|'ones'|'orthogonal'|'randomNormal'|\n    'randomUniform'|'truncatedNormal'|'varianceScaling'|'zeros'|string|[tf.initializers.Initializer](#class:initializers.Initializer)",
+                  "type": "'constant'|'glorotNormal'|'glorotUniform'|\n    'heNormal'|'identity'|'leCunNormal'|'ones'|'randomNormal'|'randomUniform'|\n    'truncatedNormal'|'varianceScaling'|'zeros'|string|[tf.initializers.Initializer](#class:initializers.Initializer)",
                   "optional": true,
                   "isConfigParam": true
                 },
@@ -3348,7 +3324,7 @@
                 }
               ],
               "returnType": "[tf.layers.Layer](#class:layers.Layer)",
-              "documentation": "2D convolution layer (e.g. spatial convolution over images).\n\nThis layer creates a convolution kernel that is convolved\nwith the layer input to produce a tensor of outputs.\n\nIf `useBias` is True, a bias vector is created and added to the outputs.\n\nIf `activation` is not `null`, it is applied to the outputs as well.\n\nWhen using this layer as the first layer in a model,\nprovide the keyword argument `inputShape`\n(Array of integers, does not include the sample axis),\ne.g. `inputShape=[128, 128, 3]` for 128x128 RGB pictures\nin `dataFormat='channelsLast'`.",
+              "documentation": "2D convolution layer (e.g. spatial convolution over images).\n\nThis layer creates a convolution kernel that is convolved\nwith the layer input to produce a tensor of outputs.\n\nIf `useBias` is True, a bias vector is created and added to the outputs.\n\nIf `activation` is not `null`, it is applied to the outputs as well.\n\nWhen using this layer as the first layer in a model,\nprovide the keyword argument `inputShape`\n(Array of integers, does not include the sample axis),\ne.g. `inputShape=[128, 128, 3]` for 128x128 RGB pictures\nin `dataFormat='channelLast'`.",
               "fileName": "#192",
               "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L192-L201",
               "isFunction": true,
@@ -3393,7 +3369,7 @@
                 {
                   "name": "depthwiseInitializer",
                   "documentation": "Initializer for the depthwise kernel matrix.\nDefault: GlorotNormal.",
-                  "type": "'constant'|'glorotNormal'|'glorotUniform'|\n    'heNormal'|'identity'|'leCunNormal'|'ones'|'orthogonal'|'randomNormal'|\n    'randomUniform'|'truncatedNormal'|'varianceScaling'|'zeros'|string|[tf.initializers.Initializer](#class:initializers.Initializer)",
+                  "type": "'constant'|'glorotNormal'|'glorotUniform'|\n    'heNormal'|'identity'|'leCunNormal'|'ones'|'randomNormal'|'randomUniform'|\n    'truncatedNormal'|'varianceScaling'|'zeros'|string|[tf.initializers.Initializer](#class:initializers.Initializer)",
                   "optional": true,
                   "isConfigParam": true
                 },
@@ -3993,28 +3969,28 @@
                 {
                   "name": "betaInitializer",
                   "documentation": "Initializer for the beta weight.\n  Defaults to 'zeros'.",
-                  "type": "'constant'|'glorotNormal'|'glorotUniform'|\n    'heNormal'|'identity'|'leCunNormal'|'ones'|'orthogonal'|'randomNormal'|\n    'randomUniform'|'truncatedNormal'|'varianceScaling'|'zeros'|string|[tf.initializers.Initializer](#class:initializers.Initializer)",
+                  "type": "'constant'|'glorotNormal'|'glorotUniform'|\n    'heNormal'|'identity'|'leCunNormal'|'ones'|'randomNormal'|'randomUniform'|\n    'truncatedNormal'|'varianceScaling'|'zeros'|string|[tf.initializers.Initializer](#class:initializers.Initializer)",
                   "optional": true,
                   "isConfigParam": true
                 },
                 {
                   "name": "gammaInitializer",
                   "documentation": "Initializer for the gamma weight.\n  Defaults to [tf.ones()](#ones).",
-                  "type": "'constant'|'glorotNormal'|'glorotUniform'|\n    'heNormal'|'identity'|'leCunNormal'|'ones'|'orthogonal'|'randomNormal'|\n    'randomUniform'|'truncatedNormal'|'varianceScaling'|'zeros'|string|[tf.initializers.Initializer](#class:initializers.Initializer)",
+                  "type": "'constant'|'glorotNormal'|'glorotUniform'|\n    'heNormal'|'identity'|'leCunNormal'|'ones'|'randomNormal'|'randomUniform'|\n    'truncatedNormal'|'varianceScaling'|'zeros'|string|[tf.initializers.Initializer](#class:initializers.Initializer)",
                   "optional": true,
                   "isConfigParam": true
                 },
                 {
                   "name": "movingMeanInitializer",
                   "documentation": "Initializer for the moving mean.\nDefaults to [tf.zeros()](#zeros)",
-                  "type": "'constant'|'glorotNormal'|'glorotUniform'|\n    'heNormal'|'identity'|'leCunNormal'|'ones'|'orthogonal'|'randomNormal'|\n    'randomUniform'|'truncatedNormal'|'varianceScaling'|'zeros'|string|[tf.initializers.Initializer](#class:initializers.Initializer)",
+                  "type": "'constant'|'glorotNormal'|'glorotUniform'|\n    'heNormal'|'identity'|'leCunNormal'|'ones'|'randomNormal'|'randomUniform'|\n    'truncatedNormal'|'varianceScaling'|'zeros'|string|[tf.initializers.Initializer](#class:initializers.Initializer)",
                   "optional": true,
                   "isConfigParam": true
                 },
                 {
                   "name": "movingVarianceInitializer",
                   "documentation": "Initializer for the moving variance.\n  Defaults to 'Ones'.",
-                  "type": "'constant'|'glorotNormal'|'glorotUniform'|\n    'heNormal'|'identity'|'leCunNormal'|'ones'|'orthogonal'|'randomNormal'|\n    'randomUniform'|'truncatedNormal'|'varianceScaling'|'zeros'|string|[tf.initializers.Initializer](#class:initializers.Initializer)",
+                  "type": "'constant'|'glorotNormal'|'glorotUniform'|\n    'heNormal'|'identity'|'leCunNormal'|'ones'|'randomNormal'|'randomUniform'|\n    'truncatedNormal'|'varianceScaling'|'zeros'|string|[tf.initializers.Initializer](#class:initializers.Initializer)",
                   "optional": true,
                   "isConfigParam": true
                 },
@@ -4157,7 +4133,7 @@
                 {
                   "name": "dataFormat",
                   "documentation": "The data format to use for the pooling layer. ",
-                  "type": "'channelsFirst'|'channelsLast'",
+                  "type": "'channelFirst'|'channelLast'",
                   "optional": true,
                   "isConfigParam": true
                 }
@@ -4287,7 +4263,7 @@
                 {
                   "name": "dataFormat",
                   "documentation": "One of `CHANNEL_LAST` (default) or `CHANNEL_FIRST`.\n\nThe ordering of the dimensions in the inputs. `CHANNEL_LAST` corresponds\nto inputs with shape `[batch, height, width, channels[` while\n`CHANNEL_FIRST` corresponds to inputs with shape\n`[batch, channels, height, width]`.",
-                  "type": "'channelsFirst'|'channelsLast'",
+                  "type": "'channelFirst'|'channelLast'",
                   "optional": true,
                   "isConfigParam": true
                 }
@@ -4417,7 +4393,7 @@
                 {
                   "name": "dataFormat",
                   "documentation": "One of `CHANNEL_LAST` (default) or `CHANNEL_FIRST`.\n\nThe ordering of the dimensions in the inputs. `CHANNEL_LAST` corresponds\nto inputs with shape `[batch, height, width, channels[` while\n`CHANNEL_FIRST` corresponds to inputs with shape\n`[batch, channels, height, width]`.",
-                  "type": "'channelsFirst'|'channelsLast'",
+                  "type": "'channelFirst'|'channelLast'",
                   "optional": true,
                   "isConfigParam": true
                 }
@@ -4526,7 +4502,7 @@
                 {
                   "name": "dataFormat",
                   "documentation": "The data format to use for the pooling layer. ",
-                  "type": "'channelsFirst'|'channelsLast'",
+                  "type": "'channelFirst'|'channelLast'",
                   "optional": true,
                   "isConfigParam": true
                 }
@@ -4750,8 +4726,8 @@
                   "isConfigParam": true
                 }
               ],
-              "returnType": "[tf.layers.Layer](#class:layers.Layer)",
-              "documentation": "Base class for recurrent layers.\n\nInput shape:\n   3D tensor with shape `[batchSize, timeSteps, inputDim]`.\n\nOutput shape:\n   - if `returnState`, an Array of tensors (i.e., [tf.Tensor](#class:Tensor)s). The first\n     tensor is the output. The remaining tensors are the states at the\n     last time step, each with shape `[batchSize, units]`.\n   - if `returnSequences`, the output will have shape\n     `[batchSize, timeSteps, units]`.\n   - else, the output will have shape `[batchSize, units]`.\n\nMasking:\n   This layer supports masking for input data with a variable number\n   of timesteps. To introduce masks to your data,\n   use an embedding layer with the `mask_zero` parameter\n   set to `True`.\n\nNotes on using statefulness in RNNs:\n   You can set RNN layers to be 'stateful', which means that the states\n   computed for the samples in one batch will be reused as initial states\n   for the samples in the next batch. This assumes a one-to-one mapping\n   between samples in different successive batches.\n\n   To enable statefulness:\n     - specify `stateful: true` in the layer constructor.\n     - specify a fixed batch size for your model, by passing\n       if sequential model:\n         `batchInputShape=[...]` to the first layer in your model.\n       else for functional model with 1 or more Input layers:\n         `batchShape=[...]` to all the first layers in your model.\n       This is the expected shape of your inputs *including the batch size*.\n       It should be a tuple of integers, e.g. `(32, 10, 100)`.\n     - specify `shuffle=False` when calling fit().\n\n   To reset the states of your model, call `.reset_states()` on either\n   a specific layer, or on your entire model.\n\nNote on specifying the initial state of RNNs\n   You can specify the initial state of RNN layers symbolically by\n   calling them with the option `initialState`. The value of\n   `initialState` should be a tensor or list of tensors representing\n   the initial state of the RNN layer.\n\n   You can specify the initial state of RNN layers numerically by\n   calling `resetStates` with the keyword argument `states`. The value of\n   `states` should be a numpy array or list of numpy arrays representing\n   the initial state of the RNN layer.\n\nNote on passing external constants to RNNs\n   You can pass \"external\" constants to the cell using the `constants`\n   keyword argument of `RNN.call` method. This requires that the `cell.call`\n   method accepts the same keyword argument `constants`. Such constants\n   can be used to conditon the cell transformation on additional static inputs\n   (not changing over time), a.k.a an attention mechanism.",
+              "returnType": "RNN",
+              "documentation": "Base class for recurrent layers.\n\nInput shape:\n   3D tensor with shape `[batchSize, timeSteps, inputDim]`.\n\nOutput shape:\n   - if `returnState`, an Array of tensors (i.e., [tf.Tensor](#class:Tensor)s). The first\n     tensor is the output. The remaining tensors are the states at the\n     last time step, each with shape `[batchSize, units]`.\n   - if `returnSequences`, the output will have shape\n     `[batchSize, timeSteps, units]`.\n   - else, the output will have shape `[batchSize, units]`.\n\nMasking:\n   This layer supports masking for input data with a variable number\n   of timesteps. To introduce masks to your data,\n   use an [Embedding](embeddings.md) layer with the `mask_zero` parameter\n   set to `True`.\n\nNotes on using statefulness in RNNs:\n   You can set RNN layers to be 'stateful', which means that the states\n   computed for the samples in one batch will be reused as initial states\n   for the samples in the next batch. This assumes a one-to-one mapping\n   between samples in different successive batches.\n\n   To enable statefulness:\n     - specify `stateful: true` in the layer constructor.\n     - specify a fixed batch size for your model, by passing\n       if sequential model:\n         `batchInputShape=[...]` to the first layer in your model.\n       else for functional model with 1 or more Input layers:\n         `batchShape=[...]` to all the first layers in your model.\n       This is the expected shape of your inputs *including the batch size*.\n       It should be a tuple of integers, e.g. `(32, 10, 100)`.\n     - specify `shuffle=False` when calling fit().\n\n   To reset the states of your model, call `.reset_states()` on either\n   a specific layer, or on your entire model.\n\nNote on specifying the initial state of RNNs\n   You can specify the initial state of RNN layers symbolically by\n   calling them with the option `initialState`. The value of\n   `initialState` should be a tensor or list of tensors representing\n   the initial state of the RNN layer.\n\n   You can specify the initial state of RNN layers numerically by\n   calling `resetStates` with the keyword argument `states`. The value of\n   `states` should be a numpy array or list of numpy arrays representing\n   the initial state of the RNN layer.\n\nNote on passing external constants to RNNs\n   You can pass \"external\" constants to the cell using the `constants`\n   keyword argument of `RNN.call` method. This requires that the `cell.call`\n   method accepts the same keyword argument `constants`. Such constants\n   can be used to conditon the cell transformation on additional static inputs\n   (not changing over time), a.k.a an attention mechanism.",
               "fileName": "#521",
               "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L521-L530",
               "isFunction": true,
@@ -4803,21 +4779,21 @@
                 {
                   "name": "kernelInitializer",
                   "documentation": "Initializer for the `kernel` weights matrix, used for the linear\ntransformation of the inputs.",
-                  "type": "'constant'|'glorotNormal'|'glorotUniform'|\n    'heNormal'|'identity'|'leCunNormal'|'ones'|'orthogonal'|'randomNormal'|\n    'randomUniform'|'truncatedNormal'|'varianceScaling'|'zeros'|string|[tf.initializers.Initializer](#class:initializers.Initializer)",
+                  "type": "'constant'|'glorotNormal'|'glorotUniform'|\n    'heNormal'|'identity'|'leCunNormal'|'ones'|'randomNormal'|'randomUniform'|\n    'truncatedNormal'|'varianceScaling'|'zeros'|string|[tf.initializers.Initializer](#class:initializers.Initializer)",
                   "optional": true,
                   "isConfigParam": true
                 },
                 {
                   "name": "recurrentInitializer",
                   "documentation": "Initializer for the `recurrentKernel` weights matrix, used for\nlinear transformation of the recurrent state.",
-                  "type": "'constant'|'glorotNormal'|'glorotUniform'|\n    'heNormal'|'identity'|'leCunNormal'|'ones'|'orthogonal'|'randomNormal'|\n    'randomUniform'|'truncatedNormal'|'varianceScaling'|'zeros'|string|[tf.initializers.Initializer](#class:initializers.Initializer)",
+                  "type": "'constant'|'glorotNormal'|'glorotUniform'|\n    'heNormal'|'identity'|'leCunNormal'|'ones'|'randomNormal'|'randomUniform'|\n    'truncatedNormal'|'varianceScaling'|'zeros'|string|[tf.initializers.Initializer](#class:initializers.Initializer)",
                   "optional": true,
                   "isConfigParam": true
                 },
                 {
                   "name": "biasInitializer",
                   "documentation": "Initializer for the bias vector.",
-                  "type": "'constant'|'glorotNormal'|'glorotUniform'|\n    'heNormal'|'identity'|'leCunNormal'|'ones'|'orthogonal'|'randomNormal'|\n    'randomUniform'|'truncatedNormal'|'varianceScaling'|'zeros'|string|[tf.initializers.Initializer](#class:initializers.Initializer)",
+                  "type": "'constant'|'glorotNormal'|'glorotUniform'|\n    'heNormal'|'identity'|'leCunNormal'|'ones'|'randomNormal'|'randomUniform'|\n    'truncatedNormal'|'varianceScaling'|'zeros'|string|[tf.initializers.Initializer](#class:initializers.Initializer)",
                   "optional": true,
                   "isConfigParam": true
                 },
@@ -4916,7 +4892,7 @@
                 },
                 {
                   "name": "activation",
-                  "documentation": "Activation function to use.\nDefault: hyperbolic tangent ('tanh').\nIf you pass `null`,  'linear' activation will be applied.",
+                  "documentation": "Activation function to use (see [activations](../activations.md)).\nDefault: hyperbolic tangent ([tf.tanh()](#tanh)).\nIf you pass `null`,  'linear' activation will be applied.",
                   "type": "'elu'|'hardsigmoid'|'linear'|'relu'|'relu6'|\n    'selu'|'sigmoid'|'softmax'|'softplus'|'softsign'|'tanh'|string",
                   "optional": true,
                   "isConfigParam": true
@@ -4930,63 +4906,63 @@
                 },
                 {
                   "name": "kernelInitializer",
-                  "documentation": "Initializer for the `kernel` weights matrix, used for the linear\ntransformation of the inputs.",
-                  "type": "'constant'|'glorotNormal'|'glorotUniform'|\n    'heNormal'|'identity'|'leCunNormal'|'ones'|'orthogonal'|'randomNormal'|\n    'randomUniform'|'truncatedNormal'|'varianceScaling'|'zeros'|string|[tf.initializers.Initializer](#class:initializers.Initializer)",
+                  "documentation": "Initializer for the `kernel` weights matrix, used for the linear\ntransformation of the inputs (see [initializers](../initializers.md)).",
+                  "type": "'constant'|'glorotNormal'|'glorotUniform'|\n    'heNormal'|'identity'|'leCunNormal'|'ones'|'randomNormal'|'randomUniform'|\n    'truncatedNormal'|'varianceScaling'|'zeros'|string|[tf.initializers.Initializer](#class:initializers.Initializer)",
                   "optional": true,
                   "isConfigParam": true
                 },
                 {
                   "name": "recurrentInitializer",
-                  "documentation": "Initializer for the `recurrentKernel` weights matrix, used for\nlinear transformation of the recurrent state.",
-                  "type": "'constant'|'glorotNormal'|'glorotUniform'|\n    'heNormal'|'identity'|'leCunNormal'|'ones'|'orthogonal'|'randomNormal'|\n    'randomUniform'|'truncatedNormal'|'varianceScaling'|'zeros'|string|[tf.initializers.Initializer](#class:initializers.Initializer)",
+                  "documentation": "Initializer for the `recurrentKernel` weights matrix, used for\nlinear transformation of the recurrent state\n(see [initializers](../initializers.md)).",
+                  "type": "'constant'|'glorotNormal'|'glorotUniform'|\n    'heNormal'|'identity'|'leCunNormal'|'ones'|'randomNormal'|'randomUniform'|\n    'truncatedNormal'|'varianceScaling'|'zeros'|string|[tf.initializers.Initializer](#class:initializers.Initializer)",
                   "optional": true,
                   "isConfigParam": true
                 },
                 {
                   "name": "biasInitializer",
-                  "documentation": "Initializer for the bias vector.",
-                  "type": "'constant'|'glorotNormal'|'glorotUniform'|\n    'heNormal'|'identity'|'leCunNormal'|'ones'|'orthogonal'|'randomNormal'|\n    'randomUniform'|'truncatedNormal'|'varianceScaling'|'zeros'|string|[tf.initializers.Initializer](#class:initializers.Initializer)",
+                  "documentation": "Initializer for the bias vector (see [initializers](../initializers.md)).",
+                  "type": "'constant'|'glorotNormal'|'glorotUniform'|\n    'heNormal'|'identity'|'leCunNormal'|'ones'|'randomNormal'|'randomUniform'|\n    'truncatedNormal'|'varianceScaling'|'zeros'|string|[tf.initializers.Initializer](#class:initializers.Initializer)",
                   "optional": true,
                   "isConfigParam": true
                 },
                 {
                   "name": "kernelRegularizer",
-                  "documentation": "Regularizer function applied to the `kernel` weights matrix.",
+                  "documentation": "Regularizer function applied to the `kernel` weights matrix\n(see [regularizer](../regularizers.md)).",
                   "type": "'l1l2'|string|Regularizer",
                   "optional": true,
                   "isConfigParam": true
                 },
                 {
                   "name": "recurrentRegularizer",
-                  "documentation": "Regularizer function applied to the `recurrent_kernel` weights matrix.",
+                  "documentation": "Regularizer function applied to the `recurrent_kernel` weights matrix.\n(see [regularizer](../regularizers.md))",
                   "type": "'l1l2'|string|Regularizer",
                   "optional": true,
                   "isConfigParam": true
                 },
                 {
                   "name": "biasRegularizer",
-                  "documentation": "Regularizer function applied to the bias vector.",
+                  "documentation": "Regularizer function applied to the bias vector.\n(see [regularizer](../regularizers.md))",
                   "type": "'l1l2'|string|Regularizer",
                   "optional": true,
                   "isConfigParam": true
                 },
                 {
                   "name": "kernelConstraint",
-                  "documentation": "Constraint function applied to the `kernel` weights matrix.",
+                  "documentation": "Constraint function applied to the `kernel` weights matrix.\n(see [constraints](../constraints.md)).",
                   "type": "'maxNorm'|'minMaxNorm'|'nonNeg'|'unitNorm'|string|[tf.constraints.Constraint](#class:constraints.Constraint)",
                   "optional": true,
                   "isConfigParam": true
                 },
                 {
                   "name": "recurrentConstraint",
-                  "documentation": "Constraint function applied to the `recurrentKernel` weights matrix.",
+                  "documentation": "Constraint function applied to the `recurrentKernel` weights matrix.\n(see [constraints](../constraints.md)).",
                   "type": "'maxNorm'|'minMaxNorm'|'nonNeg'|'unitNorm'|string|[tf.constraints.Constraint](#class:constraints.Constraint)",
                   "optional": true,
                   "isConfigParam": true
                 },
                 {
                   "name": "biasConstraint",
-                  "documentation": "Constraintfunction applied to the bias vector.",
+                  "documentation": "Constraintfunction applied to the bias vector.\n(see [constraints](../constraints.md)).",
                   "type": "'maxNorm'|'minMaxNorm'|'nonNeg'|'unitNorm'|string|[tf.constraints.Constraint](#class:constraints.Constraint)",
                   "optional": true,
                   "isConfigParam": true
@@ -5044,7 +5020,7 @@
                 }
               ],
               "returnType": "[tf.RNNCell](#class:RNNCell)",
-              "documentation": "Base class for recurrent layers.\n\nInput shape:\n   3D tensor with shape `[batchSize, timeSteps, inputDim]`.\n\nOutput shape:\n   - if `returnState`, an Array of tensors (i.e., [tf.Tensor](#class:Tensor)s). The first\n     tensor is the output. The remaining tensors are the states at the\n     last time step, each with shape `[batchSize, units]`.\n   - if `returnSequences`, the output will have shape\n     `[batchSize, timeSteps, units]`.\n   - else, the output will have shape `[batchSize, units]`.\n\nMasking:\n   This layer supports masking for input data with a variable number\n   of timesteps. To introduce masks to your data,\n   use an embedding layer with the `mask_zero` parameter\n   set to `True`.\n\nNotes on using statefulness in RNNs:\n   You can set RNN layers to be 'stateful', which means that the states\n   computed for the samples in one batch will be reused as initial states\n   for the samples in the next batch. This assumes a one-to-one mapping\n   between samples in different successive batches.\n\n   To enable statefulness:\n     - specify `stateful: true` in the layer constructor.\n     - specify a fixed batch size for your model, by passing\n       if sequential model:\n         `batchInputShape=[...]` to the first layer in your model.\n       else for functional model with 1 or more Input layers:\n         `batchShape=[...]` to all the first layers in your model.\n       This is the expected shape of your inputs *including the batch size*.\n       It should be a tuple of integers, e.g. `(32, 10, 100)`.\n     - specify `shuffle=False` when calling fit().\n\n   To reset the states of your model, call `.reset_states()` on either\n   a specific layer, or on your entire model.\n\nNote on specifying the initial state of RNNs\n   You can specify the initial state of RNN layers symbolically by\n   calling them with the option `initialState`. The value of\n   `initialState` should be a tensor or list of tensors representing\n   the initial state of the RNN layer.\n\n   You can specify the initial state of RNN layers numerically by\n   calling `resetStates` with the keyword argument `states`. The value of\n   `states` should be a numpy array or list of numpy arrays representing\n   the initial state of the RNN layer.\n\nNote on passing external constants to RNNs\n   You can pass \"external\" constants to the cell using the `constants`\n   keyword argument of `RNN.call` method. This requires that the `cell.call`\n   method accepts the same keyword argument `constants`. Such constants\n   can be used to conditon the cell transformation on additional static inputs\n   (not changing over time), a.k.a an attention mechanism.",
+              "documentation": "Base class for recurrent layers.\n\nInput shape:\n   3D tensor with shape `[batchSize, timeSteps, inputDim]`.\n\nOutput shape:\n   - if `returnState`, an Array of tensors (i.e., [tf.Tensor](#class:Tensor)s). The first\n     tensor is the output. The remaining tensors are the states at the\n     last time step, each with shape `[batchSize, units]`.\n   - if `returnSequences`, the output will have shape\n     `[batchSize, timeSteps, units]`.\n   - else, the output will have shape `[batchSize, units]`.\n\nMasking:\n   This layer supports masking for input data with a variable number\n   of timesteps. To introduce masks to your data,\n   use an [Embedding](embeddings.md) layer with the `mask_zero` parameter\n   set to `True`.\n\nNotes on using statefulness in RNNs:\n   You can set RNN layers to be 'stateful', which means that the states\n   computed for the samples in one batch will be reused as initial states\n   for the samples in the next batch. This assumes a one-to-one mapping\n   between samples in different successive batches.\n\n   To enable statefulness:\n     - specify `stateful: true` in the layer constructor.\n     - specify a fixed batch size for your model, by passing\n       if sequential model:\n         `batchInputShape=[...]` to the first layer in your model.\n       else for functional model with 1 or more Input layers:\n         `batchShape=[...]` to all the first layers in your model.\n       This is the expected shape of your inputs *including the batch size*.\n       It should be a tuple of integers, e.g. `(32, 10, 100)`.\n     - specify `shuffle=False` when calling fit().\n\n   To reset the states of your model, call `.reset_states()` on either\n   a specific layer, or on your entire model.\n\nNote on specifying the initial state of RNNs\n   You can specify the initial state of RNN layers symbolically by\n   calling them with the option `initialState`. The value of\n   `initialState` should be a tensor or list of tensors representing\n   the initial state of the RNN layer.\n\n   You can specify the initial state of RNN layers numerically by\n   calling `resetStates` with the keyword argument `states`. The value of\n   `states` should be a numpy array or list of numpy arrays representing\n   the initial state of the RNN layer.\n\nNote on passing external constants to RNNs\n   You can pass \"external\" constants to the cell using the `constants`\n   keyword argument of `RNN.call` method. This requires that the `cell.call`\n   method accepts the same keyword argument `constants`. Such constants\n   can be used to conditon the cell transformation on additional static inputs\n   (not changing over time), a.k.a an attention mechanism.",
               "fileName": "#532",
               "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L532-L541",
               "isFunction": true,
@@ -5153,7 +5129,7 @@
               "namespace": "layers",
               "documentation": "A layer is a grouping of operations and weights that can be composed to\ncreate a [tf.Model](#class:Model).\n\nLayers are constructed by using the functions under the\n[tf.layers](#Layers-Basic) namespace.",
               "fileName": "#333",
-              "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/engine/topology.ts#L333-L1219",
+              "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/engine/topology.ts#L333-L1171",
               "methods": [
                 {
                   "docInfo": {
@@ -5179,9 +5155,9 @@
                     }
                   ],
                   "returnType": "[tf.Tensor](#class:Tensor)|[tf.Tensor](#class:Tensor)[]|[tf.SymbolicTensor](#class:SymbolicTensor)|[tf.SymbolicTensor](#class:SymbolicTensor)[]",
-                  "documentation": "Builds or executes a `Layer's logic.\n\nWhen called with [tf.Tensor](#class:Tensor)(s), execute the `Layer`s computation and\nreturn Tensor(s). For example:\n\n```js\nconst denseLayer = tf.layers.dense({\n   units: 1,\n   kernelInitializer: 'zeros',\n   useBias: false\n});\n\n// Invoke the layer's apply() method with a [tf.Tensor](#class:Tensor) (with concrete\n// numeric values).\nconst input = tf.ones([2, 2]);\nconst output = denseLayer.apply(input);\n\n// The output's value is expected to be [[0], [0]], due to the fact that\n// the dense layer has a kernel initialized to all-zeros and does not have\n// a bias.\noutput.print();\n```\n\nWhen called with [tf.SymbolicTensor](#class:SymbolicTensor)(s), this will prepare the layer for\nfuture execution.  This entails internal book-keeping on shapes of\nexpected Tensors, wiring layers together, and initializing weights.\n\nCalling `apply` with [tf.SymbolicTensor](#class:SymbolicTensor)s are typically used during the\nbuilding of non-[tf.Sequential](#class:Sequential) models. For example:\n\n```js\nconst flattenLayer = tf.layers.flatten();\nconst denseLayer = tf.layers.dense({units: 1});\n\n// Use tf.layers.input() to obtain a SymbolicTensor as input to apply().\nconst input = tf.input({shape: [2, 2]});\nconst output1 = flattenLayer.apply(input);\n\n// output1.shape is [null, 4]. The first dimension is the undetermined\n// batch size. The second dimension comes from flattening the [2, 2]\n// shape.\nconsole.log(output1.shape);\n\n// The output SymbolicTensor of the flatten layer can be used to call\n// the apply() of the dense layer:\nconst output2 = denseLayer.apply(output1);\n\n// output2.shape is [null, 1]. The first dimension is the undetermined\n// batch size. The second dimension matches the number of units of the\n// dense layer.\nconsole.log(output2.shape);\n\n// The input and output and be used to construct a model that consists\n// of the flatten and dense layers.\nconst model = tf.model({inputs: input, outputs: output2});\n```",
-                  "fileName": "#826",
-                  "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/engine/topology.ts#L826-L940",
+                  "documentation": "Builds or executes a `Layer's logic.\n\nWhen called with [tf.Tensor](#class:Tensor)(s), execute the `Layer`s computation and\nreturn Tensor(s).\n\nWhen called with [tf.SymbolicTensor](#class:SymbolicTensor)(s), this will prepare the layer for\nfuture execution.  This entails internal book-keeping on shapes of\nexpected Tensors, wiring layers together, and initializing weights.",
+                  "fileName": "#778",
+                  "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/engine/topology.ts#L778-L892",
                   "isFunction": true,
                   "urlHash": "tf.layers.Layer.apply"
                 }
@@ -6116,14 +6092,14 @@
                 {
                   "name": "a",
                   "documentation": "First matrix in dot product operation.",
-                  "type": "[tf.Tensor2D](#class:Tensor)",
+                  "type": "Tensor2D",
                   "optional": false,
                   "isConfigParam": false
                 },
                 {
                   "name": "b",
                   "documentation": "Second matrix in dot product operation.",
-                  "type": "[tf.Tensor2D](#class:Tensor)",
+                  "type": "Tensor2D",
                   "optional": false,
                   "isConfigParam": false
                 },
@@ -6142,7 +6118,7 @@
                   "isConfigParam": false
                 }
               ],
-              "returnType": "[tf.Tensor2D](#class:Tensor)",
+              "returnType": "Tensor2D",
               "documentation": "Computes the dot product of two matrices, A * B. These must be matrices.\n\n```js\nconst a = dl.tensor2d([1, 2], [1, 2]);\nconst b = dl.tensor2d([1, 2, 3, 4], [2, 2]);\n\na.matMul(b).print();  // or dl.matMul(a, b)\n```",
               "fileName": "#39",
               "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/matmul.ts#L39-L70",
@@ -6206,19 +6182,19 @@
                 {
                   "name": "v1",
                   "documentation": "The first vector in the outer product operation.",
-                  "type": "[tf.Tensor1D](#class:Tensor)",
+                  "type": "Tensor1D",
                   "optional": false,
                   "isConfigParam": false
                 },
                 {
                   "name": "v2",
                   "documentation": "The second vector in the dot product operation.",
-                  "type": "[tf.Tensor1D](#class:Tensor)",
+                  "type": "Tensor1D",
                   "optional": false,
                   "isConfigParam": false
                 }
               ],
-              "returnType": "[tf.Tensor2D](#class:Tensor)",
+              "returnType": "Tensor2D",
               "documentation": "Computes the outer product of two vectors, v1 and v2.\n\n```js\nconst a = dl.tensor1d([1, 2, 3]);\nconst b = dl.tensor1d([3, 4, 5]);\n\ndl.outerProduct(a, b).print();\n```",
               "fileName": "#151",
               "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/matmul.ts#L151-L160",
@@ -6274,7 +6250,7 @@
                 {
                   "name": "x",
                   "documentation": "The input tensor, of rank 4 or rank 3 of shape\n`[batch, height, width, inChannels]`. If rank 3, batch of 1 is assumed.",
-                  "type": "[tf.Tensor3D](#class:Tensor)|[tf.Tensor4D](#class:Tensor)",
+                  "type": "Tensor3D|Tensor4D",
                   "optional": false,
                   "isConfigParam": false
                 },
@@ -6307,7 +6283,7 @@
                   "isConfigParam": false
                 }
               ],
-              "returnType": "[tf.Tensor3D](#class:Tensor)|[tf.Tensor4D](#class:Tensor)",
+              "returnType": "Tensor3D|Tensor4D",
               "documentation": "Computes the 2D average pooling of an image.",
               "fileName": "#213",
               "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/pool.ts#L213-L249",
@@ -6326,14 +6302,14 @@
                 {
                   "name": "input",
                   "documentation": "The input tensor, of rank 3 or rank 2, of shape\n`[batch, width, inChannels]`. If rank 2, batch of 1 is assumed.",
-                  "type": "[tf.Tensor2D](#class:Tensor)|[tf.Tensor3D](#class:Tensor)",
+                  "type": "Tensor2D|Tensor3D",
                   "optional": false,
                   "isConfigParam": false
                 },
                 {
                   "name": "filter",
                   "documentation": "The filter, rank 3, of shape\n`[filterWidth, inDepth, outDepth]`.",
-                  "type": "[tf.Tensor3D](#class:Tensor)",
+                  "type": "Tensor3D",
                   "optional": false,
                   "isConfigParam": false
                 },
@@ -6373,7 +6349,7 @@
                   "isConfigParam": false
                 }
               ],
-              "returnType": "[tf.Tensor2D](#class:Tensor)|[tf.Tensor3D](#class:Tensor)",
+              "returnType": "Tensor2D|Tensor3D",
               "documentation": "Computes a 1D convolution over the input x.",
               "fileName": "#53",
               "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/conv.ts#L53-L110",
@@ -6392,14 +6368,14 @@
                 {
                   "name": "x",
                   "documentation": "The input tensor, of rank 4 or rank 3, of shape\n`[batch, height, width, inChannels]`. If rank 3, batch of 1 is\nassumed.",
-                  "type": "[tf.Tensor3D](#class:Tensor)|[tf.Tensor4D](#class:Tensor)",
+                  "type": "Tensor3D|Tensor4D",
                   "optional": false,
                   "isConfigParam": false
                 },
                 {
                   "name": "filter",
                   "documentation": "The filter, rank 4, of shape\n`[filterHeight, filterWidth, inDepth, outDepth]`.",
-                  "type": "[tf.Tensor4D](#class:Tensor)",
+                  "type": "Tensor4D",
                   "optional": false,
                   "isConfigParam": false
                 },
@@ -6439,7 +6415,7 @@
                   "isConfigParam": false
                 }
               ],
-              "returnType": "[tf.Tensor3D](#class:Tensor)|[tf.Tensor4D](#class:Tensor)",
+              "returnType": "Tensor3D|Tensor4D",
               "documentation": "Computes a 2D convolution over the input x.",
               "fileName": "#143",
               "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/conv.ts#L143-L207",
@@ -6458,14 +6434,14 @@
                 {
                   "name": "x",
                   "documentation": "The input image, of rank 4 or rank 3, of shape\n`[batch, height, width, inDepth]`. If rank 3, batch of 1 is assumed.",
-                  "type": "[tf.Tensor3D](#class:Tensor)|[tf.Tensor4D](#class:Tensor)",
+                  "type": "Tensor3D|Tensor4D",
                   "optional": false,
                   "isConfigParam": false
                 },
                 {
                   "name": "filter",
                   "documentation": "The filter, rank 4, of shape\n`[filterHeight, filterWidth, outDepth, inDepth]`.\n`inDepth` must match `inDepth` in `x`.",
-                  "type": "[tf.Tensor4D](#class:Tensor)",
+                  "type": "Tensor4D",
                   "optional": false,
                   "isConfigParam": false
                 },
@@ -6498,7 +6474,7 @@
                   "isConfigParam": false
                 }
               ],
-              "returnType": "[tf.Tensor3D](#class:Tensor)|[tf.Tensor4D](#class:Tensor)",
+              "returnType": "Tensor3D|Tensor4D",
               "documentation": "Computes the transposed 2D convolution of an image, also known as a\ndeconvolution.",
               "fileName": "#375",
               "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/conv.ts#L375-L384",
@@ -6517,14 +6493,14 @@
                 {
                   "name": "input",
                   "documentation": "The input tensor, of rank 4 or rank 3, of shape\n`[batch, height, width, inChannels]`. If rank 3, batch of 1 is\nassumed.",
-                  "type": "[tf.Tensor3D](#class:Tensor)|[tf.Tensor4D](#class:Tensor)",
+                  "type": "Tensor3D|Tensor4D",
                   "optional": false,
                   "isConfigParam": false
                 },
                 {
                   "name": "filter",
                   "documentation": "The filter tensor, rank 4, of shape\n`[filterHeight, filterWidth, inChannels, channelMultiplier]`.",
-                  "type": "[tf.Tensor4D](#class:Tensor)",
+                  "type": "Tensor4D",
                   "optional": false,
                   "isConfigParam": false
                 },
@@ -6564,7 +6540,7 @@
                   "isConfigParam": false
                 }
               ],
-              "returnType": "[tf.Tensor3D](#class:Tensor)|[tf.Tensor4D](#class:Tensor)",
+              "returnType": "Tensor3D|Tensor4D",
               "documentation": "Depthwise 2D convolution.\n\nGiven a 4D [tf.input()](#input) array and a `filter` array of shape\n`[filterHeight, filterWidth, inChannels, channelMultiplier]` containing\n`inChannels` convolutional filters of depth 1, this op applies a\ndifferent filter to each input channel (expanding from 1 channel to\n`channelMultiplier` channels for each), then concatenates the results\ntogether. The output has `inChannels * channelMultiplier` channels.\n\nSee\n[https://www.tensorflow.org/api_docs/python/tf/nn/depthwise_conv2d](\n     https://www.tensorflow.org/api_docs/python/tf/nn/depthwise_conv2d)\nfor more details.",
               "fileName": "#430",
               "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/conv.ts#L430-L481",
@@ -6583,7 +6559,7 @@
                 {
                   "name": "x",
                   "documentation": "The input tensor, of rank 4 or rank 3 of shape\n`[batch, height, width, inChannels]`. If rank 3, batch of 1 is assumed.",
-                  "type": "[tf.Tensor3D](#class:Tensor)|[tf.Tensor4D](#class:Tensor)",
+                  "type": "Tensor3D|Tensor4D",
                   "optional": false,
                   "isConfigParam": false
                 },
@@ -6616,7 +6592,7 @@
                   "isConfigParam": false
                 }
               ],
-              "returnType": "[tf.Tensor3D](#class:Tensor)|[tf.Tensor4D](#class:Tensor)",
+              "returnType": "Tensor3D|Tensor4D",
               "documentation": "Computes the 2D max pooling of an image.",
               "fileName": "#45",
               "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/pool.ts#L45-L80",
@@ -6635,7 +6611,7 @@
                 {
                   "name": "input",
                   "documentation": "The input tensor, of rank 4 or rank 3 of shape\n`[batch, height, width, inChannels]`. If rank 3, batch of 1 is assumed.",
-                  "type": "[tf.Tensor3D](#class:Tensor)|[tf.Tensor4D](#class:Tensor)",
+                  "type": "Tensor3D|Tensor4D",
                   "optional": false,
                   "isConfigParam": false
                 },
@@ -6668,7 +6644,7 @@
                   "isConfigParam": false
                 }
               ],
-              "returnType": "[tf.Tensor3D](#class:Tensor)|[tf.Tensor4D](#class:Tensor)",
+              "returnType": "Tensor3D|Tensor4D",
               "documentation": "Computes the 2D min pooling of an image.",
               "fileName": "#163",
               "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/pool.ts#L163-L192",
@@ -6958,14 +6934,14 @@
                 {
                   "name": "mean",
                   "documentation": "A mean Tensor.",
-                  "type": "[tf.Tensor](#class:Tensor)|[tf.Tensor1D](#class:Tensor)",
+                  "type": "[tf.Tensor](#class:Tensor)|Tensor1D",
                   "optional": false,
                   "isConfigParam": false
                 },
                 {
                   "name": "variance",
                   "documentation": "A variance Tensor.",
-                  "type": "[tf.Tensor](#class:Tensor)|[tf.Tensor1D](#class:Tensor)",
+                  "type": "[tf.Tensor](#class:Tensor)|Tensor1D",
                   "optional": false,
                   "isConfigParam": false
                 },
@@ -6979,20 +6955,20 @@
                 {
                   "name": "scale",
                   "documentation": "A scale Tensor.",
-                  "type": "[tf.Tensor](#class:Tensor)|[tf.Tensor1D](#class:Tensor)",
+                  "type": "[tf.Tensor](#class:Tensor)|Tensor1D",
                   "optional": true,
                   "isConfigParam": false
                 },
                 {
                   "name": "offset",
                   "documentation": "An offset Tensor.",
-                  "type": "[tf.Tensor](#class:Tensor)|[tf.Tensor1D](#class:Tensor)",
+                  "type": "[tf.Tensor](#class:Tensor)|Tensor1D",
                   "optional": true,
                   "isConfigParam": false
                 }
               ],
               "returnType": "[tf.Tensor](#class:Tensor)",
-              "documentation": "Batch normalization.\n\nAs described in\n[http://arxiv.org/abs/1502.03167](http://arxiv.org/abs/1502.03167).\n\nMean, variance, scale, and offset can be of two\nshapes:\n   - The same shape as the input.\n   - In the common case, the depth dimension is the last dimension of x, so\n     the values would be an [tf.Tensor1D](#class:Tensor) of shape [depth].",
+              "documentation": "Batch normalization.\n\nAs described in\n[http://arxiv.org/abs/1502.03167](http://arxiv.org/abs/1502.03167).\n\nMean, variance, scale, and offset can be of two\nshapes:\n   - The same shape as the input.\n   - In the common case, the depth dimension is the last dimension of x, so\n     the values would be an `Tensor1D` of shape [depth].",
               "fileName": "#180",
               "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/batchnorm.ts#L180-L203",
               "isFunction": true,
@@ -7010,7 +6986,7 @@
                 {
                   "name": "x",
                   "documentation": "The input tensor. The 4-D input tensor is treated as a 3-D array\nof 1D vectors (along the last dimension), and each vector is\nnormalized independently.",
-                  "type": "[tf.Tensor3D](#class:Tensor)|[tf.Tensor4D](#class:Tensor)",
+                  "type": "Tensor3D|Tensor4D",
                   "optional": false,
                   "isConfigParam": false
                 },
@@ -7050,7 +7026,7 @@
                   "isConfigParam": false
                 }
               ],
-              "returnType": "[tf.Tensor3D](#class:Tensor)|[tf.Tensor4D](#class:Tensor)",
+              "returnType": "Tensor3D|Tensor4D",
               "documentation": "Normalizes the activation of a local neighborhood across or within\nchannels.",
               "fileName": "#40",
               "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/lrn.ts#L40-L68",
@@ -7146,7 +7122,7 @@
                 {
                   "name": "images",
                   "documentation": "The images, of rank 4 or rank 3, of shape\n`[batch, height, width, inChannels]`. If rank 3, batch of 1 is assumed.",
-                  "type": "[tf.Tensor3D](#class:Tensor)|[tf.Tensor4D](#class:Tensor)",
+                  "type": "Tensor3D|Tensor4D",
                   "optional": false,
                   "isConfigParam": false
                 },
@@ -7165,7 +7141,7 @@
                   "isConfigParam": false
                 }
               ],
-              "returnType": "[tf.Tensor3D](#class:Tensor)|[tf.Tensor4D](#class:Tensor)",
+              "returnType": "Tensor3D|Tensor4D",
               "documentation": "Bilinear resize a batch of 3D images to a new shape.",
               "fileName": "#37",
               "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/image_ops.ts#L37-L65",
@@ -7190,47 +7166,47 @@
                 {
                   "name": "forgetBias",
                   "documentation": "Forget bias for the cell.",
-                  "type": "[tf.Scalar](#class:Tensor)",
+                  "type": "Scalar",
                   "optional": false,
                   "isConfigParam": false
                 },
                 {
                   "name": "lstmKernel",
                   "documentation": "The weights for the cell.",
-                  "type": "[tf.Tensor2D](#class:Tensor)",
+                  "type": "Tensor2D",
                   "optional": false,
                   "isConfigParam": false
                 },
                 {
                   "name": "lstmBias",
                   "documentation": "The bias for the cell.",
-                  "type": "[tf.Tensor1D](#class:Tensor)",
+                  "type": "Tensor1D",
                   "optional": false,
                   "isConfigParam": false
                 },
                 {
                   "name": "data",
                   "documentation": "The input to the cell.",
-                  "type": "[tf.Tensor2D](#class:Tensor)",
+                  "type": "Tensor2D",
                   "optional": false,
                   "isConfigParam": false
                 },
                 {
                   "name": "c",
                   "documentation": "Previous cell state.",
-                  "type": "[tf.Tensor2D](#class:Tensor)",
+                  "type": "Tensor2D",
                   "optional": false,
                   "isConfigParam": false
                 },
                 {
                   "name": "h",
                   "documentation": "Previous cell output.",
-                  "type": "[tf.Tensor2D](#class:Tensor)",
+                  "type": "Tensor2D",
                   "optional": false,
                   "isConfigParam": false
                 }
               ],
-              "returnType": "[[tf.Tensor2D](#class:Tensor), [tf.Tensor2D](#class:Tensor)]",
+              "returnType": "[Tensor2D, Tensor2D]",
               "documentation": "Computes the next state and output of a BasicLSTMCell.\n\nReturns `[newC, newH]`.\n\nDerived from tf.contrib.rnn.BasicLSTMCell.",
               "fileName": "#80",
               "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/lstm.ts#L80-L102",
@@ -7249,33 +7225,33 @@
                 {
                   "name": "lstmCells",
                   "documentation": "Array of LSTMCell functions.",
-                  "type": "(data: [tf.Tensor2D](#class:Tensor), c: [tf.Tensor2D](#class:Tensor), h: [tf.Tensor2D](#class:Tensor)): [[tf.Tensor2D](#class:Tensor), [tf.Tensor2D](#class:Tensor)][]",
+                  "type": "(data: Tensor2D, c: Tensor2D, h: Tensor2D): [Tensor2D, Tensor2D][]",
                   "optional": false,
                   "isConfigParam": false
                 },
                 {
                   "name": "data",
                   "documentation": "The input to the cell.",
-                  "type": "[tf.Tensor2D](#class:Tensor)",
+                  "type": "Tensor2D",
                   "optional": false,
                   "isConfigParam": false
                 },
                 {
                   "name": "c",
                   "documentation": "Array of previous cell states.",
-                  "type": "[tf.Tensor2D](#class:Tensor)[]",
+                  "type": "Tensor2D[]",
                   "optional": false,
                   "isConfigParam": false
                 },
                 {
                   "name": "h",
                   "documentation": "Array of previous cell outputs.",
-                  "type": "[tf.Tensor2D](#class:Tensor)[]",
+                  "type": "Tensor2D[]",
                   "optional": false,
                   "isConfigParam": false
                 }
               ],
-              "returnType": "[[tf.Tensor2D](#class:Tensor)[], [tf.Tensor2D](#class:Tensor)[]]",
+              "returnType": "[Tensor2D[], Tensor2D[]]",
               "documentation": "Computes the next states and outputs of a stack of LSTMCells.\n\nEach cell output is used as input to the next cell.\n\nReturns `[cellState, cellOutput]`.\n\nDerived from tf.contrib.rn.MultiRNNCell.",
               "fileName": "#44",
               "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/ops/lstm.ts#L44-L64",
@@ -7773,7 +7749,7 @@
                 {
                   "name": "f",
                   "documentation": "The function to execute. f() should return a scalar.",
-                  "type": "() => [tf.Scalar](#class:Tensor)",
+                  "type": "() => Scalar",
                   "optional": false,
                   "isConfigParam": false
                 },
@@ -7785,7 +7761,7 @@
                   "isConfigParam": false
                 }
               ],
-              "returnType": "{value: [tf.Scalar](#class:Tensor), grads: {[name: string]: [tf.Tensor](#class:Tensor)}}",
+              "returnType": "{value: Scalar, grads: {[name: string]: [tf.Tensor](#class:Tensor)}}",
               "documentation": "Computes and returns the gradient of f(x) with respect to the list of\ntrainable variables provided by `varList`. If no list is provided, it\ndefaults to all trainable variables.\n\n```js\nconst a = dl.variable(dl.tensor1d([3, 4]));\nconst b = dl.variable(dl.tensor1d([5, 6]));\nconst x = dl.tensor1d([1, 2]);\n\n// f(a, b) = a * x ^ 2 + b * x\nconst f = () => a.mul(x.square()).add(b.mul(x)).sum();\n// df/da = x ^ 2, df/db = x\nconst {value, grads} = dl.variableGrads(f);\n\nObject.keys(grads).forEach(varName => grads[varName].print());\n```",
               "fileName": "#275",
               "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/gradients.ts#L275-L323",
@@ -8161,7 +8137,7 @@
                     {
                       "name": "f",
                       "documentation": "The function to execute and whose output to minimize.",
-                      "type": "() => [tf.Scalar](#class:Tensor)",
+                      "type": "() => Scalar",
                       "optional": false,
                       "isConfigParam": false
                     },
@@ -8180,7 +8156,7 @@
                       "isConfigParam": false
                     }
                   ],
-                  "returnType": "[tf.Scalar](#class:Tensor)\n      |null",
+                  "returnType": "Scalar\n      |null",
                   "documentation": "Executes `f()` and minimizes the scalar output of `f()` by computing\ngradients of y with respect to the list of trainable variables provided by\n`varList`. If no list is provided, it defaults to all trainable variables.",
                   "fileName": "#36",
                   "githubUrl": "https://github.com/PAIR-code/deeplearnjs/blob/master/src/optimizers/optimizer.ts#L36-L53",
@@ -8652,7 +8628,7 @@
                   "name": "seed",
                   "documentation": "Random number generator seed. ",
                   "type": "number",
-                  "optional": true,
+                  "optional": false,
                   "isConfigParam": true
                 }
               ],
@@ -8689,7 +8665,7 @@
                   "name": "seed",
                   "documentation": "Random number generator seed. ",
                   "type": "number",
-                  "optional": true,
+                  "optional": false,
                   "isConfigParam": true
                 }
               ],
@@ -8726,7 +8702,7 @@
                   "name": "seed",
                   "documentation": "Random number generator seed. ",
                   "type": "number",
-                  "optional": true,
+                  "optional": false,
                   "isConfigParam": true
                 }
               ],
@@ -8800,14 +8776,14 @@
                   "name": "seed",
                   "documentation": "Random number generator seed. ",
                   "type": "number",
-                  "optional": true,
+                  "optional": false,
                   "isConfigParam": true
                 }
               ],
               "returnType": "[tf.initializers.Initializer](#class:initializers.Initializer)",
               "documentation": "LeCun normal initializer.\n\nIt draws samples from a truncated normal distribution centered on 0\nwith `stddev = sqrt(1 / fanIn)`\nwhere `fanIn` is the number of input units in the weight tensor.\n\nReferences:\n   [Self-Normalizing Neural Networks](https://arxiv.org/abs/1706.02515)\n   [Efficient Backprop](http://yann.lecun.com/exdb/publis/pdf/lecun-98b.pdf)",
-              "fileName": "#721",
-              "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L721-L730",
+              "fileName": "#722",
+              "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L722-L731",
               "isFunction": true,
               "displayName": "tf.initializers.leCunNormal",
               "urlHash": "initializers.leCunNormal"
@@ -8830,43 +8806,6 @@
               "isFunction": true,
               "displayName": "tf.initializers.ones",
               "urlHash": "initializers.ones"
-            },
-            {
-              "docInfo": {
-                "heading": "Initializers",
-                "namespace": "initializers",
-                "useDocsFrom": "Orthogonal",
-                "configParamIndices": [
-                  0
-                ],
-                "subheading": ""
-              },
-              "symbolName": "orthogonal",
-              "namespace": "initializers",
-              "paramStr": "(config)",
-              "parameters": [
-                {
-                  "name": "config",
-                  "documentation": "",
-                  "type": "Object",
-                  "optional": false,
-                  "isConfigParam": false
-                },
-                {
-                  "name": "gain",
-                  "documentation": "Multiplicative factor to apply to the orthogonal matrix. Defaults to 1.",
-                  "type": "number",
-                  "optional": true,
-                  "isConfigParam": true
-                }
-              ],
-              "returnType": "[tf.initializers.Initializer](#class:initializers.Initializer)",
-              "documentation": "Initializer that generates a random orthogonal matrix.\n\nReference:\n[Saxe et al., http://arxiv.org/abs/1312.6120](http://arxiv.org/abs/1312.6120)",
-              "fileName": "#732",
-              "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L732-L740",
-              "isFunction": true,
-              "displayName": "tf.initializers.orthogonal",
-              "urlHash": "initializers.orthogonal"
             },
             {
               "docInfo": {
@@ -9090,7 +9029,7 @@
               "namespace": "initializers",
               "paramStr": "()",
               "parameters": [],
-              "returnType": "Zeros",
+              "returnType": "[tf.initializers.Initializer](#class:initializers.Initializer)",
               "documentation": "Initializer that generates tensors initialized to 0.",
               "fileName": "#607",
               "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L607-L614",
@@ -9167,10 +9106,10 @@
                   "isConfigParam": false
                 }
               ],
-              "returnType": "Regularizer",
+              "returnType": "[tf.regularizers.L1L2](#class:regularizers.L1L2)",
               "documentation": "Regularizer for L1 and L2 regularization.\n\nAdds a term to the loss to penalize large weights:\nloss += sum(l1 * abs(x)) + sum(l2 * x^2)",
-              "fileName": "#750",
-              "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L750-L754",
+              "fileName": "#741",
+              "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L741-L745",
               "isFunction": true,
               "displayName": "tf.regularizers.l1",
               "urlHash": "regularizers.l1"
@@ -9194,10 +9133,10 @@
                   "isConfigParam": false
                 }
               ],
-              "returnType": "Regularizer",
+              "returnType": "[tf.regularizers.L1L2](#class:regularizers.L1L2)",
               "documentation": "Regularizer for L1 and L2 regularization.\n\nAdds a term to the loss to penalize large weights:\nloss += sum(l1 * abs(x)) + sum(l2 * x^2)",
-              "fileName": "#744",
-              "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L744-L748",
+              "fileName": "#735",
+              "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L735-L739",
               "isFunction": true,
               "displayName": "tf.regularizers.l1l2",
               "urlHash": "regularizers.l1l2"
@@ -9221,10 +9160,10 @@
                   "isConfigParam": false
                 }
               ],
-              "returnType": "Regularizer",
+              "returnType": "[tf.regularizers.L1L2](#class:regularizers.L1L2)",
               "documentation": "Regularizer for L1 and L2 regularization.\n\nAdds a term to the loss to penalize large weights:\nloss += sum(l1 * abs(x)) + sum(l2 * x^2)",
-              "fileName": "#756",
-              "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L756-L760",
+              "fileName": "#747",
+              "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/master/src/exports.ts#L747-L751",
               "isFunction": true,
               "displayName": "tf.regularizers.l2",
               "urlHash": "regularizers.l2"

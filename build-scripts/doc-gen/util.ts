@@ -158,8 +158,7 @@ export function getFileInfo(
   const fileName = sourceFile.fileName.substring(repoPath.length + '/'.length);
   const displayFilename = fileName.substring(srcRoot.length) + '#' + startLine;
 
-  const githubUrl =
-      `${githubRoot}/blob/master/${fileName}#L${startLine}-L${endLine}`;
+  const githubUrl = `${githubRoot}/${fileName}#L${startLine}-L${endLine}`;
   return {displayFilename, githubUrl};
 }
 

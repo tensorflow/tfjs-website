@@ -40,19 +40,30 @@ NOTE: Currently skeleton.json is in _data and will be moved out. See https://git
 
 To edit the docs and see changes reflected in the site you can edit the repositories that are located in `libs`. Note that these submodules behave like *regular git repositories* and have an origin pointing to the canonical repository for `tfjs-core` and `tfjs-layers`. Making an API doc change involves making a commit to the subproject repo and to this one. You may need to add a new git remote in the submodule if you want to make a PR from a fork of tfjs-website repo. Make sure to do `git checkout master` or make a new branch for your changes.
 
-Once you make an edit to the JSDoc for a submodule run
+There are two ways to regenerate the docs json.
+
+During local development (e.g. if you have changes in libs), run:
 
 ```
 yarn build-api
 ```
 
-To regenerate the API json.
-
-**Note:** Right now docs build off of master for the two branches. This is going to change, they will in future default to build off of the specific tag indicated by the package.json of tfjs. There will be an option to override this to build off of master. So this step is subject to change (it will have more options) once the npm repos have stabilized.
-
-Refreshing the page on the website should allow you to see your changes. You may need restart the dev server if you are generating a new version of the docs.
+This will build a version of the api known as `local`. It will be accessible at `http://localhost:4000/api/local/`. This content is not checked in, not is it linked to
+anywhere on the site, but it is suitable for testing changes to docs.
 
 Once the your changes have been accepted into the repo in question (either tfjs-core or tfjs-layers), you can run `yarn prep` again in this repo (tfjs-website) to sync everything up (pull the most recent commits from master for each). You can then commit the **new submodule info** in the tfjs-website repo.
+
+Once you are done you can do a full production build of the site using:
+
+```
+yarn build-prod
+```
+
+Note that this command will do a number of things that will **modify your working tree**. Its purpose is to build a new production build suitable for deployment to the site, as such it only builds docs that are in a released version of tfjs-layers and tfjs-core. The version it builds is driven off of the `@tensorflow/tfjs` dependency in package.json. **Build prod cannot build your local doc changes into the site**. To do this it will do a checkout of `libs/tfjs-core` and `libs/tfjs-layers` that correspond to the dependencies listed for `@tensorflow/tfjs`. This will modify your working tree (in libs).
+
+In both these cases starting the dev server and refreshing the page should allow you to see changes.
+
+In addition to `http://localhost:4000/api/local/`, the build also provides `http://localhost:4000/api/latest/` which points to the last **production** version of the docs that have been built. `latest` will never point to `local`
 
 
 ### Deployment
@@ -60,7 +71,7 @@ Once the your changes have been accepted into the repo in question (either tfjs-
 To build the site run
 
 ```
-yarn build
+yarn build-prod
 ```
 
-We use firebase to deploy the site, this is a WIP so I will update this section soon.
+Deploy instructions are go/tfjs-site-deploy (for googlers only)
