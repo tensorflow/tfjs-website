@@ -1,5 +1,5 @@
 ---
-title: 0.6.0-alpha7
+title: 0.6.0
 layout: api
 ---
 
