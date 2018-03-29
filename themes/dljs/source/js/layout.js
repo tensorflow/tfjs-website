@@ -1,11 +1,11 @@
 document.addEventListener('DOMContentLoaded', function(e) {
   function initNavDraw() {
-    const drawer = new mdc.drawer.MDCTemporaryDrawer(
+    var drawer = new mdc.drawer.MDCTemporaryDrawer(
         document.querySelector('.mdc-drawer--temporary'));
 
-    const drawerButton = document.getElementById('nav-menu-button');
+    var drawerButton = document.getElementById('nav-menu-button');
 
-    drawerButton.addEventListener('click', () => {
+    drawerButton.addEventListener('click', function() {
       drawer.open = true;
     });
   }
