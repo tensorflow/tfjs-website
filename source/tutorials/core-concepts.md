@@ -11,9 +11,9 @@ TensorFlow.js provides low-level building blocks for machine learning as well as
 
 ## Tensors
 
-The central unit of data in TensorFlow.js is the tensor: a set of numerical values shaped into an array of one or more dimensions. A [`Tensor`](../api/latest/index.html#class:tf.Tensor) instance has a `shape` attribute that defines the array shape (i.e., how many values are in each dimension of the array).
+The central unit of data in TensorFlow.js is the tensor: a set of numerical values shaped into an array of one or more dimensions. A [`Tensor`](../api/latest/index.html#class:Tensor) instance has a `shape` attribute that defines the array shape (i.e., how many values are in each dimension of the array).
 
-The primary `Tensor` constructor is the [`tf.tensor`](../api/latest/index.html#tf.tensor) function:
+The primary `Tensor` constructor is the [`tf.tensor`](../api/latest/index.html#tensor) function:
 
 ```js
 // 2x3 Tensor
@@ -31,7 +31,7 @@ b.print();
 ```
 
 However, for constructing low-rank tensors, we recommend using the following
-functions to enhance code readability: [`tf.scalar`](../api/latest/index.html#tf.scalar), [`tf.tensor1d`](../api/latest/index.html#tf.tensor1d), [`tf.tensor2d`](../api/latest/index.html#tf.tensor2d), [`tf.tensor3d`](../api/latest/index.html#tf.tensor3d) and [`tf.tensor4d`](../api/latest/index.html#tf.tensor4d).
+functions to enhance code readability: [`tf.scalar`](../api/latest/index.html#scalar), [`tf.tensor1d`](../api/latest/index.html#tensor1d), [`tf.tensor2d`](../api/latest/index.html#tensor2d), [`tf.tensor3d`](../api/latest/index.html#tensor3d) and [`tf.tensor4d`](../api/latest/index.html#tensor4d).
 
 The following example creates an identical tensor to the one above using `tf.tensor2d`:
 
@@ -43,7 +43,7 @@ c.print();
 ```
 
 TensorFlow.js also provides convenience functions for creating tensors with all values
-set to 0 ([`tf.zeros`](../api/latest/index.html#tf.zeros)) or all values set to 1 ([`tf.ones`](../api/latest/index.html#tf.ones)):
+set to 0 ([`tf.zeros`](../api/latest/index.html#zeros)) or all values set to 1 ([`tf.ones`](../api/latest/index.html#ones)):
 
 ```js
 // 3x5 Tensor with all values set to 0
@@ -57,7 +57,7 @@ In TensorFlow.js, tensors are immutable; once created, you cannot change their v
 
 ## Variables
 
-[`Variable`s](../api/latest/index.html#class:tf.Variable) are initialized with a tensor of values. Unlike `Tensor`s, however, their values are mutable. You can assign a new tensor to an existing variable using the `assign` method:
+[`Variable`s](../api/latest/index.html#class:Variable) are initialized with a tensor of values. Unlike `Tensor`s, however, their values are mutable. You can assign a new tensor to an existing variable using the `assign` method:
 
 ```js
 const initialValues = tf.zeros([5]);
@@ -75,7 +75,7 @@ Variables are primarily used to store and then update values during model traini
 
 While tensors allow you to store data, operations (ops) allow you to manipulate that data. TensorFlow.js provides a wide variety of ops suitable for linear algebra and machine learning that can be performed on tensors. Because tensors are immutable, these ops do not change their values; instead, ops return new tensors.
 
-Available ops include unary ops such as [`square`](../api/latest/index.html#tf.square):
+Available ops include unary ops such as [`square`](../api/latest/index.html#square):
 
 ```js
 const d = tf.tensor2d([[1.0, 2.0], [3.0, 4.0]]);
@@ -85,7 +85,7 @@ d_squared.print();
 //          [9, 16]]
 ```
 
-And binary ops such as [`add`](../api/latest/index.html#tf.add), [`sub`](../api/latest/index.html#tf.sub), and [`mul`](../api/latest/index.html#tf.mul):
+And binary ops such as [`add`](../api/latest/index.html#add), [`sub`](../api/latest/index.html#sub), and [`mul`](../api/latest/index.html#mul):
 
 ```js
 const e = tf.tensor2d([[1.0, 2.0], [3.0, 4.0]]);
@@ -142,7 +142,7 @@ const result = predict(2);
 result.print() // Output: 24
 ```
 
-You can also use the high-level API [`tf.model`](../api/latest/index.html#tf.model) to construct a model out of _layers_, which are a popular abstraction in deep learning. The following code constructs a [`tf.sequential`](../api/latest/index.html#tf.sequential) model:
+You can also use the high-level API [`tf.model`](../api/latest/index.html#model) to construct a model out of _layers_, which are a popular abstraction in deep learning. The following code constructs a [`tf.sequential`](../api/latest/index.html#sequential) model:
 
 
 ```js
@@ -160,13 +160,13 @@ model.compile({optimizer, loss: 'categoricalCrossentropy'});
 model.fit({x: data, y: labels)});
 ```
 
-There are many different types of layers available in TensorFlow.js. A few examples include [`tf.layers.simpleRNN`](../api/latest/index.html#tf.layers.simpleRNN), [`tf.layers.gru`](../api/latest/index.html#tf.layers.gru), and [`tf.layers.lstm`](../api/latest/index.html#tf.layers.lstm).
+There are many different types of layers available in TensorFlow.js. A few examples include [`tf.layers.simpleRNN`](../api/latest/index.html#layers.simpleRNN), [`tf.layers.gru`](../api/latest/index.html#layers.gru), and [`tf.layers.lstm`](../api/latest/index.html#layers.lstm).
 
 ## Memory Management: dispose and tf.tidy
 
 Because TensorFlow.js uses the GPU to accelerate math operations, it's necessary to manage GPU memory when working with tensors and variables.
 
-TensorFlow.js provide two functions to help with this: `dispose` and [`tf.tidy`](../api/latest/index.html#tf.tidy).
+TensorFlow.js provide two functions to help with this: `dispose` and [`tf.tidy`](../api/latest/index.html#tidy).
 
 ### dispose
 
