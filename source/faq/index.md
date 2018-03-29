@@ -16,7 +16,7 @@ Yes! We have two tutorials for importing TensorFlow models.  One for the [Tensor
 
 Not yet, but this is also one of our highest priorities. We are working on a format that will make it easy to load and save models that originated in the browser. Keep an eye on [this issue](https://github.com/tensorflow/tfjs/issues/13) to see when it is done.
 
-## How does this relate to TensorFlow
+## How does this relate to TensorFlow?
 
 TensorFlow.js has an API similar to the TensorFlow Python API, however it does not support all of the functionality of the TensorFlow Python API. We are working hard to achieve API parity where it makes sense but also strive to provide an idiomatic JS API.
 
