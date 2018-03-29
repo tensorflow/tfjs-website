@@ -10,7 +10,7 @@ Not yet! However we are actively working on creating node.js bindings to the Ten
 
 ## Can I import a TensorFlow or Keras model into the browser?
 
-Yes! We have two tutorials for importing TensorFlow models.  One for the [TensorFlow SavedModel](https://github.com/tensorflow/tfjs-converter) format, and one for importing [Keras HDF5 models]("../tutorials/import-keras.html").
+Yes! We have two tutorials for importing TensorFlow models.  One for the [TensorFlow SavedModel](https://github.com/tensorflow/tfjs-converter) format, and one for importing [Keras HDF5 models](../tutorials/import-keras.html).
 
 ## Can I export my model from the browser?
 
