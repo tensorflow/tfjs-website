@@ -1768,7 +1768,7 @@
     },
     {
       "name": "Models",
-      "description": "<p>Models are one of the primary abstractions used in\nTensorflow.js Layers.  Models can be trained, evaluated, and used\nfor prediction.  A model's state (topology, and optionally, trained\nweights) can be restored from various formats.</p>\n<p>Models are a collection of Layers, see Model Creation for\nfor details about how Layers can be connected.</p>",
+      "description": "<p>Models are one of the primary abstractions used in\nTensorFlow.js Layers.  Models can be trained, evaluated, and used\nfor prediction.  A model's state (topology, and optionally, trained\nweights) can be restored from various formats.</p>\n<p>Models are a collection of Layers, see Model Creation for\nfor details about how Layers can be connected.</p>",
       "subheadings": [
         {
           "name": "Creation",
@@ -7023,7 +7023,7 @@
                 },
                 {
                   "name": "radius",
-                  "documentation": "The number of adjacent channels or spatial locations of the\n1D normalization window. In Tensorflow this param is called\n'depth_radius' because only 'acrossChannels' mode is supported.",
+                  "documentation": "The number of adjacent channels or spatial locations of the\n1D normalization window. In TensorFlow this param is called\n'depth_radius' because only 'acrossChannels' mode is supported.",
                   "type": "number",
                   "optional": true,
                   "isConfigParam": false
