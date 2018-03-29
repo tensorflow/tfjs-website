@@ -96,7 +96,7 @@ Let’s break down each argument in the configuration object:
 
 ### Adding the Second Layer
 
-Let’s add a second layer to the model: a max pooling layer, which we'll create using [`tf.layers.maxPooling2d`](../api/latest/index.html#tf.layers.maxPooling2d). This layer will downsample the result (also known as the activation) from the convolution by computing the maximum value for each sliding window:
+Let’s add a second layer to the model: a max pooling layer, which we'll create using [`tf.layers.maxPooling2d`](../api/latest/index.html#layers.maxPooling2d). This layer will downsample the result (also known as the activation) from the convolution by computing the maximum value for each sliding window:
 
 ```js
 model.add(tf.layers.maxPooling2d({
@@ -132,13 +132,13 @@ model.add(tf.layers.maxPooling2d({
 }));
 ```
 
-Next, let's add a [`flatten`](../api/latest/index.html#tf.layers.flatten) layer to flatten the output of the previous layer to a vector:
+Next, let's add a [`flatten`](../api/latest/index.html#layers.flatten) layer to flatten the output of the previous layer to a vector:
 
 ```js
 model.add(tf.layers.flatten());
 ```
 
-Lastly, let's add a [`dense`](../api/latest/index.html#tf.layers.dense) layer (also known as a fully connected layer), which will perform the final classification. Flattening the output of a convolution+pooling layer pair before a dense layer is another common pattern in neural networks:
+Lastly, let's add a [`dense`](../api/latest/index.html#layers.dense) layer (also known as a fully connected layer), which will perform the final classification. Flattening the output of a convolution+pooling layer pair before a dense layer is another common pattern in neural networks:
 
 ```js
 model.add(tf.layers.dense({
@@ -305,7 +305,7 @@ passing a single batch of data at a time, as shown below:
 Let's break down the arguments again:
 
 * `x`. Our input image data. Remember that we are feeding examples in batches so we must tell the
-`fit` function how large our batch is. `MnistData.nextTrainBatch` returns images with shape `[BATCH_SIZE, 784]`—all the data for the image in a 1-D vector of length 784 (28 * 28). However, our model expects image data in the shape `[BATCH_SIZE, 28, 28, 1]`, so we [`reshape`](../api/latest/index.html#tf.reshape) accordingly.
+`fit` function how large our batch is. `MnistData.nextTrainBatch` returns images with shape `[BATCH_SIZE, 784]`—all the data for the image in a 1-D vector of length 784 (28 * 28). However, our model expects image data in the shape `[BATCH_SIZE, 28, 28, 1]`, so we [`reshape`](../api/latest/index.html#reshape) accordingly.
 
 * `y`. Our labels; the correct digit classifications for each image.
 
