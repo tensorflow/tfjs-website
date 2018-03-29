@@ -28,7 +28,7 @@ Please take a look at [this benchmark](https://github.com/tensorflow/tfjs-layers
 
 ## What is the difference between TensorFlow.js and deeplearn.js?
 
-TensorFlow.js is an ecosystem of JavaScript tools for machine learning that evolved from deeplearn.js. deeplearn.js is now called TensorFlow.js Core. TensorFlow.js also includes a Layers API--a higher level library for building machine learning models--as well as tools for automatically porting TensorFlow SavedModels and Keras HDF5 models.
+TensorFlow.js is an ecosystem of JavaScript tools for machine learning that evolved from deeplearn.js. deeplearn.js is now called TensorFlow.js Core. TensorFlow.js also includes a Layers API&mdash;a higher level library for building machine learning models&mdash;as well as tools for automatically porting TensorFlow SavedModels and Keras HDF5 models.
 
 ## I still have some questions
 
