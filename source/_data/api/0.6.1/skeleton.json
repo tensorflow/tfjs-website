@@ -39,7 +39,7 @@
   {
     "name": "Models",
     "description": ["<p>Models are one of the primary abstractions used in",
-        "Tensorflow.js Layers.  Models can be trained, evaluated, and used",
+        "TensorFlow.js Layers.  Models can be trained, evaluated, and used",
         "for prediction.  A model's state (topology, and optionally, trained",
         "weights) can be restored from various formats.</p>",
         "<p>Models are a collection of Layers, see Model Creation for",
