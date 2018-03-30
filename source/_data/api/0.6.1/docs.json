@@ -7023,7 +7023,7 @@
                 },
                 {
                   "name": "radius",
-                  "documentation": "The number of adjacent channels or spatial locations of the\n1D normalization window. In TensorFlow this param is called\n'depth_radius' because only 'acrossChannels' mode is supported.",
+                  "documentation": "The number of adjacent channels or spatial locations of the\n1D normalization window. In Tensorflow this param is called\n'depth_radius' because only 'acrossChannels' mode is supported.",
                   "type": "number",
                   "optional": true,
                   "isConfigParam": false
