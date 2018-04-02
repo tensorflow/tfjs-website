@@ -24,7 +24,7 @@ TensorFlow.js has an API similar to the TensorFlow Python API, however it does n
 
 In our experience, for inference, TensorFlow.js with WebGL is 1.5-2x slower than TensorFlow Python with AVX. For training, we have seen small models train faster in the browser and large models train up to 10-15x slower in the browser, compared to TensorFlow Python with AVX.
 
-Please take a look at [this benchmark](https://github.com/tensorflow/tfjs-layers/blob/master/demos/benchmarks_demo.html) to get more detailed performance measurements.
+Please take a look at [this benchmark](https://github.com/tensorflow/tfjs-layers/blob/master/integration_tests/benchmarks/index.html) to get more detailed performance measurements.
 
 ## What is the difference between TensorFlow.js and deeplearn.js?
 
