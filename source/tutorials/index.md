@@ -20,14 +20,14 @@ This tutorial shows how to build a convolutional neural network to recognize
 handwritten digits in images (MNIST). We will use the TensorFlow.js layers API
 to construct, train, and evaluate the model.
 
-<h2><a href="./import-keras.html">How to import a Keras Model into TensorFlow.js</a></h2>
-
-This tutorial explains how to convert and serve an existing Keras model to run in the browser.
-
 <h2><a href="./webcam-transfer-learning.html">Transfer learning - Train a neural network to predict from webcam data</a></h2>
 
 This tutorial explains how to train a neural network to make predictions from
 webcam data. We'll use those predictions to play [Pac-Man](https://en.wikipedia.org/wiki/Pac-Man)!
+
+<h2><a href="./import-keras.html">How to import a Keras Model into TensorFlow.js</a></h2>
+
+This tutorial explains how to convert and serve an existing Keras model to run in the browser.
 
 <h2><a href="https://github.com/tensorflow/tfjs-converter" target="_blank">How to import a TensorFlow SavedModel into TensorFlow.js</a></h2>
 
