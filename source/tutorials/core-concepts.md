@@ -95,6 +95,7 @@ const e_plus_f = e.add(f);
 e_plus_f.print();
 // Output: [[6 , 8 ],
 //          [10, 12]]
+```
 
 TensorFlow.js has a chainable API; you can call ops
 on the result of ops:
@@ -103,7 +104,7 @@ on the result of ops:
 const sq_sum = e.add(f).square();
 sq_sum.print();
 // Output: [[36 , 64 ],
-            [100, 144]]
+//          [100, 144]]
 
 // All operations are also exposed as functions in the main namespace,
 // so you could also do the following:

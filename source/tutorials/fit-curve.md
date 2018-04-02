@@ -61,8 +61,8 @@ function predict(x) {
   return tf.tidy(() => {
     return a.mul(x.pow(tf.scalar(3))) // a * x^3
       .add(b.mul(x.square())) // + b * x ^ 2
-      .add(c.mul(x)) // + c
-      .add(d);
+      .add(c.mul(x)) // + c * x
+      .add(d); // + d
   });
 }
 ```
