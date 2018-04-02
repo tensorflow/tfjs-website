@@ -14,27 +14,27 @@ following Keras code translates into JavaScript:
 import keras
 import numpy as np
 
-# Build and compile the model.
+# Build and compile model.
 model = keras.Sequential()
-model.add(keras.layers.Dense(units=1, inputShape=[1]))
+model.add(keras.layers.Dense(units=1, input_shape=[1]))
 model.compile(optimizer='sgd', loss='mean_squared_error')
 
 # Generate some synthetic data for training.
 xs = np.array([[1], [2], [3], [4]])
 ys = np.array([[1], [3], [5], [7]])
 
-# Train the model with fit().
+# Train model with fit().
 model.fit(xs, ys, epochs=1000)
 
-# Run inference with the model with predict().
+# Run inference with predict().
 print(model.predict(np.array([[5]])))
 ```
 
 ```js
 // JavaScript:
-import * as tf from '@tensorlowjs/tfjs'
+import * as tf from '@tensorlowjs/tfjs';
 
-// Build and compile the model.
+// Build and compile model.
 const model = tf.sequential();
 model.add(tf.layers.dense({units: 1, inputShape: [1]}));
 model.compile({optimizer: 'sgd', loss: 'meanSquaredError'});
@@ -43,10 +43,10 @@ model.compile({optimizer: 'sgd', loss: 'meanSquaredError'});
 const xs = tf.tensor2d([[1], [2], [3], [4]], [4, 1]);
 const ys = tf.tensor2d([[1], [3], [5], [7]], [4, 1]);
 
-// Train the model with fit().
+// Train model with fit().
 await model.fit(xs, ys, {epochs: 1000});
 
-// Run inference with the model with predict().
+// Run inference with predict().
 model.predict(tf.tensor2d([[5]], [1, 1])).print();
 ```
 
