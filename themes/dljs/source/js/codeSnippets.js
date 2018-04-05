@@ -2,13 +2,29 @@ async function executeCodeSnippet(consoleLogElement, codeSnippet) {
   consoleLogElement.innerText = '';
   var oldLog = console.log;
   console.log = function(logStr) {
-    consoleLogElement.innerText += logStr + '\n';
+    consoleLogElement.innerHTML += logStr + '\n';
   };
 
-  var snippet = `(async function() {${codeSnippet}})();`;
+  async function runSnippet() {
+    try {
+      eval(codeSnippet);
+    } catch (e) {
+      var errorMessage = '\n<div class="snippet-error"><em>An error occured';
+      if (e.lineNumber !== undefined) {
+        errorMessage += ' on line: ' + e.lineNumber + '</em>';
+      } else {
+        errorMessage += '</em>'
+      }
+      errorMessage += '<br/>';
+      errorMessage += '<div class="snippet-error-msg">' + e.message + '</div>';
+      errorMessage += '</div>';
+
+      console.log(errorMessage);
+    }
+  };
 
   tf.ENV.engine.startScope();
-  await eval(snippet);
+  await runSnippet();
   tf.ENV.engine.endScope();
 
   console.log = oldLog;

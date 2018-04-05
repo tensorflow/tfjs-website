@@ -328,5 +328,15 @@ footer {
       font-weight: bold;
     }
 
+    .snippet-error {
+      background-color: rgba(255, 0,0,0.1);
+      padding: 10px;
+      border-radius: 5px;
+
+      .snippet-error-msg {
+        margin-left: 8px;
+      }
+    }
+
   }
 }
