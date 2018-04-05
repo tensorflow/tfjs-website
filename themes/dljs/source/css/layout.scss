@@ -1,5 +1,4 @@
-
-$mdc-theme-primary: #0277BD;
+$mdc-theme-primary: #0277bd;
 // $mdc-theme-secondary: #76ff03;
 // $mdc-theme-background: #fff;
 
@@ -8,9 +7,8 @@ $mdc-theme-primary: #0277BD;
 $header-height: 64px;
 $footer-height: 64px;
 
-$brand-color-dark:  #ef6c00;
+$brand-color-dark: #ef6c00;
 $brand-color-bright: rgb(252, 184, 74);
-
 
 body {
   margin: 0;
@@ -33,16 +31,16 @@ body {
   }
 
   a {
-    color: #0277BD;
+    color: #0277bd;
     &:visited {
-      color: #0277BD;
+      color: #0277bd;
     }
   }
 
   header {
     padding-right: 24px;
     background-color: $brand-color-dark !important;
-    border-bottom: 1px solid rgba(255,255,255, 0.3);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
 
     .mdc-toolbar__section {
       align-items: center;
@@ -59,12 +57,12 @@ body {
       color: white;
       text-decoration: none;
       border-bottom: 1px solid;
-      border-color: rgba(255,255,255, 0.0);
+      border-color: rgba(255, 255, 255, 0);
 
       transition: border-color 200ms;
 
       &:visited {
-        color: white
+        color: white;
       }
 
       &.cta {
@@ -117,21 +115,21 @@ body {
   }
 
   h1 {
-    @include mdc-typography('headline');
+    @include mdc-typography("headline");
     margin-top: 32px;
   }
 
   h2 {
-    @include mdc-typography('title');
+    @include mdc-typography("title");
     margin-top: 24px;
   }
 
   h3 {
-    @include mdc-typography('title');
+    @include mdc-typography("title");
     margin-top: 24px;
   }
 
-  p{
+  p {
     line-height: 1.5em;
   }
 
@@ -183,7 +181,7 @@ body {
     img {
       margin-top: 50px;
       width: 50vw;
-      min-width: 420px;
+      min-width: 300px;
       max-width: 800px;
     }
 
@@ -239,7 +237,6 @@ body {
           margin-bottom: 32px;
         }
       }
-
     }
 
     .demos {
@@ -253,25 +250,24 @@ body {
         &:nth-child(odd) {
           .info {
             order: 2;
-            padding-left:50px;
-            padding-right:0px;
+            padding-left: 50px;
+            padding-right: 0px;
           }
         }
 
         .info {
           width: 33%;
-          padding-right:50px;
+          padding-right: 50px;
           display: flex;
           flex-direction: column;
 
           .title {
             @include mdc-typography("title");
             text-transform: uppercase;
-            border-bottom: 2px solid #0277BD;
-
+            border-bottom: 2px solid #0277bd;
 
             a {
-              color: #0277BD;
+              color: #0277bd;
               text-decoration: none;
             }
           }
@@ -311,7 +307,7 @@ body {
           &:nth-child(odd) {
             .info {
               order: 1;
-              padding-left:0;
+              padding-left: 0;
             }
 
             img {
@@ -327,7 +323,6 @@ body {
             width: 100%;
             max-width: 100%;
           }
-
         }
       }
     }
@@ -335,14 +330,13 @@ body {
     .getting-started {
       .gs-code {
         display: flex;
-        flex-direction: row;
+        flex-flow: row wrap;
 
         font-size: 120%;
 
         pre {
-          margin:0;
+          margin: 0 30px 15px 0;
           padding: 0;
-          margin-right: 30px;
         }
 
         code {
@@ -370,13 +364,10 @@ body {
         font-size: 80%;
       }
     }
-
   }
 }
 
 .page-tutorials {
-
-
   h2 {
     margin-top: 64px;
   }
