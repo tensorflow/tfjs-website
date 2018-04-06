@@ -285,7 +285,7 @@ footer {
       padding-left: 16px;
       border: none;
       font-family: "Roboto Mono", Roboto;
-      font-size: 90%;
+      font-size: 13px;
     }
 
     pre.hljs {
@@ -315,9 +315,27 @@ footer {
     .snippet-run-button {
       position: absolute;
       right: 4px;
-      top: 4px;
+      top: 5px;
       font-size: 12px;
       font-weight: bold;
+    }
+
+    .snippet-edit-button {
+      position: absolute;
+      right: 60px;
+      top: 5px;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    .snippet-error {
+      background-color: rgba(255, 0,0,0.1);
+      padding: 10px;
+      border-radius: 5px;
+
+      .snippet-error-msg {
+        margin-left: 8px;
+      }
     }
 
   }
