@@ -55,7 +55,7 @@ async function executeCodeSnippet(consoleLogElement, codeSnippet) {
 
   tf.ENV.engine.startScope();
 
-  // this outer try is for erros that prevent the snippet from being parsed.
+  // this outer try is for errors that prevent the snippet from being parsed.
   try {
     await eval(evalString).catch(function(e) {
       // This catch is for errors within promises within snippets
