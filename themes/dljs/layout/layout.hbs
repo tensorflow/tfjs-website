@@ -50,8 +50,18 @@ limitations under the License.
 
     {{#if (isApiPage path)}}
       <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:400,500,700" rel="stylesheet">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/railscasts.min.css">
+      <link rel="stylesheet" href="{{url_for 'css/vendor/highlight-railscasts.css'}}">
+
+      <link rel="stylesheet" href="{{url_for 'css/vendor/codemirror.css'}}">
+      <link rel="stylesheet" href="{{url_for 'css/vendor/codemirror-railscasts.css'}}">
+
       <link rel="stylesheet" href="{{url_for 'css/api.css'}}" />
+
+
+      <script src="{{url_for 'js/vendor/codemirror.js'}}"></script>
+      <script src="{{url_for 'js/vendor/codemirror-javascript.js'}}"></script>
+
+      <script src="{{url_for 'js/codeSnippets.js'}}"></script>
       <script src="{{url_for 'js/api.js'}}"></script>
     {{else}}
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">

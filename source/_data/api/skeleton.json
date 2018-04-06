@@ -75,6 +75,10 @@
         "the various internal variables/weights they need to function.</p>"],
     "subheadings": [
       {
+        "name": "Advanced Activation",
+        "description": []
+      },
+      {
         "name": "Basic",
         "description": []
       },
