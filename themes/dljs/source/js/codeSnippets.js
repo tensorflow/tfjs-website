@@ -1,3 +1,31 @@
+// There isn't a standard way to get line numbers reliably, we attempt to
+// parse out a few formats we have seen.
+// Note we do not use e.lineNumber as it is not reliable (especially in the
+// context of eval)
+function getLineNumber(error) {
+  try {
+    // firefox
+    const firefoxRegex = /eval:(\d+):\d+/;
+    if (error.stack.match(firefoxRegex)) {
+      const res = error.stack.match(firefoxRegex);
+      return parseInt(res[1], 10);
+    }
+
+    // chrome
+    const chromeRegex = /eval.+:(\d+):\d+/;
+    if (error.stack.match(chromeRegex)) {
+      const res = error.stack.match(chromeRegex);
+      return parseInt(res[1], 10);
+    }
+
+  } catch (e) {
+    return;
+  }
+
+  // We found nothing
+  return;
+}
+
 async function executeCodeSnippet(consoleLogElement, codeSnippet) {
   consoleLogElement.innerText = '';
   var oldLog = console.log;
@@ -5,26 +33,38 @@ async function executeCodeSnippet(consoleLogElement, codeSnippet) {
     consoleLogElement.innerHTML += logStr + '\n';
   };
 
-  async function runSnippet() {
-    try {
-      eval(codeSnippet);
-    } catch (e) {
-      var errorMessage = '\n<div class="snippet-error"><em>An error occured';
-      if (e.lineNumber !== undefined) {
-        errorMessage += ' on line: ' + e.lineNumber + '</em>';
-      } else {
-        errorMessage += '</em>'
-      }
-      errorMessage += '<br/>';
-      errorMessage += '<div class="snippet-error-msg">' + e.message + '</div>';
-      errorMessage += '</div>';
-
-      console.log(errorMessage);
+  function reportError(e) {
+    var errorMessage = '\n<div class="snippet-error"><em>An error occured';
+    var lineNumber = getLineNumber(e);
+    if (lineNumber !== undefined) {
+      errorMessage += ' on line: ' + lineNumber + '</em>';
+    } else {
+      errorMessage += '</em>'
     }
-  };
+    errorMessage += '<br/>';
+    errorMessage += '<div class="snippet-error-msg">' + e.message + '</div>';
+    errorMessage += '</div>';
+
+    console.log(errorMessage);
+  }
+
+  // It is important that codeSnippet and 'try {' be on the same line
+  // in order to not modify the line number on an error.
+  const evalString = '(async function runner() { try { ' + codeSnippet +
+      '} catch (e) { reportError(e); } })()';
 
   tf.ENV.engine.startScope();
-  await runSnippet();
+
+  // this outer try is for errors that prevent the snippet from being parsed.
+  try {
+    await eval(evalString).catch(function(e) {
+      // This catch is for errors within promises within snippets
+      reportError(e);
+    });
+  } catch (e) {
+    reportError(e);
+  }
+
   tf.ENV.engine.endScope();
 
   console.log = oldLog;
