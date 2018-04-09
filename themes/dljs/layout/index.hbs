@@ -150,10 +150,12 @@
           <code class="lang-html">&lt;html&gt;
   &lt;head&gt;
     &lt;!-- Load TensorFlow.js --&gt;
-    &lt;script src=&quot;https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@0.7.0&quot;&gt; &lt;/script&gt;
+    &lt;script src=&quot;https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@{{latestVersion}}&quot;&gt; &lt;/script&gt;
 
     &lt;!-- Place your code in the script tag below. You can also use an external .js file --&gt;
     &lt;script&gt;
+      // Notice there is no 'import' statement. 'tf' is available on the index-page
+      // because of the script tag above.
 
       // Define a model for linear regression.
       const model = tf.sequential();
