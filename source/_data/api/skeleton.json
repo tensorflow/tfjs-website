@@ -43,7 +43,7 @@
         "for prediction.  A model's state (topology, and optionally, trained",
         "weights) can be restored from various formats.</p>",
         "<p>Models are a collection of Layers, see Model Creation for",
-        "for details about how Layers can be connected.</p>"],
+        "details about how Layers can be connected.</p>"],
     "subheadings": [
       {
         "name": "Creation",
