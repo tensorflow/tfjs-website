@@ -42,10 +42,6 @@ limitations under the License.
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
     <script src="{{url_for 'js/vendor/material-components-web.js'}} "></script>
-    <script src="{{url_for 'js/vendor/tf.min.js'}}"></script>
-    <script>
-      window.dl = window.tf
-    </script>
     <script src="{{url_for 'js/layout.js'}}"></script>
 
     {{#if (isApiPage path)}}
@@ -57,6 +53,11 @@ limitations under the License.
 
       <link rel="stylesheet" href="{{url_for 'css/api.css'}}" />
 
+      {{#if (eq page.title 'local')}}
+        <script src="{{url_for 'js/vendor/tf.min.js'}}"> </script>
+      {{else}}
+        <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@{{page.title}}"> </script>
+      {{/if}}
 
       <script src="{{url_for 'js/vendor/codemirror.js'}}"></script>
       <script src="{{url_for 'js/vendor/codemirror-javascript.js'}}"></script>
@@ -65,6 +66,7 @@ limitations under the License.
       <script src="{{url_for 'js/api.js'}}"></script>
     {{else}}
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+      <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest"> </script>
     {{/if}}
   </head>
 
