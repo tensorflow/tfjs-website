@@ -1768,7 +1768,7 @@
     },
     {
       "name": "Models",
-      "description": "<p>Models are one of the primary abstractions used in\nTensorFlow.js Layers.  Models can be trained, evaluated, and used\nfor prediction.  A model's state (topology, and optionally, trained\nweights) can be restored from various formats.</p>\n<p>Models are a collection of Layers, see Model Creation for\nfor details about how Layers can be connected.</p>",
+      "description": "<p>Models are one of the primary abstractions used in\nTensorFlow.js Layers.  Models can be trained, evaluated, and used\nfor prediction.  A model's state (topology, and optionally, trained\nweights) can be restored from various formats.</p>\n<p>Models are a collection of Layers, see Model Creation for\ndetails about how Layers can be connected.</p>",
       "subheadings": [
         {
           "name": "Creation",
