@@ -18,6 +18,17 @@
     </section>
     <section class="mdc-toolbar__section mdc-toolbar__section mdc-toolbar__section--shrink-to-fit mdc-toolbar__section--align-end">
       <nav>
+        <form id="codepen-form" action="https://codepen.io/pen/define" method="POST" target="_blank">
+          <input type="hidden" name="data" value='{
+                            "title": "Try TensorFlow.js",
+                            "html": {{codepenHtml}},
+                            "js": {{codepenJs}},
+                            "editors": "1011",
+                            "layout": "top",
+                            "description": "Browser based machine learning.",
+                            "js_external": "https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@{{latestVersion}}"}'>
+          <input class="mdc-button mdc-button--raised" type="submit" value="Try It Live!">
+        </form>
         <a class='button-link' href="https://github.com/tensorflow/tfjs">
           <button class="mdc-button mdc-button--raised">GitHub</button>
         </a>
