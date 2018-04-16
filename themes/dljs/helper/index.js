@@ -83,7 +83,7 @@ model.fit(xs, ys).then(() => {
   // Open the browser devtools to see the output
   model.predict(tf.tensor2d([5], [1, 1])).print();
 });
-`);
+      `);
     }
   };
 };
