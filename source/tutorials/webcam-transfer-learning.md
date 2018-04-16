@@ -457,14 +457,14 @@ const img = webcam.capture();
 As we've seen before, this captures a frame from the webcam as a `Tensor`.
 
 ```js
-const activation = mobilenet.predict(img);
+const act = mobilenet.predict(img);
 ```
 
 Now, feed the webcam frame through our truncated MobileNet model to get
 the internal MobileNet activation.
 
 ```js
-const logits = model.predict(act);
+const predictions = model.predict(act);
 ```
 
 Now, feed the activation through our trained model to get a set of predictions.
