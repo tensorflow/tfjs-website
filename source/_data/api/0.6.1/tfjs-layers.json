@@ -3816,7 +3816,7 @@
                       }
                     ],
                     "returnType": "Tensor\n      |Tensor[]",
-                    "documentation": "Generates output predictions for the input samples.\n\nComputation is done in batches.\n\nNote: the \"step\" mode of predict() is currently not supported.\n   This is because the TensorFow.js core backend is imperative only.\n\n```js\nconst model = tf.sequential({\n   layers: [tf.layers.dense({units: 1, inputShape: [10]})]\n});\nmodel.predict(tf.ones([2, 5])).print();\n```",
+                    "documentation": "Generates output predictions for the input samples.\n\nComputation is done in batches.\n\nNote: the \"step\" mode of predict() is currently not supported.\n   This is because the TensorFow.js core backend is imperative only.\n\n```js\nconst model = tf.sequential({\n   layers: [tf.layers.dense({units: 1, inputShape: [10]})]\n});\nmodel.predict(tf.ones([2, 10])).print();\n```",
                     "fileName": "#425",
                     "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/v0.1.2/src/models.ts#L425-L432",
                     "isFunction": true
