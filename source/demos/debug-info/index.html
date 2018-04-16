@@ -1,0 +1,37 @@
+<h1>TensorFlow.js Debug info</h1>
+
+<div id="debug-info">
+</div>
+
+<style>
+  .debug-el {
+    background-color: #f4f4f4;
+    padding: 10px;
+    border: 1px solid #c6c6c6;
+    margin: 10px;
+  }
+
+  .expression {
+    font-weight: bold;
+  }
+</style>
+
+<script>
+const outputDiv = document.querySelector('#debug-info');
+
+function outputRes(expr, result, pre=false) {
+  const message = document.createElement('div');
+  message.className = 'debug-el';
+  message.innerHTML = `<span class='expression'>${expr}</span>:`
+  message.innerHTML += pre ?
+    `<pre><span class='result'>${JSON.stringify(result, null, 2)}</span></pre>`
+    : `<br/> <span class='result'>${JSON.stringify(result, null, 2)}</span>`
+  outputDiv.appendChild(message);
+}
+
+outputRes('navigator.userAgent', navigator.userAgent);
+outputRes('tf.ENV.features', tf.ENV.features, true);
+
+outputRes('tf.scalar(2).square()', tf.scalar(2).square().dataSync(), true);
+outputRes('tf.scalar(2.4).square()', tf.scalar(2.4).square().dataSync(), true);
+</script>
