@@ -436,8 +436,8 @@ Here is the prediction loop:
 while (isPredicting) {
   const predictedClass = tf.tidy(() => {
     const img = webcam.capture();
-    const act = mobilenet.predict(img);
-    const predictions = model.predict(act);
+    const activation = mobilenet.predict(img);
+    const predictions = model.predict(activation);
     return predictions.as1D().argMax();
   });
 
@@ -464,7 +464,7 @@ Now, feed the webcam frame through our truncated MobileNet model to get
 the internal MobileNet activation.
 
 ```js
-const logits = model.predict(act);
+const predictions = model.predict(act);
 ```
 
 Now, feed the activation through our trained model to get a set of predictions.
