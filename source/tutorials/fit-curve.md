@@ -166,7 +166,7 @@ we invoke [`minimize`](../api/latest/index.html#class:train.Optimizer) on the op
 
 2. It returns the mean squared error loss for those predictions using the loss function we defined earlier in **Define the Loss Function**.
 
-`minimize` then automatically adjusts any variables used by this function (here, the coefficients `a`, `b`, `c`, and `d`) in order to minimize the return value (our loss).
+`minimize` then automatically adjusts any `Variable`s used by this function (here, the coefficients `a`, `b`, `c`, and `d`) in order to minimize the return value (our loss).
 
 After running our training loop, `a`, `b`, `c`, and `d` will contain the coefficient values learned by the model after 75 iterations of SGD.
 
