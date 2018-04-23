@@ -2719,7 +2719,7 @@
                   0
                 ]
               },
-              "symbolName": "thresohldedReLU",
+              "symbolName": "thresholdedReLU",
               "namespace": "layers",
               "paramStr": "(config?)",
               "parameters": [
@@ -2743,8 +2743,8 @@
               "fileName": "#228",
               "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/v0.2.0/src/exports.ts#L228-L237",
               "isFunction": true,
-              "displayName": "tf.layers.thresohldedReLU",
-              "urlHash": "layers.thresohldedReLU"
+              "displayName": "tf.layers.thresholdedReLU",
+              "urlHash": "layers.thresholdedReLU"
             }
           ]
         },
