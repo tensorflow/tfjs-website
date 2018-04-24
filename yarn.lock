@@ -295,24 +295,22 @@
   version "0.28.0"
   resolved "https://registry.yarnpkg.com/@material/typography/-/typography-0.28.0.tgz#4ae96a852fcd324d61b649adc995326c431fcaea"
 
-"@tensorflow/tfjs-core@0.7.1":
-  version "0.7.1"
-  resolved "https://registry.yarnpkg.com/@tensorflow/tfjs-core/-/tfjs-core-0.7.1.tgz#fb8f9c4790d4413ab523537d54d3bd44bc26fdbd"
+"@tensorflow/tfjs-core@0.8.1":
+  version "0.8.1"
+  resolved "https://registry.yarnpkg.com/@tensorflow/tfjs-core/-/tfjs-core-0.8.1.tgz#d93e87302e29620906003b697d2d8596410ad712"
   dependencies:
     seedrandom "~2.4.3"
 
-"@tensorflow/tfjs-layers@0.4.0":
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/@tensorflow/tfjs-layers/-/tfjs-layers-0.4.0.tgz#3e21072f3f628ca1916dedb7b1888d9ae55de501"
-  dependencies:
-    underscore "~1.8.3"
+"@tensorflow/tfjs-layers@0.5.0":
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/@tensorflow/tfjs-layers/-/tfjs-layers-0.5.0.tgz#0ec8d07b46863a162d3e0c60fae3d1087d8aa3ce"
 
-"@tensorflow/tfjs@0.9.0":
-  version "0.9.0"
-  resolved "https://registry.yarnpkg.com/@tensorflow/tfjs/-/tfjs-0.9.0.tgz#757b136a99bb663ba86c42bea8907441d97636eb"
+"@tensorflow/tfjs@0.10.0":
+  version "0.10.0"
+  resolved "https://registry.yarnpkg.com/@tensorflow/tfjs/-/tfjs-0.10.0.tgz#c64f8740b46c2ba734dc0564d37e6a2c33055511"
   dependencies:
-    "@tensorflow/tfjs-core" "0.7.1"
-    "@tensorflow/tfjs-layers" "0.4.0"
+    "@tensorflow/tfjs-core" "0.8.1"
+    "@tensorflow/tfjs-layers" "0.5.0"
 
 "@types/node@~9.4.6":
   version "9.4.7"
@@ -4196,10 +4194,6 @@ uid-number@^0.0.6:
 ultron@~1.1.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/ultron/-/ultron-1.1.1.tgz#9fe1536a10a664a65266a1e3ccf85fd36302bc9c"
-
-underscore@~1.8.3:
-  version "1.8.3"
-  resolved "https://registry.yarnpkg.com/underscore/-/underscore-1.8.3.tgz#4f3fb53b106e6097fcf9cb4109f2a5e9bdfa5022"
 
 universalify@^0.1.0:
   version "0.1.1"
