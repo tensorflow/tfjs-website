@@ -1053,7 +1053,7 @@
                     0
                   ]
                 },
-                "symbolName": "thresohldedReLU",
+                "symbolName": "thresholdedReLU",
                 "namespace": "layers",
                 "paramStr": "(config?)",
                 "parameters": [
