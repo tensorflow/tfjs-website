@@ -442,6 +442,7 @@ while (isPredicting) {
   });
 
   const classId = (await predictedClass.data())[0];
+  predictedClass.dispose();
 
   ui.predictClass(classId);
   await tf.nextFrame();
@@ -480,11 +481,15 @@ highest value (probability). This corresponds to the predicted class.
 
 ```js
 const classId = (await predictedClass.data())[0];
+predictedClass.dispose();
+
 ui.predictClass(classId);
 ```
 
 Now that we have a scalar `Tensor` with our prediction, download it and show
-it in the UI!
+it in the UI!  (Note we do need to manually dispose the `Tensor` here after
+obtaining its value, because we are in an async context that can't be wrapped in
+`tf.tidy()`.)
 
 ## Wrapping up
 
