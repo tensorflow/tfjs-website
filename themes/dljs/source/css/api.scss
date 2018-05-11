@@ -249,10 +249,9 @@ footer {
         &.config-param {
           margin-left: 24px;
 
-        .param-name {
-          color: $dark-text-col;
-        }
-
+          .param-name {
+            color: $dark-text-col;
+          }
         }
 
         .param-name {
@@ -263,12 +262,18 @@ footer {
         .param-type {
           color: $muted-text-col;
           font-family: "Roboto Mono", Roboto;
+          word-wrap: break-word;
+
+          a {
+            display: inline-block;
+          }
         }
       }
     }
 
     .returns {
       margin-top: 16px;
+
       .returns-header {
         font-weight: 500;
         color: $muted-text-col;

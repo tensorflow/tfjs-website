@@ -103,7 +103,7 @@ function loss(predictions, labels) {
 
 For our optimizer, we'll use [Stochastic Gradient Descent](https://developers.google.com/machine-learning/crash-course/glossary#SGD) (SGD). SGD works by taking the [gradient](https://developers.google.com/machine-learning/crash-course/glossary#gradient) of a random point in our data set and using its value to inform whether to increase or decrease the value of our model coefficients.
 
-TensorFlow.js provides a convenience function for performing SGD, so that you don't have to worry about performing all these mathematical operations yourself. [`tf.train.sdg`](../api/latest/index.html#train.sgd) takes as input a desired learning rate, and returns an `SGDOptimizer` object, which can be invoked to optimize the value of the loss function.
+TensorFlow.js provides a convenience function for performing SGD, so that you don't have to worry about performing all these mathematical operations yourself. [`tf.train.sgd`](../api/latest/index.html#train.sgd) takes as input a desired learning rate, and returns an `SGDOptimizer` object, which can be invoked to optimize the value of the loss function.
 
 The _learning rate_ controls how big the model's adjustments will be when improving its predictions. A low learning rate will make the learning process run more slowly (more training iterations needed to learn good coefficients), while a high learning rate will speed up learning but might result in the model oscillating around the right values, always overcorrecting.
 
@@ -166,7 +166,7 @@ we invoke [`minimize`](../api/latest/index.html#class:train.Optimizer) on the op
 
 2. It returns the mean squared error loss for those predictions using the loss function we defined earlier in **Define the Loss Function**.
 
-`minimize` then automatically adjusts any variables used by this function (here, the coefficients `a`, `b`, `c`, and `d`) in order to minimize the return value (our loss).
+`minimize` then automatically adjusts any `Variable`s used by this function (here, the coefficients `a`, `b`, `c`, and `d`) in order to minimize the return value (our loss).
 
 After running our training loop, `a`, `b`, `c`, and `d` will contain the coefficient values learned by the model after 75 iterations of SGD.
 
