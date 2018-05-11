@@ -121,9 +121,9 @@ Often, your HTTP server has special constraints and requirements on requests,
 such as HTTP methods, headers and credentials for authentication. You can gain
 fine-grained control over
 these aspects of the requests from `save` by replacing the URL string argument
-with the calls to `tf.io.browserHTTPRequest`. The `tf.io.browserHTTPRequest`
-method is a more verbose API, but it affords greater flexiblity in controlling
-greater HTTP requests originated by `save`. For example:
+with the calls to `tf.io.browserHTTPRequest`. It is a more verbose API, but it
+affords greater flexiblity in controlling HTTP requests originated by `save`.
+For example:
 
 ```js
 await model.save(tf.io.browserHTTPRequest(
