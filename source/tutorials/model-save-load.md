@@ -29,7 +29,7 @@ some interesting differences between the save/load APIs in TensorFlow.js and in 
 > NOTE: This document is about saving and loading `tf.Model`s (i.e., Keras-style
 > models in the tfjs-layers API). Saving and loading `tf.FrozenModel`s (i.e.,
 > models loaded from TensoFlow SavedModels) are not supported yet and is being
-> activated worked on.
+> activately worked on.
 
 ## Saving `tf.Model`s
 
@@ -134,7 +134,7 @@ await model.save(tf.io.browserHTTPRequest(
 
 ## Loading `tf.Model`s.
 
-The ability to save `tf.Model`s will not be useful at all if the models can't be
+The ability to save `tf.Model`s will not be useful if the models can't be
 loaded back afterwards. Loading models are done with `tf.loadModel`, with a
 scheme-based URL-like arguments that symmetrical to `tf.Model.save` in most
 cases. The table below gives a summary of the supported loading routes:
@@ -149,18 +149,20 @@ cases. The table below gives a summary of the supported loading routes:
 In all the loading routes, `tf.loadModel` returns a (`Promise` of) a `tf.Model`
 object if the loading succeeds, and throw an `Error` if it fails.
 
-Loading from local storage and IndexedDB are straightforward and exactly
+Loading from local storage and IndexedDB are exactly
 symmetrical with respect to `save` and hence merit no further discussion other
 than the fact that a model must have been saved previously to the path that
 follow the scheme.
 
-However, loading from user-uploaded files requires is not symmetrical with
+However, loading from user-uploaded files is not symmetrical with
 respect to downloading files from the browser.
 In particular, the files uploaded by the user are not represented as URL-like
 strings. Instead, they are specified as an `Array` of
 [File](https://developer.mozilla.org/en-US/docs/Web/API/File) objects. A typical
 use case is letting users select files from their local filesystem by using
-HTML [file input] elements such as
+HTML
+[file input](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file)
+elements such as
 
 ```html
 <input name="json-upload" type="file" />
@@ -168,10 +170,10 @@ HTML [file input] elements such as
 ```
 
 These will appear as two "Choose file" buttons in the browser that users can
-use. Once users have selected a model.json file and a weights file in the two
-file inputs respectively, the file objects will be available under the
-corresponding HTML elements, and they can be used to load a `tf.Model` as
-follows:
+use to select files. Once users have selected a model.json file and a weights
+file in the two file inputs respectively, the file objects will be available
+under the corresponding HTML elements, and they can be used to load a `tf.Model`
+as follows:
 
 ```js
 const jsonUpload = document.getElementById('json-upload');
