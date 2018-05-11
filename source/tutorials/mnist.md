@@ -12,7 +12,7 @@ In this tutorial, we'll build a TensorFlow.js model to classify handwritten digi
 This tutorial assumes familiarity with the fundamental building blocks of TensorFlow.js (tensors, variables, and ops), as well as the concepts of optimization and loss. For more background on these topics, we recommend completing the following tutorials before this tutorial:
 
 * [Core Concepts in TensorFlow.js](core-concepts.html)
-* [Training First Steps: Fitting a Curve to Synthetic Data](mnist.html)
+* [Training First Steps: Fitting a Curve to Synthetic Data](fit-curve.html)
 
 ## Running the Code
 
