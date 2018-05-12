@@ -32,7 +32,7 @@ print(model.predict(np.array([[5]])))
 
 ```js
 // JavaScript:
-import * as tf from '@tensorlowjs/tfjs';
+import * as tf from '@tensorflowjs/tfjs';
 
 // Build and compile model.
 const model = tf.sequential();
