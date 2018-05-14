@@ -1315,7 +1315,7 @@
                       {
                         "name": "locs",
                         "documentation": "The location indices.",
-                        "type": "number[]",
+                        "type": "...number[]",
                         "optional": false,
                         "isConfigParam": false
                       }
@@ -1337,7 +1337,7 @@
                       {
                         "name": "locs",
                         "documentation": "The location indices.",
-                        "type": "number[]",
+                        "type": "...number[]",
                         "optional": false,
                         "isConfigParam": false
                       }
