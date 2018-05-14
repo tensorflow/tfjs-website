@@ -61,7 +61,7 @@ A few things are worth pointing out:
 The table below lists all currently supported destinations of saving models an
 their respecitve schemes and examples.
 
-| Savig Destination          | Scheme string     | Code example                                     |
+| Saving Destination          | Scheme string     | Code example                                     |
 | -------------------------- | ----------------- | ------------------------------------------------ |
 | Browser Local Storage      | `localstorage://` | `await model.save('localstorage://my-model-1');` |
 | Browser IndexedDB          | `indexeddb://`    | `await model.save('indexeddb://my-model-1');`    |
@@ -93,7 +93,7 @@ at the same time.):
      `weightsManifest` field.
   2. A binary file carrying the weight values named `my-model-1.weights.bin`.
 
-These two files are in the same format as the artifacts converted from Keas
+These two files are in the same format as the artifacts converted from Keras
 HDF5 files by [tensorflowjs converter](https://pypi.org/project/tensorflowjs/).
 The weights are stored in one file, instead of being sharded into 4MB shards.
 You can convert these files into a HDF5 that Keras can use or load them directly
@@ -127,17 +127,18 @@ For example:
 
 ```js
 await model.save(tf.io.browserHTTPRequest(
-    'http://model-server.domain/upload',
-    {method: 'PUT',
+    'http://model-server.domain/upload', {
+     method: 'PUT',
      headers: {'header_key_1': 'header_value_1'}}));
 ```
 
 ## Loading `tf.Model`s.
 
 The ability to save `tf.Model`s will not be useful if the models can't be
-loaded back afterwards. Loading models are done with `tf.loadModel`, with a
-scheme-based URL-like arguments that symmetrical to `tf.Model.save` in most
-cases. The table below gives a summary of the supported loading routes:
+loaded back afterwards. Model loading is done by calling `tf.loadModel`, with a
+scheme-based URL-like string argument. The string argument is symmetrical to
+`tf.Model.save` in most cases. The table below gives a summary of the supported
+loading routes:
 
 | Loading Route               | Scheme string     | Example                                            |
 | --------------------------- | ----------------- | -------------------------------------------------- |
