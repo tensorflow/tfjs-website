@@ -202,7 +202,7 @@ The return values of the `listModels` methods include not only the paths of the
 stored models, but also some brief meta-data about them, such as the byte
 sizes of their topology and weights.
 
-The managers also enables you to copy or delete existing models. For example:
+The managers also enable you to copy or delete existing models. For example:
 
 ```js
 // Copy a model in Local Storage, from an existing path to a new path.
