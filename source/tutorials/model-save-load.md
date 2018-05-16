@@ -7,7 +7,7 @@ date: 2018-05-10 12:00:00
 
 This tutorial describes how to save and load models in TensorFlow.js.
 Saving and loading of models is an important capability.
-For example,  how do you save the weights of a model fine-tuned by data
+For example, how do you save the weights of a model fine-tuned by data
 only available in the browser (e.g., images and audio data from attached
 sensors),
 so that the model will be in a already-tuned state when the user loads the
@@ -49,6 +49,9 @@ A few things are worth pointing out:
   when you load model back from Local Storage.
 - The `save` method is asynchronous, so you need to use `then` or `await` if
   its completion forms the precondition of other actions.
+- The return value of `model.save` is a JSON object that carries some potentially
+  useful pieces of information, such as the byte sizes of the model's topology
+  and weights.
 
 The table below lists all currently supported destinations of saving models an
 their respecitve schemes and examples.
@@ -68,8 +71,8 @@ We will expand on some of the saving routes in the following sections.
 is another client-side data store supported by most mainstream web browsers.
 Unlike Local Storage, it has better support for storing large binary data
 (BLOBs) and a greater size quota. Hence, saving `tf.Model`s to IndexedDB will
-typically give you better storage efficiency and larger size limit compared to
-saving to Local Storage.
+typically give you better storage efficiency and a larger size limit compared
+to Local Storage.
 
 ### File Downloads
 
@@ -80,14 +83,14 @@ filename prefix to be downloaded from the browser (note: some browsers
 require users to grant permissions before more than one file can be downloaded
 at the same time.):
 
-  1. A text JSON file named `my-model-1.json` carrying topology (architecture)
+  1. A text JSON file named `my-model-1.json`, which carries the topology
      of the model in its `modelTopology` field and a manifest of weights in its
      `weightsManifest` field.
   2. A binary file carrying the weight values named `my-model-1.weights.bin`.
 
 These two files are in the same format as the artifacts converted from Keras
 HDF5 files by [tensorflowjs converter](https://pypi.org/project/tensorflowjs/).
-The weights are stored in one file, instead of being sharded into 4MB shards.
+The weights are stored in one file, instead of being sharded into 4-MB shards.
 You can convert these files into a HDF5 that Keras can use or load them directly
 as a Keras Model in Python using libraries and tools that come with the
 `tensorflowjs` Python package.
@@ -107,7 +110,7 @@ section above). This
 contains a Python code snippet that demonstrates how one may use
 the [flask](http://flask.pocoo.org/) web framework, together with Keras and TensorFlow,
 to handle the request originated from `save` and reconstitute the request's
-payload as Keras Models in the server's memory.
+payload as a Keras Model object in the server's memory.
 
 Often, your HTTP server has special constraints and requirements on requests,
 such as HTTP methods, headers and credentials for authentication. You can gain
@@ -119,9 +122,8 @@ For example:
 
 ```js
 await model.save(tf.io.browserHTTPRequest(
-    'http://model-server.domain/upload', {
-     method: 'PUT',
-     headers: {'header_key_1': 'header_value_1'}}));
+    'http://model-server.domain/upload',
+    {method: 'PUT', headers: {'header_key_1': 'header_value_1'}}));
 ```
 
 ## Loading `tf.Model`s.
@@ -142,17 +144,17 @@ loading routes:
 In all the loading routes, `tf.loadModel` returns a (`Promise` of) a `tf.Model`
 object if the loading succeeds, and throw an `Error` if it fails.
 
-Loading from Local Storage and IndexedDB are exactly
-symmetrical with respect to `save` and hence merit no further discussion other
-than the fact that a model must have been saved previously to the path that
-follow the scheme.
+Loading from Local Storage or IndexedDB is exactly
+symmetrical with respect to `save`; hence it merit no further discussion other
+than the fact that a model must have been saved previously to the path
+following the scheme.
 
-However, loading from user-uploaded files is not symmetrical with
+However, loading from user-uploaded files is not perfectly symmetrical with
 respect to downloading files from the browser.
 In particular, the files uploaded by the user are not represented as URL-like
 strings. Instead, they are specified as an `Array` of
 [File](https://developer.mozilla.org/en-US/docs/Web/API/File) objects. A typical
-use case is letting users select files from their local filesystem by using
+workflow is letting users select files from their local filesystem by using
 HTML
 [file input](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file)
 elements such as
@@ -183,12 +185,12 @@ an API that has existed since the initial release of TensorFlow.js.
 
 # Managing models stored at client side
 
-As you have learned above, with code such as
-`model.save('localstorage://my-model')` and `model.save('indexeddb://my-model')`,
-you can store a `tf.Model`'s topology and weights in the user's client-side
-browser data stores. You often desire the ability to find out what models have
-been stored, e.g., in Local Storage or IndexedDB. This can be achieved by using
-the *manager*s that come with the `tf.io` API:
+As you have learned above, you can store a `tf.Model`'s topology and weights
+in the user's client-side browser data stores, including Local Storage and IndexedDB,
+by using code such as
+`model.save('localstorage://my-model')` and `model.save('indexeddb://my-model')`.
+But how do you find out what models have been stored there so far?
+This can be achieved by using the *manager*s that come with the `tf.io` API:
 
 ```js
 // List models in Local Storage.
