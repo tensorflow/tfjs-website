@@ -183,7 +183,7 @@ saving a mode via HTTP request. In particular, `tf.loadModel` takes the URL or
 path to a `model.json` file, as shown in the example in the table above. This is
 an API that has existed since the initial release of TensorFlow.js.
 
-# Managing models stored at client side
+## Managing models stored at client side
 
 As you have learned above, you can store a `tf.Model`'s topology and weights
 in the user's client-side browser data stores, including Local Storage and IndexedDB,
