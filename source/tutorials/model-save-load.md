@@ -206,10 +206,10 @@ The managers also enable you to copy or delete existing models. For example:
 
 ```js
 // Copy a model in Local Storage, from an existing path to a new path.
-tf.io.browserLocalStorageManager().copyModel('my-model',  'cloned-model');
+tf.io.browserLocalStorageManager().copyModel('my-model', 'cloned-model');
 
 // Copy a model in IndexedDB, from an existing path to a new path.
-tf.io.browserIndexedDBManager().copyModel('my-model',  'cloned-model');
+tf.io.browserIndexedDBManager().copyModel('my-model', 'cloned-model');
 
 // Delete a model from Local Storage.
 tf.io.browserLocalStorageManager().deleteModel('clone-model');
