@@ -52,6 +52,9 @@ A few things are worth pointing out:
 - The return value of `model.save` is a JSON object that carries some potentially
   useful pieces of information, such as the byte sizes of the model's topology
   and weights.
+- Any `tf.Model`, regardless of whether it is constructed with
+  [tf.sequential](https://js.tensorflow.org/api/latest/#sequential)
+  and what types of layers it consists of, can be saved this way.
 
 The table below lists all currently supported destinations of saving models an
 their respecitve schemes and examples.
@@ -78,15 +81,16 @@ to Local Storage.
 
 The string that follows the `downloads://` scheme is a
 prefix for the names of files that will be downloaded. For example, the line
-`model.save('downloads://my-model-1')` will cause two files sharing the same
-filename prefix to be downloaded from the browser (note: some browsers
-require users to grant permissions before more than one file can be downloaded
-at the same time.):
+`model.save('downloads://my-model-1')` will cause the browser to download two
+files sharing the same filename prefix:
 
   1. A text JSON file named `my-model-1.json`, which carries the topology
      of the model in its `modelTopology` field and a manifest of weights in its
      `weightsManifest` field.
   2. A binary file carrying the weight values named `my-model-1.weights.bin`.
+
+Note: some browsers require users to grant permissions before more than one
+file can be downloaded at the same time.
 
 These two files are in the same format as the artifacts converted from Keras
 HDF5 files by [tensorflowjs converter](https://pypi.org/project/tensorflowjs/).
@@ -144,11 +148,7 @@ loading routes:
 In all the loading routes, `tf.loadModel` returns a (`Promise` of) a `tf.Model`
 object if the loading succeeds, and throw an `Error` if it fails.
 
-Loading from Local Storage or IndexedDB is exactly
-symmetrical with respect to `save`; hence it merit no further discussion other
-than the fact that a model must have been saved previously to the path
-following the scheme.
-
+Loading from Local Storage or IndexedDB is exactly symmetrical with respect to saving.
 However, loading from user-uploaded files is not perfectly symmetrical with
 respect to downloading files from the browser.
 In particular, the files uploaded by the user are not represented as URL-like
@@ -190,32 +190,30 @@ in the user's client-side browser data stores, including Local Storage and Index
 by using code such as
 `model.save('localstorage://my-model')` and `model.save('indexeddb://my-model')`.
 But how do you find out what models have been stored there so far?
-This can be achieved by using the *manager*s that come with the `tf.io` API:
+This can be achieved by using the model management methods that come with the
+`tf.io` API:
 
 ```js
 // List models in Local Storage.
-console.log(await tf.io.browserLocalStorageManager().listModels());
-
-// List models in IndexedDB.
-console.log(await tf.io.browserIndexedDBManager().listModels());
+console.log(await tf.io.listModels());
 ```
 
 The return values of the `listModels` methods include not only the paths of the
 stored models, but also some brief meta-data about them, such as the byte
 sizes of their topology and weights.
 
-The managers also enable you to copy or delete existing models. For example:
+The management API also enables you to copy, move or remove existing models.
+For example:
 
 ```js
-// Copy a model in Local Storage, from an existing path to a new path.
-tf.io.browserLocalStorageManager().copyModel('my-model', 'cloned-model');
+// Copy model from existing path to a new path.
+// Copying between Local Storage and IndexedDB is supported.
+tf.io.copyModel('localstorage://my-model', 'indexeddb://cloned-model');
 
-// Copy a model in IndexedDB, from an existing path to a new path.
-tf.io.browserIndexedDBManager().copyModel('my-model', 'cloned-model');
+// Move model from a path to another.
+// Moving between Local Storage and IndexedDB is supported.
+tf.io.moveModel('localstorage://my-model', 'indexeddb://cloned-model');
 
-// Delete a model from Local Storage.
-tf.io.browserLocalStorageManager().deleteModel('clone-model');
-
-// Delete a model from IndexedDB.
-tf.io.browserIndexedDBManager().deleteModel('cloned-model');
+// Remove model.
+tf.io.removeModel('indexeddb://cloned-model');
 ```
