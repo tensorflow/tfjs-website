@@ -273,3 +273,13 @@ const model = await tf.loadModel('https://foo.bar/model.json');
 Also note that `tf.loadModel()` returns a
 [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
 of [`tf.Model`](../api/latest/index.html#class:tf.Model).
+
+In general, saving and loading `tf.Model`s in TensorFlow.js is done using the
+`tf.Model.save` and `tf.loadModel` methods, respectively. We designed these APIs to be similar to
+[the save and load_model API](https://keras.io/getting-started/faq/#how-can-i-save-a-keras-model)
+of Keras. But the browser environment is quite different from the backend environment
+on which staple deep learning frameworks like Keras run, particularly in the
+array of routes for persisting and transimitting data. Hence there are
+some interesting differences between the save/load APIs in TensorFlow.js and in Keras.
+See our tutorial on [Saving and Loading tf.Model](./model-save-load.html) for more
+details.
