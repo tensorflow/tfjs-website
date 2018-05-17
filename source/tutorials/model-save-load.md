@@ -95,9 +95,18 @@ file can be downloaded at the same time.
 These two files are in the same format as the artifacts converted from Keras
 HDF5 files by [tensorflowjs converter](https://pypi.org/project/tensorflowjs/).
 The weights are stored in one file, instead of being sharded into 4-MB shards.
-You can convert these files into a HDF5 that Keras can use or load them directly
-as a Keras Model in Python using libraries and tools that come with the
-`tensorflowjs` Python package.
+You can convert these files into a HDF5 that Keras can use or load them
+directly as a Keras Model object. For example:
+
+```sh
+# Suppose you have downlaoaded `my-model-1.json`, accompanied by a weights
+# file. Use the following shell command to convert the files to a HDF5 (.h5)
+# file that Keras can load. (Requires tensorflowjs pip package 0.3.1+)
+
+tensorflowjs_converter \
+    --input_format tensorflowjs --output_format keras \
+    ./my-model-1.json /tmp/my-model-1.h5
+```
 
 ### HTTP Request
 
