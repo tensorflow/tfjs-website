@@ -99,8 +99,8 @@ You can convert these files into a HDF5 that Keras can use or load them
 directly as a Keras Model object. For example:
 
 ```sh
-# Suppose you have downlaoaded `my-model-1.json`, accompanied by a weights
-# file. Use the following shell command to convert the files to a HDF5 (.h5)
+# Suppose you have downloaded `my-model-1.json`, accompanied by a weights
+# file. Use the following shell command to convert the files into a HDF5 (.h5)
 # file that Keras can load. (Requires tensorflowjs pip package 0.3.1+)
 
 tensorflowjs_converter \
