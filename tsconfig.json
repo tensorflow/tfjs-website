@@ -1,7 +1,5 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
-    "moduleResolution": "classic",
     "noImplicitAny": false,
     "sourceMap": true,
     "removeComments": true,
