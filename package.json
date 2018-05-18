@@ -35,7 +35,6 @@
     "hexo-server": "~0.2.0",
     "highlight.js": "^9.12.0",
     "markdown-it": "^8.4.1",
-    "markdown-it-table": "~2.0.3",
     "material-components-web": "^0.32.0",
     "mkdirp": "~0.5.1",
     "semver-compare": "^1.0.0",
