@@ -29,7 +29,7 @@ webcam data. We'll use those predictions to play [Pac-Man](https://en.wikipedia.
 
 This tutorial explains how to convert and serve an existing Keras model to run in the browser.
 
-<h2><a href="./model-save-load.html">Saving and Loading `tf.Model`s</a></h2>
+<h2><a href="./model-save-load.html">Saving and Loading tf.Model</a></h2>
 
 This tutorial explains how to save `tf.Model`s to various destinations such as the web browser's Local Storage and load them back.
 
