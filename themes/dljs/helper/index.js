@@ -1,4 +1,5 @@
 const MarkdownIt = require('markdown-it');
+
 const hljs = require('highlight.js');
 
 const md = new MarkdownIt({
@@ -12,7 +13,6 @@ const md = new MarkdownIt({
     return '';  // use external default escaping
   }
 });
-
 
 module.exports = function(hexo) {
   return {
