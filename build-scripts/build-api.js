@@ -78,7 +78,6 @@ libs.forEach(lib => {
       `ts-node --project ${opts.repo}/tsconfig-es5.json ${docGenScript} ` +
       `--in ${opts.input} --package ${opts.pkg} --src ${opts.src} --github ${
           opts.github} --out ${opts.out} --repo ${opts.repo}`;
-  console.log('COMMAND', docGenCommand);
 
   // Prep the component. If "local" has been passed in then we do nothing
   // to what is in libs. Else we want to check out a tag that correspond to
