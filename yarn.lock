@@ -295,22 +295,22 @@
   version "0.28.0"
   resolved "https://registry.yarnpkg.com/@material/typography/-/typography-0.28.0.tgz#4ae96a852fcd324d61b649adc995326c431fcaea"
 
-"@tensorflow/tfjs-core@0.8.1":
-  version "0.8.1"
-  resolved "https://registry.yarnpkg.com/@tensorflow/tfjs-core/-/tfjs-core-0.8.1.tgz#d93e87302e29620906003b697d2d8596410ad712"
+"@tensorflow/tfjs-core@0.11.0":
+  version "0.11.0"
+  resolved "https://registry.yarnpkg.com/@tensorflow/tfjs-core/-/tfjs-core-0.11.0.tgz#d112ea43a31a639582c78e91a084b5494dec53f0"
   dependencies:
     seedrandom "~2.4.3"
 
-"@tensorflow/tfjs-layers@0.5.0":
-  version "0.5.0"
-  resolved "https://registry.yarnpkg.com/@tensorflow/tfjs-layers/-/tfjs-layers-0.5.0.tgz#0ec8d07b46863a162d3e0c60fae3d1087d8aa3ce"
+"@tensorflow/tfjs-layers@0.6.1":
+  version "0.6.1"
+  resolved "https://registry.yarnpkg.com/@tensorflow/tfjs-layers/-/tfjs-layers-0.6.1.tgz#fd0241fcb1cedf42379935cea42b1e2dea62f3d4"
 
-"@tensorflow/tfjs@0.10.0":
-  version "0.10.0"
-  resolved "https://registry.yarnpkg.com/@tensorflow/tfjs/-/tfjs-0.10.0.tgz#c64f8740b46c2ba734dc0564d37e6a2c33055511"
+"@tensorflow/tfjs@0.11.1":
+  version "0.11.1"
+  resolved "https://registry.yarnpkg.com/@tensorflow/tfjs/-/tfjs-0.11.1.tgz#ccf0a12300a2201d281d67828862080cf2d0c3a7"
   dependencies:
-    "@tensorflow/tfjs-core" "0.8.1"
-    "@tensorflow/tfjs-layers" "0.5.0"
+    "@tensorflow/tfjs-core" "0.11.0"
+    "@tensorflow/tfjs-layers" "0.6.1"
 
 "@types/node@~9.4.6":
   version "9.4.7"
@@ -2755,6 +2755,10 @@ markdown-it-sub@^1.0.0:
 markdown-it-sup@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/markdown-it-sup/-/markdown-it-sup-1.0.0.tgz#cb9c9ff91a5255ac08f3fd3d63286e15df0a1fc3"
+
+markdown-it-table@~2.0.3:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/markdown-it-table/-/markdown-it-table-2.0.3.tgz#d0069997abcd9725ed77a472112d6ce61ad72b90"
 
 markdown-it@^5.0.1:
   version "5.1.0"

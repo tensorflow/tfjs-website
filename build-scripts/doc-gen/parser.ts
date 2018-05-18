@@ -57,6 +57,7 @@ export function parse(
   // here.
   const tsconfig =
       JSON.parse(fs.readFileSync(path.join(repoPath, 'tsconfig.json'), 'utf8'));
+  delete tsconfig.compilerOptions.moduleResolution;
 
   const program = ts.createProgram([programRoot], tsconfig.compilerOptions);
   const checker = program.getTypeChecker();
