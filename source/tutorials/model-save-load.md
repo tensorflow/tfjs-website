@@ -59,37 +59,39 @@ A few things are worth pointing out:
 The table below lists all currently supported destinations of saving models an
 their respecitve schemes and examples.
 
-<table>
-  <thead>
-    <tr>
-      <th>Saving Destination</th>
-      <th>Scheme string</th>
-      <th>Code example</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Browser Local Storage</td>
-      <td><code>localstorage://</code></td>
-      <td><code>await model.save('localstorage://my-model-1');</code></td>
-    </tr>
-    <tr>
-      <td>Browser IndexedDB</td>
-      <td><code>indexeddb://</code></td>
-      <td><code>await model.save('indexeddb://my-model-1');</code></td>
-    </tr>
-    <tr>
-      <td>Trigger file downlads</td>
-      <td><code>downloads://</code></td>
-      <td><code>await model.save('downloads://my-model-1');</code></td>
-    </tr>
-    <tr>
-      <td>HTTP request</td>
-      <td><code>http://</code> or <code>https://</code></td>
-      <td><code>await model.save('http://model-server.domain/upload');</code></td>
-    </tr>
-  </tbody>
-</table>
+<div class="scrollable-table">
+  <table>
+    <thead>
+      <tr>
+        <th>Saving Destination</th>
+        <th>Scheme string</th>
+        <th>Code example</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Browser Local Storage</td>
+        <td><code>localstorage://</code></td>
+        <td><code>await model.save('localstorage://my-model-1');</code></td>
+      </tr>
+      <tr>
+        <td>Browser IndexedDB</td>
+        <td><code>indexeddb://</code></td>
+        <td><code>await model.save('indexeddb://my-model-1');</code></td>
+      </tr>
+      <tr>
+        <td>Trigger file downlads</td>
+        <td><code>downloads://</code></td>
+        <td><code>await model.save('downloads://my-model-1');</code></td>
+      </tr>
+      <tr>
+        <td>HTTP request</td>
+        <td><code>http://</code> or <code>https://</code></td>
+        <td><code>await model.save('http://model-server.domain/upload');</code></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 We will expand on some of the saving routes in the following sections.
 
@@ -172,37 +174,39 @@ scheme-based URL-like string argument. The string argument is symmetrical to
 `tf.Model.save` in most cases. The table below gives a summary of the supported
 loading routes:
 
-<table>
-  <thead>
-    <tr>
-    <th>Loading Route</th>
-    <th>Scheme string</th>
-    <th>Example</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Browser Local Storage</td>
-      <td><code>localstorage://</code></td>
-      <td><code>await tf.loadModel('localstorage://my-model-1');</code></td>
-    </tr>
-    <tr>
-      <td>Browser IndexedDB</td>
-      <td><code>indexeddb://</code></td>
-      <td><code>await tf.loadModel('indexeddb://my-model-1');</code></td>
-    </tr>
-    <tr>
-      <td>Browser user-uploaded files</td>
-      <td>N/A</td>
-      <td><code>await tf.loadModel(tf.io.browserFiles([modelJSONFile, weightsFile]));</code></td>
-    </tr>
-    <tr>
-      <td>HTTP request</td>
-      <td><code>http://</code> or <code>https://</code></td>
-      <td><code>await tf.loadModel('http://model-server.domain/download/model.json');</code></td>
-    </tr>
-  </tbody>
-</table>
+<div class="scrollable-table">
+  <table>
+    <thead>
+      <tr>
+      <th>Loading Route</th>
+      <th>Scheme string</th>
+      <th>Example</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Browser Local Storage</td>
+        <td><code>localstorage://</code></td>
+        <td><code>await tf.loadModel('localstorage://my-model-1');</code></td>
+      </tr>
+      <tr>
+        <td>Browser IndexedDB</td>
+        <td><code>indexeddb://</code></td>
+        <td><code>await tf.loadModel('indexeddb://my-model-1');</code></td>
+      </tr>
+      <tr>
+        <td>Browser user-uploaded files</td>
+        <td>N/A</td>
+        <td><code>await tf.loadModel(tf.io.browserFiles([modelJSONFile, weightsFile]));</code></td>
+      </tr>
+      <tr>
+        <td>HTTP request</td>
+        <td><code>http://</code> or <code>https://</code></td>
+        <td><code>await tf.loadModel('http://model-server.domain/download/model.json');</code></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 In all the loading routes, `tf.loadModel` returns a (`Promise` of) a `tf.Model`
 object if the loading succeeds, and throw an `Error` if it fails.
