@@ -14,7 +14,15 @@ Yes! We have two tutorials for importing TensorFlow models.  One for the [Tensor
 
 ## Can I export my model from the browser?
 
-Not yet, but this is also one of our highest priorities. We are working on a format that will make it easy to load and save models that originated in the browser. Keep an eye on [this issue](https://github.com/tensorflow/tfjs/issues/13) to see when it is done.
+Since Version 0.11.1, you can export the topology and weights of `tf.Model`s to, or load them back
+from, browser Local Storage and IndexedDB. You can also trigger downloading of `tf.Model`s as
+files or load `tf.Model`s from user-selected files in the browser. In addition, `tf.Model`s can be
+sent to HTTP servers through `multipart/form-data` requests. See the
+[tutorial page](../tutorials/model-save-load.html) for more details.
+
+We are currently working on these additional features for model import/export:
+* Exporting and importing models in Node.js
+* Exporting `tf.FrozenModel`s (i.e., models converted from TensorFlow `SavedModel`s).
 
 ## How does this relate to TensorFlow?
 
