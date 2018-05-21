@@ -158,7 +158,7 @@ model.add(
 
 const optimizer = tf.train.sgd(LEARNING_RATE);
 model.compile({optimizer, loss: 'categoricalCrossentropy'});
-model.fit({x: data, y: labels)});
+model.fit({x: data, y: labels});
 ```
 
 There are many different types of layers available in TensorFlow.js. A few examples include [`tf.layers.simpleRNN`](../api/latest/index.html#layers.simpleRNN), [`tf.layers.gru`](../api/latest/index.html#layers.gru), and [`tf.layers.lstm`](../api/latest/index.html#layers.lstm).
