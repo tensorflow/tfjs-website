@@ -277,43 +277,62 @@
   </code>
 </pre>
       </div>
-    </div>
 
-    <h3>Running under Node.js</h3>
-    <p>
-      Install the Node.js binding to enable the power of native TensorFlow with JavaScript:
-    </p>
-    <div class="gs-code">
-      <pre><code class="lang-shell">yarn add @tensorflow/tfjs-node</code></pre>
-      <pre><code class="lang-shell">npm install @tensorflow/tfjs-node</code></pre>
-    </div>
-    <p>
-      If your system has a NVIDIA® GPU with
-      <a href="https://www.tensorflow.org/install/install_linux#NVIDIARequirements" target="_blank">CUDA compute support</a>, use the GPU package for higher performance (Linux only):
-    </p>
+      <h3>Running under Node.js</h3>
+      <p>
+        Install the Node.js binding to enable the power of native TensorFlow with JavaScript:
+      </p>
+      <div class="gs-code">
+        <pre><code class="lang-shell">yarn add @tensorflow/tfjs-node</code></pre>
+      </div>
+      <div class="gs-code">
+        <pre><code class="lang-shell">npm install @tensorflow/tfjs-node</code></pre>
+      </div>
+      <p>
+        If your system has a NVIDIA® GPU with
+        <a href="https://www.tensorflow.org/install/install_linux#NVIDIARequirements" target="_blank">CUDA compute support</a>, use the GPU package for higher performance (Linux only):
+      </p>
 
-    <div class="gs-code">
-      <pre><code class="lang-shell">yarn add @tensorflow/tfjs-node-gpu</code></pre>
-      <pre><code class="lang-shell">npm install @tensorflow/tfjs-node-gpu</code></pre>
-    </div>
+      <div class="gs-code">
+        <pre><code class="lang-shell">yarn add @tensorflow/tfjs-node-gpu</code></pre>
+      </div>
+      <div class="gs-code">
+        <pre><code class="lang-shell">npm install @tensorflow/tfjs-node-gpu</code></pre>
+      </div>
 
-    <div class="gs-code">
-      <pre>
+      <p>Sample main Node.js application:</p>
+
+      <div class="gs-code">
+        <pre>
   <code class="lang-js">
-  import * as tf from '@tensorflow/tfjs';
+  const tf = require('@tensorflow/tfjs');
 
   // Load the binding:
-  import '@tensorflow/tfjs-node';
-
-  // Or if running with GPU:
-  import '@tensorflow/tfjs-node-gpu';
+  require('@tensorflow/tfjs-node');  // Use '@tensorflow/tfjs-node-gpu' if running with GPU.
 
   // Set the backend to TensorFlow:
   tf.setBackend('tensorflow');
 
-  ...
+  // Train a simple model:
+  const model = tf.sequential();
+  model.add(tf.layers.dense({units: 100, activation: 'relu', inputShape: [10]}));
+  model.add(tf.layers.dense({units: 1, activation: 'linear'}));
+  model.compile({optimizer: 'sgd', loss: 'meanSquaredError'});
+
+  const xs = tf.randomNormal([100, 10]);
+  const ys = tf.randomNormal([100, 1]);
+
+  model.fit(xs, ys, {
+    epochs: 100,
+    callbacks: {
+      onEpochEnd: async (epoch, log) => {
+        console.log(`Epoch ${epoch}: loss = ${log.loss}`);
+      }
+    }
+  });
   </code>
-</pre>
+        </pre>
+      </div>
     </div>
 
     <p>
