@@ -12,17 +12,17 @@
   <div class="content">
     <div class="value-props">
       <div class="proposition">
-        <div class="title">Develop ML in the Browser</div>
+        <div class="title">Develop ML with JavaScript</div>
         <span>
-          Use flexible and intuitive APIs to build and train models from scratch using the low-level JavaScript linear algebra library or the
-          high-level layers API
+          Use flexible and intuitive APIs to build and train models from scratch using the low-level JavaScript linear algebra library
+          or the high-level layers API
         </span>
       </div>
 
       <div class="proposition">
         <div class="title">Run Existing models</div>
         <span>
-          Use TensorFlow.js model converters to run pre-existing TensorFlow models right in the browser.
+          Use TensorFlow.js model converters to run pre-existing TensorFlow models right in the browser or under Node.js.
         </span>
       </div>
 
@@ -45,7 +45,7 @@
             <a href="https://emojiscavengerhunt.withgoogle.com/" target="_blank">Emoji Scavenger Hunt</a>
           </div>
           <div class="blurb">
-             Use your phone’s camera to identify emojis in the real world. Can you find all the emojis before time expires?
+            Use your phone’s camera to identify emojis in the real world. Can you find all the emojis before time expires?
           </div>
 
           <div class="ctas">
@@ -64,7 +64,7 @@
         <div class="info">
           <div class="title">
             <a href="https://storage.googleapis.com/tfjs-examples/webcam-transfer-learning/dist/index.html" target="_blank">
-             Webcam Controller
+              Webcam Controller
             </a>
           </div>
           <div class="blurb">
@@ -91,15 +91,14 @@
             </a>
           </div>
           <div class="blurb">
-             No coding required! Teach a machine to
-             recognize images and play sounds.
+            No coding required! Teach a machine to recognize images and play sounds.
           </div>
 
           <div class="ctas">
             <a href="https://teachablemachine.withgoogle.com/" target="_blank">
               <button class="mdc-button mdc-button--raised">Go to Demo!</button>
             </a>
-            <a href="https://github.com/googlecreativelab/teachable-machine"  target="_blank">
+            <a href="https://github.com/googlecreativelab/teachable-machine" target="_blank">
               <button class="mdc-button mdc-button--raised">Code</button>
             </a>
           </div>
@@ -138,7 +137,8 @@
             </a>
           </div>
           <div class="blurb">
-             Real-time <a href="https://medium.com/tensorflow/real-time-human-pose-estimation-in-the-browser-with-tensorflow-js-7dd0bc881cd5" target="_blank">Human Pose Estimation</a> in the browser.
+            Real-time
+            <a href="https://medium.com/tensorflow/real-time-human-pose-estimation-in-the-browser-with-tensorflow-js-7dd0bc881cd5" target="_blank">Human Pose Estimation</a> in the browser.
           </div>
 
           <div class="ctas">
@@ -179,11 +179,15 @@
     <div id="getting-started" class="getting-started">
       <h1>Getting Started</h1>
       <p>
-        There are two main ways to get TensorFlow.js in your JavaScript project:
-        via <a href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Howto/Use_JavaScript_within_a_webpage" target="_blank">
-        script tags</a> <strong>or</strong> by installing it from <a href="https://www.npmjs.com/" target="_blank">NPM</a>
-        and using a build tool like <a href="https://parceljs.org/" target="_blank">Parcel</a>,
-        <a href="https://webpack.js.org/" target="_blank">WebPack</a>, or <a href="https://rollupjs.org/guide/en" target="_blank">Rollup</a>.
+        There are two main ways to get TensorFlow.js in your JavaScript project: via
+        <a href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Howto/Use_JavaScript_within_a_webpage" target="_blank">
+          script tags</a>
+        <strong>or</strong> by installing it from
+        <a href="https://www.npmjs.com/" target="_blank">NPM</a>
+        and using a build tool like
+        <a href="https://parceljs.org/" target="_blank">Parcel</a>,
+        <a href="https://webpack.js.org/" target="_blank">WebPack</a>, or
+        <a href="https://rollupjs.org/guide/en" target="_blank">Rollup</a>.
       </p>
 
       <h3>via Script Tag</h3>
@@ -230,12 +234,13 @@
       <h3>via NPM</h3>
 
       <p>
-        Add TensorFlow.js to your project using yarn <strong>or</strong> npm. <b>Note:</b> Because
-        we use ES2017 syntax (such as `import`), this workflow assumes you are using a bundler/transpiler
+        Add TensorFlow.js to your project using yarn
+        <strong>or</strong> npm.
+        <b>Note:</b> Because we use ES2017 syntax (such as `import`), this workflow assumes you are using a bundler/transpiler
         to convert your code to something the browser understands. See our
         <a href='https://github.com/tensorflow/tfjs-examples' target="_blank">examples</a>
-        to see how we use <a href="https://parceljs.org/" target="_blank">Parcel</a> to build
-        our code. However you are free to use any build tool that you prefer.
+        to see how we use
+        <a href="https://parceljs.org/" target="_blank">Parcel</a> to build our code. However you are free to use any build tool that you prefer.
       </p>
 
       <div class="gs-code">
@@ -249,7 +254,7 @@
       <p>In your main js file:</p>
 
       <div class="gs-code">
-<pre>
+        <pre>
   <code class="lang-js">
   import * as tf from '@tensorflow/tfjs';
 
@@ -272,6 +277,62 @@
   </code>
 </pre>
       </div>
+
+      <h3>Running under Node.js</h3>
+      <p>
+        Install the Node.js binding to enable the power of native TensorFlow with JavaScript:
+      </p>
+      <div class="gs-code">
+        <pre><code class="lang-shell">yarn add @tensorflow/tfjs-node</code></pre>
+      </div>
+      <div class="gs-code">
+        <pre><code class="lang-shell">npm install @tensorflow/tfjs-node</code></pre>
+      </div>
+      <p>
+        If your system has a NVIDIA® GPU with
+        <a href="https://www.tensorflow.org/install/install_linux#NVIDIARequirements" target="_blank">CUDA compute support</a>, use the GPU package for higher performance (Linux only):
+      </p>
+
+      <div class="gs-code">
+        <pre><code class="lang-shell">yarn add @tensorflow/tfjs-node-gpu</code></pre>
+      </div>
+      <div class="gs-code">
+        <pre><code class="lang-shell">npm install @tensorflow/tfjs-node-gpu</code></pre>
+      </div>
+
+      <p>Sample main Node.js application:</p>
+
+      <div class="gs-code">
+        <pre>
+  <code class="lang-js">
+  const tf = require('@tensorflow/tfjs');
+
+  // Load the binding:
+  require('@tensorflow/tfjs-node');  // Use '@tensorflow/tfjs-node-gpu' if running with GPU.
+
+  // Set the backend to TensorFlow:
+  tf.setBackend('tensorflow');
+
+  // Train a simple model:
+  const model = tf.sequential();
+  model.add(tf.layers.dense({units: 100, activation: 'relu', inputShape: [10]}));
+  model.add(tf.layers.dense({units: 1, activation: 'linear'}));
+  model.compile({optimizer: 'sgd', loss: 'meanSquaredError'});
+
+  const xs = tf.randomNormal([100, 10]);
+  const ys = tf.randomNormal([100, 1]);
+
+  model.fit(xs, ys, {
+    epochs: 100,
+    callbacks: {
+      onEpochEnd: async (epoch, log) => {
+        console.log(`Epoch ${epoch}: loss = ${log.loss}`);
+      }
+    }
+  });
+  </code>
+        </pre>
+      </div>
     </div>
 
     <p>
@@ -286,11 +347,13 @@
     <div class="getting-help">
       <h1>Need Help? Want to connect?</h1>
       <p>
-        Feel free to file issues on our <a href="https://github.com/tensorflow/tfjs/issues" target="_blank">GitHub Repository</a> if you run into bugs using the library.
-        We also have a <a href="https://groups.google.com/a/tensorflow.org/forum/#!forum/tfjs" target="_blank">community mailing list</a>
-        for people to ask questions, get technical help, and share what they are doing with
-        TensorFlow.js! To keep up to date with TensorFlow.js news follow us on <a href="https://twitter.com/tensorflow" target="_blank">twitter</a> or join
-        the <a href="https://groups.google.com/a/tensorflow.org/forum/#!forum/tfjs-announce" target="_blank">announcement only</a> mailing list.
+        Feel free to file issues on our
+        <a href="https://github.com/tensorflow/tfjs/issues" target="_blank">GitHub Repository</a> if you run into bugs using the library. We also have a
+        <a href="https://groups.google.com/a/tensorflow.org/forum/#!forum/tfjs" target="_blank">community mailing list</a>
+        for people to ask questions, get technical help, and share what they are doing with TensorFlow.js! To keep up to date with
+        TensorFlow.js news follow us on
+        <a href="https://twitter.com/tensorflow" target="_blank">twitter</a> or join the
+        <a href="https://groups.google.com/a/tensorflow.org/forum/#!forum/tfjs-announce" target="_blank">announcement only</a> mailing list.
         <ul>
           <li>
             <a href="https://github.com/tensorflow/tfjs/issues" target="_blank">GitHub Issues</a>
