@@ -33,6 +33,11 @@ This tutorial explains how to convert and serve an existing Keras model to run i
 
 This tutorial explains how to save `tf.Model`s to various destinations such as the web browser's Local Storage and load them back.
 
+<h2><a href="./mnist-node.html">Running under Node.js</a></h2>
+
+This tutorial explains how to train a convolutional neural network in Node.js using the MNIST dataset. We'll show how to install the TensorFlow
+backend and use Node.js APIs for downloading and loading training data.
+
 <h2><a href="https://github.com/tensorflow/tfjs-converter" target="_blank">How to import a TensorFlow SavedModel into TensorFlow.js</a></h2>
 
 __Developer Preview:__ This tutorial explains how to convert and serve an existing TensorFlow SavedModel to run in the browser.
