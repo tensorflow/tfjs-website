@@ -252,6 +252,7 @@ async function test() {
 }
 ```
 
-## Load the TensorFlow bindings
+TODO
 
-## Run the model
+```js
+```
