@@ -6,65 +6,55 @@ date: 2018-05-29 10:22:00
 # Running TensorFlow.js on Node
 
 In this tutorial, we'll show how to utilize the power of TenorFlow with TensorFlow.js. We'll be using the MNIST convolutional neural
-network in this tutorial - but loading data from binary files instead of the `fromPixels()` method.
+network in this tutorial - but loading data from binary files instead of the web-based `fromPixels()` method.
 
 ## Prerequisites
 
-First, you'll need a machine that supports TensorFlow. See these directions for machine and hardware requirements.
+First, you'll need a machine that supports TensorFlow. See [these directions](https://www.tensorflow.org/install/) for machine and hardware requirements.
 
 ## Running the Code
 
 The full code for this tutorial can be found in the [tfjs-examples/mnist-node](https://github.com/tensorflow/tfjs-examples/tree/master/mnist-node) directory in the [TensorFlow.js examples repository](https://github.com/tensorflow/tfjs-examples/tree/master/mnist-node).
 
-
-## Create a Node.js package
-
-The first step for any new Node project is to create a new folder for hosting our application.
+You can run the code for the example by cloning the repo and building the demo:
 
 ```sh
-$ mkdir mnist-node && cd mnist-node
+$ git clone https://github.com/tensorflow/tfjs-examples
+$ cd tfjs-examples/mnist-node
+$ npm install
+$ node index.js
 ```
 
-After creating the folder, initialize the project using npm or yarn and use the default options at the prompt:
+This script downloads and trains against the training MNIST set and runs evaluation off of the MNIST test data. Each 20 steps, the console logs the current loss and accuracy of the model. At the end off each pass through the data (called an 'epoch'), the test data is run for evaluation to see how accurate the model is against data it was not trained with.
+
+## Optional: Install GPU Node bindings for CUDA systems
+
+If your system has a NVIDIA® GPU with [CUDA compute support](https://www.tensorflow.org/install/install_linux#NVIDIARequirements), use the GPU package for higher performance (Linux only):
 
 ```sh
-$ npm init
+$ npm install @tensorflow/tfjs-node-gpu --save
 ```
 
-## Install TensorFlow.js with the Node bindings
-
-```sh
-$ npm install @tensorflow/tfjs @tensorflow/tfjs-node --save
-# or
-$ yarn add @tensorflow/tfjs @tensorflow/tfjs-node
-```
-
-## Creating the entry point for the Node.js app
-
-Next, let's create the entry point (or use your text editor of choice):
-
-```sh
-$ touch index.js
-```
-
-## Loading Training and Test Data
-
-The MNIST dataset can be downloaded through Google storage today. Data and labels are broken up into individual files, so
-downloading training and test sets will require 4 fetches.
-
-First, let's declare some constants for acquiring the files:
+Change the binding import statement in `index.js`:
 
 ```js
-const BASE_URL = 'https://storage.googleapis.com/cvdf-datasets/mnist/';
-const TRAIN_IMAGES_FILE = 'train-images-idx3-ubyte';
-const TRAIN_LABELS_FILE = 'train-labels-idx1-ubyte';
-const TEST_IMAGES_FILE = 't10k-images-idx3-ubyte';
-const TEST_LABELS_FILE = 't10k-labels-idx1-ubyte';
+const tf = require('@tensorflow/tfjs');
+// require('@tensorflow/tfjs-node');
+require('@tensorflow/tfjs-node-gpu');
+tf.setBackend('tensorflow');
 ```
 
-To download these files, an async function will be used. This function will check if the passed in file exists on
-disk. If the file exists, a `Buffer` is returned. If the file does not exist, an `https` request is sent to download the gzip'd
-version of the file. That stream is unzipped and saved on disk. The contents of that save operation are returned as a `Buffer`.
+Now just run `$ node index.js` again and to execute the script with GPU support.
+
+## Loading MNIST data in Node.js
+
+The browser examples for MNIST use a large image with all the training data embedded. The `tf.fromPixels()` method is used to convert HTML image data to Tensors. In Node.js, we will download binary files that contain training and test information for our model.
+
+Each MNIST dataset is stored in two different files - one containing an embedded representation of each pixel in the image and another file that contains the label for each image. In this tutorial, we will download and use a training and test set for a combination of 4 files.
+
+## Parsing Training and Test Data
+
+The MNIST dataset can be downloaded through Google storage today. To download these files, an async function will be used. This function will check if the passed in file exists on disk. If the file exists, a `Buffer` from that file is returned. If the file does not exist, an `https` request is sent to download the gzip'd version of the file. That stream is unzipped and saved on disk. The contents of that save operation are returned as a `Buffer`.
 
 ```js
 async function fetchOnceAndSaveToDiskWithBuffer(filename) {
@@ -91,110 +81,60 @@ async function fetchOnceAndSaveToDiskWithBuffer(filename) {
 
 ## Converting binary data to Tensors
 
-Each training or test file contains data stored in binary format. The first few bytes contains information about
-the file. To help convert image or label data, let's write a helper function:
+Each set of files contains data stored in binary format. The first few bytes contain header information about the file. After the header bytes, images are stored in `784` byte chunks (`28` x `28` image samples). The labels file contains `1` byte chunks for each label in the corresponding image file (`0-9`).
+
+The `data.js` file contains the logic for converting the entire file, but let's examine a closer look at image conversion. Data is read through the file stored on disk using the Node.js API for [`fs.readFile()`](https://nodejs.org/api/fs.html#fs_fs_readfile_path_options_callback). That API returns a `Buffer` that is used to convert each `768` chunk into a `Float32Array` typed-array. Those values are normalized from the stored pixel values of `1.0-255.0`. This data normalization makes our model train and perform faster.
+
+The `loadImages()` and `loadLabels()` method are similiar, but handle byte ordering different.
+
+Loading images sample:
 
 ```js
-// Utility function for loading header data:
-function loadHeaderValues(buffer, headerLength) {
-  const headerValues = [];
-  for (let i = 0; i < headerLength / 4; i++) {
-    // Header data is stored in-order (aka big-endian)
-    headerValues[i] = buffer.readUInt32BE(i * 4);
+const buffer = fs.readFileSync('training-data-filename');
+...
+// Normalize pixel data between 0.0 and 1.0:
+const downsize = 1.0 / 255.0;
+...
+let index = IMAGE_HEADER_BYTES;
+while (index < buffer.byteLength) {
+  const size = 28 * 28;  // Flattened image dimensions
+  const array = new Float32Array(size);
+  for (let i = 0; i  < size; i++) {
+    array[i] = buffer.readUInt8(index++) * downsize;
   }
-  return headerValues;
 }
 ```
 
-Image data files store each image as a flatten pixel array (28 x 28). Parse through each 784 pixels and store
-those values normalized (each pixel is 0-255) in a `Float32Array`.
+Loading labels sample:
 
 ```js
-// Image data constants:
-const IMAGE_HEADER_MAGIC_NUM = 2051;
-const IMAGE_HEADER_BYTES = 16;
-const IMAGE_DIMENSION_SIZE = 28;
-
-// Returns image data from a training or test file:
-async function loadImages(filename) {
-  const buffer = await fetchOnceAndSaveToDiskWithBuffer(filename);
-
-  const headerBytes = IMAGE_HEADER_BYTES;
-  const recordBytes = IMAGE_DIMENSION_SIZE * IMAGE_DIMENSION_SIZE;
-
-  // Validate header attributes:
-  const headerValues = loadHeaderValues(buffer, headerBytes);
-  assert.equal(headerValues[0], IMAGE_HEADER_MAGIC_NUM);
-  assert.equal(headerValues[2], IMAGE_DIMENSION_SIZE);
-  assert.equal(headerValues[3], IMAGE_DIMENSION_SIZE);
-
-  // Normalize pixel data between 0.0 and 1.0:
-  const downsize = 1.0 / 255.0;
-
-  // Store each image chunk in a typed array.
-  // Each chunk will be converted to a Tensor later.
-  const images = [];
-  let index = headerBytes;
-  while (index < buffer.byteLength) {
-    const array = new Float32Array(recordBytes);
-    for (let i = 0; i < recordBytes; i++) {
-      array[i] = buffer.readUInt8(index++) * downsize;
-    }
-    images.push(array);
-  }
-
-  assert.equal(images.length, headerValues[1]);
-  return images;
+const buffer = fs.readFileSync('training-labels-filename');
+...
+let index = LABEL_HEADER_BYTES;
+while (index < buffer.byteLength) {
+  const array = new Int32Array(1);  // Single element for labels
+  array[i] = buffer.readUInt8(index++);
 }
 ```
 
-Each corresponding image has a matching label at the index of each image. Very similar to the image data conversion,
-we need to store each binary chunk in a typed array - this time we will use an `Int32Array` for label storage (labels
-are number values 0-9):
-
-```js
-// Label data constants:
-const LABEL_HEADER_MAGIC_NUM = 2049;
-const LABEL_HEADER_BYTES = 8;
-const LABEL_RECORD_BYTE = 1;
-
-// Returns label data from a training or test file:
-async function loadLabels(filename) {
-  const buffer = await fetchOnceAndSaveToDiskWithBuffer(filename);
-
-  const headerBytes = LABEL_HEADER_BYTES;
-  const recordBytes = LABEL_RECORD_BYTE;
-
-  // Validate header attributes:
-  const headerValues = loadHeaderValues(buffer, headerBytes);
-  assert.equal(headerValues[0], LABEL_HEADER_MAGIC_NUM);
-
-  // Store each chunk in a typed array.
-  const labels = [];
-  let index = headerBytes;
-  while (index < buffer.byteLength) {
-    const array = new Int32Array(recordBytes);
-    for (let i = 0; i < recordBytes; i++) {
-      array[i] = buffer.readUInt8(index++);
-    }
-    labels.push(array);
-  }
-
-  assert.equal(labels.length, headerValues[1]);
-  return labels;
-}
-```
-
-## Converting data into Tensors
+## MNIST data serving class
 
 Now that the training and test data have been loaded into memory, we will now create a utility class to make serving
-these values as batches of Tensors much easier.
+these values as batches of Tensors much easier. The full definiton
 
 ```js
 // TODO(kreeger): Flush out this section.
 ```
 
 ## Runnning the model with the Node.js bindings:
+
+## Creating the entry point for the Node.js app
+
+Next, let's create the entry point (or use your text editor of choice):
+
+```sh
+$ touch index.js
+```
 
 To run this application with the power of TensorFlow, we must load the Node binding and set the backend to `'tensorflow'`:
 
