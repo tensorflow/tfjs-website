@@ -85,7 +85,7 @@ Each set of files contains data stored in binary format. The first few bytes con
 
 The `data.js` file contains the logic for converting the entire file, but let's examine a closer look at image conversion. Data is read through the file stored on disk using the Node.js API for [`fs.readFile()`](https://nodejs.org/api/fs.html#fs_fs_readfile_path_options_callback). That API returns a `Buffer` that is used to convert each `768` chunk into a `Float32Array` typed-array. Those values are normalized from the stored pixel values of `1.0-255.0`. This data normalization makes our model train and perform faster.
 
-The `loadImages()` and `loadLabels()` method are similiar, but handle byte ordering different.
+The `loadImages()` and `loadLabels()` method are similar, but handle byte ordering different.
 
 Loading images sample:
 
