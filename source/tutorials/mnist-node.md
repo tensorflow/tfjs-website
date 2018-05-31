@@ -1,25 +1,25 @@
 ---
-title: mnist
+title: mnist-node
 date: 2018-05-29 10:22:00
 ---
 
-# Running TensorFlow.js on Node
+# MNIST training with Node.js
 
-In this tutorial, we'll show how to utilize the power of TenorFlow's C library with TensorFlow.js. We'll be using the MNIST convolutional neural
-network in this tutorial - but loading data from binary files instead of the web-based `fromPixels()` method.
+In this tutorial, we'll show how to utilize the power of TensorFlow's Eager C library with TensorFlow.js running under Node.js. We’ll be using the [MNIST CNN model](mnist.html) in this tutorial - but we’ll be primarily focusing on code that is Node.js specific to TensorFlow.js.
 
 ## Prerequisites
 
-This tutorial assumes prior knowledge of fundamental concepts of TensorFlow.js, MNIST dataset, and Node.js. You'll also need a machine that supports core TensorFlow. See [these directions](https://www.tensorflow.org/install/) for machine and hardware requirements.
+This tutorial will skim over some specific details, so make sure you are up-to-speed on the following items:
 
-* [Core Concepts in TensorFlow.js](core-concepts.html)
-* [Training on Images: Recognizing Handwritten Digits with a Convolutional Neural Network](mnist.html)
+* An install of [Node v8.* or higher](https://nodejs.org/en/)
+  * We recommend [NVM](https://github.com/creationix/nvm) for managing Node installs
+* A machine that [supports TensorFlow](https://www.tensorflow.org/install/)
+* Core Concepts in [TensorFlow.js](core-concepts.html)
+* Understanding of the [MNIST tutorial](mnist.html)
 
-## Running the Code
+## Running the tutorial
 
-The full code for this tutorial can be found in the [tfjs-examples/mnist-node](https://github.com/tensorflow/tfjs-examples/tree/master/mnist-node) directory in the [TensorFlow.js examples repository](https://github.com/tensorflow/tfjs-examples/tree/master/mnist-node).
-
-You can run the code for the example by cloning the repo and building the demo:
+You can run the code for the example by cloning the repo and executing the index.js script:
 
 ```sh
 $ git clone https://github.com/tensorflow/tfjs-examples
@@ -28,54 +28,69 @@ $ npm install
 $ node index.js
 ```
 
-This application downloads, trains, and evaluates against the MNIST dataset. Every 20 steps, a console log shows the current loss and accuracy of the model. At the end off each pass through the training data (called an 'epoch'), the test data is run for evaluation to see how accurate the model is.
+This application downloads, trains, and evaluates against the MNIST dataset. Every 20 steps, a console log shows the current loss and accuracy of the model. At the end of each pass through the training data (called an 'epoch'), the test data is run for evaluation to see how accurate the model is.
 
-## Loading the TensorFlow Node.js bindings:
+## Binding Installation & Loading
 
-This tutorial demonstrates the Node.js binding for TensorFlow. This binding can be loaded with just a couple lines of code. The [`index.js`](https://github.com/tensorflow/tfjs-examples/blob/master/mnist-node/index.js) file is the entry point to the tutorial. This file includes the core TensorFlow.js library, loads the Node.js binding, and sets the backend to `'tensorflow'`. Once the binding is loaded and the backend is set, this tutorial is powered by TensorFlow's C library for high performance.
+In this tutorial, our main application script (index.js) loads the Node.js binding and sets the backend to ’tensorflow’. These couple lines of code enables high-performance, multi-threaded TensorFlow code to be executed through Node.js!
 
 ```js
-// main imports in index.js:
+// Main imports in index.js:
 const tf = require('@tensorflow/tfjs');
 require('@tensorflow/tfjs-node');
 tf.setBackend('tensorflow');
 ```
 
-## Optional: Install GPU Node bindings for CUDA systems
+### Optional - Enable GPU Support (Linux only)
 
-If your system has a NVIDIA® GPU with [CUDA compute support](https://www.tensorflow.org/install/install_linux#NVIDIARequirements), use the GPU package for higher performance (Linux only):
+TensorFlow.js also ships a package that enables GPU support. If your system has a NVIDIA® GPU with [CUDA compute support](https://www.tensorflow.org/install/install_linux#NVIDIARequirements), use the GPU package for higher performance:
+
+First, install the GPU Node.js binding package:
 
 ```sh
 $ npm install @tensorflow/tfjs-node-gpu --save
 ```
 
-Change the binding import statement in `index.js`:
+Next update the import statement in index.js to use the GPU binding.
 
 ```js
-const tf = require('@tensorflow/tfjs');
-// require('@tensorflow/tfjs-node');
-require('@tensorflow/tfjs-node-gpu');
+// Change main imports in index.js:
+...
+require('@tensorflow/tfjs-node-gpu');  // Load the GPU package
 tf.setBackend('tensorflow');
+...
 ```
 
-Now just run `$ node index.js` again and to execute the script with GPU support.
+Finally - re-run index.js: `$ node index.js`
 
-## Loading MNIST data in Node.js
+## Loading MNIST data from disk
 
-The [browser tutorial for MNIST](mnist.html) uses one large image with all the training data embedded inside. The `tf.fromPixels()` method is used to convert HTML image data to Tensors. In Node.js, we will download binary files that contain training and test information for our model.
+In the [browser-based tutorial for MNIST](mnist.html), training data is generated from [one large PNG file](https://storage.googleapis.com/learnjs-data/model-builder/mnist_images.png) that is read off of a browser canvas. In Node.js we do not have access to the browser canvas so our training data will be generated from pre-built binary files.
 
-Each MNIST dataset is stored in two different files - one containing an embedded representation of each pixel in the image and another file that contains the label for each image. In this tutorial, we will download and use a training and test set for a combination of 4 files.
+MNIST stores data in two matching files: one containing all of the images, and a matching file containing the labels for those images. In this tutorial, we will download 2 sets of MNIST files. The first set will be used for training and the second set will be used for testing the accuracy of the model.
 
-## Parsing Training and Test Data
+### Getting the data
 
-The MNIST dataset can be downloaded over HTTP today. To download these files, an [async function](https://javascript.info/async-await) will be used. This function will check if the passed in `filename` currently exists on disk. If the file exists, a `Buffer` from that file is returned. If the file does not exist, an `https` request is sent to download the gzip'd version of the file. That stream is unzipped and saved on disk. The contents of that save operation is returned as a `Buffer`.
+To download these binary files, an [async function](https://javascript.info/async-await) will be used for returning a [Promise](https://javascript.info/promise-basics) for our data fetching.
+
+The first step is to declare some constants that the data.js file uses for downloading MNIST files:
 
 ```js
+const BASE_URL = 'https://storage.googleapis.com/cvdf-datasets/mnist/';
+const TRAIN_IMAGES_FILE = 'train-images-idx3-ubyte';
+const TRAIN_LABELS_FILE = 'train-labels-idx1-ubyte';
+const TEST_IMAGES_FILE = 't10k-images-idx3-ubyte';
+const TEST_LABELS_FILE = 't10k-labels-idx1-ubyte';
+```
+
+Next, the following function is used for downloading a given filename only once and returning a `Buffer` to the contents of that file:
+
+```js
+// Downloads a test file only once and returns the buffer for the file.
 async function fetchOnceAndSaveToDiskWithBuffer(filename) {
   return new Promise(resolve => {
     const url = `${BASE_URL}${filename}.gz`;
     if (fs.existsSync(filename)) {
-      // Return buffer in Promise resolve.
       resolve(readFile(filename));
       return;
     }
@@ -85,7 +100,6 @@ async function fetchOnceAndSaveToDiskWithBuffer(filename) {
       const unzip = zlib.createGunzip();
       response.pipe(unzip).pipe(file);
       unzip.on('end', () => {
-        // Return buffer in Promise resolve.
         resolve(readFile(filename));
       });
     });
@@ -93,41 +107,102 @@ async function fetchOnceAndSaveToDiskWithBuffer(filename) {
 }
 ```
 
-## Converting binary data to Tensors
+### Parsing the data
 
-Each set of files contains data stored in binary format. The first few bytes contain header information about the file. After the header bytes, images are stored in `784` byte chunks (`28` x `28` image samples). The labels file contains `1` byte chunks for each label in the corresponding image file (`0-9`).
+Once the data has been downloaded, it must be converted from binary format to a [typed array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays). Each MNIST file contains a few bytes of header information depending on the type of file (image or label).
 
-The [`data.js`](https://github.com/tensorflow/tfjs-examples/blob/master/mnist-node/data.js) file contains the logic for converting the entire file, but let's take a closer look at image conversion. Data is read through the file stored on disk using the Node.js API [`fs.readFile()`](https://nodejs.org/api/fs.html#fs_fs_readfile_path_options_callback). That API returns a `Buffer` that is used to convert each `768` chunk into a `Float32Array` typed-array. Those values are normalized from the stored pixel values of `1.0-255.0`. This data normalization makes our model train and perform faster.
-
-The `loadImages()` and `loadLabels()` method are similar, but handle byte ordering different.
-
-Loading images sample:
+To help with parsing, a few constants are needed:
 
 ```js
-const buffer = fs.readFileSync('training-data-filename');
-...
-// Normalize pixel data between 0.0 and 1.0:
-const downsize = 1.0 / 255.0;
-...
-let index = IMAGE_HEADER_BYTES;
-while (index < buffer.byteLength) {
-  const size = 28 * 28;  // Flattened image dimensions
-  const array = new Float32Array(size);
-  for (let i = 0; i  < size; i++) {
-    array[i] = buffer.readUInt8(index++) * downsize;
+// Image file constants:
+const IMAGE_HEADER_MAGIC_NUM = 2051;
+const IMAGE_HEADER_BYTES = 16;
+const IMAGE_DIMENSION_SIZE = 28;
+const IMAGE_FLAT_SIZE = IMAGE_DIMENSION_SIZE * IMAGE_DIMENSION_SIZE;
+
+// Label file constants:
+const LABEL_HEADER_MAGIC_NUM = 2049;
+const LABEL_HEADER_BYTES = 8;
+const LABEL_RECORD_BYTE = 1;
+const LABEL_FLAT_SIZE = 10;
+```
+
+Each file contains a few bytes of header information which can be parsed using a utility function:
+
+```js
+function loadHeaderValues(buffer, headerLength) {
+  const headerValues = [];
+  for (let i = 0; i < headerLength / 4; i++) {
+    // Header data is stored in-order (aka big-endian)
+    headerValues[i] = buffer.readUInt32BE(i * 4);
   }
+  return headerValues;
 }
 ```
 
-Loading labels sample:
+MNIST image files contain images stored in 784 byte chunks (each image is 28 x 28 pixels). After loading the Buffer and validating the header contents, each image chunk is stored in a Float32Array and stashed in an array. These typed arrays will be used to create Tensors when they are needed for the model.
+
+Here is the method to handle loading an image file’s buffer, validating the header, and converting binary data into Float32Array elements:
 
 ```js
-const buffer = fs.readFileSync('training-labels-filename');
-...
-let index = LABEL_HEADER_BYTES;
-while (index < buffer.byteLength) {
-  const array = new Int32Array(1);  // Single element for labels
-  array[i] = buffer.readUInt8(index++);
+async function loadImages(filename) {
+  const buffer = await fetchOnceAndSaveToDiskWithBuffer(filename);
+
+  // Validate header contents:
+  const headerBytes = IMAGE_HEADER_BYTES;
+  const recordBytes = IMAGE_DIMENSION_SIZE * IMAGE_DIMENSION_SIZE;
+  const headerValues = loadHeaderValues(buffer, headerBytes);
+  assert.equal(headerValues[0], IMAGE_HEADER_MAGIC_NUM);
+  assert.equal(headerValues[2], IMAGE_DIMENSION_SIZE);
+  assert.equal(headerValues[3], IMAGE_DIMENSION_SIZE);
+
+  // Normalize pixel values:
+  const downsize = 1.0 / 255.0;
+
+  const images = [];
+  let index = headerBytes;
+  while (index < buffer.byteLength) {
+    const array = new Float32Array(recordBytes);
+    for (let i = 0; i < recordBytes; i++) {
+      array[i] = buffer.readUInt8(index++) * downsize;
+    }
+    images.push(array);
+  }
+
+  assert.equal(images.length, headerValues[1]);
+  return images;
 }
 ```
 
+Next, let’s look at handling the label files. MNIST label files contain every label stored in 1 byte chunks (representing the values 0-9). Label parsing is very similar to the image file conversion - but we will use Int32Array instances to store the label data:
+
+```js
+async function loadLabels(filename) {
+  const buffer = await fetchOnceAndSaveToDiskWithBuffer(filename);
+
+  // Validate header contents:
+  const headerBytes = LABEL_HEADER_BYTES;
+  const recordBytes = LABEL_RECORD_BYTE;
+  const headerValues = loadHeaderValues(buffer, headerBytes);
+  assert.equal(headerValues[0], LABEL_HEADER_MAGIC_NUM);
+
+  const labels = [];
+  let index = headerBytes;
+  while (index < buffer.byteLength) {
+    const array = new Int32Array(recordBytes);
+    for (let i = 0; i < recordBytes; i++) {
+      array[i] = buffer.readUInt8(index++);
+    }
+    labels.push(array);
+  }
+
+  assert.equal(labels.length, headerValues[1]);
+  return labels;
+}
+```
+
+Now our data is loaded into memory and ready to be converted to Tensors for the model to use. The `data.js` file contains more details for handling batches, shuffling, and epoch iteration. Please see that file for more details.
+
+## Summary
+
+This tutorial highlights how the same model code used in a [browser-specific example](mnist.html) can be run server side using Node.js. The only key differences for running server side is the bootstrapping of the Node.js bindings and our MNSIT data pipeline. By training and running in Node.js with TensorFlow you’ll have access to a larger spectrum of resources that the browser can not currently provide.
