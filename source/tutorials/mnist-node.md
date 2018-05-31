@@ -5,12 +5,15 @@ date: 2018-05-29 10:22:00
 
 # Running TensorFlow.js on Node
 
-In this tutorial, we'll show how to utilize the power of TenorFlow with TensorFlow.js. We'll be using the MNIST convolutional neural
+In this tutorial, we'll show how to utilize the power of TenorFlow's C library with TensorFlow.js. We'll be using the MNIST convolutional neural
 network in this tutorial - but loading data from binary files instead of the web-based `fromPixels()` method.
 
 ## Prerequisites
 
-First, you'll need a machine that supports TensorFlow. See [these directions](https://www.tensorflow.org/install/) for machine and hardware requirements.
+This tutorial assumes prior knowledge of fundamental concepts of TensorFlow.js, MNIST dataset, and Node.js. You'll also need a machine that supports core TensorFlow. See [these directions](https://www.tensorflow.org/install/) for machine and hardware requirements.
+
+* [Core Concepts in TensorFlow.js](core-concepts.html)
+* [Training on Images: Recognizing Handwritten Digits with a Convolutional Neural Network](mnist.html)
 
 ## Running the Code
 
@@ -25,7 +28,18 @@ $ npm install
 $ node index.js
 ```
 
-This script downloads and trains against the training MNIST set and runs evaluation off of the MNIST test data. Each 20 steps, the console logs the current loss and accuracy of the model. At the end off each pass through the data (called an 'epoch'), the test data is run for evaluation to see how accurate the model is against data it was not trained with.
+This application downloads, trains, and evaluates against the MNIST dataset. Every 20 steps, a console log shows the current loss and accuracy of the model. At the end off each pass through the training data (called an 'epoch'), the test data is run for evaluation to see how accurate the model is.
+
+## Loading the TensorFlow Node.js bindings:
+
+This tutorial demonstrates the Node.js binding for TensorFlow. This binding can be loaded with just a couple lines of code. The [`index.js`](https://github.com/tensorflow/tfjs-examples/blob/master/mnist-node/index.js) file is the entry point to the tutorial. This file includes the core TensorFlow.js library, loads the Node.js binding, and sets the backend to `'tensorflow'`. Once the binding is loaded and the backend is set, this tutorial is powered by TensorFlow's C library for high performance.
+
+```js
+// main imports in index.js:
+const tf = require('@tensorflow/tfjs');
+require('@tensorflow/tfjs-node');
+tf.setBackend('tensorflow');
+```
 
 ## Optional: Install GPU Node bindings for CUDA systems
 
@@ -48,13 +62,13 @@ Now just run `$ node index.js` again and to execute the script with GPU support.
 
 ## Loading MNIST data in Node.js
 
-The browser examples for MNIST use a large image with all the training data embedded. The `tf.fromPixels()` method is used to convert HTML image data to Tensors. In Node.js, we will download binary files that contain training and test information for our model.
+The [browser tutorial for MNIST](mnist.html) uses one large image with all the training data embedded inside. The `tf.fromPixels()` method is used to convert HTML image data to Tensors. In Node.js, we will download binary files that contain training and test information for our model.
 
 Each MNIST dataset is stored in two different files - one containing an embedded representation of each pixel in the image and another file that contains the label for each image. In this tutorial, we will download and use a training and test set for a combination of 4 files.
 
 ## Parsing Training and Test Data
 
-The MNIST dataset can be downloaded through Google storage today. To download these files, an async function will be used. This function will check if the passed in file exists on disk. If the file exists, a `Buffer` from that file is returned. If the file does not exist, an `https` request is sent to download the gzip'd version of the file. That stream is unzipped and saved on disk. The contents of that save operation are returned as a `Buffer`.
+The MNIST dataset can be downloaded over HTTP today. To download these files, an [async function](https://javascript.info/async-await) will be used. This function will check if the passed in `filename` currently exists on disk. If the file exists, a `Buffer` from that file is returned. If the file does not exist, an `https` request is sent to download the gzip'd version of the file. That stream is unzipped and saved on disk. The contents of that save operation is returned as a `Buffer`.
 
 ```js
 async function fetchOnceAndSaveToDiskWithBuffer(filename) {
@@ -83,7 +97,7 @@ async function fetchOnceAndSaveToDiskWithBuffer(filename) {
 
 Each set of files contains data stored in binary format. The first few bytes contain header information about the file. After the header bytes, images are stored in `784` byte chunks (`28` x `28` image samples). The labels file contains `1` byte chunks for each label in the corresponding image file (`0-9`).
 
-The `data.js` file contains the logic for converting the entire file, but let's examine a closer look at image conversion. Data is read through the file stored on disk using the Node.js API for [`fs.readFile()`](https://nodejs.org/api/fs.html#fs_fs_readfile_path_options_callback). That API returns a `Buffer` that is used to convert each `768` chunk into a `Float32Array` typed-array. Those values are normalized from the stored pixel values of `1.0-255.0`. This data normalization makes our model train and perform faster.
+The [`data.js`](https://github.com/tensorflow/tfjs-examples/blob/master/mnist-node/data.js) file contains the logic for converting the entire file, but let's take a closer look at image conversion. Data is read through the file stored on disk using the Node.js API [`fs.readFile()`](https://nodejs.org/api/fs.html#fs_fs_readfile_path_options_callback). That API returns a `Buffer` that is used to convert each `768` chunk into a `Float32Array` typed-array. Those values are normalized from the stored pixel values of `1.0-255.0`. This data normalization makes our model train and perform faster.
 
 The `loadImages()` and `loadLabels()` method are similar, but handle byte ordering different.
 
@@ -117,82 +131,3 @@ while (index < buffer.byteLength) {
 }
 ```
 
-## MNIST data serving class
-
-Now that the training and test data have been loaded into memory, we will now create a utility class to make serving
-these values as batches of Tensors much easier. The full definiton
-
-```js
-// TODO(kreeger): Flush out this section.
-```
-
-## Runnning the model with the Node.js bindings:
-
-## Creating the entry point for the Node.js app
-
-Next, let's create the entry point (or use your text editor of choice):
-
-```sh
-$ touch index.js
-```
-
-To run this application with the power of TensorFlow, we must load the Node binding and set the backend to `'tensorflow'`:
-
-```js
-const tf = require('@tensorflow/tfjs');
-require('@tensorflow/tfjs-node');
-tf.setBackend('tensorflow');
-```
-
-TODO
-
-```js
-// Training method
-async function train() {
-  let step = 0;
-  while (data.hasMoreTrainingData()) {
-    const batch = data.nextTrainBatch(BATCH_SIZE);
-    const history = await model.fit(
-        batch.image, batch.label, {batchSize: BATCH_SIZE, shuffle: true});
-
-    // Every 20 steps, log out loss and accuracy:
-    if (step % 20 === 0) {
-      const loss = history.history.loss[0].toFixed(6);
-      const acc = history.history.acc[0].toFixed(4);
-      console.log(`  - step: ${step}: loss: ${loss}, accuracy: ${acc}`);
-    }
-    step++;
-  }
-  return step;
-}
-```
-
-TODO
-
-```js
-// Test method
-async function test() {
-  if (!data.hasMoreTestData()) {
-    data.resetTest();
-  }
-  const evalData = data.nextTestBatch(TEST_SIZE);
-  const output = model.predict(evalData.image);
-  const predictions = output.argMax(1).dataSync();
-  const labels = evalData.label.argMax(1).dataSync();
-
-  // Check to see if each prediction matches up to the correct label:
-  let correct = 0;
-  for (let i = 0; i < TEST_SIZE; i++) {
-    if (predictions[i] === labels[i]) {
-      correct++;
-    }
-  }
-  const accuracy = ((correct / TEST_SIZE) * 100).toFixed(2);
-  console.log(`* Test set accuracy: ${accuracy}%\n`);
-}
-```
-
-TODO
-
-```js
-```
