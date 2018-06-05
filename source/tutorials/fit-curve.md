@@ -18,9 +18,9 @@ The full code for this tutorial (including the data-generation and chart-plottin
 
 To run the code locally, you need the following dependencies installed:
  - [Node.js](https://nodejs.org/) version 8.9 or higher
- - [Yarn](https://yarnpkg.com/en/) or [NPM cli](https://docs.npmjs.com/cli/npm)
+ - [Yarn](https://yarnpkg.com/en/) or [NPM CLI](https://docs.npmjs.com/cli/npm)
 
-These instructions use Yarn, but if you are familiar with NPM cli and prefer to use that instead it will still work.
+These instructions use Yarn, but if you are familiar with NPM CLI and prefer to use that instead it will still work.
 
 ```
 $ git clone https://github.com/tensorflow/tfjs-examples
