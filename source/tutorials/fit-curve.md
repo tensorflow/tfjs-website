@@ -16,7 +16,11 @@ This tutorial assumes familiarity with the fundamental building blocks of Tensor
 This tutorial focuses on the TensorFlow.js code used to build the model and learn its coefficients.
 The full code for this tutorial (including the data-generation and chart-plotting code) can be found [here](https://github.com/tensorflow/tfjs-examples/tree/master/polynomial-regression-core).
 
-To run the code locally, do the following:
+To run the code locally, you need the following dependencies installed:
+ - [Node.js](https://nodejs.org/) version 8.9 or higher
+ - [Yarn](https://yarnpkg.com/en/) or [NPM CLI](https://docs.npmjs.com/cli/npm)
+
+These instructions use Yarn, but if you are familiar with NPM CLI and prefer to use that instead it will still work.
 
 ```
 $ git clone https://github.com/tensorflow/tfjs-examples
