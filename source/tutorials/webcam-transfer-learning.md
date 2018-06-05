@@ -60,6 +60,12 @@ a relatively small amount of retraining.
 
 ## About this tutorial
 
+To run the code locally, you need the following dependencies installed:
+ - [Node.js](https://nodejs.org/) version 8.9 or higher
+ - [Yarn](https://yarnpkg.com/en/) or [NPM CLI](https://docs.npmjs.com/cli/npm)
+
+These instructions use Yarn, but if you are familiar with NPM CLI and prefer to use that instead it will still work.
+
 You can run the code for the example by cloning the repo and building the demo:
 
 ```sh
