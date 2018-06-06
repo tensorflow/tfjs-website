@@ -18,6 +18,12 @@ This tutorial assumes familiarity with the fundamental building blocks of Tensor
 
 The full code for this tutorial can be found in the [tfjs-examples/mnist](https://github.com/tensorflow/tfjs-examples/tree/master/mnist) directory in the [TensorFlow.js examples repository](https://github.com/tensorflow/tfjs-examples/tree/master/mnist).
 
+To run the code locally, you need the following dependencies installed:
+ - [Node.js](https://nodejs.org/) version 8.9 or higher
+ - [Yarn](https://yarnpkg.com/en/) or [NPM CLI](https://docs.npmjs.com/cli/npm)
+
+These instructions use Yarn, but if you are familiar with NPM CLI and prefer to use that instead it will still work.
+
 You can run the code for the example by cloning the repo and building the demo:
 
 ```sh
