@@ -70,24 +70,29 @@ their respecitve schemes and examples.
     </thead>
     <tbody>
       <tr>
-        <td>Browser Local Storage</td>
+        <td>Local Storage (Browser)</td>
         <td><code>localstorage://</code></td>
         <td><code>await model.save('localstorage://my-model-1');</code></td>
       </tr>
       <tr>
-        <td>Browser IndexedDB</td>
+        <td>IndexedDB (Browser)</td>
         <td><code>indexeddb://</code></td>
         <td><code>await model.save('indexeddb://my-model-1');</code></td>
       </tr>
       <tr>
-        <td>Trigger file downlads</td>
+        <td>Trigger file downlads (Browser)</td>
         <td><code>downloads://</code></td>
         <td><code>await model.save('downloads://my-model-1');</code></td>
       </tr>
       <tr>
-        <td>HTTP request</td>
+        <td>HTTP request (Browser)</td>
         <td><code>http://</code> or <code>https://</code></td>
         <td><code>await model.save('http://model-server.domain/upload');</code></td>
+      </tr>
+      <tr>
+        <td>File system (Node.js)</td>
+        <td><code>file://</code></td>
+        <td><code>await model.save('file:///tmp/my-model-1');</code></td>
       </tr>
     </tbody>
   </table>
@@ -166,6 +171,37 @@ await model.save(tf.io.browserHTTPRequest(
     {method: 'PUT', headers: {'header_key_1': 'header_value_1'}}));
 ```
 
+### Native File System
+
+TensorFlow.js can be used from Node.js. See
+[the tfjs-node project](https://github.com/caisq/tfjs-node) for more details.
+Unlike web browsers, Node.js can access the local file systems directly.
+Therefore, you can save `tf.Model`s to the file system, in pretty much the
+same way as you can save a model to disk in Keras. To do this, you use the
+`file://` URL scheme, followed by the path to directory in which the model
+artifacts are to be saved, for example:
+
+```js
+await model.save('file:///tmp/my-model-1');
+```
+
+The command above will generate a `model.json` file and a `weights.bin` file
+in the `/tmp/my-model-1` directory. These two files have the same format as
+the files described in the File Downloads ando HTTP Request sections above.
+After the model is saved, you can load it back into
+a Node.js program running TensorFlow.js or serve it for the browser version of
+TensorFlow.js. To achieve the former, you call `tf.loadModel()` with the path
+to the `model.json` file:
+
+```js
+const model = await tf.loadModel('file:///tmp/my-model-1/model.json');
+```
+
+To achieve the latter, you simply serve the files as static files from your
+web server. These files can also be converted to Python Keras HDF5 format using
+[tensorflowjs converter](https://pypi.org/project/tensorflowjs/) using the same
+approach described above when we covered browser file downloads.
+
 ## Loading tf.Model
 
 The ability to save `tf.Model`s will not be useful if the models can't be
@@ -185,24 +221,29 @@ loading routes:
     </thead>
     <tbody>
       <tr>
-        <td>Browser Local Storage</td>
+        <td>Local Storage (Browser)</td>
         <td><code>localstorage://</code></td>
         <td><code>await tf.loadModel('localstorage://my-model-1');</code></td>
       </tr>
       <tr>
-        <td>Browser IndexedDB</td>
+        <td>IndexedDB (Browser)</td>
         <td><code>indexeddb://</code></td>
         <td><code>await tf.loadModel('indexeddb://my-model-1');</code></td>
       </tr>
       <tr>
-        <td>Browser user-uploaded files</td>
+        <td>User-uploaded files (Browser)</td>
         <td>N/A</td>
         <td><code>await tf.loadModel(tf.io.browserFiles([modelJSONFile, weightsFile]));</code></td>
       </tr>
       <tr>
-        <td>HTTP request</td>
+        <td>HTTP request (Browser)</td>
         <td><code>http://</code> or <code>https://</code></td>
         <td><code>await tf.loadModel('http://model-server.domain/download/model.json');</code></td>
+      </tr>
+      <tr>
+        <td>File system (Node.js)</td>
+        <td><code>file://</code>
+        <td><code>await tf.loadModel('file:///tmp/my-model-1/model.json');</code></td>
       </tr>
     </tbody>
   </table>
