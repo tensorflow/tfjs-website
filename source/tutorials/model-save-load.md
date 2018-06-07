@@ -175,7 +175,7 @@ await model.save(tf.io.browserHTTPRequest(
 
 TensorFlow.js can be used from Node.js. See
 [the tfjs-node project](https://github.com/caisq/tfjs-node) for more details.
-Unlike web browsers, Node.js can access the local file systems directly.
+Unlike web browsers, Node.js can access the local file system directly.
 Therefore, you can save `tf.Model`s to the file system, in pretty much the
 same way as you can save a model to disk in Keras. To do this, you use the
 `file://` URL scheme, followed by the path to directory in which the model
@@ -187,9 +187,9 @@ await model.save('file:///tmp/my-model-1');
 
 The command above will generate a `model.json` file and a `weights.bin` file
 in the `/tmp/my-model-1` directory. These two files have the same format as
-the files described in the File Downloads ando HTTP Request sections above.
-After the model is saved, you can load it back into
-a Node.js program running TensorFlow.js or serve it for the browser version of
+the files described in the File Downloads and HTTP Request sections above.
+After the model is saved, it can be loaded back into
+a Node.js program running TensorFlow.js or served for the browser version of
 TensorFlow.js. To achieve the former, you call `tf.loadModel()` with the path
 to the `model.json` file:
 
@@ -198,9 +198,9 @@ const model = await tf.loadModel('file:///tmp/my-model-1/model.json');
 ```
 
 To achieve the latter, you simply serve the files as static files from your
-web server. These files can also be converted to Python Keras HDF5 format using
-[tensorflowjs converter](https://pypi.org/project/tensorflowjs/) using the same
-approach described above when we covered browser file downloads.
+web server. These files can also be converted to the HDF5 format of Python Keras
+by [tensorflowjs converter](https://pypi.org/project/tensorflowjs/) using the
+same approach described above when we covered browser file downloads.
 
 ## Loading tf.Model
 
