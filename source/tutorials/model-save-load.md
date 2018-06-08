@@ -184,11 +184,7 @@ to the `model.json` file:
 const model = await tf.loadModel('file:///tmp/my-model-1/model.json');
 ```
 
-To achieve the latter, serve the saved files as static files
-from a web server. If you want to load the model into Python Keras, you can
-convert the saved files using
-[tensorflowjs converter](https://pypi.org/project/tensorflowjs/)
-as described in the File Downloads section above.
+To achieve the latter, serve the saved files as static files from a web server.
 
 ## Loading tf.Model
 
@@ -312,11 +308,11 @@ tf.io.removeModel('indexeddb://cloned-model');
 
 ## Converting saved tf.Models into Keras format
 
-As described above, there are two approaches that allow you to save the model as
-files:
-- through file downloads from the web browser, using the `downloads://` scheme
-- writing directly to the native file system in Node.js, using the `file://`
-  scheme.
+As described above, there are two approaches that allow you to save a `tf.Model`
+as files:
+- through file downloading from the web browser, using the `downloads://` scheme
+- writing the model directly to the native file system in Node.js, using the
+  `file://` scheme.
 With [tensorflowjs converter](https://pypi.org/project/tensorflowjs/),
 you can convert these files into the HDF5 format that can then be loaded into
 Keras in Python. For example:
