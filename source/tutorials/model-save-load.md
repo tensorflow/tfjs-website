@@ -70,24 +70,29 @@ their respecitve schemes and examples.
     </thead>
     <tbody>
       <tr>
-        <td>Browser Local Storage</td>
+        <td>Local Storage (Browser)</td>
         <td><code>localstorage://</code></td>
         <td><code>await model.save('localstorage://my-model-1');</code></td>
       </tr>
       <tr>
-        <td>Browser IndexedDB</td>
+        <td>IndexedDB (Browser)</td>
         <td><code>indexeddb://</code></td>
         <td><code>await model.save('indexeddb://my-model-1');</code></td>
       </tr>
       <tr>
-        <td>Trigger file downlads</td>
+        <td>Trigger file downlads (Browser)</td>
         <td><code>downloads://</code></td>
         <td><code>await model.save('downloads://my-model-1');</code></td>
       </tr>
       <tr>
-        <td>HTTP request</td>
+        <td>HTTP request (Browser)</td>
         <td><code>http://</code> or <code>https://</code></td>
         <td><code>await model.save('http://model-server.domain/upload');</code></td>
+      </tr>
+      <tr>
+        <td>File system (Node.js)</td>
+        <td><code>file://</code></td>
+        <td><code>await model.save('file:///tmp/my-model-1');</code></td>
       </tr>
     </tbody>
   </table>
@@ -116,24 +121,11 @@ files sharing the same filename prefix:
      `weightsManifest` field.
   2. A binary file carrying the weight values named `my-model-1.weights.bin`.
 
+These files are in the same format as the artifacts converted from Keras
+HDF5 files by [tensorflowjs converter](https://pypi.org/project/tensorflowjs/).
+
 Note: some browsers require users to grant permissions before more than one
 file can be downloaded at the same time.
-
-These two files are in the same format as the artifacts converted from Keras
-HDF5 files by [tensorflowjs converter](https://pypi.org/project/tensorflowjs/).
-The weights are stored in one file, instead of being sharded into 4-MB shards.
-You can convert these files into a HDF5 that Keras can use or load them
-directly as a Keras Model object. For example:
-
-```sh
-# Suppose you have downloaded `my-model-1.json`, accompanied by a weights
-# file. Use the following shell command to convert the files into a HDF5 (.h5)
-# file that Keras can load. (Requires tensorflowjs pip package 0.3.1+)
-
-tensorflowjs_converter \
-    --input_format tensorflowjs --output_format keras \
-    ./my-model-1.json /tmp/my-model-1.h5
-```
 
 ### HTTP Request
 
@@ -166,6 +158,34 @@ await model.save(tf.io.browserHTTPRequest(
     {method: 'PUT', headers: {'header_key_1': 'header_value_1'}}));
 ```
 
+### Native File System
+
+TensorFlow.js can be used from Node.js. See
+[the tfjs-node project](https://github.com/caisq/tfjs-node) for more details.
+Unlike web browsers, Node.js can access the local file system directly.
+Therefore, you can save `tf.Model`s to the file system, in pretty much the
+same way as you can save a model to disk in Keras. To do this, you use the
+`file://` URL scheme, followed by the path to directory in which the model
+artifacts are to be saved, for example:
+
+```js
+await model.save('file:///tmp/my-model-1');
+```
+
+The command above will generate a `model.json` file and a `weights.bin` file
+in the `/tmp/my-model-1` directory. These two files have the same format as
+the files described in the File Downloads and HTTP Request sections above.
+After the model is saved, it can be loaded back into
+a Node.js program running TensorFlow.js or served for the browser version of
+TensorFlow.js. To achieve the former, you call `tf.loadModel()` with the path
+to the `model.json` file:
+
+```js
+const model = await tf.loadModel('file:///tmp/my-model-1/model.json');
+```
+
+To achieve the latter, serve the saved files as static files from a web server.
+
 ## Loading tf.Model
 
 The ability to save `tf.Model`s will not be useful if the models can't be
@@ -185,24 +205,29 @@ loading routes:
     </thead>
     <tbody>
       <tr>
-        <td>Browser Local Storage</td>
+        <td>Local Storage (Browser)</td>
         <td><code>localstorage://</code></td>
         <td><code>await tf.loadModel('localstorage://my-model-1');</code></td>
       </tr>
       <tr>
-        <td>Browser IndexedDB</td>
+        <td>IndexedDB (Browser)</td>
         <td><code>indexeddb://</code></td>
         <td><code>await tf.loadModel('indexeddb://my-model-1');</code></td>
       </tr>
       <tr>
-        <td>Browser user-uploaded files</td>
+        <td>User-uploaded files (Browser)</td>
         <td>N/A</td>
         <td><code>await tf.loadModel(tf.io.browserFiles([modelJSONFile, weightsFile]));</code></td>
       </tr>
       <tr>
-        <td>HTTP request</td>
+        <td>HTTP request (Browser)</td>
         <td><code>http://</code> or <code>https://</code></td>
         <td><code>await tf.loadModel('http://model-server.domain/download/model.json');</code></td>
+      </tr>
+      <tr>
+        <td>File system (Node.js)</td>
+        <td><code>file://</code>
+        <td><code>await tf.loadModel('file:///tmp/my-model-1/model.json');</code></td>
       </tr>
     </tbody>
   </table>
@@ -246,7 +271,7 @@ saving a mode via HTTP request. In particular, `tf.loadModel` takes the URL or
 path to a `model.json` file, as shown in the example in the table above. This is
 an API that has existed since the initial release of TensorFlow.js.
 
-## Managing models stored at client side
+## Managing models stored in browser Local Storage and IndexedDB
 
 As you have learned above, you can store a `tf.Model`'s topology and weights
 in the user's client-side browser data stores, including Local Storage and IndexedDB,
@@ -279,4 +304,25 @@ tf.io.moveModel('localstorage://my-model', 'indexeddb://cloned-model');
 
 // Remove model.
 tf.io.removeModel('indexeddb://cloned-model');
+```
+
+## Converting saved tf.Models into Keras format
+
+As described above, there are two approaches that allow you to save a `tf.Model`
+as files:
+- through file downloading from the web browser, using the `downloads://` scheme
+- writing the model directly to the native file system in Node.js, using the
+  `file://` scheme.
+With [tensorflowjs converter](https://pypi.org/project/tensorflowjs/),
+you can convert these files into the HDF5 format that can then be loaded into
+Keras in Python. For example:
+
+```sh
+# Suppose you have downloaded `my-model-1.json`, accompanied by a weights file.
+
+pip install tensorflowjs
+
+tensorflowjs_converter \
+    --input_format tensorflowjs --output_format keras \
+    ./my-model-1.json /tmp/my-model-1.h5
 ```
