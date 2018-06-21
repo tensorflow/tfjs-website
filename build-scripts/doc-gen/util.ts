@@ -98,10 +98,15 @@ export function unpackConfigParams(
         params.push(docFunction.parameters[i]);
 
         if (docFunction.docInfo.configParamIndices.indexOf(i) != -1) {
-          const configParams =
+          let configParams =
               configInterfaceParamMap[docFunction.parameters[i].type];
           if (configParams == null) {
-            throw new Error(
+            // TODO remove this reassignent and change the warning
+            // back to an error when
+            // https://github.com/tensorflow/tfjs/issues/400
+            // is fixed
+            configParams = [];
+            console.warn(
                 `Could not find config interface definition for ` +
                 `${docFunction.symbolName}, config type ` +
                 `${docFunction.parameters[i].type}, param ` +

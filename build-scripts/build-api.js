@@ -75,7 +75,7 @@ libs.forEach(lib => {
   }
 
   const docGenCommand =
-      `ts-node --project ${opts.repo}/tsconfig-es5.json ${docGenScript} ` +
+      `ts-node --project ${opts.repo}/tsconfig.json ${docGenScript} ` +
       `--in ${opts.input} --package ${opts.pkg} --src ${opts.src} --github ${
           opts.github} --out ${opts.out} --repo ${opts.repo}`;
 
