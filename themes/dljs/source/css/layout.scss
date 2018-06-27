@@ -11,6 +11,24 @@ $brand-color-dark: #ef6c00;
 $brand-color-bright: rgb(252, 184, 74);
 
 body {
+
+  .survey-link {
+    text-align: center;
+    height: 48px;
+    padding-top: 16px;
+
+    a {
+      // color: #0277bd;
+      font-weight: 500;
+      text-decoration: underline;
+      &:hover {
+        text-decoration: none;
+        border: none;
+        border-color: $brand-color-dark;
+      }
+    }
+  }
+
   margin: 0;
   @include mdc-typography-base();
 
