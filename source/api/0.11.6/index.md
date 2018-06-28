@@ -1,5 +1,5 @@
 ---
-title: 0.11.7
+title: 0.11.6
 layout: api
 ---
 

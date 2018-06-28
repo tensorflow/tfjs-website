@@ -11,6 +11,20 @@ $brand-color-dark: #ef6c00;
 $brand-color-bright: rgb(252, 184, 74);
 
 body {
+
+  .survey-link {
+    text-align: center;
+    height: 26px;
+
+    a {
+      font-weight: 500;
+      text-decoration: underline;
+      &:hover {
+        border: none !important;
+      }
+    }
+  }
+
   margin: 0;
   @include mdc-typography-base();
 
@@ -51,7 +65,8 @@ body {
     }
 
     a {
-      padding: 10px 0px 23px 0px;
+      // padding: 10px 0px 23px 0px; original pre-survey
+      padding: 10px 0px 10px 0px;
       margin: 0px 10px 0px 10px;
 
       color: white;
