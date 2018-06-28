@@ -14,17 +14,13 @@ body {
 
   .survey-link {
     text-align: center;
-    height: 48px;
-    padding-top: 16px;
+    height: 26px;
 
     a {
-      // color: #0277bd;
       font-weight: 500;
       text-decoration: underline;
       &:hover {
-        text-decoration: none;
-        border: none;
-        border-color: $brand-color-dark;
+        border: none !important;
       }
     }
   }
@@ -69,7 +65,8 @@ body {
     }
 
     a {
-      padding: 10px 0px 23px 0px;
+      // padding: 10px 0px 23px 0px; original pre-survey
+      padding: 10px 0px 10px 0px;
       margin: 0px 10px 0px 10px;
 
       color: white;
