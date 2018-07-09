@@ -19,7 +19,7 @@ All of above formats can be converted by [TensorFlow.js converter](https://githu
 The conversion procedure requires a Python environment; you may want to keep an isolated one using [pipenv](https://github.com/pypa/pipenv) or [virtualenv](https://virtualenv.pypa.io).  To install the converter, and run following:
 
 ```bash
-  $ pip install tensorflowjs
+ pip install tensorflowjs
 ```
 
 Importing a TensorFlow models into TensorFlow.js is a two-step process. First, convert an existing model to TensorFlow.js web format, and then load it into TensorFlow.js.
@@ -29,11 +29,10 @@ Importing a TensorFlow models into TensorFlow.js is a two-step process. First, c
 Run the converter script provided by the pip package:
 
 Usage:
-
 SavedModel example:
 
 ```bash
-$ tensorflowjs_converter \
+tensorflowjs_converter \
     --input_format=tf_saved_model \
     --output_node_names='MobilenetV1/Predictions/Reshape_1' \
     --saved_model_tags=serve \
@@ -44,7 +43,7 @@ $ tensorflowjs_converter \
 Frozen model example:
 
 ```bash
-$ tensorflowjs_converter \
+tensorflowjs_converter \
     --input_format=tf_frozen_model \
     --output_node_names='MobilenetV1/Predictions/Reshape_1' \
     --saved_model_tags=serve \
@@ -55,7 +54,7 @@ $ tensorflowjs_converter \
 Session bundle model example:
 
 ```bash
-$ tensorflowjs_converter \
+tensorflowjs_converter \
     --input_format=tf_session_bundle \
     --output_node_names='MobilenetV1/Predictions/Reshape_1' \
     /mobilenet/session_bundle \
@@ -65,16 +64,16 @@ $ tensorflowjs_converter \
 Tensorflow Hub module example:
 
 ```bash
-$ tensorflowjs_converter \
+tensorflowjs_converter \
     --input_format=tf_hub \
     'https://tfhub.dev/google/imagenet/mobilenet_v1_100_224/classification/1' \
     /mobilenet/web_model
 ```
+
 |Positional Arguments | Description |
 |---|---|
 |`input_path`  | Full path of the saved model directory, session bundle directory, frozen model file or TensorFlow Hub module handle or path.|
 |`output_path` | Path for all output artifacts.|
-
 
 | Options | Description
 |---|---|
@@ -83,6 +82,11 @@ $ tensorflowjs_converter \
 |`--saved_model_tags` | Only applicable to SavedModel conversion, Tags of the MetaGraphDef to load, in comma separated format. Defaults to `serve`.|
 |`--signature_name`   | Only applicable to TensorFlow Hub module conversion, signature to load. Defaults to `default`. See https://www.tensorflow.org/hub/common_signatures/.|
 
+Use following command to get the detail help message:
+
+```bash
+tensorflowjs_converter --help
+```
 
 ### Converter generated files
 
@@ -107,11 +111,11 @@ following location:
 
 1. Install the tfjs-converter npm package
 
-`yarn add @tensorflow/tfjs-converter` or `npm install @tensorflow/tfjs-converter`
+`yarn add @tensorflow/tfjs` or `npm install @tensorflow/tfjs`
 
 2. Instantiate the [FrozenModel class](https://github.com/tensorflow/tfjs-converter/src/executor/frozen_model.ts) and run inference.
 
-```typescript
+```js
 import * as tf from '@tensorflow/tfjs';
 import {loadFrozenModel} from '@tensorflow/tfjs-converter';
 
@@ -125,9 +129,9 @@ model.execute({input: tf.fromPixels(cat)});
 
 Check out our working [MobileNet demo](https://github.com/tensorflow/tfjs-converter/demo/mobilenet/README.md).
 
-If your server requests credentials for accessing the model files, you can provide the optional RequestOption param.
+If your server requests credentials for accessing the model files, you can provide the optional RequestOption param, which will be directly passed to the fetch function call.
 
-```typescript
+```js
 const model = await loadFrozenModel(MODEL_URL, WEIGHTS_URL,
     {credentials: 'include'});
 ```
@@ -138,15 +142,15 @@ Please see [fetch() documentation](https://developer.mozilla.org/en-US/docs/Web/
 
 Currently TensorFlow.js only supports a limited set of TensorFlow Ops. See the
 [full list](https://github.com/tensorflow/tfjs-converter/docs/supported_ops.md).
-If your model uses an unsupported ops, the `tensorflowjs_converter` script will fail and
-produce a list of the unsupported ops in your model. Please file issues to let us
-know what ops you need support with.
+If your model uses any unsupported ops, the `tensorflowjs_converter` script will fail and
+produce a list of the unsupported ops in your model. Please file [issues](https://github.com/tensorflow/tfjs/issues) to let us
+know what ops you need support for.
 
 ## Loading the weights only
 
 If you prefer to load the weights only, you can use follow code snippet.
 
-```typescript
+```js
 import * as tf from '@tensorflow/tfjs';
 
 const weightManifestUrl = "https://example.org/model/weights_manifest.json";
