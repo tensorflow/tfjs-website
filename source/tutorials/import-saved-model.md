@@ -46,7 +46,6 @@ Frozen model example:
 tensorflowjs_converter \
     --input_format=tf_frozen_model \
     --output_node_names='MobilenetV1/Predictions/Reshape_1' \
-    --saved_model_tags=serve \
     /mobilenet/frozen_model.pb \
     /mobilenet/web_model
 ```
