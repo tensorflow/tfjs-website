@@ -33,9 +33,9 @@ This tutorial explains how to convert and serve an existing Keras model to run i
 
 This tutorial explains how to save `tf.Model`s to various destinations such as the web browser's Local Storage and load them back.
 
-<h2><a href="https://github.com/tensorflow/tfjs-converter" target="_blank">How to import a TensorFlow SavedModel into TensorFlow.js</a></h2>
+<h2><a href="./import-saved-model.html">How to import a TensorFlow SavedModel into TensorFlow.js</a></h2>
 
-__Developer Preview:__ This tutorial explains how to convert and serve an existing TensorFlow SavedModel to run in the browser.
+This tutorial explains how to convert and serve an existing TensorFlow SavedModel to run in the browser.
 
 # Guides
 <h2><a href="./tfjs-layers-for-keras-users.html">TensorFlow.js Layers API for Keras Users</a></h2>
