@@ -23,7 +23,7 @@ import * as util from './util';
 // tslint:disable-next-line:max-line-length
 import {DocClass, DocFunction, DocFunctionParam, DocHeading, Docs, RepoDocsAndMetadata} from './view';
 
-const DOCUMENTATION_DECORATOR = 'doc';
+const DOCUMENTATION_DECORATOR_AND_ANNOTATION = 'doc';
 const DOCUMENTATION_TYPE_ALIAS = 'docalias';
 const DOCUMENTATION_LINK_ALIAS = 'doclink';
 const DOCUMENTATION_INLINE = 'docinline';
@@ -98,19 +98,19 @@ function visitNode(
     types: {[typeName: string]: string}, checker: ts.TypeChecker, node: ts.Node,
     sourceFile: ts.SourceFile, srcRoot: string, repoPath: string,
     githubRoot: string) {
-  if (ts.isMethodDeclaration(node)) {
-    const symbol = checker.getSymbolAtLocation(node.name);
-    const docInfo = util.getDocDecorator(node, DOCUMENTATION_DECORATOR);
+  if (ts.isMethodDeclaration(node) || ts.isFunctionDeclaration(node)) {
+    const docInfo = util.getDocDecoratorOrAnnotation(
+        checker, node, DOCUMENTATION_DECORATOR_AND_ANNOTATION);
 
     if (docInfo != null) {
       const subheading =
           util.fillHeadingsAndGetSubheading(docInfo, docHeadings);
 
-      const docFunction = serializeMethod(
+      const docFunction = serializeMethodOrFunction(
           checker, node, docInfo, sourceFile, repoPath, srcRoot, githubRoot);
 
-      // Static methods are top-level functions,
-      if (util.isStatic(node)) {
+      // Static methods are top-level functions.
+      if (ts.isFunctionDeclaration(node) || util.isStatic(node)) {
         subheading.symbols.push(docFunction);
       } else {
         // Non-static methods are class-specific.
@@ -126,7 +126,8 @@ function visitNode(
       }
     }
   } else if (ts.isClassDeclaration(node)) {
-    const docInfo = util.getDocDecorator(node, DOCUMENTATION_DECORATOR);
+    const docInfo = util.getDocDecoratorOrAnnotation(
+        checker, node, DOCUMENTATION_DECORATOR_AND_ANNOTATION);
     if (docInfo != null) {
       const subheading =
           util.fillHeadingsAndGetSubheading(docInfo, docHeadings);
@@ -177,7 +178,7 @@ function visitNode(
     let params = [];
     if (signature != null && signature.parameters != null) {
       const identifierGenericMap = ts.isMethodDeclaration(node) ?
-          util.getIdentifierGenericMap(node, symbol.name) :
+          util.getIdentifierGenericMap(node) :
           {};
 
       const isConfigParam = false;
@@ -274,9 +275,10 @@ export function serializeClass(
   // Parse the methods that are annotated with @doc.
   node.members.forEach(member => {
     if (ts.isMethodDeclaration(member) && !util.isStatic(member)) {
-      const docInfo = util.getDocDecorator(member, DOCUMENTATION_DECORATOR);
+      const docInfo = util.getDocDecoratorOrAnnotation(
+          checker, member, DOCUMENTATION_DECORATOR_AND_ANNOTATION);
       if (docInfo != null) {
-        docClass.methods.push(serializeMethod(
+        docClass.methods.push(serializeMethodOrFunction(
             checker, member, docInfo, sourceFile, repoPath, srcRoot,
             githubRoot));
       }
@@ -286,10 +288,12 @@ export function serializeClass(
   return docClass;
 }
 
-export function serializeMethod(
-    checker: ts.TypeChecker, node: ts.MethodDeclaration, docInfo: util.DocInfo,
-    sourceFile: ts.SourceFile, repoPath: string, srcRoot: string,
-    githubRoot: string): DocFunction {
+export function serializeMethodOrFunction(
+    checker: ts.TypeChecker, node: ts.MethodDeclaration|ts.FunctionDeclaration,
+    docInfo: util.DocInfo, sourceFile: ts.SourceFile, repoPath: string,
+    srcRoot: string, githubRoot: string): DocFunction {
+  const stripSymbolUnderscoreSuffix = ts.isFunctionDeclaration(node);
+
   if (!sourceFile.fileName.startsWith(repoPath)) {
     throw new Error(
         `Error: source file ${sourceFile.fileName} ` +
@@ -301,7 +305,14 @@ export function serializeMethod(
       checker.getTypeOfSymbolAtLocation(symbol, symbol.valueDeclaration!);
   const signature = type.getCallSignatures()[0];
 
-  const identifierGenericMap = util.getIdentifierGenericMap(node, symbol.name);
+  let symbolName = symbol.name;
+  if (stripSymbolUnderscoreSuffix) {
+    if (symbolName.endsWith('_')) {
+      symbolName = symbolName.substring(0, symbolName.length - 1);
+    }
+  }
+
+  const identifierGenericMap = util.getIdentifierGenericMap(node);
 
   const isConfigParam = false;
   const parameters = signature.parameters.map(
@@ -334,7 +345,7 @@ export function serializeMethod(
 
   const method: DocFunction = {
     docInfo: docInfo,
-    symbolName: symbol.name,
+    symbolName,
     namespace: docInfo.namespace,
     paramStr,
     parameters,
