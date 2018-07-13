@@ -23,39 +23,18 @@ function outputRes(expr, result, pre=false) {
   const message = document.createElement('div');
   message.className = 'debug-el';
   message.innerHTML = `<span class='expression'>${expr}</span>:`
-  message.innerHTML += pre ?
-    `<span class='result'>${JSON.stringify(result, null, 2)}</span>`
-    : `<br/> <span class='result'>${JSON.stringify(result, null, 2)}</span>`
+  message.innerHTML +=
+      `<br/><span class='result'>${pre ? '<pre>' : ''}` +
+      `${JSON.stringify(result, null, 2)}` +
+      `${pre ? '</pre>' : ''}</span>`;
   outputDiv.appendChild(message);
 }
 
 // Warm up engine
-tf.scalar(2).square().dataSync()
-
-outputRes('navigator.userAgent', navigator.userAgent);
-
-const envPropNames = [
-  'DEBUG',
-  'WEBGL_DISJOINT_QUERY_TIMER_EXTENSION_VERSION',
-  'WEBGL_DISJOINT_QUERY_TIMER_EXTENSION_RELIABLE',
-  'WEBGL_VERSION',
-  'WEBGL_FLOAT_TEXTURE_ENABLED',
-  'WEBGL_GET_BUFFER_SUB_DATA_ASYNC_EXTENSION_ENABLED',
-  'BACKEND'];
-
-const envProps = envPropNames.reduce((memo, val) => {
-  console.log(val, memo, tf.ENV.features[val])
-  memo[val] = tf.ENV.features[val];
-
-  return memo;
-}, {})
-
-outputRes('tf.ENV.features', envProps, true);
-
-outputRes('tf.scalar(2).square()', tf.scalar(2).square().dataSync()[0]);
-outputRes('tf.scalar(2.4).square()', tf.scalar(2.4).square().dataSync()[0]);
-
-
-
-
+tf.scalar(2).square().data().then(() => {
+  outputRes('navigator.userAgent', navigator.userAgent);
+  outputRes('tf.ENV.features', tf.ENV.features, true);
+  outputRes('tf.scalar(2).square()', tf.scalar(2).square().dataSync()[0]);
+  outputRes('tf.scalar(2.4).square()', tf.scalar(2.4).square().dataSync()[0]);
+});
 </script>
