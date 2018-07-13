@@ -106,11 +106,8 @@ function visitNode(
       const subheading =
           util.fillHeadingsAndGetSubheading(docInfo, docHeadings);
 
-      const stripSymbolUnderscoreSuffix = ts.isFunctionDeclaration(node);
-
       const docFunction = serializeMethodOrFunction(
-          checker, node, docInfo, sourceFile, repoPath, srcRoot, githubRoot,
-          stripSymbolUnderscoreSuffix);
+          checker, node, docInfo, sourceFile, repoPath, srcRoot, githubRoot);
 
       // Static methods are top-level functions.
       if (ts.isFunctionDeclaration(node) || util.isStatic(node)) {
@@ -294,8 +291,9 @@ export function serializeClass(
 export function serializeMethodOrFunction(
     checker: ts.TypeChecker, node: ts.MethodDeclaration|ts.FunctionDeclaration,
     docInfo: util.DocInfo, sourceFile: ts.SourceFile, repoPath: string,
-    srcRoot: string, githubRoot: string,
-    stripSymbolUnderscoreSuffix = false): DocFunction {
+    srcRoot: string, githubRoot: string): DocFunction {
+  const stripSymbolUnderscoreSuffix = ts.isFunctionDeclaration(node);
+
   if (!sourceFile.fileName.startsWith(repoPath)) {
     throw new Error(
         `Error: source file ${sourceFile.fileName} ` +
