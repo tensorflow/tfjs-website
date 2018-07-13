@@ -36,7 +36,7 @@ $ yarn watch
 The [tfjs-examples/mnist](https://github.com/tensorflow/tfjs-examples/tree/master/mnist)
 directory above is completely standalone, so you can copy it to start your own project.
 
-**NOTE:** The difference between this tutorial's code and the [tfjs-examples/mnist-core](https://github.com/tensorflow/tfjs-examples/tree/master/mnist-core) example is that here we use TensorFlow.js's higher-level APIs (`Model`, `Layer`s) to construct the model, whereas [mnist-core](https://github.com/tensorflow/tfjs-examples/tree/master/mnist-core) uses low-lower linear algebra ops to build a neural network.
+**NOTE:** The difference between this tutorial's code and the [tfjs-examples/mnist-core](https://github.com/tensorflow/tfjs-examples/tree/master/mnist-core) example is that here we use TensorFlow.js's higher-level APIs (`Model`, `Layer`s) to construct the model, whereas [mnist-core](https://github.com/tensorflow/tfjs-examples/tree/master/mnist-core) uses lower-level linear algebra ops to build a neural network.
 
 ## Data
 
