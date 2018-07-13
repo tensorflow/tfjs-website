@@ -29,10 +29,20 @@ export interface DocInfo {
   configParamIndices?: number[];
 }
 
-export function getDocDecorator(node: ts.Node, decoratorName: string): DocInfo {
+export function getDocDecoratorOrAnnotation(
+    checker: ts.TypeChecker,
+    node: ts.MethodDeclaration|ts.ClassDeclaration|ts.FunctionDeclaration,
+    annotationName: string): DocInfo {
   let docInfo: DocInfo;
+  // Try to parse decorators.
   if (node.decorators != null) {
-    docInfo = parseDocDecorators(node.decorators, decoratorName);
+    docInfo = parseDocDecorators(node.decorators, annotationName);
+  } else {
+    // Try to parse the jsdoc annotation.
+    const jsdoc = getJsdoc(checker, node, annotationName);
+    if (jsdoc != null) {
+      docInfo = convertDocStringToDocInfoObject(`${jsdoc}`);
+    }
   }
   return docInfo;
 }
@@ -48,13 +58,26 @@ export function parseDocDecorators(
     if (decoratorStr.startsWith('@' + decoratorName)) {
       const decoratorConfigStr =
           decoratorStr.substring(decoratorName.length + 1);
-      docInfo = eval(decoratorConfigStr);
+      docInfo = convertDocStringToDocInfoObject(decoratorConfigStr);
       if (docInfo.subheading == null) {
         docInfo.subheading = '';
       }
     }
   });
   return docInfo;
+}
+
+/**
+ * Converts a JSOL object (JavaScript object notation) to a parsed JSON DocInfo
+ * object.
+ *
+ * e.g.
+ *   {heading: 'hello'}  => {"heading": "hello"}
+ */
+function convertDocStringToDocInfoObject(docString: string): DocInfo {
+  const jsonString =
+      docString.replace(/([a-zA-Z0-9]+):/g, '"$1":').replace(/\'/g, '"');
+  return JSON.parse(jsonString);
 }
 
 export function addSubclassMethods(
@@ -286,7 +309,7 @@ export function isStatic(node: ts.MethodDeclaration): boolean {
 export function getJsdoc(
     checker: ts.TypeChecker,
     node: ts.InterfaceDeclaration|ts.TypeAliasDeclaration|ts.ClassDeclaration|
-    ts.EnumDeclaration,
+    ts.EnumDeclaration|ts.FunctionDeclaration|ts.MethodDeclaration,
     tag: string): string {
   const symbol = checker.getSymbolAtLocation(node.name);
   const docs = symbol.getDocumentationComment(undefined);
@@ -352,9 +375,9 @@ export function sanitizeTypeString(
  *   method<T extends Tensor>() {}
  * In this example, this method will return {'T': 'Tensor'}.
  */
-export function getIdentifierGenericMap(
-    node: ts.MethodDeclaration,
-    nameRemove: string): {[generic: string]: string} {
+export function getIdentifierGenericMap(node: ts.MethodDeclaration|
+                                        ts.FunctionDeclaration):
+    {[generic: string]: string} {
   const identifierGenericMap = {};
 
   node.forEachChild(child => {
@@ -542,8 +565,8 @@ export function linkSymbols(
         method.documentation, symbols, toplevelNamespace,
         true /** isMarkdown */);
 
-    // Since automatic types do not have namespaces, we must replace using just
-    // the symbol names.
+    // Since automatic types do not have namespaces, we must replace using
+    // just the symbol names.
     method.returnType = replaceSymbolsWithLinks(
         method.returnType, symbols, toplevelNamespace, false /** isMarkdown */,
         true /** replaceFromSymbolName */);
