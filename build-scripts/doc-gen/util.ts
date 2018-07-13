@@ -41,7 +41,7 @@ export function getDocDecoratorOrAnnotation(
     // Try to parse the jsdoc annotation.
     const jsdoc = getJsdoc(checker, node, annotationName);
     if (jsdoc != null) {
-      docInfo = eval(`(${jsdoc})`);
+      docInfo = convertDocStringToDocInfoObject(`${jsdoc}`);
     }
   }
   return docInfo;
@@ -58,13 +58,26 @@ export function parseDocDecorators(
     if (decoratorStr.startsWith('@' + decoratorName)) {
       const decoratorConfigStr =
           decoratorStr.substring(decoratorName.length + 1);
-      docInfo = eval(decoratorConfigStr);
+      docInfo = convertDocStringToDocInfoObject(decoratorConfigStr);
       if (docInfo.subheading == null) {
         docInfo.subheading = '';
       }
     }
   });
   return docInfo;
+}
+
+/**
+ * Converts a JSOL object (JavaScript object notation) to a parsed JSON DocInfo
+ * object.
+ *
+ * e.g.
+ *   {heading: 'hello'}  => {"heading": "hello"}
+ */
+function convertDocStringToDocInfoObject(docString: string): DocInfo {
+  const jsonString =
+      docString.replace(/([a-zA-Z0-9]+):/g, '"$1":').replace(/\'/g, '"');
+  return JSON.parse(jsonString);
 }
 
 export function addSubclassMethods(
