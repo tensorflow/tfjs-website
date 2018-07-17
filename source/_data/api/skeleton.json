@@ -12,7 +12,7 @@
            "2D, 3D and 4D tensors, as well a number of functions to initialize",
            "tensors in ways useful for machine learning.</p>"],
         "pin": [
-          "tensor", "scalar", "tensor1d", "tensor2d", "tensor3d", "tensor4d", "tensor5d"
+          "tensor", "scalar", "tensor1d", "tensor2d", "tensor3d", "tensor4d", "tensor5d", "tensor6d"
         ]
       },
       {

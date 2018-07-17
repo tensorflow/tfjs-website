@@ -364,8 +364,13 @@ function serializeParameter(
     checker: ts.TypeChecker, symbol: ts.Symbol,
     identifierGenericMap: {[identifier: string]: string},
     isConfigParam: boolean): DocFunctionParam {
+  let name = symbol.getName();
+  if (util.hasSpreadOperator(symbol)) {
+    name = '...' + name;
+  }
+
   return {
-    name: symbol.getName(),
+    name,
     documentation:
         ts.displayPartsToString(symbol.getDocumentationComment(undefined)),
     type: util.parameterTypeToString(checker, symbol, identifierGenericMap),
