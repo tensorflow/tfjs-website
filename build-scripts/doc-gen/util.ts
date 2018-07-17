@@ -328,13 +328,14 @@ export function getJsdoc(
  */
 export function parameterTypeToString(
     checker: ts.TypeChecker, symbol: ts.Symbol,
-    identifierGenericMap: {[identifier: string]: string}): string {
+    identifierGenericMap: {[identifier: string]: string},
+    methodName?: string): string {
   const valueDeclaration = symbol.valueDeclaration;
 
   // Look for type nodes that aren't null and get the full text of the type
   // node, falling back to using the checker to serialize the type.
   let typeStr;
-  symbol.valueDeclaration.forEachChild(child => {
+  valueDeclaration.forEachChild(child => {
     if (ts.isTypeNode(child) && child.kind !== ts.SyntaxKind.NullKeyword) {
       typeStr = child.getText();
     }
@@ -343,7 +344,7 @@ export function parameterTypeToString(
     // Fall back to using the checkers method for converting the type to a
     // string.
     typeStr = checker.typeToString(
-        checker.getTypeOfSymbolAtLocation(symbol, symbol.valueDeclaration!));
+        checker.getTypeOfSymbolAtLocation(symbol, valueDeclaration));
   }
 
   return sanitizeTypeString(typeStr, identifierGenericMap);
@@ -607,4 +608,12 @@ function getSymbolReplaceRegex(symbolName: string, isMarkdown: boolean) {
   const wrapper = isMarkdown ? '\`' : '\\b(?![\'\:])';
   const re = new RegExp(wrapper + symbolName + wrapper, 'g');
   return re;
+}
+
+export function hasSpreadOperator(symbol: ts.Symbol) {
+  if (symbol.valueDeclaration != null &&
+      symbol.valueDeclaration.getText().startsWith('...')) {
+    return true;
+  }
+  return false;
 }
