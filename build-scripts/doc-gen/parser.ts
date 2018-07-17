@@ -317,7 +317,7 @@ export function serializeMethodOrFunction(
   const isConfigParam = false;
   const parameters = signature.parameters.map(
       symbol => serializeParameter(
-          checker, symbol, identifierGenericMap, isConfigParam, symbolName));
+          checker, symbol, identifierGenericMap, isConfigParam));
   const paramStr = '(' +
       parameters.map(param => param.name + (param.optional ? '?' : ''))
           .join(', ') +
@@ -363,7 +363,7 @@ export function serializeMethodOrFunction(
 function serializeParameter(
     checker: ts.TypeChecker, symbol: ts.Symbol,
     identifierGenericMap: {[identifier: string]: string},
-    isConfigParam: boolean, methodName?: string): DocFunctionParam {
+    isConfigParam: boolean): DocFunctionParam {
   let name = symbol.getName();
   if (util.hasSpreadOperator(symbol)) {
     name = '...' + name;
@@ -373,8 +373,7 @@ function serializeParameter(
     name,
     documentation:
         ts.displayPartsToString(symbol.getDocumentationComment(undefined)),
-    type: util.parameterTypeToString(
-        checker, symbol, identifierGenericMap, methodName),
+    type: util.parameterTypeToString(checker, symbol, identifierGenericMap),
     optional: checker.isOptionalParameter(
         symbol.valueDeclaration as ts.ParameterDeclaration),
     isConfigParam

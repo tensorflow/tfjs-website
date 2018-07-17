@@ -328,8 +328,7 @@ export function getJsdoc(
  */
 export function parameterTypeToString(
     checker: ts.TypeChecker, symbol: ts.Symbol,
-    identifierGenericMap: {[identifier: string]: string},
-    methodName?: string): string {
+    identifierGenericMap: {[identifier: string]: string}): string {
   const valueDeclaration = symbol.valueDeclaration;
 
   // Look for type nodes that aren't null and get the full text of the type
