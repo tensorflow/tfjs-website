@@ -610,9 +610,6 @@ function getSymbolReplaceRegex(symbolName: string, isMarkdown: boolean) {
 }
 
 export function hasSpreadOperator(symbol: ts.Symbol) {
-  if (symbol.valueDeclaration != null &&
-      symbol.valueDeclaration.getText().startsWith('...')) {
-    return true;
-  }
-  return false;
+  return symbol.valueDeclaration != null &&
+      symbol.valueDeclaration.getText().startsWith('...');
 }
