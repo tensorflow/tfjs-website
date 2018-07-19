@@ -38,9 +38,11 @@ const unionPackageVersion = commander.local ? 'local' : unionPackage.version;
 const coreVersion = `v${unionPackage.dependencies['@tensorflow/tfjs-core']}`;
 const layersVersion =
     `v${unionPackage.dependencies['@tensorflow/tfjs-layers']}`;
+const converterVersion =
+    `v${unionPackage.dependencies['@tensorflow/converter-layers']}`;
 
 console.log(
-    'Union, core, layers', unionPackageVersion, coreVersion, layersVersion)
+    'Union, core, layers, converter', unionPackageVersion, coreVersion, layersVersion, converterVersion)
 
 const docGenScript = 'build-scripts/doc-gen/make-api.ts';
 
@@ -54,6 +56,11 @@ const libs = [
     repo: 'tfjs-layers',
     github: `https://github.com/tensorflow/tfjs-layers/blob/${layersVersion}`,
     tag: layersVersion
+  },
+  {
+    repo: 'tfjs-converter',
+    github: `https://github.com/tensorflow/tfjs-converter/blob/${converterVersion}`,
+    tag: converterVersion
   }
 ];
 
@@ -126,6 +133,7 @@ const docsManifest = {
   tfjsVersion: unionPackageVersion,
   coreVersion,
   layersVersion,
+  converterVersion,
 };
 
 fs.writeFileSync(
