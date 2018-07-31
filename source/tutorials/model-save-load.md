@@ -80,7 +80,7 @@ their respecitve schemes and examples.
         <td><code>await model.save('indexeddb://my-model-1');</code></td>
       </tr>
       <tr>
-        <td>Trigger file downlads (Browser)</td>
+        <td>Trigger file downloads (Browser)</td>
         <td><code>downloads://</code></td>
         <td><code>await model.save('downloads://my-model-1');</code></td>
       </tr>
