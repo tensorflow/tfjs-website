@@ -117,7 +117,7 @@ Tensorflow.js generates functions you can use to read from the input tensors and
 
 * `void setOutput(float value)`
 
-  * In GLSL, there are no random writes, so we can only set the output for a single cell (equivalent to `gl_FragCoord = vec4(value, 0.0, 0.0, 0.0)`).
+  * In WebGL, there are no random writes, so we can only set the output for a single cell (equivalent to `gl_FragCoord = vec4(value, 0.0, 0.0, 0.0)`).
 
 * `indexType getOutputCoords()`
 
