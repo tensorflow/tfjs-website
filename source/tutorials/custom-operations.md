@@ -79,14 +79,14 @@ const squareAndAddBackpropKernel = inputShape => ({
 
 
 const squareAndAdd = tf.customGrad(x => {
-  const webglBackend = tf.ENV.backend;
+  const backend = tf.ENV.backend;
   const program = squareAndAddKernel(x.shape);
   const backpropProgram = squareAndAddBackpropKernel(x.shape);
 
-  const value = webglBackend.compileAndRun(program, [x]);
+  const value = backend.compileAndRun(program, [x]);
 
   const gradFunc = dy =>
-      webglBackend.compileAndRun(backpropProgram, [x]).mul(dy);
+      [backend.compileAndRun(backpropProgram, [x]).mul(dy)];
   return {value, gradFunc}
 });
 ```
