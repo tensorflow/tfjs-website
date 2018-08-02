@@ -123,7 +123,7 @@ Tensorflow.js generates functions you can use to read from the input tensors and
 
   * Where `indexType` is one of `int | ivec2 | ivec3 | ivec4 | ivec5 | ivec6`.
 
-  * Returns an `int` if the output tensor is rank-0 or rank-1, otherwise returns an `ivecN` where N == rank. This is the coordinate of the cell in the output tensor this thread running the shader is going to output to.
+  * Returns an `int` if the output tensor is rank-0 or rank-1, otherwise returns an `ivecN` where N == rank. This is the coordinate of the cell in the output tensor this thread will write to.
 
 
 * Tensorflow.js generates GLSL functions to sample from the input tensors. These are of the form:
