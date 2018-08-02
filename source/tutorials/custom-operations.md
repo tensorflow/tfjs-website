@@ -143,7 +143,7 @@ Tensorflow.js generates functions you can use to read from the input tensors and
   This means that for a variable named `ecks`, TF.js will generate `getEcks`.
 
   Many of these functions are depended on the rank of the input tensors, so in your `GPGPUProgram` you'll often want to emit different code based on the ranks of the `inputShape`s.
-  For instance, if `get{VarName}AtOutCoords()` didn't exist, we might have written `squareAndAddKernel` as:,
+  For instance, if `get{VarName}AtOutCoords()` didn't exist, we might have written `squareAndAddKernel` as:
 
   ```js
   const squareAndAddKernel = inputShape => ({
