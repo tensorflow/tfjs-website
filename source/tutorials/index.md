@@ -37,6 +37,11 @@ This tutorial explains how to save `tf.Model`s to various destinations such as t
 
 This tutorial explains how to convert and serve an existing TensorFlow SavedModel to run in the browser.
 
+<h2><a href="./custom-operations.html">How to define a custom WebGL operation</a></h2>
+
+This tutorial explains how to create a custom WebGL operation that can be used alongside other Tensorflow.js operations.
+
+
 # Guides
 <h2><a href="./tfjs-layers-for-keras-users.html">TensorFlow.js Layers API for Keras Users</a></h2>
 
