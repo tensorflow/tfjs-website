@@ -62,7 +62,7 @@ const result = tf.ENV.backend.compileAndRun(program, [x]);
 
 However, we probably also want to define the gradients for this op, so that gradients can be backpropagated through it.
 
-To do this, we use `tf.customGrad`.
+To do this, we use [tf.customGrad](https://js.tensorflow.org/api/latest/#customGrad).
 
 ```js
 const squareAndAddBackpropKernel = inputShape => ({
