@@ -119,7 +119,7 @@ Tensorflow.js generates functions you can use to read from the input tensors and
 
 * `void setOutput(float value)`
 
-  * In WebGL, there are no random writes, this sets the output value for the coordinate where the fragment shader is rub (equivalent to `gl_FragCoord = vec4(value, 0.0, 0.0, 0.0)`).
+  * In WebGL, there are no random writes, this sets the output value for the coordinate where the fragment shader is run on (equivalent to `gl_FragCoord = vec4(value, 0.0, 0.0, 0.0)`).
 
 * `indexType getOutputCoords()`
 
