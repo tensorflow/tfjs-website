@@ -145,7 +145,7 @@ Tensorflow.js generates functions you can use to read from the input tensors and
   ```
 
   Where `VarName` is a variable name as defined in the `variableNames` array of your `GPGPUProgram` in **with the first letter captialised**.
-  This means that for a variable named `matrix`, TF.js will generate `getMatrixs`.
+  This means that for a variable named `matrix`, TF.js will generate `getMatrix`.
 
   Many of these functions are depended on the rank of the input tensors, so in your `GPGPUProgram` you'll often want to emit different code based on the ranks of the `inputShape`s.
   For instance, if `get{VarName}AtOutCoords()` didn't exist, we might have written `squareAndAddKernel` as:
