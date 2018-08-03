@@ -35,6 +35,8 @@ void main() {
 ```
 
 where `getXAtOutCoords` and `setOutput` are [provided by Tensorflow.js](#stdlib) to the shader.
+Note that the main function is called for each value in thw output tensor.
+
 
 The full GPGPUProgram definition would be:
 ```js
@@ -98,11 +100,11 @@ const x = tf.tensor([1, 2, 3, 4]);
 
 const value = squareAndAdd(x);
 
-const grads = tf.grad(x => squareAndAdd(x);
-const grad = grads(input);
+const grads = tf.grad(x => squareAndAdd(x));
+const dx = grads(input);
 
 // value == [3, 6, 12, 20]
-// grad == [3, 5, 7, 9]
+// dx == [3, 5, 7, 9]
 ```
 
 Or more concisely:
@@ -117,13 +119,13 @@ Tensorflow.js generates functions you can use to read from the input tensors and
 
 * `void setOutput(float value)`
 
-  * In WebGL, there are no random writes, so we can only set the output for a single cell (equivalent to `gl_FragCoord = vec4(value, 0.0, 0.0, 0.0)`).
+  * In WebGL, there are no random writes, this sets the output value for the coordinate where the fragment shader is rub (equivalent to `gl_FragCoord = vec4(value, 0.0, 0.0, 0.0)`).
 
 * `indexType getOutputCoords()`
 
   * Where `indexType` is one of `int | ivec2 | ivec3 | ivec4 | ivec5 | ivec6`.
 
-  * Returns an `int` if the output tensor is rank-0 or rank-1, otherwise returns an `ivecN` where N == rank. This is the coordinate of the cell in the output tensor this thread will write to.
+  * Returns an `int` if the output tensor is rank-0 or rank-1, otherwise returns an `ivecN` where N == rank. This is the coordinate of the cell in the output tensor this program will write to.
 
 
 * Tensorflow.js generates GLSL functions to sample from the input tensors. These are of the form:
@@ -137,10 +139,13 @@ Tensorflow.js generates functions you can use to read from the input tensors and
     float get{VarName}(int x, int y, int z) // rank-3 input
     float get{VarName}(int x, int y, int z, int w) // rank-4 input
     // continue as above for rank-5 & rank-6
+    
+    // For example, for rank-2 Tensor named x:
+    // float getX(int x, int y)
   ```
 
   Where `VarName` is a variable name as defined in the `variableNames` array of your `GPGPUProgram` in **with the first letter captialised**.
-  This means that for a variable named `ecks`, TF.js will generate `getEcks`.
+  This means that for a variable named `matrix`, TF.js will generate `getMatrixs`.
 
   Many of these functions are depended on the rank of the input tensors, so in your `GPGPUProgram` you'll often want to emit different code based on the ranks of the `inputShape`s.
   For instance, if `get{VarName}AtOutCoords()` didn't exist, we might have written `squareAndAddKernel` as:
