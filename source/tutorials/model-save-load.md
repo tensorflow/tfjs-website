@@ -172,12 +172,6 @@ Node.js's `require` syntax:
 require('@tensorflow/tfjs-node');
 ```
 
-or using ES6 `import` syntax:
-
-```js
-import '@tensorflow/tfjs-node';
-```
-
 After the importing, the `file://` URL scheme can be used for model saving and
 loading. For model saving, the scheme is followed by the path to the directory
 in which the model artifacts are to be saved, for example:
