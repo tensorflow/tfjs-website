@@ -164,9 +164,17 @@ TensorFlow.js can be used from Node.js. See
 [the tfjs-node project](https://github.com/caisq/tfjs-node) for more details.
 Unlike web browsers, Node.js can access the local file system directly.
 Therefore, you can save `tf.Model`s to the file system, in pretty much the
-same way as you can save a model to disk in Keras. To do this, you use the
-`file://` URL scheme, followed by the path to directory in which the model
-artifacts are to be saved, for example:
+same way as how you save a model to disk in Keras. To do this, first make sure
+you have imported the `@tensorflow/tfjs-node` package, e.g., using
+Node.js's `require` syntax:
+
+```js
+require('@tensorflow/tfjs-node');
+```
+
+After the importing, the `file://` URL scheme can be used for model saving and
+loading. For model saving, the scheme is followed by the path to the directory
+in which the model artifacts are to be saved, for example:
 
 ```js
 await model.save('file:///tmp/my-model-1');
