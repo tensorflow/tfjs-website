@@ -6,4 +6,4 @@
 	url = git@github.com:tensorflow/tfjs-layers.git
 [submodule "libs/tfjs-converter"]
 	path = libs/tfjs-converter
-	url = git@github.com:tensorflow/tfjs-converter.git
+	url = git@github.com:tensorflow/tfjs-converter

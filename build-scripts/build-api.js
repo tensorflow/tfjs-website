@@ -39,10 +39,11 @@ const coreVersion = `v${unionPackage.dependencies['@tensorflow/tfjs-core']}`;
 const layersVersion =
     `v${unionPackage.dependencies['@tensorflow/tfjs-layers']}`;
 const converterVersion =
-    `v${unionPackage.dependencies['@tensorflow/converter-layers']}`;
+    `v${unionPackage.dependencies['@tensorflow/tfjs-converter']}`;
 
 console.log(
-    'Union, core, layers, converter', unionPackageVersion, coreVersion, layersVersion, converterVersion)
+    'Union, core, layers, converter', unionPackageVersion, coreVersion,
+    layersVersion, converterVersion)
 
 const docGenScript = 'build-scripts/doc-gen/make-api.ts';
 
@@ -59,7 +60,8 @@ const libs = [
   },
   {
     repo: 'tfjs-converter',
-    github: `https://github.com/tensorflow/tfjs-converter/blob/${converterVersion}`,
+    github:
+        `https://github.com/tensorflow/tfjs-converter/blob/${converterVersion}`,
     tag: converterVersion
   }
 ];
