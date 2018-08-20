@@ -35,7 +35,7 @@ void main() {
 ```
 
 where `getXAtOutCoords` and `setOutput` are [provided by Tensorflow.js](#stdlib) to the shader.
-Note that the main function is called for each value in thw output tensor.
+Note that the main function is called for each value in the output tensor.
 
 
 The full GPGPUProgram definition would be:
