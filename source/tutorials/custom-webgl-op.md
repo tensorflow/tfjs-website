@@ -53,7 +53,7 @@ const squareAndAddKernel = inputShape => ({
 })
 ```
 
-To run this op, you would use `tf.ENV.backend.compileAndRun(GPGPUProgram, tf.Tensor[]): tf.Tensor`. Note that this will be undefined if the backend isn't the webgl backend.
+To run this op, you would use `tf.ENV.backend.compileAndRun(program: GPGPUProgram, inputs: tf.Tensor[]): tf.Tensor`. Note that this will be undefined if the backend isn't the webgl backend.
 
 ```js
 const x = tf.tensor([1, 2, 3, 4]);
