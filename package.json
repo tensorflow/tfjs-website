@@ -18,7 +18,7 @@
     "build-prod": "yarn prep && hexo clean && node build-scripts/build-api.js && yarn build && yarn post-build"
   },
   "dependencies": {
-    "@tensorflow/tfjs": "0.12.5",
+    "@tensorflow/tfjs": "0.13.0",
     "babel-cli": "~6.26.0",
     "babel-preset-es2015": "~6.24.1",
     "commander": "~2.14.1",
