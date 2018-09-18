@@ -70,7 +70,7 @@ If you are new to Javascript, these resources are good places to start if you ne
 - [Eloquent JavaScript](http://eloquentjavascript.net/) by Marijn Haverbeke  [Online Book]
 - [The Modern JavaScript Tutorial](https://javascript.info/) by Ilya Kantor [Website]
 
-## <a name="browser"></a>How to get started with Browser Based Development
+## <a name="browser"></a>How to get started with <strong>Browser Based Development</strong>
 
 If you are using TensorFlow.js in the browser it will be helpful to know a few things about browser development and the DOM.
 
@@ -78,14 +78,14 @@ If you are using TensorFlow.js in the browser it will be helpful to know a few t
 - [Modern Javascript Developers for Dinosaurs](https://medium.com/the-node-js-collection/modern-javascript-explained-for-dinosaurs-f695e9747b70) by Peter Jang:
 This introduces some of the tooling used in modern web development workflows, such as package managers like npm and yarn and transpilers like babel. [Blog post]
 
-## <a name="node"></a>How to get started with Node.JS Development
+## <a name="node"></a>How to get started with <strong>Node.JS Development</strong>
 
 If you are using Tensorflow.js in Node.js, these resources introduce concepts more related to server side programming. You should already be familiar with JavaScript as a language.
 
 - [Node.js Guides](https://nodejs.org/en/docs/guides/) by Node.js [Website]
 - [Mixu’s Node Book](http://book.mixu.net/node/single.html) by Mixu [Online book]
 
-## <a name="contrib"></a>How to get started with Contributing to TensorFlow.js
+## <a name="contrib"></a>How to get started with <strong>Contributing to TensorFlow.js</strong>
 
 There are lots of different ways to contribute to TensorFlow.js. The first thing to think of is what kind of contribution are you interested in making:
 
