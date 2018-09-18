@@ -47,3 +47,7 @@ This tutorial explains how to create a custom WebGL operation that can be used a
 
 This guide explains the similarities and differences between the Layers API
 of TensorFlow.js and [Keras](https://keras.io/).
+
+<h2><a href="./how-to-get-started.html">How to get started with X: a guide for TensorFlow.js Users</a></h2>
+
+This guide provides a number of resources for getting started with the different domains invovled in programming with TensorFlow.js.
