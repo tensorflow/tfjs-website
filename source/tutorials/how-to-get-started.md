@@ -21,7 +21,7 @@ Doing machine learning with TensorFlow.js requires knowledge of a number of diff
   - [Contributing to source code](#contrib-source)
   - [Creating learning resources and blog posts](#contrib-learning)
 
-## <a name="ml"></a> How to get started with <strong>Machine Learning<strong>
+## <a name="ml"></a> How to get started with <strong>Machine Learning</strong>
 
 TensorFlow.js is a tool that provides building blocks for building deep neural networks. However the fields of machine learning (ML) and deep learning (DL) are vast. If you want to write your own models or tweak existing ones, it is useful to gain a working knowledge of core concepts and techniques from the field of machine learning.
 
