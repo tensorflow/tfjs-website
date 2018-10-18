@@ -101,7 +101,7 @@ const x = tf.tensor([1, 2, 3, 4]);
 const value = squareAndAdd(x);
 
 const grads = tf.grad(x => squareAndAdd(x));
-const dx = grads(input);
+const dx = grads(x);
 
 // value == [2, 6, 12, 20]
 // dx == [3, 5, 7, 9]
