@@ -50,4 +50,4 @@ of TensorFlow.js and [Keras](https://keras.io/).
 
 <h2><a href="./how-to-get-started.html">How to get started with X: a guide for TensorFlow.js Users</a></h2>
 
-This guide provides a number of resources for getting started with the different domains invovled in programming with TensorFlow.js.
+This guide provides a number of resources for getting started with the different domains involved in programming with TensorFlow.js.
