@@ -585,10 +585,13 @@ function replaceSymbolsWithLinks(
     input: string, symbolsAndUrls: SymbolAndUrl[], toplevelNamespace: string,
     isMarkdown: boolean, replaceFromSymbolName = false): string {
   symbolsAndUrls.forEach(symbolAndUrl => {
-    const re = getSymbolReplaceRegex(
-        replaceFromSymbolName ? symbolAndUrl.symbolName :
-                                symbolAndUrl.referenceName,
-        isMarkdown);
+    const symbolName = replaceFromSymbolName ?
+        symbolAndUrl.symbolName :
+        (symbolAndUrl.toplevelNamespace != null ?
+             symbolAndUrl.toplevelNamespace + '.' + symbolAndUrl.referenceName :
+             symbolAndUrl.referenceName);
+
+    const re = getSymbolReplaceRegex(symbolName, isMarkdown);
 
     let displayText = (symbolAndUrl.toplevelNamespace != null ?
                            symbolAndUrl.toplevelNamespace + '.' :
