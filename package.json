@@ -15,11 +15,7 @@
     "post-build": "babel public/js/layout.js -o public/js/layout.js && babel public/js/api.js -o public/js/api.js",
     "build-api": "hexo clean && node build-scripts/build-api.js --local",
     "build-and-serve": "yarn build-api && yarn serve",
-<<<<<<< HEAD
-    "build-prod": "hexo clean && node build-scripts/build-api.js && yarn build && yarn post-build"
-=======
     "build-prod": "export NODE_OPTIONS=--max-old-space-size=4096 yarn prep && hexo clean && node build-scripts/build-api.js && yarn build && yarn post-build"
->>>>>>> origin
   },
   "dependencies": {
     "@tensorflow/tfjs": "0.13.3",
