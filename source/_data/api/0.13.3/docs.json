@@ -1449,7 +1449,7 @@
                 }
               ],
               "isClass": true,
-              "inheritsFrom": "Tensor",
+              "inheritsFrom": "[tf.Tensor](#class:Tensor)",
               "displayName": "tf.Variable",
               "urlHash": "class:Variable"
             },
@@ -2511,8 +2511,8 @@
               ],
               "returnType": "Promise",
               "documentation": "Parses a JSON model configuration file and returns a model instance.\n\n```js\n// This example shows how to serialize a model using `toJSON()` and\n// deserialize it as another model using `tf.models.modelFROMJSON()`.\n// Note: this example serializes and deserializes only the topology\n// of the model; the weights of the loaded model will be different\n// from those of the the original model, due to random weight\n// initialization.\n// To load the topology and weights of a model, use `tf.loadModel()`.\nconst model1 = tf.sequential();\nmodel1.add(tf.layers.repeatVector({inputShape: [2], n: 4}));\n// Serialize `model1` as a JSON object.\nconst model1JSON = model1.toJSON(null, false);\nmodel1.summary();\n\nconst model2 = await tf.models.modelFromJSON(model1JSON);\nmodel2.summary();\n```\n\n  ",
-              "fileName": "#64",
-              "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/v0.8.3/src/models.ts#L64-L107",
+              "fileName": "#65",
+              "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/v0.8.3/src/models.ts#L65-L108",
               "isFunction": true,
               "displayName": "tf.modelFromJSON",
               "urlHash": "modelFromJSON"
@@ -3190,9 +3190,9 @@
                 "subheading": "Classes"
               },
               "symbolName": "Sequential",
-              "documentation": "A model with a stack of layers, feeding linearly from one to the next.\n\n`sequential` is a factory function that creates an instance of\n`Sequential`.\n\n```js\n  // Define a model for linear regression.\n  const model = tf.sequential();\n  model.add(tf.layers.dense({units: 1, inputShape: [1]}));\n\n  // Prepare the model for training: Specify the loss and the optimizer.\n  model.compile({loss: 'meanSquaredError', optimizer: 'sgd'});\n\n  // Generate some synthetic data for training.\n  const xs = tf.tensor2d([1, 2, 3, 4], [4, 1]);\n  const ys = tf.tensor2d([1, 3, 5, 7], [4, 1]);\n\n  // Train the model using the data then do inference on a data point the\n  // model hasn't seen:\n  await model.fit(xs, ys);\n  model.predict(tf.tensor2d([5], [1, 1])).print();\n```",
-              "fileName": "#328",
-              "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/v0.8.3/src/models.ts#L328-L934",
+              "documentation": "A model with a stack of layers, feeding linearly from one to the next.\n\n[tf.sequential()](#sequential) is a factory function that creates an instance of\n[tf.Sequential](#class:Sequential).\n\n```js\n  // Define a model for linear regression.\n  const model = tf.sequential();\n  model.add(tf.layers.dense({units: 1, inputShape: [1]}));\n\n  // Prepare the model for training: Specify the loss and the optimizer.\n  model.compile({loss: 'meanSquaredError', optimizer: 'sgd'});\n\n  // Generate some synthetic data for training.\n  const xs = tf.tensor2d([1, 2, 3, 4], [4, 1]);\n  const ys = tf.tensor2d([1, 3, 5, 7], [4, 1]);\n\n  // Train the model using the data then do inference on a data point the\n  // model hasn't seen:\n  await model.fit(xs, ys);\n  model.predict(tf.tensor2d([5], [1, 1])).print();\n```",
+              "fileName": "#329",
+              "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/v0.8.3/src/models.ts#L329-L935",
               "methods": [
                 {
                   "docInfo": {
@@ -3212,8 +3212,8 @@
                   ],
                   "returnType": "void",
                   "documentation": "Adds a layer instance on top of the layer stack.\n\n```js\n  const model = tf.sequential();\n  model.add(tf.layers.dense({units: 8, inputShape: [1]}));\n  model.add(tf.layers.dense({units: 4, activation: 'relu6'}));\n  model.add(tf.layers.dense({units: 1, activation: 'relu6'}));\n  // Note that the untrained model is random at this point.\n  model.predict(tf.randomNormal([10, 1])).print();\n```",
-                  "fileName": "#383",
-                  "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/v0.8.3/src/models.ts#L383-L485",
+                  "fileName": "#384",
+                  "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/v0.8.3/src/models.ts#L384-L486",
                   "isFunction": true,
                   "urlHash": "tf.Sequential.add"
                 },
@@ -3249,8 +3249,8 @@
                   ],
                   "returnType": "void",
                   "documentation": "Print a text summary of the Sequential model's layers.\n\nThe summary includes\n- Name and type of all layers that comprise the model.\n- Output shape(s) of the layers\n- Number of weight parameters of each layer\n- The total number of trainable and non-trainable parameters of the\nmodel.\n\n```js\nconst model = tf.sequential();\nmodel.add(\n     tf.layers.dense({units: 100, inputShape: [10], activation: 'relu'}));\nmodel.add(tf.layers.dense({units: 1, activation: 'sigmoid'}));\n\nmodel.summary();\n```",
-                  "fileName": "#592",
-                  "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/v0.8.3/src/models.ts#L592-L601",
+                  "fileName": "#593",
+                  "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/v0.8.3/src/models.ts#L593-L602",
                   "isFunction": true,
                   "urlHash": "tf.Sequential.summary"
                 },
@@ -3267,14 +3267,14 @@
                   "parameters": [
                     {
                       "name": "x",
-                      "documentation": "`Tensor` of test data, or an `Array` of `Tensor`s if the model\nhas multiple inputs.",
+                      "documentation": "[tf.Tensor](#class:Tensor) of test data, or an `Array` of [tf.Tensor](#class:Tensor)s if the\nmodel has multiple inputs.",
                       "type": "[tf.Tensor](#class:Tensor)|[tf.Tensor](#class:Tensor)[]",
                       "optional": false,
                       "isConfigParam": false
                     },
                     {
                       "name": "y",
-                      "documentation": "`Tensor` of target data, or an `Array` of `Tensor`s if the model\nhas multiple outputs.",
+                      "documentation": "[tf.Tensor](#class:Tensor) of target data, or an `Array` of [tf.Tensor](#class:Tensor)s if the\nmodel has multiple outputs.",
                       "type": "[tf.Tensor](#class:Tensor)|[tf.Tensor](#class:Tensor)[]",
                       "optional": false,
                       "isConfigParam": false
@@ -3317,8 +3317,8 @@
                   ],
                   "returnType": "[tf.Scalar](#class:Tensor)|[tf.Scalar](#class:Tensor)[]",
                   "documentation": "Returns the loss value & metrics values for the model in test mode.\n\nLoss and metrics are specified during `compile()`, which needs to happen\nbefore calls to `evaluate()`.\n\nComputation is done in batches.\n\n```js\nconst model = tf.sequential({\n   layers: [tf.layers.dense({units: 1, inputShape: [10]})]\n});\nmodel.compile({optimizer: 'sgd', loss: 'meanSquaredError'});\nconst result = model.evaluate(tf.ones([8, 10]), tf.ones([8, 1]), {\n   batchSize: 4,\n});\nresult.print();\n```",
-                  "fileName": "#660",
-                  "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/v0.8.3/src/models.ts#L660-L668",
+                  "fileName": "#661",
+                  "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/v0.8.3/src/models.ts#L661-L669",
                   "isFunction": true,
                   "urlHash": "tf.Sequential.evaluate"
                 },
@@ -3335,7 +3335,7 @@
                   "parameters": [
                     {
                       "name": "dataset",
-                      "documentation": "A dataset object. Its `iterator()` method is expected\nto generate a dataset iterator object, the `next()` method of which\nis expected to produce data batches for evaluation. The return value\nof the `next()` call ought to contain a boolean `done` field and a\n`value` field. The `value` field is expected to be an array of two\n`Tensor`s or an array of two nested `Tensor` structures. The former\ncase is for models with exactly one input and one output (e.g..\na sequential model). The latter case is for models with multiple\ninputs and/or multiple outputs. Of the two items in the array, the\nfirst is the input feature(s) and the second is the output target(s).",
+                      "documentation": "A dataset object. Its `iterator()` method is expected\nto generate a dataset iterator object, the `next()` method of which\nis expected to produce data batches for evaluation. The return value\nof the `next()` call ought to contain a boolean `done` field and a\n`value` field. The `value` field is expected to be an array of two\n[tf.Tensor](#class:Tensor)s or an array of two nested [tf.Tensor](#class:Tensor) structures. The former\ncase is for models with exactly one input and one output (e.g..\na sequential model). The latter case is for models with multiple\ninputs and/or multiple outputs. Of the two items in the array, the\nfirst is the input feature(s) and the second is the output target(s).",
                       "type": "Dataset",
                       "optional": false,
                       "isConfigParam": false
@@ -3350,8 +3350,8 @@
                   ],
                   "returnType": "Promise",
                   "documentation": "Evaluate model using a dataset object.\n\nNote: Unlike `evaluate()`, this method is asynchronous (`async`);",
-                  "fileName": "#693",
-                  "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/v0.8.3/src/models.ts#L693-L701",
+                  "fileName": "#694",
+                  "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/v0.8.3/src/models.ts#L694-L702",
                   "isFunction": true,
                   "urlHash": "tf.Sequential.evaluateDataset"
                 },
@@ -3368,7 +3368,7 @@
                   "parameters": [
                     {
                       "name": "x",
-                      "documentation": "The input data, as an Tensor, or an `Array` of `Tensor`s if\nthe model has multiple inputs.",
+                      "documentation": "The input data, as an Tensor, or an `Array` of [tf.Tensor](#class:Tensor)s if\nthe model has multiple inputs.",
                       "type": "[tf.Tensor](#class:Tensor)|[tf.Tensor](#class:Tensor)[]",
                       "optional": false,
                       "isConfigParam": false
@@ -3397,8 +3397,8 @@
                   ],
                   "returnType": "[tf.Tensor](#class:Tensor)\n      |[tf.Tensor](#class:Tensor)[]",
                   "documentation": "Generates output predictions for the input samples.\n\nComputation is done in batches.\n\nNote: the \"step\" mode of predict() is currently not supported.\n   This is because the TensorFow.js core backend is imperative only.\n\n```js\nconst model = tf.sequential({\n   layers: [tf.layers.dense({units: 1, inputShape: [10]})]\n});\nmodel.predict(tf.ones([2, 10])).print();\n```",
-                  "fileName": "#731",
-                  "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/v0.8.3/src/models.ts#L731-L737",
+                  "fileName": "#732",
+                  "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/v0.8.3/src/models.ts#L732-L738",
                   "isFunction": true,
                   "urlHash": "tf.Sequential.predict"
                 },
@@ -3415,14 +3415,14 @@
                   "parameters": [
                     {
                       "name": "x",
-                      "documentation": "`Tensor` of training data, or an array of `Tensor`s if the model\nhas multiple inputs. If all inputs in the model are named, you can also\npass a dictionary mapping input names to `Tensor`s.",
+                      "documentation": "[tf.Tensor](#class:Tensor) of training data, or an array of [tf.Tensor](#class:Tensor)s if the\nmodel has multiple inputs. If all inputs in the model are named, you can\nalso pass a dictionary mapping input names to [tf.Tensor](#class:Tensor)s.",
                       "type": "[tf.Tensor](#class:Tensor)|[tf.Tensor](#class:Tensor)[]|{[inputName: string]: [tf.Tensor](#class:Tensor)}",
                       "optional": false,
                       "isConfigParam": false
                     },
                     {
                       "name": "y",
-                      "documentation": "`Tensor` of target (label) data, or an array of `Tensor`s if the\nmodel has multiple outputs. If all outputs in the model are named, you\ncan also pass a dictionary mapping output names to `Tensor`s.",
+                      "documentation": "[tf.Tensor](#class:Tensor) of target (label) data, or an array of [tf.Tensor](#class:Tensor)s if\nthe model has multiple outputs. If all outputs in the model are named, you\ncan also pass a dictionary mapping output names to [tf.Tensor](#class:Tensor)s.",
                       "type": "[tf.Tensor](#class:Tensor)|[tf.Tensor](#class:Tensor)[]|{[inputName: string]: [tf.Tensor](#class:Tensor)}",
                       "optional": false,
                       "isConfigParam": false
@@ -3528,8 +3528,8 @@
                   ],
                   "returnType": "Promise",
                   "documentation": "Trains the model for a fixed number of epochs (iterations on a dataset).\n\n```js\nconst model = tf.sequential({\n   layers: [tf.layers.dense({units: 1, inputShape: [10]})]\n});\nmodel.compile({optimizer: 'sgd', loss: 'meanSquaredError'});\nconst history = await model.fit(tf.ones([8, 10]), tf.ones([8, 1]), {\n   batchSize: 4,\n   epochs: 3\n});\nconsole.log(history.history.loss[0]);\n```",
-                  "fileName": "#803",
-                  "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/v0.8.3/src/models.ts#L803-L813",
+                  "fileName": "#804",
+                  "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/v0.8.3/src/models.ts#L804-L814",
                   "isFunction": true,
                   "urlHash": "tf.Sequential.fit"
                 },
@@ -3546,7 +3546,7 @@
                   "parameters": [
                     {
                       "name": "dataset",
-                      "documentation": "A dataset object. Its `iterator()` method is expected\nto generate a dataset iterator object, the `next()` method of which\nis expected to produce data batches for evaluation. The return value\nof the `next()` call ought to contain a boolean `done` field and a\n`value` field. The `value` field is expected to be an array of two\n`Tensor`s or an array of two nested `Tensor` structures. The former\ncase is for models with exactly one input and one output (e.g..\na sequential model). The latter case is for models with multiple\ninputs and/or multiple outputs. Of the two items in the array, the\nfirst is the input feature(s) and the second is the output target(s).",
+                      "documentation": "A dataset object. Its `iterator()` method is expected\nto generate a dataset iterator object, the `next()` method of which\nis expected to produce data batches for evaluation. The return value\nof the `next()` call ought to contain a boolean `done` field and a\n`value` field. The `value` field is expected to be an array of two\n[tf.Tensor](#class:Tensor)s or an array of two nested [tf.Tensor](#class:Tensor) structures. The former\ncase is for models with exactly one input and one output (e.g..\na sequential model). The latter case is for models with multiple\ninputs and/or multiple outputs. Of the two items in the array, the\nfirst is the input feature(s) and the second is the output target(s).",
                       "type": "Dataset",
                       "optional": false,
                       "isConfigParam": false
@@ -3561,14 +3561,14 @@
                   ],
                   "returnType": "Promise",
                   "documentation": "Trains the model using a dataset object.",
-                  "fileName": "#838",
-                  "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/v0.8.3/src/models.ts#L838-L846",
+                  "fileName": "#839",
+                  "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/v0.8.3/src/models.ts#L839-L847",
                   "isFunction": true,
                   "urlHash": "tf.Sequential.fitDataset"
                 }
               ],
               "isClass": true,
-              "inheritsFrom": "Model",
+              "inheritsFrom": "[tf.Model](#class:Model)",
               "displayName": "tf.Sequential",
               "urlHash": "class:Sequential"
             },
@@ -6688,7 +6688,7 @@
               "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/v0.8.3/src/layers/recurrent.ts#L820-L828",
               "methods": [],
               "isClass": true,
-              "inheritsFrom": "Layer",
+              "inheritsFrom": "[tf.layers.Layer](#class:layers.Layer)",
               "displayName": "tf.RNNCell",
               "urlHash": "class:RNNCell"
             }

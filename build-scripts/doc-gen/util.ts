@@ -547,13 +547,12 @@ export function linkSymbols(
       subheading.symbols.forEach(symbol => {
         if (symbol['isClass']) {
           symbol.documentation = replaceSymbolsWithLinks(
-              symbol.documentation, symbols, toplevelNamespace,
-              true /** isMarkdown */);
+              symbol.documentation, symbols, true /** isMarkdown */);
           const classSymbol = symbol as DocClass;
           if (classSymbol.inheritsFrom != null) {
             classSymbol.inheritsFrom = replaceSymbolsWithLinks(
-                classSymbol.inheritsFrom, symbols, toplevelNamespace,
-                false /** isMarkdown */);
+                classSymbol.inheritsFrom, symbols, false /** isMarkdown */,
+                true /** replaceFromSymbolName */);
           }
         }
       });
@@ -562,28 +561,26 @@ export function linkSymbols(
 
   foreachDocFunction(docs.headings, method => {
     method.documentation = replaceSymbolsWithLinks(
-        method.documentation, symbols, toplevelNamespace,
-        true /** isMarkdown */);
+        method.documentation, symbols, true /** isMarkdown */);
 
     // Since automatic types do not have namespaces, we must replace using
     // just the symbol names.
     method.returnType = replaceSymbolsWithLinks(
-        method.returnType, symbols, toplevelNamespace, false /** isMarkdown */,
+        method.returnType, symbols, false /** isMarkdown */,
         true /** replaceFromSymbolName */);
     method.parameters.forEach(param => {
       param.documentation = replaceSymbolsWithLinks(
-          param.documentation, symbols, toplevelNamespace,
-          true /** isMarkdown */);
+          param.documentation, symbols, true /** isMarkdown */);
       param.type = replaceSymbolsWithLinks(
-          param.type, symbols, toplevelNamespace, false /** isMarkdown */,
+          param.type, symbols, false /** isMarkdown */,
           true /** replaceFromSymbolName */);
     });
   });
 }
 
 function replaceSymbolsWithLinks(
-    input: string, symbolsAndUrls: SymbolAndUrl[], toplevelNamespace: string,
-    isMarkdown: boolean, replaceFromSymbolName = false): string {
+    input: string, symbolsAndUrls: SymbolAndUrl[], isMarkdown: boolean,
+    replaceFromSymbolName = false): string {
   symbolsAndUrls.forEach(symbolAndUrl => {
     const symbolName = replaceFromSymbolName ?
         symbolAndUrl.symbolName :
