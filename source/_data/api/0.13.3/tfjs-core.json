@@ -3021,7 +3021,7 @@
                   }
                 ],
                 "returnType": "SGDOptimizer",
-                "documentation": "Constructs a `tf.train.SGDOptimizer` that uses stochastic gradient descent.\n\n```js\n// Fit a quadratic function by learning the coefficients a, b, c.\nconst xs = tf.tensor1d([0, 1, 2, 3]);\nconst ys = tf.tensor1d([1.1, 5.9, 16.8, 33.9]);\n\nconst a = tf.scalar(Math.random()).variable();\nconst b = tf.scalar(Math.random()).variable();\nconst c = tf.scalar(Math.random()).variable();\n\n// y = a * x^2 + b * x + c.\nconst f = x => a.mul(x.square()).add(b.mul(x)).add(c);\nconst loss = (pred, label) => pred.sub(label).square().mean();\n\nconst learningRate = 0.01;\nconst optimizer = tf.train.sgd(learningRate);\n\n// Train the model.\nfor (let i = 0; i < 10; i++) {\n   optimizer.minimize(() => loss(f(xs), ys));\n}\n\n// Make predictions.\nconsole.log(\n     `a: ${a.dataSync()}, b: ${b.dataSync()}, c: ${c.dataSync()}`);\nconst preds = f(xs).dataSync();\npreds.forEach((pred, i) => {\n   console.log(`x: ${i}, pred: ${pred}`);\n});\n```",
+                "documentation": "Constructs a `tf.SGDOptimizer` that uses stochastic gradient descent.\n\n```js\n// Fit a quadratic function by learning the coefficients a, b, c.\nconst xs = tf.tensor1d([0, 1, 2, 3]);\nconst ys = tf.tensor1d([1.1, 5.9, 16.8, 33.9]);\n\nconst a = tf.scalar(Math.random()).variable();\nconst b = tf.scalar(Math.random()).variable();\nconst c = tf.scalar(Math.random()).variable();\n\n// y = a * x^2 + b * x + c.\nconst f = x => a.mul(x.square()).add(b.mul(x)).add(c);\nconst loss = (pred, label) => pred.sub(label).square().mean();\n\nconst learningRate = 0.01;\nconst optimizer = tf.train.sgd(learningRate);\n\n// Train the model.\nfor (let i = 0; i < 10; i++) {\n   optimizer.minimize(() => loss(f(xs), ys));\n}\n\n// Make predictions.\nconsole.log(\n     `a: ${a.dataSync()}, b: ${b.dataSync()}, c: ${c.dataSync()}`);\nconst preds = f(xs).dataSync();\npreds.forEach((pred, i) => {\n   console.log(`x: ${i}, pred: ${pred}`);\n});\n```",
                 "fileName": "#65",
                 "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/optimizers/optimizer_constructors.ts#L65-L67",
                 "isFunction": true
@@ -3059,7 +3059,7 @@
                   }
                 ],
                 "returnType": "MomentumOptimizer",
-                "documentation": "Constructs a `tf.train.MomentumOptimizer` that uses momentum gradient\ndescent.\n\nSee\n[http://proceedings.mlr.press/v28/sutskever13.pdf](\nhttp://proceedings.mlr.press/v28/sutskever13.pdf)",
+                "documentation": "Constructs a `tf.MomentumOptimizer` that uses momentum gradient\ndescent.\n\nSee\n[http://proceedings.mlr.press/v28/sutskever13.pdf](\nhttp://proceedings.mlr.press/v28/sutskever13.pdf)",
                 "fileName": "#85",
                 "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/optimizers/optimizer_constructors.ts#L85-L88",
                 "isFunction": true
@@ -3111,7 +3111,7 @@
                   }
                 ],
                 "returnType": "RMSPropOptimizer",
-                "documentation": "Constructs a `tf.train.RMSPropOptimizer` that uses RMSProp gradient\ndescent. This implementation uses plain momentum and is not centered\nversion of RMSProp.\n\nSee\n[http://www.cs.toronto.edu/~tijmen/csc321/slides/lecture_slides_lec6.pdf](\nhttp://www.cs.toronto.edu/~tijmen/csc321/slides/lecture_slides_lec6.pdf)",
+                "documentation": "Constructs a `tf.RMSPropOptimizer` that uses RMSProp gradient\ndescent. This implementation uses plain momentum and is not centered\nversion of RMSProp.\n\nSee\n[http://www.cs.toronto.edu/~tijmen/csc321/slides/lecture_slides_lec6.pdf](\nhttp://www.cs.toronto.edu/~tijmen/csc321/slides/lecture_slides_lec6.pdf)",
                 "fileName": "#111",
                 "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/optimizers/optimizer_constructors.ts#L111-L116",
                 "isFunction": true
@@ -3156,7 +3156,7 @@
                   }
                 ],
                 "returnType": "AdamOptimizer",
-                "documentation": "Constructs a `tf.train.AdamOptimizer` that uses the Adam algorithm.\nSee [https://arxiv.org/abs/1412.6980](https://arxiv.org/abs/1412.6980)",
+                "documentation": "Constructs a `tf.AdamOptimizer` that uses the Adam algorithm.\nSee [https://arxiv.org/abs/1412.6980](https://arxiv.org/abs/1412.6980)",
                 "fileName": "#131",
                 "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/optimizers/optimizer_constructors.ts#L131-L135",
                 "isFunction": true
@@ -3194,7 +3194,7 @@
                   }
                 ],
                 "returnType": "AdadeltaOptimizer",
-                "documentation": "Constructs a `tf.train.AdadeltaOptimizer` that uses the Adadelta algorithm.\nSee [https://arxiv.org/abs/1212.5701](https://arxiv.org/abs/1212.5701)",
+                "documentation": "Constructs a `tf.AdadeltaOptimizer` that uses the Adadelta algorithm.\nSee [https://arxiv.org/abs/1212.5701](https://arxiv.org/abs/1212.5701)",
                 "fileName": "#150",
                 "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/optimizers/optimizer_constructors.ts#L150-L153",
                 "isFunction": true
@@ -3246,7 +3246,7 @@
                   }
                 ],
                 "returnType": "AdamaxOptimizer",
-                "documentation": "Constructs a `tf.train.AdamaxOptimizer` that uses the Adamax algorithm.\nSee [https://arxiv.org/abs/1412.6980](https://arxiv.org/abs/1412.6980)",
+                "documentation": "Constructs a `tf.AdamaxOptimizer` that uses the Adamax algorithm.\nSee [https://arxiv.org/abs/1412.6980](https://arxiv.org/abs/1412.6980)",
                 "fileName": "#169",
                 "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/optimizers/optimizer_constructors.ts#L169-L173",
                 "isFunction": true
@@ -3277,7 +3277,7 @@
                   }
                 ],
                 "returnType": "AdagradOptimizer",
-                "documentation": "Constructs a `tf.train.AdagradOptimizer` that uses the Adagrad algorithm.\nSee\n[http://www.jmlr.org/papers/volume12/duchi11a/duchi11a.pdf](\nhttp://www.jmlr.org/papers/volume12/duchi11a/duchi11a.pdf)\nor\n[http://ruder.io/optimizing-gradient-descent/index.html#adagrad](\nhttp://ruder.io/optimizing-gradient-descent/index.html#adagrad)",
+                "documentation": "Constructs a `tf.AdagradOptimizer` that uses the Adagrad algorithm.\nSee\n[http://www.jmlr.org/papers/volume12/duchi11a/duchi11a.pdf](\nhttp://www.jmlr.org/papers/volume12/duchi11a/duchi11a.pdf)\nor\n[http://ruder.io/optimizing-gradient-descent/index.html#adagrad](\nhttp://ruder.io/optimizing-gradient-descent/index.html#adagrad)",
                 "fileName": "#192",
                 "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/optimizers/optimizer_constructors.ts#L192-L195",
                 "isFunction": true
