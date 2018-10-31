@@ -2403,7 +2403,7 @@
                 }
               ],
               "returnType": "[tf.SymbolicTensor](#class:SymbolicTensor)",
-              "documentation": "Used to instantiate an input to a model as a `SymbolicTensor`.\n\nUsers should call the `input` factory function for\nconsistency with other generator functions.\n\nExample:\n\n```js\n// Defines a simple logistic regression model with 32 dimensional input\n// and 3 dimensional output.\nconst x = tf.input({shape: [32]});\nconst y = tf.layers.dense({units: 3, activation: 'softmax'}).apply(x);\nconst model = tf.model({inputs: x, outputs: y});\nmodel.predict(tf.ones([2, 32])).print();\n```\n\nNote: `input` is only necessary when using `model`. When using\n`sequential`, specify `inputShape` for the first layer or use `inputLayer`\nas the first layer.",
+              "documentation": "Used to instantiate an input to a model as a [tf.SymbolicTensor](#class:SymbolicTensor).\n\nUsers should call the `input` factory function for\nconsistency with other generator functions.\n\nExample:\n\n```js\n// Defines a simple logistic regression model with 32 dimensional input\n// and 3 dimensional output.\nconst x = tf.input({shape: [32]});\nconst y = tf.layers.dense({units: 3, activation: 'softmax'}).apply(x);\nconst model = tf.model({inputs: x, outputs: y});\nmodel.predict(tf.ones([2, 32])).print();\n```\n\nNote: `input` is only necessary when using `model`. When using\n`sequential`, specify `inputShape` for the first layer or use `inputLayer`\nas the first layer.",
               "fileName": "#161",
               "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/v0.8.3/src/exports.ts#L161-L163",
               "isFunction": true,
@@ -3578,7 +3578,7 @@
                 "subheading": "Classes"
               },
               "symbolName": "SymbolicTensor",
-              "documentation": "`SymbolicTensor` is a placeholder for a Tensor without any concrete value.\n\nThey are most often encountered when building a graph of `Layer`s for a\na `Model` and the input data's shape, but not values are known.",
+              "documentation": "[tf.SymbolicTensor](#class:SymbolicTensor) is a placeholder for a Tensor without any concrete value.\n\nThey are most often encountered when building a graph of `Layer`s for a\na [tf.Model](#class:Model) and the input data's shape, but not values are known.",
               "fileName": "#96",
               "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/v0.8.3/src/engine/topology.ts#L96-L143",
               "methods": [],
@@ -6412,7 +6412,7 @@
               },
               "symbolName": "Layer",
               "namespace": "layers",
-              "documentation": "A layer is a grouping of operations and weights that can be composed to\ncreate a `Model`.\n\nLayers are constructed by using the functions under the\n[tf.layers](#Layers-Basic) namespace.",
+              "documentation": "A layer is a grouping of operations and weights that can be composed to\ncreate a [tf.Model](#class:Model).\n\nLayers are constructed by using the functions under the\n[tf.layers](#Layers-Basic) namespace.",
               "fileName": "#401",
               "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/v0.8.3/src/engine/topology.ts#L401-L1513",
               "methods": [
@@ -6426,7 +6426,7 @@
                   "parameters": [
                     {
                       "name": "inputs",
-                      "documentation": "a [tf.Tensor](#class:Tensor) or `SymbolicTensor` or an Array of them.",
+                      "documentation": "a [tf.Tensor](#class:Tensor) or [tf.SymbolicTensor](#class:SymbolicTensor) or an Array of them.",
                       "type": "[tf.Tensor](#class:Tensor)|[tf.Tensor](#class:Tensor)[]|[tf.SymbolicTensor](#class:SymbolicTensor)|[tf.SymbolicTensor](#class:SymbolicTensor)[]",
                       "optional": false,
                       "isConfigParam": false
@@ -6440,7 +6440,7 @@
                     }
                   ],
                   "returnType": "[tf.Tensor](#class:Tensor)|[tf.Tensor](#class:Tensor)[]|[tf.SymbolicTensor](#class:SymbolicTensor)|[tf.SymbolicTensor](#class:SymbolicTensor)[]",
-                  "documentation": "Builds or executes a `Layer's logic.\n\nWhen called with [tf.Tensor](#class:Tensor)(s), execute the `Layer`s computation and\nreturn Tensor(s). For example:\n\n```js\nconst denseLayer = tf.layers.dense({\n   units: 1,\n   kernelInitializer: 'zeros',\n   useBias: false\n});\n\n// Invoke the layer's apply() method with a [tf.Tensor](#class:Tensor) (with concrete\n// numeric values).\nconst input = tf.ones([2, 2]);\nconst output = denseLayer.apply(input);\n\n// The output's value is expected to be [[0], [0]], due to the fact that\n// the dense layer has a kernel initialized to all-zeros and does not have\n// a bias.\noutput.print();\n```\n\nWhen called with `SymbolicTensor`(s), this will prepare the layer for\nfuture execution.  This entails internal book-keeping on shapes of\nexpected Tensors, wiring layers together, and initializing weights.\n\nCalling `apply` with `SymbolicTensor`s are typically used during the\nbuilding of non-`Sequential` models. For example:\n\n```js\nconst flattenLayer = tf.layers.flatten();\nconst denseLayer = tf.layers.dense({units: 1});\n\n// Use tf.layers.input() to obtain a SymbolicTensor as input to apply().\nconst input = tf.input({shape: [2, 2]});\nconst output1 = flattenLayer.apply(input);\n\n// output1.shape is [null, 4]. The first dimension is the undetermined\n// batch size. The second dimension comes from flattening the [2, 2]\n// shape.\nconsole.log(JSON.stringify(output1.shape));\n\n// The output SymbolicTensor of the flatten layer can be used to call\n// the apply() of the dense layer:\nconst output2 = denseLayer.apply(output1);\n\n// output2.shape is [null, 1]. The first dimension is the undetermined\n// batch size. The second dimension matches the number of units of the\n// dense layer.\nconsole.log(JSON.stringify(output2.shape));\n\n// The input and output and be used to construct a model that consists\n// of the flatten and dense layers.\nconst model = tf.model({inputs: input, outputs: output2});\n```",
+                  "documentation": "Builds or executes a `Layer's logic.\n\nWhen called with [tf.Tensor](#class:Tensor)(s), execute the `Layer`s computation and\nreturn Tensor(s). For example:\n\n```js\nconst denseLayer = tf.layers.dense({\n   units: 1,\n   kernelInitializer: 'zeros',\n   useBias: false\n});\n\n// Invoke the layer's apply() method with a [tf.Tensor](#class:Tensor) (with concrete\n// numeric values).\nconst input = tf.ones([2, 2]);\nconst output = denseLayer.apply(input);\n\n// The output's value is expected to be [[0], [0]], due to the fact that\n// the dense layer has a kernel initialized to all-zeros and does not have\n// a bias.\noutput.print();\n```\n\nWhen called with [tf.SymbolicTensor](#class:SymbolicTensor)(s), this will prepare the layer for\nfuture execution.  This entails internal book-keeping on shapes of\nexpected Tensors, wiring layers together, and initializing weights.\n\nCalling `apply` with [tf.SymbolicTensor](#class:SymbolicTensor)s are typically used during the\nbuilding of non-`Sequential` models. For example:\n\n```js\nconst flattenLayer = tf.layers.flatten();\nconst denseLayer = tf.layers.dense({units: 1});\n\n// Use tf.layers.input() to obtain a SymbolicTensor as input to apply().\nconst input = tf.input({shape: [2, 2]});\nconst output1 = flattenLayer.apply(input);\n\n// output1.shape is [null, 4]. The first dimension is the undetermined\n// batch size. The second dimension comes from flattening the [2, 2]\n// shape.\nconsole.log(JSON.stringify(output1.shape));\n\n// The output SymbolicTensor of the flatten layer can be used to call\n// the apply() of the dense layer:\nconst output2 = denseLayer.apply(output1);\n\n// output2.shape is [null, 1]. The first dimension is the undetermined\n// batch size. The second dimension matches the number of units of the\n// dense layer.\nconsole.log(JSON.stringify(output2.shape));\n\n// The input and output and be used to construct a model that consists\n// of the flatten and dense layers.\nconst model = tf.model({inputs: input, outputs: output2});\n```",
                   "fileName": "#925",
                   "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/v0.8.3/src/engine/topology.ts#L925-L1068",
                   "isFunction": true,
@@ -6762,7 +6762,7 @@
                 }
               ],
               "returnType": "[tf.layers.Layer](#class:layers.Layer)",
-              "documentation": "An input layer is an entry point into a `Model`.\n\n`InputLayer` is generated automatically for `Sequential` models by specifying\nthe `inputshape` or `batchInputShape` for the first layer.  It should not be\nspecified explicitly. However, it can be useful sometimes, e.g., when\nconstructing a sequential model from a subset of another sequential model's\nlayers. Like the code snippet below shows.\n\n```js\n// Define a model which simply adds two inputs.\nconst model1 = tf.sequential();\nmodel1.add(tf.layers.dense({inputShape: [4], units: 3, activation: 'relu'}));\nmodel1.add(tf.layers.dense({units: 1, activation: 'sigmoid'}));\nmodel1.summary();\nmodel1.preidct(tf.zeros([1, 4])).print();\n\n// Construct another model, reusing the second layer of `model1` while\n// not using the first layer of `model1`. Note that you cannot add the second\n// layer of `model` directly as the first layer of the new sequential model,\n// because doing so will lead to an error related to the fact that the layer\n// is not an input layer. Instead, you need to create an `inputLayer` and add\n// it to the new sequential model before adding the reused layer.\nconst model2 = tf.sequential();\n// Use an inputShape that matches the input shape of `model1`'s second\n// layer.\nmodel2.add(tf.layers.inputLayer({inputShape: [3]}));\nmodel2.add(model1.layers[1]);\nmodel2.summary();\nmodel2.preidct(tf.zeros([1, 3])).print();\n```",
+              "documentation": "An input layer is an entry point into a [tf.Model](#class:Model).\n\n`InputLayer` is generated automatically for [tf.Sequential](#class:Sequential)` models by\nspecifying the `inputshape` or `batchInputShape` for the first layer.  It\nshould not be specified explicitly. However, it can be useful sometimes,\ne.g., when constructing a sequential model from a subset of another\nsequential model's layers. Like the code snippet below shows.\n\n```js\n// Define a model which simply adds two inputs.\nconst model1 = tf.sequential();\nmodel1.add(tf.layers.dense({inputShape: [4], units: 3, activation: 'relu'}));\nmodel1.add(tf.layers.dense({units: 1, activation: 'sigmoid'}));\nmodel1.summary();\nmodel1.preidct(tf.zeros([1, 4])).print();\n\n// Construct another model, reusing the second layer of `model1` while\n// not using the first layer of `model1`. Note that you cannot add the second\n// layer of `model` directly as the first layer of the new sequential model,\n// because doing so will lead to an error related to the fact that the layer\n// is not an input layer. Instead, you need to create an `inputLayer` and add\n// it to the new sequential model before adding the reused layer.\nconst model2 = tf.sequential();\n// Use an inputShape that matches the input shape of `model1`'s second\n// layer.\nmodel2.add(tf.layers.inputLayer({inputShape: [3]}));\nmodel2.add(model1.layers[1]);\nmodel2.summary();\nmodel2.preidct(tf.zeros([1, 3])).print();\n```",
               "fileName": "#41",
               "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/v0.8.3/src/exports_layers.ts#L41-L43",
               "isFunction": true,
@@ -7180,7 +7180,7 @@
               "parameters": [
                 {
                   "name": "x",
-                  "documentation": "The input `Tensor`.",
+                  "documentation": "The input [tf.Tensor](#class:Tensor).",
                   "type": "[tf.Tensor](#class:Tensor)|[TypedArray](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray)|Array",
                   "optional": false,
                   "isConfigParam": false
@@ -8306,7 +8306,7 @@
                 }
               ],
               "returnType": "[tf.Tensor](#class:Tensor)",
-              "documentation": "Transposes the [tf.Tensor](#class:Tensor). Permutes the dimensions according to `perm`.\n\nThe returned `Tensor`'s dimension `i` will correspond to the input\ndimension `perm[i]`. If `perm` is not given, it is set to `[n-1...0]`,\nwhere `n` is the rank of the input `Tensor`. Hence by default, this\noperation performs a regular matrix transpose on 2-D input `Tensor`s.\n\n```js\nconst a = tf.tensor2d([1, 2, 3, 4, 5, 6], [2, 3]);\n\na.transpose().print();  // or tf.transpose(a)\n```",
+              "documentation": "Transposes the [tf.Tensor](#class:Tensor). Permutes the dimensions according to `perm`.\n\nThe returned [tf.Tensor](#class:Tensor)'s dimension `i` will correspond to the input\ndimension `perm[i]`. If `perm` is not given, it is set to `[n-1...0]`,\nwhere `n` is the rank of the input [tf.Tensor](#class:Tensor). Hence by default, this\noperation performs a regular matrix transpose on 2-D input [tf.Tensor](#class:Tensor)s.\n\n```js\nconst a = tf.tensor2d([1, 2, 3, 4, 5, 6], [2, 3]);\n\na.transpose().print();  // or tf.transpose(a)\n```",
               "fileName": "#44",
               "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/transpose.ts#L44-L71",
               "isFunction": true,
@@ -10549,7 +10549,7 @@
               "parameters": [
                 {
                   "name": "xs",
-                  "documentation": "The vectors to be orthogonalized, in one of the two following\nformats:\n- An Array of `Tensor1D`.\n- A `Tensor2D`, i.e., a matrix, in which case the vectors are the rows\nof `xs`.\nIn each case, all the vectors must have the same length and the length\nmust be greater than or equal to the number of vectors.",
+                  "documentation": "The vectors to be orthogonalized, in one of the two following\nformats:\n- An Array of [tf.Tensor1D](#class:Tensor).\n- A [tf.Tensor2D](#class:Tensor), i.e., a matrix, in which case the vectors are the rows\nof `xs`.\nIn each case, all the vectors must have the same length and the length\nmust be greater than or equal to the number of vectors.",
                   "type": "[tf.Tensor1D](#class:Tensor)[]|[tf.Tensor2D](#class:Tensor)",
                   "optional": false,
                   "isConfigParam": false
@@ -10575,7 +10575,7 @@
               "parameters": [
                 {
                   "name": "x",
-                  "documentation": "The `Tensor` to be QR-decomposed. Must have rank >= 2. Suppose\nit has the shape `[..., M, N]`.",
+                  "documentation": "The [tf.Tensor](#class:Tensor) to be QR-decomposed. Must have rank >= 2. Suppose\nit has the shape `[..., M, N]`.",
                   "type": "[tf.Tensor](#class:Tensor)",
                   "optional": false,
                   "isConfigParam": false
@@ -10649,7 +10649,7 @@
                 }
               ],
               "returnType": "(\n    args: [tf.Tensor](#class:Tensor)[], dy?: [tf.Tensor](#class:Tensor)) => [tf.Tensor](#class:Tensor)[]",
-              "documentation": "Provided `f(x1, x2,...)`, returns another function `g([x1, x2,...], dy?)`,\nwhich gives an array of gradients of `f()` with respect to each input\n[`x1`,`x2`,...].\n\nIf `dy` is passed when calling `g()`, the gradient of\n`f(x1,...).mul(dy).sum()` with respect to each input is computed instead.\nThe provided `f` must take one or more tensors and return a single tensor\n`y`. If `f()` takes a single input, we recommend using `grad` instead.\n\n```js\n// f(a, b) = a * b\nconst f = (a, b) => a.mul(b);\n// df / da = b, df / db = a\nconst g = tf.grads(f);\n\nconst a = tf.tensor1d([2, 3]);\nconst b = tf.tensor1d([-2, -3]);\nconst [da, db] = g([a, b]);\nconsole.log('da');\nda.print();\nconsole.log('db');\ndb.print();\n```",
+              "documentation": "Provided `f(x1, x2,...)`, returns another function `g([x1, x2,...], dy?)`,\nwhich gives an array of gradients of `f()` with respect to each input\n[`x1`,`x2`,...].\n\nIf `dy` is passed when calling `g()`, the gradient of\n`f(x1,...).mul(dy).sum()` with respect to each input is computed instead.\nThe provided `f` must take one or more tensors and return a single tensor\n`y`. If `f()` takes a single input, we recommend using [tf.grad()](#grad) instead.\n\n```js\n// f(a, b) = a * b\nconst f = (a, b) => a.mul(b);\n// df / da = b, df / db = a\nconst g = tf.grads(f);\n\nconst a = tf.tensor1d([2, 3]);\nconst b = tf.tensor1d([-2, -3]);\nconst [da, db] = g([a, b]);\nconsole.log('da');\nda.print();\nconsole.log('db');\ndb.print();\n```",
               "fileName": "#124",
               "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/gradients.ts#L124-L147",
               "isFunction": true,
@@ -10697,7 +10697,7 @@
                 }
               ],
               "returnType": "(\n    x: [tf.Tensor](#class:Tensor), dy?: [tf.Tensor](#class:Tensor)) => {\n  value: [tf.Tensor](#class:Tensor);\n  grad: [tf.Tensor](#class:Tensor);\n}",
-              "documentation": "Like `grad`, but also returns the value of `f()`. Useful when `f()`\nreturns a metric you want to show.\n\nThe result is a rich object with the following properties:\n- grad: The gradient of `f(x)` w.r.t `x` (result of `grad`).\n- value: The value returned by `f(x)`.\n\n```js\n// f(x) = x ^ 2\nconst f = x => x.square();\n// f'(x) = 2x\nconst g = tf.valueAndGrad(f);\n\nconst x = tf.tensor1d([2, 3]);\nconst {value, grad} = g(x);\n\nconsole.log('value');\nvalue.print();\nconsole.log('grad');\ngrad.print();\n```",
+              "documentation": "Like [tf.grad()](#grad), but also returns the value of `f()`. Useful when `f()`\nreturns a metric you want to show.\n\nThe result is a rich object with the following properties:\n- grad: The gradient of `f(x)` w.r.t `x` (result of [tf.grad()](#grad)).\n- value: The value returned by `f(x)`.\n\n```js\n// f(x) = x ^ 2\nconst f = x => x.square();\n// f'(x) = 2x\nconst g = tf.valueAndGrad(f);\n\nconst x = tf.tensor1d([2, 3]);\nconst {value, grad} = g(x);\n\nconsole.log('value');\nvalue.print();\nconsole.log('grad');\ngrad.print();\n```",
               "fileName": "#173",
               "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/gradients.ts#L173-L191",
               "isFunction": true,
@@ -10784,7 +10784,7 @@
                 }
               ],
               "returnType": "[tf.SGDOptimizer](#class:train.Optimizer)",
-              "documentation": "Constructs a `SGDOptimizer` that uses stochastic gradient descent.\n\n```js\n// Fit a quadratic function by learning the coefficients a, b, c.\nconst xs = tf.tensor1d([0, 1, 2, 3]);\nconst ys = tf.tensor1d([1.1, 5.9, 16.8, 33.9]);\n\nconst a = tf.scalar(Math.random()).variable();\nconst b = tf.scalar(Math.random()).variable();\nconst c = tf.scalar(Math.random()).variable();\n\n// y = a * x^2 + b * x + c.\nconst f = x => a.mul(x.square()).add(b.mul(x)).add(c);\nconst loss = (pred, label) => pred.sub(label).square().mean();\n\nconst learningRate = 0.01;\nconst optimizer = tf.train.sgd(learningRate);\n\n// Train the model.\nfor (let i = 0; i < 10; i++) {\n   optimizer.minimize(() => loss(f(xs), ys));\n}\n\n// Make predictions.\nconsole.log(\n     `a: ${a.dataSync()}, b: ${b.dataSync()}, c: ${c.dataSync()}`);\nconst preds = f(xs).dataSync();\npreds.forEach((pred, i) => {\n   console.log(`x: ${i}, pred: ${pred}`);\n});\n```",
+              "documentation": "Constructs a `tf.train.SGDOptimizer` that uses stochastic gradient descent.\n\n```js\n// Fit a quadratic function by learning the coefficients a, b, c.\nconst xs = tf.tensor1d([0, 1, 2, 3]);\nconst ys = tf.tensor1d([1.1, 5.9, 16.8, 33.9]);\n\nconst a = tf.scalar(Math.random()).variable();\nconst b = tf.scalar(Math.random()).variable();\nconst c = tf.scalar(Math.random()).variable();\n\n// y = a * x^2 + b * x + c.\nconst f = x => a.mul(x.square()).add(b.mul(x)).add(c);\nconst loss = (pred, label) => pred.sub(label).square().mean();\n\nconst learningRate = 0.01;\nconst optimizer = tf.train.sgd(learningRate);\n\n// Train the model.\nfor (let i = 0; i < 10; i++) {\n   optimizer.minimize(() => loss(f(xs), ys));\n}\n\n// Make predictions.\nconsole.log(\n     `a: ${a.dataSync()}, b: ${b.dataSync()}, c: ${c.dataSync()}`);\nconst preds = f(xs).dataSync();\npreds.forEach((pred, i) => {\n   console.log(`x: ${i}, pred: ${pred}`);\n});\n```",
               "fileName": "#65",
               "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/optimizers/optimizer_constructors.ts#L65-L67",
               "isFunction": true,
@@ -10824,9 +10824,9 @@
                 }
               ],
               "returnType": "[tf.MomentumOptimizer](#class:train.Optimizer)",
-              "documentation": "Constructs a `MomentumOptimizer` that uses momentum gradient descent.\n\nSee\n[http://proceedings.mlr.press/v28/sutskever13.pdf](\nhttp://proceedings.mlr.press/v28/sutskever13.pdf)",
-              "fileName": "#84",
-              "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/optimizers/optimizer_constructors.ts#L84-L87",
+              "documentation": "Constructs a `tf.train.MomentumOptimizer` that uses momentum gradient\ndescent.\n\nSee\n[http://proceedings.mlr.press/v28/sutskever13.pdf](\nhttp://proceedings.mlr.press/v28/sutskever13.pdf)",
+              "fileName": "#85",
+              "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/optimizers/optimizer_constructors.ts#L85-L88",
               "isFunction": true,
               "displayName": "tf.train.momentum",
               "urlHash": "train.momentum"
@@ -10857,9 +10857,9 @@
                 }
               ],
               "returnType": "[tf.AdagradOptimizer](#class:train.Optimizer)",
-              "documentation": "Constructs a `AdagradOptimizer` that uses the Adagrad algorithm.\nSee\n[http://www.jmlr.org/papers/volume12/duchi11a/duchi11a.pdf](\nhttp://www.jmlr.org/papers/volume12/duchi11a/duchi11a.pdf)\nor\n[http://ruder.io/optimizing-gradient-descent/index.html#adagrad](\nhttp://ruder.io/optimizing-gradient-descent/index.html#adagrad)",
-              "fileName": "#191",
-              "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/optimizers/optimizer_constructors.ts#L191-L194",
+              "documentation": "Constructs a `tf.train.AdagradOptimizer` that uses the Adagrad algorithm.\nSee\n[http://www.jmlr.org/papers/volume12/duchi11a/duchi11a.pdf](\nhttp://www.jmlr.org/papers/volume12/duchi11a/duchi11a.pdf)\nor\n[http://ruder.io/optimizing-gradient-descent/index.html#adagrad](\nhttp://ruder.io/optimizing-gradient-descent/index.html#adagrad)",
+              "fileName": "#192",
+              "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/optimizers/optimizer_constructors.ts#L192-L195",
               "isFunction": true,
               "displayName": "tf.train.adagrad",
               "urlHash": "train.adagrad"
@@ -10897,9 +10897,9 @@
                 }
               ],
               "returnType": "[tf.AdadeltaOptimizer](#class:train.Optimizer)",
-              "documentation": "Constructs a `AdadeltaOptimizer` that uses the Adadelta algorithm.\nSee [https://arxiv.org/abs/1212.5701](https://arxiv.org/abs/1212.5701)",
-              "fileName": "#149",
-              "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/optimizers/optimizer_constructors.ts#L149-L152",
+              "documentation": "Constructs a `tf.train.AdadeltaOptimizer` that uses the Adadelta algorithm.\nSee [https://arxiv.org/abs/1212.5701](https://arxiv.org/abs/1212.5701)",
+              "fileName": "#150",
+              "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/optimizers/optimizer_constructors.ts#L150-L153",
               "isFunction": true,
               "displayName": "tf.train.adadelta",
               "urlHash": "train.adadelta"
@@ -10944,9 +10944,9 @@
                 }
               ],
               "returnType": "AdamOptimizer",
-              "documentation": "Constructs a `AdamOptimizer` that uses the Adam algorithm.\nSee [https://arxiv.org/abs/1412.6980](https://arxiv.org/abs/1412.6980)",
-              "fileName": "#130",
-              "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/optimizers/optimizer_constructors.ts#L130-L134",
+              "documentation": "Constructs a `tf.train.AdamOptimizer` that uses the Adam algorithm.\nSee [https://arxiv.org/abs/1412.6980](https://arxiv.org/abs/1412.6980)",
+              "fileName": "#131",
+              "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/optimizers/optimizer_constructors.ts#L131-L135",
               "isFunction": true,
               "displayName": "tf.train.adam",
               "urlHash": "train.adam"
@@ -10998,9 +10998,9 @@
                 }
               ],
               "returnType": "AdamaxOptimizer",
-              "documentation": "Constructs a `AdamaxOptimizer` that uses the Adamax algorithm.\nSee [https://arxiv.org/abs/1412.6980](https://arxiv.org/abs/1412.6980)",
-              "fileName": "#168",
-              "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/optimizers/optimizer_constructors.ts#L168-L172",
+              "documentation": "Constructs a `tf.train.AdamaxOptimizer` that uses the Adamax algorithm.\nSee [https://arxiv.org/abs/1412.6980](https://arxiv.org/abs/1412.6980)",
+              "fileName": "#169",
+              "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/optimizers/optimizer_constructors.ts#L169-L173",
               "isFunction": true,
               "displayName": "tf.train.adamax",
               "urlHash": "train.adamax"
@@ -11052,9 +11052,9 @@
                 }
               ],
               "returnType": "[tf.RMSPropOptimizer](#class:train.Optimizer)",
-              "documentation": "Constructs a `RMSPropOptimizer` that uses RMSProp gradient\ndescent. This implementation uses plain momentum and is not centered\nversion of RMSProp.\n\nSee\n[http://www.cs.toronto.edu/~tijmen/csc321/slides/lecture_slides_lec6.pdf](\nhttp://www.cs.toronto.edu/~tijmen/csc321/slides/lecture_slides_lec6.pdf)",
-              "fileName": "#110",
-              "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/optimizers/optimizer_constructors.ts#L110-L115",
+              "documentation": "Constructs a `tf.train.RMSPropOptimizer` that uses RMSProp gradient\ndescent. This implementation uses plain momentum and is not centered\nversion of RMSProp.\n\nSee\n[http://www.cs.toronto.edu/~tijmen/csc321/slides/lecture_slides_lec6.pdf](\nhttp://www.cs.toronto.edu/~tijmen/csc321/slides/lecture_slides_lec6.pdf)",
+              "fileName": "#111",
+              "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/optimizers/optimizer_constructors.ts#L111-L116",
               "isFunction": true,
               "displayName": "tf.train.rmsprop",
               "urlHash": "train.rmsprop"
@@ -11620,7 +11620,7 @@
                 }
               ],
               "returnType": "void|number|string|[tf.Tensor](#class:Tensor)|[tf.Tensor](#class:Tensor)[]|{[key:\nstring]:[tf.Tensor](#class:Tensor)|number|string}",
-              "documentation": "Executes the provided function `fn` and after it is executed, cleans up all\nintermediate tensors allocated by `fn` except those returned by `fn`.\n`fn` must not return a Promise (async functions not allowed). The returned\nresult can be a complex object.\n\nUsing this method helps avoid memory leaks. In general, wrap calls to\noperations in `tidy` for automatic memory cleanup.\n\nWhen in safe mode, you must enclose all `Tensor` creation and ops\ninside a `tidy` to prevent memory leaks.\n\n```js\n// y = 2 ^ 2 + 1\nconst y = tf.tidy(() => {\n   // a, b, and one will be cleaned up when the tidy ends.\n   const one = tf.scalar(1);\n   const a = tf.scalar(2);\n   const b = a.square();\n\n   console.log('numTensors (in tidy): ' + tf.memory().numTensors);\n\n   // The value returned inside the tidy function will return\n   // through the tidy, in this case to the variable y.\n   return b.add(one);\n});\n\nconsole.log('numTensors (outside tidy): ' + tf.memory().numTensors);\ny.print();\n```",
+              "documentation": "Executes the provided function `fn` and after it is executed, cleans up all\nintermediate tensors allocated by `fn` except those returned by `fn`.\n`fn` must not return a Promise (async functions not allowed). The returned\nresult can be a complex object.\n\nUsing this method helps avoid memory leaks. In general, wrap calls to\noperations in [tf.tidy()](#tidy) for automatic memory cleanup.\n\nWhen in safe mode, you must enclose all [tf.Tensor](#class:Tensor) creation and ops\ninside a [tf.tidy()](#tidy) to prevent memory leaks.\n\n```js\n// y = 2 ^ 2 + 1\nconst y = tf.tidy(() => {\n   // a, b, and one will be cleaned up when the tidy ends.\n   const one = tf.scalar(1);\n   const a = tf.scalar(2);\n   const b = a.square();\n\n   console.log('numTensors (in tidy): ' + tf.memory().numTensors);\n\n   // The value returned inside the tidy function will return\n   // through the tidy, in this case to the variable y.\n   return b.add(one);\n});\n\nconsole.log('numTensors (outside tidy): ' + tf.memory().numTensors);\ny.print();\n```",
               "fileName": "#185",
               "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/environment.ts#L185-L188",
               "isFunction": true,
@@ -11637,14 +11637,14 @@
               "parameters": [
                 {
                   "name": "container",
-                  "documentation": "an object that may be a `Tensor` or may directly contain\n`Tensor`s, such as a `Tensor[]` or `{key: Tensor, ...}`. If the\nobject is not a `Tensor` or does not contain `Tensors`, nothing\nhappens. In general it is safe to pass any object here, except that\n`Promise`s are not supported.",
+                  "documentation": "an object that may be a [tf.Tensor](#class:Tensor) or may directly\ncontain [tf.Tensor](#class:Tensor)s, such as a `Tensor[]` or `{key: Tensor, ...}`. If\nthe object is not a [tf.Tensor](#class:Tensor) or does not contain `Tensors`, nothing\nhappens. In general it is safe to pass any object here, except that\n`Promise`s are not supported.",
                   "type": "void|number|string|[tf.Tensor](#class:Tensor)|[tf.Tensor](#class:Tensor)[]|{[key:\nstring]:[tf.Tensor](#class:Tensor)|number|string}",
                   "optional": false,
                   "isConfigParam": false
                 }
               ],
               "returnType": "void",
-              "documentation": "Disposes any `Tensor`s found within the provided object.",
+              "documentation": "Disposes any [tf.Tensor](#class:Tensor)s found within the provided object.",
               "fileName": "#200",
               "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/environment.ts#L200-L203",
               "isFunction": true,
@@ -11668,7 +11668,7 @@
                 }
               ],
               "returnType": "[tf.Tensor](#class:Tensor)",
-              "documentation": "Keeps a `Tensor` generated inside a `tidy` from being disposed\nautomatically.\n\n```js\nlet b;\nconst y = tf.tidy(() => {\n   const one = tf.scalar(1);\n   const a = tf.scalar(2);\n\n   // b will not be cleaned up by the tidy. a and one will be cleaned up\n   // when the tidy ends.\n   b = tf.keep(a.square());\n\n   console.log('numTensors (in tidy): ' + tf.memory().numTensors);\n\n   // The value returned inside the tidy function will return\n   // through the tidy, in this case to the variable y.\n   return b.add(one);\n});\n\nconsole.log('numTensors (outside tidy): ' + tf.memory().numTensors);\nconsole.log('y:');\ny.print();\nconsole.log('b:');\nb.print();\n```",
+              "documentation": "Keeps a [tf.Tensor](#class:Tensor) generated inside a [tf.tidy()](#tidy) from being disposed\nautomatically.\n\n```js\nlet b;\nconst y = tf.tidy(() => {\n   const one = tf.scalar(1);\n   const a = tf.scalar(2);\n\n   // b will not be cleaned up by the tidy. a and one will be cleaned up\n   // when the tidy ends.\n   b = tf.keep(a.square());\n\n   console.log('numTensors (in tidy): ' + tf.memory().numTensors);\n\n   // The value returned inside the tidy function will return\n   // through the tidy, in this case to the variable y.\n   return b.add(one);\n});\n\nconsole.log('numTensors (outside tidy): ' + tf.memory().numTensors);\nconsole.log('y:');\ny.print();\nconsole.log('b:');\nb.print();\n```",
               "fileName": "#236",
               "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/environment.ts#L236-L238",
               "isFunction": true,
