@@ -6470,7 +6470,7 @@
                 "parameters": [
                   {
                     "name": "x",
-                    "documentation": "1-D or higher `Tensor` with last dimension being at least `k`.",
+                    "documentation": "1-D or higher `tf.Tensor` with last dimension being at least `k`.",
                     "type": "Tensor|TypedArray|Array",
                     "optional": false,
                     "isConfigParam": false
