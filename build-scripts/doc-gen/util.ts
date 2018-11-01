@@ -578,15 +578,35 @@ export function linkSymbols(
   });
 }
 
+/**
+ * Replaces symbols wrapped in backticks with links to the documentation for
+ * that symbol.
+ *
+ * @param input The input string to replace over. Can be markdown, a type, or
+ * any other documentation string.
+ * @param symbolsAndUrls The symbols and URLs used to make replacements.
+ * @param isMarkdown Whether the input is markdown. When using markdown input,
+ * we expect replace the symbol wrapped in backticks. When not using markdown
+ * input, we just replace any symbols wrapped by word boundaries.
+ * @param replaceFromSymbolName Whether to replace from the just the symbol name
+ * (no "tf" or namespace prefix) or the fully qualified reference name (with the
+ * "tf" and namespace prefixes).
+ */
 function replaceSymbolsWithLinks(
     input: string, symbolsAndUrls: SymbolAndUrl[], isMarkdown: boolean,
     replaceFromSymbolName = false): string {
   symbolsAndUrls.forEach(symbolAndUrl => {
-    const symbolName = replaceFromSymbolName ?
-        symbolAndUrl.symbolName :
-        (symbolAndUrl.toplevelNamespace != null ?
-             symbolAndUrl.toplevelNamespace + '.' + symbolAndUrl.referenceName :
-             symbolAndUrl.referenceName);
+    let symbolName: string;
+    if (replaceFromSymbolName) {
+      symbolName = symbolAndUrl.symbolName;
+    } else {
+      if (symbolAndUrl.toplevelNamespace != null) {
+        symbolName =
+            symbolAndUrl.toplevelNamespace + '.' + symbolAndUrl.referenceName;
+      } else {
+        symbolName = symbolAndUrl.referenceName;
+      }
+    }
 
     const re = getSymbolReplaceRegex(symbolName, isMarkdown);
 
