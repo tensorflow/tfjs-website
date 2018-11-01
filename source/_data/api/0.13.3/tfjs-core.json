@@ -14,7 +14,7 @@
                   "subheading": "Classes"
                 },
                 "symbolName": "TensorBuffer",
-                "documentation": "A mutable object, similar to `tf.Tensor`, that allows users to set values\nat locations before converting to an immutable `tf.Tensor`.\n\nSee `tf.buffer` for creating a tensor buffer.",
+                "documentation": "A mutable object, similar to `Tensor`, that allows users to set values\nat locations before converting to an immutable `Tensor`.\n\nSee `buffer` for creating a tensor buffer.",
                 "fileName": "#36",
                 "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/tensor.ts#L36-L140",
                 "methods": [
@@ -78,7 +78,7 @@
                     "paramStr": "()",
                     "parameters": [],
                     "returnType": "Tensor",
-                    "documentation": "Creates an immutable `tf.Tensor` object from the buffer.",
+                    "documentation": "Creates an immutable `Tensor` object from the buffer.",
                     "fileName": "#137",
                     "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/tensor.ts#L137-L139",
                     "isFunction": true
@@ -92,9 +92,9 @@
                   "subheading": "Classes"
                 },
                 "symbolName": "Tensor",
-                "documentation": "A `tf.Tensor` object represents an immutable, multidimensional array of\nnumbers that has a shape and a data type.\n\nSee `tf.tensor` for details on how to create a `tf.Tensor`.",
-                "fileName": "#380",
-                "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/tensor.ts#L380-L1275",
+                "documentation": "A `Tensor` object represents an immutable, multidimensional array of numbers\nthat has a shape and a data type.\n\nSee `tensor` for details on how to create a `Tensor`.",
+                "fileName": "#378",
+                "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/tensor.ts#L378-L1270",
                 "methods": [
                   {
                     "docInfo": {
@@ -119,7 +119,7 @@
                     "paramStr": "()",
                     "parameters": [],
                     "returnType": "Scalar",
-                    "documentation": "Converts a size-1 `tf.Tensor` to a `tf.Scalar`. ",
+                    "documentation": "Converts a size-1 `Tensor` to a `Scalar`. ",
                     "fileName": "#447",
                     "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/tensor.ts#L447-L451",
                     "isFunction": true
@@ -133,7 +133,7 @@
                     "paramStr": "()",
                     "parameters": [],
                     "returnType": "Tensor1D",
-                    "documentation": "Converts a `tf.Tensor` to a `tf.Tensor1D`. ",
+                    "documentation": "Converts a `Tensor` to a `Tensor1D`. ",
                     "fileName": "#455",
                     "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/tensor.ts#L455-L458",
                     "isFunction": true
@@ -148,21 +148,21 @@
                     "parameters": [
                       {
                         "name": "rows",
-                        "documentation": "Number of rows in `tf.Tensor2D`.",
+                        "documentation": "Number of rows in `Tensor2D`.",
                         "type": "number",
                         "optional": false,
                         "isConfigParam": false
                       },
                       {
                         "name": "columns",
-                        "documentation": "Number of columns in `tf.Tensor2D`.",
+                        "documentation": "Number of columns in `Tensor2D`.",
                         "type": "number",
                         "optional": false,
                         "isConfigParam": false
                       }
                     ],
                     "returnType": "Tensor2D",
-                    "documentation": "Converts a `tf.Tensor` to a `tf.Tensor2D`.",
+                    "documentation": "Converts a `Tensor` to a `Tensor2D`.",
                     "fileName": "#467",
                     "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/tensor.ts#L467-L470",
                     "isFunction": true
@@ -177,28 +177,28 @@
                     "parameters": [
                       {
                         "name": "rows",
-                        "documentation": "Number of rows in `tf.Tensor3D`.",
+                        "documentation": "Number of rows in `Tensor3D`.",
                         "type": "number",
                         "optional": false,
                         "isConfigParam": false
                       },
                       {
                         "name": "columns",
-                        "documentation": "Number of columns in `tf.Tensor3D`.",
+                        "documentation": "Number of columns in `Tensor3D`.",
                         "type": "number",
                         "optional": false,
                         "isConfigParam": false
                       },
                       {
                         "name": "depth",
-                        "documentation": "Depth of `tf.Tensor3D`.",
+                        "documentation": "Depth of `Tensor3D`.",
                         "type": "number",
                         "optional": false,
                         "isConfigParam": false
                       }
                     ],
                     "returnType": "Tensor3D",
-                    "documentation": "Converts a `tf.Tensor` to a `tf.Tensor3D`.",
+                    "documentation": "Converts a `Tensor` to a `Tensor3D`.",
                     "fileName": "#480",
                     "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/tensor.ts#L480-L483",
                     "isFunction": true
@@ -213,35 +213,35 @@
                     "parameters": [
                       {
                         "name": "rows",
-                        "documentation": "Number of rows in `tf.Tensor4D`.",
+                        "documentation": "Number of rows in `Tensor4D`.",
                         "type": "number",
                         "optional": false,
                         "isConfigParam": false
                       },
                       {
                         "name": "columns",
-                        "documentation": "Number of columns in `tf.Tensor4D`.",
+                        "documentation": "Number of columns in `Tensor4D`.",
                         "type": "number",
                         "optional": false,
                         "isConfigParam": false
                       },
                       {
                         "name": "depth",
-                        "documentation": "Depth of `tf.Tensor4D`.",
+                        "documentation": "Depth of `Tensor4D`.",
                         "type": "number",
                         "optional": false,
                         "isConfigParam": false
                       },
                       {
                         "name": "depth2",
-                        "documentation": "4th dimension of `tf.Tensor4D`.",
+                        "documentation": "4th dimension of `Tensor4D`.",
                         "type": "number",
                         "optional": false,
                         "isConfigParam": false
                       }
                     ],
                     "returnType": "Tensor4D",
-                    "documentation": "Converts a `tf.Tensor` to a `tf.Tensor4D`.",
+                    "documentation": "Converts a `Tensor` to a `Tensor4D`.",
                     "fileName": "#494",
                     "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/tensor.ts#L494-L497",
                     "isFunction": true
@@ -263,7 +263,7 @@
                       }
                     ],
                     "returnType": "this",
-                    "documentation": "Casts a `tf.Tensor` to a specified dtype.",
+                    "documentation": "Casts a `Tensor` to a specified dtype.",
                     "fileName": "#505",
                     "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/tensor.ts#L505-L508",
                     "isFunction": true
@@ -277,7 +277,7 @@
                     "paramStr": "()",
                     "parameters": [],
                     "returnType": "TensorBuffer",
-                    "documentation": "Returns a `tf.TensorBuffer` that holds the underlying data. ",
+                    "documentation": "Returns a `TensorBuffer` that holds the underlying data. ",
                     "fileName": "#541",
                     "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/tensor.ts#L541-L543",
                     "isFunction": true
@@ -291,7 +291,7 @@
                     "paramStr": "()",
                     "parameters": [],
                     "returnType": "Promise",
-                    "documentation": "Asynchronously downloads the values from the `tf.Tensor`. Returns a promise\nof `TypedArray` that resolves when the computation has finished.",
+                    "documentation": "Asynchronously downloads the values from the `Tensor`. Returns a promise of\n`TypedArray` that resolves when the computation has finished.",
                     "fileName": "#550",
                     "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/tensor.ts#L550-L553",
                     "isFunction": true
@@ -305,7 +305,7 @@
                     "paramStr": "()",
                     "parameters": [],
                     "returnType": "TypedArray",
-                    "documentation": "Synchronously downloads the values from the `tf.Tensor`. This blocks the UI\nthread until the values are ready, which can cause performance issues.",
+                    "documentation": "Synchronously downloads the values from the `Tensor`. This blocks the UI\nthread until the values are ready, which can cause performance issues.",
                     "fileName": "#560",
                     "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/tensor.ts#L560-L563",
                     "isFunction": true
@@ -319,7 +319,7 @@
                     "paramStr": "()",
                     "parameters": [],
                     "returnType": "void",
-                    "documentation": "Disposes `tf.Tensor` from memory.",
+                    "documentation": "Disposes `Tensor` from memory.",
                     "fileName": "#569",
                     "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/tensor.ts#L569-L575",
                     "isFunction": true
@@ -383,7 +383,7 @@
                       }
                     ],
                     "returnType": "void",
-                    "documentation": "Prints the `tf.Tensor`. See `tf.print` for details.",
+                    "documentation": "Prints the `Tensor`. See `print` for details.",
                     "fileName": "#613",
                     "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/tensor.ts#L613-L615",
                     "isFunction": true
@@ -405,7 +405,7 @@
                       }
                     ],
                     "returnType": "Tensor",
-                    "documentation": "Reshapes the tensor into the provided shape.\nSee `tf.reshape` for more details.",
+                    "documentation": "Reshapes the tensor into the provided shape.\nSee `reshape` for more details.",
                     "fileName": "#624",
                     "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/tensor.ts#L624-L627",
                     "isFunction": true
@@ -449,7 +449,7 @@
                       }
                     ],
                     "returnType": "Tensor",
-                    "documentation": "Returns a `tf.Tensor` that has expanded rank, by inserting a dimension\ninto the tensor's shape. See `tf.expandDims` for details.",
+                    "documentation": "Returns a `Tensor` that has expanded rank, by inserting a dimension\ninto the tensor's shape. See `expandDims` for details.",
                     "fileName": "#648",
                     "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/tensor.ts#L648-L650",
                     "isFunction": true
@@ -485,7 +485,7 @@
                       }
                     ],
                     "returnType": "Tensor",
-                    "documentation": "Returns the cumulative sum of the `tf.Tensor` along `axis`.",
+                    "documentation": "Returns the cumulative sum of the `Tensor` along `axis`.",
                     "fileName": "#664",
                     "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/tensor.ts#L664-L666",
                     "isFunction": true
@@ -507,7 +507,7 @@
                       }
                     ],
                     "returnType": "Tensor",
-                    "documentation": "Returns a `tf.Tensor` with dimensions of size 1 removed from the shape.\nSee `tf.squeeze` for more details.",
+                    "documentation": "Returns a `Tensor` with dimensions of size 1 removed from the shape.\nSee `squeeze` for more details.",
                     "fileName": "#677",
                     "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/tensor.ts#L677-L680",
                     "isFunction": true
@@ -521,7 +521,7 @@
                     "paramStr": "()",
                     "parameters": [],
                     "returnType": "Tensor",
-                    "documentation": "Returns a copy of the tensor. See `tf.clone` for details. ",
+                    "documentation": "Returns a copy of the tensor. See `clone` for details. ",
                     "fileName": "#684",
                     "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/tensor.ts#L684-L687",
                     "isFunction": true
@@ -557,9 +557,9 @@
                   "subheading": "Classes"
                 },
                 "symbolName": "Variable",
-                "documentation": "A mutable `tf.Tensor`, useful for persisting state, e.g. for training.",
-                "fileName": "#1301",
-                "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/tensor.ts#L1301-L1372",
+                "documentation": "A mutable `Tensor`, useful for persisting state, e.g. for training.",
+                "fileName": "#1296",
+                "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/tensor.ts#L1296-L1369",
                 "methods": [
                   {
                     "docInfo": {
@@ -578,9 +578,9 @@
                       }
                     ],
                     "returnType": "void",
-                    "documentation": "Assign a new `tf.Tensor` to this variable. The new `tf.Tensor` must have\nthe same shape and dtype as the old `tf.Tensor`.",
-                    "fileName": "#1357",
-                    "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/tensor.ts#L1357-L1371",
+                    "documentation": "Assign a new `Tensor` to this variable. The new `Tensor` must have the\nsame shape and dtype as the old `Tensor`.",
+                    "fileName": "#1354",
+                    "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/tensor.ts#L1354-L1368",
                     "isFunction": true
                   }
                 ],
@@ -631,8 +631,8 @@
                 ],
                 "returnType": "Variable",
                 "documentation": "Creates a new variable with the provided initial value.\n```js\nconst x = tf.variable(tf.tensor([1, 2, 3]));\nx.assign(tf.tensor([4, 5, 6]));\n\nx.print();\n```",
-                "fileName": "#1341",
-                "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/tensor.ts#L1341-L1348",
+                "fileName": "#1338",
+                "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/tensor.ts#L1338-L1345",
                 "isFunction": true
               },
               {
@@ -739,7 +739,7 @@
                   }
                 ],
                 "returnType": "Tensor",
-                "documentation": "Creates a `tf.Tensor` with the provided values, shape and dtype.\n\n```js\n// Pass an array of values to create a vector.\ntf.tensor([1, 2, 3, 4]).print();\n```\n\n```js\n// Pass a nested array of values to make a matrix or a higher\n// dimensional tensor.\ntf.tensor([[1, 2], [3, 4]]).print();\n```\n\n```js\n// Pass a flat array and specify a shape yourself.\ntf.tensor([1, 2, 3, 4], [2, 2]).print();\n```",
+                "documentation": "Creates a `Tensor` with the provided values, shape and dtype.\n\n```js\n// Pass an array of values to create a vector.\ntf.tensor([1, 2, 3, 4]).print();\n```\n\n```js\n// Pass a nested array of values to make a matrix or a higher\n// dimensional tensor.\ntf.tensor([[1, 2], [3, 4]]).print();\n```\n\n```js\n// Pass a flat array and specify a shape yourself.\ntf.tensor([1, 2, 3, 4], [2, 2]).print();\n```",
                 "fileName": "#54",
                 "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/tensor_ops.ts#L54-L86",
                 "isFunction": true
@@ -768,7 +768,7 @@
                   }
                 ],
                 "returnType": "Scalar",
-                "documentation": "Creates rank-0 `tf.Tensor` (scalar) with the provided value and dtype.\n\nThe same functionality can be achieved with `tf.tensor`, but in general\nwe recommend using `tf.scalar` as it makes the code more readable.\n\n```js\ntf.scalar(3.14).print();\n```",
+                "documentation": "Creates rank-0 `Tensor` (scalar) with the provided value and dtype.\n\nThe same functionality can be achieved with `tensor`, but in general\nwe recommend using `scalar` as it makes the code more readable.\n\n```js\ntf.scalar(3.14).print();\n```",
                 "fileName": "#102",
                 "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/tensor_ops.ts#L102-L111",
                 "isFunction": true
@@ -797,7 +797,7 @@
                   }
                 ],
                 "returnType": "Tensor1D",
-                "documentation": "Creates rank-1 `tf.Tensor` with the provided values, shape and dtype.\n\nThe same functionality can be achieved with `tf.tensor`, but in general\nwe recommend using `tf.tensor1d` as it makes the code more readable.\n\n```js\ntf.tensor1d([1, 2, 3]).print();\n```",
+                "documentation": "Creates rank-1 `Tensor` with the provided values, shape and dtype.\n\nThe same functionality can be achieved with `tensor`, but in general\nwe recommend using `tensor1d` as it makes the code more readable.\n\n```js\ntf.tensor1d([1, 2, 3]).print();\n```",
                 "fileName": "#128",
                 "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/tensor_ops.ts#L128-L135",
                 "isFunction": true
@@ -833,7 +833,7 @@
                   }
                 ],
                 "returnType": "Tensor2D",
-                "documentation": "Creates rank-2 `tf.Tensor` with the provided values, shape and dtype.\n\nThe same functionality can be achieved with `tf.tensor`, but in general\nwe recommend using `tf.tensor2d` as it makes the code more readable.\n\n  ```js\n// Pass a nested array.\ntf.tensor2d([[1, 2], [3, 4]]).print();\n```\n```js\n// Pass a flat array and specify a shape.\ntf.tensor2d([1, 2, 3, 4], [2, 2]).print();\n```",
+                "documentation": "Creates rank-2 `Tensor` with the provided values, shape and dtype.\n\nThe same functionality can be achieved with `tensor`, but in general\nwe recommend using `tensor2d` as it makes the code more readable.\n\n  ```js\n// Pass a nested array.\ntf.tensor2d([[1, 2], [3, 4]]).print();\n```\n```js\n// Pass a flat array and specify a shape.\ntf.tensor2d([1, 2, 3, 4], [2, 2]).print();\n```",
                 "fileName": "#159",
                 "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/tensor_ops.ts#L159-L178",
                 "isFunction": true
@@ -869,7 +869,7 @@
                   }
                 ],
                 "returnType": "Tensor3D",
-                "documentation": "Creates rank-3 `tf.Tensor` with the provided values, shape and dtype.\n\nThe same functionality can be achieved with `tf.tensor`, but in general\nwe recommend using `tf.tensor3d` as it makes the code more readable.\n\n  ```js\n// Pass a nested array.\ntf.tensor3d([[[1], [2]], [[3], [4]]]).print();\n```\n```js\n// Pass a flat array and specify a shape.\ntf.tensor3d([1, 2, 3, 4], [2, 2, 1]).print();\n```",
+                "documentation": "Creates rank-3 `Tensor` with the provided values, shape and dtype.\n\nThe same functionality can be achieved with `tensor`, but in general\nwe recommend using `tensor3d` as it makes the code more readable.\n\n  ```js\n// Pass a nested array.\ntf.tensor3d([[[1], [2]], [[3], [4]]]).print();\n```\n```js\n// Pass a flat array and specify a shape.\ntf.tensor3d([1, 2, 3, 4], [2, 2, 1]).print();\n```",
                 "fileName": "#202",
                 "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/tensor_ops.ts#L202-L221",
                 "isFunction": true
@@ -905,7 +905,7 @@
                   }
                 ],
                 "returnType": "Tensor4D",
-                "documentation": "Creates rank-4 `tf.Tensor` with the provided values, shape and dtype.\n\nThe same functionality can be achieved with `tf.tensor`, but in general\nwe recommend using `tf.tensor4d` as it makes the code more readable.\n\n  ```js\n// Pass a nested array.\ntf.tensor4d([[[[1], [2]], [[3], [4]]]]).print();\n```\n```js\n// Pass a flat array and specify a shape.\ntf.tensor4d([1, 2, 3, 4], [1, 2, 2, 1]).print();\n```",
+                "documentation": "Creates rank-4 `Tensor` with the provided values, shape and dtype.\n\nThe same functionality can be achieved with `tensor`, but in general\nwe recommend using `tensor4d` as it makes the code more readable.\n\n  ```js\n// Pass a nested array.\ntf.tensor4d([[[[1], [2]], [[3], [4]]]]).print();\n```\n```js\n// Pass a flat array and specify a shape.\ntf.tensor4d([1, 2, 3, 4], [1, 2, 2, 1]).print();\n```",
                 "fileName": "#245",
                 "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/tensor_ops.ts#L245-L264",
                 "isFunction": true
@@ -941,7 +941,7 @@
                   }
                 ],
                 "returnType": "Tensor5D",
-                "documentation": "Creates rank-5 `tf.Tensor` with the provided values, shape and dtype.\n\nThe same functionality can be achieved with `tf.tensor`, but in general\nwe recommend using `tf.tensor5d` as it makes the code more readable.\n\n  ```js\n// Pass a nested array.\ntf.tensor5d([[[[[1], [2]], [[3], [4]]]]]).print();\n```\n```js\n// Pass a flat array and specify a shape.\ntf.tensor5d([1, 2, 3, 4, 5, 6, 7, 8], [1, 2, 2, 2, 1]).print();\n```",
+                "documentation": "Creates rank-5 `Tensor` with the provided values, shape and dtype.\n\nThe same functionality can be achieved with `tensor`, but in general\nwe recommend using `tensor5d` as it makes the code more readable.\n\n  ```js\n// Pass a nested array.\ntf.tensor5d([[[[[1], [2]], [[3], [4]]]]]).print();\n```\n```js\n// Pass a flat array and specify a shape.\ntf.tensor5d([1, 2, 3, 4, 5, 6, 7, 8], [1, 2, 2, 2, 1]).print();\n```",
                 "fileName": "#288",
                 "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/tensor_ops.ts#L288-L308",
                 "isFunction": true
@@ -977,7 +977,7 @@
                   }
                 ],
                 "returnType": "Tensor6D",
-                "documentation": "Creates rank-6 `tf.Tensor` with the provided values, shape and dtype.\n\nThe same functionality can be achieved with `tf.tensor`, but in general\nwe recommend using `tf.tensor6d` as it makes the code more readable.\n\n  ```js\n// Pass a nested array.\ntf.tensor6d([[[[[[1],[2]],[[3],[4]]],[[[5],[6]],[[7],[8]]]]]]).print();\n```\n```js\n// Pass a flat array and specify a shape.\ntf.tensor6d([1, 2, 3, 4, 5, 6, 7, 8], [1, 1, 2, 2, 2, 1]).print();\n```",
+                "documentation": "Creates rank-6 `Tensor` with the provided values, shape and dtype.\n\nThe same functionality can be achieved with `tensor`, but in general\nwe recommend using `tensor6d` as it makes the code more readable.\n\n  ```js\n// Pass a nested array.\ntf.tensor6d([[[[[[1],[2]],[[3],[4]]],[[[5],[6]],[[7],[8]]]]]]).print();\n```\n```js\n// Pass a flat array and specify a shape.\ntf.tensor6d([1, 2, 3, 4, 5, 6, 7, 8], [1, 1, 2, 2, 2, 1]).print();\n```",
                 "fileName": "#332",
                 "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/tensor_ops.ts#L332-L353",
                 "isFunction": true
@@ -1006,7 +1006,7 @@
                   }
                 ],
                 "returnType": "Tensor",
-                "documentation": "Creates a `tf.Tensor` with all elements set to 1.\n\n```js\ntf.ones([2, 2]).print();\n```",
+                "documentation": "Creates a `Tensor` with all elements set to 1.\n\n```js\ntf.ones([2, 2]).print();\n```",
                 "fileName": "#367",
                 "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/tensor_ops.ts#L367-L376",
                 "isFunction": true
@@ -1035,7 +1035,7 @@
                   }
                 ],
                 "returnType": "Tensor",
-                "documentation": "Creates a `tf.Tensor` with all elements set to 0.\n\n```js\ntf.zeros([2, 2]).print();\n```",
+                "documentation": "Creates a `Tensor` with all elements set to 0.\n\n```js\ntf.zeros([2, 2]).print();\n```",
                 "fileName": "#390",
                 "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/tensor_ops.ts#L390-L399",
                 "isFunction": true
@@ -1071,7 +1071,7 @@
                   }
                 ],
                 "returnType": "Tensor",
-                "documentation": "Creates a `tf.Tensor` filled with a scalar value.\n\n```js\ntf.fill([2, 2], 4).print();\n```",
+                "documentation": "Creates a `Tensor` filled with a scalar value.\n\n```js\ntf.fill([2, 2], 4).print();\n```",
                 "fileName": "#414",
                 "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/tensor_ops.ts#L414-L419",
                 "isFunction": true
@@ -1093,7 +1093,7 @@
                   }
                 ],
                 "returnType": "Tensor",
-                "documentation": "Creates a `tf.Tensor` with all elements set to 1 with the same shape as the\ngiven tensor.\n\n```js\nconst x = tf.tensor([1, 2]);\ntf.onesLike(x).print();\n```",
+                "documentation": "Creates a `Tensor` with all elements set to 1 with the same shape as the\ngiven tensor.\n\n```js\nconst x = tf.tensor([1, 2]);\ntf.onesLike(x).print();\n```",
                 "fileName": "#432",
                 "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/tensor_ops.ts#L432-L435",
                 "isFunction": true
@@ -1115,7 +1115,7 @@
                   }
                 ],
                 "returnType": "Tensor",
-                "documentation": "Creates a `tf.Tensor` with all elements set to 0 with the same shape as the\ngiven tensor.\n\n```js\nconst x = tf.tensor([1, 2]);\ntf.zerosLike(x).print();\n```",
+                "documentation": "Creates a `Tensor` with all elements set to 0 with the same shape as the\ngiven tensor.\n\n```js\nconst x = tf.tensor([1, 2]);\ntf.zerosLike(x).print();\n```",
                 "fileName": "#449",
                 "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/tensor_ops.ts#L449-L452",
                 "isFunction": true
@@ -1194,7 +1194,7 @@
                   }
                 ],
                 "returnType": "Tensor1D",
-                "documentation": "Creates a new `tf.Tensor1D` filled with the numbers in the range provided.\n\nThe tensor is a is half-open interval meaning it includes start, but\nexcludes stop. Decrementing ranges and negative step values are also\nsupported.\n\n```js\ntf.range(0, 9, 2).print();\n```",
+                "documentation": "Creates a new `Tensor1D` filled with the numbers in the range provided.\n\nThe tensor is a is half-open interval meaning it includes start, but\nexcludes stop. Decrementing ranges and negative step values are also\nsupported.\n\n```js\ntf.range(0, 9, 2).print();\n```",
                 "fileName": "#498",
                 "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/tensor_ops.ts#L498-L529",
                 "isFunction": true
@@ -1245,7 +1245,7 @@
                   },
                   {
                     "name": "batchShape",
-                    "documentation": "If provided, will add the batch shape to the beginning\nof the shape of the returned `tf.Tensor` by repeating the identity\nmatrix.",
+                    "documentation": "If provided, will add the batch shape to the beginning\nof the shape of the returned `Tensor` by repeating the identity\nmatrix.",
                     "type": "[\n          number\n        ]|[number,\n           number]|[number, number, number]|[number, number, number, number]",
                     "optional": true,
                     "isConfigParam": false
@@ -1309,7 +1309,7 @@
                   }
                 ],
                 "returnType": "Tensor",
-                "documentation": "Creates a `tf.Tensor` with values sampled from a truncated normal\ndistribution.\n\n```js\ntf.truncatedNormal([2, 2]).print();\n```\n\nThe generated values follow a normal distribution with specified mean and\nstandard deviation, except that values whose magnitude is more than 2\nstandard deviations from the mean are dropped and re-picked.",
+                "documentation": "Creates a `Tensor` with values sampled from a truncated normal\ndistribution.\n\n```js\ntf.truncatedNormal([2, 2]).print();\n```\n\nThe generated values follow a normal distribution with specified mean and\nstandard deviation, except that values whose magnitude is more than 2\nstandard deviations from the mean are dropped and re-picked.",
                 "fileName": "#154",
                 "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/array_ops.ts#L154-L167",
                 "isFunction": true
@@ -1324,7 +1324,7 @@
                 "parameters": [
                   {
                     "name": "indices",
-                    "documentation": "`tf.Tensor1D` of indices with dtype `int32`.",
+                    "documentation": "`Tensor1D` of indices with dtype `int32`.",
                     "type": "Tensor1D|TypedArray|Array",
                     "optional": false,
                     "isConfigParam": false
@@ -1352,7 +1352,7 @@
                   }
                 ],
                 "returnType": "Tensor2D",
-                "documentation": "Creates a one-hot `tf.Tensor`. The locations represented by `indices` take\nvalue `onValue` (defaults to 1), while all other locations take value\n`offValue` (defaults to 0).\n\n```js\ntf.oneHot(tf.tensor1d([0, 1], 'int32'), 3).print();\n```",
+                "documentation": "Creates a one-hot `Tensor`. The locations represented by `indices` take\nvalue `onValue` (defaults to 1), while all other locations take value\n`offValue` (defaults to 0).\n\n```js\ntf.oneHot(tf.tensor1d([0, 1], 'int32'), 3).print();\n```",
                 "fileName": "#288",
                 "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/array_ops.ts#L288-L303",
                 "isFunction": true
@@ -1381,7 +1381,7 @@
                   }
                 ],
                 "returnType": "Tensor3D",
-                "documentation": "Creates a `tf.Tensor` from an image.\n\n```js\nconst image = new ImageData(1, 1);\nimage.data[0] = 100;\nimage.data[1] = 150;\nimage.data[2] = 200;\nimage.data[3] = 255;\n\ntf.fromPixels(image).print();\n```",
+                "documentation": "Creates a `Tensor` from an image.\n\n```js\nconst image = new ImageData(1, 1);\nimage.data[0] = 100;\nimage.data[1] = 150;\nimage.data[2] = 200;\nimage.data[3] = 255;\n\ntf.fromPixels(image).print();\n```",
                 "fileName": "#325",
                 "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/array_ops.ts#L325-L333",
                 "isFunction": true
@@ -1417,9 +1417,9 @@
                   }
                 ],
                 "returnType": "TensorBuffer",
-                "documentation": "Creates an empty `tf.TensorBuffer` with the specified `shape` and `dtype`.\n\nThe values are stored in CPU as `TypedArray`. Fill the buffer using\n`buffer.set()`, or by modifying directly `buffer.values`.\n\nWhen done, call `buffer.toTensor()` to get an immutable `tf.Tensor` with\nthose values.\n\n```js\n// Create a buffer and set values at particular indices.\nconst buffer = tf.buffer([2, 2]);\nbuffer.set(3, 0, 0);\nbuffer.set(5, 1, 0);\n\n// Convert the buffer back to a tensor.\nbuffer.toTensor().print();\n```",
-                "fileName": "#1116",
-                "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/array_ops.ts#L1116-L1120",
+                "documentation": "Creates an empty `TensorBuffer` with the specified `shape` and `dtype`.\n\nThe values are stored in CPU as `TypedArray`. Fill the buffer using\n`buffer.set()`, or by modifying directly `buffer.values`.\n\nWhen done, call `buffer.toTensor()` to get an immutable `Tensor` with\nthose values.\n\n```js\n// Create a buffer and set values at particular indices.\nconst buffer = tf.buffer([2, 2]);\nbuffer.set(3, 0, 0);\nbuffer.set(5, 1, 0);\n\n// Convert the buffer back to a tensor.\nbuffer.toTensor().print();\n```",
+                "fileName": "#1117",
+                "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/array_ops.ts#L1117-L1121",
                 "isFunction": true
               },
               {
@@ -1446,9 +1446,9 @@
                   }
                 ],
                 "returnType": "void",
-                "documentation": "Prints information about the `tf.Tensor` including its data.\n\n```js\nconst verbose = true;\ntf.tensor2d([1, 2, 3, 4], [2, 2]).print(verbose);\n```",
-                "fileName": "#1134",
-                "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/array_ops.ts#L1134-L1136",
+                "documentation": "Prints information about the `Tensor` including its data.\n\n```js\nconst verbose = true;\ntf.tensor2d([1, 2, 3, 4], [2, 2]).print(verbose);\n```",
+                "fileName": "#1135",
+                "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/array_ops.ts#L1135-L1137",
                 "isFunction": true
               }
             ]
@@ -1480,7 +1480,7 @@
                   }
                 ],
                 "returnType": "Tensor",
-                "documentation": "Concatenates a list of`tf.Tensor`s along a given axis.\n\nThe tensors ranks and types must match, and their sizes must match in all\ndimensions except `axis`.\n\nAlso available are stricter rank-specific methods that assert that\n`tensors` are of the given rank:\n   - `tf.concat1d`\n   - `tf.concat2d`\n   - `tf.concat3d`\n   - `tf.concat4d`\n\nExcept `tf.concat1d` (which does not have axis param), all methods have\nsame signature as this method.\n\n```js\nconst a = tf.tensor1d([1, 2]);\nconst b = tf.tensor1d([3, 4]);\na.concat(b).print();  // or a.concat(b)\n```\n\n```js\nconst a = tf.tensor1d([1, 2]);\nconst b = tf.tensor1d([3, 4]);\nconst c = tf.tensor1d([5, 6]);\ntf.concat([a, b, c]).print();\n```\n\n```js\nconst a = tf.tensor2d([[1, 2], [10, 20]]);\nconst b = tf.tensor2d([[3, 4], [30, 40]]);\nconst axis = 1;\ntf.concat([a, b], axis).print();\n```",
+                "documentation": "Concatenates a list of `Tensor`s along a given axis.\n\nThe tensors ranks and types must match, and their sizes must match in all\ndimensions except `axis`.\n\nAlso available are stricter rank-specific methods that assert that\n`tensors` are of the given rank:\n   - `tf.concat1d`\n   - `tf.concat2d`\n   - `tf.concat3d`\n   - `tf.concat4d`\n\nExcept `tf.concat1d` (which does not have axis param), all methods have\nsame signature as this method.\n\n```js\nconst a = tf.tensor1d([1, 2]);\nconst b = tf.tensor1d([3, 4]);\na.concat(b).print();  // or a.concat(b)\n```\n\n```js\nconst a = tf.tensor1d([1, 2]);\nconst b = tf.tensor1d([3, 4]);\nconst c = tf.tensor1d([5, 6]);\ntf.concat([a, b, c]).print();\n```\n\n```js\nconst a = tf.tensor2d([[1, 2], [10, 20]]);\nconst b = tf.tensor2d([[3, 4], [30, 40]]);\nconst axis = 1;\ntf.concat([a, b], axis).print();\n```",
                 "fileName": "#158",
                 "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/concat_split.ts#L158-L182",
                 "isFunction": true
@@ -1516,7 +1516,7 @@
                   }
                 ],
                 "returnType": "Tensor[]",
-                "documentation": "Splits a`tf.Tensor` into sub tensors.\n\nIf `numOrSizeSplits` is a number, splits `x` along dimension `axis`\ninto `numOrSizeSplits` smaller tensors.\nRequires that `numOrSizeSplits` evenly divides `x.shape[axis]`.\n\nIf `numOrSizeSplits` is a number array, splits `x` into\n`(numOrSizeSplits.length` pieces. The shape of the `i`-th piece has the\nsame size as `x` except along dimension `axis` where the size is\n`numOrSizeSplits[i]`.\n\n```js\nconst x = tf.tensor2d([1, 2, 3, 4, 5, 6, 7, 8], [2, 4]);\nconst [a, b] = tf.split(x, 2, 1);\na.print();\nb.print();\n\nconst [c, d, e] = tf.split(x, [1, 2, 1], 1);\nc.print();\nd.print();\ne.print();\n```",
+                "documentation": "Splits a `Tensor` into sub tensors.\n\nIf `numOrSizeSplits` is a number, splits `x` along dimension `axis`\ninto `numOrSizeSplits` smaller tensors.\nRequires that `numOrSizeSplits` evenly divides `x.shape[axis]`.\n\nIf `numOrSizeSplits` is a number array, splits `x` into\n`(numOrSizeSplits.length` pieces. The shape of the `i`-th piece has the\nsame size as `x` except along dimension `axis` where the size is\n`numOrSizeSplits[i]`.\n\n```js\nconst x = tf.tensor2d([1, 2, 3, 4, 5, 6, 7, 8], [2, 4]);\nconst [a, b] = tf.split(x, 2, 1);\na.print();\nb.print();\n\nconst [c, d, e] = tf.split(x, [1, 2, 1], 1);\nc.print();\nd.print();\ne.print();\n```",
                 "fileName": "#217",
                 "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/concat_split.ts#L217-L237",
                 "isFunction": true
@@ -1574,9 +1574,9 @@
                   }
                 ],
                 "returnType": "Tensor",
-                "documentation": "Stacks a list of rank-`R` `tf.Tensor`s into one rank-`(R+1)` `tf.Tensor`.\n\n```js\nconst a = tf.tensor1d([1, 2]);\nconst b = tf.tensor1d([3, 4]);\nconst c = tf.tensor1d([5, 6]);\ntf.stack([a, b, c]).print();\n```",
-                "fileName": "#714",
-                "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/array_ops.ts#L714-L740",
+                "documentation": "Stacks a list of rank-`R` `Tensor`s into one rank-`(R+1)` `Tensor`.\n\n```js\nconst a = tf.tensor1d([1, 2]);\nconst b = tf.tensor1d([3, 4]);\nconst c = tf.tensor1d([5, 6]);\ntf.stack([a, b, c]).print();\n```",
+                "fileName": "#715",
+                "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/array_ops.ts#L715-L741",
                 "isFunction": true
               },
               {
@@ -1603,9 +1603,9 @@
                   }
                 ],
                 "returnType": "Tensor[]",
-                "documentation": "Unstacks a `tf.Tensor` of rank-`R` into a list of rank-`(R-1)` `tf.Tensor`s.\n\n```js\nconst a = tf.tensor2d([1, 2, 3, 4], [2, 2]);\n\ntf.unstack(a).forEach(tensor => tensor.print());\n```",
-                "fileName": "#920",
-                "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/array_ops.ts#L920-L942",
+                "documentation": "Unstacks a `Tensor` of rank-`R` into a list of rank-`(R-1)` `Tensor`s.\n\n```js\nconst a = tf.tensor2d([1, 2, 3, 4], [2, 2]);\n\ntf.unstack(a).forEach(tensor => tensor.print());\n```",
+                "fileName": "#921",
+                "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/array_ops.ts#L921-L943",
                 "isFunction": true
               },
               {
@@ -1632,7 +1632,7 @@
                   }
                 ],
                 "returnType": "Tensor",
-                "documentation": "Reverses a `tf.Tensor` along a specified axis.\n\nAlso available are stricter rank-specific methods that assert that `x` is\nof the given rank:\n   - `tf.reverse1d`\n   - `tf.reverse2d`\n   - `tf.reverse3d`\n   - `tf.reverse4d`\n\nExcept `tf.reverse1d` (which does not have axis param), all methods have\nsame signature as this method.\n\n```js\nconst x = tf.tensor1d([1, 2, 3, 4]);\n\nx.reverse().print();\n```\n\n```js\nconst x = tf.tensor2d([1, 2, 3, 4], [2, 2]);\n\nconst axis = 1;\nx.reverse(axis).print();\n```",
+                "documentation": "Reverses a `Tensor` along a specified axis.\n\nAlso available are stricter rank-specific methods that assert that `x` is\nof the given rank:\n   - `tf.reverse1d`\n   - `tf.reverse2d`\n   - `tf.reverse3d`\n   - `tf.reverse4d`\n\nExcept `tf.reverse1d` (which does not have axis param), all methods have\nsame signature as this method.\n\n```js\nconst x = tf.tensor1d([1, 2, 3, 4]);\n\nx.reverse().print();\n```\n\n```js\nconst x = tf.tensor2d([1, 2, 3, 4], [2, 2]);\n\nconst axis = 1;\nx.reverse(axis).print();\n```",
                 "fileName": "#110",
                 "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/reverse.ts#L110-L124",
                 "isFunction": true
@@ -1647,7 +1647,7 @@
                 "parameters": [
                   {
                     "name": "x",
-                    "documentation": "The input `tf.Tensor` to slice from.",
+                    "documentation": "The input `Tensor` to slice from.",
                     "type": "Tensor|TypedArray|Array",
                     "optional": false,
                     "isConfigParam": false
@@ -1668,7 +1668,7 @@
                   }
                 ],
                 "returnType": "Tensor",
-                "documentation": "Extracts a slice from a `tf.Tensor` starting at coordinates `begin`\nand is of size `size`.\n\nAlso available are stricter rank-specific methods with the same signature\nas this method that assert that `x` is of the given rank:\n   - `tf.slice1d`\n   - `tf.slice2d`\n   - `tf.slice3d`\n   - `tf.slice4d`\n\n```js\nconst x = tf.tensor1d([1, 2, 3, 4]);\n\nx.slice([1], [2]).print();\n```\n\n```js\nconst x = tf.tensor2d([1, 2, 3, 4], [2, 2]);\n\nx.slice([1, 0], [1, 2]).print();\n```",
+                "documentation": "Extracts a slice from a `Tensor` starting at coordinates `begin`\nand is of size `size`.\n\nAlso available are stricter rank-specific methods with the same signature\nas this method that assert that `x` is of the given rank:\n   - `tf.slice1d`\n   - `tf.slice2d`\n   - `tf.slice3d`\n   - `tf.slice4d`\n\n```js\nconst x = tf.tensor1d([1, 2, 3, 4]);\n\nx.slice([1], [2]).print();\n```\n\n```js\nconst x = tf.tensor2d([1, 2, 3, 4], [2, 2]);\n\nx.slice([1, 0], [1, 2]).print();\n```",
                 "fileName": "#114",
                 "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/slice.ts#L114-L165",
                 "isFunction": true
@@ -1759,7 +1759,7 @@
                   }
                 ],
                 "returnType": "Tensor",
-                "documentation": "Creates a `tf.Tensor` with values sampled from a normal distribution.\n\n```js\ntf.randomNormal([2, 2]).print();\n```",
+                "documentation": "Creates a `Tensor` with values sampled from a normal distribution.\n\n```js\ntf.randomNormal([2, 2]).print();\n```",
                 "fileName": "#120",
                 "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/array_ops.ts#L120-L133",
                 "isFunction": true
@@ -1802,7 +1802,7 @@
                   }
                 ],
                 "returnType": "Tensor",
-                "documentation": "Creates a `tf.Tensor` with values sampled from a uniform distribution.\n\nThe generated values follow a uniform distribution in the range [minval,\nmaxval). The lower bound minval is included in the range, while the upper\nbound maxval is excluded.\n\n```js\ntf.randomUniform([2, 2]).print();\n```",
+                "documentation": "Creates a `Tensor` with values sampled from a uniform distribution.\n\nThe generated values follow a uniform distribution in the range [minval,\nmaxval). The lower bound minval is included in the range, while the upper\nbound maxval is excluded.\n\n```js\ntf.randomUniform([2, 2]).print();\n```",
                 "fileName": "#188",
                 "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/array_ops.ts#L188-L196",
                 "isFunction": true
@@ -1845,7 +1845,7 @@
                   }
                 ],
                 "returnType": "Tensor1D|Tensor2D",
-                "documentation": "Creates a `tf.Tensor` with values drawn from a multinomial distribution.\n\n```js\nconst probs = tf.tensor([.75, .25]);\ntf.multinomial(probs, 3).print();\n```",
+                "documentation": "Creates a `Tensor` with values drawn from a multinomial distribution.\n\n```js\nconst probs = tf.tensor([.75, .25]);\ntf.multinomial(probs, 3).print();\n```",
                 "fileName": "#248",
                 "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/array_ops.ts#L248-L269",
                 "isFunction": true
@@ -1879,7 +1879,7 @@
                   }
                 ],
                 "returnType": "Tensor",
-                "documentation": "Reshapes a `tf.Tensor` to a given shape.\n\nGiven an input tensor, returns a new tensor with the same values as the\ninput tensor with shape `shape`.\n\nIf one component of shape is the special value -1, the size of that\ndimension is computed so that the total size remains constant. In\nparticular, a shape of [-1] flattens into 1-D. At most one component of\nshape can be -1.\n\nIf shape is 1-D or higher, then the operation returns a tensor with shape\nshape filled with the values of tensor. In this case, the number of\nelements implied by shape must be the same as the number of elements in\ntensor.\n\n```js\nconst x = tf.tensor1d([1, 2, 3, 4]);\nx.reshape([2, 2]).print();\n```",
+                "documentation": "Reshapes a `Tensor` to a given shape.\n\nGiven an input tensor, returns a new tensor with the same values as the\ninput tensor with shape `shape`.\n\nIf one component of shape is the special value -1, the size of that\ndimension is computed so that the total size remains constant. In\nparticular, a shape of [-1] flattens into 1-D. At most one component of\nshape can be -1.\n\nIf shape is 1-D or higher, then the operation returns a tensor with shape\nshape filled with the values of tensor. In this case, the number of\nelements implied by shape must be the same as the number of elements in\ntensor.\n\n```js\nconst x = tf.tensor1d([1, 2, 3, 4]);\nx.reshape([2, 2]).print();\n```",
                 "fileName": "#462",
                 "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/array_ops.ts#L462-L475",
                 "isFunction": true
@@ -1908,7 +1908,7 @@
                   }
                 ],
                 "returnType": "Tensor",
-                "documentation": "Removes dimensions of size 1 from the shape of a `tf.Tensor`.\n\n```js\nconst x = tf.tensor([1, 2, 3, 4], [1, 1, 4]);\nx.squeeze().print();\n```",
+                "documentation": "Removes dimensions of size 1 from the shape of a `Tensor`.\n\n```js\nconst x = tf.tensor([1, 2, 3, 4], [1, 1, 4]);\nx.squeeze().print();\n```",
                 "fileName": "#491",
                 "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/array_ops.ts#L491-L494",
                 "isFunction": true
@@ -1937,7 +1937,7 @@
                   }
                 ],
                 "returnType": "Tensor",
-                "documentation": "Casts a `tf.Tensor` to a new dtype.\n\n```js\nconst x = tf.tensor1d([1.5, 2.5, 3]);\ntf.cast(x, 'int32').print();\n```",
+                "documentation": "Casts a `Tensor` to a new dtype.\n\n```js\nconst x = tf.tensor1d([1.5, 2.5, 3]);\ntf.cast(x, 'int32').print();\n```",
                 "fileName": "#507",
                 "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/array_ops.ts#L507-L515",
                 "isFunction": true
@@ -1973,9 +1973,9 @@
                   }
                 ],
                 "returnType": "Tensor",
-                "documentation": "Pads a `tf.Tensor` with a given value and paddings.\n\nThis operation currently only implements the `CONSTANT` mode.\n\nAlso available are stricter rank-specific methods with the same signature\nas this method that assert that `paddings` is of given length.\n   - `tf.pad1d`\n   - `tf.pad2d`\n   - `tf.pad3d`\n   - `tf.pad4d`\n\n```js\nconst x = tf.tensor1d([1, 2, 3, 4]);\nx.pad([[1, 2]]).print();\n```",
-                "fileName": "#682",
-                "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/array_ops.ts#L682-L698",
+                "documentation": "Pads a `Tensor` with a given value and paddings.\n\nThis operation currently only implements the `CONSTANT` mode.\n\nAlso available are stricter rank-specific methods with the same signature\nas this method that assert that `paddings` is of given length.\n   - `tf.pad1d`\n   - `tf.pad2d`\n   - `tf.pad3d`\n   - `tf.pad4d`\n\n```js\nconst x = tf.tensor1d([1, 2, 3, 4]);\nx.pad([[1, 2]]).print();\n```",
+                "fileName": "#683",
+                "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/array_ops.ts#L683-L699",
                 "isFunction": true
               },
               {
@@ -1988,7 +1988,7 @@
                 "parameters": [
                   {
                     "name": "x",
-                    "documentation": "A `tf.Tensor`. N-D with `x.shape` = `[batch] + spatialShape +\nremainingShape`, where spatialShape has `M` dimensions.",
+                    "documentation": "A `Tensor`. N-D with `x.shape` = `[batch] + spatialShape +\nremainingShape`, where spatialShape has `M` dimensions.",
                     "type": "Tensor|TypedArray|Array",
                     "optional": false,
                     "isConfigParam": false
@@ -2009,9 +2009,9 @@
                   }
                 ],
                 "returnType": "Tensor",
-                "documentation": "This operation reshapes the \"batch\" dimension 0 into `M + 1` dimensions of\nshape `blockShape + [batch]`, interleaves these blocks back into the grid\ndefined by the spatial dimensions `[1, ..., M]`, to obtain a result with\nthe same rank as the input. The spatial dimensions of this intermediate\nresult are then optionally cropped according to `crops` to produce the\noutput. This is the reverse of `tf.spaceToBatchND`. See below for a precise\ndescription.\n\n```js\nconst x = tf.tensor4d([1, 2, 3, 4], [4, 1, 1, 1]);\nconst blockShape = [2, 2];\nconst crops = [[0, 0], [0, 0]];\n\nx.batchToSpaceND(blockShape, crops).print();\n```",
-                "fileName": "#790",
-                "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/array_ops.ts#L790-L818",
+                "documentation": "This operation reshapes the \"batch\" dimension 0 into `M + 1` dimensions of\nshape `blockShape + [batch]`, interleaves these blocks back into the grid\ndefined by the spatial dimensions `[1, ..., M]`, to obtain a result with\nthe same rank as the input. The spatial dimensions of this intermediate\nresult are then optionally cropped according to `crops` to produce the\noutput. This is the reverse of `spaceToBatchND`. See below for a precise\ndescription.\n\n```js\nconst x = tf.tensor4d([1, 2, 3, 4], [4, 1, 1, 1]);\nconst blockShape = [2, 2];\nconst crops = [[0, 0], [0, 0]];\n\nx.batchToSpaceND(blockShape, crops).print();\n```",
+                "fileName": "#791",
+                "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/array_ops.ts#L791-L819",
                 "isFunction": true
               },
               {
@@ -2024,7 +2024,7 @@
                 "parameters": [
                   {
                     "name": "x",
-                    "documentation": "A `tf.Tensor`. N-D with `x.shape` = `[batch] + spatialShape +\nremainingShape`, where spatialShape has `M` dimensions.",
+                    "documentation": "A `Tensor`. N-D with `x.shape` = `[batch] + spatialShape +\nremainingShape`, where spatialShape has `M` dimensions.",
                     "type": "Tensor|TypedArray|Array",
                     "optional": false,
                     "isConfigParam": false
@@ -2046,8 +2046,8 @@
                 ],
                 "returnType": "Tensor",
                 "documentation": "This operation divides \"spatial\" dimensions [1, ..., M] of the input into\na grid of blocks of shape block_shape, and interleaves these blocks with\nthe \"batch\" dimension (0) such that in the output, the spatial\ndimensions [1, ..., M] correspond to the position within the grid,\nand the batch dimension combines both the position within a spatial block\nand the original batch position. Prior to division into blocks,\nthe spatial dimensions of the input are optionally zero padded\naccording to paddings. See below for a precise description.\n\n```js\nconst x = tf.tensor4d([1, 2, 3, 4], [4, 1, 1, 1]);\nconst blockShape = [2, 2];\nconst paddings = [[0, 0], [0, 0]];\n\nx.spaceToBatchND(blockShape, paddings).print();\n```",
-                "fileName": "#869",
-                "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/array_ops.ts#L869-L905",
+                "fileName": "#870",
+                "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/array_ops.ts#L870-L906",
                 "isFunction": true
               },
               {
@@ -2074,9 +2074,9 @@
                   }
                 ],
                 "returnType": "Tensor",
-                "documentation": "Returns a `tf.Tensor` that has expanded rank, by inserting a dimension\ninto the tensor's shape.\n\n```js\nconst x = tf.tensor1d([1, 2, 3, 4]);\nconst axis = 1;\nx.expandDims(axis).print();\n```",
-                "fileName": "#1007",
-                "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/array_ops.ts#L1007-L1022",
+                "documentation": "Returns a `Tensor` that has expanded rank, by inserting a dimension\ninto the tensor's shape.\n\n```js\nconst x = tf.tensor1d([1, 2, 3, 4]);\nconst axis = 1;\nx.expandDims(axis).print();\n```",
+                "fileName": "#1008",
+                "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/array_ops.ts#L1008-L1023",
                 "isFunction": true
               },
               {
@@ -2111,8 +2111,8 @@
                 ],
                 "returnType": "Tensor4D",
                 "documentation": "Rearranges data from depth into blocks of spatial data. More specifically,\nthis op outputs a copy of the input tensor where values from the `depth`\ndimension are moved in spatial blocks to the `height` and `width` dimensions.\nThe attr `blockSize` indicates the input block size and how the data is\nmoved.\n\n  - Chunks of data of size `blockSize * blockSize` from depth are rearranged\ninto non-overlapping blocks of size `blockSize x blockSize`\n\n  - The width the output tensor is `inputWidth * blockSize`, whereas the\nheight is `inputHeight * blockSize`\n\n  - The Y, X coordinates within each block of the output image are determined\nby the high order component of the input channel index\n\n  - The depth of the input tensor must be divisible by `blockSize *\nblockSize`\n\nThe `dataFormat` attr specifies the layout of the input and output tensors\nwith the following options: \"NHWC\": [ `batch, height, width, channels` ]\n\"NCHW\": [ `batch, channels, height, width` ]\n\n```js\nconst x = tf.tensor4d([1, 2, 3, 4], [1, 1, 1, 4]);\nconst blockSize = 2;\nconst dataFormat = \"NHWC\";\n\ntf.depthToSpace(x, blockSize, dataFormat).print();\n```",
-                "fileName": "#1060",
-                "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/array_ops.ts#L1060-L1089",
+                "fileName": "#1061",
+                "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/array_ops.ts#L1061-L1090",
                 "isFunction": true
               }
             ]
@@ -2235,7 +2235,7 @@
                   }
                 ],
                 "returnType": "void|number|string|Tensor|Tensor[]|{[key:\nstring]:Tensor|number|string}",
-                "documentation": "Executes the provided function `fn` and after it is executed, cleans up all\nintermediate tensors allocated by `fn` except those returned by `fn`.\n`fn` must not return a Promise (async functions not allowed). The returned\nresult can be a complex object.\n\nUsing this method helps avoid memory leaks. In general, wrap calls to\noperations in `tf.tidy` for automatic memory cleanup.\n\nWhen in safe mode, you must enclose all `tf.Tensor` creation and ops\ninside a `tf.tidy` to prevent memory leaks.\n\n```js\n// y = 2 ^ 2 + 1\nconst y = tf.tidy(() => {\n   // a, b, and one will be cleaned up when the tidy ends.\n   const one = tf.scalar(1);\n   const a = tf.scalar(2);\n   const b = a.square();\n\n   console.log('numTensors (in tidy): ' + tf.memory().numTensors);\n\n   // The value returned inside the tidy function will return\n   // through the tidy, in this case to the variable y.\n   return b.add(one);\n});\n\nconsole.log('numTensors (outside tidy): ' + tf.memory().numTensors);\ny.print();\n```",
+                "documentation": "Executes the provided function `fn` and after it is executed, cleans up all\nintermediate tensors allocated by `fn` except those returned by `fn`.\n`fn` must not return a Promise (async functions not allowed). The returned\nresult can be a complex object.\n\nUsing this method helps avoid memory leaks. In general, wrap calls to\noperations in `tidy` for automatic memory cleanup.\n\nWhen in safe mode, you must enclose all `Tensor` creation and ops\ninside a `tidy` to prevent memory leaks.\n\n```js\n// y = 2 ^ 2 + 1\nconst y = tf.tidy(() => {\n   // a, b, and one will be cleaned up when the tidy ends.\n   const one = tf.scalar(1);\n   const a = tf.scalar(2);\n   const b = a.square();\n\n   console.log('numTensors (in tidy): ' + tf.memory().numTensors);\n\n   // The value returned inside the tidy function will return\n   // through the tidy, in this case to the variable y.\n   return b.add(one);\n});\n\nconsole.log('numTensors (outside tidy): ' + tf.memory().numTensors);\ny.print();\n```",
                 "fileName": "#185",
                 "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/environment.ts#L185-L188",
                 "isFunction": true
@@ -2250,14 +2250,14 @@
                 "parameters": [
                   {
                     "name": "container",
-                    "documentation": "an object that may be a `tf.Tensor` or may directly\ncontain `tf.Tensor`s, such as a `Tensor[]` or `{key: Tensor, ...}`. If\nthe object is not a `tf.Tensor` or does not contain `Tensors`, nothing\nhappens. In general it is safe to pass any object here, except that\n`Promise`s are not supported.",
+                    "documentation": "an object that may be a `Tensor` or may directly contain\n`Tensor`s, such as a `Tensor[]` or `{key: Tensor, ...}`. If the\nobject is not a `Tensor` or does not contain `Tensors`, nothing\nhappens. In general it is safe to pass any object here, except that\n`Promise`s are not supported.",
                     "type": "void|number|string|Tensor|Tensor[]|{[key:\nstring]:Tensor|number|string}",
                     "optional": false,
                     "isConfigParam": false
                   }
                 ],
                 "returnType": "void",
-                "documentation": "Disposes any `tf.Tensor`s found within the provided object.",
+                "documentation": "Disposes any `Tensor`s found within the provided object.",
                 "fileName": "#200",
                 "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/environment.ts#L200-L203",
                 "isFunction": true
@@ -2279,7 +2279,7 @@
                   }
                 ],
                 "returnType": "Tensor",
-                "documentation": "Keeps a `tf.Tensor` generated inside a `tf.tidy` from being disposed\nautomatically.\n\n```js\nlet b;\nconst y = tf.tidy(() => {\n   const one = tf.scalar(1);\n   const a = tf.scalar(2);\n\n   // b will not be cleaned up by the tidy. a and one will be cleaned up\n   // when the tidy ends.\n   b = tf.keep(a.square());\n\n   console.log('numTensors (in tidy): ' + tf.memory().numTensors);\n\n   // The value returned inside the tidy function will return\n   // through the tidy, in this case to the variable y.\n   return b.add(one);\n});\n\nconsole.log('numTensors (outside tidy): ' + tf.memory().numTensors);\nconsole.log('y:');\ny.print();\nconsole.log('b:');\nb.print();\n```",
+                "documentation": "Keeps a `Tensor` generated inside a `tidy` from being disposed\nautomatically.\n\n```js\nlet b;\nconst y = tf.tidy(() => {\n   const one = tf.scalar(1);\n   const a = tf.scalar(2);\n\n   // b will not be cleaned up by the tidy. a and one will be cleaned up\n   // when the tidy ends.\n   b = tf.keep(a.square());\n\n   console.log('numTensors (in tidy): ' + tf.memory().numTensors);\n\n   // The value returned inside the tidy function will return\n   // through the tidy, in this case to the variable y.\n   return b.add(one);\n});\n\nconsole.log('numTensors (outside tidy): ' + tf.memory().numTensors);\nconsole.log('y:');\ny.print();\nconsole.log('b:');\nb.print();\n```",
                 "fileName": "#236",
                 "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/environment.ts#L236-L238",
                 "isFunction": true
@@ -2380,7 +2380,7 @@
                   }
                 ],
                 "returnType": "(\n    x: Tensor, dy?: Tensor) => Tensor",
-                "documentation": "Provided `f(x)`, returns another function `g(x, dy?)`, which gives the\ngradient of `f(x)` with respect to `x`.\n\nIf `dy` is provided, the gradient of `f(x).mul(dy).sum()` with respect to\n`x` is computed instead. `f(x)` must take a single tensor `x` and return a\nsingle tensor `y`. If `f()` takes multiple inputs, use `tf.grads` instead.\n\n```js\n// f(x) = x ^ 2\nconst f = x => x.square();\n// f'(x) = 2x\nconst g = tf.grad(f);\n\nconst x = tf.tensor1d([2, 3]);\ng(x).print();\n```\n\n```js\n// f(x) = x ^ 3\nconst f = x => x.pow(tf.scalar(3, 'int32'));\n// f'(x) = 3x ^ 2\nconst g = tf.grad(f);\n// f''(x) = 6x\nconst gg = tf.grad(g);\n\nconst x = tf.tensor1d([2, 3]);\ngg(x).print();\n```",
+                "documentation": "Provided `f(x)`, returns another function `g(x, dy?)`, which gives the\ngradient of `f(x)` with respect to `x`.\n\nIf `dy` is provided, the gradient of `f(x).mul(dy).sum()` with respect to\n`x` is computed instead. `f(x)` must take a single tensor `x` and return a\nsingle tensor `y`. If `f()` takes multiple inputs, use `grads` instead.\n\n```js\n// f(x) = x ^ 2\nconst f = x => x.square();\n// f'(x) = 2x\nconst g = tf.grad(f);\n\nconst x = tf.tensor1d([2, 3]);\ng(x).print();\n```\n\n```js\n// f(x) = x ^ 3\nconst f = x => x.pow(tf.scalar(3, 'int32'));\n// f'(x) = 3x ^ 2\nconst g = tf.grad(f);\n// f''(x) = 6x\nconst gg = tf.grad(g);\n\nconst x = tf.tensor1d([2, 3]);\ngg(x).print();\n```",
                 "fileName": "#73",
                 "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/gradients.ts#L73-L94",
                 "isFunction": true
@@ -2402,7 +2402,7 @@
                   }
                 ],
                 "returnType": "(\n    args: Tensor[], dy?: Tensor) => Tensor[]",
-                "documentation": "Provided `f(x1, x2,...)`, returns another function `g([x1, x2,...], dy?)`,\nwhich gives an array of gradients of `f()` with respect to each input\n[`x1`,`x2`,...].\n\nIf `dy` is passed when calling `g()`, the gradient of\n`f(x1,...).mul(dy).sum()` with respect to each input is computed instead.\nThe provided `f` must take one or more tensors and return a single tensor\n`y`. If `f()` takes a single input, we recommend using `tf.grad` instead.\n\n```js\n// f(a, b) = a * b\nconst f = (a, b) => a.mul(b);\n// df / da = b, df / db = a\nconst g = tf.grads(f);\n\nconst a = tf.tensor1d([2, 3]);\nconst b = tf.tensor1d([-2, -3]);\nconst [da, db] = g([a, b]);\nconsole.log('da');\nda.print();\nconsole.log('db');\ndb.print();\n```",
+                "documentation": "Provided `f(x1, x2,...)`, returns another function `g([x1, x2,...], dy?)`,\nwhich gives an array of gradients of `f()` with respect to each input\n[`x1`,`x2`,...].\n\nIf `dy` is passed when calling `g()`, the gradient of\n`f(x1,...).mul(dy).sum()` with respect to each input is computed instead.\nThe provided `f` must take one or more tensors and return a single tensor\n`y`. If `f()` takes a single input, we recommend using `grad` instead.\n\n```js\n// f(a, b) = a * b\nconst f = (a, b) => a.mul(b);\n// df / da = b, df / db = a\nconst g = tf.grads(f);\n\nconst a = tf.tensor1d([2, 3]);\nconst b = tf.tensor1d([-2, -3]);\nconst [da, db] = g([a, b]);\nconsole.log('da');\nda.print();\nconsole.log('db');\ndb.print();\n```",
                 "fileName": "#124",
                 "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/gradients.ts#L124-L147",
                 "isFunction": true
@@ -2424,7 +2424,7 @@
                   }
                 ],
                 "returnType": "(\n    x: Tensor, dy?: Tensor) => {\n  value: Tensor;\n  grad: Tensor;\n}",
-                "documentation": "Like `tf.grad`, but also returns the value of `f()`. Useful when `f()`\nreturns a metric you want to show.\n\nThe result is a rich object with the following properties:\n- grad: The gradient of `f(x)` w.r.t `x` (result of `tf.grad`).\n- value: The value returned by `f(x)`.\n\n```js\n// f(x) = x ^ 2\nconst f = x => x.square();\n// f'(x) = 2x\nconst g = tf.valueAndGrad(f);\n\nconst x = tf.tensor1d([2, 3]);\nconst {value, grad} = g(x);\n\nconsole.log('value');\nvalue.print();\nconsole.log('grad');\ngrad.print();\n```",
+                "documentation": "Like `grad`, but also returns the value of `f()`. Useful when `f()`\nreturns a metric you want to show.\n\nThe result is a rich object with the following properties:\n- grad: The gradient of `f(x)` w.r.t `x` (result of `grad`).\n- value: The value returned by `f(x)`.\n\n```js\n// f(x) = x ^ 2\nconst f = x => x.square();\n// f'(x) = 2x\nconst g = tf.valueAndGrad(f);\n\nconst x = tf.tensor1d([2, 3]);\nconst {value, grad} = g(x);\n\nconsole.log('value');\nvalue.print();\nconsole.log('grad');\ngrad.print();\n```",
                 "fileName": "#173",
                 "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/gradients.ts#L173-L191",
                 "isFunction": true
@@ -2446,7 +2446,7 @@
                   }
                 ],
                 "returnType": "(\n    args: Tensor[], dy?: Tensor) => {\n  grads: Tensor[];\n  value: Tensor;\n}",
-                "documentation": "Like `tf.grads`, but returns also the value of `f()`. Useful when `f()`\nreturns a metric you want to show.\n\nThe result is a rich object with the following properties:\n- grads: The gradients of `f()` w.r.t each input (result of `tf.grads`).\n- value: The value returned by `f(x)`.\n\n```js\n// f(a, b) = a * b\nconst f = (a, b) => a.mul(b);\n// df/da = b, df/db = a\nconst g = tf.valueAndGrads(f);\n\nconst a = tf.tensor1d([2, 3]);\nconst b = tf.tensor1d([-2, -3]);\nconst {value, grads} = g([a, b]);\n\nconst [da, db] = grads;\n\nconsole.log('value');\nvalue.print();\n\nconsole.log('da');\nda.print();\nconsole.log('db');\ndb.print();\n```",
+                "documentation": "Like `grads`, but returns also the value of `f()`. Useful when `f()`\nreturns a metric you want to show.\n\nThe result is a rich object with the following properties:\n- grads: The gradients of `f()` w.r.t each input (result of `grads`).\n- value: The value returned by `f(x)`.\n\n```js\n// f(a, b) = a * b\nconst f = (a, b) => a.mul(b);\n// df/da = b, df/db = a\nconst g = tf.valueAndGrads(f);\n\nconst a = tf.tensor1d([2, 3]);\nconst b = tf.tensor1d([-2, -3]);\nconst {value, grads} = g([a, b]);\n\nconst [da, db] = grads;\n\nconsole.log('value');\nvalue.print();\n\nconsole.log('da');\nda.print();\nconsole.log('db');\ndb.print();\n```",
                 "fileName": "#223",
                 "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/gradients.ts#L223-L248",
                 "isFunction": true
@@ -3021,7 +3021,7 @@
                   }
                 ],
                 "returnType": "SGDOptimizer",
-                "documentation": "Constructs a `tf.SGDOptimizer` that uses stochastic gradient descent.\n\n```js\n// Fit a quadratic function by learning the coefficients a, b, c.\nconst xs = tf.tensor1d([0, 1, 2, 3]);\nconst ys = tf.tensor1d([1.1, 5.9, 16.8, 33.9]);\n\nconst a = tf.scalar(Math.random()).variable();\nconst b = tf.scalar(Math.random()).variable();\nconst c = tf.scalar(Math.random()).variable();\n\n// y = a * x^2 + b * x + c.\nconst f = x => a.mul(x.square()).add(b.mul(x)).add(c);\nconst loss = (pred, label) => pred.sub(label).square().mean();\n\nconst learningRate = 0.01;\nconst optimizer = tf.train.sgd(learningRate);\n\n// Train the model.\nfor (let i = 0; i < 10; i++) {\n   optimizer.minimize(() => loss(f(xs), ys));\n}\n\n// Make predictions.\nconsole.log(\n     `a: ${a.dataSync()}, b: ${b.dataSync()}, c: ${c.dataSync()}`);\nconst preds = f(xs).dataSync();\npreds.forEach((pred, i) => {\n   console.log(`x: ${i}, pred: ${pred}`);\n});\n```",
+                "documentation": "Constructs a `SGDOptimizer` that uses stochastic gradient descent.\n\n```js\n// Fit a quadratic function by learning the coefficients a, b, c.\nconst xs = tf.tensor1d([0, 1, 2, 3]);\nconst ys = tf.tensor1d([1.1, 5.9, 16.8, 33.9]);\n\nconst a = tf.scalar(Math.random()).variable();\nconst b = tf.scalar(Math.random()).variable();\nconst c = tf.scalar(Math.random()).variable();\n\n// y = a * x^2 + b * x + c.\nconst f = x => a.mul(x.square()).add(b.mul(x)).add(c);\nconst loss = (pred, label) => pred.sub(label).square().mean();\n\nconst learningRate = 0.01;\nconst optimizer = tf.train.sgd(learningRate);\n\n// Train the model.\nfor (let i = 0; i < 10; i++) {\n   optimizer.minimize(() => loss(f(xs), ys));\n}\n\n// Make predictions.\nconsole.log(\n     `a: ${a.dataSync()}, b: ${b.dataSync()}, c: ${c.dataSync()}`);\nconst preds = f(xs).dataSync();\npreds.forEach((pred, i) => {\n   console.log(`x: ${i}, pred: ${pred}`);\n});\n```",
                 "fileName": "#65",
                 "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/optimizers/optimizer_constructors.ts#L65-L67",
                 "isFunction": true
@@ -3059,9 +3059,9 @@
                   }
                 ],
                 "returnType": "MomentumOptimizer",
-                "documentation": "Constructs a `tf.MomentumOptimizer` that uses momentum gradient\ndescent.\n\nSee\n[http://proceedings.mlr.press/v28/sutskever13.pdf](\nhttp://proceedings.mlr.press/v28/sutskever13.pdf)",
-                "fileName": "#85",
-                "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/optimizers/optimizer_constructors.ts#L85-L88",
+                "documentation": "Constructs a `MomentumOptimizer` that uses momentum gradient descent.\n\nSee\n[http://proceedings.mlr.press/v28/sutskever13.pdf](\nhttp://proceedings.mlr.press/v28/sutskever13.pdf)",
+                "fileName": "#84",
+                "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/optimizers/optimizer_constructors.ts#L84-L87",
                 "isFunction": true
               },
               {
@@ -3111,9 +3111,9 @@
                   }
                 ],
                 "returnType": "RMSPropOptimizer",
-                "documentation": "Constructs a `tf.RMSPropOptimizer` that uses RMSProp gradient\ndescent. This implementation uses plain momentum and is not centered\nversion of RMSProp.\n\nSee\n[http://www.cs.toronto.edu/~tijmen/csc321/slides/lecture_slides_lec6.pdf](\nhttp://www.cs.toronto.edu/~tijmen/csc321/slides/lecture_slides_lec6.pdf)",
-                "fileName": "#111",
-                "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/optimizers/optimizer_constructors.ts#L111-L116",
+                "documentation": "Constructs a `RMSPropOptimizer` that uses RMSProp gradient\ndescent. This implementation uses plain momentum and is not centered\nversion of RMSProp.\n\nSee\n[http://www.cs.toronto.edu/~tijmen/csc321/slides/lecture_slides_lec6.pdf](\nhttp://www.cs.toronto.edu/~tijmen/csc321/slides/lecture_slides_lec6.pdf)",
+                "fileName": "#110",
+                "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/optimizers/optimizer_constructors.ts#L110-L115",
                 "isFunction": true
               },
               {
@@ -3156,9 +3156,9 @@
                   }
                 ],
                 "returnType": "AdamOptimizer",
-                "documentation": "Constructs a `tf.AdamOptimizer` that uses the Adam algorithm.\nSee [https://arxiv.org/abs/1412.6980](https://arxiv.org/abs/1412.6980)",
-                "fileName": "#131",
-                "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/optimizers/optimizer_constructors.ts#L131-L135",
+                "documentation": "Constructs a `AdamOptimizer` that uses the Adam algorithm.\nSee [https://arxiv.org/abs/1412.6980](https://arxiv.org/abs/1412.6980)",
+                "fileName": "#130",
+                "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/optimizers/optimizer_constructors.ts#L130-L134",
                 "isFunction": true
               },
               {
@@ -3194,9 +3194,9 @@
                   }
                 ],
                 "returnType": "AdadeltaOptimizer",
-                "documentation": "Constructs a `tf.AdadeltaOptimizer` that uses the Adadelta algorithm.\nSee [https://arxiv.org/abs/1212.5701](https://arxiv.org/abs/1212.5701)",
-                "fileName": "#150",
-                "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/optimizers/optimizer_constructors.ts#L150-L153",
+                "documentation": "Constructs a `AdadeltaOptimizer` that uses the Adadelta algorithm.\nSee [https://arxiv.org/abs/1212.5701](https://arxiv.org/abs/1212.5701)",
+                "fileName": "#149",
+                "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/optimizers/optimizer_constructors.ts#L149-L152",
                 "isFunction": true
               },
               {
@@ -3246,9 +3246,9 @@
                   }
                 ],
                 "returnType": "AdamaxOptimizer",
-                "documentation": "Constructs a `tf.AdamaxOptimizer` that uses the Adamax algorithm.\nSee [https://arxiv.org/abs/1412.6980](https://arxiv.org/abs/1412.6980)",
-                "fileName": "#169",
-                "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/optimizers/optimizer_constructors.ts#L169-L173",
+                "documentation": "Constructs a `AdamaxOptimizer` that uses the Adamax algorithm.\nSee [https://arxiv.org/abs/1412.6980](https://arxiv.org/abs/1412.6980)",
+                "fileName": "#168",
+                "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/optimizers/optimizer_constructors.ts#L168-L172",
                 "isFunction": true
               },
               {
@@ -3277,9 +3277,9 @@
                   }
                 ],
                 "returnType": "AdagradOptimizer",
-                "documentation": "Constructs a `tf.AdagradOptimizer` that uses the Adagrad algorithm.\nSee\n[http://www.jmlr.org/papers/volume12/duchi11a/duchi11a.pdf](\nhttp://www.jmlr.org/papers/volume12/duchi11a/duchi11a.pdf)\nor\n[http://ruder.io/optimizing-gradient-descent/index.html#adagrad](\nhttp://ruder.io/optimizing-gradient-descent/index.html#adagrad)",
-                "fileName": "#192",
-                "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/optimizers/optimizer_constructors.ts#L192-L195",
+                "documentation": "Constructs a `AdagradOptimizer` that uses the Adagrad algorithm.\nSee\n[http://www.jmlr.org/papers/volume12/duchi11a/duchi11a.pdf](\nhttp://www.jmlr.org/papers/volume12/duchi11a/duchi11a.pdf)\nor\n[http://ruder.io/optimizing-gradient-descent/index.html#adagrad](\nhttp://ruder.io/optimizing-gradient-descent/index.html#adagrad)",
+                "fileName": "#191",
+                "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/optimizers/optimizer_constructors.ts#L191-L194",
                 "isFunction": true
               }
             ]
@@ -3374,7 +3374,7 @@
                   }
                 ],
                 "returnType": "Tensor",
-                "documentation": "Batch normalization.\n\nAs described in\n[http://arxiv.org/abs/1502.03167](http://arxiv.org/abs/1502.03167).\n\nMean, variance, scale, and offset can be of two shapes:\n   - The same shape as the input.\n   - In the common case, the depth dimension is the last dimension of x, so\n     the values would be an `tf.Tensor1D` of shape [depth].\n\nAlso available are stricter rank-specific methods with the same signature\nas this method that assert that parameters passed are of given rank\n   - `tf.batchNormalization2d`\n   - `tf.batchNormalization3d`\n   - `tf.batchNormalization4d`",
+                "documentation": "Batch normalization.\n\nAs described in\n[http://arxiv.org/abs/1502.03167](http://arxiv.org/abs/1502.03167).\n\nMean, variance, scale, and offset can be of two shapes:\n   - The same shape as the input.\n   - In the common case, the depth dimension is the last dimension of x, so\n     the values would be an `Tensor1D` of shape [depth].\n\nAlso available are stricter rank-specific methods with the same signature\nas this method that assert that parameters passed are of given rank\n   - `tf.batchNormalization2d`\n   - `tf.batchNormalization3d`\n   - `tf.batchNormalization4d`",
                 "fileName": "#222",
                 "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/batchnorm.ts#L222-L336",
                 "isFunction": true
@@ -3551,9 +3551,9 @@
                   }
                 ],
                 "returnType": "Tensor",
-                "documentation": "Computes the cumulative sum of a `tf.Tensor` along `axis`.\n\n```js\nconst x = tf.tensor([1, 2, 3, 4]);\nx.cumsum().print();\n```\n```js\nconst x = tf.tensor([[1, 2], [3, 4]]);\nx.cumsum().print();\n```",
-                "fileName": "#966",
-                "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/array_ops.ts#L966-L990",
+                "documentation": "Computes the cumulative sum of a `Tensor` along `axis`.\n\n```js\nconst x = tf.tensor([1, 2, 3, 4]);\nx.cumsum().print();\n```\n```js\nconst x = tf.tensor([[1, 2], [3, 4]]);\nx.cumsum().print();\n```",
+                "fileName": "#967",
+                "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/array_ops.ts#L967-L991",
                 "isFunction": true
               }
             ]
@@ -3600,7 +3600,7 @@
                   }
                 ],
                 "returnType": "Tensor",
-                "documentation": "Computes ceiling of input `tf.Tensor` element-wise: `ceil(x)`\n\n```js\nconst x = tf.tensor1d([.6, 1.1, -3.3]);\n\nx.ceil().print();  // or tf.ceil(x)\n```",
+                "documentation": "Computes ceiling of input `Tensor` element-wise: `ceil(x)`\n\n```js\nconst x = tf.tensor1d([.6, 1.1, -3.3]);\n\nx.ceil().print();  // or tf.ceil(x)\n```",
                 "fileName": "#59",
                 "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/unary_ops.ts#L59-L67",
                 "isFunction": true
@@ -3622,7 +3622,7 @@
                   }
                 ],
                 "returnType": "Tensor",
-                "documentation": "Computes floor of input `tf.Tensor` element-wise: `floor(x)`.\n\n```js\nconst x = tf.tensor1d([.6, 1.1, -3.3]);\n\nx.floor().print();  // or tf.floor(x)\n```",
+                "documentation": "Computes floor of input `Tensor` element-wise: `floor(x)`.\n\n```js\nconst x = tf.tensor1d([.6, 1.1, -3.3]);\n\nx.floor().print();  // or tf.floor(x)\n```",
                 "fileName": "#80",
                 "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/unary_ops.ts#L80-L89",
                 "isFunction": true
@@ -3666,7 +3666,7 @@
                   }
                 ],
                 "returnType": "Tensor",
-                "documentation": "Computes round of input `tf.Tensor` element-wise: `round(x)`.\nIt implements banker's rounding.\n\n```js\nconst x = tf.tensor1d([.6, 1.1, -3.3]);\n\nx.round().print();  // or tf.round(x)\n```",
+                "documentation": "Computes round of input `Tensor` element-wise: `round(x)`.\nIt implements banker's rounding.\n\n```js\nconst x = tf.tensor1d([.6, 1.1, -3.3]);\n\nx.round().print();  // or tf.round(x)\n```",
                 "fileName": "#123",
                 "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/unary_ops.ts#L123-L132",
                 "isFunction": true
@@ -3688,7 +3688,7 @@
                   }
                 ],
                 "returnType": "Tensor",
-                "documentation": "Computes exponential of the input `tf.Tensor` element-wise. `e ^ x`\n\n```js\nconst x = tf.tensor1d([1, 2, -3]);\n\nx.exp().print();  // or tf.exp(x)\n```",
+                "documentation": "Computes exponential of the input `Tensor` element-wise. `e ^ x`\n\n```js\nconst x = tf.tensor1d([1, 2, -3]);\n\nx.exp().print();  // or tf.exp(x)\n```",
                 "fileName": "#145",
                 "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/unary_ops.ts#L145-L154",
                 "isFunction": true
@@ -3710,7 +3710,7 @@
                   }
                 ],
                 "returnType": "Tensor",
-                "documentation": "Computes exponential of the input `tf.Tensor` minus one element-wise.\n`e ^ x - 1`\n\n```js\nconst x = tf.tensor1d([1, 2, -3]);\n\nx.expm1().print();  // or tf.expm1(x)\n```",
+                "documentation": "Computes exponential of the input `Tensor` minus one element-wise.\n`e ^ x - 1`\n\n```js\nconst x = tf.tensor1d([1, 2, -3]);\n\nx.expm1().print();  // or tf.expm1(x)\n```",
                 "fileName": "#168",
                 "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/unary_ops.ts#L168-L175",
                 "isFunction": true
@@ -3732,7 +3732,7 @@
                   }
                 ],
                 "returnType": "Tensor",
-                "documentation": "Computes natural logarithm of the input `tf.Tensor` element-wise: `ln(x)`\n\n```js\nconst x = tf.tensor1d([1, 2, Math.E]);\n\nx.log().print();  // or tf.log(x)\n```",
+                "documentation": "Computes natural logarithm of the input `Tensor` element-wise: `ln(x)`\n\n```js\nconst x = tf.tensor1d([1, 2, Math.E]);\n\nx.log().print();  // or tf.log(x)\n```",
                 "fileName": "#188",
                 "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/unary_ops.ts#L188-L195",
                 "isFunction": true
@@ -3754,7 +3754,7 @@
                   }
                 ],
                 "returnType": "Tensor",
-                "documentation": "Computes natural logarithm of the input `tf.Tensor` plus one\nelement-wise: `ln(1 + x)`\n\n```js\nconst x = tf.tensor1d([1, 2, Math.E - 1]);\n\nx.log1p().print();  // or tf.log1p(x)\n```",
+                "documentation": "Computes natural logarithm of the input `Tensor` plus one\nelement-wise: `ln(1 + x)`\n\n```js\nconst x = tf.tensor1d([1, 2, Math.E - 1]);\n\nx.log1p().print();  // or tf.log1p(x)\n```",
                 "fileName": "#209",
                 "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/unary_ops.ts#L209-L216",
                 "isFunction": true
@@ -3776,7 +3776,7 @@
                   }
                 ],
                 "returnType": "Tensor",
-                "documentation": "Computes square root of the input `tf.Tensor` element-wise: `y = sqrt(x)`\n\n```js\nconst x = tf.tensor1d([1, 2, 4, -1]);\n\nx.sqrt().print();  // or tf.sqrt(x)\n```",
+                "documentation": "Computes square root of the input `Tensor` element-wise: `y = sqrt(x)`\n\n```js\nconst x = tf.tensor1d([1, 2, 4, -1]);\n\nx.sqrt().print();  // or tf.sqrt(x)\n```",
                 "fileName": "#229",
                 "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/unary_ops.ts#L229-L236",
                 "isFunction": true
@@ -3798,7 +3798,7 @@
                   }
                 ],
                 "returnType": "Tensor",
-                "documentation": "Computes reciprocal of square root of the input `tf.Tensor` element-wise:\n`y = 1 / sqrt(x)`\n\n```js\nconst x = tf.tensor1d([1, 2, 4, -1]);\n\nx.rsqrt().print();  // or tf.rsqrt(x)\n```",
+                "documentation": "Computes reciprocal of square root of the input `Tensor` element-wise:\n`y = 1 / sqrt(x)`\n\n```js\nconst x = tf.tensor1d([1, 2, 4, -1]);\n\nx.rsqrt().print();  // or tf.rsqrt(x)\n```",
                 "fileName": "#250",
                 "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/unary_ops.ts#L250-L257",
                 "isFunction": true
@@ -3857,7 +3857,7 @@
                 "parameters": [
                   {
                     "name": "x",
-                    "documentation": "The input `tf.Tensor`.",
+                    "documentation": "The input `Tensor`.",
                     "type": "Tensor|TypedArray|Array",
                     "optional": false,
                     "isConfigParam": false
@@ -3866,7 +3866,7 @@
                 "returnType": "Tensor",
                 "documentation": "Computes absolute value element-wise: `abs(x)`\n\n```js\nconst x = tf.tensor1d([-1, 2, -3, 4]);\n\nx.abs().print();  // or tf.abs(x)\n```",
                 "fileName": "#310",
-                "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/unary_ops.ts#L310-L321",
+                "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/unary_ops.ts#L310-L317",
                 "isFunction": true
               },
               {
@@ -3901,8 +3901,8 @@
                 ],
                 "returnType": "Tensor",
                 "documentation": "Clips values element-wise. `max(min(x, clipValueMax), clipValueMin)`\n\n```js\nconst x = tf.tensor1d([-1, 2, -3, 4]);\n\nx.clipByValue(-2, 3).print();  // or tf.clipByValue(x, -2, 3)\n```",
-                "fileName": "#336",
-                "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/unary_ops.ts#L336-L354",
+                "fileName": "#332",
+                "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/unary_ops.ts#L332-L350",
                 "isFunction": true
               },
               {
@@ -3923,8 +3923,8 @@
                 ],
                 "returnType": "Tensor",
                 "documentation": "Computes sigmoid element-wise, `1 / (1 + exp(-x))`\n\n```js\nconst x = tf.tensor1d([0, -1, 2, -3]);\n\nx.sigmoid().print();  // or tf.sigmoid(x)\n```",
-                "fileName": "#367",
-                "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/unary_ops.ts#L367-L376",
+                "fileName": "#363",
+                "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/unary_ops.ts#L363-L372",
                 "isFunction": true
               },
               {
@@ -3944,9 +3944,9 @@
                   }
                 ],
                 "returnType": "Tensor",
-                "documentation": "Computes log sigmoid of the input `tf.Tensor` element-wise:\n`logSigmoid(x)`. For numerical stability, we use `-tf.softplus(-x)`.\n\n```js\nconst x = tf.tensor1d([0, 1, -1, .7]);\n\nx.logSigmoid().print();  // or tf.logSigmoid(x)\n```",
-                "fileName": "#390",
-                "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/unary_ops.ts#L390-L398",
+                "documentation": "Computes log sigmoid of the input `Tensor` element-wise:\n`logSigmoid(x)`. For numerical stability, we use `-tf.softplus(-x)`.\n\n```js\nconst x = tf.tensor1d([0, 1, -1, .7]);\n\nx.logSigmoid().print();  // or tf.logSigmoid(x)\n```",
+                "fileName": "#386",
+                "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/unary_ops.ts#L386-L394",
                 "isFunction": true
               },
               {
@@ -3966,9 +3966,9 @@
                   }
                 ],
                 "returnType": "Tensor",
-                "documentation": "Computes softplus of the input `tf.Tensor` element-wise: `log(exp(x) + 1)`\n\n```js\nconst x = tf.tensor1d([0, 1, -1, .7]);\n\nx.softplus().print();  // or tf.softplus(x)\n```",
-                "fileName": "#411",
-                "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/unary_ops.ts#L411-L418",
+                "documentation": "Computes softplus of the input `Tensor` element-wise: `log(exp(x) + 1)`\n\n```js\nconst x = tf.tensor1d([0, 1, -1, .7]);\n\nx.softplus().print();  // or tf.softplus(x)\n```",
+                "fileName": "#407",
+                "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/unary_ops.ts#L407-L414",
                 "isFunction": true
               },
               {
@@ -3989,8 +3989,8 @@
                 ],
                 "returnType": "Tensor",
                 "documentation": "Computes sin of the input Tensor element-wise: `sin(x)`\n\n```js\nconst x = tf.tensor1d([0, Math.PI / 2, Math.PI * 3 / 4]);\n\nx.sin().print();  // or tf.sin(x)\n```",
-                "fileName": "#431",
-                "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/unary_ops.ts#L431-L438",
+                "fileName": "#427",
+                "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/unary_ops.ts#L427-L434",
                 "isFunction": true
               },
               {
@@ -4010,9 +4010,9 @@
                   }
                 ],
                 "returnType": "Tensor",
-                "documentation": "Computes cos of the input `tf.Tensor` element-wise: `cos(x)`\n\n```js\nconst x = tf.tensor1d([0, Math.PI / 2, Math.PI * 3 / 4]);\n\nx.cos().print();  // or tf.cos(x)\n```",
-                "fileName": "#451",
-                "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/unary_ops.ts#L451-L458",
+                "documentation": "Computes cos of the input `Tensor` element-wise: `cos(x)`\n\n```js\nconst x = tf.tensor1d([0, Math.PI / 2, Math.PI * 3 / 4]);\n\nx.cos().print();  // or tf.cos(x)\n```",
+                "fileName": "#447",
+                "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/unary_ops.ts#L447-L454",
                 "isFunction": true
               },
               {
@@ -4032,9 +4032,9 @@
                   }
                 ],
                 "returnType": "Tensor",
-                "documentation": "Computes tan of the input `tf.Tensor` element-wise, `tan(x)`\n\n```js\nconst x = tf.tensor1d([0, Math.PI / 2, Math.PI * 3 / 4]);\n\nx.tan().print();  // or tf.tan(x)\n```",
-                "fileName": "#471",
-                "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/unary_ops.ts#L471-L478",
+                "documentation": "Computes tan of the input `Tensor` element-wise, `tan(x)`\n\n```js\nconst x = tf.tensor1d([0, Math.PI / 2, Math.PI * 3 / 4]);\n\nx.tan().print();  // or tf.tan(x)\n```",
+                "fileName": "#467",
+                "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/unary_ops.ts#L467-L474",
                 "isFunction": true
               },
               {
@@ -4054,9 +4054,9 @@
                   }
                 ],
                 "returnType": "Tensor",
-                "documentation": "Computes asin of the input `tf.Tensor` element-wise: `asin(x)`\n\n```js\nconst x = tf.tensor1d([0, 1, -1, .7]);\n\nx.asin().print();  // or tf.asin(x)\n```",
-                "fileName": "#491",
-                "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/unary_ops.ts#L491-L500",
+                "documentation": "Computes asin of the input `Tensor` element-wise: `asin(x)`\n\n```js\nconst x = tf.tensor1d([0, 1, -1, .7]);\n\nx.asin().print();  // or tf.asin(x)\n```",
+                "fileName": "#487",
+                "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/unary_ops.ts#L487-L496",
                 "isFunction": true
               },
               {
@@ -4076,9 +4076,9 @@
                   }
                 ],
                 "returnType": "Tensor",
-                "documentation": "Computes acos of the input `tf.Tensor` element-wise: `acos(x)`\n\n```js\nconst x = tf.tensor1d([0, 1, -1, .7]);\n\nx.acos().print();  // or tf.acos(x)\n```",
-                "fileName": "#513",
-                "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/unary_ops.ts#L513-L523",
+                "documentation": "Computes acos of the input `Tensor` element-wise: `acos(x)`\n\n```js\nconst x = tf.tensor1d([0, 1, -1, .7]);\n\nx.acos().print();  // or tf.acos(x)\n```",
+                "fileName": "#509",
+                "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/unary_ops.ts#L509-L519",
                 "isFunction": true
               },
               {
@@ -4098,9 +4098,9 @@
                   }
                 ],
                 "returnType": "Tensor",
-                "documentation": "Computes atan of the input `tf.Tensor` element-wise: `atan(x)`\n\n```js\nconst x = tf.tensor1d([0, 1, -1, .7]);\n\nx.atan().print();  // or tf.atan(x)\n```",
-                "fileName": "#536",
-                "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/unary_ops.ts#L536-L543",
+                "documentation": "Computes atan of the input `Tensor` element-wise: `atan(x)`\n\n```js\nconst x = tf.tensor1d([0, 1, -1, .7]);\n\nx.atan().print();  // or tf.atan(x)\n```",
+                "fileName": "#532",
+                "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/unary_ops.ts#L532-L539",
                 "isFunction": true
               },
               {
@@ -4120,9 +4120,9 @@
                   }
                 ],
                 "returnType": "Tensor",
-                "documentation": "Computes hyperbolic sin of the input `tf.Tensor` element-wise: `sinh(x)`\n\n```js\nconst x = tf.tensor1d([0, 1, -1, .7]);\n\nx.sinh().print();  // or tf.sinh(x)\n```",
-                "fileName": "#556",
-                "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/unary_ops.ts#L556-L563",
+                "documentation": "Computes hyperbolic sin of the input `Tensor` element-wise: `sinh(x)`\n\n```js\nconst x = tf.tensor1d([0, 1, -1, .7]);\n\nx.sinh().print();  // or tf.sinh(x)\n```",
+                "fileName": "#552",
+                "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/unary_ops.ts#L552-L559",
                 "isFunction": true
               },
               {
@@ -4142,9 +4142,9 @@
                   }
                 ],
                 "returnType": "Tensor",
-                "documentation": "Computes hyperbolic cos of the input `tf.Tensor` element-wise: `cosh(x)`\n\n```js\nconst x = tf.tensor1d([0, 1, -1, .7]);\n\nx.cosh().print();  // or tf.cosh(x)\n```",
-                "fileName": "#576",
-                "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/unary_ops.ts#L576-L583",
+                "documentation": "Computes hyperbolic cos of the input `Tensor` element-wise: `cosh(x)`\n\n```js\nconst x = tf.tensor1d([0, 1, -1, .7]);\n\nx.cosh().print();  // or tf.cosh(x)\n```",
+                "fileName": "#572",
+                "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/unary_ops.ts#L572-L579",
                 "isFunction": true
               },
               {
@@ -4164,9 +4164,9 @@
                   }
                 ],
                 "returnType": "Tensor",
-                "documentation": "Computes hyperbolic tangent of the input `tf.Tensor` element-wise: `tanh(x)`\n\n```js\nconst x = tf.tensor1d([0, 1, -1, 70]);\n\nx.tanh().print();  // or tf.tanh(x)\n```",
-                "fileName": "#596",
-                "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/unary_ops.ts#L596-L605",
+                "documentation": "Computes hyperbolic tangent of the input `Tensor` element-wise: `tanh(x)`\n\n```js\nconst x = tf.tensor1d([0, 1, -1, 70]);\n\nx.tanh().print();  // or tf.tanh(x)\n```",
+                "fileName": "#592",
+                "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/unary_ops.ts#L592-L601",
                 "isFunction": true
               },
               {
@@ -4186,9 +4186,9 @@
                   }
                 ],
                 "returnType": "Tensor",
-                "documentation": "Computes inverse hyperbolic sin of the input `tf.Tensor` element-wise:\n`asinh(x)`\n\n```js\nconst x = tf.tensor1d([0, 1, -1, .7]);\n\nx.asinh().print();  // or tf.asinh(x)\n```",
-                "fileName": "#619",
-                "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/unary_ops.ts#L619-L628",
+                "documentation": "Computes inverse hyperbolic sin of the input `Tensor` element-wise:\n`asinh(x)`\n\n```js\nconst x = tf.tensor1d([0, 1, -1, .7]);\n\nx.asinh().print();  // or tf.asinh(x)\n```",
+                "fileName": "#615",
+                "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/unary_ops.ts#L615-L624",
                 "isFunction": true
               },
               {
@@ -4208,9 +4208,9 @@
                   }
                 ],
                 "returnType": "Tensor",
-                "documentation": "Computes the inverse hyperbolic cos of the input `tf.Tensor` element-wise:\n`acosh(x)`\n\n```js\nconst x = tf.tensor1d([10, 1, 3, 5.7]);\n\nx.acosh().print();  // or tf.acosh(x)\n```",
-                "fileName": "#642",
-                "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/unary_ops.ts#L642-L651",
+                "documentation": "Computes the inverse hyperbolic cos of the input `Tensor` element-wise:\n`acosh(x)`\n\n```js\nconst x = tf.tensor1d([10, 1, 3, 5.7]);\n\nx.acosh().print();  // or tf.acosh(x)\n```",
+                "fileName": "#638",
+                "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/unary_ops.ts#L638-L647",
                 "isFunction": true
               },
               {
@@ -4230,9 +4230,9 @@
                   }
                 ],
                 "returnType": "Tensor",
-                "documentation": "Computes inverse hyperbolic tan of the input `tf.Tensor` element-wise:\n`atanh(x)`\n\n```js\nconst x = tf.tensor1d([0, .1, -.1, .7]);\n\nx.atanh().print();  // or tf.atanh(x)\n```",
-                "fileName": "#665",
-                "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/unary_ops.ts#L665-L672",
+                "documentation": "Computes inverse hyperbolic tan of the input `Tensor` element-wise:\n`atanh(x)`\n\n```js\nconst x = tf.tensor1d([0, .1, -.1, .7]);\n\nx.atanh().print();  // or tf.atanh(x)\n```",
+                "fileName": "#661",
+                "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/unary_ops.ts#L661-L668",
                 "isFunction": true
               },
               {
@@ -4252,9 +4252,9 @@
                   }
                 ],
                 "returnType": "Tensor",
-                "documentation": "Computes gause error function of the input `tf.Tensor` element-wise:\n`erf(x)`\n\n```js\nconst x = tf.tensor1d([0, .1, -.1, .7]);\n\nx.erf().print(); // or tf.erf(x);\n```",
-                "fileName": "#686",
-                "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/unary_ops.ts#L686-L703",
+                "documentation": "Computes gause error function of the input `Tensor` element-wise:\n`erf(x)`\n\n```js\nconst x = tf.tensor1d([0, .1, -.1, .7]);\n\nx.erf().print(); // or tf.erf(x);\n```",
+                "fileName": "#682",
+                "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/unary_ops.ts#L682-L699",
                 "isFunction": true
               },
               {
@@ -4281,9 +4281,9 @@
                   }
                 ],
                 "returnType": "Tensor",
-                "documentation": "Computes step of the input `tf.Tensor` element-wise: `x > 0 ? 1 : alpha * x`\n\n```js\nconst x = tf.tensor1d([0, 2, -1, -3]);\n\nx.step(.5).print();  // or tf.step(x, .5)\n```",
-                "fileName": "#717",
-                "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/unary_ops.ts#L717-L726",
+                "documentation": "Computes step of the input `Tensor` element-wise: `x > 0 ? 1 : alpha * x`\n\n```js\nconst x = tf.tensor1d([0, 2, -1, -3]);\n\nx.step(.5).print();  // or tf.step(x, .5)\n```",
+                "fileName": "#713",
+                "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/unary_ops.ts#L713-L722",
                 "isFunction": true
               },
               {
@@ -4310,7 +4310,7 @@
                   }
                 ],
                 "returnType": "Tensor",
-                "documentation": "Computes arctangent of `tf.Tensor`s a / b element-wise: `atan2(a, b)`.\nSupports broadcasting.\n\n```js\nconst a = tf.tensor1d([1.0, 1.0, -1.0, .7]);\nconst b = tf.tensor1d([2.0, 13.0, 3.5, .21]);\n\ntf.atan2(a, b).print()\n```",
+                "documentation": "Computes arctangent of `Tensor`s a / b element-wise: `atan2(a, b)`.\nSupports broadcasting.\n\n```js\nconst a = tf.tensor1d([1.0, 1.0, -1.0, .7]);\nconst b = tf.tensor1d([2.0, 13.0, 3.5, .21]);\n\ntf.atan2(a, b).print()\n```",
                 "fileName": "#755",
                 "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/binary_ops.ts#L755-L787",
                 "isFunction": true
@@ -4511,7 +4511,7 @@
                   }
                 ],
                 "returnType": "Tensor2D",
-                "documentation": "Computes the outer product of two vectors, `v1` and `v2`.\n\n```js\nconst a = tf.tensor1d([1, 2, 3]);\nconst b = tf.tensor1d([3, 4, 5]);\n\ntf.outerProduct(a, b).print();\n```",
+                "documentation": "Computes the outer product of two vectors, v1 and v2.\n\n```js\nconst a = tf.tensor1d([1, 2, 3]);\nconst b = tf.tensor1d([3, 4, 5]);\n\ntf.outerProduct(a, b).print();\n```",
                 "fileName": "#129",
                 "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/matmul.ts#L129-L140",
                 "isFunction": true
@@ -4540,7 +4540,7 @@
                   }
                 ],
                 "returnType": "Tensor",
-                "documentation": "Computes the dot product of two matrices and/or vectors, `t1` and `t2`.\n\n```js\nconst a = tf.tensor1d([1, 2]);\nconst b = tf.tensor2d([[1, 2], [3, 4]]);\nconst c = tf.tensor2d([[1, 2, 3], [4, 5, 6]]);\n\na.dot(b).print();  // or tf.dot(a, b)\nb.dot(a).print();\nb.dot(c).print();\n```",
+                "documentation": "Computes the dot product of two matrices and/or vectors, t1 and t2.\n\n```js\nconst a = tf.tensor1d([1, 2]);\nconst b = tf.tensor2d([[1, 2], [3, 4]]);\nconst c = tf.tensor2d([[1, 2, 3], [4, 5, 6]]);\n\na.dot(b).print();  // or tf.dot(a, b)\nb.dot(a).print();\nb.dot(c).print();\n```",
                 "fileName": "#158",
                 "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/matmul.ts#L158-L183",
                 "isFunction": true
@@ -4569,7 +4569,7 @@
                   }
                 ],
                 "returnType": "Tensor",
-                "documentation": "Transposes the `tf.Tensor`. Permutes the dimensions according to `perm`.\n\nThe returned `tf.Tensor`'s dimension `i` will correspond to the input\ndimension `perm[i]`. If `perm` is not given, it is set to `[n-1...0]`,\nwhere `n` is the rank of the input `tf.Tensor`. Hence by default, this\noperation performs a regular matrix transpose on 2-D input `tf.Tensor`s.\n\n```js\nconst a = tf.tensor2d([1, 2, 3, 4, 5, 6], [2, 3]);\n\na.transpose().print();  // or tf.transpose(a)\n```",
+                "documentation": "Transposes the `Tensor`. Permutes the dimensions according to `perm`.\n\nThe returned `Tensor`'s dimension `i` will correspond to the input\ndimension `perm[i]`. If `perm` is not given, it is set to `[n-1...0]`,\nwhere `n` is the rank of the input `Tensor`. Hence by default, this\noperation performs a regular matrix transpose on 2-D input `Tensor`s.\n\n```js\nconst a = tf.tensor2d([1, 2, 3, 4, 5, 6], [2, 3]);\n\na.transpose().print();  // or tf.transpose(a)\n```",
                 "fileName": "#44",
                 "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/transpose.ts#L44-L71",
                 "isFunction": true
@@ -4940,8 +4940,8 @@
                   "heading": "Operations",
                   "subheading": "Convolution"
                 },
-                "symbolName": "maxPool",
-                "paramStr": "(x, filterSize, strides, pad, dimRoundingMode?)",
+                "symbolName": "maxPoolImpl",
+                "paramStr": "(x, filterSize, strides, dilations, pad, dimRoundingMode?)",
                 "parameters": [
                   {
                     "name": "x",
@@ -4952,14 +4952,21 @@
                   },
                   {
                     "name": "filterSize",
-                    "documentation": "The filter size: `[filterHeight, filterWidth]`. If\n`filterSize` is a single number, then `filterHeight == filterWidth`.",
+                    "documentation": "The filter size, a tuple `[filterHeight, filterWidth]`.",
                     "type": "[number, number]|number",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
                     "name": "strides",
-                    "documentation": "The strides of the pooling: `[strideHeight, strideWidth]`. If\n`strides` is a single number, then `strideHeight == strideWidth`.",
+                    "documentation": "The strides of the pooling: `[strideHeight, strideWidth]`.",
+                    "type": "[number, number]|number",
+                    "optional": false,
+                    "isConfigParam": false
+                  },
+                  {
+                    "name": "dilations",
+                    "documentation": "The dilation rates: `[dilationHeight, dilationWidth]`\nin which we sample input values across the height and width dimensions\nin dilated pooling. Defaults to `[1, 1]`. If `dilations` is a single\nnumber, then `dilationHeight == dilationWidth`. If it is greater than\n1, then all values of `strides` must be 1.",
                     "type": "[number, number]|number",
                     "optional": false,
                     "isConfigParam": false
@@ -4981,8 +4988,8 @@
                 ],
                 "returnType": "Tensor3D|Tensor4D",
                 "documentation": "Computes the 2D max pooling of an image.",
-                "fileName": "#121",
-                "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/pool.ts#L121-L126",
+                "fileName": "#51",
+                "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/pool.ts#L51-L96",
                 "isFunction": true
               },
               {
@@ -4990,7 +4997,7 @@
                   "heading": "Operations",
                   "subheading": "Convolution"
                 },
-                "symbolName": "avgPool",
+                "symbolName": "maxPool",
                 "paramStr": "(x, filterSize, strides, pad, dimRoundingMode?)",
                 "parameters": [
                   {
@@ -5002,14 +5009,71 @@
                   },
                   {
                     "name": "filterSize",
-                    "documentation": "The filter size: `[filterHeight, filterWidth]`. If\n`filterSize` is a single number, then `filterHeight == filterWidth`.",
+                    "documentation": "The filter size, a tuple `[filterHeight, filterWidth]`.",
                     "type": "[number, number]|number",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
                     "name": "strides",
-                    "documentation": "The strides of the pooling: `[strideHeight, strideWidth]`. If\n`strides` is a single number, then `strideHeight == strideWidth`.",
+                    "documentation": "The strides of the pooling: `[strideHeight, strideWidth]`.",
+                    "type": "[number, number]|number",
+                    "optional": false,
+                    "isConfigParam": false
+                  },
+                  {
+                    "name": "pad",
+                    "documentation": "The type of padding algorithm.\n- `same` and stride 1: output will be of same size as input,\nregardless of filter size.\n- `valid`: output will be smaller than input if filter is larger\nthan 1x1.\n- For more info, see this guide:\n[https://www.tensorflow.org/api_guides/python/nn#Convolution](\nhttps://www.tensorflow.org/api_guides/python/nn#Convolution)",
+                    "type": "'valid'|'same'|number",
+                    "optional": false,
+                    "isConfigParam": false
+                  },
+                  {
+                    "name": "dimRoundingMode",
+                    "documentation": "The rounding mode used when computing output\ndimensions if pad is a number. If none is provided, it will not round\nand error if the output is of fractional size.",
+                    "type": "'floor'|'round'|'ceil'",
+                    "optional": true,
+                    "isConfigParam": false
+                  }
+                ],
+                "returnType": "Tensor3D|Tensor4D",
+                "documentation": "Computes the 2D max pooling of an image.",
+                "fileName": "#118",
+                "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/pool.ts#L118-L123",
+                "isFunction": true
+              },
+              {
+                "docInfo": {
+                  "heading": "Operations",
+                  "subheading": "Convolution"
+                },
+                "symbolName": "avgPoolImpl",
+                "paramStr": "(x, filterSize, strides, dilations, pad, dimRoundingMode?)",
+                "parameters": [
+                  {
+                    "name": "x",
+                    "documentation": "The input tensor, of rank 4 or rank 3 of shape\n`[batch, height, width, inChannels]`. If rank 3, batch of 1 is assumed.",
+                    "type": "Tensor3D|Tensor4D|TypedArray|Array",
+                    "optional": false,
+                    "isConfigParam": false
+                  },
+                  {
+                    "name": "filterSize",
+                    "documentation": "The filter size, a tuple `[filterHeight, filterWidth]`.",
+                    "type": "[number, number]|number",
+                    "optional": false,
+                    "isConfigParam": false
+                  },
+                  {
+                    "name": "strides",
+                    "documentation": "The strides of the pooling: `[strideHeight, strideWidth]`.",
+                    "type": "[number, number]|number",
+                    "optional": false,
+                    "isConfigParam": false
+                  },
+                  {
+                    "name": "dilations",
+                    "documentation": "The dilation rates: `[dilationHeight, dilationWidth]`\nin which we sample input values across the height and width dimensions\nin dilated pooling. Defaults to `[1, 1]`. If `dilations` is a single\nnumber, then `dilationHeight == dilationWidth`. If it is greater than\n1, then all values of `strides` must be 1.",
                     "type": "[number, number]|number",
                     "optional": false,
                     "isConfigParam": false
@@ -5031,8 +5095,8 @@
                 ],
                 "returnType": "Tensor3D|Tensor4D",
                 "documentation": "Computes the 2D average pooling of an image.",
-                "fileName": "#223",
-                "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/pool.ts#L223-L228",
+                "fileName": "#150",
+                "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/pool.ts#L150-L195",
                 "isFunction": true
               },
               {
@@ -5040,56 +5104,49 @@
                   "heading": "Operations",
                   "subheading": "Convolution"
                 },
-                "symbolName": "pool",
-                "paramStr": "(input, windowShape, poolingType, padding, dilationRate?, strides?)",
+                "symbolName": "avgPool",
+                "paramStr": "(x, filterSize, strides, pad, dimRoundingMode?)",
                 "parameters": [
                   {
-                    "name": "input",
+                    "name": "x",
                     "documentation": "The input tensor, of rank 4 or rank 3 of shape\n`[batch, height, width, inChannels]`. If rank 3, batch of 1 is assumed.",
                     "type": "Tensor3D|Tensor4D|TypedArray|Array",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
-                    "name": "windowShape",
-                    "documentation": "The filter size: `[filterHeight, filterWidth]`. If\n`filterSize` is a single number, then `filterHeight == filterWidth`.",
+                    "name": "filterSize",
+                    "documentation": "The filter size, a tuple `[filterHeight, filterWidth]`.",
                     "type": "[number, number]|number",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
-                    "name": "poolingType",
-                    "documentation": "The type of pooling, either 'max' or 'avg'.",
-                    "type": "'avg'|'max'",
+                    "name": "strides",
+                    "documentation": "The strides of the pooling: `[strideHeight, strideWidth]`.",
+                    "type": "[number, number]|number",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
-                    "name": "padding",
-                    "documentation": "",
+                    "name": "pad",
+                    "documentation": "The type of padding algorithm:\n- `same` and stride 1: output will be of same size as input,\nregardless of filter size.\n- `valid`: output will be smaller than input if filter is larger\nthan 1x1.\n- For more info, see this guide:\n[https://www.tensorflow.org/api_guides/python/nn#Convolution](\nhttps://www.tensorflow.org/api_guides/python/nn#Convolution)",
                     "type": "'valid'|'same'|number",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
-                    "name": "dilationRate",
-                    "documentation": "The dilation rates: `[dilationHeight, dilationWidth]`\nin which we sample input values across the height and width dimensions\nin dilated pooling. Defaults to `[1, 1]`. If `dilationRate` is a single\nnumber, then `dilationHeight == dilationWidth`. If it is greater than\n1, then all values of `strides` must be 1.",
-                    "type": "[number, number]|number",
-                    "optional": true,
-                    "isConfigParam": false
-                  },
-                  {
-                    "name": "strides",
-                    "documentation": "The strides of the pooling: `[strideHeight, strideWidth]`. If\n`strides` is a single number, then `strideHeight == strideWidth`.",
-                    "type": "[number, number]|number",
+                    "name": "dimRoundingMode",
+                    "documentation": "The rounding mode used when computing output\ndimensions if pad is a number. If none is provided, it will not round\nand error if the output is of fractional size.",
+                    "type": "'floor'|'round'|'ceil'",
                     "optional": true,
                     "isConfigParam": false
                   }
                 ],
-                "returnType": "Tensor",
-                "documentation": "Performs an N-D pooling operation",
-                "fileName": "#255",
-                "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/pool.ts#L255-L270",
+                "returnType": "Tensor3D|Tensor4D",
+                "documentation": "Computes the 2D average pooling of an image.",
+                "fileName": "#217",
+                "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/pool.ts#L217-L222",
                 "isFunction": true
               }
             ]
@@ -5164,7 +5221,7 @@
                   }
                 ],
                 "returnType": "Tensor",
-                "documentation": "Computes the sum of elements across dimensions of a `tf.Tensor`.\n\nReduces the input along the dimensions given in `axes`. Unless `keepDims`\nis true, the rank of the `tf.Tensor` is reduced by 1 for each entry in\n`axes`. If `keepDims` is true, the reduced dimensions are retained with\nlength 1. If axes has no entries, all dimensions are reduced, and a\n`tf.Tensor` with a single element is returned.\n\n```js\nconst x = tf.tensor1d([1, 2, 3]);\n\nx.sum().print();  // or tf.sum(x)\n```\n\n```js\nconst x = tf.tensor2d([1, 2, 3, 4], [2, 2]);\n\nconst axis = 1;\nx.sum(axis).print();  // or tf.sum(x, axis)\n```",
+                "documentation": "Computes the sum of elements across dimensions of a `Tensor`.\n\nReduces the input along the dimensions given in `axes`. Unless `keepDims`\nis true, the rank of the `Tensor` is reduced by 1 for each entry in `axes`.\nIf `keepDims` is true, the reduced dimensions are retained with length 1.\nIf axes has no entries, all dimensions are reduced, and a `Tensor` with a\nsingle element is returned.\n\n```js\nconst x = tf.tensor1d([1, 2, 3]);\n\nx.sum().print();  // or tf.sum(x)\n```\n\n```js\nconst x = tf.tensor2d([1, 2, 3, 4], [2, 2]);\n\nconst axis = 1;\nx.sum(axis).print();  // or tf.sum(x, axis)\n```",
                 "fileName": "#104",
                 "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/reduction_ops.ts#L104-L143",
                 "isFunction": true
@@ -5200,7 +5257,7 @@
                   }
                 ],
                 "returnType": "Tensor",
-                "documentation": "Computes the product of elements across dimensions of a `tf.Tensor`.\n\nReduces the input along the dimensions given in `axes`. Unless `keepDims`\nis true, the rank of the `tf.Tensor` is reduced by 1 for each entry in\n`axes`. If `keepDims` is true, the reduced dimensions are retained with\nlength 1. If `axes` has no entries, all dimensions are reduced, and a\n`tf.Tensor` with a single element is returned.\n\n```js\nconst x = tf.tensor1d([1, 2, 3]);\n\nx.prod().print();  // or tf.prod(x)\n```\n\n```js\nconst x = tf.tensor2d([1, 2, 3, 4], [2, 2]);\n\nconst axis = 1;\nx.prod(axis).print();  // or tf.prod(x, axis)\n```",
+                "documentation": "Computes the product of elements across dimensions of a `Tensor`.\n\nReduces the input along the dimensions given in `axes`. Unless `keepDims`\nis true, the rank of the `Tensor` is reduced by 1 for each entry in `axes`.\nIf `keepDims` is true, the reduced dimensions are retained with length 1.\nIf `axes` has no entries, all dimensions are reduced, and a `Tensor` with a\nsingle element is returned.\n\n```js\nconst x = tf.tensor1d([1, 2, 3]);\n\nx.prod().print();  // or tf.prod(x)\n```\n\n```js\nconst x = tf.tensor2d([1, 2, 3, 4], [2, 2]);\n\nconst axis = 1;\nx.prod(axis).print();  // or tf.prod(x, axis)\n```",
                 "fileName": "#174",
                 "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/reduction_ops.ts#L174-L198",
                 "isFunction": true
@@ -5236,7 +5293,7 @@
                   }
                 ],
                 "returnType": "Tensor",
-                "documentation": "Computes the mean of elements across dimensions of a `tf.Tensor`.\n\nReduces `x` along the dimensions given in `axis`. Unless `keepDims` is\ntrue, the rank of the `tf.Tensor` is reduced by 1 for each entry in `axis`.\nIf `keepDims` is true, the reduced dimensions are retained with length 1.\nIf `axis` has no entries, all dimensions are reduced, and a `tf.Tensor` with\na single element is returned.\n\n```js\nconst x = tf.tensor1d([1, 2, 3]);\n\nx.mean().print();  // or tf.mean(a)\n```\n\n```js\nconst x = tf.tensor2d([1, 2, 3, 4], [2, 2]);\n\nconst axis = 1;\nx.mean(axis).print();  // or tf.mean(x, axis)\n```",
+                "documentation": "Computes the mean of elements across dimensions of a `Tensor`.\n\nReduces `x` along the dimensions given in `axis`. Unless `keepDims` is\ntrue, the rank of the `Tensor` is reduced by 1 for each entry in `axis`.\nIf `keepDims` is true, the reduced dimensions are retained with length 1.\nIf `axis` has no entries, all dimensions are reduced, and a `Tensor` with\na single element is returned.\n\n```js\nconst x = tf.tensor1d([1, 2, 3]);\n\nx.mean().print();  // or tf.mean(a)\n```\n\n```js\nconst x = tf.tensor2d([1, 2, 3, 4], [2, 2]);\n\nconst axis = 1;\nx.mean(axis).print();  // or tf.mean(x, axis)\n```",
                 "fileName": "#227",
                 "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/reduction_ops.ts#L227-L260",
                 "isFunction": true
@@ -5308,7 +5365,7 @@
                   }
                 ],
                 "returnType": "Tensor",
-                "documentation": "Computes the maximum of elements across dimensions of a `tf.Tensor`.\n\nReduces the input along the dimensions given in `axes`. Unless `keepDims`\nis true, the rank of the `tf.Tensor` is reduced by 1 for each entry in\n`axes`. If `keepDims` is true, the reduced dimensions are retained with\nlength 1. If `axes` has no entries, all dimensions are reduced, and an\n`tf.Tensor` with a single element is returned.\n\n```js\nconst x = tf.tensor1d([1, 2, 3]);\n\nx.max().print();  // or tf.max(x)\n```\n\n```js\nconst x = tf.tensor2d([1, 2, 3, 4], [2, 2]);\n\nconst axis = 1;\nx.max(axis).print();  // or tf.max(x, axis)\n```",
+                "documentation": "Computes the maximum of elements across dimensions of a `Tensor`.\n\nReduces the input along the dimensions given in `axes`. Unless `keepDims`\nis true, the rank of the `Tensor` is reduced by 1 for each entry in `axes`.\nIf `keepDims` is true, the reduced dimensions are retained with length 1.\nIf `axes` has no entries, all dimensions are reduced, and an `Tensor` with\na single element is returned.\n\n```js\nconst x = tf.tensor1d([1, 2, 3]);\n\nx.max().print();  // or tf.max(x)\n```\n\n```js\nconst x = tf.tensor2d([1, 2, 3, 4], [2, 2]);\n\nconst axis = 1;\nx.max(axis).print();  // or tf.max(x, axis)\n```",
                 "fileName": "#363",
                 "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/reduction_ops.ts#L363-L385",
                 "isFunction": true
@@ -5402,7 +5459,7 @@
                   }
                 ],
                 "returnType": "Tensor",
-                "documentation": "Computes the logical and of elements across dimensions of a `tf.Tensor`.\n\nReduces the input along the dimensions given in `axes`. Unless `keepDims`\nis true, the rank of the `tf.Tensor` is reduced by 1 for each entry in\n`axes`. If `keepDims` is true, the reduced dimensions are retained with\nlength 1. If `axes` has no entries, all dimensions are reduced, and an\n`tf.Tensor` with a single element is returned.\n\n```js\nconst x = tf.tensor1d([1, 1, 1]);\n\nx.all().print();  // or tf.all(x)\n```\n\n```js\nconst x = tf.tensor2d([1, 1, 0, 0], [2, 2], 'bool');\n\nconst axis = 1;\nx.all(axis).print();  // or tf.all(x, axis)\n```",
+                "documentation": "Computes the logical and of elements across dimensions of a `Tensor`.\n\nReduces the input along the dimensions given in `axes`. Unless `keepDims`\nis true, the rank of the `Tensor` is reduced by 1 for each entry in `axes`.\nIf `keepDims` is true, the reduced dimensions are retained with length 1.\nIf `axes` has no entries, all dimensions are reduced, and an `Tensor` with\na single element is returned.\n\n```js\nconst x = tf.tensor1d([1, 1, 1]);\n\nx.all().print();  // or tf.all(x)\n```\n\n```js\nconst x = tf.tensor2d([1, 1, 0, 0], [2, 2], 'bool');\n\nconst axis = 1;\nx.all(axis).print();  // or tf.all(x, axis)\n```",
                 "fileName": "#500",
                 "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/reduction_ops.ts#L500-L520",
                 "isFunction": true
@@ -5438,7 +5495,7 @@
                   }
                 ],
                 "returnType": "Tensor",
-                "documentation": "Computes the logical or of elements across dimensions of a `tf.Tensor`.\n\nReduces the input along the dimensions given in `axes`. Unless `keepDims`\nis true, the rank of the `tf.Tensor` is reduced by 1 for each entry in\n`axes`. If `keepDims` is true, the reduced dimensions are retained with\nlength 1. If `axes` has no entries, all dimensions are reduced, and an\n`tf.Tensor` with a single element is returned.\n\n```js\nconst x = tf.tensor1d([1, 1, 1]);\n\nx.any().print();  // or tf.any(x)\n```\n\n```js\nconst x = tf.tensor2d([1, 1, 0, 0], [2, 2], 'bool');\n\nconst axis = 1;\nx.any(axis).print();  // or tf.any(x, axis)\n```",
+                "documentation": "Computes the logical or of elements across dimensions of a `Tensor`.\n\nReduces the input along the dimensions given in `axes`. Unless `keepDims`\nis true, the rank of the `Tensor` is reduced by 1 for each entry in `axes`.\nIf `keepDims` is true, the reduced dimensions are retained with length 1.\nIf `axes` has no entries, all dimensions are reduced, and an `Tensor` with\na single element is returned.\n\n```js\nconst x = tf.tensor1d([1, 1, 1]);\n\nx.any().print();  // or tf.any(x)\n```\n\n```js\nconst x = tf.tensor2d([1, 1, 0, 0], [2, 2], 'bool');\n\nconst axis = 1;\nx.any(axis).print();  // or tf.any(x, axis)\n```",
                 "fileName": "#550",
                 "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/reduction_ops.ts#L550-L570",
                 "isFunction": true
@@ -5472,7 +5529,7 @@
                   }
                 ],
                 "returnType": "Tensor",
-                "documentation": "Returns the truth value of (a != b) element-wise. Supports broadcasting.\n\nWe also expose `tf.notEqualStrict` which has the same signature as this op\nand asserts that `a` and `b` are the same shape (does not broadcast).\n\n```js\nconst a = tf.tensor1d([1, 2, 3]);\nconst b = tf.tensor1d([0, 2, 3]);\n\na.notEqual(b).print();\n```",
+                "documentation": "Returns the truth value of (a != b) element-wise. Supports broadcasting.\n\nWe also expose `notEqualStrict` which has the same signature as this op and\nasserts that `a` and `b` are the same shape (does not broadcast).\n\n```js\nconst a = tf.tensor1d([1, 2, 3]);\nconst b = tf.tensor1d([0, 2, 3]);\n\na.notEqual(b).print();\n```",
                 "fileName": "#44",
                 "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/compare.ts#L44-L52",
                 "isFunction": true
@@ -5501,7 +5558,7 @@
                   }
                 ],
                 "returnType": "Tensor",
-                "documentation": "Returns the truth value of (a < b) element-wise. Supports broadcasting.\n\nWe also expose `tf.lessStrict` which has the same signature as this op and\nasserts that `a` and `b` are the same shape (does not broadcast).\n\n```js\nconst a = tf.tensor1d([1, 2, 3]);\nconst b = tf.tensor1d([2, 2, 2]);\n\na.less(b).print();\n```",
+                "documentation": "Returns the truth value of (a < b) element-wise. Supports broadcasting.\n\nWe also expose `lessStrict` which has the same signature as this op and\nasserts that `a` and `b` are the same shape (does not broadcast).\n\n```js\nconst a = tf.tensor1d([1, 2, 3]);\nconst b = tf.tensor1d([2, 2, 2]);\n\na.less(b).print();\n```",
                 "fileName": "#86",
                 "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/compare.ts#L86-L94",
                 "isFunction": true
@@ -5530,7 +5587,7 @@
                   }
                 ],
                 "returnType": "Tensor",
-                "documentation": "Returns the truth value of (a == b) element-wise. Supports broadcasting.\n\nWe also expose `tf.equalStrict` which has the same signature as this op\nand asserts that `a` and `b` are the same shape (does not broadcast).\n\n```js\nconst a = tf.tensor1d([1, 2, 3]);\nconst b = tf.tensor1d([2, 2, 2]);\n\na.equal(b).print();\n```",
+                "documentation": "Returns the truth value of (a == b) element-wise. Supports broadcasting.\n\nWe also expose `equalStrict` which has the same signature as this op\nand asserts that `a` and `b` are the same shape (does not broadcast).\n\n```js\nconst a = tf.tensor1d([1, 2, 3]);\nconst b = tf.tensor1d([2, 2, 2]);\n\na.equal(b).print();\n```",
                 "fileName": "#128",
                 "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/compare.ts#L128-L136",
                 "isFunction": true
@@ -5559,7 +5616,7 @@
                   }
                 ],
                 "returnType": "Tensor",
-                "documentation": "Returns the truth value of (a <= b) element-wise. Supports broadcasting.\n\nWe also expose `tf.lessEqualStrict` which has the same signature as this op\nand asserts that `a` and `b` are the same shape (does not broadcast).\n\n```js\nconst a = tf.tensor1d([1, 2, 3]);\nconst b = tf.tensor1d([2, 2, 2]);\n\na.lessEqual(b).print();\n```",
+                "documentation": "Returns the truth value of (a <= b) element-wise. Supports broadcasting.\n\nWe also expose `lessEqualStrict` which has the same signature as this op\nand asserts that `a` and `b` are the same shape (does not broadcast).\n\n```js\nconst a = tf.tensor1d([1, 2, 3]);\nconst b = tf.tensor1d([2, 2, 2]);\n\na.lessEqual(b).print();\n```",
                 "fileName": "#162",
                 "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/compare.ts#L162-L171",
                 "isFunction": true
@@ -5588,7 +5645,7 @@
                   }
                 ],
                 "returnType": "Tensor",
-                "documentation": "Returns the truth value of (a > b) element-wise. Supports broadcasting.\n\nWe also expose `tf.greaterStrict` which has the same signature as this\nop and asserts that `a` and `b` are the same shape (does not broadcast).\n\n```js\nconst a = tf.tensor1d([1, 2, 3]);\nconst b = tf.tensor1d([2, 2, 2]);\n\na.greater(b).print();\n```",
+                "documentation": "Returns the truth value of (a > b) element-wise. Supports broadcasting.\n\nWe also expose `greaterStrict` which has the same signature as this\nop and asserts that `a` and `b` are the same shape (does not broadcast).\n\n```js\nconst a = tf.tensor1d([1, 2, 3]);\nconst b = tf.tensor1d([2, 2, 2]);\n\na.greater(b).print();\n```",
                 "fileName": "#198",
                 "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/compare.ts#L198-L207",
                 "isFunction": true
@@ -5617,7 +5674,7 @@
                   }
                 ],
                 "returnType": "Tensor",
-                "documentation": "Returns the truth value of (a >= b) element-wise. Supports broadcasting.\n\nWe also expose `tf.greaterEqualStrict` which has the same signature as this\nop and asserts that `a` and `b` are the same shape (does not broadcast).\n\n```js\nconst a = tf.tensor1d([1, 2, 3]);\nconst b = tf.tensor1d([2, 2, 2]);\n\na.greaterEqual(b).print();\n```",
+                "documentation": "Returns the truth value of (a >= b) element-wise. Supports broadcasting.\n\nWe also expose `greaterEqualStrict` which has the same signature as this\nop and asserts that `a` and `b` are the same shape (does not broadcast).\n\n```js\nconst a = tf.tensor1d([1, 2, 3]);\nconst b = tf.tensor1d([2, 2, 2]);\n\na.greaterEqual(b).print();\n```",
                 "fileName": "#233",
                 "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/compare.ts#L233-L245",
                 "isFunction": true
@@ -5668,7 +5725,7 @@
                   }
                 ],
                 "returnType": "Tensor",
-                "documentation": "Returns the truth value of `a AND b` element-wise. Supports broadcasting.\n\n```js\nconst a = tf.tensor1d([false, false, true, true], 'bool');\nconst b = tf.tensor1d([false, true, false, true], 'bool');\n\na.logicalAnd(b).print();\n```",
+                "documentation": "Returns the truth value of a AND b element-wise. Supports broadcasting.\n\n```js\nconst a = tf.tensor1d([false, false, true, true], 'bool');\nconst b = tf.tensor1d([false, true, false, true], 'bool');\n\na.logicalAnd(b).print();\n```",
                 "fileName": "#61",
                 "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/logical_ops.ts#L61-L72",
                 "isFunction": true
@@ -5784,7 +5841,7 @@
                   }
                 ],
                 "returnType": "Promise",
-                "documentation": "Returns the coordinates of true elements of condition.\n\nThe coordinates are returned in a 2-D tensor where the first dimension (rows)\nrepresents the number of true elements, and the second dimension (columns)\nrepresents the coordinates of the true elements. Keep in mind, the shape of\nthe output tensor can vary depending on how many true values there are in\ninput. Indices are output in row-major order. The resulting tensor has the\nshape `[numTrueElems, condition.rank]`.\n\nThis is analogous to calling the python `tf.where(cond)` without an x or y.\n\n```js\nconst cond = tf.tensor1d([false, false, true], 'bool');\ntf.whereAsync(cond).then(result => result.print());\n```",
+                "documentation": "Returns the coordinates of true elements of condition.\n\nThe coordinates are returned in a 2-D tensor where the first dimension (rows)\nrepresents the number of true elements, and the second dimension (columns)\nrepresents the coordinates of the true elements. Keep in mind, the shape of\nthe output tensor can vary depending on how many true values there are in\ninput. Indices are output in row-major order. The resulting tensor has the\nshape `[numTrueElems, condition.rank]`.\n\nThis is analogous to calling the python tf.where(cond) without an x or y.\n\n```js\nconst cond = tf.tensor1d([false, false, true], 'bool');\ntf.whereAsync(cond).then(result => result.print());\n```",
                 "fileName": "#197",
                 "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/logical_ops.ts#L197-L206",
                 "isFunction": true
@@ -5804,21 +5861,21 @@
                 "parameters": [
                   {
                     "name": "a",
-                    "documentation": "The first `tf.Tensor` to add.",
+                    "documentation": "The first `Tensor` to add.",
                     "type": "Tensor|TypedArray|Array",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
                     "name": "b",
-                    "documentation": "The second `tf.Tensor` to add. Must have the same type as `a`.",
+                    "documentation": "The second `Tensor` to add. Must have the same type as `a`.",
                     "type": "Tensor|TypedArray|Array",
                     "optional": false,
                     "isConfigParam": false
                   }
                 ],
                 "returnType": "Tensor",
-                "documentation": "Adds two `tf.Tensor`s element-wise, A + B. Supports broadcasting.\n\nWe also expose `tf.addStrict` which has the same signature as this op and\nasserts that `a` and `b` are the same shape (does not broadcast).\n\n```js\nconst a = tf.tensor1d([1, 2, 3, 4]);\nconst b = tf.tensor1d([10, 20, 30, 40]);\n\na.add(b).print();  // or tf.add(a, b)\n```\n\n```js\n// Broadcast add a with b.\nconst a = tf.scalar(5);\nconst b = tf.tensor1d([10, 20, 30, 40]);\n\na.add(b).print();  // or tf.add(a, b)\n```",
+                "documentation": "Adds two `Tensor`s element-wise, A + B. Supports broadcasting.\n\nWe also expose `addStrict` which has the same signature as this op and\nasserts that `a` and `b` are the same shape (does not broadcast).\n\n```js\nconst a = tf.tensor1d([1, 2, 3, 4]);\nconst b = tf.tensor1d([10, 20, 30, 40]);\n\na.add(b).print();  // or tf.add(a, b)\n```\n\n```js\n// Broadcast add a with b.\nconst a = tf.scalar(5);\nconst b = tf.tensor1d([10, 20, 30, 40]);\n\na.add(b).print();  // or tf.add(a, b)\n```",
                 "fileName": "#55",
                 "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/binary_ops.ts#L55-L84",
                 "isFunction": true
@@ -5840,7 +5897,7 @@
                   }
                 ],
                 "returnType": "Tensor",
-                "documentation": "Adds a list of `tf.Tensor`s element-wise, each with the same shape and dtype.\n\n```js\nconst a = tf.tensor1d([1, 2]);\nconst b = tf.tensor1d([3, 4]);\nconst c = tf.tensor1d([5, 6]);\n\ntf.addN([a, b, c]).print();\n```",
+                "documentation": "Adds a list of `Tensor`s element-wise, each with the same shape and dtype.\n\n```js\nconst a = tf.tensor1d([1, 2]);\nconst b = tf.tensor1d([3, 4]);\nconst c = tf.tensor1d([5, 6]);\n\ntf.addN([a, b, c]).print();\n```",
                 "fileName": "#99",
                 "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/binary_ops.ts#L99-L132",
                 "isFunction": true
@@ -5855,21 +5912,21 @@
                 "parameters": [
                   {
                     "name": "a",
-                    "documentation": "The first `tf.Tensor` to subtract from.",
+                    "documentation": "The first `Tensor` to subtract from.",
                     "type": "Tensor|TypedArray|Array",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
                     "name": "b",
-                    "documentation": "The second `tf.Tensor` to be subtracted. Must have the same dtype as\n`a`.",
+                    "documentation": "The second `Tensor` to be subtracted. Must have the same dtype as\n`a`.",
                     "type": "Tensor|TypedArray|Array",
                     "optional": false,
                     "isConfigParam": false
                   }
                 ],
                 "returnType": "Tensor",
-                "documentation": "Subtracts two `tf.Tensor`s element-wise, A - B. Supports broadcasting.\n\nWe also expose `tf.subStrict` which has the same signature as this op and\nasserts that `a` and `b` are the same shape (does not broadcast).\n\n```js\nconst a = tf.tensor1d([10, 20, 30, 40]);\nconst b = tf.tensor1d([1, 2, 3, 4]);\n\na.sub(b).print();  // or tf.sub(a, b)\n```\n\n```js\n// Broadcast subtract a with b.\nconst a = tf.tensor1d([10, 20, 30, 40]);\nconst b = tf.scalar(5);\n\na.sub(b).print();  // or tf.sub(a, b)\n```",
+                "documentation": "Subtracts two `Tensor`s element-wise, A - B. Supports broadcasting.\n\nWe also expose `subStrict` which has the same signature as this op and\nasserts that `a` and `b` are the same shape (does not broadcast).\n\n```js\nconst a = tf.tensor1d([10, 20, 30, 40]);\nconst b = tf.tensor1d([1, 2, 3, 4]);\n\na.sub(b).print();  // or tf.sub(a, b)\n```\n\n```js\n// Broadcast subtract a with b.\nconst a = tf.tensor1d([10, 20, 30, 40]);\nconst b = tf.scalar(5);\n\na.sub(b).print();  // or tf.sub(a, b)\n```",
                 "fileName": "#172",
                 "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/binary_ops.ts#L172-L201",
                 "isFunction": true
@@ -5884,21 +5941,21 @@
                 "parameters": [
                   {
                     "name": "base",
-                    "documentation": "The base `tf.Tensor` to pow element-wise.",
+                    "documentation": "The base `Tensor` to pow element-wise.",
                     "type": "Tensor|TypedArray|Array",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
                     "name": "exp",
-                    "documentation": "The exponent `tf.Tensor` to pow element-wise.",
+                    "documentation": "The exponent `Tensor` to pow element-wise.",
                     "type": "Tensor|TypedArray|Array",
                     "optional": false,
                     "isConfigParam": false
                   }
                 ],
                 "returnType": "Tensor",
-                "documentation": "Computes the power of one `tf.Tensor` to another. Supports broadcasting.\n\nGiven a `tf.Tensor` x and a `tf.Tensor` y, this operation computes x^y for\ncorresponding elements in x and y. The result's dtype will be the upcasted\ntype of the `base` and `exp` dtypes.\n\n```js\nconst a = tf.tensor([[2, 3], [4, 5]])\nconst b = tf.tensor([[1, 2], [3, 0]]).toInt();\n\na.pow(b).print();  // or tf.pow(a, b)\n```\n\n```js\nconst a = tf.tensor([[1, 2], [3, 4]])\nconst b = tf.tensor(2).toInt();\n\na.pow(b).print();  // or tf.pow(a, b)\n```\nWe also expose `powStrict` which has the same signature as this op and\nasserts that `base` and `exp` are the same shape (does not broadcast).",
+                "documentation": "Computes the power of one `Tensor` to another. Supports broadcasting.\n\nGiven a `Tensor` x and a `Tensor` y, this operation computes x^y for\ncorresponding elements in x and y. The result's dtype will be the upcasted\ntype of the `base` and `exp` dtypes.\n\n```js\nconst a = tf.tensor([[2, 3], [4, 5]])\nconst b = tf.tensor([[1, 2], [3, 0]]).toInt();\n\na.pow(b).print();  // or tf.pow(a, b)\n```\n\n```js\nconst a = tf.tensor([[1, 2], [3, 4]])\nconst b = tf.tensor(2).toInt();\n\na.pow(b).print();  // or tf.pow(a, b)\n```\nWe also expose `powStrict` which has the same signature as this op and\nasserts that `base` and `exp` are the same shape (does not broadcast).",
                 "fileName": "#244",
                 "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/binary_ops.ts#L244-L275",
                 "isFunction": true
@@ -5927,7 +5984,7 @@
                   }
                 ],
                 "returnType": "Tensor",
-                "documentation": "Multiplies two `tf.Tensor`s element-wise, A * B. Supports broadcasting.\n\nWe also expose `tf.mulStrict` which has the same signature as this op and\nasserts that `a` and `b` are the same shape (does not broadcast).\n\n```js\nconst a = tf.tensor1d([1, 2, 3, 4]);\nconst b = tf.tensor1d([2, 3, 4, 5]);\n\na.mul(b).print();  // or tf.mul(a, b)\n```\n\n```js\n// Broadcast mul a with b.\nconst a = tf.tensor1d([1, 2, 3, 4]);\nconst b = tf.scalar(5);\n\na.mul(b).print();  // or tf.mul(a, b)\n```",
+                "documentation": "Multiplies two `Tensor`s element-wise, A * B. Supports broadcasting.\n\nWe also expose `mulStrict` which has the same signature as this op and\nasserts that `a` and `b` are the same shape (does not broadcast).\n\n```js\nconst a = tf.tensor1d([1, 2, 3, 4]);\nconst b = tf.tensor1d([2, 3, 4, 5]);\n\na.mul(b).print();  // or tf.mul(a, b)\n```\n\n```js\n// Broadcast mul a with b.\nconst a = tf.tensor1d([1, 2, 3, 4]);\nconst b = tf.scalar(5);\n\na.mul(b).print();  // or tf.mul(a, b)\n```",
                 "fileName": "#315",
                 "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/binary_ops.ts#L315-L344",
                 "isFunction": true
@@ -5956,7 +6013,7 @@
                   }
                 ],
                 "returnType": "Tensor",
-                "documentation": "Divides two `tf.Tensor`s element-wise, A / B. Supports broadcasting.\n\nWe also expose `tf.divStrict` which has the same signature as this op and\nasserts that `a` and `b` are the same shape (does not broadcast).\n\n```js\nconst a = tf.tensor1d([1, 4, 9, 16]);\nconst b = tf.tensor1d([1, 2, 3, 4]);\n\na.div(b).print();  // or tf.div(a, b)\n```\n\n```js\n// Broadcast div a with b.\nconst a = tf.tensor1d([2, 4, 6, 8]);\nconst b = tf.scalar(2);\n\na.div(b).print();  // or tf.div(a, b)\n```",
+                "documentation": "Divides two `Tensor`s element-wise, A / B. Supports broadcasting.\n\nWe also expose `divStrict` which has the same signature as this op and\nasserts that `a` and `b` are the same shape (does not broadcast).\n\n```js\nconst a = tf.tensor1d([1, 4, 9, 16]);\nconst b = tf.tensor1d([1, 2, 3, 4]);\n\na.div(b).print();  // or tf.div(a, b)\n```\n\n```js\n// Broadcast div a with b.\nconst a = tf.tensor1d([2, 4, 6, 8]);\nconst b = tf.scalar(2);\n\na.div(b).print();  // or tf.div(a, b)\n```",
                 "fileName": "#386",
                 "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/binary_ops.ts#L386-L421",
                 "isFunction": true
@@ -5985,7 +6042,7 @@
                   }
                 ],
                 "returnType": "Tensor",
-                "documentation": "Divides two `tf.Tensor`s element-wise, A / B. Supports broadcasting.\nThe result is rounded with floor function.\n\n\n```js\nconst a = tf.tensor1d([1, 4, 9, 16]);\nconst b = tf.tensor1d([1, 2, 3, 4]);\n\na.floorDiv(b).print();  // or tf.div(a, b)\n```\n\n```js\n// Broadcast div a with b.\nconst a = tf.tensor1d([2, 4, 6, 8]);\nconst b = tf.scalar(2);\n\na.floorDiv(b).print();  // or tf.floorDiv(a, b)\n```",
+                "documentation": "Divides two `Tensor`s element-wise, A / B. Supports broadcasting.\nThe result is rounded with floor function.\n\n\n```js\nconst a = tf.tensor1d([1, 4, 9, 16]);\nconst b = tf.tensor1d([1, 2, 3, 4]);\n\na.floorDiv(b).print();  // or tf.div(a, b)\n```\n\n```js\n// Broadcast div a with b.\nconst a = tf.tensor1d([2, 4, 6, 8]);\nconst b = tf.scalar(2);\n\na.floorDiv(b).print();  // or tf.floorDiv(a, b)\n```",
                 "fileName": "#448",
                 "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/binary_ops.ts#L448-L478",
                 "isFunction": true
@@ -6014,7 +6071,7 @@
                   }
                 ],
                 "returnType": "Tensor",
-                "documentation": "Returns the mod of a and b element-wise.\n`floor(x / y) * y + mod(x, y) = x`\nSupports broadcasting.\n\nWe also expose `tf.modStrict` which has the same signature as this op and\nasserts that `a` and `b` are the same shape (does not broadcast).\n\n```js\nconst a = tf.tensor1d([1, 4, 3, 16]);\nconst b = tf.tensor1d([1, 2, 9, 4]);\n\na.mod(b).print();  // or tf.mod(a, b)\n```\n\n```js\n// Broadcast a mod b.\nconst a = tf.tensor1d([2, 4, 6, 8]);\nconst b = tf.scalar(5);\n\na.mod(b).print();  // or tf.mod(a, b)\n```",
+                "documentation": "Returns the mod of a and b element-wise.\n`floor(x / y) * y + mod(x, y) = x`\nSupports broadcasting.\n\nWe also expose `modStrict` which has the same signature as this op and\nasserts that `a` and `b` are the same shape (does not broadcast).\n\n```js\nconst a = tf.tensor1d([1, 4, 3, 16]);\nconst b = tf.tensor1d([1, 2, 9, 4]);\n\na.mod(b).print();  // or tf.mod(a, b)\n```\n\n```js\n// Broadcast a mod b.\nconst a = tf.tensor1d([2, 4, 6, 8]);\nconst b = tf.scalar(5);\n\na.mod(b).print();  // or tf.mod(a, b)\n```",
                 "fileName": "#519",
                 "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/binary_ops.ts#L519-L546",
                 "isFunction": true
@@ -6072,7 +6129,7 @@
                   }
                 ],
                 "returnType": "Tensor",
-                "documentation": "Returns the max of a and b (`a > b ? a : b`) element-wise.\nSupports broadcasting.\n\nWe also expose `tf.maximumStrict` which has the same signature as this op and\nasserts that `a` and `b` are the same shape (does not broadcast).\n\n```js\nconst a = tf.tensor1d([1, 4, 3, 16]);\nconst b = tf.tensor1d([1, 2, 9, 4]);\n\na.maximum(b).print();  // or tf.maximum(a, b)\n```\n\n```js\n// Broadcast maximum a with b.\nconst a = tf.tensor1d([2, 4, 6, 8]);\nconst b = tf.scalar(5);\n\na.maximum(b).print();  // or tf.maximum(a, b)\n```",
+                "documentation": "Returns the max of a and b (`a > b ? a : b`) element-wise.\nSupports broadcasting.\n\nWe also expose `maximumStrict` which has the same signature as this op and\nasserts that `a` and `b` are the same shape (does not broadcast).\n\n```js\nconst a = tf.tensor1d([1, 4, 3, 16]);\nconst b = tf.tensor1d([1, 2, 9, 4]);\n\na.maximum(b).print();  // or tf.maximum(a, b)\n```\n\n```js\n// Broadcast maximum a with b.\nconst a = tf.tensor1d([2, 4, 6, 8]);\nconst b = tf.scalar(5);\n\na.maximum(b).print();  // or tf.maximum(a, b)\n```",
                 "fileName": "#646",
                 "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/binary_ops.ts#L646-L666",
                 "isFunction": true
@@ -6101,7 +6158,7 @@
                   }
                 ],
                 "returnType": "Tensor",
-                "documentation": "Returns (a - b) * (a - b) element-wise.\nSupports broadcasting.\n\nWe also expose `tf.squaredDifferenceStrict` which has the same signature as\nthis op and asserts that `a` and `b` are the same shape (does not\nbroadcast).\n\n```js\nconst a = tf.tensor1d([1, 4, 3, 16]);\nconst b = tf.tensor1d([1, 2, 9, 4]);\n\na.squaredDifference(b).print();  // or tf.squaredDifference(a, b)\n```\n\n```js\n// Broadcast squared difference  a with b.\nconst a = tf.tensor1d([2, 4, 6, 8]);\nconst b = tf.scalar(5);\n\na.squaredDifference(b).print();  // or tf.squaredDifference(a, b)\n```",
+                "documentation": "Returns (a - b) * (a - b) element-wise.\nSupports broadcasting.\n\nWe also expose `squaredDifferenceStrict` which has the same signature as\nthis op and asserts that `a` and `b` are the same shape (does not\nbroadcast).\n\n```js\nconst a = tf.tensor1d([1, 4, 3, 16]);\nconst b = tf.tensor1d([1, 2, 9, 4]);\n\na.squaredDifference(b).print();  // or tf.squaredDifference(a, b)\n```\n\n```js\n// Broadcast squared difference  a with b.\nconst a = tf.tensor1d([2, 4, 6, 8]);\nconst b = tf.scalar(5);\n\na.squaredDifference(b).print();  // or tf.squaredDifference(a, b)\n```",
                 "fileName": "#707",
                 "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/binary_ops.ts#L707-L722",
                 "isFunction": true
@@ -6121,14 +6178,14 @@
                 "parameters": [
                   {
                     "name": "x",
-                    "documentation": "The `tf.Tensor` that will be summed along its segments.",
+                    "documentation": "The `Tensor` that will be summed along its segments.",
                     "type": "Tensor|TypedArray|Array",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
                     "name": "segmentIds",
-                    "documentation": "A `tf.Tensor1D` whose rank is equal to the rank of `x`'s\ndimension along the `axis`.  Maps each element of `x` to a segment.",
+                    "documentation": "A `Tensor1D` whose rank is equal to the rank of `x`'s\ndimension along the `axis`.  Maps each element of `x` to a segment.",
                     "type": "Tensor1D|TypedArray|Array",
                     "optional": false,
                     "isConfigParam": false
@@ -6142,7 +6199,7 @@
                   }
                 ],
                 "returnType": "Tensor",
-                "documentation": "Computes the sum along segments of a `tf.Tensor`.\n\n```js\nconst x = tf.tensor1d([1, 2, 3, 4]);\nconst segmentIds = tf.tensor1d([1, 2, 0, 1], 'int32');\nconst numSegments = 3;\n\nx.unsortedSegmentSum(segmentIds, numSegments).print()\n//or tf.unsortedSegmentSum(x, segmentIds, numSegments)\n```",
+                "documentation": "Computes the sum along segments of a `Tensor`.\n\n```js\nconst x = tf.tensor1d([1, 2, 3, 4]);\nconst segmentIds = tf.tensor1d([1, 2, 0, 1], 'int32');\nconst numSegments = 3;\n\nx.unsortedSegmentSum(segmentIds, numSegments).print()\n//or tf.unsortedSegmentSum(x, segmentIds, numSegments)\n```",
                 "fileName": "#48",
                 "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/segment_ops.ts#L48-L66",
                 "isFunction": true
@@ -6421,7 +6478,7 @@
                   }
                 ],
                 "returnType": "Tensor",
-                "documentation": "Creates a new tensor by applying sparse updates to individual\nvalues or slices within a zero tensor of the given shape tensor according to\nindices. This operator is the inverse of the `tf.gatherND` operator which\nextracts values or slices from a given tensor.\n\n```js\nconst indices = tf.tensor2d([[4], [3], [1], [7]]);\nconst updates = tf.tensor2d([9, 10, 11, 12]);\nconst shape = [8];\ntf.scatterND(indices, updates, shape]).print() //[0, 11, 0, 10, 9, 0, 0, 12]\n```",
+                "documentation": "Creates a new tensor by applying sparse updates to individual\nvalues or slices within a zero tensor of the given shape tensor according to\nindices. This operator is the inverse of the `gatherND` operator which\nextracts values or slices from a given tensor.\n\n```js\nconst indices = tf.tensor2d([[4], [3], [1], [7]]);\nconst updates = tf.tensor2d([9, 10, 11, 12]);\nconst shape = [8];\ntf.scatterND(indices, updates, shape]).print() //[0, 11, 0, 10, 9, 0, 0, 12]\n```",
                 "fileName": "#44",
                 "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/scatter_nd.ts#L44-L54",
                 "isFunction": true
@@ -6450,7 +6507,7 @@
                   }
                 ],
                 "returnType": "Tensor",
-                "documentation": "Gather slices from input tensor into a Tensor with shape specified by\n`indices`.\n\n`indices` is an K-dimensional integer tensor, best thought of as a\n(K-1)-dimensional tensor of indices into input, where each element defines a\nslice of input:\noutput[\\\\(i_0, ..., i_{K-2}\\\\)] = input[indices[\\\\(i_0, ..., i_{K-2}\\\\)]]\n\nWhereas in `tf.gather`, `indices` defines slices into the first dimension of\ninput, in `tf.gatherND`, `indices` defines slices into the first N dimensions\nof input, where N = indices.shape[-1].\n\nThe last dimension of indices can be at most the rank of input:\nindices.shape[-1] <= input.rank\n\nThe last dimension of `indices` corresponds to elements\n(if indices.shape[-1] == input.rank) or slices\n(if indices.shape[-1] < input.rank) along dimension indices.shape[-1] of\ninput.\nThe output tensor has shape\nindices.shape[:-1] + input.shape[indices.shape[-1]:]\n\nNote that on CPU, if an out of bound index is found, an error is returned. On\nGPU, if an out of bound index is found, a 0 is stored in the corresponding\noutput value.\n\n```js\nconst indices = tf.tensor2d([0, 1, 1, 0], [2,2], 'int32');\nconst input = tf.tensor2d([9, 10, 11, 12], [2, 2]);\ntf.gatherND(input, indices).print() //[10, 11]\n```",
+                "documentation": "Gather slices from input tensor into a Tensor with shape specified by\n`indices`.\n\n`indices` is an K-dimensional integer tensor, best thought of as a\n(K-1)-dimensional tensor of indices into input, where each element defines a\nslice of input:\noutput[\\\\(i_0, ..., i_{K-2}\\\\)] = input[indices[\\\\(i_0, ..., i_{K-2}\\\\)]]\n\nWhereas in `gather` `indices` defines slices into the first dimension of\ninput, in `gatherND`, `indices` defines slices into the first N dimensions\nof input, where N = indices.shape[-1].\n\nThe last dimension of indices can be at most the rank of input:\nindices.shape[-1] <= input.rank\n\nThe last dimension of `indices` corresponds to elements\n(if indices.shape[-1] == input.rank) or slices\n(if indices.shape[-1] < input.rank) along dimension indices.shape[-1] of\ninput.\nThe output tensor has shape\nindices.shape[:-1] + input.shape[indices.shape[-1]:]\n\nNote that on CPU, if an out of bound index is found, an error is returned. On\nGPU, if an out of bound index is found, a 0 is stored in the corresponding\noutput value.\n\n```js\nconst indices = tf.tensor2d([0, 1, 1, 0], [2,2], 'int32');\nconst input = tf.tensor2d([9, 10, 11, 12], [2, 2]);\ntf.gatherND(input, indices).print() //[10, 11]\n```",
                 "fileName": "#60",
                 "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/gather_nd.ts#L60-L67",
                 "isFunction": true
@@ -6470,7 +6527,7 @@
                 "parameters": [
                   {
                     "name": "x",
-                    "documentation": "1-D or higher `tf.Tensor` with last dimension being at least `k`.",
+                    "documentation": "1-D or higher `Tensor` with last dimension being at least `k`.",
                     "type": "Tensor|TypedArray|Array",
                     "optional": false,
                     "isConfigParam": false
@@ -6556,33 +6613,9 @@
                   }
                 ],
                 "returnType": "Tensor",
-                "documentation": "Fast Fourier transform.\n\nComputes the 1-dimensional discrete Fourier transform over the inner-most\ndimension of input.\n\n```js\nconst real = tf.tensor1d([1, 2, 3]);\nconst imag = tf.tensor1d([1, 2, 3]);\nconst x = tf.complex(real, imag);\n\nx.fft().print();  // tf.spectral.fft(x).print();\n```",
-                "fileName": "#41",
-                "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/spectral_ops.ts#L41-L55",
-                "isFunction": true
-              },
-              {
-                "docInfo": {
-                  "heading": "Operations",
-                  "subheading": "Spectral",
-                  "namespace": "spectral"
-                },
-                "symbolName": "ifft",
-                "namespace": "spectral",
-                "paramStr": "(input)",
-                "parameters": [
-                  {
-                    "name": "input",
-                    "documentation": "The complex input to compute an ifft over.",
-                    "type": "Tensor",
-                    "optional": false,
-                    "isConfigParam": false
-                  }
-                ],
-                "returnType": "Tensor",
-                "documentation": "Inverse fast Fourier transform.\n\nComputes the inverse 1-dimensional discrete Fourier transform over the\ninner-most dimension of input.\n\n```js\nconst real = tf.tensor1d([1, 2, 3]);\nconst imag = tf.tensor1d([1, 2, 3]);\nconst x = tf.complex(real, imag);\n\nx.ifft().print();  // tf.spectral.ifft(x).print();\n```",
-                "fileName": "#75",
-                "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/spectral_ops.ts#L75-L89",
+                "documentation": "Compute the 1-dimentional discrete fourier transform\nThe input is expected to be the 1D tensor with dtype complex64.\n\n```js\nconst real = tf.tensor1d([1, 2, 3]);\nconst imag = tf.tensor1d([1, 2, 3]);\nconst x = tf.complex(real, imag);\n\nx.fft().print();  // tf.spectral.fft(x).print();\n```",
+                "fileName": "#39",
+                "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/spectral_ops.ts#L39-L53",
                 "isFunction": true
               }
             ]
@@ -6602,7 +6635,7 @@
                 "parameters": [
                   {
                     "name": "xs",
-                    "documentation": "The vectors to be orthogonalized, in one of the two following\nformats:\n- An Array of `tf.Tensor1D`.\n- A `tf.Tensor2D`, i.e., a matrix, in which case the vectors are the rows\nof `xs`.\nIn each case, all the vectors must have the same length and the length\nmust be greater than or equal to the number of vectors.",
+                    "documentation": "The vectors to be orthogonalized, in one of the two following\nformats:\n- An Array of `Tensor1D`.\n- A `Tensor2D`, i.e., a matrix, in which case the vectors are the rows\nof `xs`.\nIn each case, all the vectors must have the same length and the length\nmust be greater than or equal to the number of vectors.",
                     "type": "Tensor1D[]|Tensor2D",
                     "optional": false,
                     "isConfigParam": false
@@ -6626,7 +6659,7 @@
                 "parameters": [
                   {
                     "name": "x",
-                    "documentation": "The `tf.Tensor` to be QR-decomposed. Must have rank >= 2. Suppose\nit has the shape `[..., M, N]`.",
+                    "documentation": "The `Tensor` to be QR-decomposed. Must have rank >= 2. Suppose\nit has the shape `[..., M, N]`.",
                     "type": "Tensor",
                     "optional": false,
                     "isConfigParam": false
@@ -6870,7 +6903,7 @@
                   }
                 ],
                 "returnType": "Promise",
-                "documentation": "Draws a `tf.Tensor` of pixel values to a byte array or optionally a\ncanvas.\n\nWhen the dtype of the input is 'float32', we assume values in the range\n[0-1]. Otherwise, when input is 'int32', we assume values in the range\n[0-255].\n\nReturns a promise that resolves when the canvas has been drawn to.",
+                "documentation": "Draws a `Tensor` of pixel values to a byte array or optionally a\ncanvas.\n\nWhen the dtype of the input is 'float32', we assume values in the range\n[0-1]. Otherwise, when input is 'int32', we assume values in the range\n[0-255].\n\nReturns a promise that resolves when the canvas has been drawn to.",
                 "fileName": "#353",
                 "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/array_ops.ts#L353-L435",
                 "isFunction": true

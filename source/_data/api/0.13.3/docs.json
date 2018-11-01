@@ -330,8 +330,8 @@
               ],
               "returnType": "[tf.TensorBuffer](#class:TensorBuffer)",
               "documentation": "Creates an empty [tf.TensorBuffer](#class:TensorBuffer) with the specified `shape` and `dtype`.\n\nThe values are stored in CPU as [TypedArray](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray). Fill the buffer using\n`buffer.set()`, or by modifying directly `buffer.values`.\n\nWhen done, call `buffer.toTensor()` to get an immutable [tf.Tensor](#class:Tensor) with\nthose values.\n\n```js\n// Create a buffer and set values at particular indices.\nconst buffer = tf.buffer([2, 2]);\nbuffer.set(3, 0, 0);\nbuffer.set(5, 1, 0);\n\n// Convert the buffer back to a tensor.\nbuffer.toTensor().print();\n```",
-              "fileName": "#1116",
-              "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/array_ops.ts#L1116-L1120",
+              "fileName": "#1117",
+              "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/array_ops.ts#L1117-L1121",
               "isFunction": true,
               "displayName": "tf.buffer",
               "urlHash": "buffer"
@@ -384,7 +384,7 @@
                 }
               ],
               "returnType": "[tf.Tensor](#class:Tensor)",
-              "documentation": "Converts two real numbers to a complex number.\n\nGiven a tensor `real` representing the real part of a complex number, and a\ntensor `imag` representing the imaginary part of a complex number, this\noperation returns complex numbers elementwise of the form [r0, i0, r1, i1],\nwhere r represents the real part and i represents the imag part.\n\nThe input tensors real and imag must have the same shape.\n\n```js\nconst real = tf.tensor1d([2.25, 3.25]);\nconst imag = tf.tensor1d([4.75, 5.75]);\nconst complex = tf.complex(real, imag);\n\ncomplex.print();\n```",
+              "documentation": "Converts two real numbers to a complex number.\n\nGiven a tensor [tf.real()](#real) representing the real part of a complex number, and a\ntensor [tf.imag()](#imag) representing the imaginary part of a complex number, this\noperation returns complex numbers elementwise of the form [r0, i0, r1, i1],\nwhere r represents the real part and i represents the imag part.\n\nThe input tensors real and imag must have the same shape.\n\n```js\nconst real = tf.tensor1d([2.25, 3.25]);\nconst imag = tf.tensor1d([4.75, 5.75]);\nconst complex = tf.complex(real, imag);\n\ncomplex.print();\n```",
               "fileName": "#43",
               "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/complex_ops.ts#L43-L53",
               "isFunction": true,
@@ -692,8 +692,8 @@
               ],
               "returnType": "void",
               "documentation": "Prints information about the [tf.Tensor](#class:Tensor) including its data.\n\n```js\nconst verbose = true;\ntf.tensor2d([1, 2, 3, 4], [2, 2]).print(verbose);\n```",
-              "fileName": "#1134",
-              "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/array_ops.ts#L1134-L1136",
+              "fileName": "#1135",
+              "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/array_ops.ts#L1135-L1137",
               "isFunction": true,
               "displayName": "tf.print",
               "urlHash": "print"
@@ -858,8 +858,8 @@
               ],
               "returnType": "[tf.Variable](#class:Variable)",
               "documentation": "Creates a new variable with the provided initial value.\n```js\nconst x = tf.variable(tf.tensor([1, 2, 3]));\nx.assign(tf.tensor([4, 5, 6]));\n\nx.print();\n```",
-              "fileName": "#1341",
-              "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/tensor.ts#L1341-L1348",
+              "fileName": "#1338",
+              "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/tensor.ts#L1338-L1345",
               "isFunction": true,
               "displayName": "tf.variable",
               "urlHash": "variable"
@@ -931,9 +931,9 @@
                 "subheading": "Classes"
               },
               "symbolName": "Tensor",
-              "documentation": "A [tf.Tensor](#class:Tensor) object represents an immutable, multidimensional array of\nnumbers that has a shape and a data type.\n\nSee [tf.tensor()](#tensor) for details on how to create a [tf.Tensor](#class:Tensor).",
-              "fileName": "#380",
-              "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/tensor.ts#L380-L1275",
+              "documentation": "A [tf.Tensor](#class:Tensor) object represents an immutable, multidimensional array of numbers\nthat has a shape and a data type.\n\nSee [tf.tensor()](#tensor) for details on how to create a [tf.Tensor](#class:Tensor).",
+              "fileName": "#378",
+              "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/tensor.ts#L378-L1270",
               "methods": [
                 {
                   "docInfo": {
@@ -1138,7 +1138,7 @@
                   "paramStr": "()",
                   "parameters": [],
                   "returnType": "Promise",
-                  "documentation": "Asynchronously downloads the values from the [tf.Tensor](#class:Tensor). Returns a promise\nof [TypedArray](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray) that resolves when the computation has finished.",
+                  "documentation": "Asynchronously downloads the values from the [tf.Tensor](#class:Tensor). Returns a promise of\n[TypedArray](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray) that resolves when the computation has finished.",
                   "fileName": "#550",
                   "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/tensor.ts#L550-L553",
                   "isFunction": true,
@@ -1421,8 +1421,8 @@
               },
               "symbolName": "Variable",
               "documentation": "A mutable [tf.Tensor](#class:Tensor), useful for persisting state, e.g. for training.",
-              "fileName": "#1301",
-              "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/tensor.ts#L1301-L1372",
+              "fileName": "#1296",
+              "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/tensor.ts#L1296-L1369",
               "methods": [
                 {
                   "docInfo": {
@@ -1441,9 +1441,9 @@
                     }
                   ],
                   "returnType": "void",
-                  "documentation": "Assign a new [tf.Tensor](#class:Tensor) to this variable. The new [tf.Tensor](#class:Tensor) must have\nthe same shape and dtype as the old [tf.Tensor](#class:Tensor).",
-                  "fileName": "#1357",
-                  "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/tensor.ts#L1357-L1371",
+                  "documentation": "Assign a new [tf.Tensor](#class:Tensor) to this variable. The new [tf.Tensor](#class:Tensor) must have the\nsame shape and dtype as the old [tf.Tensor](#class:Tensor).",
+                  "fileName": "#1354",
+                  "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/tensor.ts#L1354-L1368",
                   "isFunction": true,
                   "urlHash": "tf.Variable.assign"
                 }
@@ -1574,8 +1574,8 @@
               ],
               "returnType": "[tf.Tensor](#class:Tensor)",
               "documentation": "This operation reshapes the \"batch\" dimension 0 into `M + 1` dimensions of\nshape `blockShape + [batch]`, interleaves these blocks back into the grid\ndefined by the spatial dimensions `[1, ..., M]`, to obtain a result with\nthe same rank as the input. The spatial dimensions of this intermediate\nresult are then optionally cropped according to `crops` to produce the\noutput. This is the reverse of [tf.spaceToBatchND()](#spaceToBatchND). See below for a precise\ndescription.\n\n```js\nconst x = tf.tensor4d([1, 2, 3, 4], [4, 1, 1, 1]);\nconst blockShape = [2, 2];\nconst crops = [[0, 0], [0, 0]];\n\nx.batchToSpaceND(blockShape, crops).print();\n```",
-              "fileName": "#790",
-              "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/array_ops.ts#L790-L818",
+              "fileName": "#791",
+              "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/array_ops.ts#L791-L819",
               "isFunction": true,
               "displayName": "tf.batchToSpaceND",
               "urlHash": "batchToSpaceND"
@@ -1643,8 +1643,8 @@
               ],
               "returnType": "[tf.Tensor4D](#class:Tensor)",
               "documentation": "Rearranges data from depth into blocks of spatial data. More specifically,\nthis op outputs a copy of the input tensor where values from the `depth`\ndimension are moved in spatial blocks to the `height` and `width` dimensions.\nThe attr `blockSize` indicates the input block size and how the data is\nmoved.\n\n  - Chunks of data of size `blockSize * blockSize` from depth are rearranged\ninto non-overlapping blocks of size `blockSize x blockSize`\n\n  - The width the output tensor is `inputWidth * blockSize`, whereas the\nheight is `inputHeight * blockSize`\n\n  - The Y, X coordinates within each block of the output image are determined\nby the high order component of the input channel index\n\n  - The depth of the input tensor must be divisible by `blockSize *\nblockSize`\n\nThe `dataFormat` attr specifies the layout of the input and output tensors\nwith the following options: \"NHWC\": [ `batch, height, width, channels` ]\n\"NCHW\": [ `batch, channels, height, width` ]\n\n```js\nconst x = tf.tensor4d([1, 2, 3, 4], [1, 1, 1, 4]);\nconst blockSize = 2;\nconst dataFormat = \"NHWC\";\n\ntf.depthToSpace(x, blockSize, dataFormat).print();\n```",
-              "fileName": "#1060",
-              "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/array_ops.ts#L1060-L1089",
+              "fileName": "#1061",
+              "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/array_ops.ts#L1061-L1090",
               "isFunction": true,
               "displayName": "tf.depthToSpace",
               "urlHash": "depthToSpace"
@@ -1674,8 +1674,8 @@
               ],
               "returnType": "[tf.Tensor](#class:Tensor)",
               "documentation": "Returns a [tf.Tensor](#class:Tensor) that has expanded rank, by inserting a dimension\ninto the tensor's shape.\n\n```js\nconst x = tf.tensor1d([1, 2, 3, 4]);\nconst axis = 1;\nx.expandDims(axis).print();\n```",
-              "fileName": "#1007",
-              "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/array_ops.ts#L1007-L1022",
+              "fileName": "#1008",
+              "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/array_ops.ts#L1008-L1023",
               "isFunction": true,
               "displayName": "tf.expandDims",
               "urlHash": "expandDims"
@@ -1712,8 +1712,8 @@
               ],
               "returnType": "[tf.Tensor](#class:Tensor)",
               "documentation": "Pads a [tf.Tensor](#class:Tensor) with a given value and paddings.\n\nThis operation currently only implements the `CONSTANT` mode.\n\nAlso available are stricter rank-specific methods with the same signature\nas this method that assert that `paddings` is of given length.\n   - `tf.pad1d`\n   - `tf.pad2d`\n   - `tf.pad3d`\n   - `tf.pad4d`\n\n```js\nconst x = tf.tensor1d([1, 2, 3, 4]);\nx.pad([[1, 2]]).print();\n```",
-              "fileName": "#682",
-              "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/array_ops.ts#L682-L698",
+              "fileName": "#683",
+              "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/array_ops.ts#L683-L699",
               "isFunction": true,
               "displayName": "tf.pad",
               "urlHash": "pad"
@@ -1781,8 +1781,8 @@
               ],
               "returnType": "[tf.Tensor](#class:Tensor)",
               "documentation": "This operation divides \"spatial\" dimensions [1, ..., M] of the input into\na grid of blocks of shape block_shape, and interleaves these blocks with\nthe \"batch\" dimension (0) such that in the output, the spatial\ndimensions [1, ..., M] correspond to the position within the grid,\nand the batch dimension combines both the position within a spatial block\nand the original batch position. Prior to division into blocks,\nthe spatial dimensions of the input are optionally zero padded\naccording to paddings. See below for a precise description.\n\n```js\nconst x = tf.tensor4d([1, 2, 3, 4], [4, 1, 1, 1]);\nconst blockShape = [2, 2];\nconst paddings = [[0, 0], [0, 0]];\n\nx.spaceToBatchND(blockShape, paddings).print();\n```",
-              "fileName": "#869",
-              "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/array_ops.ts#L869-L905",
+              "fileName": "#870",
+              "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/array_ops.ts#L870-L906",
               "isFunction": true,
               "displayName": "tf.spaceToBatchND",
               "urlHash": "spaceToBatchND"
@@ -1848,7 +1848,7 @@
                 }
               ],
               "returnType": "[tf.Tensor](#class:Tensor)",
-              "documentation": "Concatenates a list of[tf.Tensor](#class:Tensor)s along a given axis.\n\nThe tensors ranks and types must match, and their sizes must match in all\ndimensions except `axis`.\n\nAlso available are stricter rank-specific methods that assert that\n`tensors` are of the given rank:\n   - `tf.concat1d`\n   - `tf.concat2d`\n   - `tf.concat3d`\n   - `tf.concat4d`\n\nExcept `tf.concat1d` (which does not have axis param), all methods have\nsame signature as this method.\n\n```js\nconst a = tf.tensor1d([1, 2]);\nconst b = tf.tensor1d([3, 4]);\na.concat(b).print();  // or a.concat(b)\n```\n\n```js\nconst a = tf.tensor1d([1, 2]);\nconst b = tf.tensor1d([3, 4]);\nconst c = tf.tensor1d([5, 6]);\ntf.concat([a, b, c]).print();\n```\n\n```js\nconst a = tf.tensor2d([[1, 2], [10, 20]]);\nconst b = tf.tensor2d([[3, 4], [30, 40]]);\nconst axis = 1;\ntf.concat([a, b], axis).print();\n```",
+              "documentation": "Concatenates a list of [tf.Tensor](#class:Tensor)s along a given axis.\n\nThe tensors ranks and types must match, and their sizes must match in all\ndimensions except `axis`.\n\nAlso available are stricter rank-specific methods that assert that\n`tensors` are of the given rank:\n   - `tf.concat1d`\n   - `tf.concat2d`\n   - `tf.concat3d`\n   - `tf.concat4d`\n\nExcept `tf.concat1d` (which does not have axis param), all methods have\nsame signature as this method.\n\n```js\nconst a = tf.tensor1d([1, 2]);\nconst b = tf.tensor1d([3, 4]);\na.concat(b).print();  // or a.concat(b)\n```\n\n```js\nconst a = tf.tensor1d([1, 2]);\nconst b = tf.tensor1d([3, 4]);\nconst c = tf.tensor1d([5, 6]);\ntf.concat([a, b, c]).print();\n```\n\n```js\nconst a = tf.tensor2d([[1, 2], [10, 20]]);\nconst b = tf.tensor2d([[3, 4], [30, 40]]);\nconst axis = 1;\ntf.concat([a, b], axis).print();\n```",
               "fileName": "#158",
               "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/concat_split.ts#L158-L182",
               "isFunction": true,
@@ -1993,7 +1993,7 @@
                 }
               ],
               "returnType": "[tf.Tensor](#class:Tensor)[]",
-              "documentation": "Splits a[tf.Tensor](#class:Tensor) into sub tensors.\n\nIf `numOrSizeSplits` is a number, splits `x` along dimension `axis`\ninto `numOrSizeSplits` smaller tensors.\nRequires that `numOrSizeSplits` evenly divides `x.shape[axis]`.\n\nIf `numOrSizeSplits` is a number array, splits `x` into\n`(numOrSizeSplits.length` pieces. The shape of the `i`-th piece has the\nsame size as `x` except along dimension `axis` where the size is\n`numOrSizeSplits[i]`.\n\n```js\nconst x = tf.tensor2d([1, 2, 3, 4, 5, 6, 7, 8], [2, 4]);\nconst [a, b] = tf.split(x, 2, 1);\na.print();\nb.print();\n\nconst [c, d, e] = tf.split(x, [1, 2, 1], 1);\nc.print();\nd.print();\ne.print();\n```",
+              "documentation": "Splits a [tf.Tensor](#class:Tensor) into sub tensors.\n\nIf `numOrSizeSplits` is a number, splits `x` along dimension `axis`\ninto `numOrSizeSplits` smaller tensors.\nRequires that `numOrSizeSplits` evenly divides `x.shape[axis]`.\n\nIf `numOrSizeSplits` is a number array, splits `x` into\n`(numOrSizeSplits.length` pieces. The shape of the `i`-th piece has the\nsame size as `x` except along dimension `axis` where the size is\n`numOrSizeSplits[i]`.\n\n```js\nconst x = tf.tensor2d([1, 2, 3, 4, 5, 6, 7, 8], [2, 4]);\nconst [a, b] = tf.split(x, 2, 1);\na.print();\nb.print();\n\nconst [c, d, e] = tf.split(x, [1, 2, 1], 1);\nc.print();\nd.print();\ne.print();\n```",
               "fileName": "#217",
               "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/concat_split.ts#L217-L237",
               "isFunction": true,
@@ -2025,8 +2025,8 @@
               ],
               "returnType": "[tf.Tensor](#class:Tensor)",
               "documentation": "Stacks a list of rank-`R` [tf.Tensor](#class:Tensor)s into one rank-`(R+1)` [tf.Tensor](#class:Tensor).\n\n```js\nconst a = tf.tensor1d([1, 2]);\nconst b = tf.tensor1d([3, 4]);\nconst c = tf.tensor1d([5, 6]);\ntf.stack([a, b, c]).print();\n```",
-              "fileName": "#714",
-              "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/array_ops.ts#L714-L740",
+              "fileName": "#715",
+              "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/array_ops.ts#L715-L741",
               "isFunction": true,
               "displayName": "tf.stack",
               "urlHash": "stack"
@@ -2055,7 +2055,7 @@
                 }
               ],
               "returnType": "[tf.Tensor](#class:Tensor)",
-              "documentation": "Construct a tensor by repeating it the number of times given by reps.\n\nThis operation creates a new tensor by replicating `input` `reps`\ntimes. The output tensor's i'th dimension has `input.shape[i] *\nreps[i]` elements, and the values of `input` are replicated\n`reps[i]` times along the i'th dimension. For example, tiling\n`[a, b, c, d]` by `[2]` produces `[a, b, c, d, a, b, c, d]`.\n\n```js\nconst a = tf.tensor1d([1, 2]);\n\na.tile([2]).print();    // or a.tile([2])\n```\n\n```js\nconst a = tf.tensor2d([1, 2, 3, 4], [2, 2]);\n\na.tile([1, 2]).print();  // or a.tile([1, 2])\n```",
+              "documentation": "Construct a tensor by repeating it the number of times given by reps.\n\nThis operation creates a new tensor by replicating [tf.input()](#input) `reps`\ntimes. The output tensor's i'th dimension has `input.shape[i] *\nreps[i]` elements, and the values of [tf.input()](#input) are replicated\n`reps[i]` times along the i'th dimension. For example, tiling\n`[a, b, c, d]` by `[2]` produces `[a, b, c, d, a, b, c, d]`.\n\n```js\nconst a = tf.tensor1d([1, 2]);\n\na.tile([2]).print();    // or a.tile([2])\n```\n\n```js\nconst a = tf.tensor2d([1, 2, 3, 4], [2, 2]);\n\na.tile([1, 2]).print();  // or a.tile([1, 2])\n```",
               "fileName": "#541",
               "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/array_ops.ts#L541-L600",
               "isFunction": true,
@@ -2087,8 +2087,8 @@
               ],
               "returnType": "[tf.Tensor](#class:Tensor)[]",
               "documentation": "Unstacks a [tf.Tensor](#class:Tensor) of rank-`R` into a list of rank-`(R-1)` [tf.Tensor](#class:Tensor)s.\n\n```js\nconst a = tf.tensor2d([1, 2, 3, 4], [2, 2]);\n\ntf.unstack(a).forEach(tensor => tensor.print());\n```",
-              "fileName": "#920",
-              "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/array_ops.ts#L920-L942",
+              "fileName": "#921",
+              "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/array_ops.ts#L921-L943",
               "isFunction": true,
               "displayName": "tf.unstack",
               "urlHash": "unstack"
@@ -2286,9 +2286,9 @@
                 }
               ],
               "returnType": "[tf.Sequential](#class:Sequential)",
-              "documentation": "Creates a [tf.Sequential](#class:Sequential) model.  A sequential model is any model where the\noutputs of one layer are the inputs to the next layer, i.e. the model\ntopology is a simple 'stack' of layers, with no branching or skipping.\n\nThis means that the first layer passed to a [tf.Sequential](#class:Sequential) model should have\na defined input shape. What that means is that it should have received an\n`inputShape` or `batchInputShape` argument, or for some type of layers\n(recurrent, Dense...) an `inputDim` argument.\n\nThe key difference between [tf.model()](#model) and [tf.sequential()](#sequential) is that\n[tf.sequential()](#sequential) is less generic, supporting only a linear stack of layers.\n[tf.model()](#model) is more generic and supports an arbitrary graph (without cycles)\nof layers.\n\nExamples:\n\n```js\nconst model = tf.sequential();\n\n// First layer must have an input shape defined.\nmodel.add(tf.layers.dense({units: 32, inputShape: [50]}));\n// Afterwards, TF.js does automatic shape inference.\nmodel.add(tf.layers.dense({units: 4}));\n\n// Inspect the inferred shape of the model's output, which equals\n// `[null, 4]`. The 1st dimension is the undetermined batch dimension; the\n// 2nd is the output size of the model's last layer.\nconsole.log(JSON.stringify(model.outputs[0].shape));\n```\n\nIt is also possible to specify a batch size (with potentially undetermined\nbatch dimension, denoted by \"null\") for the first layer using the\n`batchInputShape` key. The following example is equivalent to the above:\n\n```js\nconst model = tf.sequential();\n\n// First layer must have a defined input shape\nmodel.add(tf.layers.dense({units: 32, batchInputShape: [null, 50]}));\n// Afterwards, TF.js does automatic shape inference.\nmodel.add(tf.layers.dense({units: 4}));\n\n// Inspect the inferred shape of the model's output.\nconsole.log(JSON.stringify(model.outputs[0].shape));\n```\n\nYou can also use an `Array` of already-constructed `Layer`s to create\na [tf.Sequential](#class:Sequential) model:\n\n```js\nconst model = tf.sequential({\n   layers: [tf.layers.dense({units: 32, inputShape: [50]}),\n            tf.layers.dense({units: 4})]\n});\nconsole.log(JSON.stringify(model.outputs[0].shape));\n```",
-              "fileName": "#137",
-              "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/v0.8.3/src/exports.ts#L137-L139",
+              "documentation": "Creates a [tf.Sequential](#class:Sequential) model.  A sequential model is any model where the\noutputs of one layer are the inputs to the next layer, i.e. the model\ntopology is a simple 'stack' of layers, with no branching or skipping.\n\nThis means that the first layer passed to a Sequential model should have a\ndefined input shape. What that means is that it should have received an\n`inputShape` or `batchInputShape` argument, or for some type of layers\n(recurrent, Dense...) an `inputDim` argument.\n\nThe key difference between [tf.model()](#model) and [tf.sequential()](#sequential) is that [tf.sequential()](#sequential)\nis less generic, supporting only a linear stack of layers. [tf.model()](#model) is\nmore generic and supports an arbitrary graph (without cycles) of layers.\n\nExamples:\n\n```js\nconst model = tf.sequential();\n\n// First layer must have an input shape defined.\nmodel.add(tf.layers.dense({units: 32, inputShape: [50]}));\n// Afterwards, TF.js does automatic shape inference.\nmodel.add(tf.layers.dense({units: 4}));\n\n// Inspect the inferred shape of the model's output, which equals\n// `[null, 4]`. The 1st dimension is the undetermined batch dimension; the\n// 2nd is the output size of the model's last layer.\nconsole.log(JSON.stringify(model.outputs[0].shape));\n```\n\nIt is also possible to specify a batch size (with potentially undetermined\nbatch dimension, denoted by \"null\") for the first layer using the\n`batchInputShape` key. The following example is equivalent to the above:\n\n```js\nconst model = tf.sequential();\n\n// First layer must have a defined input shape\nmodel.add(tf.layers.dense({units: 32, batchInputShape: [null, 50]}));\n// Afterwards, TF.js does automatic shape inference.\nmodel.add(tf.layers.dense({units: 4}));\n\n// Inspect the inferred shape of the model's output.\nconsole.log(JSON.stringify(model.outputs[0].shape));\n```\n\nYou can also use an `Array` of already-constructed `Layer`s to create\na [tf.Sequential](#class:Sequential) model:\n\n```js\nconst model = tf.sequential({\n   layers: [tf.layers.dense({units: 32, inputShape: [50]}),\n            tf.layers.dense({units: 4})]\n});\nconsole.log(JSON.stringify(model.outputs[0].shape));\n```",
+              "fileName": "#136",
+              "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/v0.8.3/src/exports.ts#L136-L138",
               "isFunction": true,
               "displayName": "tf.sequential",
               "urlHash": "sequential"
@@ -2403,9 +2403,9 @@
                 }
               ],
               "returnType": "[tf.SymbolicTensor](#class:SymbolicTensor)",
-              "documentation": "Used to instantiate an input to a model as a [tf.SymbolicTensor](#class:SymbolicTensor).\n\nUsers should call the `input` factory function for\nconsistency with other generator functions.\n\nExample:\n\n```js\n// Defines a simple logistic regression model with 32 dimensional input\n// and 3 dimensional output.\nconst x = tf.input({shape: [32]});\nconst y = tf.layers.dense({units: 3, activation: 'softmax'}).apply(x);\nconst model = tf.model({inputs: x, outputs: y});\nmodel.predict(tf.ones([2, 32])).print();\n```\n\nNote: `input` is only necessary when using `model`. When using\n`sequential`, specify `inputShape` for the first layer or use `inputLayer`\nas the first layer.",
-              "fileName": "#161",
-              "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/v0.8.3/src/exports.ts#L161-L163",
+              "documentation": "Used to instantiate an input to a model as a [tf.SymbolicTensor](#class:SymbolicTensor).\n\nUsers should call the [tf.input()](#input) factory function for\nconsistency with other generator functions.\n\nExample:\n\n```js\n// Defines a simple logistic regression model with 32 dimensional input\n// and 3 dimensional output.\nconst x = tf.input({shape: [32]});\nconst y = tf.layers.dense({units: 3, activation: 'softmax'}).apply(x);\nconst model = tf.model({inputs: x, outputs: y});\nmodel.predict(tf.ones([2, 32])).print();\n```\n\nNote: [tf.input()](#input) is only necessary when using [tf.model()](#model). When using\n[tf.sequential()](#sequential), specify `inputShape` for the first layer or use `inputLayer`\nas the first layer.",
+              "fileName": "#160",
+              "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/v0.8.3/src/exports.ts#L160-L162",
               "isFunction": true,
               "displayName": "tf.input",
               "urlHash": "input"
@@ -2448,8 +2448,8 @@
               ],
               "returnType": "Promise",
               "documentation": "Load the frozen model through url.\n\nExample of loading the MobileNetV2 model and making a prediction with a zero\ninput.\n\n```js\nconst GOOGLE_CLOUD_STORAGE_DIR =\n     'https://storage.googleapis.com/tfjs-models/savedmodel/';\nconst MODEL_URL = 'mobilenet_v2_1.0_224/tensorflowjs_model.pb';\nconst WEIGHTS_URL =\n     'mobilenet_v2_1.0_224/weights_manifest.json';\nconst model = await tf.loadFrozenModel(GOOGLE_CLOUD_STORAGE_DIR + MODEL_URL,\n      GOOGLE_CLOUD_STORAGE_DIR + WEIGHTS_URL);\nconst zeros = tf.zeros([1, 224, 224, 3]);\nmodel.predict(zeros).print();\n```",
-              "fileName": "#289",
-              "githubUrl": "https://github.com/tensorflow/tfjs-converter/blob/v0.6.5/src/executor/frozen_model.ts#L289-L295",
+              "fileName": "#288",
+              "githubUrl": "https://github.com/tensorflow/tfjs-converter/blob/v0.6.5/src/executor/frozen_model.ts#L288-L294",
               "isFunction": true,
               "displayName": "tf.loadFrozenModel",
               "urlHash": "loadFrozenModel"
@@ -2479,9 +2479,9 @@
                 }
               ],
               "returnType": "Promise",
-              "documentation": "Load a model, including its topology and optionally weights.  See the\nTutorial named \"How to import a Keras Model\" for usage examples.\n\nExample 1: Save `model`'s topology and weights to browser [local\nstorage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage);\nthen load it back.\n\n```js\nconst model = tf.sequential(\n     {layers: [tf.layers.dense({units: 1, inputShape: [3]})]});\nconsole.log('Prediction from original model:');\nmodel.predict(tf.ones([1, 3])).print();\n\nconst saveResults = await model.save('localstorage://my-model-1');\n\nconst loadedModel = await tf.loadModel('localstorage://my-model-1');\nconsole.log('Prediction from loaded model:');\nloadedModel.predict(tf.ones([1, 3])).print();\n```\n\nExample 2. Saving `model`'s topology and weights to browser\n[IndexedDB](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API);\nthen load it back.\n\n```js\nconst model = tf.sequential(\n     {layers: [tf.layers.dense({units: 1, inputShape: [3]})]});\nconsole.log('Prediction from original model:');\nmodel.predict(tf.ones([1, 3])).print();\n\nconst saveResults = await model.save('indexeddb://my-model-1');\n\nconst loadedModel = await tf.loadModel('indexeddb://my-model-1');\nconsole.log('Prediction from loaded model:');\nloadedModel.predict(tf.ones([1, 3])).print();\n```\n\nExample 3. Load a model from user-selected files from HTML\n[file input\nelements](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file).\n\n```js\n// Note: this code snippet will not work without the HTML elements in the\n//   page\nconst jsonUpload = document.getElementById('json-upload');\nconst weightsUpload = document.getElementById('weights-upload');\n\nconst model = await tf.loadModel(\n     tf.io.browserFiles([jsonUpload.files[0], weightsUpload.files[0]]));\n```\n\nExample 4. Load a model from an HTTP server.\n\n```js\nconst model = await\n     tf.loadModel('https://storage.googleapis.com/tfjs-models/tfjs/iris_v1/model.json');\nmodel.summary();\n```",
-              "fileName": "#148",
-              "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/v0.8.3/src/exports.ts#L148-L151",
+              "documentation": "Load a model, including its topology and optionally weights.  See the\nTutorial named \"How to import a Keras Model\" for usage examples.\n\nExample 1: Save [tf.model()](#model)'s topology and weights to browser [local\nstorage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage);\nthen load it back.\n\n```js\nconst model = tf.sequential(\n     {layers: [tf.layers.dense({units: 1, inputShape: [3]})]});\nconsole.log('Prediction from original model:');\nmodel.predict(tf.ones([1, 3])).print();\n\nconst saveResults = await model.save('localstorage://my-model-1');\n\nconst loadedModel = await tf.loadModel('localstorage://my-model-1');\nconsole.log('Prediction from loaded model:');\nloadedModel.predict(tf.ones([1, 3])).print();\n```\n\nExample 2. Saving [tf.model()](#model)'s topology and weights to browser\n[IndexedDB](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API);\nthen load it back.\n\n```js\nconst model = tf.sequential(\n     {layers: [tf.layers.dense({units: 1, inputShape: [3]})]});\nconsole.log('Prediction from original model:');\nmodel.predict(tf.ones([1, 3])).print();\n\nconst saveResults = await model.save('indexeddb://my-model-1');\n\nconst loadedModel = await tf.loadModel('indexeddb://my-model-1');\nconsole.log('Prediction from loaded model:');\nloadedModel.predict(tf.ones([1, 3])).print();\n```\n\nExample 3. Load a model from user-selected files from HTML\n[file input\nelements](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file).\n\n```js\n// Note: this code snippet will not work without the HTML elements in the\n//   page\nconst jsonUpload = document.getElementById('json-upload');\nconst weightsUpload = document.getElementById('weights-upload');\n\nconst model = await tf.loadModel(\n     tf.io.browserFiles([jsonUpload.files[0], weightsUpload.files[0]]));\n```\n\nExample 4. Load a model from an HTTP server.\n\n```js\nconst model = await\n     tf.loadModel('https://storage.googleapis.com/tfjs-models/tfjs/iris_v1/model.json');\nmodel.summary();\n```",
+              "fileName": "#147",
+              "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/v0.8.3/src/exports.ts#L147-L150",
               "isFunction": true,
               "displayName": "tf.loadModel",
               "urlHash": "loadModel"
@@ -2511,8 +2511,8 @@
               ],
               "returnType": "Promise",
               "documentation": "Parses a JSON model configuration file and returns a model instance.\n\n```js\n// This example shows how to serialize a model using `toJSON()` and\n// deserialize it as another model using `tf.models.modelFROMJSON()`.\n// Note: this example serializes and deserializes only the topology\n// of the model; the weights of the loaded model will be different\n// from those of the the original model, due to random weight\n// initialization.\n// To load the topology and weights of a model, use `tf.loadModel()`.\nconst model1 = tf.sequential();\nmodel1.add(tf.layers.repeatVector({inputShape: [2], n: 4}));\n// Serialize `model1` as a JSON object.\nconst model1JSON = model1.toJSON(null, false);\nmodel1.summary();\n\nconst model2 = await tf.models.modelFromJSON(model1JSON);\nmodel2.summary();\n```\n\n  ",
-              "fileName": "#65",
-              "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/v0.8.3/src/models.ts#L65-L108",
+              "fileName": "#64",
+              "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/v0.8.3/src/models.ts#L64-L107",
               "isFunction": true,
               "displayName": "tf.modelFromJSON",
               "urlHash": "modelFromJSON"
@@ -2674,7 +2674,7 @@
               "symbolName": "FrozenModel",
               "documentation": "A [tf.FrozenModel](#class:FrozenModel) is a directed, acyclic graph of built from\nSavedModel GraphDef and allows inference exeuction.",
               "fileName": "#32",
-              "githubUrl": "https://github.com/tensorflow/tfjs-converter/blob/v0.6.5/src/executor/frozen_model.ts#L32-L261",
+              "githubUrl": "https://github.com/tensorflow/tfjs-converter/blob/v0.6.5/src/executor/frozen_model.ts#L32-L260",
               "methods": [],
               "isClass": true,
               "inheritsFrom": "tfc.InferenceModel",
@@ -2687,7 +2687,7 @@
                 "subheading": "Classes"
               },
               "symbolName": "Model",
-              "documentation": "A [tf.Model](#class:Model) is a directed, acyclic graph of `tf.Layer`s plus methods for\ntraining, evaluation, prediction and saving.\n\n[tf.Model](#class:Model) is the basic unit of training, inference and evaluation in\nTensorFlow.js. To create a [tf.Model](#class:Model), use [tf.model()](#model).\n\nSee also:\n   [tf.Sequential](#class:Sequential), [tf.loadModel()](#loadModel).",
+              "documentation": "A [tf.Model](#class:Model) is a directed, acyclic graph of `Layer`s plus methods for\ntraining, evaluation, prediction and saving.\n\n[tf.Model](#class:Model) is the basic unit of training, inference and evaluation in\nTensorFlow.js. To create a [tf.Model](#class:Model), use [tf.model()](#model).\n\nSee also:\n   [tf.Sequential](#class:Sequential), [tf.loadModel()](#loadModel).",
               "fileName": "#450",
               "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/v0.8.3/src/engine/training.ts#L450-L1600",
               "methods": [
@@ -2748,7 +2748,7 @@
                     },
                     {
                       "name": "optimizer",
-                      "documentation": "An instance of [tf.train.Optimizer](#class:train.Optimizer) or a string name for an Optimizer.",
+                      "documentation": "An instance of `tf.train.Optimizer` or a string name for an Optimizer.",
                       "type": "string|[tf.train.Optimizer](#class:train.Optimizer)",
                       "optional": false,
                       "isConfigParam": true
@@ -2788,14 +2788,14 @@
                   "parameters": [
                     {
                       "name": "x",
-                      "documentation": "[tf.Tensor](#class:Tensor) of test data, or an `Array` of [tf.Tensor](#class:Tensor)s if the\nmodel has multiple inputs.",
+                      "documentation": "[tf.Tensor](#class:Tensor) of test data, or an `Array` of [tf.Tensor](#class:Tensor)s if the model has\nmultiple inputs.",
                       "type": "[tf.Tensor](#class:Tensor)|[tf.Tensor](#class:Tensor)[]",
                       "optional": false,
                       "isConfigParam": false
                     },
                     {
                       "name": "y",
-                      "documentation": "[tf.Tensor](#class:Tensor) of target data, or an `Array` of [tf.Tensor](#class:Tensor)s if the\nmodel has multiple outputs.",
+                      "documentation": "[tf.Tensor](#class:Tensor) of target data, or an `Array` of [tf.Tensor](#class:Tensor)s if the model\nhas multiple outputs.",
                       "type": "[tf.Tensor](#class:Tensor)|[tf.Tensor](#class:Tensor)[]",
                       "optional": false,
                       "isConfigParam": false
@@ -3137,7 +3137,7 @@
                     }
                   ],
                   "returnType": "Promise",
-                  "documentation": "Save the configuration and/or weights of the Model.\n\nAn `IOHandler` is an object that has a `save` method of the proper\nsignature defined. The `save` method manages the storing or\ntransmission of serialized data (\"artifacts\") that represent the\nmodel's topology and weights onto or via a specific medium, such as\nfile downloads, local storage, IndexedDB in the web browser and HTTP\nrequests to a server. TensorFlow.js provides `IOHandler`\nimplementations for a number of frequently used saving mediums, such as\n`tf.io.browserDownloads` and `tf.io.browserLocalStorage`. See `tf.io`\nfor more details.\n\nThis method also allows you to refer to certain types of `IOHandler`s\nas URL-like string shortcuts, such as 'localstorage://' and\n'indexeddb://'.\n\nExample 1: Save `model`'s topology and weights to browser [local\nstorage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage);\nthen load it back.\n\n```js\nconst model = tf.sequential(\n     {layers: [tf.layers.dense({units: 1, inputShape: [3]})]});\nconsole.log('Prediction from original model:');\nmodel.predict(tf.ones([1, 3])).print();\n\nconst saveResults = await model.save('localstorage://my-model-1');\n\nconst loadedModel = await tf.loadModel('localstorage://my-model-1');\nconsole.log('Prediction from loaded model:');\nloadedModel.predict(tf.ones([1, 3])).print();\n```\n\nExample 2. Saving `model`'s topology and weights to browser\n[IndexedDB](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API);\nthen load it back.\n\n```js\nconst model = tf.sequential(\n     {layers: [tf.layers.dense({units: 1, inputShape: [3]})]});\nconsole.log('Prediction from original model:');\nmodel.predict(tf.ones([1, 3])).print();\n\nconst saveResults = await model.save('indexeddb://my-model-1');\n\nconst loadedModel = await tf.loadModel('indexeddb://my-model-1');\nconsole.log('Prediction from loaded model:');\nloadedModel.predict(tf.ones([1, 3])).print();\n```\n\nExample 3. Saving `model`'s topology and weights as two files\n(`my-model-1.json` and `my-model-1.weights.bin`) downloaded from\nbrowser.\n\n```js\nconst model = tf.sequential(\n     {layers: [tf.layers.dense({units: 1, inputShape: [3]})]});\nconst saveResults = await model.save('downloads://my-model-1');\n```\n\nExample 4. Send  `model`'s topology and weights to an HTTP server.\nSee the documentation of `tf.io.browserHTTPRequests` for more details\nincluding specifying request parameters and implementation of the\nserver.\n\n```js\nconst model = tf.sequential(\n     {layers: [tf.layers.dense({units: 1, inputShape: [3]})]});\nconst saveResults = await model.save('http://my-server/model/upload');\n```",
+                  "documentation": "Save the configuration and/or weights of the Model.\n\nAn `IOHandler` is an object that has a `save` method of the proper\nsignature defined. The `save` method manages the storing or\ntransmission of serialized data (\"artifacts\") that represent the\nmodel's topology and weights onto or via a specific medium, such as\nfile downloads, local storage, IndexedDB in the web browser and HTTP\nrequests to a server. TensorFlow.js provides `IOHandler`\nimplementations for a number of frequently used saving mediums, such as\n`tf.io.browserDownloads` and `tf.io.browserLocalStorage`. See `tf.io`\nfor more details.\n\nThis method also allows you to refer to certain types of `IOHandler`s\nas URL-like string shortcuts, such as 'localstorage://' and\n'indexeddb://'.\n\nExample 1: Save [tf.model()](#model)'s topology and weights to browser [local\nstorage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage);\nthen load it back.\n\n```js\nconst model = tf.sequential(\n     {layers: [tf.layers.dense({units: 1, inputShape: [3]})]});\nconsole.log('Prediction from original model:');\nmodel.predict(tf.ones([1, 3])).print();\n\nconst saveResults = await model.save('localstorage://my-model-1');\n\nconst loadedModel = await tf.loadModel('localstorage://my-model-1');\nconsole.log('Prediction from loaded model:');\nloadedModel.predict(tf.ones([1, 3])).print();\n```\n\nExample 2. Saving [tf.model()](#model)'s topology and weights to browser\n[IndexedDB](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API);\nthen load it back.\n\n```js\nconst model = tf.sequential(\n     {layers: [tf.layers.dense({units: 1, inputShape: [3]})]});\nconsole.log('Prediction from original model:');\nmodel.predict(tf.ones([1, 3])).print();\n\nconst saveResults = await model.save('indexeddb://my-model-1');\n\nconst loadedModel = await tf.loadModel('indexeddb://my-model-1');\nconsole.log('Prediction from loaded model:');\nloadedModel.predict(tf.ones([1, 3])).print();\n```\n\nExample 3. Saving [tf.model()](#model)'s topology and weights as two files\n(`my-model-1.json` and `my-model-1.weights.bin`) downloaded from\nbrowser.\n\n```js\nconst model = tf.sequential(\n     {layers: [tf.layers.dense({units: 1, inputShape: [3]})]});\nconst saveResults = await model.save('downloads://my-model-1');\n```\n\nExample 4. Send  [tf.model()](#model)'s topology and weights to an HTTP server.\nSee the documentation of `tf.io.browserHTTPRequests` for more details\nincluding specifying request parameters and implementation of the\nserver.\n\n```js\nconst model = tf.sequential(\n     {layers: [tf.layers.dense({units: 1, inputShape: [3]})]});\nconst saveResults = await model.save('http://my-server/model/upload');\n```",
                   "fileName": "#1567",
                   "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/v0.8.3/src/engine/training.ts#L1567-L1599",
                   "isFunction": true,
@@ -3191,8 +3191,8 @@
               },
               "symbolName": "Sequential",
               "documentation": "A model with a stack of layers, feeding linearly from one to the next.\n\n[tf.sequential()](#sequential) is a factory function that creates an instance of\n[tf.Sequential](#class:Sequential).\n\n```js\n  // Define a model for linear regression.\n  const model = tf.sequential();\n  model.add(tf.layers.dense({units: 1, inputShape: [1]}));\n\n  // Prepare the model for training: Specify the loss and the optimizer.\n  model.compile({loss: 'meanSquaredError', optimizer: 'sgd'});\n\n  // Generate some synthetic data for training.\n  const xs = tf.tensor2d([1, 2, 3, 4], [4, 1]);\n  const ys = tf.tensor2d([1, 3, 5, 7], [4, 1]);\n\n  // Train the model using the data then do inference on a data point the\n  // model hasn't seen:\n  await model.fit(xs, ys);\n  model.predict(tf.tensor2d([5], [1, 1])).print();\n```",
-              "fileName": "#329",
-              "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/v0.8.3/src/models.ts#L329-L935",
+              "fileName": "#328",
+              "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/v0.8.3/src/models.ts#L328-L934",
               "methods": [
                 {
                   "docInfo": {
@@ -3212,8 +3212,8 @@
                   ],
                   "returnType": "void",
                   "documentation": "Adds a layer instance on top of the layer stack.\n\n```js\n  const model = tf.sequential();\n  model.add(tf.layers.dense({units: 8, inputShape: [1]}));\n  model.add(tf.layers.dense({units: 4, activation: 'relu6'}));\n  model.add(tf.layers.dense({units: 1, activation: 'relu6'}));\n  // Note that the untrained model is random at this point.\n  model.predict(tf.randomNormal([10, 1])).print();\n```",
-                  "fileName": "#384",
-                  "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/v0.8.3/src/models.ts#L384-L486",
+                  "fileName": "#383",
+                  "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/v0.8.3/src/models.ts#L383-L485",
                   "isFunction": true,
                   "urlHash": "tf.Sequential.add"
                 },
@@ -3249,8 +3249,8 @@
                   ],
                   "returnType": "void",
                   "documentation": "Print a text summary of the Sequential model's layers.\n\nThe summary includes\n- Name and type of all layers that comprise the model.\n- Output shape(s) of the layers\n- Number of weight parameters of each layer\n- The total number of trainable and non-trainable parameters of the\nmodel.\n\n```js\nconst model = tf.sequential();\nmodel.add(\n     tf.layers.dense({units: 100, inputShape: [10], activation: 'relu'}));\nmodel.add(tf.layers.dense({units: 1, activation: 'sigmoid'}));\n\nmodel.summary();\n```",
-                  "fileName": "#593",
-                  "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/v0.8.3/src/models.ts#L593-L602",
+                  "fileName": "#592",
+                  "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/v0.8.3/src/models.ts#L592-L601",
                   "isFunction": true,
                   "urlHash": "tf.Sequential.summary"
                 },
@@ -3267,14 +3267,14 @@
                   "parameters": [
                     {
                       "name": "x",
-                      "documentation": "[tf.Tensor](#class:Tensor) of test data, or an `Array` of [tf.Tensor](#class:Tensor)s if the\nmodel has multiple inputs.",
+                      "documentation": "[tf.Tensor](#class:Tensor) of test data, or an `Array` of [tf.Tensor](#class:Tensor)s if the model\nhas multiple inputs.",
                       "type": "[tf.Tensor](#class:Tensor)|[tf.Tensor](#class:Tensor)[]",
                       "optional": false,
                       "isConfigParam": false
                     },
                     {
                       "name": "y",
-                      "documentation": "[tf.Tensor](#class:Tensor) of target data, or an `Array` of [tf.Tensor](#class:Tensor)s if the\nmodel has multiple outputs.",
+                      "documentation": "[tf.Tensor](#class:Tensor) of target data, or an `Array` of [tf.Tensor](#class:Tensor)s if the model\nhas multiple outputs.",
                       "type": "[tf.Tensor](#class:Tensor)|[tf.Tensor](#class:Tensor)[]",
                       "optional": false,
                       "isConfigParam": false
@@ -3317,8 +3317,8 @@
                   ],
                   "returnType": "[tf.Scalar](#class:Tensor)|[tf.Scalar](#class:Tensor)[]",
                   "documentation": "Returns the loss value & metrics values for the model in test mode.\n\nLoss and metrics are specified during `compile()`, which needs to happen\nbefore calls to `evaluate()`.\n\nComputation is done in batches.\n\n```js\nconst model = tf.sequential({\n   layers: [tf.layers.dense({units: 1, inputShape: [10]})]\n});\nmodel.compile({optimizer: 'sgd', loss: 'meanSquaredError'});\nconst result = model.evaluate(tf.ones([8, 10]), tf.ones([8, 1]), {\n   batchSize: 4,\n});\nresult.print();\n```",
-                  "fileName": "#661",
-                  "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/v0.8.3/src/models.ts#L661-L669",
+                  "fileName": "#660",
+                  "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/v0.8.3/src/models.ts#L660-L668",
                   "isFunction": true,
                   "urlHash": "tf.Sequential.evaluate"
                 },
@@ -3350,8 +3350,8 @@
                   ],
                   "returnType": "Promise",
                   "documentation": "Evaluate model using a dataset object.\n\nNote: Unlike `evaluate()`, this method is asynchronous (`async`);",
-                  "fileName": "#694",
-                  "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/v0.8.3/src/models.ts#L694-L702",
+                  "fileName": "#693",
+                  "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/v0.8.3/src/models.ts#L693-L701",
                   "isFunction": true,
                   "urlHash": "tf.Sequential.evaluateDataset"
                 },
@@ -3397,8 +3397,8 @@
                   ],
                   "returnType": "[tf.Tensor](#class:Tensor)\n      |[tf.Tensor](#class:Tensor)[]",
                   "documentation": "Generates output predictions for the input samples.\n\nComputation is done in batches.\n\nNote: the \"step\" mode of predict() is currently not supported.\n   This is because the TensorFow.js core backend is imperative only.\n\n```js\nconst model = tf.sequential({\n   layers: [tf.layers.dense({units: 1, inputShape: [10]})]\n});\nmodel.predict(tf.ones([2, 10])).print();\n```",
-                  "fileName": "#732",
-                  "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/v0.8.3/src/models.ts#L732-L738",
+                  "fileName": "#731",
+                  "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/v0.8.3/src/models.ts#L731-L737",
                   "isFunction": true,
                   "urlHash": "tf.Sequential.predict"
                 },
@@ -3415,14 +3415,14 @@
                   "parameters": [
                     {
                       "name": "x",
-                      "documentation": "[tf.Tensor](#class:Tensor) of training data, or an array of [tf.Tensor](#class:Tensor)s if the\nmodel has multiple inputs. If all inputs in the model are named, you can\nalso pass a dictionary mapping input names to [tf.Tensor](#class:Tensor)s.",
+                      "documentation": "[tf.Tensor](#class:Tensor) of training data, or an array of [tf.Tensor](#class:Tensor)s if the model\nhas multiple inputs. If all inputs in the model are named, you can also\npass a dictionary mapping input names to [tf.Tensor](#class:Tensor)s.",
                       "type": "[tf.Tensor](#class:Tensor)|[tf.Tensor](#class:Tensor)[]|{[inputName: string]: [tf.Tensor](#class:Tensor)}",
                       "optional": false,
                       "isConfigParam": false
                     },
                     {
                       "name": "y",
-                      "documentation": "[tf.Tensor](#class:Tensor) of target (label) data, or an array of [tf.Tensor](#class:Tensor)s if\nthe model has multiple outputs. If all outputs in the model are named, you\ncan also pass a dictionary mapping output names to [tf.Tensor](#class:Tensor)s.",
+                      "documentation": "[tf.Tensor](#class:Tensor) of target (label) data, or an array of [tf.Tensor](#class:Tensor)s if the\nmodel has multiple outputs. If all outputs in the model are named, you\ncan also pass a dictionary mapping output names to [tf.Tensor](#class:Tensor)s.",
                       "type": "[tf.Tensor](#class:Tensor)|[tf.Tensor](#class:Tensor)[]|{[inputName: string]: [tf.Tensor](#class:Tensor)}",
                       "optional": false,
                       "isConfigParam": false
@@ -3528,8 +3528,8 @@
                   ],
                   "returnType": "Promise",
                   "documentation": "Trains the model for a fixed number of epochs (iterations on a dataset).\n\n```js\nconst model = tf.sequential({\n   layers: [tf.layers.dense({units: 1, inputShape: [10]})]\n});\nmodel.compile({optimizer: 'sgd', loss: 'meanSquaredError'});\nconst history = await model.fit(tf.ones([8, 10]), tf.ones([8, 1]), {\n   batchSize: 4,\n   epochs: 3\n});\nconsole.log(history.history.loss[0]);\n```",
-                  "fileName": "#804",
-                  "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/v0.8.3/src/models.ts#L804-L814",
+                  "fileName": "#803",
+                  "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/v0.8.3/src/models.ts#L803-L813",
                   "isFunction": true,
                   "urlHash": "tf.Sequential.fit"
                 },
@@ -3561,8 +3561,8 @@
                   ],
                   "returnType": "Promise",
                   "documentation": "Trains the model using a dataset object.",
-                  "fileName": "#839",
-                  "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/v0.8.3/src/models.ts#L839-L847",
+                  "fileName": "#838",
+                  "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/v0.8.3/src/models.ts#L838-L846",
                   "isFunction": true,
                   "urlHash": "tf.Sequential.fitDataset"
                 }
@@ -5204,7 +5204,7 @@
                 },
                 {
                   "name": "axis",
-                  "documentation": "The integer axis that should be normalized (typically the features axis).\nDefaults to -1.\n\nFor instance, after a `Conv2D` layer with `data_format=\"channels_first\"`,\nset `axis=1` in `batchNormalization`.",
+                  "documentation": "The integer axis that should be normalized (typically the features axis).\nDefaults to -1.\n\nFor instance, after a `Conv2D` layer with `data_format=\"channels_first\"`,\nset `axis=1` in [tf.batchNormalization()](#batchNormalization).",
                   "type": "number",
                   "optional": true,
                   "isConfigParam": true
@@ -5246,14 +5246,14 @@
                 },
                 {
                   "name": "gammaInitializer",
-                  "documentation": "Initializer for the gamma weight.\n  Defaults to `ones`.",
+                  "documentation": "Initializer for the gamma weight.\n  Defaults to [tf.ones()](#ones).",
                   "type": "'constant'|'glorotNormal'|'glorotUniform'|\n    'heNormal'|'identity'|'leCunNormal'|'ones'|'orthogonal'|'randomNormal'|\n    'randomUniform'|'truncatedNormal'|'varianceScaling'|'zeros'|string|[tf.initializers.Initializer](#class:initializers.Initializer)",
                   "optional": true,
                   "isConfigParam": true
                 },
                 {
                   "name": "movingMeanInitializer",
-                  "documentation": "Initializer for the moving mean.\nDefaults to `zeros`",
+                  "documentation": "Initializer for the moving mean.\nDefaults to [tf.zeros()](#zeros)",
                   "type": "'constant'|'glorotNormal'|'glorotUniform'|\n    'heNormal'|'identity'|'leCunNormal'|'ones'|'orthogonal'|'randomNormal'|\n    'randomUniform'|'truncatedNormal'|'varianceScaling'|'zeros'|string|[tf.initializers.Initializer](#class:initializers.Initializer)",
                   "optional": true,
                   "isConfigParam": true
@@ -5829,7 +5829,7 @@
                 }
               ],
               "returnType": "[tf.layers.Layer](#class:layers.Layer)",
-              "documentation": "Gated Recurrent Unit - Cho et al. 2014.\n\nThis is an `RNN` layer consisting of one `GRUCell`. However, unlike\nthe underlying `GRUCell`, the `apply` method of `SimpleRNN` operates\non a sequence of inputs. The shape of the input (not including the first,\nbatch dimension) needs to be at least 2-D, with the first dimension being\ntime steps. For example:\n\n```js\nconst rnn = tf.layers.gru({units: 8, returnSequences: true});\n\n// Create an input with 10 time steps.\nconst input = tf.input({shape: [10, 20]});\nconst output = rnn.apply(input);\n\nconsole.log(JSON.stringify(output.shape));\n// [null, 10, 8]: 1st dimension is unknown batch size; 2nd dimension is the\n// same as the sequence length of `input`, due to `returnSequences`: `true`;\n// 3rd dimension is the `GRUCell`'s number of units.",
+              "documentation": "Gated Recurrent Unit - Cho et al. 2014.\n\nThis is an `RNN` layer consisting of one `GRUCell`. However, unlike\nthe underlying `GRUCell`, the `apply` method of `SimpleRNN` operates\non a sequence of inputs. The shape of the input (not including the first,\nbatch dimension) needs to be at least 2-D, with the first dimension being\ntime steps. For example:\n\n```js\nconst rnn = tf.layers.gru({units: 8, returnSequences: true});\n\n// Create an input with 10 time steps.\nconst input = tf.input({shape: [10, 20]});\nconst output = rnn.apply(input);\n\nconsole.log(JSON.stringify(output.shape));\n// [null, 10, 8]: 1st dimension is unknown batch size; 2nd dimension is the\n// same as the sequence length of [tf.input()](#input), due to `returnSequences`: `true`;\n// 3rd dimension is the `GRUCell`'s number of units.",
               "fileName": "#571",
               "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/v0.8.3/src/exports_layers.ts#L571-L573",
               "isFunction": true,
@@ -5873,7 +5873,7 @@
                 }
               ],
               "returnType": "[tf.RNNCell](#class:RNNCell)",
-              "documentation": "Cell class for `GRU`.\n\n`GRUCell` is distinct from the `RNN` subclass `GRU` in that its\n`apply` method takes the input data of only a single time step and returns\nthe cell's output at the time step, while `GRU` takes the input data\nover a number of time steps. For example:\n\n```js\nconst cell = tf.layers.gruCell({units: 2});\nconst input = tf.input({shape: [10]});\nconst output = cell.apply(input);\n\nconsole.log(JSON.stringify(output.shape));\n// [null, 10]: This is the cell's output at a single time step. The 1st\n// dimension is the unknown batch size.\n```\n\nInstance(s) of `GRUCell` can be used to construct `RNN` layers. The\nmost typical use of this workflow is to combine a number of cells into a\nstacked RNN cell (i.e., `StackedRNNCell` internally) and use it to create an\nRNN. For example:\n\n```js\nconst cells = [\n   tf.layers.gruCell({units: 4}),\n   tf.layers.gruCell({units: 8}),\n];\nconst rnn = tf.layers.rnn({cell: cells, returnSequences: true});\n\n// Create an input with 10 time steps and a length-20 vector at each step.\nconst input = tf.input({shape: [10, 20]});\nconst output = rnn.apply(input);\n\nconsole.log(JSON.stringify(output.shape));\n// [null, 10, 8]: 1st dimension is unknown batch size; 2nd dimension is the\n// same as the sequence length of `input`, due to `returnSequences`: `true`;\n// 3rd dimension is the last `gruCell`'s number of units.\n```\n\nTo create an `RNN` consisting of only *one* `GRUCell`, use the\n[tf.layers.gru()](#layers.gru).",
+              "documentation": "Cell class for `GRU`.\n\n`GRUCell` is distinct from the `RNN` subclass `GRU` in that its\n`apply` method takes the input data of only a single time step and returns\nthe cell's output at the time step, while `GRU` takes the input data\nover a number of time steps. For example:\n\n```js\nconst cell = tf.layers.gruCell({units: 2});\nconst input = tf.input({shape: [10]});\nconst output = cell.apply(input);\n\nconsole.log(JSON.stringify(output.shape));\n// [null, 10]: This is the cell's output at a single time step. The 1st\n// dimension is the unknown batch size.\n```\n\nInstance(s) of `GRUCell` can be used to construct `RNN` layers. The\nmost typical use of this workflow is to combine a number of cells into a\nstacked RNN cell (i.e., `StackedRNNCell` internally) and use it to create an\nRNN. For example:\n\n```js\nconst cells = [\n   tf.layers.gruCell({units: 4}),\n   tf.layers.gruCell({units: 8}),\n];\nconst rnn = tf.layers.rnn({cell: cells, returnSequences: true});\n\n// Create an input with 10 time steps and a length-20 vector at each step.\nconst input = tf.input({shape: [10, 20]});\nconst output = rnn.apply(input);\n\nconsole.log(JSON.stringify(output.shape));\n// [null, 10, 8]: 1st dimension is unknown batch size; 2nd dimension is the\n// same as the sequence length of [tf.input()](#input), due to `returnSequences`: `true`;\n// 3rd dimension is the last `gruCell`'s number of units.\n```\n\nTo create an `RNN` consisting of only *one* `GRUCell`, use the\n`tf.layers.gru`.",
               "fileName": "#584",
               "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/v0.8.3/src/exports_layers.ts#L584-L586",
               "isFunction": true,
@@ -5924,7 +5924,7 @@
                 }
               ],
               "returnType": "[tf.layers.Layer](#class:layers.Layer)",
-              "documentation": "Long-Short Term Memory layer - Hochreiter 1997.\n\nThis is an `RNN` layer consisting of one `LSTMCell`. However, unlike\nthe underlying `LSTMCell`, the `apply` method of `LSTM` operates\non a sequence of inputs. The shape of the input (not including the first,\nbatch dimension) needs to be at least 2-D, with the first dimension being\ntime steps. For example:\n\n```js\nconst lstm = tf.layers.lstm({units: 8, returnSequences: true});\n\n// Create an input with 10 time steps.\nconst input = tf.input({shape: [10, 20]});\nconst output = lstm.apply(input);\n\nconsole.log(JSON.stringify(output.shape));\n// [null, 10, 8]: 1st dimension is unknown batch size; 2nd dimension is the\n// same as the sequence length of `input`, due to `returnSequences`: `true`;\n// 3rd dimension is the `LSTMCell`'s number of units.",
+              "documentation": "Long-Short Term Memory layer - Hochreiter 1997.\n\nThis is an `RNN` layer consisting of one `LSTMCell`. However, unlike\nthe underlying `LSTMCell`, the `apply` method of `LSTM` operates\non a sequence of inputs. The shape of the input (not including the first,\nbatch dimension) needs to be at least 2-D, with the first dimension being\ntime steps. For example:\n\n```js\nconst lstm = tf.layers.lstm({units: 8, returnSequences: true});\n\n// Create an input with 10 time steps.\nconst input = tf.input({shape: [10, 20]});\nconst output = lstm.apply(input);\n\nconsole.log(JSON.stringify(output.shape));\n// [null, 10, 8]: 1st dimension is unknown batch size; 2nd dimension is the\n// same as the sequence length of [tf.input()](#input), due to `returnSequences`: `true`;\n// 3rd dimension is the `LSTMCell`'s number of units.",
               "fileName": "#597",
               "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/v0.8.3/src/exports_layers.ts#L597-L599",
               "isFunction": true,
@@ -5975,7 +5975,7 @@
                 }
               ],
               "returnType": "[tf.RNNCell](#class:RNNCell)",
-              "documentation": "Cell class for `LSTM`.\n\n`LSTMCell` is distinct from the `RNN` subclass `LSTM` in that its\n`apply` method takes the input data of only a single time step and returns\nthe cell's output at the time step, while `LSTM` takes the input data\nover a number of time steps. For example:\n\n```js\nconst cell = tf.layers.lstmCell({units: 2});\nconst input = tf.input({shape: [10]});\nconst output = cell.apply(input);\n\nconsole.log(JSON.stringify(output.shape));\n// [null, 10]: This is the cell's output at a single time step. The 1st\n// dimension is the unknown batch size.\n```\n\nInstance(s) of `LSTMCell` can be used to construct `RNN` layers. The\nmost typical use of this workflow is to combine a number of cells into a\nstacked RNN cell (i.e., `StackedRNNCell` internally) and use it to create an\nRNN. For example:\n\n```js\nconst cells = [\n   tf.layers.lstmCell({units: 4}),\n   tf.layers.lstmCell({units: 8}),\n];\nconst rnn = tf.layers.rnn({cell: cells, returnSequences: true});\n\n// Create an input with 10 time steps and a length-20 vector at each step.\nconst input = tf.input({shape: [10, 20]});\nconst output = rnn.apply(input);\n\nconsole.log(JSON.stringify(output.shape));\n// [null, 10, 8]: 1st dimension is unknown batch size; 2nd dimension is the\n// same as the sequence length of `input`, due to `returnSequences`: `true`;\n// 3rd dimension is the last `lstmCell`'s number of units.\n```\n\nTo create an `RNN` consisting of only *one* `LSTMCell`, use the\n[tf.layers.lstm()](#layers.lstm).",
+              "documentation": "Cell class for `LSTM`.\n\n`LSTMCell` is distinct from the `RNN` subclass `LSTM` in that its\n`apply` method takes the input data of only a single time step and returns\nthe cell's output at the time step, while `LSTM` takes the input data\nover a number of time steps. For example:\n\n```js\nconst cell = tf.layers.lstmCell({units: 2});\nconst input = tf.input({shape: [10]});\nconst output = cell.apply(input);\n\nconsole.log(JSON.stringify(output.shape));\n// [null, 10]: This is the cell's output at a single time step. The 1st\n// dimension is the unknown batch size.\n```\n\nInstance(s) of `LSTMCell` can be used to construct `RNN` layers. The\nmost typical use of this workflow is to combine a number of cells into a\nstacked RNN cell (i.e., `StackedRNNCell` internally) and use it to create an\nRNN. For example:\n\n```js\nconst cells = [\n   tf.layers.lstmCell({units: 4}),\n   tf.layers.lstmCell({units: 8}),\n];\nconst rnn = tf.layers.rnn({cell: cells, returnSequences: true});\n\n// Create an input with 10 time steps and a length-20 vector at each step.\nconst input = tf.input({shape: [10, 20]});\nconst output = rnn.apply(input);\n\nconsole.log(JSON.stringify(output.shape));\n// [null, 10, 8]: 1st dimension is unknown batch size; 2nd dimension is the\n// same as the sequence length of [tf.input()](#input), due to `returnSequences`: `true`;\n// 3rd dimension is the last `lstmCell`'s number of units.\n```\n\nTo create an `RNN` consisting of only *one* `LSTMCell`, use the\n`tf.layers.lstm`.",
               "fileName": "#610",
               "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/v0.8.3/src/exports_layers.ts#L610-L612",
               "isFunction": true,
@@ -6049,7 +6049,7 @@
                 },
                 {
                   "name": "activation",
-                  "documentation": "Activation function to use.\n\nDefaults to  hyperbolic tangent (`tanh`)\n\nIf you pass `null`, no activation will be applied.",
+                  "documentation": "Activation function to use.\n\nDefaults to  hyperbolic tangent ([tf.tanh()](#tanh))\n\nIf you pass `null`, no activation will be applied.",
                   "type": "'elu'|'hardSigmoid'|'linear'|'relu'|'relu6'|\n    'selu'|'sigmoid'|'softmax'|'softplus'|'softsign'|'tanh'|string",
                   "optional": true,
                   "isConfigParam": true
@@ -6140,7 +6140,7 @@
                 }
               ],
               "returnType": "[tf.layers.Layer](#class:layers.Layer)",
-              "documentation": "Fully-connected RNN where the output is to be fed back to input.\n\nThis is an `RNN` layer consisting of one `SimpleRNNCell`. However, unlike\nthe underlying `SimpleRNNCell`, the `apply` method of `SimpleRNN` operates\non a sequence of inputs. The shape of the input (not including the first,\nbatch dimension) needs to be at least 2-D, with the first dimension being\ntime steps. For example:\n\n```js\nconst rnn = tf.layers.simpleRNN({units: 8, returnSequences: true});\n\n// Create an input with 10 time steps.\nconst input = tf.input({shape: [10, 20]});\nconst output = rnn.apply(input);\n\nconsole.log(JSON.stringify(output.shape));\n// [null, 10, 8]: 1st dimension is unknown batch size; 2nd dimension is the\n// same as the sequence length of `input`, due to `returnSequences`: `true`;\n// 3rd dimension is the `SimpleRNNCell`'s number of units.\n```",
+              "documentation": "Fully-connected RNN where the output is to be fed back to input.\n\nThis is an `RNN` layer consisting of one `SimpleRNNCell`. However, unlike\nthe underlying `SimpleRNNCell`, the `apply` method of `SimpleRNN` operates\non a sequence of inputs. The shape of the input (not including the first,\nbatch dimension) needs to be at least 2-D, with the first dimension being\ntime steps. For example:\n\n```js\nconst rnn = tf.layers.simpleRNN({units: 8, returnSequences: true});\n\n// Create an input with 10 time steps.\nconst input = tf.input({shape: [10, 20]});\nconst output = rnn.apply(input);\n\nconsole.log(JSON.stringify(output.shape));\n// [null, 10, 8]: 1st dimension is unknown batch size; 2nd dimension is the\n// same as the sequence length of [tf.input()](#input), due to `returnSequences`: `true`;\n// 3rd dimension is the `SimpleRNNCell`'s number of units.\n```",
               "fileName": "#623",
               "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/v0.8.3/src/exports_layers.ts#L623-L625",
               "isFunction": true,
@@ -6268,7 +6268,7 @@
                 }
               ],
               "returnType": "[tf.RNNCell](#class:RNNCell)",
-              "documentation": "Cell class for `SimpleRNN`.\n\n`SimpleRNNCell` is distinct from the `RNN` subclass `SimpleRNN` in that its\n`apply` method takes the input data of only a single time step and returns\nthe cell's output at the time step, while `SimpleRNN` takes the input data\nover a number of time steps. For example:\n\n```js\nconst cell = tf.layers.simpleRNNCell({units: 2});\nconst input = tf.input({shape: [10]});\nconst output = cell.apply(input);\n\nconsole.log(JSON.stringify(output.shape));\n// [null, 10]: This is the cell's output at a single time step. The 1st\n// dimension is the unknown batch size.\n```\n\nInstance(s) of `SimpleRNNCell` can be used to construct `RNN` layers. The\nmost typical use of this workflow is to combine a number of cells into a\nstacked RNN cell (i.e., `StackedRNNCell` internally) and use it to create an\nRNN. For example:\n\n```js\nconst cells = [\n   tf.layers.simpleRNNCell({units: 4}),\n   tf.layers.simpleRNNCell({units: 8}),\n];\nconst rnn = tf.layers.rnn({cell: cells, returnSequences: true});\n\n// Create an input with 10 time steps and a length-20 vector at each step.\nconst input = tf.input({shape: [10, 20]});\nconst output = rnn.apply(input);\n\nconsole.log(JSON.stringify(output.shape));\n// [null, 10, 8]: 1st dimension is unknown batch size; 2nd dimension is the\n// same as the sequence length of `input`, due to `returnSequences`: `true`;\n// 3rd dimension is the last `SimpleRNNCell`'s number of units.\n```\n\nTo create an `RNN` consisting of only *one* `SimpleRNNCell`, use the\n[tf.layers.simpleRNN()](#layers.simpleRNN).",
+              "documentation": "Cell class for `SimpleRNN`.\n\n`SimpleRNNCell` is distinct from the `RNN` subclass `SimpleRNN` in that its\n`apply` method takes the input data of only a single time step and returns\nthe cell's output at the time step, while `SimpleRNN` takes the input data\nover a number of time steps. For example:\n\n```js\nconst cell = tf.layers.simpleRNNCell({units: 2});\nconst input = tf.input({shape: [10]});\nconst output = cell.apply(input);\n\nconsole.log(JSON.stringify(output.shape));\n// [null, 10]: This is the cell's output at a single time step. The 1st\n// dimension is the unknown batch size.\n```\n\nInstance(s) of `SimpleRNNCell` can be used to construct `RNN` layers. The\nmost typical use of this workflow is to combine a number of cells into a\nstacked RNN cell (i.e., `StackedRNNCell` internally) and use it to create an\nRNN. For example:\n\n```js\nconst cells = [\n   tf.layers.simpleRNNCell({units: 4}),\n   tf.layers.simpleRNNCell({units: 8}),\n];\nconst rnn = tf.layers.rnn({cell: cells, returnSequences: true});\n\n// Create an input with 10 time steps and a length-20 vector at each step.\nconst input = tf.input({shape: [10, 20]});\nconst output = rnn.apply(input);\n\nconsole.log(JSON.stringify(output.shape));\n// [null, 10, 8]: 1st dimension is unknown batch size; 2nd dimension is the\n// same as the sequence length of [tf.input()](#input), due to `returnSequences`: `true`;\n// 3rd dimension is the last `SimpleRNNCell`'s number of units.\n```\n\nTo create an `RNN` consisting of only *one* `SimpleRNNCell`, use the\n`tf.layers.simpleRNN`.",
               "fileName": "#636",
               "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/v0.8.3/src/exports_layers.ts#L636-L638",
               "isFunction": true,
@@ -6298,7 +6298,7 @@
                 },
                 {
                   "name": "cells",
-                  "documentation": "A `Array` of `RNNCell` instances.",
+                  "documentation": "A `Array` of [tf.RNNCell](#class:RNNCell) instances.",
                   "type": "[tf.RNNCell](#class:RNNCell)[]",
                   "optional": false,
                   "isConfigParam": true
@@ -6665,7 +6665,7 @@
                   "paramStr": "()",
                   "parameters": [],
                   "returnType": "DisposeResult",
-                  "documentation": "Attempt to dispose layer's weights.\n\nThis method decrease the reference count of the Layer object by 1.\n\nA Layer is reference-counted. Its reference count is incremented by 1\nthe first item its `apply()` method is called and when it becomes a part\nof a new `Node` (through calling the `apply()`) method on a\n[tf.SymbolicTensor](#class:SymbolicTensor)).\n\nIf the reference count of a Layer becomes 0, all the weights will be\ndisposed and the underlying memory (e.g., the textures allocated in WebGL)\nwill be freed.\n\nNote: If the reference count is greater than 0 after the decrement, the\nweights of the Layer will *not* be disposed.\n\nAfter a Layer is disposed, it cannot be used in calls such as `apply()`,\n`getWeights()` or `setWeights()` anymore.",
+                  "documentation": "Attempt to dispose layer's weights.\n\nThis method decrease the reference count of the Layer object by 1.\n\nA Layer is reference-counted. Its reference count is incremented by 1\nthe first item its `apply()` method is called and when it becomes a part\nof a new `Node` (through calling the `apply()`) method on a\n`tf.SymbolicTensor`).\n\nIf the reference count of a Layer becomes 0, all the weights will be\ndisposed and the underlying memory (e.g., the textures allocated in WebGL)\nwill be freed.\n\nNote: If the reference count is greater than 0 after the decrement, the\nweights of the Layer will *not* be disposed.\n\nAfter a Layer is disposed, it cannot be used in calls such as `apply()`,\n`getWeights()` or `setWeights()` anymore.",
                   "fileName": "#1491",
                   "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/v0.8.3/src/engine/topology.ts#L1491-L1512",
                   "isFunction": true,
@@ -6688,7 +6688,7 @@
               "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/v0.8.3/src/layers/recurrent.ts#L820-L828",
               "methods": [],
               "isClass": true,
-              "inheritsFrom": "[tf.layers.Layer](#class:layers.Layer)",
+              "inheritsFrom": "Layer",
               "displayName": "tf.RNNCell",
               "urlHash": "class:RNNCell"
             }
@@ -6762,7 +6762,7 @@
                 }
               ],
               "returnType": "[tf.layers.Layer](#class:layers.Layer)",
-              "documentation": "An input layer is an entry point into a [tf.Model](#class:Model).\n\n`InputLayer` is generated automatically for [tf.Sequential](#class:Sequential)` models by\nspecifying the `inputshape` or `batchInputShape` for the first layer.  It\nshould not be specified explicitly. However, it can be useful sometimes,\ne.g., when constructing a sequential model from a subset of another\nsequential model's layers. Like the code snippet below shows.\n\n```js\n// Define a model which simply adds two inputs.\nconst model1 = tf.sequential();\nmodel1.add(tf.layers.dense({inputShape: [4], units: 3, activation: 'relu'}));\nmodel1.add(tf.layers.dense({units: 1, activation: 'sigmoid'}));\nmodel1.summary();\nmodel1.preidct(tf.zeros([1, 4])).print();\n\n// Construct another model, reusing the second layer of `model1` while\n// not using the first layer of `model1`. Note that you cannot add the second\n// layer of `model` directly as the first layer of the new sequential model,\n// because doing so will lead to an error related to the fact that the layer\n// is not an input layer. Instead, you need to create an `inputLayer` and add\n// it to the new sequential model before adding the reused layer.\nconst model2 = tf.sequential();\n// Use an inputShape that matches the input shape of `model1`'s second\n// layer.\nmodel2.add(tf.layers.inputLayer({inputShape: [3]}));\nmodel2.add(model1.layers[1]);\nmodel2.summary();\nmodel2.preidct(tf.zeros([1, 3])).print();\n```",
+              "documentation": "An input layer is an entry point into a [tf.Model](#class:Model).\n\n`InputLayer` is generated automatically for [tf.Sequential](#class:Sequential) models by specifying\nthe `inputshape` or `batchInputShape` for the first layer.  It should not be\nspecified explicitly. However, it can be useful sometimes, e.g., when\nconstructing a sequential model from a subset of another sequential model's\nlayers. Like the code snippet below shows.\n\n```js\n// Define a model which simply adds two inputs.\nconst model1 = tf.sequential();\nmodel1.add(tf.layers.dense({inputShape: [4], units: 3, activation: 'relu'}));\nmodel1.add(tf.layers.dense({units: 1, activation: 'sigmoid'}));\nmodel1.summary();\nmodel1.preidct(tf.zeros([1, 4])).print();\n\n// Construct another model, reusing the second layer of `model1` while\n// not using the first layer of `model1`. Note that you cannot add the second\n// layer of [tf.model()](#model) directly as the first layer of the new sequential model,\n// because doing so will lead to an error related to the fact that the layer\n// is not an input layer. Instead, you need to create an `inputLayer` and add\n// it to the new sequential model before adding the reused layer.\nconst model2 = tf.sequential();\n// Use an inputShape that matches the input shape of `model1`'s second\n// layer.\nmodel2.add(tf.layers.inputLayer({inputShape: [3]}));\nmodel2.add(model1.layers[1]);\nmodel2.summary();\nmodel2.preidct(tf.zeros([1, 3])).print();\n```",
               "fileName": "#41",
               "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/v0.8.3/src/exports_layers.ts#L41-L43",
               "isFunction": true,
@@ -6854,7 +6854,7 @@
                 }
               ],
               "returnType": "[tf.Tensor](#class:Tensor)",
-              "documentation": "Adds two [tf.Tensor](#class:Tensor)s element-wise, A + B. Supports broadcasting.\n\nWe also expose `tf.addStrict` which has the same signature as this op and\nasserts that `a` and `b` are the same shape (does not broadcast).\n\n```js\nconst a = tf.tensor1d([1, 2, 3, 4]);\nconst b = tf.tensor1d([10, 20, 30, 40]);\n\na.add(b).print();  // or tf.add(a, b)\n```\n\n```js\n// Broadcast add a with b.\nconst a = tf.scalar(5);\nconst b = tf.tensor1d([10, 20, 30, 40]);\n\na.add(b).print();  // or tf.add(a, b)\n```",
+              "documentation": "Adds two [tf.Tensor](#class:Tensor)s element-wise, A + B. Supports broadcasting.\n\nWe also expose `addStrict` which has the same signature as this op and\nasserts that `a` and `b` are the same shape (does not broadcast).\n\n```js\nconst a = tf.tensor1d([1, 2, 3, 4]);\nconst b = tf.tensor1d([10, 20, 30, 40]);\n\na.add(b).print();  // or tf.add(a, b)\n```\n\n```js\n// Broadcast add a with b.\nconst a = tf.scalar(5);\nconst b = tf.tensor1d([10, 20, 30, 40]);\n\na.add(b).print();  // or tf.add(a, b)\n```",
               "fileName": "#55",
               "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/binary_ops.ts#L55-L84",
               "isFunction": true,
@@ -6885,7 +6885,7 @@
                 }
               ],
               "returnType": "[tf.Tensor](#class:Tensor)",
-              "documentation": "Subtracts two [tf.Tensor](#class:Tensor)s element-wise, A - B. Supports broadcasting.\n\nWe also expose `tf.subStrict` which has the same signature as this op and\nasserts that `a` and `b` are the same shape (does not broadcast).\n\n```js\nconst a = tf.tensor1d([10, 20, 30, 40]);\nconst b = tf.tensor1d([1, 2, 3, 4]);\n\na.sub(b).print();  // or tf.sub(a, b)\n```\n\n```js\n// Broadcast subtract a with b.\nconst a = tf.tensor1d([10, 20, 30, 40]);\nconst b = tf.scalar(5);\n\na.sub(b).print();  // or tf.sub(a, b)\n```",
+              "documentation": "Subtracts two [tf.Tensor](#class:Tensor)s element-wise, A - B. Supports broadcasting.\n\nWe also expose `subStrict` which has the same signature as this op and\nasserts that `a` and `b` are the same shape (does not broadcast).\n\n```js\nconst a = tf.tensor1d([10, 20, 30, 40]);\nconst b = tf.tensor1d([1, 2, 3, 4]);\n\na.sub(b).print();  // or tf.sub(a, b)\n```\n\n```js\n// Broadcast subtract a with b.\nconst a = tf.tensor1d([10, 20, 30, 40]);\nconst b = tf.scalar(5);\n\na.sub(b).print();  // or tf.sub(a, b)\n```",
               "fileName": "#172",
               "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/binary_ops.ts#L172-L201",
               "isFunction": true,
@@ -6916,7 +6916,7 @@
                 }
               ],
               "returnType": "[tf.Tensor](#class:Tensor)",
-              "documentation": "Multiplies two [tf.Tensor](#class:Tensor)s element-wise, A * B. Supports broadcasting.\n\nWe also expose `tf.mulStrict` which has the same signature as this op and\nasserts that `a` and `b` are the same shape (does not broadcast).\n\n```js\nconst a = tf.tensor1d([1, 2, 3, 4]);\nconst b = tf.tensor1d([2, 3, 4, 5]);\n\na.mul(b).print();  // or tf.mul(a, b)\n```\n\n```js\n// Broadcast mul a with b.\nconst a = tf.tensor1d([1, 2, 3, 4]);\nconst b = tf.scalar(5);\n\na.mul(b).print();  // or tf.mul(a, b)\n```",
+              "documentation": "Multiplies two [tf.Tensor](#class:Tensor)s element-wise, A * B. Supports broadcasting.\n\nWe also expose `mulStrict` which has the same signature as this op and\nasserts that `a` and `b` are the same shape (does not broadcast).\n\n```js\nconst a = tf.tensor1d([1, 2, 3, 4]);\nconst b = tf.tensor1d([2, 3, 4, 5]);\n\na.mul(b).print();  // or tf.mul(a, b)\n```\n\n```js\n// Broadcast mul a with b.\nconst a = tf.tensor1d([1, 2, 3, 4]);\nconst b = tf.scalar(5);\n\na.mul(b).print();  // or tf.mul(a, b)\n```",
               "fileName": "#315",
               "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/binary_ops.ts#L315-L344",
               "isFunction": true,
@@ -6947,7 +6947,7 @@
                 }
               ],
               "returnType": "[tf.Tensor](#class:Tensor)",
-              "documentation": "Divides two [tf.Tensor](#class:Tensor)s element-wise, A / B. Supports broadcasting.\n\nWe also expose `tf.divStrict` which has the same signature as this op and\nasserts that `a` and `b` are the same shape (does not broadcast).\n\n```js\nconst a = tf.tensor1d([1, 4, 9, 16]);\nconst b = tf.tensor1d([1, 2, 3, 4]);\n\na.div(b).print();  // or tf.div(a, b)\n```\n\n```js\n// Broadcast div a with b.\nconst a = tf.tensor1d([2, 4, 6, 8]);\nconst b = tf.scalar(2);\n\na.div(b).print();  // or tf.div(a, b)\n```",
+              "documentation": "Divides two [tf.Tensor](#class:Tensor)s element-wise, A / B. Supports broadcasting.\n\nWe also expose `divStrict` which has the same signature as this op and\nasserts that `a` and `b` are the same shape (does not broadcast).\n\n```js\nconst a = tf.tensor1d([1, 4, 9, 16]);\nconst b = tf.tensor1d([1, 2, 3, 4]);\n\na.div(b).print();  // or tf.div(a, b)\n```\n\n```js\n// Broadcast div a with b.\nconst a = tf.tensor1d([2, 4, 6, 8]);\nconst b = tf.scalar(2);\n\na.div(b).print();  // or tf.div(a, b)\n```",
               "fileName": "#386",
               "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/binary_ops.ts#L386-L421",
               "isFunction": true,
@@ -7033,7 +7033,7 @@
                 }
               ],
               "returnType": "[tf.Tensor](#class:Tensor)",
-              "documentation": "Returns the max of a and b (`a > b ? a : b`) element-wise.\nSupports broadcasting.\n\nWe also expose `tf.maximumStrict` which has the same signature as this op and\nasserts that `a` and `b` are the same shape (does not broadcast).\n\n```js\nconst a = tf.tensor1d([1, 4, 3, 16]);\nconst b = tf.tensor1d([1, 2, 9, 4]);\n\na.maximum(b).print();  // or tf.maximum(a, b)\n```\n\n```js\n// Broadcast maximum a with b.\nconst a = tf.tensor1d([2, 4, 6, 8]);\nconst b = tf.scalar(5);\n\na.maximum(b).print();  // or tf.maximum(a, b)\n```",
+              "documentation": "Returns the max of a and b (`a > b ? a : b`) element-wise.\nSupports broadcasting.\n\nWe also expose `maximumStrict` which has the same signature as this op and\nasserts that `a` and `b` are the same shape (does not broadcast).\n\n```js\nconst a = tf.tensor1d([1, 4, 3, 16]);\nconst b = tf.tensor1d([1, 2, 9, 4]);\n\na.maximum(b).print();  // or tf.maximum(a, b)\n```\n\n```js\n// Broadcast maximum a with b.\nconst a = tf.tensor1d([2, 4, 6, 8]);\nconst b = tf.scalar(5);\n\na.maximum(b).print();  // or tf.maximum(a, b)\n```",
               "fileName": "#646",
               "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/binary_ops.ts#L646-L666",
               "isFunction": true,
@@ -7095,7 +7095,7 @@
                 }
               ],
               "returnType": "[tf.Tensor](#class:Tensor)",
-              "documentation": "Returns the mod of a and b element-wise.\n`floor(x / y) * y + mod(x, y) = x`\nSupports broadcasting.\n\nWe also expose `tf.modStrict` which has the same signature as this op and\nasserts that `a` and `b` are the same shape (does not broadcast).\n\n```js\nconst a = tf.tensor1d([1, 4, 3, 16]);\nconst b = tf.tensor1d([1, 2, 9, 4]);\n\na.mod(b).print();  // or tf.mod(a, b)\n```\n\n```js\n// Broadcast a mod b.\nconst a = tf.tensor1d([2, 4, 6, 8]);\nconst b = tf.scalar(5);\n\na.mod(b).print();  // or tf.mod(a, b)\n```",
+              "documentation": "Returns the mod of a and b element-wise.\n`floor(x / y) * y + mod(x, y) = x`\nSupports broadcasting.\n\nWe also expose `modStrict` which has the same signature as this op and\nasserts that `a` and `b` are the same shape (does not broadcast).\n\n```js\nconst a = tf.tensor1d([1, 4, 3, 16]);\nconst b = tf.tensor1d([1, 2, 9, 4]);\n\na.mod(b).print();  // or tf.mod(a, b)\n```\n\n```js\n// Broadcast a mod b.\nconst a = tf.tensor1d([2, 4, 6, 8]);\nconst b = tf.scalar(5);\n\na.mod(b).print();  // or tf.mod(a, b)\n```",
               "fileName": "#519",
               "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/binary_ops.ts#L519-L546",
               "isFunction": true,
@@ -7126,7 +7126,7 @@
                 }
               ],
               "returnType": "[tf.Tensor](#class:Tensor)",
-              "documentation": "Computes the power of one [tf.Tensor](#class:Tensor) to another. Supports broadcasting.\n\nGiven a [tf.Tensor](#class:Tensor) x and a [tf.Tensor](#class:Tensor) y, this operation computes x^y for\ncorresponding elements in x and y. The result's dtype will be the upcasted\ntype of the `base` and `exp` dtypes.\n\n```js\nconst a = tf.tensor([[2, 3], [4, 5]])\nconst b = tf.tensor([[1, 2], [3, 0]]).toInt();\n\na.pow(b).print();  // or tf.pow(a, b)\n```\n\n```js\nconst a = tf.tensor([[1, 2], [3, 4]])\nconst b = tf.tensor(2).toInt();\n\na.pow(b).print();  // or tf.pow(a, b)\n```\nWe also expose `powStrict` which has the same signature as this op and\nasserts that `base` and `exp` are the same shape (does not broadcast).",
+              "documentation": "Computes the power of one [tf.Tensor](#class:Tensor) to another. Supports broadcasting.\n\nGiven a [tf.Tensor](#class:Tensor) x and a [tf.Tensor](#class:Tensor) y, this operation computes x^y for\ncorresponding elements in x and y. The result's dtype will be the upcasted\ntype of the `base` and [tf.exp()](#exp) dtypes.\n\n```js\nconst a = tf.tensor([[2, 3], [4, 5]])\nconst b = tf.tensor([[1, 2], [3, 0]]).toInt();\n\na.pow(b).print();  // or tf.pow(a, b)\n```\n\n```js\nconst a = tf.tensor([[1, 2], [3, 4]])\nconst b = tf.tensor(2).toInt();\n\na.pow(b).print();  // or tf.pow(a, b)\n```\nWe also expose `powStrict` which has the same signature as this op and\nasserts that `base` and [tf.exp()](#exp) are the same shape (does not broadcast).",
               "fileName": "#244",
               "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/binary_ops.ts#L244-L275",
               "isFunction": true,
@@ -7157,7 +7157,7 @@
                 }
               ],
               "returnType": "[tf.Tensor](#class:Tensor)",
-              "documentation": "Returns (a - b) * (a - b) element-wise.\nSupports broadcasting.\n\nWe also expose `tf.squaredDifferenceStrict` which has the same signature as\nthis op and asserts that `a` and `b` are the same shape (does not\nbroadcast).\n\n```js\nconst a = tf.tensor1d([1, 4, 3, 16]);\nconst b = tf.tensor1d([1, 2, 9, 4]);\n\na.squaredDifference(b).print();  // or tf.squaredDifference(a, b)\n```\n\n```js\n// Broadcast squared difference  a with b.\nconst a = tf.tensor1d([2, 4, 6, 8]);\nconst b = tf.scalar(5);\n\na.squaredDifference(b).print();  // or tf.squaredDifference(a, b)\n```",
+              "documentation": "Returns (a - b) * (a - b) element-wise.\nSupports broadcasting.\n\nWe also expose `squaredDifferenceStrict` which has the same signature as\nthis op and asserts that `a` and `b` are the same shape (does not\nbroadcast).\n\n```js\nconst a = tf.tensor1d([1, 4, 3, 16]);\nconst b = tf.tensor1d([1, 2, 9, 4]);\n\na.squaredDifference(b).print();  // or tf.squaredDifference(a, b)\n```\n\n```js\n// Broadcast squared difference  a with b.\nconst a = tf.tensor1d([2, 4, 6, 8]);\nconst b = tf.scalar(5);\n\na.squaredDifference(b).print();  // or tf.squaredDifference(a, b)\n```",
               "fileName": "#707",
               "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/binary_ops.ts#L707-L722",
               "isFunction": true,
@@ -7189,7 +7189,7 @@
               "returnType": "[tf.Tensor](#class:Tensor)",
               "documentation": "Computes absolute value element-wise: `abs(x)`\n\n```js\nconst x = tf.tensor1d([-1, 2, -3, 4]);\n\nx.abs().print();  // or tf.abs(x)\n```",
               "fileName": "#310",
-              "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/unary_ops.ts#L310-L321",
+              "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/unary_ops.ts#L310-L317",
               "isFunction": true,
               "displayName": "tf.abs",
               "urlHash": "abs"
@@ -7212,8 +7212,8 @@
               ],
               "returnType": "[tf.Tensor](#class:Tensor)",
               "documentation": "Computes acos of the input [tf.Tensor](#class:Tensor) element-wise: `acos(x)`\n\n```js\nconst x = tf.tensor1d([0, 1, -1, .7]);\n\nx.acos().print();  // or tf.acos(x)\n```",
-              "fileName": "#513",
-              "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/unary_ops.ts#L513-L523",
+              "fileName": "#509",
+              "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/unary_ops.ts#L509-L519",
               "isFunction": true,
               "displayName": "tf.acos",
               "urlHash": "acos"
@@ -7236,8 +7236,8 @@
               ],
               "returnType": "[tf.Tensor](#class:Tensor)",
               "documentation": "Computes the inverse hyperbolic cos of the input [tf.Tensor](#class:Tensor) element-wise:\n`acosh(x)`\n\n```js\nconst x = tf.tensor1d([10, 1, 3, 5.7]);\n\nx.acosh().print();  // or tf.acosh(x)\n```",
-              "fileName": "#642",
-              "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/unary_ops.ts#L642-L651",
+              "fileName": "#638",
+              "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/unary_ops.ts#L638-L647",
               "isFunction": true,
               "displayName": "tf.acosh",
               "urlHash": "acosh"
@@ -7260,8 +7260,8 @@
               ],
               "returnType": "[tf.Tensor](#class:Tensor)",
               "documentation": "Computes asin of the input [tf.Tensor](#class:Tensor) element-wise: `asin(x)`\n\n```js\nconst x = tf.tensor1d([0, 1, -1, .7]);\n\nx.asin().print();  // or tf.asin(x)\n```",
-              "fileName": "#491",
-              "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/unary_ops.ts#L491-L500",
+              "fileName": "#487",
+              "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/unary_ops.ts#L487-L496",
               "isFunction": true,
               "displayName": "tf.asin",
               "urlHash": "asin"
@@ -7284,8 +7284,8 @@
               ],
               "returnType": "[tf.Tensor](#class:Tensor)",
               "documentation": "Computes inverse hyperbolic sin of the input [tf.Tensor](#class:Tensor) element-wise:\n`asinh(x)`\n\n```js\nconst x = tf.tensor1d([0, 1, -1, .7]);\n\nx.asinh().print();  // or tf.asinh(x)\n```",
-              "fileName": "#619",
-              "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/unary_ops.ts#L619-L628",
+              "fileName": "#615",
+              "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/unary_ops.ts#L615-L624",
               "isFunction": true,
               "displayName": "tf.asinh",
               "urlHash": "asinh"
@@ -7308,8 +7308,8 @@
               ],
               "returnType": "[tf.Tensor](#class:Tensor)",
               "documentation": "Computes atan of the input [tf.Tensor](#class:Tensor) element-wise: `atan(x)`\n\n```js\nconst x = tf.tensor1d([0, 1, -1, .7]);\n\nx.atan().print();  // or tf.atan(x)\n```",
-              "fileName": "#536",
-              "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/unary_ops.ts#L536-L543",
+              "fileName": "#532",
+              "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/unary_ops.ts#L532-L539",
               "isFunction": true,
               "displayName": "tf.atan",
               "urlHash": "atan"
@@ -7363,8 +7363,8 @@
               ],
               "returnType": "[tf.Tensor](#class:Tensor)",
               "documentation": "Computes inverse hyperbolic tan of the input [tf.Tensor](#class:Tensor) element-wise:\n`atanh(x)`\n\n```js\nconst x = tf.tensor1d([0, .1, -.1, .7]);\n\nx.atanh().print();  // or tf.atanh(x)\n```",
-              "fileName": "#665",
-              "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/unary_ops.ts#L665-L672",
+              "fileName": "#661",
+              "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/unary_ops.ts#L661-L668",
               "isFunction": true,
               "displayName": "tf.atanh",
               "urlHash": "atanh"
@@ -7425,8 +7425,8 @@
               ],
               "returnType": "[tf.Tensor](#class:Tensor)",
               "documentation": "Clips values element-wise. `max(min(x, clipValueMax), clipValueMin)`\n\n```js\nconst x = tf.tensor1d([-1, 2, -3, 4]);\n\nx.clipByValue(-2, 3).print();  // or tf.clipByValue(x, -2, 3)\n```",
-              "fileName": "#336",
-              "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/unary_ops.ts#L336-L354",
+              "fileName": "#332",
+              "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/unary_ops.ts#L332-L350",
               "isFunction": true,
               "displayName": "tf.clipByValue",
               "urlHash": "clipByValue"
@@ -7449,8 +7449,8 @@
               ],
               "returnType": "[tf.Tensor](#class:Tensor)",
               "documentation": "Computes cos of the input [tf.Tensor](#class:Tensor) element-wise: `cos(x)`\n\n```js\nconst x = tf.tensor1d([0, Math.PI / 2, Math.PI * 3 / 4]);\n\nx.cos().print();  // or tf.cos(x)\n```",
-              "fileName": "#451",
-              "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/unary_ops.ts#L451-L458",
+              "fileName": "#447",
+              "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/unary_ops.ts#L447-L454",
               "isFunction": true,
               "displayName": "tf.cos",
               "urlHash": "cos"
@@ -7473,8 +7473,8 @@
               ],
               "returnType": "[tf.Tensor](#class:Tensor)",
               "documentation": "Computes hyperbolic cos of the input [tf.Tensor](#class:Tensor) element-wise: `cosh(x)`\n\n```js\nconst x = tf.tensor1d([0, 1, -1, .7]);\n\nx.cosh().print();  // or tf.cosh(x)\n```",
-              "fileName": "#576",
-              "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/unary_ops.ts#L576-L583",
+              "fileName": "#572",
+              "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/unary_ops.ts#L572-L579",
               "isFunction": true,
               "displayName": "tf.cosh",
               "urlHash": "cosh"
@@ -7521,8 +7521,8 @@
               ],
               "returnType": "[tf.Tensor](#class:Tensor)",
               "documentation": "Computes gause error function of the input [tf.Tensor](#class:Tensor) element-wise:\n`erf(x)`\n\n```js\nconst x = tf.tensor1d([0, .1, -.1, .7]);\n\nx.erf().print(); // or tf.erf(x);\n```",
-              "fileName": "#686",
-              "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/unary_ops.ts#L686-L703",
+              "fileName": "#682",
+              "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/unary_ops.ts#L682-L699",
               "isFunction": true,
               "displayName": "tf.erf",
               "urlHash": "erf"
@@ -7696,8 +7696,8 @@
               ],
               "returnType": "[tf.Tensor](#class:Tensor)",
               "documentation": "Computes log sigmoid of the input [tf.Tensor](#class:Tensor) element-wise:\n`logSigmoid(x)`. For numerical stability, we use `-tf.softplus(-x)`.\n\n```js\nconst x = tf.tensor1d([0, 1, -1, .7]);\n\nx.logSigmoid().print();  // or tf.logSigmoid(x)\n```",
-              "fileName": "#390",
-              "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/unary_ops.ts#L390-L398",
+              "fileName": "#386",
+              "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/unary_ops.ts#L386-L394",
               "isFunction": true,
               "displayName": "tf.logSigmoid",
               "urlHash": "logSigmoid"
@@ -7895,8 +7895,8 @@
               ],
               "returnType": "[tf.Tensor](#class:Tensor)",
               "documentation": "Computes sigmoid element-wise, `1 / (1 + exp(-x))`\n\n```js\nconst x = tf.tensor1d([0, -1, 2, -3]);\n\nx.sigmoid().print();  // or tf.sigmoid(x)\n```",
-              "fileName": "#367",
-              "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/unary_ops.ts#L367-L376",
+              "fileName": "#363",
+              "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/unary_ops.ts#L363-L372",
               "isFunction": true,
               "displayName": "tf.sigmoid",
               "urlHash": "sigmoid"
@@ -7943,8 +7943,8 @@
               ],
               "returnType": "[tf.Tensor](#class:Tensor)",
               "documentation": "Computes sin of the input Tensor element-wise: `sin(x)`\n\n```js\nconst x = tf.tensor1d([0, Math.PI / 2, Math.PI * 3 / 4]);\n\nx.sin().print();  // or tf.sin(x)\n```",
-              "fileName": "#431",
-              "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/unary_ops.ts#L431-L438",
+              "fileName": "#427",
+              "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/unary_ops.ts#L427-L434",
               "isFunction": true,
               "displayName": "tf.sin",
               "urlHash": "sin"
@@ -7967,8 +7967,8 @@
               ],
               "returnType": "[tf.Tensor](#class:Tensor)",
               "documentation": "Computes hyperbolic sin of the input [tf.Tensor](#class:Tensor) element-wise: `sinh(x)`\n\n```js\nconst x = tf.tensor1d([0, 1, -1, .7]);\n\nx.sinh().print();  // or tf.sinh(x)\n```",
-              "fileName": "#556",
-              "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/unary_ops.ts#L556-L563",
+              "fileName": "#552",
+              "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/unary_ops.ts#L552-L559",
               "isFunction": true,
               "displayName": "tf.sinh",
               "urlHash": "sinh"
@@ -7991,8 +7991,8 @@
               ],
               "returnType": "[tf.Tensor](#class:Tensor)",
               "documentation": "Computes softplus of the input [tf.Tensor](#class:Tensor) element-wise: `log(exp(x) + 1)`\n\n```js\nconst x = tf.tensor1d([0, 1, -1, .7]);\n\nx.softplus().print();  // or tf.softplus(x)\n```",
-              "fileName": "#411",
-              "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/unary_ops.ts#L411-L418",
+              "fileName": "#407",
+              "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/unary_ops.ts#L407-L414",
               "isFunction": true,
               "displayName": "tf.softplus",
               "urlHash": "softplus"
@@ -8070,8 +8070,8 @@
               ],
               "returnType": "[tf.Tensor](#class:Tensor)",
               "documentation": "Computes step of the input [tf.Tensor](#class:Tensor) element-wise: `x > 0 ? 1 : alpha * x`\n\n```js\nconst x = tf.tensor1d([0, 2, -1, -3]);\n\nx.step(.5).print();  // or tf.step(x, .5)\n```",
-              "fileName": "#717",
-              "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/unary_ops.ts#L717-L726",
+              "fileName": "#713",
+              "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/unary_ops.ts#L713-L722",
               "isFunction": true,
               "displayName": "tf.step",
               "urlHash": "step"
@@ -8094,8 +8094,8 @@
               ],
               "returnType": "[tf.Tensor](#class:Tensor)",
               "documentation": "Computes tan of the input [tf.Tensor](#class:Tensor) element-wise, `tan(x)`\n\n```js\nconst x = tf.tensor1d([0, Math.PI / 2, Math.PI * 3 / 4]);\n\nx.tan().print();  // or tf.tan(x)\n```",
-              "fileName": "#471",
-              "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/unary_ops.ts#L471-L478",
+              "fileName": "#467",
+              "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/unary_ops.ts#L467-L474",
               "isFunction": true,
               "displayName": "tf.tan",
               "urlHash": "tan"
@@ -8118,8 +8118,8 @@
               ],
               "returnType": "[tf.Tensor](#class:Tensor)",
               "documentation": "Computes hyperbolic tangent of the input [tf.Tensor](#class:Tensor) element-wise: `tanh(x)`\n\n```js\nconst x = tf.tensor1d([0, 1, -1, 70]);\n\nx.tanh().print();  // or tf.tanh(x)\n```",
-              "fileName": "#596",
-              "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/unary_ops.ts#L596-L605",
+              "fileName": "#592",
+              "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/unary_ops.ts#L592-L601",
               "isFunction": true,
               "displayName": "tf.tanh",
               "urlHash": "tanh"
@@ -8154,7 +8154,7 @@
                 }
               ],
               "returnType": "[tf.Tensor](#class:Tensor)",
-              "documentation": "Computes the dot product of two matrices and/or vectors, `t1` and `t2`.\n\n```js\nconst a = tf.tensor1d([1, 2]);\nconst b = tf.tensor2d([[1, 2], [3, 4]]);\nconst c = tf.tensor2d([[1, 2, 3], [4, 5, 6]]);\n\na.dot(b).print();  // or tf.dot(a, b)\nb.dot(a).print();\nb.dot(c).print();\n```",
+              "documentation": "Computes the dot product of two matrices and/or vectors, t1 and t2.\n\n```js\nconst a = tf.tensor1d([1, 2]);\nconst b = tf.tensor2d([[1, 2], [3, 4]]);\nconst c = tf.tensor2d([[1, 2, 3], [4, 5, 6]]);\n\na.dot(b).print();  // or tf.dot(a, b)\nb.dot(a).print();\nb.dot(c).print();\n```",
               "fileName": "#158",
               "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/matmul.ts#L158-L183",
               "isFunction": true,
@@ -8275,7 +8275,7 @@
                 }
               ],
               "returnType": "[tf.Tensor2D](#class:Tensor)",
-              "documentation": "Computes the outer product of two vectors, `v1` and `v2`.\n\n```js\nconst a = tf.tensor1d([1, 2, 3]);\nconst b = tf.tensor1d([3, 4, 5]);\n\ntf.outerProduct(a, b).print();\n```",
+              "documentation": "Computes the outer product of two vectors, v1 and v2.\n\n```js\nconst a = tf.tensor1d([1, 2, 3]);\nconst b = tf.tensor1d([3, 4, 5]);\n\ntf.outerProduct(a, b).print();\n```",
               "fileName": "#129",
               "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/matmul.ts#L129-L140",
               "isFunction": true,
@@ -8336,14 +8336,14 @@
                 },
                 {
                   "name": "filterSize",
-                  "documentation": "The filter size: `[filterHeight, filterWidth]`. If\n`filterSize` is a single number, then `filterHeight == filterWidth`.",
+                  "documentation": "The filter size, a tuple `[filterHeight, filterWidth]`.",
                   "type": "[number, number]|number",
                   "optional": false,
                   "isConfigParam": false
                 },
                 {
                   "name": "strides",
-                  "documentation": "The strides of the pooling: `[strideHeight, strideWidth]`. If\n`strides` is a single number, then `strideHeight == strideWidth`.",
+                  "documentation": "The strides of the pooling: `[strideHeight, strideWidth]`.",
                   "type": "[number, number]|number",
                   "optional": false,
                   "isConfigParam": false
@@ -8365,11 +8365,70 @@
               ],
               "returnType": "[tf.Tensor3D](#class:Tensor)|[tf.Tensor4D](#class:Tensor)",
               "documentation": "Computes the 2D average pooling of an image.",
-              "fileName": "#223",
-              "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/pool.ts#L223-L228",
+              "fileName": "#217",
+              "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/pool.ts#L217-L222",
               "isFunction": true,
               "displayName": "tf.avgPool",
               "urlHash": "avgPool"
+            },
+            {
+              "docInfo": {
+                "heading": "Operations",
+                "subheading": "Convolution"
+              },
+              "symbolName": "avgPoolImpl",
+              "paramStr": "(x, filterSize, strides, dilations, pad, dimRoundingMode?)",
+              "parameters": [
+                {
+                  "name": "x",
+                  "documentation": "The input tensor, of rank 4 or rank 3 of shape\n`[batch, height, width, inChannels]`. If rank 3, batch of 1 is assumed.",
+                  "type": "[tf.Tensor3D](#class:Tensor)|[tf.Tensor4D](#class:Tensor)|[TypedArray](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray)|Array",
+                  "optional": false,
+                  "isConfigParam": false
+                },
+                {
+                  "name": "filterSize",
+                  "documentation": "The filter size, a tuple `[filterHeight, filterWidth]`.",
+                  "type": "[number, number]|number",
+                  "optional": false,
+                  "isConfigParam": false
+                },
+                {
+                  "name": "strides",
+                  "documentation": "The strides of the pooling: `[strideHeight, strideWidth]`.",
+                  "type": "[number, number]|number",
+                  "optional": false,
+                  "isConfigParam": false
+                },
+                {
+                  "name": "dilations",
+                  "documentation": "The dilation rates: `[dilationHeight, dilationWidth]`\nin which we sample input values across the height and width dimensions\nin dilated pooling. Defaults to `[1, 1]`. If `dilations` is a single\nnumber, then `dilationHeight == dilationWidth`. If it is greater than\n1, then all values of `strides` must be 1.",
+                  "type": "[number, number]|number",
+                  "optional": false,
+                  "isConfigParam": false
+                },
+                {
+                  "name": "pad",
+                  "documentation": "The type of padding algorithm:\n- `same` and stride 1: output will be of same size as input,\nregardless of filter size.\n- `valid`: output will be smaller than input if filter is larger\nthan 1x1.\n- For more info, see this guide:\n[https://www.tensorflow.org/api_guides/python/nn#Convolution](\nhttps://www.tensorflow.org/api_guides/python/nn#Convolution)",
+                  "type": "'valid'|'same'|number",
+                  "optional": false,
+                  "isConfigParam": false
+                },
+                {
+                  "name": "dimRoundingMode",
+                  "documentation": "The rounding mode used when computing output\ndimensions if pad is a number. If none is provided, it will not round\nand error if the output is of fractional size.",
+                  "type": "'floor'|'round'|'ceil'",
+                  "optional": true,
+                  "isConfigParam": false
+                }
+              ],
+              "returnType": "[tf.Tensor3D](#class:Tensor)|[tf.Tensor4D](#class:Tensor)",
+              "documentation": "Computes the 2D average pooling of an image.",
+              "fileName": "#150",
+              "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/pool.ts#L150-L195",
+              "isFunction": true,
+              "displayName": "tf.avgPoolImpl",
+              "urlHash": "avgPoolImpl"
             },
             {
               "docInfo": {
@@ -8621,7 +8680,7 @@
                 }
               ],
               "returnType": "[tf.Tensor3D](#class:Tensor)|[tf.Tensor4D](#class:Tensor)",
-              "documentation": "Depthwise 2D convolution.\n\nGiven a 4D `input` array and a `filter` array of shape\n`[filterHeight, filterWidth, inChannels, channelMultiplier]` containing\n`inChannels` convolutional filters of depth 1, this op applies a\ndifferent filter to each input channel (expanding from 1 channel to\n`channelMultiplier` channels for each), then concatenates the results\ntogether. The output has `inChannels * channelMultiplier` channels.\n\nSee\n[https://www.tensorflow.org/api_docs/python/tf/nn/depthwise_conv2d](\n     https://www.tensorflow.org/api_docs/python/tf/nn/depthwise_conv2d)\nfor more details.",
+              "documentation": "Depthwise 2D convolution.\n\nGiven a 4D [tf.input()](#input) array and a `filter` array of shape\n`[filterHeight, filterWidth, inChannels, channelMultiplier]` containing\n`inChannels` convolutional filters of depth 1, this op applies a\ndifferent filter to each input channel (expanding from 1 channel to\n`channelMultiplier` channels for each), then concatenates the results\ntogether. The output has `inChannels * channelMultiplier` channels.\n\nSee\n[https://www.tensorflow.org/api_docs/python/tf/nn/depthwise_conv2d](\n     https://www.tensorflow.org/api_docs/python/tf/nn/depthwise_conv2d)\nfor more details.",
               "fileName": "#458",
               "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/conv.ts#L458-L523",
               "isFunction": true,
@@ -8645,14 +8704,14 @@
                 },
                 {
                   "name": "filterSize",
-                  "documentation": "The filter size: `[filterHeight, filterWidth]`. If\n`filterSize` is a single number, then `filterHeight == filterWidth`.",
+                  "documentation": "The filter size, a tuple `[filterHeight, filterWidth]`.",
                   "type": "[number, number]|number",
                   "optional": false,
                   "isConfigParam": false
                 },
                 {
                   "name": "strides",
-                  "documentation": "The strides of the pooling: `[strideHeight, strideWidth]`. If\n`strides` is a single number, then `strideHeight == strideWidth`.",
+                  "documentation": "The strides of the pooling: `[strideHeight, strideWidth]`.",
                   "type": "[number, number]|number",
                   "optional": false,
                   "isConfigParam": false
@@ -8674,8 +8733,8 @@
               ],
               "returnType": "[tf.Tensor3D](#class:Tensor)|[tf.Tensor4D](#class:Tensor)",
               "documentation": "Computes the 2D max pooling of an image.",
-              "fileName": "#121",
-              "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/pool.ts#L121-L126",
+              "fileName": "#118",
+              "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/pool.ts#L118-L123",
               "isFunction": true,
               "displayName": "tf.maxPool",
               "urlHash": "maxPool"
@@ -8685,59 +8744,59 @@
                 "heading": "Operations",
                 "subheading": "Convolution"
               },
-              "symbolName": "pool",
-              "paramStr": "(input, windowShape, poolingType, padding, dilationRate?, strides?)",
+              "symbolName": "maxPoolImpl",
+              "paramStr": "(x, filterSize, strides, dilations, pad, dimRoundingMode?)",
               "parameters": [
                 {
-                  "name": "input",
+                  "name": "x",
                   "documentation": "The input tensor, of rank 4 or rank 3 of shape\n`[batch, height, width, inChannels]`. If rank 3, batch of 1 is assumed.",
                   "type": "[tf.Tensor3D](#class:Tensor)|[tf.Tensor4D](#class:Tensor)|[TypedArray](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray)|Array",
                   "optional": false,
                   "isConfigParam": false
                 },
                 {
-                  "name": "windowShape",
-                  "documentation": "The filter size: `[filterHeight, filterWidth]`. If\n`filterSize` is a single number, then `filterHeight == filterWidth`.",
+                  "name": "filterSize",
+                  "documentation": "The filter size, a tuple `[filterHeight, filterWidth]`.",
                   "type": "[number, number]|number",
                   "optional": false,
                   "isConfigParam": false
                 },
                 {
-                  "name": "poolingType",
-                  "documentation": "The type of pooling, either 'max' or 'avg'.",
-                  "type": "'avg'|'max'",
+                  "name": "strides",
+                  "documentation": "The strides of the pooling: `[strideHeight, strideWidth]`.",
+                  "type": "[number, number]|number",
                   "optional": false,
                   "isConfigParam": false
                 },
                 {
-                  "name": "padding",
-                  "documentation": "",
+                  "name": "dilations",
+                  "documentation": "The dilation rates: `[dilationHeight, dilationWidth]`\nin which we sample input values across the height and width dimensions\nin dilated pooling. Defaults to `[1, 1]`. If `dilations` is a single\nnumber, then `dilationHeight == dilationWidth`. If it is greater than\n1, then all values of `strides` must be 1.",
+                  "type": "[number, number]|number",
+                  "optional": false,
+                  "isConfigParam": false
+                },
+                {
+                  "name": "pad",
+                  "documentation": "The type of padding algorithm.\n- `same` and stride 1: output will be of same size as input,\nregardless of filter size.\n- `valid`: output will be smaller than input if filter is larger\nthan 1x1.\n- For more info, see this guide:\n[https://www.tensorflow.org/api_guides/python/nn#Convolution](\nhttps://www.tensorflow.org/api_guides/python/nn#Convolution)",
                   "type": "'valid'|'same'|number",
                   "optional": false,
                   "isConfigParam": false
                 },
                 {
-                  "name": "dilationRate",
-                  "documentation": "The dilation rates: `[dilationHeight, dilationWidth]`\nin which we sample input values across the height and width dimensions\nin dilated pooling. Defaults to `[1, 1]`. If `dilationRate` is a single\nnumber, then `dilationHeight == dilationWidth`. If it is greater than\n1, then all values of `strides` must be 1.",
-                  "type": "[number, number]|number",
-                  "optional": true,
-                  "isConfigParam": false
-                },
-                {
-                  "name": "strides",
-                  "documentation": "The strides of the pooling: `[strideHeight, strideWidth]`. If\n`strides` is a single number, then `strideHeight == strideWidth`.",
-                  "type": "[number, number]|number",
+                  "name": "dimRoundingMode",
+                  "documentation": "The rounding mode used when computing output\ndimensions if pad is a number. If none is provided, it will not round\nand error if the output is of fractional size.",
+                  "type": "'floor'|'round'|'ceil'",
                   "optional": true,
                   "isConfigParam": false
                 }
               ],
-              "returnType": "[tf.Tensor](#class:Tensor)",
-              "documentation": "Performs an N-D pooling operation",
-              "fileName": "#255",
-              "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/pool.ts#L255-L270",
+              "returnType": "[tf.Tensor3D](#class:Tensor)|[tf.Tensor4D](#class:Tensor)",
+              "documentation": "Computes the 2D max pooling of an image.",
+              "fileName": "#51",
+              "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/pool.ts#L51-L96",
               "isFunction": true,
-              "displayName": "tf.pool",
-              "urlHash": "pool"
+              "displayName": "tf.maxPoolImpl",
+              "urlHash": "maxPoolImpl"
             },
             {
               "docInfo": {
@@ -8842,7 +8901,7 @@
                 }
               ],
               "returnType": "[tf.Tensor](#class:Tensor)",
-              "documentation": "Computes the logical and of elements across dimensions of a [tf.Tensor](#class:Tensor).\n\nReduces the input along the dimensions given in `axes`. Unless `keepDims`\nis true, the rank of the [tf.Tensor](#class:Tensor) is reduced by 1 for each entry in\n`axes`. If `keepDims` is true, the reduced dimensions are retained with\nlength 1. If `axes` has no entries, all dimensions are reduced, and an\n[tf.Tensor](#class:Tensor) with a single element is returned.\n\n```js\nconst x = tf.tensor1d([1, 1, 1]);\n\nx.all().print();  // or tf.all(x)\n```\n\n```js\nconst x = tf.tensor2d([1, 1, 0, 0], [2, 2], 'bool');\n\nconst axis = 1;\nx.all(axis).print();  // or tf.all(x, axis)\n```",
+              "documentation": "Computes the logical and of elements across dimensions of a [tf.Tensor](#class:Tensor).\n\nReduces the input along the dimensions given in `axes`. Unless `keepDims`\nis true, the rank of the [tf.Tensor](#class:Tensor) is reduced by 1 for each entry in `axes`.\nIf `keepDims` is true, the reduced dimensions are retained with length 1.\nIf `axes` has no entries, all dimensions are reduced, and an [tf.Tensor](#class:Tensor) with\na single element is returned.\n\n```js\nconst x = tf.tensor1d([1, 1, 1]);\n\nx.all().print();  // or tf.all(x)\n```\n\n```js\nconst x = tf.tensor2d([1, 1, 0, 0], [2, 2], 'bool');\n\nconst axis = 1;\nx.all(axis).print();  // or tf.all(x, axis)\n```",
               "fileName": "#500",
               "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/reduction_ops.ts#L500-L520",
               "isFunction": true,
@@ -8880,7 +8939,7 @@
                 }
               ],
               "returnType": "[tf.Tensor](#class:Tensor)",
-              "documentation": "Computes the logical or of elements across dimensions of a [tf.Tensor](#class:Tensor).\n\nReduces the input along the dimensions given in `axes`. Unless `keepDims`\nis true, the rank of the [tf.Tensor](#class:Tensor) is reduced by 1 for each entry in\n`axes`. If `keepDims` is true, the reduced dimensions are retained with\nlength 1. If `axes` has no entries, all dimensions are reduced, and an\n[tf.Tensor](#class:Tensor) with a single element is returned.\n\n```js\nconst x = tf.tensor1d([1, 1, 1]);\n\nx.any().print();  // or tf.any(x)\n```\n\n```js\nconst x = tf.tensor2d([1, 1, 0, 0], [2, 2], 'bool');\n\nconst axis = 1;\nx.any(axis).print();  // or tf.any(x, axis)\n```",
+              "documentation": "Computes the logical or of elements across dimensions of a [tf.Tensor](#class:Tensor).\n\nReduces the input along the dimensions given in `axes`. Unless `keepDims`\nis true, the rank of the [tf.Tensor](#class:Tensor) is reduced by 1 for each entry in `axes`.\nIf `keepDims` is true, the reduced dimensions are retained with length 1.\nIf `axes` has no entries, all dimensions are reduced, and an [tf.Tensor](#class:Tensor) with\na single element is returned.\n\n```js\nconst x = tf.tensor1d([1, 1, 1]);\n\nx.any().print();  // or tf.any(x)\n```\n\n```js\nconst x = tf.tensor2d([1, 1, 0, 0], [2, 2], 'bool');\n\nconst axis = 1;\nx.any(axis).print();  // or tf.any(x, axis)\n```",
               "fileName": "#550",
               "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/reduction_ops.ts#L550-L570",
               "isFunction": true,
@@ -8911,7 +8970,7 @@
                 }
               ],
               "returnType": "[tf.Tensor](#class:Tensor)",
-              "documentation": "Returns the indices of the maximum values along an `axis`.\n\nThe result has the same shape as `input` with the dimension along `axis`\nremoved.\n\n```js\nconst x = tf.tensor1d([1, 2, 3]);\n\nx.argMax().print();  // or tf.argMax(x)\n```\n\n```js\nconst x = tf.tensor2d([1, 2, 4, 3], [2, 2]);\n\nconst axis = 1;\nx.argMax(axis).print();  // or tf.argMax(x, axis)\n```",
+              "documentation": "Returns the indices of the maximum values along an `axis`.\n\nThe result has the same shape as [tf.input()](#input) with the dimension along `axis`\nremoved.\n\n```js\nconst x = tf.tensor1d([1, 2, 3]);\n\nx.argMax().print();  // or tf.argMax(x)\n```\n\n```js\nconst x = tf.tensor2d([1, 2, 4, 3], [2, 2]);\n\nconst axis = 1;\nx.argMax(axis).print();  // or tf.argMax(x, axis)\n```",
               "fileName": "#453",
               "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/reduction_ops.ts#L453-L470",
               "isFunction": true,
@@ -8942,7 +9001,7 @@
                 }
               ],
               "returnType": "[tf.Tensor](#class:Tensor)",
-              "documentation": "Returns the indices of the minimum values along an `axis`.\n\nThe result has the same shape as `input` with the dimension along `axis`\nremoved.\n\n```js\nconst x = tf.tensor1d([1, 2, 3]);\n\nx.argMin().print();  // or tf.argMin(x)\n```\n\n```js\nconst x = tf.tensor2d([1, 2, 4, 3], [2, 2]);\n\nconst axis = 1;\nx.argMin(axis).print();  // or tf.argMin(x, axis)\n```",
+              "documentation": "Returns the indices of the minimum values along an `axis`.\n\nThe result has the same shape as [tf.input()](#input) with the dimension along `axis`\nremoved.\n\n```js\nconst x = tf.tensor1d([1, 2, 3]);\n\nx.argMin().print();  // or tf.argMin(x)\n```\n\n```js\nconst x = tf.tensor2d([1, 2, 4, 3], [2, 2]);\n\nconst axis = 1;\nx.argMin(axis).print();  // or tf.argMin(x, axis)\n```",
               "fileName": "#411",
               "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/reduction_ops.ts#L411-L428",
               "isFunction": true,
@@ -9018,7 +9077,7 @@
                 }
               ],
               "returnType": "[tf.Tensor](#class:Tensor)",
-              "documentation": "Computes the maximum of elements across dimensions of a [tf.Tensor](#class:Tensor).\n\nReduces the input along the dimensions given in `axes`. Unless `keepDims`\nis true, the rank of the [tf.Tensor](#class:Tensor) is reduced by 1 for each entry in\n`axes`. If `keepDims` is true, the reduced dimensions are retained with\nlength 1. If `axes` has no entries, all dimensions are reduced, and an\n[tf.Tensor](#class:Tensor) with a single element is returned.\n\n```js\nconst x = tf.tensor1d([1, 2, 3]);\n\nx.max().print();  // or tf.max(x)\n```\n\n```js\nconst x = tf.tensor2d([1, 2, 3, 4], [2, 2]);\n\nconst axis = 1;\nx.max(axis).print();  // or tf.max(x, axis)\n```",
+              "documentation": "Computes the maximum of elements across dimensions of a [tf.Tensor](#class:Tensor).\n\nReduces the input along the dimensions given in `axes`. Unless `keepDims`\nis true, the rank of the [tf.Tensor](#class:Tensor) is reduced by 1 for each entry in `axes`.\nIf `keepDims` is true, the reduced dimensions are retained with length 1.\nIf `axes` has no entries, all dimensions are reduced, and an [tf.Tensor](#class:Tensor) with\na single element is returned.\n\n```js\nconst x = tf.tensor1d([1, 2, 3]);\n\nx.max().print();  // or tf.max(x)\n```\n\n```js\nconst x = tf.tensor2d([1, 2, 3, 4], [2, 2]);\n\nconst axis = 1;\nx.max(axis).print();  // or tf.max(x, axis)\n```",
               "fileName": "#363",
               "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/reduction_ops.ts#L363-L385",
               "isFunction": true,
@@ -9132,7 +9191,7 @@
                 }
               ],
               "returnType": "[tf.Tensor](#class:Tensor)",
-              "documentation": "Computes the product of elements across dimensions of a [tf.Tensor](#class:Tensor).\n\nReduces the input along the dimensions given in `axes`. Unless `keepDims`\nis true, the rank of the [tf.Tensor](#class:Tensor) is reduced by 1 for each entry in\n`axes`. If `keepDims` is true, the reduced dimensions are retained with\nlength 1. If `axes` has no entries, all dimensions are reduced, and a\n[tf.Tensor](#class:Tensor) with a single element is returned.\n\n```js\nconst x = tf.tensor1d([1, 2, 3]);\n\nx.prod().print();  // or tf.prod(x)\n```\n\n```js\nconst x = tf.tensor2d([1, 2, 3, 4], [2, 2]);\n\nconst axis = 1;\nx.prod(axis).print();  // or tf.prod(x, axis)\n```",
+              "documentation": "Computes the product of elements across dimensions of a [tf.Tensor](#class:Tensor).\n\nReduces the input along the dimensions given in `axes`. Unless `keepDims`\nis true, the rank of the [tf.Tensor](#class:Tensor) is reduced by 1 for each entry in `axes`.\nIf `keepDims` is true, the reduced dimensions are retained with length 1.\nIf `axes` has no entries, all dimensions are reduced, and a [tf.Tensor](#class:Tensor) with a\nsingle element is returned.\n\n```js\nconst x = tf.tensor1d([1, 2, 3]);\n\nx.prod().print();  // or tf.prod(x)\n```\n\n```js\nconst x = tf.tensor2d([1, 2, 3, 4], [2, 2]);\n\nconst axis = 1;\nx.prod(axis).print();  // or tf.prod(x, axis)\n```",
               "fileName": "#174",
               "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/reduction_ops.ts#L174-L198",
               "isFunction": true,
@@ -9170,7 +9229,7 @@
                 }
               ],
               "returnType": "[tf.Tensor](#class:Tensor)",
-              "documentation": "Computes the sum of elements across dimensions of a [tf.Tensor](#class:Tensor).\n\nReduces the input along the dimensions given in `axes`. Unless `keepDims`\nis true, the rank of the [tf.Tensor](#class:Tensor) is reduced by 1 for each entry in\n`axes`. If `keepDims` is true, the reduced dimensions are retained with\nlength 1. If axes has no entries, all dimensions are reduced, and a\n[tf.Tensor](#class:Tensor) with a single element is returned.\n\n```js\nconst x = tf.tensor1d([1, 2, 3]);\n\nx.sum().print();  // or tf.sum(x)\n```\n\n```js\nconst x = tf.tensor2d([1, 2, 3, 4], [2, 2]);\n\nconst axis = 1;\nx.sum(axis).print();  // or tf.sum(x, axis)\n```",
+              "documentation": "Computes the sum of elements across dimensions of a [tf.Tensor](#class:Tensor).\n\nReduces the input along the dimensions given in `axes`. Unless `keepDims`\nis true, the rank of the [tf.Tensor](#class:Tensor) is reduced by 1 for each entry in `axes`.\nIf `keepDims` is true, the reduced dimensions are retained with length 1.\nIf axes has no entries, all dimensions are reduced, and a [tf.Tensor](#class:Tensor) with a\nsingle element is returned.\n\n```js\nconst x = tf.tensor1d([1, 2, 3]);\n\nx.sum().print();  // or tf.sum(x)\n```\n\n```js\nconst x = tf.tensor2d([1, 2, 3, 4], [2, 2]);\n\nconst axis = 1;\nx.sum(axis).print();  // or tf.sum(x, axis)\n```",
               "fileName": "#104",
               "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/reduction_ops.ts#L104-L143",
               "isFunction": true,
@@ -9749,7 +9808,7 @@
                 }
               ],
               "returnType": "[tf.Tensor](#class:Tensor)",
-              "documentation": "Returns the truth value of (a == b) element-wise. Supports broadcasting.\n\nWe also expose `tf.equalStrict` which has the same signature as this op\nand asserts that `a` and `b` are the same shape (does not broadcast).\n\n```js\nconst a = tf.tensor1d([1, 2, 3]);\nconst b = tf.tensor1d([2, 2, 2]);\n\na.equal(b).print();\n```",
+              "documentation": "Returns the truth value of (a == b) element-wise. Supports broadcasting.\n\nWe also expose `equalStrict` which has the same signature as this op\nand asserts that `a` and `b` are the same shape (does not broadcast).\n\n```js\nconst a = tf.tensor1d([1, 2, 3]);\nconst b = tf.tensor1d([2, 2, 2]);\n\na.equal(b).print();\n```",
               "fileName": "#128",
               "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/compare.ts#L128-L136",
               "isFunction": true,
@@ -9780,7 +9839,7 @@
                 }
               ],
               "returnType": "[tf.Tensor](#class:Tensor)",
-              "documentation": "Returns the truth value of (a > b) element-wise. Supports broadcasting.\n\nWe also expose `tf.greaterStrict` which has the same signature as this\nop and asserts that `a` and `b` are the same shape (does not broadcast).\n\n```js\nconst a = tf.tensor1d([1, 2, 3]);\nconst b = tf.tensor1d([2, 2, 2]);\n\na.greater(b).print();\n```",
+              "documentation": "Returns the truth value of (a > b) element-wise. Supports broadcasting.\n\nWe also expose `greaterStrict` which has the same signature as this\nop and asserts that `a` and `b` are the same shape (does not broadcast).\n\n```js\nconst a = tf.tensor1d([1, 2, 3]);\nconst b = tf.tensor1d([2, 2, 2]);\n\na.greater(b).print();\n```",
               "fileName": "#198",
               "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/compare.ts#L198-L207",
               "isFunction": true,
@@ -9811,7 +9870,7 @@
                 }
               ],
               "returnType": "[tf.Tensor](#class:Tensor)",
-              "documentation": "Returns the truth value of (a >= b) element-wise. Supports broadcasting.\n\nWe also expose `tf.greaterEqualStrict` which has the same signature as this\nop and asserts that `a` and `b` are the same shape (does not broadcast).\n\n```js\nconst a = tf.tensor1d([1, 2, 3]);\nconst b = tf.tensor1d([2, 2, 2]);\n\na.greaterEqual(b).print();\n```",
+              "documentation": "Returns the truth value of (a >= b) element-wise. Supports broadcasting.\n\nWe also expose `greaterEqualStrict` which has the same signature as this\nop and asserts that `a` and `b` are the same shape (does not broadcast).\n\n```js\nconst a = tf.tensor1d([1, 2, 3]);\nconst b = tf.tensor1d([2, 2, 2]);\n\na.greaterEqual(b).print();\n```",
               "fileName": "#233",
               "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/compare.ts#L233-L245",
               "isFunction": true,
@@ -9842,7 +9901,7 @@
                 }
               ],
               "returnType": "[tf.Tensor](#class:Tensor)",
-              "documentation": "Returns the truth value of (a < b) element-wise. Supports broadcasting.\n\nWe also expose `tf.lessStrict` which has the same signature as this op and\nasserts that `a` and `b` are the same shape (does not broadcast).\n\n```js\nconst a = tf.tensor1d([1, 2, 3]);\nconst b = tf.tensor1d([2, 2, 2]);\n\na.less(b).print();\n```",
+              "documentation": "Returns the truth value of (a < b) element-wise. Supports broadcasting.\n\nWe also expose `lessStrict` which has the same signature as this op and\nasserts that `a` and `b` are the same shape (does not broadcast).\n\n```js\nconst a = tf.tensor1d([1, 2, 3]);\nconst b = tf.tensor1d([2, 2, 2]);\n\na.less(b).print();\n```",
               "fileName": "#86",
               "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/compare.ts#L86-L94",
               "isFunction": true,
@@ -9873,7 +9932,7 @@
                 }
               ],
               "returnType": "[tf.Tensor](#class:Tensor)",
-              "documentation": "Returns the truth value of (a <= b) element-wise. Supports broadcasting.\n\nWe also expose `tf.lessEqualStrict` which has the same signature as this op\nand asserts that `a` and `b` are the same shape (does not broadcast).\n\n```js\nconst a = tf.tensor1d([1, 2, 3]);\nconst b = tf.tensor1d([2, 2, 2]);\n\na.lessEqual(b).print();\n```",
+              "documentation": "Returns the truth value of (a <= b) element-wise. Supports broadcasting.\n\nWe also expose `lessEqualStrict` which has the same signature as this op\nand asserts that `a` and `b` are the same shape (does not broadcast).\n\n```js\nconst a = tf.tensor1d([1, 2, 3]);\nconst b = tf.tensor1d([2, 2, 2]);\n\na.lessEqual(b).print();\n```",
               "fileName": "#162",
               "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/compare.ts#L162-L171",
               "isFunction": true,
@@ -9904,7 +9963,7 @@
                 }
               ],
               "returnType": "[tf.Tensor](#class:Tensor)",
-              "documentation": "Returns the truth value of `a AND b` element-wise. Supports broadcasting.\n\n```js\nconst a = tf.tensor1d([false, false, true, true], 'bool');\nconst b = tf.tensor1d([false, true, false, true], 'bool');\n\na.logicalAnd(b).print();\n```",
+              "documentation": "Returns the truth value of a AND b element-wise. Supports broadcasting.\n\n```js\nconst a = tf.tensor1d([false, false, true, true], 'bool');\nconst b = tf.tensor1d([false, true, false, true], 'bool');\n\na.logicalAnd(b).print();\n```",
               "fileName": "#61",
               "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/logical_ops.ts#L61-L72",
               "isFunction": true,
@@ -10021,7 +10080,7 @@
                 }
               ],
               "returnType": "[tf.Tensor](#class:Tensor)",
-              "documentation": "Returns the truth value of (a != b) element-wise. Supports broadcasting.\n\nWe also expose `tf.notEqualStrict` which has the same signature as this op\nand asserts that `a` and `b` are the same shape (does not broadcast).\n\n```js\nconst a = tf.tensor1d([1, 2, 3]);\nconst b = tf.tensor1d([0, 2, 3]);\n\na.notEqual(b).print();\n```",
+              "documentation": "Returns the truth value of (a != b) element-wise. Supports broadcasting.\n\nWe also expose `notEqualStrict` which has the same signature as this op and\nasserts that `a` and `b` are the same shape (does not broadcast).\n\n```js\nconst a = tf.tensor1d([1, 2, 3]);\nconst b = tf.tensor1d([0, 2, 3]);\n\na.notEqual(b).print();\n```",
               "fileName": "#44",
               "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/compare.ts#L44-L52",
               "isFunction": true,
@@ -10083,7 +10142,7 @@
                 }
               ],
               "returnType": "Promise",
-              "documentation": "Returns the coordinates of true elements of condition.\n\nThe coordinates are returned in a 2-D tensor where the first dimension (rows)\nrepresents the number of true elements, and the second dimension (columns)\nrepresents the coordinates of the true elements. Keep in mind, the shape of\nthe output tensor can vary depending on how many true values there are in\ninput. Indices are output in row-major order. The resulting tensor has the\nshape `[numTrueElems, condition.rank]`.\n\nThis is analogous to calling the python `tf.where(cond)` without an x or y.\n\n```js\nconst cond = tf.tensor1d([false, false, true], 'bool');\ntf.whereAsync(cond).then(result => result.print());\n```",
+              "documentation": "Returns the coordinates of true elements of condition.\n\nThe coordinates are returned in a 2-D tensor where the first dimension (rows)\nrepresents the number of true elements, and the second dimension (columns)\nrepresents the coordinates of the true elements. Keep in mind, the shape of\nthe output tensor can vary depending on how many true values there are in\ninput. Indices are output in row-major order. The resulting tensor has the\nshape `[numTrueElems, condition.rank]`.\n\nThis is analogous to calling the python tf.where(cond) without an x or y.\n\n```js\nconst cond = tf.tensor1d([false, false, true], 'bool');\ntf.whereAsync(cond).then(result => result.print());\n```",
               "fileName": "#197",
               "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/logical_ops.ts#L197-L206",
               "isFunction": true,
@@ -10134,8 +10193,8 @@
               ],
               "returnType": "[tf.Tensor](#class:Tensor)",
               "documentation": "Computes the cumulative sum of a [tf.Tensor](#class:Tensor) along `axis`.\n\n```js\nconst x = tf.tensor([1, 2, 3, 4]);\nx.cumsum().print();\n```\n```js\nconst x = tf.tensor([[1, 2], [3, 4]]);\nx.cumsum().print();\n```",
-              "fileName": "#966",
-              "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/array_ops.ts#L966-L990",
+              "fileName": "#967",
+              "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/array_ops.ts#L967-L991",
               "isFunction": true,
               "displayName": "tf.cumsum",
               "urlHash": "cumsum"
@@ -10233,7 +10292,7 @@
                 }
               ],
               "returnType": "[tf.Tensor](#class:Tensor)",
-              "documentation": "Compute the moving average of a variable.\n\nWithout zeroDebias, the moving average operation is defined by:\n   `v += delta`\nwhere\n   `delta = (1 - decay) * (x - v)`\n\nWith zeroDebias (default), the `delta` term is scaled to debias the\neffect of the (assumed) zero-initialization of `v`.\n   `delta /= (1 - decay ^ step)`\n\nFor more details on the zero-debiasing algorithm, see:\n   https://arxiv.org/abs/1412.6980\n\nNote that this function is completely stateless and does not keep track of\nstep count. The step count needs to be maintained by the caller and passed\nin as `step`.",
+              "documentation": "Compute the moving average of a variable.\n\nWithout zeroDebias, the moving average operation is defined by:\n   `v += delta`\nwhere\n   `delta = (1 - decay) * (x - v)`\n\nWith zeroDebias (default), the `delta` term is scaled to debias the\neffect of the (assumed) zero-initialization of `v`.\n   `delta /= (1 - decay ^ step)`\n\nFor more details on the zero-debiasing algorithm, see:\n   https://arxiv.org/abs/1412.6980\n\nNote that this function is completely stateless and does not keep track of\nstep count. The step count needs to be maintained by the caller and passed\nin as [tf.step()](#step).",
               "fileName": "#54",
               "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/moving_average.ts#L54-L75",
               "isFunction": true,
@@ -10269,7 +10328,7 @@
                 }
               ],
               "returnType": "[tf.Tensor](#class:Tensor)",
-              "documentation": "Gather slices from input tensor into a Tensor with shape specified by\n`indices`.\n\n`indices` is an K-dimensional integer tensor, best thought of as a\n(K-1)-dimensional tensor of indices into input, where each element defines a\nslice of input:\noutput[\\\\(i_0, ..., i_{K-2}\\\\)] = input[indices[\\\\(i_0, ..., i_{K-2}\\\\)]]\n\nWhereas in [tf.gather()](#gather), `indices` defines slices into the first dimension of\ninput, in [tf.gatherND()](#gatherND), `indices` defines slices into the first N dimensions\nof input, where N = indices.shape[-1].\n\nThe last dimension of indices can be at most the rank of input:\nindices.shape[-1] <= input.rank\n\nThe last dimension of `indices` corresponds to elements\n(if indices.shape[-1] == input.rank) or slices\n(if indices.shape[-1] < input.rank) along dimension indices.shape[-1] of\ninput.\nThe output tensor has shape\nindices.shape[:-1] + input.shape[indices.shape[-1]:]\n\nNote that on CPU, if an out of bound index is found, an error is returned. On\nGPU, if an out of bound index is found, a 0 is stored in the corresponding\noutput value.\n\n```js\nconst indices = tf.tensor2d([0, 1, 1, 0], [2,2], 'int32');\nconst input = tf.tensor2d([9, 10, 11, 12], [2, 2]);\ntf.gatherND(input, indices).print() //[10, 11]\n```",
+              "documentation": "Gather slices from input tensor into a Tensor with shape specified by\n`indices`.\n\n`indices` is an K-dimensional integer tensor, best thought of as a\n(K-1)-dimensional tensor of indices into input, where each element defines a\nslice of input:\noutput[\\\\(i_0, ..., i_{K-2}\\\\)] = input[indices[\\\\(i_0, ..., i_{K-2}\\\\)]]\n\nWhereas in [tf.gather()](#gather) `indices` defines slices into the first dimension of\ninput, in [tf.gatherND()](#gatherND), `indices` defines slices into the first N dimensions\nof input, where N = indices.shape[-1].\n\nThe last dimension of indices can be at most the rank of input:\nindices.shape[-1] <= input.rank\n\nThe last dimension of `indices` corresponds to elements\n(if indices.shape[-1] == input.rank) or slices\n(if indices.shape[-1] < input.rank) along dimension indices.shape[-1] of\ninput.\nThe output tensor has shape\nindices.shape[:-1] + input.shape[indices.shape[-1]:]\n\nNote that on CPU, if an out of bound index is found, an error is returned. On\nGPU, if an out of bound index is found, a 0 is stored in the corresponding\noutput value.\n\n```js\nconst indices = tf.tensor2d([0, 1, 1, 0], [2,2], 'int32');\nconst input = tf.tensor2d([9, 10, 11, 12], [2, 2]);\ntf.gatherND(input, indices).print() //[10, 11]\n```",
               "fileName": "#60",
               "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/gather_nd.ts#L60-L67",
               "isFunction": true,
@@ -10499,38 +10558,12 @@
                 }
               ],
               "returnType": "[tf.Tensor](#class:Tensor)",
-              "documentation": "Fast Fourier transform.\n\nComputes the 1-dimensional discrete Fourier transform over the inner-most\ndimension of input.\n\n```js\nconst real = tf.tensor1d([1, 2, 3]);\nconst imag = tf.tensor1d([1, 2, 3]);\nconst x = tf.complex(real, imag);\n\nx.fft().print();  // tf.spectral.fft(x).print();\n```",
-              "fileName": "#41",
-              "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/spectral_ops.ts#L41-L55",
+              "documentation": "Compute the 1-dimentional discrete fourier transform\nThe input is expected to be the 1D tensor with dtype complex64.\n\n```js\nconst real = tf.tensor1d([1, 2, 3]);\nconst imag = tf.tensor1d([1, 2, 3]);\nconst x = tf.complex(real, imag);\n\nx.fft().print();  // tf.spectral.fft(x).print();\n```",
+              "fileName": "#39",
+              "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/spectral_ops.ts#L39-L53",
               "isFunction": true,
               "displayName": "tf.spectral.fft",
               "urlHash": "spectral.fft"
-            },
-            {
-              "docInfo": {
-                "heading": "Operations",
-                "subheading": "Spectral",
-                "namespace": "spectral"
-              },
-              "symbolName": "ifft",
-              "namespace": "spectral",
-              "paramStr": "(input)",
-              "parameters": [
-                {
-                  "name": "input",
-                  "documentation": "The complex input to compute an ifft over.",
-                  "type": "[tf.Tensor](#class:Tensor)",
-                  "optional": false,
-                  "isConfigParam": false
-                }
-              ],
-              "returnType": "[tf.Tensor](#class:Tensor)",
-              "documentation": "Inverse fast Fourier transform.\n\nComputes the inverse 1-dimensional discrete Fourier transform over the\ninner-most dimension of input.\n\n```js\nconst real = tf.tensor1d([1, 2, 3]);\nconst imag = tf.tensor1d([1, 2, 3]);\nconst x = tf.complex(real, imag);\n\nx.ifft().print();  // tf.spectral.ifft(x).print();\n```",
-              "fileName": "#75",
-              "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/ops/spectral_ops.ts#L75-L89",
-              "isFunction": true,
-              "displayName": "tf.spectral.ifft",
-              "urlHash": "spectral.ifft"
             }
           ]
         },
@@ -10824,9 +10857,9 @@
                 }
               ],
               "returnType": "[tf.MomentumOptimizer](#class:train.Optimizer)",
-              "documentation": "Constructs a [tf.MomentumOptimizer](#class:train.Optimizer) that uses momentum gradient\ndescent.\n\nSee\n[http://proceedings.mlr.press/v28/sutskever13.pdf](\nhttp://proceedings.mlr.press/v28/sutskever13.pdf)",
-              "fileName": "#85",
-              "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/optimizers/optimizer_constructors.ts#L85-L88",
+              "documentation": "Constructs a [tf.MomentumOptimizer](#class:train.Optimizer) that uses momentum gradient descent.\n\nSee\n[http://proceedings.mlr.press/v28/sutskever13.pdf](\nhttp://proceedings.mlr.press/v28/sutskever13.pdf)",
+              "fileName": "#84",
+              "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/optimizers/optimizer_constructors.ts#L84-L87",
               "isFunction": true,
               "displayName": "tf.train.momentum",
               "urlHash": "train.momentum"
@@ -10858,8 +10891,8 @@
               ],
               "returnType": "[tf.AdagradOptimizer](#class:train.Optimizer)",
               "documentation": "Constructs a [tf.AdagradOptimizer](#class:train.Optimizer) that uses the Adagrad algorithm.\nSee\n[http://www.jmlr.org/papers/volume12/duchi11a/duchi11a.pdf](\nhttp://www.jmlr.org/papers/volume12/duchi11a/duchi11a.pdf)\nor\n[http://ruder.io/optimizing-gradient-descent/index.html#adagrad](\nhttp://ruder.io/optimizing-gradient-descent/index.html#adagrad)",
-              "fileName": "#192",
-              "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/optimizers/optimizer_constructors.ts#L192-L195",
+              "fileName": "#191",
+              "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/optimizers/optimizer_constructors.ts#L191-L194",
               "isFunction": true,
               "displayName": "tf.train.adagrad",
               "urlHash": "train.adagrad"
@@ -10898,8 +10931,8 @@
               ],
               "returnType": "[tf.AdadeltaOptimizer](#class:train.Optimizer)",
               "documentation": "Constructs a [tf.AdadeltaOptimizer](#class:train.Optimizer) that uses the Adadelta algorithm.\nSee [https://arxiv.org/abs/1212.5701](https://arxiv.org/abs/1212.5701)",
-              "fileName": "#150",
-              "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/optimizers/optimizer_constructors.ts#L150-L153",
+              "fileName": "#149",
+              "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/optimizers/optimizer_constructors.ts#L149-L152",
               "isFunction": true,
               "displayName": "tf.train.adadelta",
               "urlHash": "train.adadelta"
@@ -10944,9 +10977,9 @@
                 }
               ],
               "returnType": "AdamOptimizer",
-              "documentation": "Constructs a `tf.AdamOptimizer` that uses the Adam algorithm.\nSee [https://arxiv.org/abs/1412.6980](https://arxiv.org/abs/1412.6980)",
-              "fileName": "#131",
-              "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/optimizers/optimizer_constructors.ts#L131-L135",
+              "documentation": "Constructs a `AdamOptimizer` that uses the Adam algorithm.\nSee [https://arxiv.org/abs/1412.6980](https://arxiv.org/abs/1412.6980)",
+              "fileName": "#130",
+              "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/optimizers/optimizer_constructors.ts#L130-L134",
               "isFunction": true,
               "displayName": "tf.train.adam",
               "urlHash": "train.adam"
@@ -10998,9 +11031,9 @@
                 }
               ],
               "returnType": "AdamaxOptimizer",
-              "documentation": "Constructs a `tf.AdamaxOptimizer` that uses the Adamax algorithm.\nSee [https://arxiv.org/abs/1412.6980](https://arxiv.org/abs/1412.6980)",
-              "fileName": "#169",
-              "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/optimizers/optimizer_constructors.ts#L169-L173",
+              "documentation": "Constructs a `AdamaxOptimizer` that uses the Adamax algorithm.\nSee [https://arxiv.org/abs/1412.6980](https://arxiv.org/abs/1412.6980)",
+              "fileName": "#168",
+              "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/optimizers/optimizer_constructors.ts#L168-L172",
               "isFunction": true,
               "displayName": "tf.train.adamax",
               "urlHash": "train.adamax"
@@ -11053,8 +11086,8 @@
               ],
               "returnType": "[tf.RMSPropOptimizer](#class:train.Optimizer)",
               "documentation": "Constructs a [tf.RMSPropOptimizer](#class:train.Optimizer) that uses RMSProp gradient\ndescent. This implementation uses plain momentum and is not centered\nversion of RMSProp.\n\nSee\n[http://www.cs.toronto.edu/~tijmen/csc321/slides/lecture_slides_lec6.pdf](\nhttp://www.cs.toronto.edu/~tijmen/csc321/slides/lecture_slides_lec6.pdf)",
-              "fileName": "#111",
-              "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/optimizers/optimizer_constructors.ts#L111-L116",
+              "fileName": "#110",
+              "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.13.8/src/optimizers/optimizer_constructors.ts#L110-L115",
               "isFunction": true,
               "displayName": "tf.train.rmsprop",
               "urlHash": "train.rmsprop"
@@ -11637,7 +11670,7 @@
               "parameters": [
                 {
                   "name": "container",
-                  "documentation": "an object that may be a [tf.Tensor](#class:Tensor) or may directly\ncontain [tf.Tensor](#class:Tensor)s, such as a `Tensor[]` or `{key: Tensor, ...}`. If\nthe object is not a [tf.Tensor](#class:Tensor) or does not contain `Tensors`, nothing\nhappens. In general it is safe to pass any object here, except that\n`Promise`s are not supported.",
+                  "documentation": "an object that may be a [tf.Tensor](#class:Tensor) or may directly contain\n[tf.Tensor](#class:Tensor)s, such as a `Tensor[]` or `{key: Tensor, ...}`. If the\nobject is not a [tf.Tensor](#class:Tensor) or does not contain `Tensors`, nothing\nhappens. In general it is safe to pass any object here, except that\n`Promise`s are not supported.",
                   "type": "void|number|string|[tf.Tensor](#class:Tensor)|[tf.Tensor](#class:Tensor)[]|{[key:\nstring]:[tf.Tensor](#class:Tensor)|number|string}",
                   "optional": false,
                   "isConfigParam": false

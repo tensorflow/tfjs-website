@@ -93,8 +93,8 @@ libs.forEach(lib => {
   // to the version specified the component.
   if (!commander.local) {
     const checkoutCommand = `cd libs/${lib.repo} \
-      && git fetch --tags --force `;  //\
-                                      //&& git checkout ${lib.tag}`;
+      && git fetch --tags --force \
+      && git checkout ${lib.tag}`;
     sh(checkoutCommand, `Error checkout out ${lib.tag} for ${lib.repo}`);
   }
 
