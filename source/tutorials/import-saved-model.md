@@ -112,7 +112,7 @@ following location:
 
 `yarn add @tensorflow/tfjs` or `npm install @tensorflow/tfjs`
 
-2. Instantiate the [FrozenModel class](https://github.com/tensorflow/tfjs-converter/src/executor/frozen_model.ts) and run inference.
+2. Instantiate the [FrozenModel class](https://github.com/tensorflow/tfjs-converter/blob/master/src/executor/frozen_model.ts) and run inference.
 
 ```js
 import * as tf from '@tensorflow/tfjs';
