@@ -112,7 +112,7 @@ following location:
 
 `yarn add @tensorflow/tfjs` or `npm install @tensorflow/tfjs`
 
-2. Instantiate the [FrozenModel class](https://github.com/tensorflow/tfjs-converter/src/executor/frozen_model.ts) and run inference.
+2. Instantiate the [FrozenModel class](https://github.com/tensorflow/tfjs-converter/blob/master/src/executor/frozen_model.ts) and run inference.
 
 ```js
 import * as tf from '@tensorflow/tfjs';
@@ -126,7 +126,7 @@ const cat = document.getElementById('cat');
 model.execute({input: tf.fromPixels(cat)});
 ```
 
-Check out our working [MobileNet demo](https://github.com/tensorflow/tfjs-converter/demo/mobilenet/README.md).
+Check out our working [MobileNet demo](https://github.com/tensorflow/tfjs-converter/tree/master/demo/mobilenet).
 
 If your server requests credentials for accessing the model files, you can provide the optional RequestOption param, which will be directly passed to the fetch function call.
 
