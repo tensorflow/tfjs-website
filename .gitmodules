@@ -7,3 +7,6 @@
 [submodule "libs/tfjs-converter"]
 	path = libs/tfjs-converter
 	url = git@github.com:tensorflow/tfjs-converter
+[submodule "libs/tfjs-data"]
+	path = libs/tfjs-data
+	url = https://github.com/tensorflow/tfjs-data.git
