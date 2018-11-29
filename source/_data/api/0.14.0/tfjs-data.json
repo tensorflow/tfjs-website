@@ -1,0 +1,157 @@
+{
+  "docs": {
+    "headings": [
+      {
+        "name": "Data",
+        "description": "",
+        "subheadings": [
+          {
+            "name": "Classes",
+            "symbols": [
+              {
+                "docInfo": {
+                  "heading": "Data",
+                  "subheading": "Classes"
+                },
+                "symbolName": "Dataset",
+                "documentation": "Represents a potentially large set of elements.\n\nA `Dataset` can be used to represent an input pipeline as a\ncollection of elements (maps from string keys to values) and a \"logical\nplan\" of transformations that act on those elements.\n\nA `Dataset` provides a stream of unbatched examples, and its transformations\nare applied one example at a time.  Batching produces a BatchDataset, and so\nmust come last in the pipeline because there are (so far) no batch-enabled\ntransformations.",
+                "fileName": "#43",
+                "githubUrl": "https://github.com/tensorflow/tfjs-data/blob/v0.1.2/src/dataset.ts#L43-L268",
+                "methods": [],
+                "isClass": true
+              },
+              {
+                "docInfo": {
+                  "heading": "Data",
+                  "subheading": "Classes"
+                },
+                "symbolName": "CSVDataset",
+                "documentation": "Represents a potentially large collection of delimited text records.\n\nThe produced `DataElement`s each contain one key-value pair for\nevery column of the table.  When a field is empty in the incoming data, the\nresulting value is `undefined`, or throw error if it is required.  Values\nthat can be parsed as numbers are emitted as type `number`, other values\nare parsed as `string`.\n\nThe results are not batched.",
+                "fileName": "#47",
+                "githubUrl": "https://github.com/tensorflow/tfjs-data/blob/v0.1.2/src/datasets/csv_dataset.ts#L47-L362",
+                "methods": [],
+                "isClass": true,
+                "inheritsFrom": "Dataset"
+              }
+            ]
+          },
+          {
+            "name": "Creation",
+            "symbols": [
+              {
+                "docInfo": {
+                  "heading": "Data",
+                  "subheading": "Creation"
+                },
+                "symbolName": "array",
+                "paramStr": "(items)",
+                "parameters": [
+                  {
+                    "name": "items",
+                    "documentation": "An array of elements that will be parsed as items in a dataset.",
+                    "type": "DataElement[]",
+                    "optional": false,
+                    "isConfigParam": false
+                  }
+                ],
+                "returnType": "Dataset",
+                "documentation": "Create a `Dataset` from an array of elements.\n\n```js\nconst a = tf.data.array([{'item': 1}, {'item': 2}, {'item': 3}]);\nconsole.log(JSON.stringify(await a.collectAll()));\n\nconst b = tf.data.array([4, 5, 6]);\nconsole.log(JSON.stringify(await b.collectAll()));\n```",
+                "fileName": "#300",
+                "githubUrl": "https://github.com/tensorflow/tfjs-data/blob/v0.1.2/src/dataset.ts#L300-L302",
+                "isFunction": true
+              },
+              {
+                "docInfo": {
+                  "heading": "Data",
+                  "subheading": "Creation"
+                },
+                "symbolName": "csv",
+                "paramStr": "(source, csvConfig?)",
+                "parameters": [
+                  {
+                    "name": "source",
+                    "documentation": "URL to fetch CSV file.",
+                    "type": "string",
+                    "optional": false,
+                    "isConfigParam": false
+                  },
+                  {
+                    "name": "csvConfig",
+                    "documentation": "(Optional) A CSVConfig object that contains configurations\nof reading and decoding from CSV file(s).\n\nhasHeader: (Optional) A boolean value that indicates whether the first\nrow of provided CSV file is a header line with column names, and should\nnot be included in the data. Defaults to `true`.\n\ncolumnNames: (Optional) A list of strings that corresponds to\nthe CSV column names, in order. If provided, it ignores the column names\ninferred from the header row. If not provided, infers the column names\nfrom the first row of the records. If `hasHeader` is false and\n`columnNames` is not provided, this method will throw an error.\n\ncolumnConfigs: (Optional) A dictionary whose key is column names, value\nis an object stating if this column is required, column's data type,\ndefault value, and if this column is label. If provided, keys must\ncorrespond to names provided in `columnNames` or inferred from the file\nheader lines.\n\nconfiguredColumnsOnly (Optional) If true, only columns provided in\n`columnConfigs` will be parsed and provided during iteration.\n\ndelimiter (Optional) The string used to parse each line of the input\nfile. Defaults to `,`.",
+                    "type": "CSVConfig",
+                    "optional": true,
+                    "isConfigParam": false
+                  }
+                ],
+                "returnType": "CSVDataset",
+                "documentation": "Create a `CSVDataset` by reading and decoding CSV file(s) from provided URLs.\n\n```js\nconst csvUrl =\n'https://storage.googleapis.com/tfjs-examples/multivariate-linear-regression/data/boston-housing-train.csv';\n\nasync function run() {\n   // We want to predict the column \"medv\", which represents a median value of\n   // a home (in $1000s), so we mark it as a label.\n   const csvDataset = tf.data.csv(\n     csvUrl, {\n       columnConfigs: {\n         medv: {\n           isLabel: true\n         }\n       }\n     });\n\n   // Number of features is the number of column names minus one for the label\n   // column.\n   const numOfFeatures = (await csvDataset.columnNames()).length - 1;\n\n   // Prepare the Dataset for training.\n   const flattenedDataset =\n     csvDataset\n     .map(([rawFeatures, rawLabel]) =>\n       // Convert rows from object form (keyed by column name) to array form.\n       [Object.values(rawFeatures), Object.values(rawLabel)])\n     .batch(10);\n\n   // Define the model.\n   const model = tf.sequential();\n   model.add(tf.layers.dense({\n     inputShape: [numOfFeatures],\n     units: 1\n   }));\n   model.compile({\n     optimizer: tf.train.sgd(0.000001),\n     loss: 'meanSquaredError'\n   });\n\n   // Fit the model using the prepared Dataset\n   return model.fitDataset(flattenedDataset, {\n     epochs: 10,\n     callbacks: {\n       onEpochEnd: async (epoch, logs) => {\n         console.log(epoch, logs.loss);\n       }\n     }\n   });\n}\n\nrun().then(() => console.log('Done'));\n```",
+                "fileName": "#106",
+                "githubUrl": "https://github.com/tensorflow/tfjs-data/blob/v0.1.2/src/readers.ts#L106-L108",
+                "isFunction": true
+              }
+            ]
+          },
+          {
+            "name": "Operations",
+            "symbols": [
+              {
+                "docInfo": {
+                  "heading": "Data",
+                  "subheading": "Operations"
+                },
+                "symbolName": "zip",
+                "paramStr": "(datasets)",
+                "parameters": [
+                  {
+                    "name": "datasets",
+                    "documentation": "",
+                    "type": "DatasetContainer",
+                    "optional": false,
+                    "isConfigParam": false
+                  }
+                ],
+                "returnType": "Dataset",
+                "documentation": "Create a `Dataset` by zipping together an array, dict, or nested\nstructure of `Dataset`s (and perhaps additional constants).\nThe underlying datasets must provide elements in a consistent order such that\nthey correspond.\n\nThe number of elements in the resulting dataset is the same as the size of\nthe smallest dataset in `datasets`.\n\nThe nested structure of the `datasets` argument determines the\nstructure of elements in the resulting iterator.\n\nNote this means that, given an array of two datasets that produce dict\nelements, the result is a dataset that produces elements that are arrays\nof two dicts:\n\n```js\nconst ds1 = tf.data.array([{a: 1}, {a: 2}, {a: 3}]);\nconst ds2 = tf.data.array([{b: 4}, {b: 5}, {b: 6}]);\nconst ds3 = tf.data.zip([ds1, ds2]);\nconsole.log(JSON.stringify(await ds3.collectAll()));\n\n// If the goal is to merge the dicts in order to produce elements like\n// {a: ..., b: ...}, this requires a second step such as:\nconst ds4 = ds3.map(x => {return {a: x[0].a, b: x[1].b}});\nconsole.log(JSON.stringify(await ds3.collectAll()));\n```",
+                "fileName": "#333",
+                "githubUrl": "https://github.com/tensorflow/tfjs-data/blob/v0.1.2/src/dataset.ts#L333-L353",
+                "isFunction": true
+              }
+            ]
+          },
+          {
+            "name": "Sources",
+            "symbols": [
+              {
+                "docInfo": {
+                  "heading": "Data",
+                  "subheading": "Sources"
+                },
+                "symbolName": "URLDataSource",
+                "documentation": "",
+                "fileName": "#28",
+                "githubUrl": "https://github.com/tensorflow/tfjs-data/blob/v0.1.2/src/sources/url_data_source.ts#L28-L49",
+                "methods": [],
+                "isClass": true,
+                "inheritsFrom": "DataSource"
+              },
+              {
+                "docInfo": {
+                  "heading": "Data",
+                  "subheading": "Sources"
+                },
+                "symbolName": "FileDataSource",
+                "documentation": "Represents a file, blob, or Uint8Array readable as a stream of binary data\nchunks.",
+                "fileName": "#29",
+                "githubUrl": "https://github.com/tensorflow/tfjs-data/blob/v0.1.2/src/sources/file_data_source.ts#L29-L46",
+                "methods": [],
+                "isClass": true,
+                "inheritsFrom": "DataSource"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "docLinkAliases": {}
+}

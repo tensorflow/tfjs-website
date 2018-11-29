@@ -12,13 +12,13 @@
   "tslint.run": "onType",
   "tslint.configFile": "tslint.json",
   "files.trimTrailingWhitespace": true,
-  "editor.tabSize": 2,
+  "editor.tabSize": 4,
   "editor.insertSpaces": true,
   "[typescript]": {
     "editor.formatOnSave": true
   },
   "[javascript]": {
-    "editor.formatOnSave": true
+    "editor.formatOnSave": false
   },
   "clang-format.style": "Google",
   "files.insertFinalNewline": true,
