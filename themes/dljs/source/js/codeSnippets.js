@@ -30,8 +30,10 @@ async function executeCodeSnippet(consoleLogElement, codeSnippet) {
   consoleLogElement.innerText = '';
   var oldLog = console.log;
   console.log = function(logStr) {
-    if (logStr instanceof Object) {
+    if (logStr.toString() === '[object Object]') {
       logStr = JSON.stringify(logStr);
+    } else {
+      logStr = logStr.toString();
     }
     consoleLogElement.innerHTML += logStr + '\n';
   };
