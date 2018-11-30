@@ -29,8 +29,26 @@ function getLineNumber(error) {
 async function executeCodeSnippet(consoleLogElement, codeSnippet) {
   consoleLogElement.innerText = '';
   var oldLog = console.log;
-  console.log = function(logStr) {
-    consoleLogElement.innerHTML += logStr + '\n';
+  console.log = function(...values) {
+    let logStrs = [];
+    for (let i = 0; i < values.length; i++) {
+      const value = values[i];
+
+      let logStr;
+      if (value.toString == null) {
+        logStr = value;
+      } else {
+        const toStr = value.toString();
+
+        if (toStr === '[object Object]') {
+          logStr = JSON.stringify(value, null, 2);
+        } else {
+          logStr = toStr;
+        }
+        logStrs.push(logStr);
+      }
+    }
+    consoleLogElement.innerHTML += logStrs.join(' ') + '\n';
   };
 
   function reportError(e) {
