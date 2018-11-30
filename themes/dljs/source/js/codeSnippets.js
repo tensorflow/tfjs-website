@@ -47,8 +47,8 @@ async function executeCodeSnippet(consoleLogElement, codeSnippet) {
         }
         logStrs.push(logStr);
       }
-      consoleLogElement.innerHTML += logStrs.join(' ') + '\n';
     }
+    consoleLogElement.innerHTML += logStrs.join(' ') + '\n';
   };
 
   function reportError(e) {
