@@ -29,8 +29,11 @@ function getLineNumber(error) {
 async function executeCodeSnippet(consoleLogElement, codeSnippet) {
   consoleLogElement.innerText = '';
   var oldLog = console.log;
-  console.log = function(logStr) {
-    if (logStr.toString() === '[object Object]') {
+  console.log = function(value) {
+    let logStr;
+    if (value.toString == null) {
+      logStr = value;
+    } else if (value.toString() === '[object Object]') {
       logStr = JSON.stringify(logStr);
     } else {
       logStr = logStr.toString();
