@@ -13002,43 +13002,12 @@
                 }
               ],
               "returnType": "[tf.Dataset](#class:Dataset)",
-              "documentation": "Create a `Dataset` from an array of elements.\n\n```js\nconst a = tf.data.array([{'item': 1}, {'item': 2}, {'item': 3}]);\nconsole.log(JSON.stringify(await a.collectAll()));\n\nconst b = tf.data.array([4, 5, 6]);\nconsole.log(JSON.stringify(await b.collectAll()));\n```",
+              "documentation": "Create a `Dataset` from an array of elements.\n\n```js\nconst a = tf.data.array([{'item': 1}, {'item': 2}, {'item': 3}]);\nawait a.forEach(e => console.log(JSON.stringify(e)));\n\nconst b = tf.data.array([4, 5, 6]);\nawait b.forEach(e => console.log(JSON.stringify(e)));\n```",
               "fileName": "#300",
               "githubUrl": "https://github.com/tensorflow/tfjs-data/blob/v0.1.2/src/dataset.ts#L300-L302",
               "isFunction": true,
               "displayName": "tf.array",
               "urlHash": "array"
-            },
-            {
-              "docInfo": {
-                "heading": "Data",
-                "subheading": "Creation"
-              },
-              "symbolName": "csv",
-              "paramStr": "(source, csvConfig?)",
-              "parameters": [
-                {
-                  "name": "source",
-                  "documentation": "URL to fetch CSV file.",
-                  "type": "string",
-                  "optional": false,
-                  "isConfigParam": false
-                },
-                {
-                  "name": "csvConfig",
-                  "documentation": "(Optional) A CSVConfig object that contains configurations\nof reading and decoding from CSV file(s).\n\nhasHeader: (Optional) A boolean value that indicates whether the first\nrow of provided CSV file is a header line with column names, and should\nnot be included in the data. Defaults to `true`.\n\ncolumnNames: (Optional) A list of strings that corresponds to\nthe CSV column names, in order. If provided, it ignores the column names\ninferred from the header row. If not provided, infers the column names\nfrom the first row of the records. If `hasHeader` is false and\n`columnNames` is not provided, this method will throw an error.\n\ncolumnConfigs: (Optional) A dictionary whose key is column names, value\nis an object stating if this column is required, column's data type,\ndefault value, and if this column is label. If provided, keys must\ncorrespond to names provided in `columnNames` or inferred from the file\nheader lines.\n\nconfiguredColumnsOnly (Optional) If true, only columns provided in\n`columnConfigs` will be parsed and provided during iteration.\n\ndelimiter (Optional) The string used to parse each line of the input\nfile. Defaults to `,`.",
-                  "type": "CSVConfig",
-                  "optional": true,
-                  "isConfigParam": false
-                }
-              ],
-              "returnType": "[tf.CSVDataset](#class:CSVDataset)",
-              "documentation": "Create a `CSVDataset` by reading and decoding CSV file(s) from provided URLs.\n\n```js\nconst csvUrl =\n'https://storage.googleapis.com/tfjs-examples/multivariate-linear-regression/data/boston-housing-train.csv';\n\nasync function run() {\n   // We want to predict the column \"medv\", which represents a median value of\n   // a home (in $1000s), so we mark it as a label.\n   const csvDataset = tf.data.csv(\n     csvUrl, {\n       columnConfigs: {\n         medv: {\n           isLabel: true\n         }\n       }\n     });\n\n   // Number of features is the number of column names minus one for the label\n   // column.\n   const numOfFeatures = (await csvDataset.columnNames()).length - 1;\n\n   // Prepare the Dataset for training.\n   const flattenedDataset =\n     csvDataset\n     .map(([rawFeatures, rawLabel]) =>\n       // Convert rows from object form (keyed by column name) to array form.\n       [Object.values(rawFeatures), Object.values(rawLabel)])\n     .batch(10);\n\n   // Define the model.\n   const model = tf.sequential();\n   model.add(tf.layers.dense({\n     inputShape: [numOfFeatures],\n     units: 1\n   }));\n   model.compile({\n     optimizer: tf.train.sgd(0.000001),\n     loss: 'meanSquaredError'\n   });\n\n   // Fit the model using the prepared Dataset\n   return model.fitDataset(flattenedDataset, {\n     epochs: 10,\n     callbacks: {\n       onEpochEnd: async (epoch, logs) => {\n         console.log(epoch, logs.loss);\n       }\n     }\n   });\n}\n\nrun().then(() => console.log('Done'));\n```",
-              "fileName": "#106",
-              "githubUrl": "https://github.com/tensorflow/tfjs-data/blob/v0.1.2/src/readers.ts#L106-L108",
-              "isFunction": true,
-              "displayName": "tf.csv",
-              "urlHash": "csv"
             }
           ]
         },
@@ -13062,7 +13031,7 @@
                 }
               ],
               "returnType": "[tf.Dataset](#class:Dataset)",
-              "documentation": "Create a `Dataset` by zipping together an array, dict, or nested\nstructure of `Dataset`s (and perhaps additional constants).\nThe underlying datasets must provide elements in a consistent order such that\nthey correspond.\n\nThe number of elements in the resulting dataset is the same as the size of\nthe smallest dataset in `datasets`.\n\nThe nested structure of the `datasets` argument determines the\nstructure of elements in the resulting iterator.\n\nNote this means that, given an array of two datasets that produce dict\nelements, the result is a dataset that produces elements that are arrays\nof two dicts:\n\n```js\nconst ds1 = tf.data.array([{a: 1}, {a: 2}, {a: 3}]);\nconst ds2 = tf.data.array([{b: 4}, {b: 5}, {b: 6}]);\nconst ds3 = tf.data.zip([ds1, ds2]);\nconsole.log(JSON.stringify(await ds3.collectAll()));\n\n// If the goal is to merge the dicts in order to produce elements like\n// {a: ..., b: ...}, this requires a second step such as:\nconst ds4 = ds3.map(x => {return {a: x[0].a, b: x[1].b}});\nconsole.log(JSON.stringify(await ds3.collectAll()));\n```",
+              "documentation": "Create a `Dataset` by zipping together an array, dict, or nested\nstructure of `Dataset`s (and perhaps additional constants).\nThe underlying datasets must provide elements in a consistent order such that\nthey correspond.\n\nThe number of elements in the resulting dataset is the same as the size of\nthe smallest dataset in `datasets`.\n\nThe nested structure of the `datasets` argument determines the\nstructure of elements in the resulting iterator.\n\nNote this means that, given an array of two datasets that produce dict\nelements, the result is a dataset that produces elements that are arrays\nof two dicts:\n\n```js\nconst ds1 = tf.data.array([{a: 1}, {a: 2}, {a: 3}]);\nconst ds2 = tf.data.array([{b: 4}, {b: 5}, {b: 6}]);\nconst ds3 = tf.data.zip([ds1, ds2]);\nawait ds3.forEach(e => console.log(JSON.stringify(e)));\n\n// If the goal is to merge the dicts in order to produce elements like\n// {a: ..., b: ...}, this requires a second step such as:\nconst ds4 = ds3.map(x => {return {a: x[0].a, b: x[1].b}});\nawait ds4.forEach(e => console.log(JSON.stringify(e)));\n```",
               "fileName": "#333",
               "githubUrl": "https://github.com/tensorflow/tfjs-data/blob/v0.1.2/src/dataset.ts#L333-L353",
               "isFunction": true,
