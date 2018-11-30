@@ -38,7 +38,7 @@ async function executeCodeSnippet(consoleLogElement, codeSnippet) {
       if (value.toString == null) {
         logStr = value;
       } else if (value.toString() === '[object Object]') {
-        logStr = JSON.stringify(value);
+        logStr = JSON.stringify(value, null, 2);
       } else {
         logStr = value.toString();
       }
