@@ -37,14 +37,18 @@ async function executeCodeSnippet(consoleLogElement, codeSnippet) {
       let logStr;
       if (value.toString == null) {
         logStr = value;
-      } else if (value.toString() === '[object Object]') {
-        logStr = JSON.stringify(value, null, 2);
       } else {
-        logStr = value.toString();
+        const toStr = value.toString();
+
+        if (toStr === '[object Object]') {
+          logStr = JSON.stringify(value, null, 2);
+        } else {
+          logStr = toStr;
+        }
+        logStrs.push(logStr);
       }
-      logStrs.push(logStr);
+      consoleLogElement.innerHTML += logStrs.join(' ') + '\n';
     }
-    consoleLogElement.innerHTML += logStrs.join(' ') + '\n';
   };
 
   function reportError(e) {
