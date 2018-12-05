@@ -1,13 +1,11 @@
-[
-  {
+[{
     "name": "Tensors",
     "description": [
       "<p>Tensors are the core datastructure of TensorFlow.js",
       "They are a generalization of vectors and matrices to potentially",
       "higher dimensions.</p>"
     ],
-    "subheadings": [
-      {
+    "subheadings": [{
         "name": "Creation",
         "description": [
           "<p>We have utility functions for common cases like Scalar, 1D,",
@@ -66,8 +64,7 @@
       "<p>Models are a collection of Layers, see Model Creation for",
       "details about how Layers can be connected.</p>"
     ],
-    "subheadings": [
-      {
+    "subheadings": [{
         "name": "Creation",
         "description": [
           "<p>There are two primary ways of creating models.</p>",
@@ -102,8 +99,7 @@
       "<p>Layers will automatically take care of creating and initializing",
       "the various internal variables/weights they need to function.</p>"
     ],
-    "subheadings": [
-      {
+    "subheadings": [{
         "name": "Advanced Activation",
         "description": []
       },
@@ -140,8 +136,7 @@
   {
     "name": "Operations",
     "description": [],
-    "subheadings": [
-      {
+    "subheadings": [{
         "name": "Arithmetic",
         "description": [
           "<p>To perform mathematical computation on Tensors, we use",
@@ -192,8 +187,7 @@
       "the TensorFlow Eager API.",
       "</p>"
     ],
-    "subheadings": [
-      {
+    "subheadings": [{
         "name": "Gradients",
         "pin": [
           "grad",
@@ -223,8 +217,7 @@
   {
     "name": "Performance",
     "description": [],
-    "subheadings": [
-      {
+    "subheadings": [{
         "name": "Memory",
         "pin": [
           "tidy"
@@ -286,6 +279,15 @@
       "that data for use in machine learning models (e.g. via operations ",
       "like filter, map, shuffle, and batch)."
     ],
-    "subheadings": []
+    "subheadings": [{
+        "name": "Creation"
+      },
+      {
+        "name": "Operations"
+      },
+      {
+        "name": "Classes"
+      }
+    ]
   }
 ]
