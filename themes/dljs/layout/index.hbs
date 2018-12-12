@@ -6,7 +6,7 @@
     </p>
   </div>
 </div>
-<div class="page index-page">
+<div class="page index-page center">
 
 
   <div class="content">
@@ -34,12 +34,11 @@
           Retrain pre-existing ML models using sensor data connected to the browser, or other client-side data.
         </span>
       </div>
-
-
     </div>
 
     <div class="demos">
-      <h1>Demos</h1>
+      <hr>
+      <h1>Built With TensorFlow.js</h1>
 
       <div class="demo-block">
         <div class="info">
@@ -89,52 +88,6 @@
       <div class="demo-block">
         <div class="info">
           <div class="title">
-            <a href="https://teachablemachine.withgoogle.com/" target="_blank">
-              Teachable Machine
-            </a>
-          </div>
-          <div class="blurb">
-            No coding required! Teach a machine to recognize images and play sounds.
-          </div>
-
-          <div class="ctas">
-            <a href="https://teachablemachine.withgoogle.com/" target="_blank">
-              <button class="mdc-button mdc-button--raised">Go to Demo!</button>
-            </a>
-            <a href="https://github.com/googlecreativelab/teachable-machine" target="_blank">
-              <button class="mdc-button mdc-button--raised">Code</button>
-            </a>
-          </div>
-        </div>
-        <img src="images/teachablemachine_preview.jpg">
-      </div>
-
-      <div class="demo-block">
-        <div class="info">
-          <div class="title">
-            <a href="https://magenta.tensorflow.org/demos/performance_rnn/index.html" target="_blank">
-              Performance RNN
-            </a>
-          </div>
-          <div class="blurb">
-            Enjoy a real-time piano performance by a neural network
-          </div>
-
-          <div class="ctas">
-            <a href="https://magenta.tensorflow.org/demos/performance_rnn/index.html" target="_blank">
-              <button class="mdc-button mdc-button--raised">Go to Demo!</button>
-            </a>
-            <a href="https://github.com/tensorflow/magenta-demos/tree/master/performance_rnn">
-              <button class="mdc-button mdc-button--raised">Code</button>
-            </a>
-          </div>
-        </div>
-        <img src="images/performance_rnn_preview.jpg">
-      </div>
-
-      <div class="demo-block">
-        <div class="info">
-          <div class="title">
             <a href="https://storage.googleapis.com/tfjs-models/demos/posenet/camera.html" target="_blank">
               PoseNet
             </a>
@@ -157,302 +110,214 @@
         <img src="images/posenet_preview.jpg">
       </div>
 
-      <div class="demo-block">
-        <div class="info">
-          <div class="title">
-            <a href="https://github.com/tensorflow/tfjs-examples/tree/master/baseball-node" target="_blank">
-              Node.js: Pitch Prediction
-            </a>
-          </div>
-          <div class="blurb">
-            Train a server-side model to classify baseball pitch types using Node.js.
-          </div>
 
-          <div class="ctas">
-            <a href="https://github.com/tensorflow/tfjs-examples/tree/master/baseball-node">
-              <button class="mdc-button mdc-button--raised">Code</button>
-            </a>
-          </div>
-        </div>
-        <img src="images/baseball_preview.png">
-      </div>
+      <a href="/demos" class="centered-button">
+        <button class="mdc-button mdc-button--raised">See More Demos</button>
+      </a>
 
-      <div class="demo-block">
-        <div class="info">
-          <div class="title">
-            <a href="https://github.com/tensorflow/tfjs-examples/" target="_blank">
-              TFJS Examples
-            </a>
-          </div>
-          <div class="blurb">
-            A collection of over 15 short <a href="https://github.com/tensorflow/tfjs-examples/" target="_blank">examples</a>
-            of different deep learning tasks. These examples
-            can be great starting points for your own projects.
-            <p>
-              Also check out the <a href="https://github.com/tensorflow/tfjs/blob/master/GALLERY.md" target="_blank">gallery</a>
-              to see what others in
-              the community have created with TensorFlow.js.
-            </p>
-          </div>
-
-          <div class="ctas">
-            <a href="https://github.com/tensorflow/tfjs-examples/">
-              <button class="mdc-button mdc-button--raised">Code</button>
-            </a>
-          </div>
-        </div>
-        <img src="images/tfjs-examples.png">
-      </div>
+      <hr>
 
     </div>
-
-
-    <div class="demos">
-      <h1>Add-Ons</h1>
-      <p>These are additional libraries that work with TensorFlow.js but need to be installed separately.</p>
-      <p>&nbsp; </p> {{!-- Intentionally Empty--}}
-
-
-      <div class="demo-block">
-        <div class="info">
-          <div class="title">
-            <a href="https://github.com/tensorflow/tfjs-vis/" target="_blank">
-              TFJS Vis
-            </a>
-          </div>
-          <div class="blurb">
-            An add-on library for TensorFlow.JS that provides in browser visualization capabilities. Easily see model
-            information,
-            training metrics and evaluate model quality
-            <p>
-              See our demo showing how to
-              <a href="https://storage.googleapis.com/tfjs-vis/mnist/dist/index.html" target="_blank">
-                monitor training
-              </a>, or look at the
-              <a href="https://storage.googleapis.com/tfjs-vis/mnist_internals/dist/index.html" target="_blank">
-                internals of a digit recognizer.
-              </a>
-            </p>
-          </div>
-
-          <div class="ctas">
-            <a href="https://github.com/tensorflow/tfjs-vis/">
-              <button class="mdc-button mdc-button--raised">GitHub</button>
-            </a>
-          </div>
-        </div>
-        <img src="images/tfjs-vis.png">
-      </div>
-    </div>
-
 
     <div id="getting-started" class="getting-started">
       <h1>Getting Started</h1>
-      <p>
-        There are two main ways to get TensorFlow.js in your JavaScript project: via
-        <a href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Howto/Use_JavaScript_within_a_webpage" target="_blank">
-          script tags</a>
-        <strong>or</strong> by installing it from
-        <a href="https://www.npmjs.com/" target="_blank">NPM</a>
-        and using a build tool like
-        <a href="https://parceljs.org/" target="_blank">Parcel</a>,
-        <a href="https://webpack.js.org/" target="_blank">WebPack</a>, or
-        <a href="https://rollupjs.org/guide/en" target="_blank">Rollup</a>.
-      </p>
 
-      <h3>via Script Tag</h3>
-      <p>Add the following code to an HTML file:</p>
-      <div class="gs-code">
-        <pre>
-          <code class="lang-html">&lt;html&gt;
-  &lt;head&gt;
-    &lt;!-- Load TensorFlow.js --&gt;
-    &lt;script src=&quot;https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@{{latestVersion}}/dist/tf.min.js&quot;&gt; &lt;/script&gt;
+      <div id="new-to-ml">
+        <h2>New To Machine Learning?</h2>
+        <p class="section-intro">
+          Want to get started with Machine Learning but not familiar with concepts like Tensors, Layers and Optimizers?
+          Check out these high level coding APIs and learning resources.
+        </p>
+        <div id="ml-beginner-paths">
+          <div class="path">
+            <img src="/images/ml5.png" alt="ml5 library">
+            <p>
+              <strong>
+                Do you want to write ML programs but not worry about low level details like Tensors and Optimizers?
+              </strong>
+            </p>
+            <p>
+              Check out ML5! Friendly Machine Learning for the Web
+            </p>
+          </div>
 
-    &lt;!-- Place your code in the script tag below. You can also use an external .js file --&gt;
-    &lt;script&gt;
-      // Notice there is no 'import' statement. 'tf' is available on the index-page
-      // because of the script tag above.
+          <div class="path">
+            <img src="/images/tfjs-models.png" alt="tensorflow.js models repository">
+            <p>
+              <strong>
+                Are you looking to incorporate pre-trained models into your web-app?
+              </strong>
+            </p>
+            <p>
+              Check out tfjs-models! A collection of pre-built models that don’t require understanding of Tensors.
+            </p>
+          </div>
 
-      // Define a model for linear regression.
-      const model = tf.sequential();
-      model.add(tf.layers.dense({units: 1, inputShape: [1]}));
+          <div class="path">
+            <img src="/images/coding-train.png" alt="coding train tutorials">
+            <p>
+              <strong>
+                Are you looking for a gentle introduction to machine learning concepts with JavaScript?
+              </strong>
+            </p>
+            <p>
+              Check out The Coding Train’s Introduction to Neural Networks and Machine Learning.
 
-      // Prepare the model for training: Specify the loss and the optimizer.
-      model.compile({loss: 'meanSquaredError', optimizer: 'sgd'});
-
-      // Generate some synthetic data for training.
-      const xs = tf.tensor2d([1, 2, 3, 4], [4, 1]);
-      const ys = tf.tensor2d([1, 3, 5, 7], [4, 1]);
-
-      // Train the model using the data.
-      model.fit(xs, ys, {epochs: 10}).then(() =&gt; {
-        // Use the model to do inference on a data point the model hasn't seen before:
-        // Open the browser devtools to see the output
-        model.predict(tf.tensor2d([5], [1, 1])).print();
-      });
-    &lt;/script&gt;
-  &lt;/head&gt;
-
-  &lt;body&gt;
-  &lt;/body&gt;
-&lt;/html&gt;</code>
-        </pre>
+              Also see our guide on How to get started with X.
+            </p>
+          </div>
+        </div>
       </div>
-      <p>Open up that html file in your browser and the code should run!</p>
+      <hr />
+      <div id="ready-for-tfjs">
+        <h2>Ready to Start Coding with Tensorflow.js</h2>
 
-      <h3>via NPM</h3>
+        <p class="section-intro">
+          Comforable with concepts like Tensors, Layers, Optimizers and Loss Functions (or are willing to get
+          comfortable with them)? TensorFlow.js provides low-mid level building blocks for neural network programming
+          in JavaScript.
+        </p>
 
-      <p>
-        Add TensorFlow.js to your project using yarn
-        <strong>or</strong> npm.
-        <b>Note:</b> Because we use ES2017 syntax (such as `import`), this workflow assumes you are using a
-        bundler/transpiler
-        to convert your code to something the browser understands. See our
-        <a href='https://github.com/tensorflow/tfjs-examples' target="_blank">examples</a>
-        to see how we use
-        <a href="https://parceljs.org/" target="_blank">Parcel</a> to build our code. However you are free to use any
-        build tool that you prefer.
-      </p>
+        <div id="tfjs-paths">
+          <div class="path">
+            <div class="title">
+              Get Setup with TensorFlow.js
+            </div>
+            <span class="path-type">Guide</span>
+            <p>See how to get <a href="/setup">up and runnning with TensorFlow.js code</a> in the browser or Node.js</p>
+          </div>
+        </div>
 
-      <div class="gs-code">
-        <pre><code class="lang-shell">yarn add @tensorflow/tfjs</code></pre>
+        <div id="tfjs-paths">
+          <div class="path">
+            <div class="title">
+              Convert Pretained Models to TensorFlow.js
+            </div>
+            <span class="path-type">Guide</span>
+            <p>
+              <a href="">See how to convert a Python FrozenModel or SavedModel</a>
+              <br>
+              <a href="">See how to convert a Keras SavedModel</a>
+            </p>
+          </div>
+        </div>
+
+        <div id="tfjs-paths">
+          <div class="path">
+            <div class="title">
+              Learn from existing TensorFlow.js code
+            </div>
+            <span class="path-type">Code</span>
+            <p>
+              tfjs-examples provides smallish code examples that implement various ML tasks using TensorFlow.js,
+            </p>
+            <p><a href="https://github.com/tensorflow/tfjs-examples">Check it out on GitHub</a></p>
+          </div>
+        </div>
+
+        <div id="tfjs-paths">
+          <div class="path">
+            <div class="title">
+              Visualize the Behaviour of your TensorFlow.js Model
+            </div>
+            <span class="path-type">Library</span>
+            <p>
+              tfjs-vis is a small library for in browser visualization intended for use with TensorFlow.js.
+            </p>
+            <p>
+              <a href="https://github.com/tensorflow/tfjs-vis">Check it out the library on GitHub</a>
+              <br>
+              <a href="">See a demo using tfjs-vis to visualize training progress</a>
+            </p>
+          </div>
+        </div>
+
+        <div id="tfjs-paths">
+          <div class="path">
+            <div class="title">
+              Get your data ready for processing with TensorFlow.js
+            </div>
+            <span class="path-type">Library</span>
+            <p>
+              A blurb about tfjs-data.
+            </p>
+            <p><a href="">See how to use tfjs-data in our docs</a></p>
+          </div>
+        </div>
       </div>
 
-      <div class="gs-code">
-        <pre><code class="lang-shell">npm install @tensorflow/tfjs</code></pre>
-      </div>
-
-      <p>In your main js file:</p>
-
-      <div class="gs-code">
-        <pre>
-          <code class="lang-js">
-import * as tf from '@tensorflow/tfjs';
-
-// Define a model for linear regression.
-const model = tf.sequential();
-model.add(tf.layers.dense({units: 1, inputShape: [1]}));
-
-// Prepare the model for training: Specify the loss and the optimizer.
-model.compile({loss: 'meanSquaredError', optimizer: 'sgd'});
-
-// Generate some synthetic data for training.
-const xs = tf.tensor2d([1, 2, 3, 4], [4, 1]);
-const ys = tf.tensor2d([1, 3, 5, 7], [4, 1]);
-
-// Train the model using the data.
-model.fit(xs, ys, {epochs: 10}).then(() => {
-  // Use the model to do inference on a data point the model hasn't seen before:
-  model.predict(tf.tensor2d([5], [1, 1])).print();
-});
-          </code>
-        </pre>
-      </div>
-
-      <h3>Running under Node.js</h3>
-      <p>
-        Install the Node.js binding to enable the power of native TensorFlow with JavaScript:
-      </p>
-      <div class="gs-code">
-        <pre><code class="lang-shell">yarn add @tensorflow/tfjs-node</code></pre>
-      </div>
-      <div class="gs-code">
-        <pre><code class="lang-shell">npm install @tensorflow/tfjs-node</code></pre>
-      </div>
-      <p>
-        If your system has a NVIDIA® GPU with
-        <a href="https://www.tensorflow.org/install/install_linux#NVIDIARequirements" target="_blank">CUDA compute
-          support</a>, use the GPU package for higher performance (Linux only):
-      </p>
-
-      <div class="gs-code">
-        <pre><code class="lang-shell">yarn add @tensorflow/tfjs-node-gpu</code></pre>
-      </div>
-      <div class="gs-code">
-        <pre><code class="lang-shell">npm install @tensorflow/tfjs-node-gpu</code></pre>
-      </div>
-
-      <p>Sample main Node.js application:</p>
-
-      <div class="gs-code">
-        <pre>
-          <code class="lang-js">
-const tf = require('@tensorflow/tfjs');
-
-// Load the binding:
-require('@tensorflow/tfjs-node');  // Use '@tensorflow/tfjs-node-gpu' if running with GPU.
-
-// Train a simple model:
-const model = tf.sequential();
-model.add(tf.layers.dense({units: 100, activation: 'relu', inputShape: [10]}));
-model.add(tf.layers.dense({units: 1, activation: 'linear'}));
-model.compile({optimizer: 'sgd', loss: 'meanSquaredError'});
-
-const xs = tf.randomNormal([100, 10]);
-const ys = tf.randomNormal([100, 1]);
-
-model.fit(xs, ys, {
-  epochs: 100,
-  callbacks: {
-    onEpochEnd: async (epoch, log) => {
-      console.log(`Epoch ${epoch}: loss = ${log.loss}`);
-    }
-  }
-});
-          </code>
-        </pre>
-      </div>
+      <hr>
     </div>
 
     <div class="learning">
-      <h1>Learning Resources</h1>
-      <p>
-        See our
-        <a href="./tutorials">tutorials</a>,
-        <a href="https://github.com/tensorflow/tfjs-examples" target="_blank">examples</a>
-        and
-        <a href="./api/{{latestVersion}}/">documentation</a> to learn more about how to use Tensorflow.js.
-      </p>
-      <p>
-        See our <a href="https://github.com/tensorflow/tfjs/blob/master/GALLERY.md" target="_blank">gallery</a> to see
-        what others in
-        the community have created with TensorFlow.js.
-      </p>
-    </div>
+      <h1>Learning &amp; Community</h1>
 
-    <div class="getting-help">
-      <h1>Need Help? Want to connect?</h1>
-      <p>
-        Feel free to file issues on our
-        <a href="https://github.com/tensorflow/tfjs/issues" target="_blank">GitHub Repository</a> if you run into bugs
-        using the library. We also have a
-        <a href="https://groups.google.com/a/tensorflow.org/forum/#!forum/tfjs" target="_blank">community mailing list</a>
-        for people to ask questions, get technical help, and share what they are doing with TensorFlow.js! To keep up
-        to date with
-        TensorFlow.js news follow us on
-        <a href="https://twitter.com/tensorflow" target="_blank">twitter</a> or join the
-        <a href="https://groups.google.com/a/tensorflow.org/forum/#!forum/tfjs-announce" target="_blank">announcement
-          only</a> mailing list.
-        <ul>
-          <li>
-            <a href="https://github.com/tensorflow/tfjs/issues" target="_blank">GitHub Issues</a>
-          </li>
-          <li>
+      <div class="learning-resources">
+        <h2>Learning Resources</h2>
+
+        <div class="resource">
+          <div class="title">Tutorials &amp; Guides</div>
+          <p>See our collection of <a href="./tutorials">tutorials & guides</a> on various topics with TensorFlow.js.</p>
+        </div>
+
+        <div class="resource">
+          <div class="title">API Docs</div>
+          <p>Check out our <a href="./api/{{latestVersion}}/">API docs</a> with live runnable code snippets.</p>
+        </div>
+
+        <div class="resource">
+          <div class="title">Examples</div>
+          <p>
+            tfjs-examples provides smallish code examples that implement various ML tasks using TensorFlow.js.<br>
+            <a href="https://github.com/tensorflow/tfjs-examples" target="_blank">Check it out on GitHub.</a>
+          </p>
+        </div>
+      </div>
+
+
+      <div class="community-resources">
+        <h2>Community Resources</h2>
+
+        <div class="resource">
+          <div class="title">Mailing List</div>
+          <p>
+            Connect with others on the
             <a href="https://groups.google.com/a/tensorflow.org/forum/#!forum/tfjs" target="_blank">Community
-              Discussion List</a>
-          </li>
-          <li>
-            <a href="https://groups.google.com/a/tensorflow.org/forum/#!forum/tfjs-announce" target="_blank">Announcement
-              only mailing list</a>
-          </li>
-          <li>
-            <a href="https://twitter.com/tensorflow" target="_blank">Twitter</a>
-          </li>
-        </ul>
-      </p>
-    </div>
+              Discussion List.</a>
+            <br>
+            Join the <a href="https://groups.google.com/a/tensorflow.org/forum/#!forum/tfjs-announce" target="_blank">Announcement
+              only mailing list.</a>
+          </p>
+        </div>
 
+        <div class="resource">
+          <div class="title">GitHub Issues</div>
+          <p>
+            Found a bug in the library?
+            <a href="https://github.com/tensorflow/tfjs/issues" target="_blank">File an issue on GitHub!</a>
+
+          </p>
+        </div>
+
+        <div class="resource">
+          <div class="title">Community Gallery</div>
+          <p>
+            Check out a gallery of user submitted projects.
+          </p>
+        </div>
+
+        <div class="resource">
+          <div class="title">Twitter</div>
+          <p>
+            <a href="https://twitter.com/tensorflow" target="_blank">Follow us on Twitter</a>
+            <br>
+            Feel free to share your work with the #TensorFlowJS hashtag.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
   </div>
 
   <script>hljs.initHighlightingOnLoad();</script>

@@ -11,27 +11,28 @@
     <section class="mdc-toolbar__section nav-links">
       <nav>
         <a href="{{url_for '/#getting-started'}}">Getting Started</a>
+        <a href="{{url_for '/setup'}}">Quick Setup</a>
         <a href="{{url_for '/tutorials/'}}">Tutorials & Guides</a>
         <a href="{{url_for (concat '/api/' (latestVersion))}}/">API Reference</a>
         <a href="{{url_for '/faq/'}}">FAQ</a>
       </nav>
     </section>
-    <section class="mdc-toolbar__section mdc-toolbar__section mdc-toolbar__section--shrink-to-fit mdc-toolbar__section--align-end">
+    <section class="mdc-toolbar__section mdc-toolbar__section mdc-toolbar__section--shrink-to-fit mdc-toolbar__section--align-end mobile-hidden">
       <nav>
         <form id="codepen-form" action="https://codepen.io/pen/define" method="POST" target="_blank">
           <input type="hidden" name="data" value='{
                             "title": "Try TensorFlow.js",
                             "html": {{codepenHtml}},
                             "js": {{codepenJs}},
-                            "editors": "1011",
+                            "editors": "0012",
                             "layout": "top",
                             "description": "Browser based machine learning.",
-                            "js_external": "https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@{{latestVersion}}"}'>
-          <input class="mdc-button mdc-button--raised" type="submit" value="Try It Live!">
+                            "js_external": "https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@{{latestVersion}}/dist/tf.min.js"}'>
+          <input class="mdc-button mdc-button--raised" type="submit" value="Try TensorFlow.js!">
         </form>
-        <a class='button-link' href="https://github.com/tensorflow/tfjs">
+        {{!-- <a class='button-link' href="https://github.com/tensorflow/tfjs">
           <button class="mdc-button mdc-button--raised">GitHub</button>
-        </a>
+        </a> --}}
       </nav>
     </section>
   </div>
@@ -49,6 +50,9 @@
           <a href="{{url_for '/#getting-started'}}">Getting Started</a>
         </li>
         <li class="mdc-list-item">
+          <a href="{{url_for '/setup/'}}">Getting Setup</a>
+        </li>
+        <li class="mdc-list-item">
           <a href="{{url_for '/tutorials/'}}">Tutorials & Guides</a>
         </li>
         <li class="mdc-list-item">
@@ -56,6 +60,9 @@
         </li>
         <li class="mdc-list-item">
           <a href="{{url_for '/faq/'}}">FAQ</a>
+        </li>
+        <li class="mdc-list-item">
+          <a href="{{url_for '/demos/'}}">All Demos</a>
         </li>
         <li class="mdc-list-item">
           <a href="https://github.com/tensorflow/tfjs">GitHub</a>

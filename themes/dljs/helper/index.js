@@ -62,7 +62,7 @@ module.exports = function(hexo) {
 
     codepenHtml: function() {
       return JSON.stringify(
-          `<h1>Try Tensorflow JS right in your browser!</h1>`);
+          `<h1>Try Tensorflow JS right in your browser. Look at the console to see the output.</h1>`);
     },
 
     codepenJs: function() {
