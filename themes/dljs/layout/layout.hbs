@@ -115,8 +115,6 @@ limitations under the License.
       var link = links[i];
       if (link.href.match(internal)) {
       } else {
-        console.log('extrenal link', link.href)
-
         link.addEventListener('click', () => {
           trackOutboundLink(link);
           return false;
