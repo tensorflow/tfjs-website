@@ -44,6 +44,6 @@
   },
   "devDependencies": {
     "@types/node": "~9.4.6",
-    "clang-format": "~1.2.2"
+    "clang-format": "~1.2.4"
   }
 }

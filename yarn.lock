@@ -1446,10 +1446,10 @@ chokidar@1.7.0, chokidar@^1.5.2, chokidar@^1.6.0, chokidar@^1.6.1:
   optionalDependencies:
     fsevents "^1.0.0"
 
-clang-format@~1.2.2:
-  version "1.2.3"
-  resolved "https://registry.yarnpkg.com/clang-format/-/clang-format-1.2.3.tgz#2763561aa7449c43737480f8df3a2b5b66e6cf37"
-  integrity sha512-x90Hac4ERacGDcZSvHKK58Ga0STuMD+Doi5g0iG2zf7wlJef5Huvhs/3BvMRFxwRYyYSdl6mpQNrtfMxE8MQzw==
+clang-format@~1.2.4:
+  version "1.2.4"
+  resolved "https://registry.yarnpkg.com/clang-format/-/clang-format-1.2.4.tgz#4bb4b0a98180428deb093cf20982e9fc1af20b6c"
+  integrity sha512-sw+nrGUp3hvmANd1qF8vZPuezSYQAiXgGBiEtkXTtJnnu6b00fCqkkDIsnRKrNgg4nv6NYZE92ejvOMIXZoejw==
   dependencies:
     async "^1.5.2"
     glob "^7.0.0"

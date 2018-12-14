@@ -21,6 +21,10 @@ body {
     padding: 0;
   }
 
+  .mdc-drawer {
+    z-index: 1000;
+  }
+
   .page {
     padding: 64px;
     max-width: 800px;
@@ -51,6 +55,20 @@ body {
       margin-top: 60px;
       max-width: 960px;
     }
+
+    hr {
+      height: 1px;
+      width: 60%;
+      margin-top: 60px;
+      margin-bottom: 60px;
+      color: rgb(219, 219, 219);
+      background-color: rgb(219, 219, 219);
+      border:0;
+    }
+
+    h1 {
+      text-align: center;
+    }
   }
 
   header {
@@ -67,7 +85,7 @@ body {
     }
 
     a {
-      padding: 10px 0px 23px 0px;
+      padding: 10px 0px 21px 0px;
       margin: 0px 10px 0px 10px;
 
       color: white;
@@ -135,15 +153,10 @@ body {
   }
 
   h1 {
-    // @include mdc-typography("headline");
     margin-top: 32px;
     font-weight: 500;
-    // font-style: italic;
     margin-top: 50px;
     margin-bottom: 35px;
-    // letter-spacing: 0.9px;
-    // text-transform: uppercase;
-    text-align: center;
     color: #4A4A4A;
   }
 
@@ -222,16 +235,6 @@ body {
 
 .index-page {
   .content {
-
-    hr {
-      height: 1px;
-      width: 60%;
-      margin-top: 60px;
-      margin-bottom: 60px;
-      color: rgb(219, 219, 219);
-      background-color: rgb(219, 219, 219);
-      border:0;
-    }
 
     .initial-blurb {
       @include mdc-typography("headline");
@@ -472,6 +475,8 @@ body {
     flex-flow: row wrap;
 
     font-size: 120%;
+    margin-top: 20px;
+    margin-bottom: 20px;
 
     pre {
       margin: 0 30px 15px 0;
@@ -494,6 +499,12 @@ body {
 .page-tutorials {
   h2 {
     margin-top: 64px;
+  }
+}
+
+.page-how-to-get-started {
+  h2 {
+    margin-top: 128px;
   }
 }
 
