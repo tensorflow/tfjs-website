@@ -39,6 +39,10 @@ to construct, train, and evaluate the model.
 This tutorial explains how to train a neural network to make predictions from
 webcam data. We'll use those predictions to play [Pac-Man](https://en.wikipedia.org/wiki/Pac-Man)!
 
+<h3><a href="https://codelabs.developers.google.com/codelabs/tensorflowjs-audio-codelab/index.html" target="_blank">Transfer learning - Build an Audio Recognition Model</a></h3>
+
+In this tutorial you will build an audio recognition network and use it to control a slider in the browser by making sounds.
+
 
 <h3><a href="./model-save-load.html">Saving and Loading tf.Model</a></h3>
 

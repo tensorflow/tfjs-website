@@ -92,6 +92,38 @@ limitations under the License.
 
   ga('create', 'UA-46457317-10', 'auto');
   ga('send', 'pageview');
+
+  var trackOutboundLink = function (link) {
+    var url = link.href;
+    ga('send', 'event', 'outbound', 'click', url, {
+      'transport': 'beacon',
+      'hitCallback': function () {
+        if (link.target.match('_blank')) {
+          window.open(url);
+        } else {
+          document.location = url;
+        }
+      }
+    });
+  }
+
+  // Add outbound link tracker to external links
+  var links = Array.prototype.slice.call(document.querySelectorAll('a'));
+  var internal = /(js\.tensorflow\.org)|localhost/;
+  for (var i = 0; i < links.length; i++) {
+    (function () {
+      var link = links[i];
+      if (link.href.match(internal)) {
+      } else {
+        console.log('extrenal link', link.href)
+
+        link.addEventListener('click', () => {
+          trackOutboundLink(link);
+          return false;
+        });
+      }
+    })();
+  }
 </script>
 
 </html>

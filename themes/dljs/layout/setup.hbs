@@ -173,10 +173,10 @@ model.fit(xs, ys, {
 
   <script>
     function renderCodeSnippet(template, afterElement) {
-      const escapeEl = document.createElement('div');
+      var escapeEl = document.createElement('div');
       escapeEl.textContent = template.innerHTML;
 
-      const newEl = document.createElement('div');
+      var newEl = document.createElement('div');
       newEl.classList.add('gs-code');
       newEl.innerHTML = `<pre><code>${template.innerHTML}</code></pre>`;
 
@@ -186,16 +186,20 @@ model.fit(xs, ys, {
     }
 
     function initCodeButtons() {
-      const buttons = document.querySelectorAll('.code-button');
-      for (const button of buttons) {
-        console.log('btn', button.id)
-        const templateId = button.id.replace('-btn', '');
-        button.addEventListener('click', () => {
-          renderCodeSnippet(document.getElementById(templateId), button.parentElement);
-          button.remove();
-        });
+      const buttons = Array.prototype.slice.call(document.querySelectorAll('.code-button'));
+      for (var i = 0; i < buttons.length; i++) {
+        (function () {
+          var button = buttons[i];
+          var templateId = button.id.replace('-btn', '');
+          button.addEventListener('click', function () {
+            renderCodeSnippet(document.getElementById(templateId), button.parentElement);
+            button.remove();
+          });
+        })()
+
       }
     }
+
 
     initCodeButtons();
   </script>
