@@ -274,6 +274,10 @@ body {
       }
     }
 
+    #build-with-tfjs-more {
+      text-align: center;
+    }
+
 
     #ml-beginner-paths {
       display: flex;
@@ -313,7 +317,6 @@ body {
 
     #tfjs-paths {
       .path {
-        // margin-top: 20px;
         margin-bottom: 60px;
 
         .title {
@@ -322,12 +325,6 @@ body {
           display: inline-block;
           padding: 4px 18px 4px 18px;
           font-weight: 500;
-        }
-
-        .path-type {
-          float: right;
-          text-transform: uppercase;
-          color: #9B9B9B;
         }
       }
     }
