@@ -130,17 +130,7 @@ model.fit(xs, ys, {
 
 
       <div>
-        <strong>Step 1:</strong> Add the tfjs package.
-        <div class="gs-code">
-          <pre><code class="lang-shell">yarn add @tensorflow/tfjs</code></pre>
-          <em>or&nbsp;&nbsp;&nbsp;&nbsp;</em>
-          <pre><code class="lang-shell">npm install @tensorflow/tfjs</code></pre>
-        </div>
-      </div>
-
-      <div>
-        <strong>Optional Step 2:</strong> Install the tensorflow C++ bindings. Step 1 allows you to run tensorflow in
-        pure javascript. This step binds to native libraries for increased perfromance.
+        <strong>Option 1:</strong> Install TensorFlow.js with native C++ bindings.
         <div class="gs-code">
           <pre><code class="lang-shell">yarn add @tensorflow/tfjs-node</code></pre>
           <em>or&nbsp;&nbsp;&nbsp;&nbsp;</em>
@@ -149,9 +139,9 @@ model.fit(xs, ys, {
       </div>
 
       <div>
-        <strong>Optional Step 3:</strong> (Linux Only) If your system has a NVIDIA® GPU with
+        <strong>Option 2:</strong> (Linux Only) If your system has a NVIDIA® GPU with
         <a href="https://www.tensorflow.org/install/install_linux#NVIDIARequirements" target="_blank">CUDA compute
-          support</a>, use the GPU package <strong>instead of Step 2</strong> for higher performance:
+          support</a>, use the GPU package even for higher performance.
         <div class="gs-code">
           <pre><code class="lang-shell">yarn add @tensorflow/tfjs-node-gpu</code></pre>
           <em>or&nbsp;&nbsp;&nbsp;&nbsp;</em>
@@ -159,6 +149,14 @@ model.fit(xs, ys, {
         </div>
       </div>
 
+      <div>
+        <strong>Option 3:</strong> Install the pure JavaScript version. This will be the slowest option of these 3.
+        <div class="gs-code">
+          <pre><code class="lang-shell">yarn add @tensorflow/tfjs</code></pre>
+          <em>or&nbsp;&nbsp;&nbsp;&nbsp;</em>
+          <pre><code class="lang-shell">npm install @tensorflow/tfjs</code></pre>
+        </div>
+      </div>
 
       <div class='centered-button'>
         <button class="mdc-button mdc-button--raised code-button" id='node-boilerplate-btn'>
