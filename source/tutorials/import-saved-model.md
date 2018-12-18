@@ -140,7 +140,7 @@ Please see [fetch() documentation](https://developer.mozilla.org/en-US/docs/Web/
 ## Supported operations
 
 Currently TensorFlow.js only supports a limited set of TensorFlow Ops. See the
-[full list](https://github.com/tensorflow/tfjs-converter/docs/supported_ops.md).
+[full list](https://github.com/tensorflow/tfjs-converter/blob/master/docs/supported_ops.md).
 If your model uses any unsupported ops, the `tensorflowjs_converter` script will fail and
 produce a list of the unsupported ops in your model. Please file [issues](https://github.com/tensorflow/tfjs/issues) to let us
 know what ops you need support for.
