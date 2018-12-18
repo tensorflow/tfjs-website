@@ -307,6 +307,10 @@ body {
           display: block;
         }
 
+        p {
+          min-height: 80px;
+        }
+
         img {
           max-width:100%;
           max-height: 105px;
@@ -326,6 +330,10 @@ body {
           height: auto;
           width: 80%;
           margin-bottom: 32px;
+
+          p {
+            min-height: auto;
+          }
         }
       }
     }
