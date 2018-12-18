@@ -1,0 +1,204 @@
+{{#if page.bannerText}}
+<div class="page-banner">
+  <h1>{{page.bannerText}}</h1>
+</div>
+{{/if}}
+
+<template id='script-tag-boilerplate'>
+// Define a model for linear regression.
+const model = tf.sequential();
+model.add(tf.layers.dense({units: 1, inputShape: [1]}));
+
+model.compile({loss: 'meanSquaredError', optimizer: 'sgd'});
+
+// Generate some synthetic data for training.
+const xs = tf.tensor2d([1, 2, 3, 4], [4, 1]);
+const ys = tf.tensor2d([1, 3, 5, 7], [4, 1]);
+
+// Train the model using the data.
+model.fit(xs, ys, {epochs: 10}).then(() => {
+  // Use the model to do inference on a data point the model hasn't seen before:
+  model.predict(tf.tensor2d([5], [1, 1])).print();
+  // Open the browser devtools to see the output
+});
+</template>
+
+<template id='npm-boilerplate'>
+import * as tf from '@tensorflow/tfjs';
+
+// Define a model for linear regression.
+const model = tf.sequential();
+model.add(tf.layers.dense({units: 1, inputShape: [1]}));
+
+model.compile({loss: 'meanSquaredError', optimizer: 'sgd'});
+
+// Generate some synthetic data for training.
+const xs = tf.tensor2d([1, 2, 3, 4], [4, 1]);
+const ys = tf.tensor2d([1, 3, 5, 7], [4, 1]);
+
+// Train the model using the data.
+model.fit(xs, ys, {epochs: 10}).then(() => {
+  // Use the model to do inference on a data point the model hasn't seen before:
+  model.predict(tf.tensor2d([5], [1, 1])).print();
+  // Open the browser devtools to see the output
+});
+</template>
+
+<template id='node-boilerplate'>
+const tf = require('@tensorflow/tfjs');
+
+// Optional Load the binding:
+// Use '@tensorflow/tfjs-node-gpu' if running with GPU.
+require('@tensorflow/tfjs-node');
+
+// Train a simple model:
+const model = tf.sequential();
+model.add(tf.layers.dense({units: 100, activation: 'relu', inputShape: [10]}));
+model.add(tf.layers.dense({units: 1, activation: 'linear'}));
+model.compile({optimizer: 'sgd', loss: 'meanSquaredError'});
+
+const xs = tf.randomNormal([100, 10]);
+const ys = tf.randomNormal([100, 1]);
+
+model.fit(xs, ys, {
+  epochs: 100,
+  callbacks: {
+    onEpochEnd: (epoch, log) => console.log(`Epoch ${epoch}: loss = ${log.loss}`);
+  }
+});
+</template>
+{{!-- // clang-format on --}}
+
+<div class="page page-{{page.title}} {{page.align}}">
+  <div class="content">
+    <div id="getting-started" class="getting-started">
+      <h1>Browser setup</h1>
+
+      <p>
+        There are two main ways to get TensorFlow.js in your browser based projects: via
+        <a href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Howto/Use_JavaScript_within_a_webpage" target="_blank">
+          script tags</a>
+        <strong>or</strong> by installing it from
+        <a href="https://www.npmjs.com/" target="_blank">NPM</a>
+        and using a build tool like
+        <a href="https://parceljs.org/" target="_blank">Parcel</a>,
+        <a href="https://webpack.js.org/" target="_blank">WebPack</a>, or
+        <a href="https://rollupjs.org/guide/en" target="_blank">Rollup</a>.
+      </p>
+
+      <p>
+        If you are new to web development, or have never heard of tools like webpack or parcel, <em>we recommend you
+          use the script tag approach</em>. If you are more experienced or want to write larger programs it might be
+        worthwhile to explore using build tools.
+      </p>
+
+      <h3>Usage via Script Tag</h3>
+      <p>Add the following script tag to your main HTML file.</p>
+
+      <div class="gs-code">
+        <pre>
+          <code class="lang-html">
+&lt;script src=&quot;https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@{{latestVersion}}/dist/tf.min.js&quot;&gt;&lt;/script&gt;
+          </code>
+        </pre>
+      </div>
+
+      <div class='centered-button'>
+        <button class="mdc-button mdc-button--raised code-button" id='script-tag-boilerplate-btn'>
+          See code sample for script tag setup
+        </button>
+      </div>
+
+      <h3>Installation via NPM</h3>
+
+      <div class="gs-code">
+        <pre><code class="lang-shell">yarn add @tensorflow/tfjs</code></pre>
+        <em>or&nbsp;&nbsp;&nbsp;&nbsp;</em>
+        <pre><code class="lang-shell">npm install @tensorflow/tfjs</code></pre>
+      </div>
+
+      <div class='centered-button'>
+        <button class="mdc-button mdc-button--raised code-button" id='npm-boilerplate-btn'>
+          See sample code for installation via NPM
+        </button>
+      </div>
+
+
+      <hr>
+
+      <h1>Installation for Node.js</h1>
+
+
+      <div>
+        <strong>Option 1:</strong> Install TensorFlow.js with native C++ bindings.
+        <div class="gs-code">
+          <pre><code class="lang-shell">yarn add @tensorflow/tfjs-node</code></pre>
+          <em>or&nbsp;&nbsp;&nbsp;&nbsp;</em>
+          <pre><code class="lang-shell">npm install @tensorflow/tfjs-node</code></pre>
+        </div>
+      </div>
+
+      <div>
+        <strong>Option 2:</strong> (Linux Only) If your system has a NVIDIA® GPU with
+        <a href="https://www.tensorflow.org/install/install_linux#NVIDIARequirements" target="_blank">CUDA
+          support</a>, use the GPU package even for higher performance.
+        <div class="gs-code">
+          <pre><code class="lang-shell">yarn add @tensorflow/tfjs-node-gpu</code></pre>
+          <em>or&nbsp;&nbsp;&nbsp;&nbsp;</em>
+          <pre><code class="lang-shell">npm install @tensorflow/tfjs-node-gpu</code></pre>
+        </div>
+      </div>
+
+      <div>
+        <strong>Option 3:</strong> Install the pure JavaScript version. This will be the slowest option of these 3.
+        <div class="gs-code">
+          <pre><code class="lang-shell">yarn add @tensorflow/tfjs</code></pre>
+          <em>or&nbsp;&nbsp;&nbsp;&nbsp;</em>
+          <pre><code class="lang-shell">npm install @tensorflow/tfjs</code></pre>
+        </div>
+      </div>
+
+      <div class='centered-button'>
+        <button class="mdc-button mdc-button--raised code-button" id='node-boilerplate-btn'>
+          See sample code for Node.js usage
+        </button>
+      </div>
+
+    </div>
+
+  </div>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+  <script>
+    function renderCodeSnippet(template, afterElement) {
+      var escapeEl = document.createElement('div');
+      escapeEl.textContent = template.innerHTML;
+
+      var newEl = document.createElement('div');
+      newEl.classList.add('gs-code');
+      newEl.innerHTML = `<pre><code>${template.innerHTML}</code></pre>`;
+
+      // Append this content next to the template
+      afterElement.insertAdjacentElement('afterend', newEl);
+      hljs.highlightBlock(newEl.querySelector('code'));
+    }
+
+    function initCodeButtons() {
+      const buttons = Array.prototype.slice.call(document.querySelectorAll('.code-button'));
+      for (var i = 0; i < buttons.length; i++) {
+        (function () {
+          var button = buttons[i];
+          var templateId = button.id.replace('-btn', '');
+          button.addEventListener('click', function () {
+            renderCodeSnippet(document.getElementById(templateId), button.parentElement);
+            button.remove();
+          });
+        })()
+
+      }
+    }
+
+
+    initCodeButtons();
+  </script>
+</div>
