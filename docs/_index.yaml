@@ -1,0 +1,32 @@
+book_path: /js/_book.yaml
+project_path: /js/_project.yaml
+description: <!--no description-->
+landing_page:
+  custom_css_path: /site-assets/css/style.css
+  rows:
+  - heading: A WebGL accelerated, browser based JavaScript library for training and deploying ML models.
+    items:
+    - classname: devsite-landing-row-50
+      description: >
+        A JavaScript library for training and deploying ML models in the browser
+        and on Node.js.
+
+  - classname: devsite-landing-row-cards
+    items:
+    - heading: "Introducing TensorFlow.js"
+      image_path: /resources/images/tf-logo-card-16x9.png
+      path: https://medium.com/tensorflow/introducing-tensorflow-js-machine-learning-in-javascript-bf3eab376db
+      buttons:
+      - label: "Read on TensorFlow blog"
+        path: https://medium.com/tensorflow/introducing-tensorflow-js-machine-learning-in-javascript-bf3eab376db
+    - heading: "Machine Learning in JavaScript"
+      youtube_id: YB-kfeNIPCE
+      buttons:
+      - label: Watch the video
+        path: https://www.youtube.com/watch?v=YB-kfeNIPCE
+    - heading: "TensorFlow.js on GitHub"
+      image_path: /resources/images/github-card-16x9.png
+      path: https://github.com/tensorflow/tfjs
+      buttons:
+      - label: "View on GitHub"
+        path: https://github.com/tensorflow/tfjs
