@@ -1,0 +1,39 @@
+upper_tabs:
+# Tabs left of dropdown menu
+- include: /_upper_tabs_left.yaml
+- include: /api_docs/_upper_tabs_api.yaml
+# Dropdown menu
+- name: Resources
+  path: /resources
+  is_default: true
+  menu:
+  - include: /resources/_menu_toc.yaml
+  lower_tabs:
+    # Subsite tabs
+    other:
+    - name: Tutorials
+      contents:
+      - title: Tutorials overview
+        path: /js/tutorials/
+      - title: Baz tutorial
+        path: /js/tutorials/baz_tutorial
+    - name: Guide
+      contents:
+      - title: TFJS overview
+        path: /js/overview
+      - title: Foo guide
+        path: /js/foo_guide
+    - name: Examples
+      contents:
+      - title: Examples overview
+        path: /js/examples/
+      - title: Bar example
+        path: /js/examples/bar_example
+    - name: API
+      skip_translation: true
+      contents:
+      - title: API
+        path: https://js.tensorflow.org/api/latest/
+        status: external
+
+- include: /_upper_tabs_right.yaml
