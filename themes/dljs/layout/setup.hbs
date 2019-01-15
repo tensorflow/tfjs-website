@@ -45,11 +45,10 @@ model.fit(xs, ys, {epochs: 10}).then(() => {
 </template>
 
 <template id='node-boilerplate'>
-const tf = require('@tensorflow/tfjs');
-
-// Optional Load the binding:
-// Use '@tensorflow/tfjs-node-gpu' if running with GPU.
-require('@tensorflow/tfjs-node');
+// Load the package:
+// Use '@tensorflow/tfjs-node-gpu' to run with GPU.
+// Use '@tensorflow/tfjs' to run without the C++ binding.
+const tf = require('@tensorflow/tfjs-node');
 
 // Train a simple model:
 const model = tf.sequential();
