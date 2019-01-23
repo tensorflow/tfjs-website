@@ -1,3 +1,3 @@
 # TensorFlow.js tutorials
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+This is the top level tutorial page.
