@@ -19,11 +19,11 @@ upper_tabs:
         path: /js/tutorials/setup
 
       - heading: Train models
-      - title: Fit a Curve to two-dimensional data
+      - title: Fit a curve to two-dimensional data
         path: /js/tutorials/training/curve
       - title: Recognize handwritten Digits with CNNs
         path: /js/tutorials/training/mnist
-      - title: Save and Load Models
+      - title: Save and load models
         path: /js/tutorials/training/mnist
 
       - heading: Transfer learning
