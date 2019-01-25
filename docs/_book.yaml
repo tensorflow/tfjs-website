@@ -13,32 +13,32 @@ upper_tabs:
     other:
     - name: Tutorials
       contents:
-      - title: Getting Started
+      - title: Get started
         path: /js/tutorials/index
-      - title: Getting Setup
+      - title: Setup
         path: /js/tutorials/setup
 
-      - heading: Training Models
-      - title: Fitting a Curve to Two-Dimensional Data
+      - heading: Train models
+      - title: Fit a Curve to two-dimensional data
         path: /js/tutorials/training/curve
-      - title: Recognizing Handwritten Digits with CNNs
+      - title: Recognize handwritten Digits with CNNs
         path: /js/tutorials/training/mnist
-      - title: Saving and Loading Models
+      - title: Save and Load Models
         path: /js/tutorials/training/mnist
 
-      - heading: Transfer Learning
-      - title: Building a webcam based game controller
+      - heading: Transfer learning
+      - title: Build a webcam based game controller
         path: /js/sample
-      - title: Building an Audio Recognizer
-        path: /js/sample
-
-      - heading: Importing Python Models
-      - title: Importing a Keras Model
-        path: /js/sample
-      - title: Importing a TensorFlow SavedModel
+      - title: Build an audio recognizer
         path: /js/sample
 
-      - heading: Learning Resources
+      - heading: Import Python models
+      - title: Import a Keras model
+        path: /js/sample
+      - title: Import a TensorFlow SavedModel
+        path: /js/sample
+
+      - heading: Learning resources
       - title: Machine Learning
         path: /js/sample
 
@@ -51,17 +51,17 @@ upper_tabs:
         path: /js/sample
 
       - heading: Fundamentals
-      - title: Tensors & Operations
+      - title: Tensors and operations
         path: /js/guides/index
       - title: Backends
         path: /js/sample
 
       - heading: Models
-      - title: Models & Layers
+      - title: Models and layers
         path: /js/sample
-      - title: Training Models
+      - title: Training models
         path: /js/sample
-      - title: Model Conversion
+      - title: Model conversion
         path: /js/sample
       - title: Differences from Python tf.keras
         path: /js/sample
@@ -73,7 +73,7 @@ upper_tabs:
         path: /js/sample
 
       - heading: Visualization
-      - title: Visualizing Models in the Browser
+      - title: Visualizing models in the browser
         path: /js/sample
 
     - name: Examples
