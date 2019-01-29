@@ -20,7 +20,7 @@ are addressed by the save/load API, available in TensorFlow.js since version
 
 > NOTE: This document is about saving and loading `tf.Model`s (i.e., Keras-style
 > models in the tfjs-layers API). Saving and loading `tf.FrozenModel`s (i.e.,
-> models loaded from TensoFlow SavedModels) are not supported yet and is being
+> models loaded from TensorFlow SavedModels) are not supported yet and is being
 > actively worked on.
 
 ## Saving tf.Model
