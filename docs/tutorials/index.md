@@ -23,7 +23,7 @@ Built on top of TensorFlow.js, the ml5.js library provides access to machine lea
 
 Check out tfjs-models, a collection of pre-built models that doesn't require deep knowledge of Tensors.
 
-<a class="button button-white" href="https://github.com/tensorflow/tfjs-models">Check out tfjs-models</a>
+<a class="button button-white" href="https://github.com/tensorflow/tfjs-models">See our models</a>
 
 ### Are you looking for a gentle introduction to machine learning concepts with JavaScript?
 
