@@ -40,7 +40,7 @@ A few things to note:
 
 Below we will examine the different schemes available.
 
-### Local Storage
+### Local Storage (Browser only)
 
 **Scheme:** `localstorage://`
 
@@ -50,23 +50,22 @@ const saveResult = await model.save('localstorage://my-model-1');
 
 This saves a model to a key in the browsers [local storage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage). This will persist between refreshes, though  local storage can be cleared by users or the browser itself if space becomes a concern. Each browser also sets their own limit on how much data can be stored in local storage for a given domain.
 
-### IndexedDB
-
+### IndexedDB (Browser only)
 
 **Scheme:** `indexeddb://`
 
 ```js
-const saveResult = await model.save('indexeddb://my-model-1');
+model.save('indexeddb://my-model-1');
 ```
 
 This saves a model to the browsers [IndexedDB](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API) storage. Like local storage it persists between refreshes, it also tends to have larger limits on the size of objects stored.
 
-### File Downloads
+### File Downloads (Browser only)
 
 **Scheme:** `indexeddb://`
 
 ```js
-const saveResult = await model.save('indexeddb://my-model-1');
+model.save('indexeddb://my-model-1');
 ```
 
 This will cause the browser to download files that represent the model to the users machine. Two files will be produced:
@@ -78,3 +77,37 @@ Generally these files should be kept together as the json file has a reference t
 
 Note: some browsers require users to grant permissions before more than one
 file can be downloaded at the same time.
+
+
+### HTTP(S) Request
+
+**Scheme:** `http://` or `https://`
+
+```js
+model.save('http://model-server.domain/upload')
+```
+
+This will create a web request to save a model to a remote server. You should be in control of that remote server so that you can ensure that it is able to handle the request.
+
+The model will be sent to the specified HTTP server via a
+[POST](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST) request.
+The body of the POST is in the `multipart/form-data` format and consists of two files
+
+ 1. A text JSON file named `model.json`, which carries the topology and reference to the weights file described below.
+  2. A binary file carrying the weight values named `model.weights.bin`.
+
+Note that name of the two files will always be exactly as specified above. This [api doc](https://js.tensorflow.org/api/latest/#tf.io.browserHTTPRequest) contains a Python code snippet that demonstrates how one may use the [flask](http://flask.pocoo.org/) web framework to handle the request originated from `save`.
+
+Often you will have to pass more arguments or request headers to your HTTP server (e.g. for authentication or if you want to specify a folder that the model should be saved in). You can gain fine-grained control over
+these aspects of the requests from `save` by replacing the URL string argument a `tf.io.browserHTTPRequest`. This API
+affords greater flexiblity in controlling HTTP requests.
+
+For example:
+
+```js
+await model.save(tf.io.browserHTTPRequest(
+    'http://model-server.domain/upload',
+    {method: 'PUT', headers: {'header_key_1': 'header_value_1'}}));
+```
+
+
