@@ -89,7 +89,7 @@ const squareAndAdd = tf.customGrad(x => {
 
   const gradFunc = dy =>
       [backend.compileAndRun(backpropProgram, [x]).mul(dy)];
-  return {value, gradFunc}
+  return {value, gradFunc};
 });
 ```
 
@@ -101,9 +101,9 @@ const x = tf.tensor([1, 2, 3, 4]);
 const value = squareAndAdd(x);
 
 const grads = tf.grad(x => squareAndAdd(x));
-const dx = grads(input);
+const dx = grads(x);
 
-// value == [3, 6, 12, 20]
+// value == [2, 6, 12, 20]
 // dx == [3, 5, 7, 9]
 ```
 
@@ -139,7 +139,7 @@ Tensorflow.js generates functions you can use to read from the input tensors and
     float get{VarName}(int x, int y, int z) // rank-3 input
     float get{VarName}(int x, int y, int z, int w) // rank-4 input
     // continue as above for rank-5 & rank-6
-    
+
     // For example, for rank-2 Tensor named x:
     // float getX(int x, int y)
   ```
@@ -189,5 +189,5 @@ Tensorflow.js generates functions you can use to read from the input tensors and
 
   * `float random(float seed)`
 
-    * Returns a pseudo-random number, based on Dav Hoskins's forumla in https://www.shadertoy.com/view/4djSRW.
+    * Returns a pseudo-random number, based on Dave Hoskins's formula in https://www.shadertoy.com/view/4djSRW.
 

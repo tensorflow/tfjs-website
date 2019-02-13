@@ -68,6 +68,12 @@ footer {
     overflow-y: auto;
     overflow-x: hidden;
     z-index: 101;
+
+    .method-list {
+      margin-left: 8px;
+      margin-top: 4px;
+      font-size: 94%;
+    }
   }
 
   .reference {
@@ -78,6 +84,7 @@ footer {
     margin-top: 64px;
     padding-bottom: 75vh
   }
+
 
   @media (max-width: 720px) {
     flex-direction: column;
@@ -100,7 +107,7 @@ footer {
     padding-left: 16px;
 
     .symbol {
-      margin: 6px 0 6px 0px;
+      margin: 8px 0 8px 0px;
     }
 
     .header {

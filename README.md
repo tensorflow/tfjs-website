@@ -46,7 +46,7 @@ During local development (e.g. if you have changes in libs), run:
 yarn build-api
 ```
 
-This will build a version of the api known as `local`. It will be accessible at `http://localhost:4000/api/local/`. This content is not checked in, not is it linked to
+This will build a version of the api known as `local`. It will be accessible at `http://localhost:4000/api/local/`. This content is not checked in, nor is it linked to
 anywhere on the site, but it is suitable for testing changes to docs.
 
 Once the your changes have been accepted into the repo in question (either tfjs-core or tfjs-layers), you can run `yarn prep` again in this repo (tfjs-website) to sync everything up (pull the most recent commits from master for each). You can then commit the **new submodule info** in the tfjs-website repo.
