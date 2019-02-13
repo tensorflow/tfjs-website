@@ -1,0 +1,59 @@
+[
+  {
+    "name": "Visors, surfaces and tabs",
+    "description": [
+      "<p></p>"
+    ],
+    "subheadings": []
+  },
+  {
+    "name": "show.*",
+    "description": [
+      "<p>This library exposes a show namespace that provides a number of higher level functions",
+      "useful for rendering tfjs concepts. They lean towards being opinionated rather than flexible",
+      "but are generally combinations of Renderers (see below), so one can easily roll their own.</p>"
+    ],
+    "subheadings": [
+      {
+        "name": "Model Inpsection",
+        "description": [
+          "<p>We have utility functions for common cases like Scalar, 1D,",
+          "2D, 3D and 4D tensors, as well a number of functions to initialize",
+          "tensors in ways useful for machine learning.</p>"
+        ]
+      },
+      {
+        "name": "Model Training",
+        "description": [
+          "<p>",
+          "This section shows the main Tensor related classes in TensorFlow.js and",
+          "the methods we expose on them.",
+          "</p>"
+        ]
+      },
+      {
+        "name": "Model Evaluation",
+        "description": [
+          "<p>This section describes some common Tensor",
+          "transformations for reshaping and type-casting.</p>"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "render.*",
+    "description": [
+      "<p>The library exposes a render namespace that provides a number of functions that plot ",
+      "particular visualizations.</p>"
+    ],
+    "subheadings": []
+  },
+  {
+    "name": "Metrics",
+    "description": [
+      "<p>The metrics namespace contains a few utility functions for computing ",
+      "quality metrics like accuracy or creating confusion matrices.</p>"
+    ],
+    "subheadings": []
+  }
+]

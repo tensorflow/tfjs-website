@@ -28,6 +28,13 @@ module.exports = function(hexo) {
       return siteData[`api/${versionString}/docs`];
     },
 
+    getVisApi: function(siteData, versionString) {
+      console.log('getVisAPI', versionString);
+      const ret = siteData[`api_vis/${versionString}/docs`];
+      console.log('vis api data', ret);
+      return ret;
+    },
+
     markdown: function(attr) {
       if (attr) {
         return md.render(attr);
