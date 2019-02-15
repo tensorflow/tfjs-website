@@ -2,11 +2,16 @@
 
 TensorFlow.js is a framework to define and run computations using tensors in JavaScript. A **tensor** is a generalization of vectors and matrices to higher dimensions.
 
+
 ## Tensors
+
+TensorFlow.js is a framework to define and run computations using tensors in JavaScript. A **tensor** is a generalization of vectors and matrices to higher dimensions.
 
 The central unit of data in TensorFlow.js is the `tf.Tensor`: a set of values shaped into an array of one or more dimensions. `tf.Tensor`s are very similar to multidimensional arrays.
 
 A `tf.Tensor` also contains the following properties:
+
+
 
 *   `rank`: defines how many dimensions the tensor contains
 *   `shape`: which defines the size of each dimension of the data
@@ -31,7 +36,7 @@ b.print();
 ```
 
 
-By default, `tf.Tensor`s will have a `float32` `dtype.` tf.Tensors can also be created with bool, int32, complex64, and string dtypes:
+By default, `tf.Tensor`s will have a `float32` `dtype.` `tf.Tensor`s can also be created with bool, int32, complex64, and string dtypes:
 
 
 ```js
@@ -93,7 +98,7 @@ console.log(a.dataSync());
 
 While tensors allow you to store data, operations (ops) allow you to manipulate that data. TensorFlow.js also provides a wide variety of ops suitable for linear algebra and machine learning that can be performed on tensors.
 
-Example: computing x^2 of all elements in a `tf.Tensor`:
+Example: computing x<sup>2</sup> of all elements in a `tf.Tensor`:
 
 
 ```js
@@ -116,16 +121,16 @@ y.print();
 
 Because tensors are immutable, these ops do not change their values. Instead, ops return always return new `tf.Tensor`s.
 
-> Note: most operations synchronously return tf.Tensors, however the result may not actually be ready yet. This means the tf.Tensor that you get is actually a handle to the computation. When you call Tensor.data() or Tensor.array(), these methods will wait until the computation is finished before resolving with the values. This means you should always prefer the asynchronous versions of these methods instead of their synchronous counterparts to avoid blocking the UI thread while the computation completes. More on that in this guide.
+> Note: most operations synchronously return `tf.Tensor`s, however the result may not actually be ready yet. This means the `tf.Tensor` that you get is actually a handle to the computation. When you call `Tensor.data()` or `Tensor.array()`, these methods will wait until the computation is finished before resolving with the values. This means you should always prefer the asynchronous versions of these methods instead of their synchronous counterparts to avoid blocking the UI thread while the computation completes. More on that in this guide.
 
 You can find a list of the operations TensorFlow.js supports [here](https://js.tensorflow.org/api/latest/#Operations).
 
 
 ## Memory
 
-When using the WebGL backend, tf.Tensor memory must be managed explicitly (it is not sufficient to let a tf.Tensor go out of scope for its memory to be released). For more information on backends, see this guide.
+When using the WebGL backend, `tf.Tensor` memory must be managed explicitly (it is **not sufficient** to let a `tf.Tensor` go out of scope for its memory to be released). For more information on backends, see this guide.
 
-To destroy the memory of a tf.Tensor, you can use the dispose() method or tf.dispose():
+To destroy the memory of a tf.Tensor, you can use the `dispose() `method or `tf.dispose()`:
 
 
 ```js
@@ -156,4 +161,4 @@ console.log(tf.memory());
 ```
 
 
-The object printed by tf.memory() will contain information about how much memory is currently allocated. You can find more information [here](https://js.tensorflow.org/api/latest/#memory).
+The object printed by `tf.memory()` will contain information about how much memory is currently allocated. You can find more information [here](https://js.tensorflow.org/api/latest/#memory).
