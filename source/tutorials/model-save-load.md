@@ -256,8 +256,8 @@ HTML
 elements such as
 
 ```html
-<input name="json-upload" type="file" />
-<input name="weights-upload" type="file" />
+<input id="json-upload" type="file" />
+<input id="weights-upload" type="file" />
 ```
 
 These will appear as two "Choose file" buttons in the browser that users can
