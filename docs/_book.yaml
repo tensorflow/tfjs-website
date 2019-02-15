@@ -42,7 +42,7 @@ upper_tabs:
 
       - heading: Learning resources
       - title: Machine Learning
-        path: /js/sample
+        path: /js/tutorials/learning/ml
 
     - name: Guide
       contents:
