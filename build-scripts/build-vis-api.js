@@ -152,7 +152,7 @@ layout: api
     // Override 'latest'. Do not reformat the string below
     const latestPageTemplate = `---
 title: ${apiManifest.versions[0]}
-layout: api_vis
+layout: api
 ---
 \n
 `;

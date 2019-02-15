@@ -1,13 +1,14 @@
 [
   {
-    "name": "Visors, surfaces and tabs",
+    "name": "Visor & Surfaces",
     "description": [
-      "<p></p>"
+      "<p>tfjs-vis provides some UI helpers to make it easier to render ",
+      "visualizations in an unobtrusive way.</p>"
     ],
     "subheadings": []
   },
   {
-    "name": "show.*",
+    "name": "Models & Tensors",
     "description": [
       "<p>This library exposes a show namespace that provides a number of higher level functions",
       "useful for rendering tfjs concepts. They lean towards being opinionated rather than flexible",
@@ -15,36 +16,32 @@
     ],
     "subheadings": [
       {
-        "name": "Model Inpsection",
+        "name": "Model Inspection",
         "description": [
-          "<p>We have utility functions for common cases like Scalar, 1D,",
-          "2D, 3D and 4D tensors, as well a number of functions to initialize",
-          "tensors in ways useful for machine learning.</p>"
+          "<p>These functions are useful for examing models, layers and tensors"
         ]
       },
       {
         "name": "Model Training",
         "description": [
           "<p>",
-          "This section shows the main Tensor related classes in TensorFlow.js and",
-          "the methods we expose on them.",
+          "These functions are useful for monitoring training.",
           "</p>"
         ]
       },
       {
         "name": "Model Evaluation",
         "description": [
-          "<p>This section describes some common Tensor",
-          "transformations for reshaping and type-casting.</p>"
+          "<p>These functions are useful for evaluating the quality of a model.</p>"
         ]
       }
     ]
   },
   {
-    "name": "render.*",
+    "name": "Charts",
     "description": [
       "<p>The library exposes a render namespace that provides a number of functions that plot ",
-      "particular visualizations.</p>"
+      "particular visualizations. Most of these functions take regular JavaScript objects</p>"
     ],
     "subheadings": []
   },

@@ -11,7 +11,7 @@
           {{#each (docVersions)}}
           <li class="mdc-list-item" role="option" tabindex="0" data-version={{this}} data-link={{url_for (concat '/api/' this)}}/
             {{#if (eq ../page.title this)}} aria-selected{{/if}}> {{this}} </li> {{/each}} </ul> </div> </div> </div>
-            {{#with (getApi page.site.data page.title)}} {{#headings}} <div class="heading">
+            {{#with (getApi page.site.data page.title path)}} {{#headings}} <div class="heading">
             <div class="symbol">
               <a class="heading-name" href="#{{name}}">{{name}}</a>
             </div>

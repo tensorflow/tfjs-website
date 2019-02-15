@@ -1,25 +1,25 @@
 <div class="page api-docs">
   {{!-- Left Page TOC --}}
   <div class="toc">
-      {{> apiToc }}
+    {{> apiToc }}
   </div>
   {{!-- Main Content Area --}}
-  {{#with (getApi page.site.data page.title)}}
+  {{#with (getApi page.site.data page.title path)}}
   <div class="reference">
     {{#headings}}
-      <div class="api-section">
-        {{> apiHeading name=name desc=description}}
-        {{#subheadings}}
-          {{> apiSubhead name=name headingName=../name desc=description}}
-          {{#symbols}}
-            {{#if isClass}}
-              {{~> apiClass symbol=this~}}
-            {{else}}
-              {{~> apiFunction symbol=this ~}}
-            {{/if}}
-          {{/symbols}}
-        {{/subheadings}}
-      </div>
+    <div class="api-section">
+      {{> apiHeading name=name desc=description}}
+      {{#subheadings}}
+      {{> apiSubhead name=name headingName=../name desc=description}}
+      {{#symbols}}
+      {{#if isClass}}
+      {{~> apiClass symbol=this~}}
+      {{else}}
+      {{~> apiFunction symbol=this ~}}
+      {{/if}}
+      {{/symbols}}
+      {{/subheadings}}
+    </div>
     {{/headings}}
   </div>
   {{/with}}

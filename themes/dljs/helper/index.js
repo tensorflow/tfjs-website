@@ -14,6 +14,10 @@ const md = new MarkdownIt({
   }
 });
 
+function isApiVisPage(path) {
+  return path.match(/^api_vis/);
+};
+
 module.exports = function(hexo) {
   return {
     toJson: function(obj) {
@@ -24,7 +28,12 @@ module.exports = function(hexo) {
       return path.match(/^api/);
     },
 
-    getApi: function(siteData, versionString) {
+    isApiVisPage: isApiVisPage,
+
+    getApi: function(siteData, versionString, path) {
+      if (isApiVisPage(path)) {
+        return siteData[`api_vis/${versionString}/docs`];
+      }
       return siteData[`api/${versionString}/docs`];
     },
 
