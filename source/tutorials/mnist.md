@@ -281,7 +281,7 @@ Let's break the code down. First, we fetch a batch of training examples. Recall 
 const batch = data.nextTrainBatch(BATCH_SIZE);
 ```
 
-Every 5 steps (our `TEST_ITERATION_FREQUENCY`, we construct `validationData`, an array of two elements containing a batch of MNIST images from the test set and their corresponding labels. We'll use this data to evaluate the accuracy of the model:
+Every 5 steps (our `TEST_ITERATION_FREQUENCY`), we construct `validationData`, an array of two elements containing a batch of MNIST images from the test set and their corresponding labels. We'll use this data to evaluate the accuracy of the model:
 
 ```js
 if (i % TEST_ITERATION_FREQUENCY === 0) {
