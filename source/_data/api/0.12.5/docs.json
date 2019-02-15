@@ -5425,7 +5425,7 @@
                 },
                 {
                   "name": "recurrentActivation",
-                  "documentation": "Activation function to use for the recurrent step.\n\nDefaults to hard sigmoid (`hardSigomid`).\n\nIf `null`, no activation is applied.",
+                  "documentation": "Activation function to use for the recurrent step.\n\nDefaults to hard sigmoid (`hardSigmoid`).\n\nIf `null`, no activation is applied.",
                   "type": "string",
                   "optional": true,
                   "isConfigParam": true
@@ -5469,7 +5469,7 @@
                 },
                 {
                   "name": "recurrentActivation",
-                  "documentation": "Activation function to use for the recurrent step.\n\nDefaults to hard sigmoid (`hardSigomid`).\n\nIf `null`, no activation is applied.",
+                  "documentation": "Activation function to use for the recurrent step.\n\nDefaults to hard sigmoid (`hardSigmoid`).\n\nIf `null`, no activation is applied.",
                   "type": "string",
                   "optional": true,
                   "isConfigParam": true
@@ -5513,7 +5513,7 @@
                 },
                 {
                   "name": "recurrentActivation",
-                  "documentation": "Activation function to use for the recurrent step.\n\nDefaults to hard sigmoid (`hardSigomid`).\n\nIf `null`, no activation is applied.",
+                  "documentation": "Activation function to use for the recurrent step.\n\nDefaults to hard sigmoid (`hardSigmoid`).\n\nIf `null`, no activation is applied.",
                   "type": "string",
                   "optional": true,
                   "isConfigParam": true
@@ -5564,7 +5564,7 @@
                 },
                 {
                   "name": "recurrentActivation",
-                  "documentation": "Activation function to use for the recurrent step.\n\nDefaults to hard sigmoid (`hardSigomid`).\n\nIf `null`, no activation is applied.",
+                  "documentation": "Activation function to use for the recurrent step.\n\nDefaults to hard sigmoid (`hardSigmoid`).\n\nIf `null`, no activation is applied.",
                   "type": "'elu'|'hardSigmoid'|'linear'|'relu'|'relu6'|\n    'selu'|'sigmoid'|'softmax'|'softplus'|'softsign'|'tanh'|string",
                   "optional": true,
                   "isConfigParam": true
