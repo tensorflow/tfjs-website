@@ -547,13 +547,12 @@ export function linkSymbols(
       subheading.symbols.forEach(symbol => {
         if (symbol['isClass']) {
           symbol.documentation = replaceSymbolsWithLinks(
-              symbol.documentation, symbols, toplevelNamespace,
-              true /** isMarkdown */);
+              symbol.documentation, symbols, true /** isMarkdown */);
           const classSymbol = symbol as DocClass;
           if (classSymbol.inheritsFrom != null) {
             classSymbol.inheritsFrom = replaceSymbolsWithLinks(
-                classSymbol.inheritsFrom, symbols, toplevelNamespace,
-                false /** isMarkdown */);
+                classSymbol.inheritsFrom, symbols, false /** isMarkdown */,
+                true /** replaceFromSymbolName */);
           }
         }
       });
@@ -562,33 +561,54 @@ export function linkSymbols(
 
   foreachDocFunction(docs.headings, method => {
     method.documentation = replaceSymbolsWithLinks(
-        method.documentation, symbols, toplevelNamespace,
-        true /** isMarkdown */);
+        method.documentation, symbols, true /** isMarkdown */);
 
     // Since automatic types do not have namespaces, we must replace using
     // just the symbol names.
     method.returnType = replaceSymbolsWithLinks(
-        method.returnType, symbols, toplevelNamespace, false /** isMarkdown */,
+        method.returnType, symbols, false /** isMarkdown */,
         true /** replaceFromSymbolName */);
     method.parameters.forEach(param => {
       param.documentation = replaceSymbolsWithLinks(
-          param.documentation, symbols, toplevelNamespace,
-          true /** isMarkdown */);
+          param.documentation, symbols, true /** isMarkdown */);
       param.type = replaceSymbolsWithLinks(
-          param.type, symbols, toplevelNamespace, false /** isMarkdown */,
+          param.type, symbols, false /** isMarkdown */,
           true /** replaceFromSymbolName */);
     });
   });
 }
 
+/**
+ * Replaces symbols wrapped in backticks with links to the documentation for
+ * that symbol.
+ *
+ * @param input The input string to replace over. Can be markdown, a type, or
+ * any other documentation string.
+ * @param symbolsAndUrls The symbols and URLs used to make replacements.
+ * @param isMarkdown Whether the input is markdown. When using markdown input,
+ * we expect replace the symbol wrapped in backticks. When not using markdown
+ * input, we just replace any symbols wrapped by word boundaries.
+ * @param replaceFromSymbolName Whether to replace from the just the symbol name
+ * (no "tf" or namespace prefix) or the fully qualified reference name (with the
+ * "tf" and namespace prefixes).
+ */
 function replaceSymbolsWithLinks(
-    input: string, symbolsAndUrls: SymbolAndUrl[], toplevelNamespace: string,
-    isMarkdown: boolean, replaceFromSymbolName = false): string {
+    input: string, symbolsAndUrls: SymbolAndUrl[], isMarkdown: boolean,
+    replaceFromSymbolName = false): string {
   symbolsAndUrls.forEach(symbolAndUrl => {
-    const re = getSymbolReplaceRegex(
-        replaceFromSymbolName ? symbolAndUrl.symbolName :
-                                symbolAndUrl.referenceName,
-        isMarkdown);
+    let symbolName: string;
+    if (replaceFromSymbolName) {
+      symbolName = symbolAndUrl.symbolName;
+    } else {
+      if (symbolAndUrl.toplevelNamespace != null) {
+        symbolName =
+            symbolAndUrl.toplevelNamespace + '.' + symbolAndUrl.referenceName;
+      } else {
+        symbolName = symbolAndUrl.referenceName;
+      }
+    }
+
+    const re = getSymbolReplaceRegex(symbolName, isMarkdown);
 
     let displayText = (symbolAndUrl.toplevelNamespace != null ?
                            symbolAndUrl.toplevelNamespace + '.' :

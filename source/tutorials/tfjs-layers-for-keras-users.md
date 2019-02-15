@@ -176,7 +176,7 @@ following:
 - DataFormat, e.g., **`channelsFirst`** instead of `channels_first`
 - Initializer, e.g., **`glorotNormal`** instead of `glorot_normal`
 - Loss and metrics, e.g., **`meanSquaredError`** instead of
-  `mean_squared_error`, **categoricalCrossentropy** instead of
+  `mean_squared_error`, **`categoricalCrossentropy`** instead of
   `categorical_crossentropy`.
 
 For example, as in the example above:
@@ -237,7 +237,7 @@ This feature is reminiscent of (Python) TensorFlow’s
 It affords greater interactivity and debuggability during model development, in
 addition to opening doors to composing dynamic neural networks.
 
-## Optimizers are under train.*, not optimizers.*
+## Optimizers are under `train.*`, not `optimizers.*`
 
 In Keras, the constructors for Optimizer objects are under the
 `keras.optimizers.*` namespace. In TensorFlow.js Layers, the factory methods for

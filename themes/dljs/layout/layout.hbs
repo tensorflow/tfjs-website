@@ -14,81 +14,114 @@ limitations under the License.
 ==============================================================================-->
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>TensorFlow.js</title>
-    <link rel="shortcut icon" href="/images/favicon.png">
 
-    <meta property="og:type" content="article" />
-    <meta property="og:title" content="TensorFlow.js" />
-    <meta property="og:description" content="A WebGL accelerated, browser based JavaScript library for training and deploying ML models">
-    <meta property="og:url" content="https://js.tensorflow.org" />
-    <meta property="og:image" content="https://js.tensorflow.org/images/TF_JS_twitter.png" />
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TensorFlow.js</title>
+  <link rel="shortcut icon" href="/images/favicon.png">
 
-    <meta name="twitter:card" value="summary_large_image">
-    <meta name="twitter:title" content="TensorFlow.js">
-    <meta name="twitter:description" content="A WebGL accelerated, browser based JavaScript library for training and deploying ML models">
-    <meta name="twitter:url" content="https://js.tensorflow.org">
-    <meta name="twitter:image" content="https://js.tensorflow.org/images/TF_JS_twitter.png">
-    <meta name="twitter:image:width" content="1856">
-    <meta name="twitter:image:height" content="431">
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="TensorFlow.js" />
+  <meta property="og:description" content="A WebGL accelerated, browser based JavaScript library for training and deploying ML models">
+  <meta property="og:url" content="https://js.tensorflow.org" />
+  <meta property="og:image" content="https://js.tensorflow.org/images/TF_JS_twitter.png" />
 
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+  <meta name="twitter:card" value="summary_large_image">
+  <meta name="twitter:title" content="TensorFlow.js">
+  <meta name="twitter:description" content="A WebGL accelerated, browser based JavaScript library for training and deploying ML models">
+  <meta name="twitter:url" content="https://js.tensorflow.org">
+  <meta name="twitter:image" content="https://js.tensorflow.org/images/TF_JS_twitter.png">
+  <meta name="twitter:image:width" content="1856">
+  <meta name="twitter:image:height" content="431">
 
-    {{!-- <link rel="stylesheet" href="/css/material-components-web.css" /> --}}
-    <link rel="stylesheet" href="{{url_for 'css/layout.css'}}" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
 
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-    <script src="{{url_for 'js/vendor/material-components-web.js'}} "></script>
-    <script src="{{url_for 'js/layout.js'}}"></script>
+  {{!--
+  <link rel="stylesheet" href="/css/material-components-web.css" /> --}}
+  <link rel="stylesheet" href="{{url_for 'css/layout.css'}}" />
 
-    {{#if (isApiPage path)}}
-      <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:400,500,700" rel="stylesheet">
-      <link rel="stylesheet" href="{{url_for 'css/vendor/highlight-railscasts.css'}}">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script src="{{url_for 'js/vendor/material-components-web.js'}} "></script>
+  <script src="{{url_for 'js/layout.js'}}"></script>
 
-      <link rel="stylesheet" href="{{url_for 'css/vendor/codemirror.css'}}">
-      <link rel="stylesheet" href="{{url_for 'css/vendor/codemirror-railscasts.css'}}">
+  {{#if (isApiPage path)}}
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:400,500,700" rel="stylesheet">
+  <link rel="stylesheet" href="{{url_for 'css/vendor/highlight-railscasts.css'}}">
 
-      <link rel="stylesheet" href="{{url_for 'css/api.css'}}" />
+  <link rel="stylesheet" href="{{url_for 'css/vendor/codemirror.css'}}">
+  <link rel="stylesheet" href="{{url_for 'css/vendor/codemirror-railscasts.css'}}">
 
-      {{#if (eq page.title 'local')}}
-        <script src="{{url_for 'js/vendor/tf.min.js'}}"> </script>
-      {{else}}
-        <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@{{page.title}}"> </script>
-      {{/if}}
+  <link rel="stylesheet" href="{{url_for 'css/api.css'}}" />
 
-      <script src="{{url_for 'js/vendor/codemirror.js'}}"></script>
-      <script src="{{url_for 'js/vendor/codemirror-javascript.js'}}"></script>
+  {{#if (eq page.title 'local')}}
+  <script src="{{url_for 'js/vendor/tf.min.js'}}"> </script>
+  {{else}}
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@{{page.title}}"> </script>
+  {{/if}}
 
-      <script src="{{url_for 'js/codeSnippets.js'}}"></script>
-      <script src="{{url_for 'js/api.js'}}"></script>
-    {{else}}
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
-      <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest"> </script>
-    {{/if}}
-  </head>
+  <script src="{{url_for 'js/vendor/codemirror.js'}}"></script>
+  <script src="{{url_for 'js/vendor/codemirror-javascript.js'}}"></script>
 
-  <body class="mdc-typography">
-    {{!-- Header --}}
-    {{> header }}
-    {{!-- Content --}}
-    <div class="main">
-      {{{body}}}
-    </div>
-    {{!-- Footer --}}
-    {{> footer }}
-  </body>
-  <script>
-      (function (i, s, o, g, r, a, m) {
-      i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
-        (i[r].q = i[r].q || []).push(arguments)
-      }, i[r].l = 1 * new Date(); a = s.createElement(o),
-        m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
-      })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+  <script src="{{url_for 'js/codeSnippets.js'}}"></script>
+  <script src="{{url_for 'js/api.js'}}"></script>
+  {{else}}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest"> </script>
+  {{/if}}
+</head>
 
-    ga('create', 'UA-46457317-10', 'auto');
-    ga('send', 'pageview');
-  </script>
+<body class="mdc-typography">
+  {{!-- Header --}}
+  {{> header }}
+  {{!-- Content --}}
+  <div class="main">
+    {{{body}}}
+  </div>
+  {{!-- Footer --}}
+  {{> footer }}
+</body>
+<script>
+  (function (i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+      (i[r].q = i[r].q || []).push(arguments)
+    }, i[r].l = 1 * new Date(); a = s.createElement(o),
+      m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+  })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+  ga('create', 'UA-46457317-10', 'auto');
+  ga('send', 'pageview');
+
+  var trackOutboundLink = function (link) {
+    var url = link.href;
+    ga('send', 'event', 'outbound', 'click', url, {
+      'transport': 'beacon',
+      'hitCallback': function () {
+        if (link.target.match('_blank')) {
+          window.open(url);
+        } else {
+          document.location = url;
+        }
+      }
+    });
+  }
+
+  // Add outbound link tracker to external links
+  var links = Array.prototype.slice.call(document.querySelectorAll('a'));
+  var internal = /(js\.tensorflow\.org)|localhost/;
+  for (var i = 0; i < links.length; i++) {
+    (function () {
+      var link = links[i];
+      if (link.href.match(internal)) {
+      } else {
+        link.addEventListener('click', () => {
+          trackOutboundLink(link);
+          return false;
+        });
+      }
+    })();
+  }
+</script>
+
 </html>

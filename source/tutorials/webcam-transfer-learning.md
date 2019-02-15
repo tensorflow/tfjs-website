@@ -471,7 +471,7 @@ Now, feed the webcam frame through our truncated MobileNet model to get
 the internal MobileNet activation.
 
 ```js
-const predictions = model.predict(act);
+const predictions = model.predict(activation);
 ```
 
 Now, feed the activation through our trained model to get a set of predictions.
