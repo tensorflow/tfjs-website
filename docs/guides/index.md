@@ -6,16 +6,16 @@ The _guide_ is a document with a description of high-level concepts important to
 
 Other resources available include:
 
-*   Tutorials that are built around a specific task on various topics.
-*   Our API docs provide documentation and code samples you can run right in the page.
-*   Our models repo, a collection of off-the-shelf models that don't require knowledge of tensors.
-*   See our code examples that implement various ML tasks using TensorFlow.js.
+*   [Tutorials](../tutorials/index) that are built around a specific task on various topics.
+*   [API docs](https://js.tensorflow.org/api/latest/) provide documentation and code samples you can run right in the page.
+*   [Models repo](https://github.com/tensorflow/tfjs-models), a collection of off-the-shelf models that don't require knowledge of tensors.
+*   [Code examples](../examples/index) that implement various ML tasks using TensorFlow.js.
 
 The guide is broken into various sections as described below:
 
-**Tensors & Operations.** An intro to tensors, data, shapes and data types, the building blocks of TensorFlow.js
+[**Tensors & Operations.**](tensors-operations) An intro to tensors, data, shapes and data types, the building blocks of TensorFlow.js
 
-**Backends & Environments.** Overview of the different backends and environments in TensorFlow.js and the tradeoffs between them.
+[**Platforms & Environments.**](platforms-environments) Overview of the different platforms and environments in TensorFlow.js and the tradeoffs between them.
 
 [**Models and Layers.**](models-and-layers) How to build a model in TensorFlow.js using the Layers and the Core API.
 

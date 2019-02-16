@@ -12,7 +12,7 @@ First, we will look at the Layers API, which is a higher-level API for building 
 
 There are two ways to create a model using the Layers API: A _sequential_ model, and a _functional_ model. The next two sections look at each type more closely.
 
-#### The sequential model
+### The sequential model
 
 The most common type of model is the <code>[Sequential](https://js.tensorflow.org/api/0.15.1/#class:Sequential)</code> model, which is a linear stack of layers. You can create a <code>Sequential</code> model by passing a list of layers to the <code>[sequential()](https://js.tensorflow.org/api/0.15.1/#sequential)</code> function:
 
@@ -37,7 +37,7 @@ model.add(tf.layers.dense({units: 10, activation: 'softmax'}));
 
 You can access the layers of the model via `model.layers`, and more specifically `model.inputLayers` and `model.outputLayers`.
 
-#### The functional model
+### The functional model
 
 Another way to create a `LayersModel` is via the `tf.model()` function. The key difference between `tf.model()` and `tf.sequential()` is that `tf.model()` allows you to create an arbitrary graph of layers, as long as they don't have cycles.
 
@@ -163,7 +163,7 @@ o.print(); // prints 30
 
 > IMPORTANT: If you add a custom layer, you lose the ability to serialize a model.
 
-## Core API
+## Creating models with the Core API
 
 In the beginning of this guide, we mentioned that there are two ways to create a machine learning model in TensorFlow.js.
 
