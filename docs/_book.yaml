@@ -58,9 +58,9 @@ upper_tabs:
 
       - heading: Models
       - title: Models and layers
-        path: /js/sample
+        path: /js/guides/models-and-layers
       - title: Training models
-        path: /js/sample
+        path: /js/guides/training-models
       - title: Model conversion
         path: /js/sample
       - title: Differences from Python tf.keras
