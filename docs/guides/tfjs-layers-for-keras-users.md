@@ -2,8 +2,8 @@
 
 The Layers API of TensorFlow.js is modeled after Keras. As you might have
 noticed from the
-[tutorials](./index.html) and examples, we strive to make the
-[Layers API](../api/latest/index.html) as
+[tutorials](/js/tutorials/index) and examples, we strive to make the
+[Layers API](https://js.tensorflow.org/api/latest/) as
 similar to Keras as reasonable given the differences between JavaScript and
 Python. This makes it easier for users with experience developing Keras models
 in Python to migrate to TensorFlow.js Layers in JavaScript. For example, the
@@ -131,7 +131,7 @@ const xs = tf.tensor2d([[1], [2], [3], [4]], [4, 1]);
 
 The `tf.*` namespace also provides a number of other functions for array and
 linear algebra operations such as matrix multiplication. See the
-[TensorFlow.js Core documentation](../api/latest/index.html) for more
+[TensorFlow.js Core documentation](https://js.tensorflow.org/api/latest/) for more
 information.
 
 ## Use factory methods, not constructors
@@ -176,7 +176,7 @@ following:
 - DataFormat, e.g., **`channelsFirst`** instead of `channels_first`
 - Initializer, e.g., **`glorotNormal`** instead of `glorot_normal`
 - Loss and metrics, e.g., **`meanSquaredError`** instead of
-  `mean_squared_error`, **categoricalCrossentropy** instead of
+  `mean_squared_error`, **`categoricalCrossentropy`** instead of
   `categorical_crossentropy`.
 
 For example, as in the example above:
@@ -259,7 +259,7 @@ In Keras, models are usually [saved](https://keras.io/getting-started/faq/#how-c
 as a HDF5 (.h5) file, which can be later loaded using the
 `keras.models.load_model()` method. The method takes a path to the .h5 file. The
 counterpart of `load_model()` in TensorFlow.js is
-[`tf.loadLayersModel()`](../api/latest/index.html#tf.loadLayersModel). Since HDF5 is not a
+[`tf.loadLayersModel()`](https://js.tensorflow.org/api/latest/#loadLayersModel). Since HDF5 is not a
 browser-friendly file format, `tf.loadLayersModel()` takes a TensorFlow.js-specific
 format. `tf.loadLayersModel()` takes a model.json file as its input argument. The
 model.json can be converted from a Keras HDF5 file using the tensorflowjs pip
@@ -272,7 +272,7 @@ const model = await tf.loadLayersModel('https://foo.bar/model.json');
 
 Also note that `tf.loadLayersModel()` returns a
 [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
-of [`tf.Model`](../api/latest/index.html#class:tf.Model).
+of [`tf.Model`](https://js.tensorflow.org/api/latest/#class:Model).
 
 In general, saving and loading `tf.Model`s in TensorFlow.js is done using the
 `tf.Model.save` and `tf.loadLayersModel` methods, respectively. We designed these APIs to be similar to
