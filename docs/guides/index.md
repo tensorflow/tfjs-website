@@ -9,7 +9,7 @@ Other resources available include:
 *   [Tutorials](../tutorials/index) that are built around a specific task on various topics.
 *   [API docs](https://js.tensorflow.org/api/latest/) provide documentation and code samples you can run right in the page.
 *   [Models repo](https://github.com/tensorflow/tfjs-models), a collection of off-the-shelf models that don't require knowledge of tensors.
-*   [Code examples](../examples/index) that implement various ML tasks using TensorFlow.js.
+*   [Code examples](https://github.com/tensorflow/tfjs-examples) that implement various ML tasks using TensorFlow.js.
 
 The guide is broken into various sections as described below:
 
