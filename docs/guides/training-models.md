@@ -3,6 +3,7 @@
 This guide assumes you've already read the [Models and Layers](models-and-layers) guide.
 
 In TensorFlow.js there are two ways to train a machine learning model:
+
 1.  using the Layers API with <code>[LayersModel.fit()](https://js.tensorflow.org/api/latest/#tf.Model.fit)</code> or <code>[LayersModel.fitDataset()](https://js.tensorflow.org/api/latest/#tf.Model.fitDataset)</code>.
 1.  using the Core API with <code>[Optimizer.minimize()](https://js.tensorflow.org/api/latest/#tf.train.Optimizer.minimize)</code>.
 
@@ -101,6 +102,7 @@ model.weights.forEach(w => {
 ## Optimizer, loss and metric
 
 Before you do any training, you need to decide on three things:
+
 1.  **An optimizer**. The job of the optimizer is to decide how much to change each parameter in the model, given the current model prediction. When using the Layers API, you can provide either a string identifier of an existing optimizer (such as `'sgd'` or `'adam'`), or an instance of the <code>[Optimizer](https://js.tensorflow.org/api/latest/#Training-Optimizers)</code> class.
 1.  <strong>A loss function</strong>. An objective that the model will try to minimize. Its goal is to give a single number for "how wrong" the model's prediction was. The loss is computed on every batch of data so that the model can update its weights. When using the Layers API, you can provide either a string identifier of an existing loss function (such as <code>'categoricalCrossentropy'</code>), or any function that takes a predicted and a true value and returns a loss. See a [list of available losses](https://js.tensorflow.org/api/latest/#Training-Losses) in our API docs.
 1.  <strong>List of metrics.</strong> Similar to losses, metrics compute a single number, summarizing how well our model is doing. The metrics are usually computed on the whole data at the end of each epoch. At the very least, we want to monitor that our loss is going down over time. However, we often want a more human-friendly metric such as accuracy. When using the Layers API, you can provide either a string identifier of an existing metric (such as <code>'accuracy'</code>), or any function that takes a predicted and a true value and returns a score. See a [list of available metrics](https://js.tensorflow.org/api/latest/#Metrics) in our API docs.
@@ -120,6 +122,7 @@ During compilation, the model will do some validation to make sure that the opti
 ## Training
 
 There are two ways to train a `LayersModel`:
+
 *   Using `model.fit()` and providing the data as one large tensor.
 *   Using `model.fitDataset()` and providing the data via a `Dataset` object.
 
@@ -147,6 +150,7 @@ model.fit(data, labels, {
 ```
 
 Under the hood, `model.fit()` can do a lot for us:
+
 *   Splits the data into a train and validation set, and uses the validation set to measure progress during training.
 *   Shuffles the data but only after the split. To be safe, you should pre-shuffle the data before passing it to `fit()`.
 *   Splits the large data tensor into smaller tensors of size `batchSize.`
@@ -207,6 +211,7 @@ Earlier, we mentioned that there are two ways to train a machine learning model 
 The general rule of thumb is to try to use the Layers API first, since it is modeled after the well-adopted Keras API. The Layers API also offers various off-the-shelf solutions such as weight initialization, model serialization, monitoring training, portability, and safety checking.
 
 You may want to use the Core API whenever:
+
 *   You need maximum flexibility or control.
 *   And you don't need serialization, or can implement your own serialization logic.
 
@@ -254,6 +259,7 @@ for (let epoch = 0; epoch < 5; epoch++) {
 ```
 
 The code above is the standard recipe when training a model with the Core API:
+
 *   Loop over the number of epochs.
 *   Inside each epoch, loop over your batches of data. When using a `Dataset`, <code>[dataset.forEachAsync()](https://js.tensorflow.org/api/0.15.1/#tf.data.Dataset.forEachAsync) </code>is a convenient way to loop over your batches.
 *   For each batch, call <code>[optimizer.minimize(f)](https://js.tensorflow.org/api/latest/#tf.train.Optimizer.minimize)</code>, which executes <code>f</code> and minimizes its output by computing gradients with respect to the four variables we defined earlier.
