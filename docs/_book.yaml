@@ -64,7 +64,7 @@ upper_tabs:
       - title: Model conversion
         path: /js/sample
       - title: Differences from Python tf.keras
-        path: /js/sample
+        path: /js/guides/tfjs-layers-for-keras-users
 
       - heading: Node.js
       - title: Choosing between Node.js and the browser

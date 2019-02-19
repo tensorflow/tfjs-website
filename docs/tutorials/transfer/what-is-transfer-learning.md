@@ -7,3 +7,7 @@ For example, the next tutorial in this section will show you how to build your o
 This is useful for rapidly developing new models as well as customizing models in resource contstrained environments like browsers and mobile devices.
 
 Most often when doing transfer learning, we don't adjust the weights of the original model. Instead we remove the final layer and train a new (often fairly shallow) model on top of the output of the truncated model. This is the technique you will see demonstrated in the tutorials in this section.
+
+
+- [Build a transfer-learning based image classifier](image-classification)
+- [Build a transfer-learning based audio recognizer](audio-recognizer)
