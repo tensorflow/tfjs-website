@@ -11,8 +11,6 @@ The central unit of data in TensorFlow.js is the `tf.Tensor`: a set of values sh
 
 A `tf.Tensor` also contains the following properties:
 
-
-
 *   `rank`: defines how many dimensions the tensor contains
 *   `shape`: which defines the size of each dimension of the data
 *   `dtype`: which defines the data type of the tensor.
