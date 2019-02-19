@@ -115,7 +115,8 @@ limitations under the License.
       var link = links[i];
       if (link.href.match(internal)) {
       } else {
-        link.addEventListener('click', () => {
+        link.addEventListener('click', (event) => {
+          event.preventDefault();
           trackOutboundLink(link);
           return false;
         });
