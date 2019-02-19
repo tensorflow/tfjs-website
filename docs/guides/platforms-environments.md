@@ -125,8 +125,6 @@ This backend can be very useful for testing, or on devices where WebGL is unavai
 
 TensorFlow.js has a set of environment flags that are automatically evaluated and determine the best configuration in the current platform. These flags are mostly internal, but a few global flags can be controlled with public API.
 
-
-
 *   `tf.enableProdMode():` enables production mode, which will remove model validation, NaN checks, and other correctness checks in favor of performance.
 *   `tf.enableDebugMode()`: enables debug mode, which will log to the console every operation that is executed, as well as runtime performance information like memory footprint and total kernel execution time. Note that this will greatly slow down your application, do not use this in production.
 

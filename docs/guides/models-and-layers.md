@@ -3,6 +3,7 @@
 In machine learning, a _model_ is a function with _learnable_ [parameters](https://developers.google.com/machine-learning/glossary/#parameter) that maps an input to an output. The optimal parameters are obtained by training the model on data. A well-trained model will provide an accurate mapping from the input to the desired output.
 
 In TensorFlow.js there are two ways to create a machine learning model:
+
 1.  using the Layers API where you build a model using _layers_.
 1.  using the Core API with lower-level ops such as `tf.matMul()`, `tf.add()`, etc.
 
@@ -75,6 +76,7 @@ Both the sequential model and the functional model are instances of the `LayersM
 ## Model summary
 
 Call `model.summary()` to print a useful summary of the model, which includes:
+
 *   Name and type of all layers in the model.
 *   Output shape for each layer.
 *   Number of weight parameters of each layer.
@@ -119,6 +121,7 @@ Note the `null` values in the output shapes of the layers: a reminder that the m
 ## Serialization
 
 One of the major benefits of using a `LayersModel` over the lower-level API is the ability to save and load a model. A `LayersModel` knows about:
+
 *   the architecture of the model, allowing you to re-create the model.
 *   the weights of the model
 *   the training configuration (loss, optimizer, metrics).
@@ -170,6 +173,7 @@ In the beginning of this guide, we mentioned that there are two ways to create a
 The general rule of thumb is to always try to use the Layers API first, since it is modeled after the well-adopted Keras API which follows [best practices and reduces cognitive load](https://keras.io/why-use-keras/). The Layers API also offers various off-the-shelf solutions such as weight initialization, model serialization, monitoring training, portability, and safety checking.
 
 You may want to use the Core API whenever:
+
 *   You need maximum flexibility or control.
 *   You don't need serialization, or can implement your own serialization logic.
 
