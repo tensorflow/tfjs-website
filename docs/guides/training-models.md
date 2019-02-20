@@ -190,7 +190,7 @@ model.fitDataset(ds, {epochs: 5}).then(info => {
 });
 ```
 
-For more info about datasets, see the [documentation](https://js.tensorflow.org/api/latest/#tf.Model.fitDataset) of `model.fitDataset()` and the [TODO: link to data](data).
+For more info about datasets, see the [documentation](https://js.tensorflow.org/api/latest/#tf.Model.fitDataset) of `model.fitDataset()`.
 
 ## Predicting new data
 
