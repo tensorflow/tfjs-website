@@ -213,7 +213,7 @@ Using `tf.tidy` will help prevent memory leaks in your application. It can also 
 
 *  `tf.tidy` _will not_ clean up variables. Variables typically last through the entire lifecycle of a machine learning model, so TensorFlow.js doesn't clean them up even if they are created in a `tidy`; however, you can call `dispose` on them manually.
 
-# Additional Resources
+## Additional Resources
 
 See the [TensorFlow.js API reference](../api/latest/index.html) for comprehensive documentation of the library.
 
