@@ -134,7 +134,7 @@ const saveResult = await model.save('localstorage://my-model-1');
 const model = await model.load('localstorage://my-model-1');
 ```
 
-The example above saves the model to local storage in the browser. See the <code>[model.save() documentation](https://js.tensorflow.org/api/latest/#tf.Model.save)</code> and the [TODO: link to Saving and Loading](saving-and-loading) guide for how to save to different mediums (e.g. file storage, <code>IndexedDB</code>, trigger a browser download, etc.)
+The example above saves the model to local storage in the browser. See the <code>[model.save() documentation](https://js.tensorflow.org/api/latest/#tf.Model.save)</code> and the [Saving and Loading](saving-and-loading) guide for how to save to different mediums (e.g. file storage, <code>IndexedDB</code>, trigger a browser download, etc.)
 
 ## Custom layers
 
