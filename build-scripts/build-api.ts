@@ -81,7 +81,10 @@ const docsManifest = {
   converterVersion: converterTag,
   dataVersion: dataTag,
 };
+
+const templateFolder = `source/vis`;
 writeManifestAndTemplate(
-    docsFolder, versionedDocsFolder, docsManifest, unionPackageVersion);
+    docsFolder, versionedDocsFolder, docsManifest, unionPackageVersion,
+    templateFolder);
 
 // A this point a website build should be able to produce an api docs page

@@ -112,7 +112,7 @@ export function mergeDocs(
  */
 export function writeManifestAndTemplate(
     docsFolder: string, versionedDocsFolder: string, manifest: Manifest,
-    docsVersion: string) {
+    docsVersion: string, templateFolder: string) {
   // Write docs manifest.
   fs.writeFileSync(
       `${versionedDocsFolder}/docs_manifest.json`,
@@ -126,7 +126,10 @@ export function writeManifestAndTemplate(
       JSON.parse(fs.readFileSync(apiManifestPath, {encoding: 'utf8'}));
 
   if (!apiManifest.versions.includes(docsVersion)) {
-    const newApiPagePath = `${versionedDocsFolder}/index.md`;
+    const newApiPagePath = `${templateFolder}/${docsVersion}/index.md`;
+    console.log(
+        'writeTemplate', docsVersion, newApiPagePath, docsFolder,
+        versionedDocsFolder)
     writeTemplate(docsVersion, 'api', newApiPagePath)
 
     // We do not add 'local' to the api manifest, this prevents it from
@@ -138,7 +141,7 @@ export function writeManifestAndTemplate(
 
 
       // Update the template for 'latest'.
-      const newApiPagePath = `${docsFolder}/latest/index.md`;
+      const newApiPagePath = `${templateFolder}/latest/index.md`;
       writeTemplate(apiManifest.versions[0], 'api', newApiPagePath);
     }
   }

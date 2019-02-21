@@ -36,7 +36,7 @@ console.log(`********* Merging docs *********`);
 const docsFolder = `source/_data/api_vis`;
 const versionedDocsFolder = `${docsFolder}/${visVersion}`
 const bundlePath = commander.bundle && path.resolve(commander.bundle) ||
-    path.resolve('node_modules/@tensorflow/tfjs-vis/dist/tfvis.umd.min.js');
+    path.resolve('node_modules/@tensorflow/tfjs-vis/dist/tfjs-vis.umd.min.js');
 mergeDocs(docsFolder, versionedDocsFolder, outputPaths, bundlePath);
 
 console.log(`********* Writing Manifest & Template *********`);
@@ -44,9 +44,8 @@ const docsManifest = {
   tfjsVersion: visVersion,
   visVersion,
 };
+const templateFolder = `source/api_vis`;
 writeManifestAndTemplate(
-    docsFolder, versionedDocsFolder, docsManifest, visVersion);
-
-
+    docsFolder, versionedDocsFolder, docsManifest, visVersion, templateFolder);
 
 // A this point a website build should be able to produce an api docs page
