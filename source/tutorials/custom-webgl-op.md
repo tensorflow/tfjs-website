@@ -177,7 +177,7 @@ Tensorflow.js generates functions you can use to read from the input tensors and
 
   * `bool isNaN(float val)`
 
-    * `true` if val is a `NaN`, otherwise false.
+    * `true` if `val` is a `NaN`, otherwise `false`.
 
   * `int round(float value)`
 
