@@ -25,8 +25,6 @@ The guide is broken into various sections as described below:
 
 **Differences from Python tf.keras.** Know the major differences and capabilities between TensorFlow.js and Python tf.keras and the API conventions used in JavaScript.
 
-**Choosing between Node and the Browser.** Tradeoffs of working in Node vs browser environments.
-
 [**Using TensorFlow.js in Node.js.**](using-tfjs-in-node) Understand the tradeoffs between the three available Node.js bindings and the system requirements they have.
 
 **Visualizing Model Behavior.** Overview of tfjs-vis library and the different visualization options: in-browser and interfacing with [TensorBoard](https://www.tensorflow.org/guide/summaries_and_tensorboard).

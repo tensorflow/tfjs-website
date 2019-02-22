@@ -1,4 +1,4 @@
-# Using TensorFlow.js in Node [P0]
+# Using TensorFlow.js in Node
 ## TensorFlow CPU
 
 The TensorFlow CPU package can be imported as follows:
@@ -9,7 +9,7 @@ import * as tf from '@tensorflow/tfjs-node'
 ```
 
 
-When importing TensorFlow.js from this package, the module that you get will be accelerated by the TensorFlow C binary and run on the CPU. TensorFlow on the CPU uses hardware acceleration like AVX to accelerate the linear algebra computation under the hood.
+When importing TensorFlow.js from this package, the module that you get will be accelerated by the TensorFlow C binary and run on the CPU. TensorFlow on the CPU uses hardware acceleration to accelerate the linear algebra computation under the hood.
 
 This package will work on Linux, Windows, and Mac platforms where TensorFlow is supported.
 
@@ -26,7 +26,7 @@ import * as tf from '@tensorflow/tfjs-node-gpu'
 ```
 
 
-Like the CPU package, the module that you get will be accelerated by the TensorFlow C binary, however it will run tensor operations on the GPU with CUDA. This binding can be at least an order of magnitude faster than the other binding options.
+Like the CPU package, the module that you get will be accelerated by the TensorFlow C binary, however it will run tensor operations on the GPU with CUDA and thus only linux. This binding can be at least an order of magnitude faster than the other binding options.
 
 > Note: this package currently only works with CUDA. You need to have CUDA installed on your machine with an NVIDIA graphics card before going this route.
 
@@ -57,7 +57,7 @@ For this reason, the bindings currently are well suited for scripts and offline 
 
 ## APIs
 
-Once you import the package as tf in any of the options above, all of the normal TensorFlow.js symbols will appear on that module.
+Once you import the package as tf in any of the options above, all of the normal TensorFlow.js symbols will appear on the imported module.
 
 
 ### tf.browser
