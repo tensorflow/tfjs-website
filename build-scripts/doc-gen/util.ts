@@ -120,29 +120,17 @@ export function unpackConfigParams(
         const configParamName = docFunction.parameters[i].name;
         params.push(docFunction.parameters[i]);
 
-        if (docFunction.docInfo.configParamIndices.indexOf(i) != -1) {
-          let configParams =
-              configInterfaceParamMap[docFunction.parameters[i].type];
-          if (configParams == null) {
-            // TODO remove this reassignent and change the warning
-            // back to an error when
-            // https://github.com/tensorflow/tfjs/issues/400
-            // is fixed
-            configParams = [];
-            console.warn(
-                `Could not find config interface definition for ` +
-                `${docFunction.symbolName}, config type ` +
-                `${docFunction.parameters[i].type}, param ` +
-                `${configParamName} index ${i}. Please make sure ` +
-                `configParamIndices is set properly and the config interface ` +
-                `is documented.`);
-          }
-          configParams.forEach(configParam => {
-            params.push(configParam);
-          });
-          // Hide the original type of the config.
+        let configParams =
+            configInterfaceParamMap[docFunction.parameters[i].type];
+        if (configParams != null) {
+          configParams.forEach(
+              configParam => {
+                  // Deep copy the configParam.
+                  params.push(JSON.parse(JSON.stringify(configParam)))});
           docFunction.parameters[i].type = 'Object';
         }
+        // If config params is null, we don't have an interface defined for
+        // this type so we should not try to unpack it.
       }
       docFunction.parameters = params;
     }
