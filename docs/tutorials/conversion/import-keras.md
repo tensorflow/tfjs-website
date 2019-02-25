@@ -1,8 +1,3 @@
----
-title: import-keras
-date: 2018-03-22 16:04:23
----
-
 # Importing a Keras model into TensorFlow.js
 
 Keras models (typically created via the Python API) may be saved in [one of several formats](https://keras.io/getting-started/faq/#how-can-i-save-a-keras-model).  The "whole model" format can be converted to TensorFlow.js Layers format, which can be loaded directly into TensorFlow.js for inference or for further training.
@@ -10,6 +5,7 @@ Keras models (typically created via the Python API) may be saved in [one of seve
 The target TensorFlow.js Layers format is a directory containing a `model.json` file and a set of sharded weight files in binary format.  The `model.json` file contains both the model topology (aka "architecture" or "graph": a description of the layers and how they are connected) and a manifest of the weight files.
 
 ## Requirements
+
 The conversion procedure requires a Python environment; you may want to keep an isolated one using [pipenv](https://github.com/pypa/pipenv) or [virtualenv](https://virtualenv.pypa.io).  To install the converter, use `pip install tensorflowjs`.
 
 Importing a Keras model into TensorFlow.js is a two-step process. First, convert an existing Keras model to TF.js Layers format, and then load it into TensorFlow.js.
@@ -55,7 +51,7 @@ Then load the model into TensorFlow.js by providing the URL to the model.json fi
 
 import * as tf from '@tensorflow/tfjs';
 
-const model = await tf.loadModel('https://foo.bar/tfjs_artifacts/model.json');
+const model = await tf.loadLayersModel('https://foo.bar/tfjs_artifacts/model.json');
 ```
 
 Now the model is ready for inference, evaluation, or re-training.  For instance, the loaded model can be immediately used to make a prediction:

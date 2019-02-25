@@ -1,8 +1,3 @@
----
-title: import-saved-model
-date: 2018-06-13 12:33:23
----
-
 # Importing a TensorFlow GraphDef based Models into TensorFlow.js
 
 TensorFlow GraphDef based models (typically created via the Python API) may be saved in one of following formats:
@@ -11,20 +6,21 @@ TensorFlow GraphDef based models (typically created via the Python API) may be s
 3. [Session Bundle](https://github.com/tensorflow/tensorflow/blob/master/tensorflow/contrib/session_bundle/README.md)
 4. [Tensorflow Hub module](https://www.tensorflow.org/hub/)
 
-All of above formats can be converted by [TensorFlow.js converter](https://github.com/tensorflow/tfjs-converter) to TensorFlow.js web friendly format, which can be loaded directly into TensorFlow.js for inference.
+All of the above formats can be converted by the [TensorFlow.js converter](https://github.com/tensorflow/tfjs-converter) into a format that can be loaded directly into TensorFlow.js for inference.
 
-(Note: TensorFlow has deprecated session bundle format, please migrate your models to SavedModel format.)
+(Note: TensorFlow has deprecated the session bundle format, please migrate your models to the SavedModel format.)
 
 ## Requirements
-The conversion procedure requires a Python environment; you may want to keep an isolated one using [pipenv](https://github.com/pypa/pipenv) or [virtualenv](https://virtualenv.pypa.io).  To install the converter, and run following:
+
+The conversion procedure requires a Python environment; you may want to keep an isolated one using [pipenv](https://github.com/pypa/pipenv) or [virtualenv](https://virtualenv.pypa.io).  To install the converter, run the following command:
 
 ```bash
  pip install tensorflowjs
 ```
 
-Importing a TensorFlow models into TensorFlow.js is a two-step process. First, convert an existing model to TensorFlow.js web format, and then load it into TensorFlow.js.
+Importing a TensorFlow model into TensorFlow.js is a two-step process. First, convert an existing model to the TensorFlow.js web format, and then load it into TensorFlow.js.
 
-## Step 1. Convert an existing TensorFlow model to TensorFlow.js Web format
+## Step 1. Convert an existing TensorFlow model to the TensorFlow.js web format
 
 Run the converter script provided by the pip package:
 
@@ -50,16 +46,6 @@ tensorflowjs_converter \
     /mobilenet/web_model
 ```
 
-Session bundle model example:
-
-```bash
-tensorflowjs_converter \
-    --input_format=tf_session_bundle \
-    --output_node_names='MobilenetV1/Predictions/Reshape_1' \
-    /mobilenet/session_bundle \
-    /mobilenet/web_model
-```
-
 Tensorflow Hub module example:
 
 ```bash
@@ -81,7 +67,7 @@ tensorflowjs_converter \
 |`--saved_model_tags` | Only applicable to SavedModel conversion, Tags of the MetaGraphDef to load, in comma separated format. Defaults to `serve`.|
 |`--signature_name`   | Only applicable to TensorFlow Hub module conversion, signature to load. Defaults to `default`. See https://www.tensorflow.org/hub/common_signatures/.|
 
-Use following command to get the detail help message:
+Use following command to get a detailed help message:
 
 ```bash
 tensorflowjs_converter --help
@@ -89,21 +75,18 @@ tensorflowjs_converter --help
 
 ### Converter generated files
 
-The conversion script above produces 3 types of files:
+The conversion script above produces two types of files:
 
-* `web_model.pb` (the dataflow graph)
-* `weights_manifest.json` (weight manifest file)
+* `model.json` (the dataflow graph and weight manifest)
 * `group1-shard\*of\*` (collection of binary weight files)
 
-For example, here is the MobileNet model converted and served in
-following location:
+For example, here is the output from converting MobileNet v2:
 
 ```html
-  https://storage.cloud.google.com/tfjs-models/savedmodel/mobilenet_v1_1.0_224/optimized_model.pb
-  https://storage.cloud.google.com/tfjs-models/savedmodel/mobilenet_v1_1.0_224/weights_manifest.json
-  https://storage.cloud.google.com/tfjs-models/savedmodel/mobilenet_v1_1.0_224/group1-shard1of5
+  output_directory/model.json
+  output_directory/group1-shard1of5
   ...
-  https://storage.cloud.google.com/tfjs-models/savedmodel/mobilenet_v1_1.0_224/group1-shard5of5
+  output_directory/group1-shard5of5
 ```
 
 ## Step 2: Loading and running in the browser
@@ -116,38 +99,26 @@ following location:
 
 ```js
 import * as tf from '@tensorflow/tfjs';
-import {loadFrozenModel} from '@tensorflow/tfjs-converter';
+import {loadGraphModel} from '@tensorflow/tfjs-converter';
 
-const MODEL_URL = 'https://.../mobilenet/web_model.pb';
-const WEIGHTS_URL = 'https://.../mobilenet/weights_manifest.json';
+const MODEL_URL = 'model_directory/model.json';
 
-const model = await loadFrozenModel(MODEL_URL, WEIGHTS_URL);
+const model = await loadGraphModel(MODEL_URL);
 const cat = document.getElementById('cat');
-model.execute({input: tf.fromPixels(cat)});
+model.execute(tf.fromPixels(cat));
 ```
 
-Check out our working [MobileNet demo](https://github.com/tensorflow/tfjs-converter/tree/master/demo/mobilenet).
+Check out our [MobileNet demo](https://github.com/tensorflow/tfjs-converter/tree/master/demo/mobilenet).
 
-If your server requests credentials for accessing the model files, you can provide the optional RequestOption param, which will be directly passed to the fetch function call.
-
-```js
-const model = await loadFrozenModel(MODEL_URL, WEIGHTS_URL,
-    {credentials: 'include'});
-```
-
-Please see [fetch() documentation](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/fetch) for details.
+The `loadGraphModel` API accepts an additional `LoadOptions` parameter, which can be used to send credentials or custom headers along with the request. Please see the [loadGraphModel() documentation](https://js.tensorflow.org/api/1.0.0/#loadGraphModel) for more details.
 
 ## Supported operations
 
-Currently TensorFlow.js only supports a limited set of TensorFlow Ops. See the
-[full list](https://github.com/tensorflow/tfjs-converter/blob/master/docs/supported_ops.md).
-If your model uses any unsupported ops, the `tensorflowjs_converter` script will fail and
-produce a list of the unsupported ops in your model. Please file [issues](https://github.com/tensorflow/tfjs/issues) to let us
-know what ops you need support for.
+Currently TensorFlow.js supports a limited set of TensorFlow ops. If your model uses an unsupported op, the `tensorflowjs_converter` script will fail and print out a list of the unsupported ops in your model. Please file an [issue](https://github.com/tensorflow/tfjs/issues) for each op to let us know which ops you need support for.
 
 ## Loading the weights only
 
-If you prefer to load the weights only, you can use follow code snippet.
+If you prefer to load the weights only, you can use the following code snippet.
 
 ```js
 import * as tf from '@tensorflow/tfjs';
