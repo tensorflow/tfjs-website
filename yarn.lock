@@ -3043,7 +3043,7 @@ hexo@~3.6.0:
     titlecase "^1.1.2"
     warehouse "^2.2.0"
 
-highlight.js@^9.12.0, highlight.js@^9.4.0:
+highlight.js@^9.15.2, highlight.js@^9.4.0:
   version "9.15.2"
   resolved "https://registry.yarnpkg.com/highlight.js/-/highlight.js-9.15.2.tgz#1a431ba49d6141389d31731fdfbf3f9961a36521"
   integrity sha512-NmjkWYiCDZ8EB8EkowsL+6/qhBFi2Gah6Ptmj0ET6Ut1qBUSZ4l76VqQ4oQhjMbkW1SIrXNDfmV5qvbBwoAb9g==
