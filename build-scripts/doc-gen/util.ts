@@ -129,6 +129,8 @@ export function unpackConfigParams(
                   params.push(JSON.parse(JSON.stringify(configParam)))});
           docFunction.parameters[i].type = 'Object';
         }
+        // If config params is null, we don't have an interfaced defined for
+        // this type so we should not try to unpack it.
       }
       docFunction.parameters = params;
     }

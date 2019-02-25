@@ -78,7 +78,7 @@ skeleton.forEach(skeletonHeading => {
   mergedDocs.headings.push(heading);
 });
 
-// Collect all the configInterfaceMaps for all the repos and merge them.
+// Collect all the interfaces for all the repos and merge them.
 const configInterfaceParamMapMerged:
     {[interfaceName: string]: DocFunctionParam[]} = {};
 docsForRepos.forEach(docsForRepos => {
@@ -94,7 +94,7 @@ docsForRepos.forEach(docsForRepos => {
   });
 });
 
-// Collected all the inlined types for all the repos and merge them.
+// Collected all the types tagged with @docinline to inline.
 const inlineTypesMerged: {[typeName: string]: string} = {};
 docsForRepos.forEach(docsForRepos => {
   Object.keys(docsForRepos.inlineTypes).forEach(key => {
