@@ -37,11 +37,15 @@ Upon successfully converting your model, you’ll end up with a set of weight fi
 
 Here’s what the API looks like for a converted TensorFlow SavedModel or TensorFlow Hub module:
 
+```js
     const model = await tf.loadGraphModel(‘path/to/model.json’);
+```
 
 And here’s what it looks like for a converted Keras model:
 
+```js
     const model = await tf.loadLayersModel(‘path/to/model.json’);
+```
 
 The `tf.loadGraphModel` API returns a `tf.FrozenModel`, which means that the parameters are fixed and you will not be able to fine tune your model with new data. The `tf.loadLayersModel` API returns a tf.Model, which can be trained. For information on how to train a tf.Model, refer to our guide: [Training Models](/js/guides/training-models.md).
 
