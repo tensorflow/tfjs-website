@@ -42,7 +42,7 @@ Below we will examine the different schemes available.
 **Scheme:** `localstorage://`
 
 ```js
-const saveResult = await model.save('localstorage://my-model');
+model.save('localstorage://my-model');
 ```
 
 This saves a model under the name `my-model` in the browser's [local storage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage). This will persist between refreshes, though local storage can be cleared by users or the browser itself if space becomes a concern. Each browser also sets their own limit on how much data can be stored in local storage for a given domain.
@@ -127,4 +127,79 @@ Note that the name of the two files will always be exactly as specified above (t
 
 ## Loading a tf.Model
 
-TBD
+Given a model that was saved using one of the methods above, we can load it using the [`tf.loadLayersModel`]() API.
+
+Let's take a look at what the code for loading a model looks like
+
+```js
+const model = await tf.loadLayersModel('localstorage://my-model-1');
+```
+
+A few things to note:
+
+- Like `model.save()`, the `loadLayersModel` function takes a URL-like string argument that starts with a **scheme**. This describes the type of destination we are trying to load a model from.
+- The scheme is followed by a **path**. In the example above the path is `my-model-1`.
+- The url-like string can be replaced by an object that matches the IOHandler interface.
+- The `loadLayersModel` function is asynchronous.
+- The return value of `tf.loadLayersModel` is `tf.Model`
+
+Below we will examine the different schemes available.
+
+
+### Local Storage (Browser only)
+
+**Scheme:** `localstorage://`
+
+```js
+const model = await model.loadLayersModel('localstorage://my-model');
+```
+
+This loads a model named `my-model` from the browser's [local storage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage).
+
+### IndexedDB (Browser only)
+
+**Scheme:** `indexeddb://`
+
+```js
+const model = model.save('indexeddb://my-model');
+```
+
+This loads a model from the browser's [IndexedDB](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API) storage.
+
+### HTTP(S)
+
+**Scheme:** `http://` or `https://`
+
+```js
+const model = await tf.loadLayersModel('http://model-server.domain/download/model.json');
+```
+
+This loads a model from an http endpoint. After loading the `json` file the function will make requests for corresponding `.bin` files that the `json` file references.
+
+> NOTE: This implementation relies on the presence of the `fetch` method, if you are in an environment that does not provide the fetch method natively you can provide a global method names fetch that satisfies that interface or use a library like `node-fetch`.
+
+### Native File System (Node.js only)
+
+**Scheme:** `file://`
+
+```js
+const model = tf.loadLayersModel('file://path/to/my-model/model.json');
+```
+
+When running on Node.js we also have direct access to the filesystem and can load models from there. Note that in the function call above we reference the model.json file itself (whereas when saving we specify a folder). The corresponding `.bin` file(s) should be in the same folder as the `json` file.
+
+## Loading models with IOHandlers
+
+If the schemes above are not sufficient for your needs you can implement custom loading behavior with an `IOHandler`. One `IOHandler` that TensorFlow.js provides is [`tf.io.browserFiles`](https://js.tensorflow.org/api/latest/#io.browserFiles) which allows browser users to upload model files in the browser. See the [documentation](https://js.tensorflow.org/api/latest/#io.browserFiles) for more information.
+
+# Saving and Loading Models with custom IOHandlers
+
+If the schemes above are not sufficient for your loading or saving needs you can implement custom serialization behavior by implementing an `IOHandler`.
+
+An `IOHandler` is an object with a `save` and `load` method.
+
+The `save` function takes one parameter that is a matches the [ModelArtifacts](https://github.com/tensorflow/tfjs-core/blob/master/src/io/types.ts#L165) interface and should return a promise that resolves to a [SaveResult](https://github.com/tensorflow/tfjs-core/blob/master/src/io/types.ts#L107) object.
+
+The `load` function takes no parameters and should return a promise that resolves to a [ModelArtifacts](https://github.com/tensorflow/tfjs-core/blob/master/src/io/types.ts#L165) object. This is the same object that is passed to `save`.
+
+See [BrowserHTTPRequest](https://github.com/tensorflow/tfjs-core/blob/master/src/io/browser_http.ts) for an example of how to implement an IOHandler.
