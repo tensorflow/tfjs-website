@@ -1,14 +1,15 @@
 # Saving and Loading TensorFlow.js models
 
 TensorFlow.js provides functionality for saving and loading models that have been created with
-the [`layers`](https://js.tensorflow.org/api/0.14.2/#Models) API. These may be models you have trained yourself or those trained by others. A key benefit of using the
-layers api is that the models created with it are serializable and this is what we will explore in this tutorial.
+the [`Layers`](https://js.tensorflow.org/api/0.14.2/#Models) API or converted from existing TensorFlow models.
+These may be models you have trained yourself or those trained by others. A key benefit of using the
+Layers api is that the models created with it are serializable and this is what we will explore in this tutorial.
 
 This tutorial will focus on saving and loading TensorFlow.js models (identifiable by JSON files). We can also import TensorFlow Python models.
 Loading these models are covered in the following two tutorials:
 
-  - [TODO] TK add link to Keras Model Importing tutorial
-  - [TODO] TK add link to Python Graphdef Model Importing tutorial
+  - [Importing Keras Models](/js/tutorials/conversion/import-keras)
+  - [Importing Graphdef Models](/js/tutorials/conversion/import-saved-model)
 
 
 ## Saving a tf.Model
@@ -17,9 +18,9 @@ Loading these models are covered in the following two tutorials:
 both provide a function [`model.save`](https://js.tensorflow.org/api/0.14.2/#tf.Model.save) that allow you to save the
 _topology_ and _weights_ of a model.
 
-> Topology: This is a file describing the architecture of a model (i.e. what operations it uses). It contains references to the models's weights which are stored externally.
+-  Topology: This is a file describing the architecture of a model (i.e. what operations it uses). It contains references to the models's weights which are stored externally.
 
-> Weights: These are binaray files that store the weights of a given model in an efficient format. They are generally stored in the same folder as the topology.
+-  Weights: These are binaray files that store the weights of a given model in an efficient format. They are generally stored in the same folder as the topology.
 
 Let's take a look at what the code for saving a model looks like
 
@@ -42,7 +43,7 @@ Below we will examine the different schemes available.
 **Scheme:** `localstorage://`
 
 ```js
-model.save('localstorage://my-model');
+await model.save('localstorage://my-model');
 ```
 
 This saves a model under the name `my-model` in the browser's [local storage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage). This will persist between refreshes, though local storage can be cleared by users or the browser itself if space becomes a concern. Each browser also sets their own limit on how much data can be stored in local storage for a given domain.
@@ -52,7 +53,7 @@ This saves a model under the name `my-model` in the browser's [local storage](ht
 **Scheme:** `indexeddb://`
 
 ```js
-model.save('indexeddb://my-model');
+await model.save('indexeddb://my-model');
 ```
 
 This saves a model to the browser's [IndexedDB](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API) storage. Like local storage it persists between refreshes, it also tends to have larger limits on the size of objects stored.
@@ -62,7 +63,7 @@ This saves a model to the browser's [IndexedDB](https://developer.mozilla.org/en
 **Scheme:** `downloads://`
 
 ```js
-model.save('downloads://my-model');
+await model.save('downloads://my-model');
 ```
 
 This will cause the browser to download the model files to the user's machine. Two files will be produced:
@@ -82,7 +83,7 @@ Becuase the `.json` file points to the `.bin` using a relative path, the two fil
 **Scheme:** `http://` or `https://`
 
 ```js
-model.save('http://model-server.domain/upload')
+await model.save('http://model-server.domain/upload')
 ```
 
 This will create a web request to save a model to a remote server. You should be in control of that remote server so that you can ensure that it is able to handle the request.
@@ -114,7 +115,7 @@ await model.save(tf.io.browserHTTPRequest(
 **Scheme:** `file://`
 
 ```js
-model.save('file:///path/to/my-model');
+await model.save('file:///path/to/my-model');
 ```
 
 When running on Node.js we also have direct access to the filesystem and can save models there. The command above will save two files to the `path` specified afer the `scheme`.
@@ -140,7 +141,7 @@ A few things to note:
 - Like `model.save()`, the `loadLayersModel` function takes a URL-like string argument that starts with a **scheme**. This describes the type of destination we are trying to load a model from.
 - The scheme is followed by a **path**. In the example above the path is `my-model-1`.
 - The url-like string can be replaced by an object that matches the IOHandler interface.
-- The `loadLayersModel` function is asynchronous.
+- The `tf.loadLayersModel()` function is asynchronous.
 - The return value of `tf.loadLayersModel` is `tf.Model`
 
 Below we will examine the different schemes available.
@@ -151,7 +152,7 @@ Below we will examine the different schemes available.
 **Scheme:** `localstorage://`
 
 ```js
-const model = await model.loadLayersModel('localstorage://my-model');
+const model = await tf.loadLayersModel('localstorage://my-model');
 ```
 
 This loads a model named `my-model` from the browser's [local storage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage).
@@ -161,7 +162,7 @@ This loads a model named `my-model` from the browser's [local storage](https://d
 **Scheme:** `indexeddb://`
 
 ```js
-const model = model.save('indexeddb://my-model');
+const model = await tf.loadLayersModel('indexeddb://my-model');
 ```
 
 This loads a model from the browser's [IndexedDB](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API) storage.
@@ -183,7 +184,7 @@ This loads a model from an http endpoint. After loading the `json` file the func
 **Scheme:** `file://`
 
 ```js
-const model = tf.loadLayersModel('file://path/to/my-model/model.json');
+const model = await tf.loadLayersModel('file://path/to/my-model/model.json');
 ```
 
 When running on Node.js we also have direct access to the filesystem and can load models from there. Note that in the function call above we reference the model.json file itself (whereas when saving we specify a folder). The corresponding `.bin` file(s) should be in the same folder as the `json` file.
