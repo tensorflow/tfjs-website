@@ -78,7 +78,7 @@ skeleton.forEach(skeletonHeading => {
   mergedDocs.headings.push(heading);
 });
 
-// Collect all the configInterfaceMaps for all the repos.
+// Collect all the configInterfaceMaps for all the repos and merge them.
 const configInterfaceParamMapMerged:
     {[interfaceName: string]: DocFunctionParam[]} = {};
 docsForRepos.forEach(docsForRepos => {
@@ -93,7 +93,8 @@ docsForRepos.forEach(docsForRepos => {
     }
   });
 });
-// Collected all the inlined types for all the repos.
+
+// Collected all the inlined types for all the repos and merge them.
 const inlineTypesMerged: {[typeName: string]: string} = {};
 docsForRepos.forEach(docsForRepos => {
   Object.keys(docsForRepos.inlineTypes).forEach(key => {
@@ -106,7 +107,8 @@ docsForRepos.forEach(docsForRepos => {
     }
   });
 });
-// Collect all the doc aliases
+
+// Collect all the doc aliases and merge them.
 const docTypeAliasesMerged: {[type: string]: string} = {};
 docsForRepos.forEach(docsForRepos => {
   Object.keys(docsForRepos.docTypeAliases).forEach(key => {
@@ -166,6 +168,8 @@ docsForRepos.forEach(docsForRepo => {
   });
 });
 
+util.sortMethods(mergedDocs, pins);
+
 // Unpack the config params on the merged docs.
 util.unpackConfigParams(mergedDocs.headings, configInterfaceParamMapMerged);
 // Inline types
@@ -173,7 +177,6 @@ util.inlineTypes(mergedDocs.headings, inlineTypesMerged);
 // Replace doc aliases
 util.replaceDocTypeAliases(mergedDocs.headings, docTypeAliasesMerged);
 
-util.sortMethods(mergedDocs, pins);
 
 // Predefine some custom type links.
 const symbols: util.SymbolAndUrl[] = [
