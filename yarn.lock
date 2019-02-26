@@ -416,10 +416,10 @@
   resolved "https://registry.yarnpkg.com/@tensorflow/tfjs-layers/-/tfjs-layers-0.10.3.tgz#cf4001b5b7566b1526e65e615439e85070a1012c"
   integrity sha512-Xhaz4+ZuL2SEm3S0u4x04dMYMrcG4w4dhMOjoQW8GhAJU4p7LkmP9TmwMEHp7CIVJiJzzQy7Hg8E5fESEnJinA==
 
-"@tensorflow/tfjs-vis@0.5.0":
-  version "0.5.0"
-  resolved "https://registry.yarnpkg.com/@tensorflow/tfjs-vis/-/tfjs-vis-0.5.0.tgz#5c88955bc19ecf070bf5aba06ae6ca58198f2073"
-  integrity sha512-SKuiZ9bt2dSTzD91OqMAaqUPJ4FhFRbpNsLPL9HpIfMsR3EDwlIX+ybGt3ZxCA62RK9gInTxPZSUEaKQfKwhag==
+"@tensorflow/tfjs-vis@0.5.1":
+  version "0.5.1"
+  resolved "https://registry.yarnpkg.com/@tensorflow/tfjs-vis/-/tfjs-vis-0.5.1.tgz#d4d9a8706574a13d4e03cb68973d01639b1f845a"
+  integrity sha512-ePypPWfl52B33TUCrkWxBfYAZNbZL68M3+9IgxO71wz5LQu2MUSyC9PhTQ7GGafGOqNEe94CxuiL0MhlGidt7w==
   dependencies:
     d3-format "^1.3.0"
     d3-selection "^1.3.0"
