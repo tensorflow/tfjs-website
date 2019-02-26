@@ -51,7 +51,7 @@ export function parse(
       {[symbolName: string]: {docs: string, params: DocFunctionParam[]}} = {};
   const configInterfaceParamMap:
       {[interfaceName: string]: DocFunctionParam[]} = {};
-  const types: {[typeName: string]: string} = {};
+  const inlineTypes: {[typeName: string]: string} = {};
 
   // Use the same compiler options that we use to compile the library
   // here.
@@ -70,20 +70,23 @@ export function parse(
           sourceFile,
           node => visitNode(
               docHeadings, subclassMethodMap, docTypeAliases, docLinkAliases,
-              globalSymbolDocMap, configInterfaceParamMap, types, checker, node,
-              sourceFile, srcRoot, repoPath, githubRoot));
+              globalSymbolDocMap, configInterfaceParamMap, inlineTypes, checker,
+              node, sourceFile, srcRoot, repoPath, githubRoot));
     }
   }
 
-  util.unpackConfigParams(docHeadings, configInterfaceParamMap);
   util.replaceUseDocsFromDocStrings(docHeadings, globalSymbolDocMap);
   util.addSubclassMethods(docHeadings, subclassMethodMap);
-  util.replaceDocTypeAliases(docHeadings, docTypeAliases);
-  util.inlineTypes(docHeadings, types);
 
   const docs: Docs = {headings: docHeadings};
 
-  return {docs, docLinkAliases};
+  return {
+    docs,
+    docLinkAliases,
+    configInterfaceParamMap,
+    inlineTypes,
+    docTypeAliases
+  };
 }
 
 // Visits nodes of the AST, finding documentation annotated with @doc.
@@ -95,8 +98,8 @@ function visitNode(
     globalSymbolDocMap:
         {[symbolName: string]: {docs: string, params: DocFunctionParam[]}},
     configInterfaceParamMap: {[interfaceName: string]: DocFunctionParam[]},
-    types: {[typeName: string]: string}, checker: ts.TypeChecker, node: ts.Node,
-    sourceFile: ts.SourceFile, srcRoot: string, repoPath: string,
+    inlineTypes: {[typeName: string]: string}, checker: ts.TypeChecker,
+    node: ts.Node, sourceFile: ts.SourceFile, srcRoot: string, repoPath: string,
     githubRoot: string) {
   if (ts.isMethodDeclaration(node) || ts.isFunctionDeclaration(node)) {
     const docInfo = util.getDocDecoratorOrAnnotation(
@@ -219,7 +222,7 @@ function visitNode(
       const symbol = checker.getSymbolAtLocation(node.name);
       node.forEachChild(child => {
         if (ts.isTypeNode(child)) {
-          types[symbol.getName()] = child.getText();
+          inlineTypes[symbol.getName()] = child.getText();
         }
       });
     }
@@ -229,8 +232,8 @@ function visitNode(
       node,
       node => visitNode(
           docHeadings, subclassMethodMap, docTypeAliases, docLinkAliases,
-          globalSymbolDocMap, configInterfaceParamMap, types, checker, node,
-          sourceFile, srcRoot, repoPath, githubRoot));
+          globalSymbolDocMap, configInterfaceParamMap, inlineTypes, checker,
+          node, sourceFile, srcRoot, repoPath, githubRoot));
 }
 
 export function serializeClass(

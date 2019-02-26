@@ -176,7 +176,7 @@ following:
 - DataFormat, e.g., **`channelsFirst`** instead of `channels_first`
 - Initializer, e.g., **`glorotNormal`** instead of `glorot_normal`
 - Loss and metrics, e.g., **`meanSquaredError`** instead of
-  `mean_squared_error`, **categoricalCrossentropy** instead of
+  `mean_squared_error`, **`categoricalCrossentropy`** instead of
   `categorical_crossentropy`.
 
 For example, as in the example above:

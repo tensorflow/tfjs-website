@@ -16,9 +16,9 @@
                 },
                 "symbolName": "Dataset",
                 "namespace": "data",
-                "documentation": "Represents a potentially large list of independent data elements (typically\n'samples' or 'examples').\n\nA 'data example' may be a primitive, an array, a map from string keys to\nvalues, or any nested structure of these.\n\nA `Dataset` represents an ordered collection of elements, together with a\nchain of transformations to be performed on those elements. Each\ntransformation is a method of `Dataset` that returns another `Dataset`, so\nthese may be chained, e.g.\n`const processedDataset = rawDataset.filter(...).map(...).batch(...)`.\n\nData loading and transformation is done in a lazy, streaming fashion.  The\ndataset may be iterated over multiple times; each iteration starts the data\nloading anew and recapitulates the transformations.\n\nA `Dataset` is typically processed as a stream of unbatched examples --i.e.,\nits transformations are applied one example at a time. Batching produces a\nnew `Dataset` where each element is a batch. Batching should usually come\nlast in a pipeline, because data transformations are easier to express on a\nper-example basis than on a per-batch basis.\n\nThe following code examples are calling `await dataset.forEach(...)` to\niterate once over the entire dataset in order to print out the data.",
+                "documentation": "Represents a potentially large list of independent data elements (typically\n'samples' or 'examples').\n\nA 'data example' may be a primitive, an array, a map from string keys to\nvalues, or any nested structure of these.\n\nA `Dataset` represents an ordered collection of elements, together with a\nchain of transformations to be performed on those elements. Each\ntransformation is a method of `Dataset` that returns another `Dataset`, so\nthese may be chained, e.g.\n`const processedDataset = rawDataset.filter(...).map(...).batch(...)`.\n\nData loading and transformation is done in a lazy, streaming fashion.  The\ndataset may be iterated over multiple times; each iteration starts the data\nloading anew and recapitulates the transformations.\n\nA `Dataset` is typically processed as a stream of unbatched examples --i.e.,\nits transformations are applied one example at a time. Batching produces a\nnew `Dataset` where each element is a batch. Batching should usually come\nlast in a pipeline, because data transformations are easier to express on a\nper-example basis than on a per-batch basis.\n\nThe following code examples are calling `await dataset.forEachAsync(...)` to\niterate once over the entire dataset in order to print out the data.",
                 "fileName": "#54",
-                "githubUrl": "https://github.com/tensorflow/tfjs-data/blob/v0.2.1/src/dataset.ts#L54-L469",
+                "githubUrl": "https://github.com/tensorflow/tfjs-data/blob/v0.2.3/src/dataset.ts#L54-L477",
                 "methods": [
                   {
                     "docInfo": {
@@ -44,9 +44,9 @@
                       }
                     ],
                     "returnType": "Dataset",
-                    "documentation": "Groups elements into batches and arranges their values in columnar\nform.\n\nIt is assumed that each of the incoming dataset elements has the same\nset of keys.  For each key, the resulting `Dataset` provides a batched\nelement collecting all of the incoming values for that key.  Incoming\nstrings are grouped into a string[].  Incoming Tensors are grouped into a\nnew Tensor where the 0'th axis is the batch dimension.  These columnar\nrepresentations for each key can be zipped together to reconstruct the\noriginal dataset elements.\n\nBatch a dataset of numbers:\n```js\nconst a = tf.data.array([1, 2, 3, 4, 5, 6, 7, 8]).batch(4);\nawait a.forEach(e => e.print());\n```\n\nBatch a dataset of arrays:\n```js\nconst b = tf.data.array([[1], [2], [3], [4], [5], [6], [7], [8]]).batch(4);\nawait b.forEach(e => e.print());\n```\n\nBatch a dataset of objects:\n```js\nconst c = tf.data.array([{a: 1, b: 11}, {a: 2, b: 12}, {a: 3, b: 13},\n   {a: 4, b: 14}, {a: 5, b: 15}, {a: 6, b: 16}, {a: 7, b: 17},\n   {a: 8, b: 18}]).batch(4);\nawait c.forEach(e => {\n   console.log('{');\n   for(var key in e) {\n     console.log(key+':');\n     e[key].print();\n   }\n   console.log('}');\n})\n```",
+                    "documentation": "Groups elements into batches and arranges their values in columnar\nform.\n\nIt is assumed that each of the incoming dataset elements has the same\nset of keys.  For each key, the resulting `Dataset` provides a batched\nelement collecting all of the incoming values for that key.  Incoming\nstrings are grouped into a string[].  Incoming Tensors are grouped into a\nnew Tensor where the 0'th axis is the batch dimension.  These columnar\nrepresentations for each key can be zipped together to reconstruct the\noriginal dataset elements.\n\nBatch a dataset of numbers:\n```js\nconst a = tf.data.array([1, 2, 3, 4, 5, 6, 7, 8]).batch(4);\nawait a.forEachAsync(e => e.print());\n```\n\nBatch a dataset of arrays:\n```js\nconst b = tf.data.array([[1], [2], [3], [4], [5], [6], [7], [8]]).batch(4);\nawait b.forEachAsync(e => e.print());\n```\n\nBatch a dataset of objects:\n```js\nconst c = tf.data.array([{a: 1, b: 11}, {a: 2, b: 12}, {a: 3, b: 13},\n   {a: 4, b: 14}, {a: 5, b: 15}, {a: 6, b: 16}, {a: 7, b: 17},\n   {a: 8, b: 18}]).batch(4);\nawait c.forEachAsync(e => {\n   console.log('{');\n   for(var key in e) {\n     console.log(key+':');\n     e[key].print();\n   }\n   console.log('}');\n})\n```",
                     "fileName": "#118",
-                    "githubUrl": "https://github.com/tensorflow/tfjs-data/blob/v0.2.1/src/dataset.ts#L118-L140",
+                    "githubUrl": "https://github.com/tensorflow/tfjs-data/blob/v0.2.3/src/dataset.ts#L118-L140",
                     "isFunction": true
                   },
                   {
@@ -66,9 +66,9 @@
                       }
                     ],
                     "returnType": "Dataset",
-                    "documentation": "Concatenates this `Dataset` with another.\n\n```js\nconst a = tf.data.array([1, 2, 3]);\nconst b = tf.data.array([4, 5, 6]);\nconst c = a.concatenate(b);\nawait c.forEach(e => console.log(e));\n```",
+                    "documentation": "Concatenates this `Dataset` with another.\n\n```js\nconst a = tf.data.array([1, 2, 3]);\nconst b = tf.data.array([4, 5, 6]);\nconst c = a.concatenate(b);\nawait c.forEachAsync(e => console.log(e));\n```",
                     "fileName": "#156",
-                    "githubUrl": "https://github.com/tensorflow/tfjs-data/blob/v0.2.1/src/dataset.ts#L156-L176",
+                    "githubUrl": "https://github.com/tensorflow/tfjs-data/blob/v0.2.3/src/dataset.ts#L156-L176",
                     "isFunction": true
                   },
                   {
@@ -88,9 +88,9 @@
                       }
                     ],
                     "returnType": "Dataset",
-                    "documentation": "Filters this dataset according to `predicate`.\n\n```js\nconst a = tf.data.array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])\n   .filter(x => x%2 === 0);\nawait a.forEach(e => console.log(e));\n```",
+                    "documentation": "Filters this dataset according to `predicate`.\n\n```js\nconst a = tf.data.array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])\n   .filter(x => x%2 === 0);\nawait a.forEachAsync(e => console.log(e));\n```",
                     "fileName": "#193",
-                    "githubUrl": "https://github.com/tensorflow/tfjs-data/blob/v0.2.1/src/dataset.ts#L193-L207",
+                    "githubUrl": "https://github.com/tensorflow/tfjs-data/blob/v0.2.3/src/dataset.ts#L193-L207",
                     "isFunction": true
                   },
                   {
@@ -98,7 +98,7 @@
                       "heading": "Data",
                       "subheading": "Classes"
                     },
-                    "symbolName": "forEach",
+                    "symbolName": "forEachAsync",
                     "paramStr": "(f)",
                     "parameters": [
                       {
@@ -110,9 +110,9 @@
                       }
                     ],
                     "returnType": "Promise",
-                    "documentation": "Apply a function to every element of the dataset.\n\nAfter the function is applied to a dataset element, any Tensors contained\nwithin that element are disposed.\n\n```js\nconst a = tf.data.array([1, 2, 3]);\nawait a.forEach(e => console.log(e));\n```",
+                    "documentation": "Apply a function to every element of the dataset.\n\nAfter the function is applied to a dataset element, any Tensors contained\nwithin that element are disposed.\n\n```js\nconst a = tf.data.array([1, 2, 3]);\nawait a.forEachAsync(e => console.log(e));\n```",
                     "fileName": "#224",
-                    "githubUrl": "https://github.com/tensorflow/tfjs-data/blob/v0.2.1/src/dataset.ts#L224-L226",
+                    "githubUrl": "https://github.com/tensorflow/tfjs-data/blob/v0.2.3/src/dataset.ts#L224-L226",
                     "isFunction": true
                   },
                   {
@@ -132,9 +132,9 @@
                       }
                     ],
                     "returnType": "Dataset",
-                    "documentation": "Maps this dataset through a 1-to-1 transform.\n\n```js\nconst a = tf.data.array([1, 2, 3]).map(x => x*x);\nawait a.forEach(e => console.log(e));\n```",
-                    "fileName": "#242",
-                    "githubUrl": "https://github.com/tensorflow/tfjs-data/blob/v0.2.1/src/dataset.ts#L242-L247",
+                    "documentation": "Maps this dataset through a 1-to-1 transform.\n\n```js\nconst a = tf.data.array([1, 2, 3]).map(x => x*x);\nawait a.forEachAsync(e => console.log(e));\n```",
+                    "fileName": "#250",
+                    "githubUrl": "https://github.com/tensorflow/tfjs-data/blob/v0.2.3/src/dataset.ts#L250-L255",
                     "isFunction": true
                   },
                   {
@@ -154,9 +154,9 @@
                       }
                     ],
                     "returnType": "Dataset",
-                    "documentation": "Maps this dataset through an async 1-to-1 transform.\n\n```js\nconst a = tf.data.array([1, 2, 3]).map(x => new Promise(function(resolve){\n  resolve(x*x);\n}));\nawait a.forEach(e => e.then(function(value){\n  console.log(value);\n}));\n```",
-                    "fileName": "#270",
-                    "githubUrl": "https://github.com/tensorflow/tfjs-data/blob/v0.2.1/src/dataset.ts#L270-L276",
+                    "documentation": "Maps this dataset through an async 1-to-1 transform.\n\n```js\nconst a = tf.data.array([1, 2, 3]).map(x => new Promise(function(resolve){\n  resolve(x*x);\n}));\nawait a.forEachAsync(e => e.then(function(value){\n  console.log(value);\n}));\n```",
+                    "fileName": "#278",
+                    "githubUrl": "https://github.com/tensorflow/tfjs-data/blob/v0.2.3/src/dataset.ts#L278-L284",
                     "isFunction": true
                   },
                   {
@@ -177,8 +177,8 @@
                     ],
                     "returnType": "Dataset",
                     "documentation": "Creates a `Dataset` that prefetches elements from this dataset.",
-                    "fileName": "#287",
-                    "githubUrl": "https://github.com/tensorflow/tfjs-data/blob/v0.2.1/src/dataset.ts#L287-L291",
+                    "fileName": "#295",
+                    "githubUrl": "https://github.com/tensorflow/tfjs-data/blob/v0.2.3/src/dataset.ts#L295-L299",
                     "isFunction": true
                   },
                   {
@@ -198,9 +198,9 @@
                       }
                     ],
                     "returnType": "Dataset",
-                    "documentation": "Repeats this dataset `count` times.\n\nNOTE: If this dataset is a function of global state (e.g. a random number\ngenerator), then different repetitions may produce different elements.\n\n```js\nconst a = tf.data.array([1, 2, 3]).repeat(3);\nawait a.forEach(e => console.log(e));\n```",
-                    "fileName": "#310",
-                    "githubUrl": "https://github.com/tensorflow/tfjs-data/blob/v0.2.1/src/dataset.ts#L310-L334",
+                    "documentation": "Repeats this dataset `count` times.\n\nNOTE: If this dataset is a function of global state (e.g. a random number\ngenerator), then different repetitions may produce different elements.\n\n```js\nconst a = tf.data.array([1, 2, 3]).repeat(3);\nawait a.forEachAsync(e => console.log(e));\n```",
+                    "fileName": "#318",
+                    "githubUrl": "https://github.com/tensorflow/tfjs-data/blob/v0.2.3/src/dataset.ts#L318-L342",
                     "isFunction": true
                   },
                   {
@@ -220,9 +220,9 @@
                       }
                     ],
                     "returnType": "Dataset",
-                    "documentation": "Creates a `Dataset` that skips `count` initial elements from this dataset.\n\n```js\nconst a = tf.data.array([1, 2, 3, 4, 5, 6]).skip(3);\nawait a.forEach(e => console.log(e));\n```",
-                    "fileName": "#352",
-                    "githubUrl": "https://github.com/tensorflow/tfjs-data/blob/v0.2.1/src/dataset.ts#L352-L372",
+                    "documentation": "Creates a `Dataset` that skips `count` initial elements from this dataset.\n\n```js\nconst a = tf.data.array([1, 2, 3, 4, 5, 6]).skip(3);\nawait a.forEachAsync(e => console.log(e));\n```",
+                    "fileName": "#360",
+                    "githubUrl": "https://github.com/tensorflow/tfjs-data/blob/v0.2.3/src/dataset.ts#L360-L380",
                     "isFunction": true
                   },
                   {
@@ -256,9 +256,9 @@
                       }
                     ],
                     "returnType": "Dataset",
-                    "documentation": "Pseudorandomly shuffles the elements of this dataset. This is done in a\nstreaming manner, by sampling from a given number of prefetched elements.\n\n```js\nconst a = tf.data.array([1, 2, 3, 4, 5, 6]).shuffle(3);\nawait a.forEach(e => console.log(e));\n```",
-                    "fileName": "#396",
-                    "githubUrl": "https://github.com/tensorflow/tfjs-data/blob/v0.2.1/src/dataset.ts#L396-L407",
+                    "documentation": "Pseudorandomly shuffles the elements of this dataset. This is done in a\nstreaming manner, by sampling from a given number of prefetched elements.\n\n```js\nconst a = tf.data.array([1, 2, 3, 4, 5, 6]).shuffle(3);\nawait a.forEachAsync(e => console.log(e));\n```",
+                    "fileName": "#404",
+                    "githubUrl": "https://github.com/tensorflow/tfjs-data/blob/v0.2.3/src/dataset.ts#L404-L415",
                     "isFunction": true
                   },
                   {
@@ -278,9 +278,9 @@
                       }
                     ],
                     "returnType": "Dataset",
-                    "documentation": "Creates a `Dataset` with at most `count` initial elements from this\ndataset.\n\n```js\nconst a = tf.data.array([1, 2, 3, 4, 5, 6]).take(3);\nawait a.forEach(e => console.log(e));\n```",
-                    "fileName": "#425",
-                    "githubUrl": "https://github.com/tensorflow/tfjs-data/blob/v0.2.1/src/dataset.ts#L425-L442",
+                    "documentation": "Creates a `Dataset` with at most `count` initial elements from this\ndataset.\n\n```js\nconst a = tf.data.array([1, 2, 3, 4, 5, 6]).take(3);\nawait a.forEachAsync(e => console.log(e));\n```",
+                    "fileName": "#433",
+                    "githubUrl": "https://github.com/tensorflow/tfjs-data/blob/v0.2.3/src/dataset.ts#L433-L450",
                     "isFunction": true
                   },
                   {
@@ -293,8 +293,8 @@
                     "parameters": [],
                     "returnType": "{}",
                     "documentation": "Collect all elements of this dataset into an array.\n\nObviously this will succeed only for small datasets that fit in memory.\nUseful for testing and generally should be avoided if possible.\n\n```js\nconst a = tf.data.array([1, 2, 3, 4, 5, 6]);\nconsole.log(await a.toArray());\n```",
-                    "fileName": "#459",
-                    "githubUrl": "https://github.com/tensorflow/tfjs-data/blob/v0.2.1/src/dataset.ts#L459-L461",
+                    "fileName": "#467",
+                    "githubUrl": "https://github.com/tensorflow/tfjs-data/blob/v0.2.3/src/dataset.ts#L467-L469",
                     "isFunction": true
                   }
                 ],
@@ -310,7 +310,7 @@
                 "namespace": "data",
                 "documentation": "Represents a potentially large collection of delimited text records.\n\nThe produced `DataElement`s each contain one key-value pair for\nevery column of the table.  When a field is empty in the incoming data, the\nresulting value is `undefined`, or throw error if it is required.  Values\nthat can be parsed as numbers are emitted as type `number`, other values\nare parsed as `string`.\n\nThe results are not batched.",
                 "fileName": "#45",
-                "githubUrl": "https://github.com/tensorflow/tfjs-data/blob/v0.2.1/src/datasets/csv_dataset.ts#L45-L369",
+                "githubUrl": "https://github.com/tensorflow/tfjs-data/blob/v0.2.3/src/datasets/csv_dataset.ts#L45-L369",
                 "methods": [
                   {
                     "docInfo": {
@@ -323,7 +323,7 @@
                     "returnType": "{}",
                     "documentation": "Returns column names of the csv dataset. If `configuredColumnsOnly` is\ntrue, return column names in `columnConfigs`. If `configuredColumnsOnly` is\nfalse and `columnNames` is provided, `columnNames`. If\n`configuredColumnsOnly` is false and `columnNames` is not provided, return\nall column names parsed from the csv file. For example usage please go to\n`tf.data.csv`.",
                     "fileName": "#63",
-                    "githubUrl": "https://github.com/tensorflow/tfjs-data/blob/v0.2.1/src/datasets/csv_dataset.ts#L63-L69",
+                    "githubUrl": "https://github.com/tensorflow/tfjs-data/blob/v0.2.3/src/datasets/csv_dataset.ts#L63-L69",
                     "isFunction": true
                   }
                 ],
@@ -354,9 +354,9 @@
                   }
                 ],
                 "returnType": "Dataset",
-                "documentation": "Create a `Dataset` from an array of elements.\n\nCreate a Dataset from an array of objects:\n```js\nconst a = tf.data.array([{'item': 1}, {'item': 2}, {'item': 3}]);\nawait a.forEach(e => console.log(e));\n```\n\nCreate a Dataset from an array of numbers:\n```js\nconst a = tf.data.array([4, 5, 6]);\nawait a.forEach(e => console.log(e));\n```",
-                "fileName": "#517",
-                "githubUrl": "https://github.com/tensorflow/tfjs-data/blob/v0.2.1/src/dataset.ts#L517-L520",
+                "documentation": "Create a `Dataset` from an array of elements.\n\nCreate a Dataset from an array of objects:\n```js\nconst a = tf.data.array([{'item': 1}, {'item': 2}, {'item': 3}]);\nawait a.forEachAsync(e => console.log(e));\n```\n\nCreate a Dataset from an array of numbers:\n```js\nconst a = tf.data.array([4, 5, 6]);\nawait a.forEachAsync(e => console.log(e));\n```",
+                "fileName": "#525",
+                "githubUrl": "https://github.com/tensorflow/tfjs-data/blob/v0.2.3/src/dataset.ts#L525-L528",
                 "isFunction": true
               },
               {
@@ -390,7 +390,7 @@
                 "returnType": "CSVDataset",
                 "documentation": "Create a `CSVDataset` by reading and decoding CSV file(s) from provided URL\nor local path if it's in Node environment.\n\n```js\nconst csvUrl =\n'https://storage.googleapis.com/tfjs-examples/multivariate-linear-regression/data/boston-housing-train.csv';\n\nasync function run() {\n   // We want to predict the column \"medv\", which represents a median value of\n   // a home (in $1000s), so we mark it as a label.\n   const csvDataset = tf.data.csv(\n     csvUrl, {\n       columnConfigs: {\n         medv: {\n           isLabel: true\n         }\n       }\n     });\n\n   // Number of features is the number of column names minus one for the label\n   // column.\n   const numOfFeatures = (await csvDataset.columnNames()).length - 1;\n\n   // Prepare the Dataset for training.\n   const flattenedDataset =\n     csvDataset\n     .map(([rawFeatures, rawLabel]) =>\n       // Convert rows from object form (keyed by column name) to array form.\n       [Object.values(rawFeatures), Object.values(rawLabel)])\n     .batch(10);\n\n   // Define the model.\n   const model = tf.sequential();\n   model.add(tf.layers.dense({\n     inputShape: [numOfFeatures],\n     units: 1\n   }));\n   model.compile({\n     optimizer: tf.train.sgd(0.000001),\n     loss: 'meanSquaredError'\n   });\n\n   // Fit the model using the prepared Dataset\n   return model.fitDataset(flattenedDataset, {\n     epochs: 10,\n     callbacks: {\n       onEpochEnd: async (epoch, logs) => {\n         console.log(epoch + ':' + logs.loss);\n       }\n     }\n   });\n}\n\nawait run();\n```",
                 "fileName": "#95",
-                "githubUrl": "https://github.com/tensorflow/tfjs-data/blob/v0.2.1/src/readers.ts#L95-L97",
+                "githubUrl": "https://github.com/tensorflow/tfjs-data/blob/v0.2.3/src/readers.ts#L95-L97",
                 "isFunction": true
               },
               {
@@ -415,9 +415,9 @@
                   }
                 ],
                 "returnType": "Dataset",
-                "documentation": "Create a `Dataset` that produces each element by calling a provided function.\n\nNote that repeated iterations over this `Dataset` may produce different\nresults, because the function will be called anew for each element of each\niteration.\n\nAlso, beware that the sequence of calls to this function may be out of order\nin time with respect to the logical order of the Dataset. This is due to the\nasynchronous lazy nature of stream processing, and depends on downstream\ntransformations (e.g. .shuffle()). If the provided function is pure, this is\nno problem, but if it is a closure over a mutable state (e.g., a traversal\npointer), then the order of the produced elements may be scrambled.\n\n```js\nlet i = -1;\nconst func = () =>\n    ++i < 5 ? {value: i, done: false} : {value: null, done: true};\nconst ds = tf.data.generator(func);\nawait ds.forEach(e => console.log(e));\n```",
-                "fileName": "#131",
-                "githubUrl": "https://github.com/tensorflow/tfjs-data/blob/v0.2.1/src/readers.ts#L131-L135",
+                "documentation": "Create a `Dataset` that produces each element by calling a provided function.\n\nNote that repeated iterations over this `Dataset` may produce different\nresults, because the function will be called anew for each element of each\niteration.\n\nAlso, beware that the sequence of calls to this function may be out of order\nin time with respect to the logical order of the Dataset. This is due to the\nasynchronous lazy nature of stream processing, and depends on downstream\ntransformations (e.g. .shuffle()). If the provided function is pure, this is\nno problem, but if it is a closure over a mutable state (e.g., a traversal\npointer), then the order of the produced elements may be scrambled.\n\n```js\nlet i = -1;\nconst func = () =>\n    ++i < 5 ? {value: i, done: false} : {value: null, done: true};\nconst ds = tf.data.generator(func);\nawait ds.forEachAsync(e => console.log(e));\n```",
+                "fileName": "#132",
+                "githubUrl": "https://github.com/tensorflow/tfjs-data/blob/v0.2.3/src/readers.ts#L132-L136",
                 "isFunction": true
               }
             ]
@@ -444,9 +444,9 @@
                   }
                 ],
                 "returnType": "Dataset",
-                "documentation": "Create a `Dataset` by zipping together an array, dict, or nested\nstructure of `Dataset`s (and perhaps additional constants).\nThe underlying datasets must provide elements in a consistent order such that\nthey correspond.\n\nThe number of elements in the resulting dataset is the same as the size of\nthe smallest dataset in datasets.\n\nThe nested structure of the `datasets` argument determines the\nstructure of elements in the resulting iterator.\n\nNote this means that, given an array of two datasets that produce dict\nelements, the result is a dataset that produces elements that are arrays\nof two dicts:\n\nZip an array of datasets:\n```js\nconsole.log('Zip two datasets of objects:');\nconst ds1 = tf.data.array([{a: 1}, {a: 2}, {a: 3}]);\nconst ds2 = tf.data.array([{b: 4}, {b: 5}, {b: 6}]);\nconst ds3 = tf.data.zip([ds1, ds2]);\nawait ds3.forEach(e => console.log(JSON.stringify(e)));\n\n// If the goal is to merge the dicts in order to produce elements like\n// {a: ..., b: ...}, this requires a second step such as:\nconsole.log('Merge the objects:');\nconst ds4 = ds3.map(x => {return {a: x[0].a, b: x[1].b}});\nawait ds4.forEach(e => console.log(e));\n```\n\nZip a dict of datasets:\n```js\nconst a = tf.data.array([{a: 1}, {a: 2}, {a: 3}]);\nconst b = tf.data.array([{b: 4}, {b: 5}, {b: 6}]);\nconst c = tf.data.zip({c: a, d: b});\nawait c.forEach(e => console.log(JSON.stringify(e)));\n```",
-                "fileName": "#562",
-                "githubUrl": "https://github.com/tensorflow/tfjs-data/blob/v0.2.1/src/dataset.ts#L562-L594",
+                "documentation": "Create a `Dataset` by zipping together an array, dict, or nested\nstructure of `Dataset`s (and perhaps additional constants).\nThe underlying datasets must provide elements in a consistent order such that\nthey correspond.\n\nThe number of elements in the resulting dataset is the same as the size of\nthe smallest dataset in datasets.\n\nThe nested structure of the `datasets` argument determines the\nstructure of elements in the resulting iterator.\n\nNote this means that, given an array of two datasets that produce dict\nelements, the result is a dataset that produces elements that are arrays\nof two dicts:\n\nZip an array of datasets:\n```js\nconsole.log('Zip two datasets of objects:');\nconst ds1 = tf.data.array([{a: 1}, {a: 2}, {a: 3}]);\nconst ds2 = tf.data.array([{b: 4}, {b: 5}, {b: 6}]);\nconst ds3 = tf.data.zip([ds1, ds2]);\nawait ds3.forEachAsync(e => console.log(JSON.stringify(e)));\n\n// If the goal is to merge the dicts in order to produce elements like\n// {a: ..., b: ...}, this requires a second step such as:\nconsole.log('Merge the objects:');\nconst ds4 = ds3.map(x => {return {a: x[0].a, b: x[1].b}});\nawait ds4.forEachAsync(e => console.log(e));\n```\n\nZip a dict of datasets:\n```js\nconst a = tf.data.array([{a: 1}, {a: 2}, {a: 3}]);\nconst b = tf.data.array([{b: 4}, {b: 5}, {b: 6}]);\nconst c = tf.data.zip({c: a, d: b});\nawait c.forEachAsync(e => console.log(JSON.stringify(e)));\n```",
+                "fileName": "#570",
+                "githubUrl": "https://github.com/tensorflow/tfjs-data/blob/v0.2.3/src/dataset.ts#L570-L602",
                 "isFunction": true
               }
             ]
