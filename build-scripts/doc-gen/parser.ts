@@ -74,18 +74,6 @@ export function parse(
               globalSymbolDocMap, configInterfaceParamMap, inlineTypes, checker,
               node, sourceFile, srcRoot, repoPath, githubRoot));
     }
-    const fileSymbol = checker.getSymbolAtLocation(sourceFile);
-    if (fileSymbol != null) {
-      const jsdocs = fileSymbol.getJsDocTags();
-      if (jsdocs.length > 0) {
-        console.log('File jsdocs', jsdocs);
-      }
-
-      const docs = fileSymbol.getDocumentationComment(undefined);
-      if (docs.length > 0) {
-        console.log('docs', jsdocs);
-      }
-    }
   }
 
   util.replaceUseDocsFromDocStrings(docHeadings, globalSymbolDocMap);
