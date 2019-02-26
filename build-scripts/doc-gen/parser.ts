@@ -27,6 +27,7 @@ const DOCUMENTATION_DECORATOR_AND_ANNOTATION = 'doc';
 const DOCUMENTATION_TYPE_ALIAS = 'docalias';
 const DOCUMENTATION_LINK_ALIAS = 'doclink';
 const DOCUMENTATION_INLINE = 'docinline';
+const IN_NAMESPACE_JSDOC = 'innamespace';
 
 /**
  * Parses the program.
@@ -211,7 +212,12 @@ function visitNode(
             checker, childSymbol, identifierGenericMap, isConfigParam));
       }
     });
-    configInterfaceParamMap[symbol.getName()] = params;
+
+    // If we have an @innamespace jsdoc, prepend the namespace to the symbol.
+    const namespace = util.getJsdoc(checker, node, IN_NAMESPACE_JSDOC);
+    const symbolPath =
+        (namespace != null ? namespace + '.' : '') + symbol.getName();
+    configInterfaceParamMap[symbolPath] = params;
   }
 
   // Map types to their text so we inline them.

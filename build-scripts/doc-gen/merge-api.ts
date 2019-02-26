@@ -177,7 +177,6 @@ util.inlineTypes(mergedDocs.headings, inlineTypesMerged);
 // Replace doc aliases
 util.replaceDocTypeAliases(mergedDocs.headings, docTypeAliasesMerged);
 
-
 // Predefine some custom type links.
 const symbols: util.SymbolAndUrl[] = [
   {
