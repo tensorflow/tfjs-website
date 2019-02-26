@@ -114,26 +114,24 @@ export function unpackConfigParams(
     docHeadings: DocHeading[],
     configInterfaceParamMap: {[interfaceName: string]: DocFunctionParam[]}) {
   foreachDocFunction(docHeadings, docFunction => {
-    if (docFunction.docInfo.configParamIndices != null) {
-      const params = [];
-      for (let i = 0; i < docFunction.parameters.length; i++) {
-        const configParamName = docFunction.parameters[i].name;
-        params.push(docFunction.parameters[i]);
+    const params = [];
+    for (let i = 0; i < docFunction.parameters.length; i++) {
+      const configParamName = docFunction.parameters[i].name;
+      params.push(docFunction.parameters[i]);
 
-        let configParams =
-            configInterfaceParamMap[docFunction.parameters[i].type];
-        if (configParams != null) {
-          configParams.forEach(
-              configParam => {
-                  // Deep copy the configParam.
-                  params.push(JSON.parse(JSON.stringify(configParam)))});
-          docFunction.parameters[i].type = 'Object';
-        }
-        // If config params is null, we don't have an interface defined for
-        // this type so we should not try to unpack it.
+      let configParams =
+          configInterfaceParamMap[docFunction.parameters[i].type];
+      if (configParams != null) {
+        configParams.forEach(
+            configParam => {
+                // Deep copy the configParam.
+                params.push(JSON.parse(JSON.stringify(configParam)))});
+        docFunction.parameters[i].type = 'Object';
       }
-      docFunction.parameters = params;
+      // If config params is null, we don't have an interface defined for
+      // this type so we should not try to unpack it.
     }
+    docFunction.parameters = params;
   });
 }
 

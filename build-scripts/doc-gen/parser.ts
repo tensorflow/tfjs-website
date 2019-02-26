@@ -27,6 +27,7 @@ const DOCUMENTATION_DECORATOR_AND_ANNOTATION = 'doc';
 const DOCUMENTATION_TYPE_ALIAS = 'docalias';
 const DOCUMENTATION_LINK_ALIAS = 'doclink';
 const DOCUMENTATION_INLINE = 'docinline';
+const IN_NAMESPACE_JSDOC = 'innamespace';
 
 /**
  * Parses the program.
@@ -72,6 +73,18 @@ export function parse(
               docHeadings, subclassMethodMap, docTypeAliases, docLinkAliases,
               globalSymbolDocMap, configInterfaceParamMap, inlineTypes, checker,
               node, sourceFile, srcRoot, repoPath, githubRoot));
+    }
+    const fileSymbol = checker.getSymbolAtLocation(sourceFile);
+    if (fileSymbol != null) {
+      const jsdocs = fileSymbol.getJsDocTags();
+      if (jsdocs.length > 0) {
+        console.log('File jsdocs', jsdocs);
+      }
+
+      const docs = fileSymbol.getDocumentationComment(undefined);
+      if (docs.length > 0) {
+        console.log('docs', jsdocs);
+      }
     }
   }
 
@@ -211,7 +224,12 @@ function visitNode(
             checker, childSymbol, identifierGenericMap, isConfigParam));
       }
     });
-    configInterfaceParamMap[symbol.getName()] = params;
+
+    // If we have an @innamespace jsdoc, prepend the namespace to the symbol.
+    const namespace = util.getJsdoc(checker, node, IN_NAMESPACE_JSDOC);
+    const symbolPath =
+        (namespace != null ? namespace + '.' : '') + symbol.getName();
+    configInterfaceParamMap[symbolPath] = params;
   }
 
   // Map types to their text so we inline them.
