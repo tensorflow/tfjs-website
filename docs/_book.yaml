@@ -1,87 +1,85 @@
 upper_tabs:
-# Tabs left of dropdown menu
-- include: /_upper_tabs_left.yaml
-- include: /api_docs/_upper_tabs_api.yaml
-# Dropdown menu
-- name: Resources
-  path: /resources
-  is_default: true
-  menu:
-  - include: /resources/_menu_toc.yaml
-  lower_tabs:
-    # Subsite tabs
-    other:
-    - name: Tutorials
-      contents:
-      - title: Get started
-        path: /js/tutorials/index
-      - title: Setup
-        path: /js/tutorials/setup
+  # Tabs left of dropdown menu
+  - include: /_upper_tabs_left.yaml
+  - include: /api_docs/_upper_tabs_api.yaml
+  # Dropdown menu
+  - name: Resources
+    path: /resources
+    is_default: true
+    menu:
+      - include: /resources/_menu_toc.yaml
+    lower_tabs:
+      # Subsite tabs
+      other:
+        - name: Tutorials
+          contents:
+            - title: Get started
+              path: /js/tutorials/index
+            - title: Setup
+              path: /js/tutorials/setup
 
-      - heading: Train models
-      - title: Fit a curve to two-dimensional data
-        path: /js/tutorials/training/linear-regression
-      - title: Recognize handwritten Digits with CNNs
-        path: /js/tutorials/training/handwritten-digit-cnn
-      - title: Save and load models
-        path: /js/tutorials/training/mnist
+            - heading: Train models
+            - title: Fit a curve to two-dimensional data
+              path: /js/tutorials/training/linear-regression
+            - title: Recognize handwritten Digits with CNNs
+              path: /js/tutorials/training/handwritten-digit-cnn
 
-      - heading: Transfer learning
-      - title: What is transfer learning?
-        path: /js/tutorials/transfer/what-is-transfer-learning
-      - title: Build an image classifier
-        path: /js/tutorials/transfer/image-classification
-      - title: Build an audio recognizer
-        path: /js/tutorials/transfer/audio-recognizer
+            - heading: Transfer learning
+            - title: What is transfer learning?
+              path: /js/tutorials/transfer/what-is-transfer-learning
+            - title: Build an image classifier
+              path: /js/tutorials/transfer/image-classification
+            - title: Build an audio recognizer
+              path: /js/tutorials/transfer/audio-recognizer
 
-      - heading: Import Python models
-      - title: Import a Keras model
-        path: /js/sample
-      - title: Import a TensorFlow SavedModel
-        path: /js/sample
+            - heading: Import Python models
+            - title: Import a Keras model
+              path: /js/tutorials/conversion/import-keras
+            - title: Import a TensorFlow SavedModel
+              path: /js/tutorials/conversion/import-saved-model
 
-      - heading: Learning resources
-      - title: Machine Learning
-        path: /js/tutorials/learning/ml
+            - heading: Learning resources
+            - title: Machine Learning
+              path: /js/tutorials/learning/ml
 
-    - name: Guide
-      contents:
-      - heading: Introduction
-      - title: Overview
-        path: /js/guides/index
+        - name: Guide
+          contents:
+            - heading: Introduction
+            - title: Overview
+              path: /js/guides/index
 
-      - heading: Fundamentals
-      - title: Tensors and operations
-        path: /js/guides/tensors-operations
-      - title: Platforms and Environments
-        path: /js/guides/platforms-environments
+            - heading: Fundamentals
+            - title: Tensors and operations
+              path: /js/guides/tensors-operations
+            - title: Platforms and Environments
+              path: /js/guides/platforms-environments
 
-      - heading: Models
-      - title: Models and layers
-        path: /js/guides/models-and-layers
-      - title: Training models
-        path: /js/guides/training-models
-      - title: Model conversion
-        path: /js/sample
-      - title: Differences from Python tf.keras
-        path: /js/guides/tfjs-layers-for-keras-users
+            - heading: Models
+            - title: Models and layers
+              path: /js/guides/models-and-layers
+            - title: Training models
+              path: /js/guides/training-models
+            - title: Saving and loading models
+              path: /js/guides/saving-loading
+            - title: Model conversion
+              path: /js/guides/conversion
+            - title: Differences from Python tf.keras
+              path: /js/guides/tfjs-layers-for-keras-users
 
-      - heading: Node.js
-      - title: Choosing between Node.js and the browser
-        path: /js/sample
-      - title: Choosing the right Node.js binding
-        path: /js/sample
+            - heading: Node.js
+            - title: Using TensorFlow.js in Node
+              path: /js/guides/using-tfjs-in-node
 
-    - name: Examples
-      contents:
-      - title: Examples overview
-        path: /js/examples/
+        - name: Examples
+          contents:
+            - title: Examples overview
+              path: /js/examples/
 
-    - name: API
-      skip_translation: true
-      contents:
-      - title: API
-        path: https://js.tensorflow.org/api/latest/
-        status: external
+        - name: API
+          skip_translation: true
+          contents:
+            - title: API
+              path: https://js.tensorflow.org/api/latest/
+              status: external
 
-- include: /_upper_tabs_right.yaml
+  - include: /_upper_tabs_right.yaml
