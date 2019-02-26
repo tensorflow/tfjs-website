@@ -99,7 +99,7 @@ export function generateDocs(libs: LibraryInfo[]): string[] {
  */
 export function mergeDocs(
     docsFolder: string, versionedDocsFolder: string, docPaths: string[],
-    bundlePath: string) {
+    bundlePath: string, toplevelNamespace = 'tf') {
   const mergeScript = 'build-scripts/doc-gen/merge-api.ts';
   const mergeOutput = `${versionedDocsFolder}/docs.json`;
   const skeletonPath = `${versionedDocsFolder}/skeleton.json`;
@@ -115,7 +115,7 @@ export function mergeDocs(
   // Merge the docs for each repo.
   const mergeResult = shell.exec(
       `ts-node ${mergeScript} --out ${mergeOutput} --skeleton ${skeletonPath} \
-    ${docPaths.join(' ')}`);
+    --toplevel ${toplevelNamespace} ${docPaths.join(' ')}`);
   bailOnFail(mergeResult.code, 'Error merging doc JSONs.');
 }
 

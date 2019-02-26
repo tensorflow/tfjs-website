@@ -23,16 +23,21 @@ import * as util from './util';
 import {DocFunctionParam, DocHeading, DocSubheading, RepoDocsAndMetadata} from './view';
 import {Docs} from './view';
 
-const TOPLEVEL_NAMESPACE = 'tf';
+let TOPLEVEL_NAMESPACE = 'tf';
 
 commander.option('--out <path>', 'merged output JSON file')
     .option('--skeleton <path>', 'path to the skeleton JSON')
+    .option('--toplevel <string>', 'the string for the top level namespace')
     .parse(process.argv);
 if (commander.out == null) {
   throw new Error(`No merged output JSON file target specified.`);
 }
 if (commander.skeleton == null) {
   throw new Error(`No skeleton JSON file specified.`);
+}
+
+if (commander.skeleton != null) {
+  TOPLEVEL_NAMESPACE = commander.toplevel;
 }
 
 const skeleton =

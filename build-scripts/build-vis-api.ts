@@ -54,7 +54,7 @@ const docsFolder = `source/_data/api_vis`;
 const versionedDocsFolder = `${docsFolder}/${visVersion}`
 const bundlePath = commander.bundle && path.resolve(commander.bundle) ||
     path.resolve('node_modules/@tensorflow/tfjs-vis/dist/tfjs-vis.umd.min.js');
-mergeDocs(docsFolder, versionedDocsFolder, outputPaths, bundlePath);
+mergeDocs(docsFolder, versionedDocsFolder, outputPaths, bundlePath, 'tfvis');
 
 console.log(`********* Writing Manifest & Template *********`);
 const docsManifest = {
