@@ -79,9 +79,6 @@ TensorBoard is a noteable example of Node.js-specific APIs.
 An example of exporting summaries to TensorBoard in Node.js:
 
 ```js
-
-
-```
 const model = tf.sequential();
 model.add(tf.layers.dense({units: 1}));
 model.compile({
@@ -105,7 +102,4 @@ await model.fit(xs, ys, {
    // Add the tensorBoard callback here.
   callbacks: tf.node.tensorBoard('/tmp/fit_logs_1')
 });
-```
-
-
 ```
