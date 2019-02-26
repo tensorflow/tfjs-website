@@ -21,10 +21,10 @@ The guide is broken into various sections as described below:
 
 [**Training Models.**](training-models) Introduction to training: models, optimizers, losses, metrics, variables.
 
-**Model Conversion.** See the landscape of model types available in the TensorFlow.js ecosystem and the details behind conversion of models.
+[**Saving and Loading Models.**](saving-loading) Learn how to save and load TensorFlow.js models.
 
-**Differences from Python tf.keras.** Know the major differences and capabilities between TensorFlow.js and Python tf.keras and the API conventions used in JavaScript.
+[**Model Conversion.**](conversion) See the landscape of model types available in the TensorFlow.js ecosystem and the details behind conversion of models.
+
+[**Differences from Python tf.keras.**](tfjs-layers-for-keras-users) Know the major differences and capabilities between TensorFlow.js and Python tf.keras and the API conventions used in JavaScript.
 
 [**Using TensorFlow.js in Node.js.**](using-tfjs-in-node) Understand the tradeoffs between the three available Node.js bindings and the system requirements they have.
-
-**Visualizing Model Behavior.** Overview of tfjs-vis library and the different visualization options: in-browser and interfacing with [TensorBoard](https://www.tensorflow.org/guide/summaries_and_tensorboard).
