@@ -8,7 +8,7 @@
       </div>
       <div class="mdc-menu mdc-select__menu">
         <ul class="mdc-list mdc-menu__items">
-          {{#each (docVersions)}}
+          {{#each (docVersions path)}}
           <li class="mdc-list-item" role="option" tabindex="0" data-version={{this}} data-link={{url_for (concat '/api/' this)}}/
             {{#if (eq ../page.title this)}} aria-selected{{/if}}> {{this}} </li> {{/each}} </ul> </div> </div> </div>
             {{#with (getApi page.site.data page.title path)}} {{#headings}} <div class="heading">

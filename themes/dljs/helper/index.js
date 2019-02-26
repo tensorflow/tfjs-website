@@ -38,9 +38,7 @@ module.exports = function(hexo) {
     },
 
     getVisApi: function(siteData, versionString) {
-      console.log('getVisAPI', versionString);
       const ret = siteData[`api_vis/${versionString}/docs`];
-      console.log('vis api data', ret);
       return ret;
     },
 
@@ -64,7 +62,10 @@ module.exports = function(hexo) {
       return hexo.locals.cache.data['api/api_manifest'].versions[0];
     },
 
-    docVersions: function() {
+    docVersions: function(path) {
+      if (isApiVisPage(path)) {
+        return hexo.locals.cache.data['api_vis/api_manifest'].versions;
+      }
       return hexo.locals.cache.data['api/api_manifest'].versions;
     },
 
