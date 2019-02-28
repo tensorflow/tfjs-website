@@ -1,6 +1,4 @@
-# Intro to TF.js Guide
-
-Welcome to the guide!
+Welcome to the TensorFlow.js guide!
 
 The _guide_ is a document with a description of high-level concepts important to TensorFlow.js. Unlike tutorials, sections of the guide are not specific to a given task, but should give you a good sense of the TensorFlow.js ecosystem and its major conventions and concepts.
 
