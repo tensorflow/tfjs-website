@@ -14,7 +14,7 @@
     "build": "export NODE_OPTIONS=--max-old-space-size=8192 hexo clean && hexo generate",
     "post-build": "babel public/js/layout.js -o public/js/layout.js && babel public/js/api.js -o public/js/api.js",
     "build-vis-api": "ts-node build-scripts/build-vis-api.ts --local",
-    "build-api": "ts-node build-scripts/build-api.ts",
+    "build-api": "ts-node build-scripts/build-api.ts --local",
     "build-and-serve": "yarn build-api && yarn build-vis-api && yarn serve",
     "build-prod": "export NODE_OPTIONS=--max-old-space-size=8192 yarn && yarn prep && hexo clean && ts-node build-scripts/build-api.ts && ts-node build-scripts/build-vis-api.ts && yarn build && yarn post-build",
     "serve-prod": "http-server public"

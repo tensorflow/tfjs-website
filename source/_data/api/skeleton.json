@@ -86,7 +86,11 @@
       },
       {
         "name": "Loading",
-        "description": []
+        "description": [],
+        "pin": [
+          "loadGraphModel",
+          "loadLayersModel"
+        ]
       }
     ]
   },
