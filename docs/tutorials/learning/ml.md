@@ -14,6 +14,7 @@ We recommend the following videos to get a high level introduction to deep learn
 
 These video resources focus on TensorFlow.js and are also focused on beginners to machine learning.
 
+- [TensorFlow.js](https://www.youtube.com/playlist?list=PLs6AluHXaQnjeI6jzDkpKXvbPj31i4GgF) by TensorFlow
 - [TensorFlow.js: Intelligence and Learning Series](https://www.youtube.com/playlist?list=PLRqwX-V7Uu6YIeVA3dNxbR9PYj4wV31oQ) by Coding Train
 - [TensorFlow.js Deep Learning with JavaScript](https://www.youtube.com/playlist?list=PLZbbT5o_s2xr83l8w44N_g3pygvajLrJ-) by Deeplizard
 
