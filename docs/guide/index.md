@@ -1,6 +1,6 @@
 The guide contains these sections:
 
-* [Tensors & Operations](tensor_operations.md) —An intro to tensors, data, shapes
+* [Tensors and Operations](tensors_operations.md) —An intro to tensors, data, shapes
   and data types, the building blocks of TensorFlow.js
 * [Platform & Environment](platform_environment.md) —Overview of the different
   platforms and environments in TensorFlow.js and the tradeoffs between them.

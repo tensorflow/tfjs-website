@@ -1,4 +1,4 @@
-# Tensor operations
+# Tensors and operations
 
 TensorFlow.js is a framework to define and run computations using tensors in JavaScript. A *tensor* is a generalization of vectors and matrices to higher dimensions.
 

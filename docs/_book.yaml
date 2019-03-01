@@ -48,8 +48,8 @@ upper_tabs:
       - heading: "Introduction"
       - title: "Overview"
         path: /js/guide/
-      - title: "Tensor operations"
-        path: /js/guide/tensor_operations
+      - title: "Tensors and operations"
+        path: /js/guide/tensors_operations
       - title: "Platform and environment"
         path: /js/guide/platform_environment
 
