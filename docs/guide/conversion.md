@@ -5,7 +5,7 @@ TensorFlow.js comes with a variety of pre-trained models that are ready to use i
 1. A command line utility that converts Keras and TensorFlow models for use in TensorFlow.js.
 2. An API for loading and executing the model in the browser with TensorFlow.js.
 
-## Converting your model
+## Convert your model
 
 The TensorFlow.js converter works with several different model formats:
 
@@ -31,7 +31,7 @@ If we encounter an unsupported operation during conversion, the process fails an
 
 Although we make every effort to optimize your model during conversion, often the best way to ensure your model performs well is to build it with resource-constrained environments in mind. This means avoiding overly complex architectures and minimizing the number of parameters (weights) when possible.
 
-## Running your model
+## Run your model
 
 Upon successfully converting your model, you’ll end up with a set of weight files and a model topology file. TensorFlow.js provides model loading APIs that you can use to fetch these model assets and run inference in the browser.
 
@@ -47,7 +47,7 @@ And here’s what it looks like for a converted Keras model:
 const model = await tf.loadLayersModel(‘path/to/model.json’);
 ```
 
-The `tf.loadGraphModel` API returns a `tf.FrozenModel`, which means that the parameters are fixed and you will not be able to fine tune your model with new data. The `tf.loadLayersModel` API returns a tf.Model, which can be trained. For information on how to train a tf.Model, refer to our guide: [Training Models](/js/guides/training-models.md).
+The `tf.loadGraphModel` API returns a `tf.FrozenModel`, which means that the parameters are fixed and you will not be able to fine tune your model with new data. The `tf.loadLayersModel` API returns a tf.Model, which can be trained. For information on how to train a tf.Model, refer to the [train models guide](train_models.md).
 
 After conversion, it’s a good idea to run inference a few times and benchmark the speed of your model. We have a standalone benchmarking page that can be used for this purpose: https://github.com/tensorflow/tfjs-core/blob/master/integration_tests/benchmarks/benchmark.html. You may notice that we discard measurements from an initial warmup run - this is because (in general) your model’s first inference will be several times slower than subsequent inferences due to the overhead of creating textures and compiling shaders.
 

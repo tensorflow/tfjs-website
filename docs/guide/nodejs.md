@@ -1,4 +1,5 @@
-# Using TensorFlow.js in Node
+# TensorFlow.js in Node
+
 ## TensorFlow CPU
 
 The TensorFlow CPU package can be imported as follows:

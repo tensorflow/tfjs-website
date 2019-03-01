@@ -1,4 +1,4 @@
-# Models and Layers
+# Models and layers
 
 In machine learning, a _model_ is a function with _learnable_ [parameters](https://developers.google.com/machine-learning/glossary/#parameter) that maps an input to an output. The optimal parameters are obtained by training the model on data. A well-trained model will provide an accurate mapping from the input to the desired output.
 
@@ -134,7 +134,7 @@ const saveResult = await model.save('localstorage://my-model-1');
 const model = await model.load('localstorage://my-model-1');
 ```
 
-The example above saves the model to local storage in the browser. See the <code>[model.save() documentation](https://js.tensorflow.org/api/latest/#tf.Model.save)</code> and the [Saving and Loading](saving-and-loading) guide for how to save to different mediums (e.g. file storage, <code>IndexedDB</code>, trigger a browser download, etc.)
+The example above saves the model to local storage in the browser. See the <code>[model.save() documentation](https://js.tensorflow.org/api/latest/#tf.Model.save)</code> and the [save and load](save_load.md) guide for how to save to different mediums (e.g. file storage, <code>IndexedDB</code>, trigger a browser download, etc.)
 
 ## Custom layers
 
@@ -193,4 +193,4 @@ function model(x) {
 
 Note that in the Core API we are responsible for creating and initializing the weights of the model. Every weight is backed by a `Variable `which signals to TensorFlow.js that these tensors are learnable. You can create a `Variable` using [tf.variable()](https://js.tensorflow.org/api/latest/#variable) and passing in an existing `Tensor`.
 
-In this guide you have familiarized yourself with the different ways to create a model using the Layers and the Core API. Next, see the [Training Models](training-models) guide for how to train a model.
+In this guide you have familiarized yourself with the different ways to create a model using the Layers and the Core API. Next, see the [training models](train_models.md) guide for how to train a model.

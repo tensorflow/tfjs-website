@@ -1,8 +1,6 @@
-# TensorFlow.js Layers API for Keras Users
+# TensorFlow.js layers API for Keras users
 
-The Layers API of TensorFlow.js is modeled after Keras. As you might have
-noticed from the
-[tutorials](/js/tutorials/index) and examples, we strive to make the
+The Layers API of TensorFlow.js is modeled after Keras and we strive to make the
 [Layers API](https://js.tensorflow.org/api/latest/) as
 similar to Keras as reasonable given the differences between JavaScript and
 Python. This makes it easier for users with experience developing Keras models
@@ -216,7 +214,7 @@ console.log(flatten.apply(myInput).shape);
 ## Layer.apply() supports imperative (eager) evaluation on concrete tensors
 
 Currently, in Keras, the __call__ method can only operate on (Python)
-TensorFlow’s [Tensor](https://www.tensorflow.org/api_docs/python/tf/Tensor)
+TensorFlow’s `tf.Tensor`
 objects (assuming TensorFlow backend), which are symbolic and do not hold actual
 numeric values. This is what’s shown in the example in the previous section.
 However, in TensorFlow.js, the apply() method of layers can operate in both
@@ -233,7 +231,7 @@ flatten.apply(tf.ones([2, 3, 4])).print();
 ```
 
 This feature is reminiscent of (Python) TensorFlow’s
-[Eager Execution](https://research.googleblog.com/2017/10/eager-execution-imperative-define-by.html).
+[Eager Execution](https://www.tensorflow.org/guide/eager).
 It affords greater interactivity and debuggability during model development, in
 addition to opening doors to composing dynamic neural networks.
 
