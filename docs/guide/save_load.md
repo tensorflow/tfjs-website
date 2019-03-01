@@ -1,4 +1,4 @@
-# Saving and Loading TensorFlow.js models
+# Save and load models
 
 TensorFlow.js provides functionality for saving and loading models that have been created with
 the [`Layers`](https://js.tensorflow.org/api/0.14.2/#Models) API or converted from existing TensorFlow models.
@@ -8,11 +8,11 @@ Layers api is that the models created with it are serializable and this is what 
 This tutorial will focus on saving and loading TensorFlow.js models (identifiable by JSON files). We can also import TensorFlow Python models.
 Loading these models are covered in the following two tutorials:
 
-  - [Importing Keras Models](/js/tutorials/conversion/import-keras)
-  - [Importing Graphdef Models](/js/tutorials/conversion/import-saved-model)
+- [Import Keras models](../tutorials/conversion/import_keras.md)
+- [Import Graphdef models](../tutorials/conversion/import_saved_model.md)
 
 
-## Saving a tf.Model
+## Save a tf.Model
 
 [`tf.Model`](https://js.tensorflow.org/api/0.14.2/#class:Model) and [`tf.Sequential`](https://js.tensorflow.org/api/0.14.2/#class:Model)
 both provide a function [`model.save`](https://js.tensorflow.org/api/0.14.2/#tf.Model.save) that allow you to save the
@@ -128,7 +128,7 @@ Note that the name of the two files will always be exactly as specified above (t
 
 ## Loading a tf.Model
 
-Given a model that was saved using one of the methods above, we can load it using the [`tf.loadLayersModel`]() API.
+Given a model that was saved using one of the methods above, we can load it using the `tf.loadLayersModel` API.
 
 Let's take a look at what the code for loading a model looks like
 
