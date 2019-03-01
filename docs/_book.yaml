@@ -15,55 +15,55 @@ upper_tabs:
     - name: "Tutorials"
       contents:
       - title: "Get started"
-        path: /js/tutorials/index
+        path: /js/tutorials/
       - title: "Setup"
         path: /js/tutorials/setup
 
       - heading: "Train models"
       - title: "Fit a curve to two-dimensional data"
-        path: /js/tutorials/training/linear-regression
+        path: /js/tutorials/training/linear_regression
       - title: "Recognize handwritten digits with CNNs"
-        path: /js/tutorials/training/handwritten-digit-cnn
+        path: /js/tutorials/training/handwritten_digit_cnn
 
       - heading: "Transfer learning"
       - title: "What is transfer learning?"
-        path: /js/tutorials/transfer/what-is-transfer-learning
+        path: /js/tutorials/transfer/what_is_transfer_learning
       - title: "Build an image classifier"
-        path: /js/tutorials/transfer/image-classification
+        path: /js/tutorials/transfer/image_classification
       - title: "Build an audio recognizer"
-        path: /js/tutorials/transfer/audio-recognizer
+        path: /js/tutorials/transfer/audio_recognizer
 
       - heading: "Import Python models"
       - title: "Import a Keras model"
-        path: /js/tutorials/conversion/import-keras
+        path: /js/tutorials/conversion/import_keras
       - title: "Import a TensorFlow SavedModel"
-        path: /js/tutorials/conversion/import-saved-model
+        path: /js/tutorials/conversion/import_saved_model
 
-    - name: Guide
+    - name: "Guide"
       contents:
       - heading: "Introduction"
       - title: "Overview"
-        path: /js/guide/index
-      - title: "Tensors and operations"
-        path: /js/guide/tensors-operations
+        path: /js/guide/
+      - title: "Tensor operations"
+        path: /js/guide/tensor_operations
       - title: "Platform and environment"
-        path: /js/guide/platforms-environments
+        path: /js/guide/platform_environment
 
       - heading: "Models"
       - title: "Models and layers"
-        path: /js/guide/models-and-layers
-      - title: "Training models"
-        path: /js/guide/training-models
-      - title: Saving and loading models
-        path: /js/guide/saving-loading
+        path: /js/guide/models_and_layers
+      - title: "Train models"
+        path: /js/guide/train_models
+      - title: "Save and load models"
+        path: /js/guide/save_load
       - title: "Model conversion"
         path: /js/guide/conversion
       - title: "Differences from Python tf.keras"
-        path: /js/guide/tfjs-layers-for-keras-users
+        path: /js/guide/layers_for_keras_users
 
       - heading: "Node.js"
-      - title: Using TensorFlow.js in Node
-        path: /js/guide/using-tfjs-in-node
+      - title: "Use TensorFlow.js in Node"
+        path: /js/guide/nodejs
 
     - name: "Models"
       contents:

@@ -1,4 +1,4 @@
-# Training Models
+# Training models
 
 This guide assumes you've already read the [models and layers](models_and_layers.md) guide.
 
