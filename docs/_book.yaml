@@ -43,27 +43,27 @@ upper_tabs:
       contents:
       - heading: "Introduction"
       - title: "Overview"
-        path: /js/guides/index
+        path: /js/guide/index
       - title: "Tensors and operations"
-        path: /js/guides/tensors-operations
+        path: /js/guide/tensors-operations
       - title: "Platform and environment"
-        path: /js/guides/platforms-environments
+        path: /js/guide/platforms-environments
 
       - heading: "Models"
       - title: "Models and layers"
-        path: /js/guides/models-and-layers
+        path: /js/guide/models-and-layers
       - title: "Training models"
-        path: /js/guides/training-models
+        path: /js/guide/training-models
       - title: Saving and loading models
-        path: /js/guides/saving-loading
+        path: /js/guide/saving-loading
       - title: "Model conversion"
-        path: /js/guides/conversion
+        path: /js/guide/conversion
       - title: "Differences from Python tf.keras"
-        path: /js/guides/tfjs-layers-for-keras-users
+        path: /js/guide/tfjs-layers-for-keras-users
 
       - heading: "Node.js"
       - title: Using TensorFlow.js in Node
-        path: /js/guides/using-tfjs-in-node
+        path: /js/guide/using-tfjs-in-node
 
     - name: "Models"
       contents:
