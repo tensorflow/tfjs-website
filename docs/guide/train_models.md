@@ -1,6 +1,6 @@
-# Training Models
+# Training models
 
-This guide assumes you've already read the [Models and Layers](models-and-layers) guide.
+This guide assumes you've already read the [models and layers](models_and_layers.md) guide.
 
 In TensorFlow.js there are two ways to train a machine learning model:
 
@@ -202,7 +202,7 @@ const prediction = model.predict(tf.randomNormal([3, 784]));
 prediction.print();
 ```
 
-> IMPORTANT: As we mentioned in the [Models and Layers](models-and-layers) guide, the `LayersModel` expects the outermost dimension of the input to be the batch size. In the example above, the batch size is 3.
+Note: As we mentioned in the [Models and Layers](models_and_layers) guide, the `LayersModel` expects the outermost dimension of the input to be the batch size. In the example above, the batch size is 3.
 
 ## Core API
 
@@ -215,7 +215,7 @@ You may want to use the Core API whenever:
 *   You need maximum flexibility or control.
 *   And you don't need serialization, or can implement your own serialization logic.
 
-For more information about this API, read the "Core API" section in the [Models and Layers](models-and-layers) guide.
+For more information about this API, read the "Core API" section in the [Models and Layers](models_and_layers.md) guide.
 
 The same model as above written using the Core API looks like this:
 

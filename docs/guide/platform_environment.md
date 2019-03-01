@@ -1,4 +1,4 @@
-# Platforms & Environments
+# Platform and environment
 
 TensorFlow.js works in the browser and Node.js, and in both platforms there are many different available configurations. Each platform has a unique set of considerations that will affect the way applications are developed.
 
