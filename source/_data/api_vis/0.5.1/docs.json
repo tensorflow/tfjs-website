@@ -47,9 +47,30 @@
                     {
                       "name": "options",
                       "documentation": "",
-                      "type": "SurfaceInfo",
+                      "type": "Object",
                       "optional": false,
                       "isConfigParam": false
+                    },
+                    {
+                      "name": "name",
+                      "documentation": "The name / label of this surface",
+                      "type": "string",
+                      "optional": false,
+                      "isConfigParam": true
+                    },
+                    {
+                      "name": "tab",
+                      "documentation": "The name of the tab this surface should appear on",
+                      "type": "string",
+                      "optional": true,
+                      "isConfigParam": true
+                    },
+                    {
+                      "name": "styles",
+                      "documentation": "Display Styles for the surface",
+                      "type": "StyleOptions",
+                      "optional": true,
+                      "isConfigParam": true
                     }
                   ],
                   "returnType": "{ container: any; label: any; drawArea: any; }",
@@ -351,9 +372,16 @@
                 {
                   "name": "opts",
                   "documentation": "Optional parameters for the line charts. See the opts parameter\nfor render.linechart for details. Notably for 'accuracy' related plots\nthe domain of the yAxis will always by 0-1, i.e. zoomToFit and yAxisDomain\noptions are ignored.",
-                  "type": "FitCallbackOptions",
+                  "type": "Object",
                   "optional": true,
                   "isConfigParam": false
+                },
+                {
+                  "name": "callbacks",
+                  "documentation": "",
+                  "type": "string[]",
+                  "optional": true,
+                  "isConfigParam": true
                 }
               ],
               "returnType": "FitCallbackHandlers",
@@ -398,9 +426,16 @@
                 {
                   "name": "opts",
                   "documentation": "Optional parameters for the line charts. See the opts parameter\nfor render.linechart for details. Notably for 'accuracy' related plots\nthe domain of the yAxis will always by 0-1, i.e. zoomToFit and yAxisDomain\noptions are ignored.",
-                  "type": "HistoryOptions",
+                  "type": "Object",
                   "optional": true,
                   "isConfigParam": false
+                },
+                {
+                  "name": "zoomToFitAccuracy",
+                  "documentation": "",
+                  "type": "boolean",
+                  "optional": true,
+                  "isConfigParam": true
                 }
               ],
               "returnType": "Promise",
@@ -493,9 +528,58 @@
                 {
                   "name": "opts",
                   "documentation": "optional parameters",
-                  "type": "VisOptions",
+                  "type": "Object",
                   "optional": true,
                   "isConfigParam": false
+                },
+                {
+                  "name": "width",
+                  "documentation": "",
+                  "type": "number",
+                  "optional": true,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "height",
+                  "documentation": "",
+                  "type": "number",
+                  "optional": true,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "xLabel",
+                  "documentation": "",
+                  "type": "string",
+                  "optional": true,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "yLabel",
+                  "documentation": "",
+                  "type": "string",
+                  "optional": true,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "xType",
+                  "documentation": "",
+                  "type": "'quantitative'|'ordinal'|'nominal'",
+                  "optional": true,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "yType",
+                  "documentation": "",
+                  "type": "'quantitative'|'ordinal'|'nominal'",
+                  "optional": true,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "fontSize",
+                  "documentation": "",
+                  "type": "number",
+                  "optional": true,
+                  "isConfigParam": true
                 }
               ],
               "returnType": "Promise",
@@ -518,9 +602,23 @@
                 {
                   "name": "data",
                   "documentation": "Data consists of an object with a 'values' property\nand a 'labels' property.\n{\n// a matrix of numbers representing counts for each (label, prediction)\n// pair\nvalues: number[][],\n\n// Human readable labels for each class in the matrix. Optional\nlabels?: string[]\n}\ne.g.\n{\nvalues: [[80, 23], [56, 94]],\nlabels: ['dog', 'cat'],\n}",
-                  "type": "ConfusionMatrixData",
+                  "type": "Object",
                   "optional": false,
                   "isConfigParam": false
+                },
+                {
+                  "name": "values",
+                  "documentation": "",
+                  "type": "number[][]",
+                  "optional": false,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "labels",
+                  "documentation": "",
+                  "type": "string[]",
+                  "optional": true,
+                  "isConfigParam": true
                 },
                 {
                   "name": "container",
@@ -557,9 +655,30 @@
                 {
                   "name": "data",
                   "documentation": "Data consists of an object with a 'values' property\nand a 'labels' property.\n{\n// a matrix of numbers\nvalues: number[][]|Tensor2D,\n\n// Human readable labels for each class in the matrix. Optional\nxLabels?: string[]\nyLabels?: string[]\n}\ne.g.\n{\nvalues: [[80, 23, 50], [56, 94, 39]],\nxLabels: ['dog', 'cat'],\nyLabels: ['size', 'temperature', 'agility'],\n}",
-                  "type": "HeatmapData",
+                  "type": "Object",
                   "optional": false,
                   "isConfigParam": false
+                },
+                {
+                  "name": "values",
+                  "documentation": "",
+                  "type": "number[][]|Tensor2D",
+                  "optional": false,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "xLabels",
+                  "documentation": "",
+                  "type": "string[]",
+                  "optional": true,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "yLabels",
+                  "documentation": "",
+                  "type": "string[]",
+                  "optional": true,
+                  "isConfigParam": true
                 },
                 {
                   "name": "container",
@@ -571,9 +690,23 @@
                 {
                   "name": "opts",
                   "documentation": "optional parameters",
-                  "type": "HeatmapOptions",
+                  "type": "Object",
                   "optional": true,
                   "isConfigParam": false
+                },
+                {
+                  "name": "colorMap",
+                  "documentation": "",
+                  "type": "NamedColorMap",
+                  "optional": true,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "domain",
+                  "documentation": "",
+                  "type": "number[]",
+                  "optional": true,
+                  "isConfigParam": true
                 }
               ],
               "returnType": "Promise",
@@ -649,9 +782,30 @@
                 {
                   "name": "opts",
                   "documentation": "optional parameters",
-                  "type": "XYPlotOptions",
+                  "type": "Object",
                   "optional": true,
                   "isConfigParam": false
+                },
+                {
+                  "name": "xAxisDomain",
+                  "documentation": "",
+                  "type": "[number, number]",
+                  "optional": true,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "yAxisDomain",
+                  "documentation": "",
+                  "type": "[number, number]",
+                  "optional": true,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "zoomToFit",
+                  "documentation": "",
+                  "type": "boolean",
+                  "optional": true,
+                  "isConfigParam": true
                 }
               ],
               "returnType": "Promise",
@@ -688,9 +842,30 @@
                 {
                   "name": "opts",
                   "documentation": "optional parameters",
-                  "type": "XYPlotOptions",
+                  "type": "Object",
                   "optional": true,
                   "isConfigParam": false
+                },
+                {
+                  "name": "xAxisDomain",
+                  "documentation": "",
+                  "type": "[number, number]",
+                  "optional": true,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "yAxisDomain",
+                  "documentation": "",
+                  "type": "[number, number]",
+                  "optional": true,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "zoomToFit",
+                  "documentation": "",
+                  "type": "boolean",
+                  "optional": true,
+                  "isConfigParam": true
                 }
               ],
               "returnType": "Promise",
