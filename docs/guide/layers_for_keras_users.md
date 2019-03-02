@@ -94,7 +94,7 @@ await model.fit(xs, ys, {epochs: 1000});
 `Model.fit()` is the primary method with which users perform model training in
 TensorFlow.js. This method can often be long-running, lasting for seconds or
 minutes. Therefore, we utilize the `async` feature of the JavaScript language,
-so that this function can be used in a way that does not block the the main UI
+so that this function can be used in a way that does not block the main UI
 thread when running in the browser.
 This is similar to other potentially long-running functions in JavaScript, such
 as the `async`
