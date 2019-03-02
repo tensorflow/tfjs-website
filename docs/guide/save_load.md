@@ -73,7 +73,7 @@ This will cause the browser to download the model files to the user's machine. T
 
 You can change the name `[my-model]` to get files with a different name.
 
-Becuase the `.json` file points to the `.bin` using a relative path, the two files should be in the same folder.
+Because the `.json` file points to the `.bin` using a relative path, the two files should be in the same folder.
 
 > NOTE: some browsers require users to grant permissions before more than one file can be downloaded at the same time.
 
