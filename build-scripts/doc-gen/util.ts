@@ -350,8 +350,8 @@ export function sanitizeTypeString(
     typeString = typeString.replace(re, identifierGenericMap[identifier]);
   });
 
-  // Remove generics.
-  typeString = typeString.replace(/(<.*>)/, '');
+  // Remove generics except Promise generics.
+  typeString = typeString.replace(/(?<!Promise)(<.+?>)/, '');
 
   return typeString;
 }
