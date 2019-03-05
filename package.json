@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "@tensorflow/tfjs": "1.0.0",
-    "@tensorflow/tfjs-vis": "0.5.1",
+    "@tensorflow/tfjs-vis": "1.0.0",
     "babel-cli": "~6.26.0",
     "babel-preset-es2015": "~6.24.1",
     "commander": "~2.14.1",

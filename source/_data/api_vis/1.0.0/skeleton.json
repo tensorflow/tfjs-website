@@ -1,0 +1,56 @@
+[
+  {
+    "name": "Visor & Surfaces",
+    "description": [
+      "<p>tfjs-vis provides some UI helpers to make it easier to render ",
+      "visualizations in an unobtrusive way.</p>"
+    ],
+    "subheadings": []
+  },
+  {
+    "name": "Models & Tensors",
+    "description": [
+      "<p>This library exposes a show namespace that provides a number of higher level functions",
+      "useful for rendering tfjs concepts. They lean towards being opinionated rather than flexible",
+      "but are generally combinations of Renderers (see below), so one can easily roll their own.</p>"
+    ],
+    "subheadings": [
+      {
+        "name": "Model Inspection",
+        "description": [
+          "<p>These functions are useful for examing models, layers and tensors"
+        ]
+      },
+      {
+        "name": "Model Training",
+        "description": [
+          "<p>",
+          "These functions are useful for monitoring training.",
+          "</p>"
+        ]
+      },
+      {
+        "name": "Model Evaluation",
+        "description": [
+          "<p>These functions are useful for evaluating the quality of a model.</p>"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Charts",
+    "description": [
+      "<p>The library exposes a render namespace that provides a number of functions that plot ",
+      "particular visualizations. Most of these functions take regular JavaScript objects</p>"
+    ],
+    "subheadings": []
+  },
+  {
+    "name": "Metrics",
+    "description": [
+      "<p>The metrics namespace contains a few utility functions for computing ",
+      "quality metrics like accuracy or creating confusion matrices.</p>"
+    ],
+    "subheadings": []
+  }
+]
