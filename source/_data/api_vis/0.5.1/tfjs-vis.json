@@ -235,7 +235,7 @@
                     "isConfigParam": false
                   }
                 ],
-                "returnType": "Promise",
+                "returnType": "Promise<void>",
                 "documentation": "Renders a barchart.\n\n```js\nconst data = [\n   { index: 0, value: 50 },\n   { index: 1, value: 100 },\n   { index: 2, value: 150 },\n  ];\n\n// Render to visor\nconst surface = { name: 'Bar chart', tab: 'Charts' };\ntfvis.render.barchart(data, surface, {});\n```",
                 "fileName": "#58",
                 "githubUrl": "https://github.com/tensorflow/tfjs-vis/blob/v0.5.1/src/render/barchart.ts#L58-L130",
@@ -272,7 +272,7 @@
                     "isConfigParam": false
                   }
                 ],
-                "returnType": "Promise",
+                "returnType": "Promise<void>",
                 "documentation": "Renders a confusion matrix.\n\nCan optionally exclude the diagonal from being shaded if one wants the visual\nfocus to be on the incorrect classifications. Note that if the classification\nis perfect (i.e. only the diagonal has values) then the diagonal will always\nbe shaded.\n\n```js\nconst rows = 5;\nconst cols = 5;\nconst values = [];\nfor (let i = 0; i < rows; i++) {\n   const row = []\n   for (let j = 0; j < cols; j++) {\n     row.push(Math.round(Math.random() * 50));\n   }\n   values.push(row);\n}\nconst data = { values };\n\n// Render to visor\nconst surface = { name: 'Confusion Matrix', tab: 'Charts' };\ntfvis.render.confusionMatrix(data, surface);\n```\n\n```js\n// The diagonal can be excluded from shading.\n\nconst data = {\n   values: [[4, 2, 8], [1, 7, 2], [3, 3, 20]],\n}\n\n// Render to visor\nconst surface = {\n  name: 'Confusion Matrix with Excluded Diagonal', tab: 'Charts'\n};\n\ntfvis.render.confusionMatrix(data, surface, {\n   shadeDiagonal: false\n});\n```",
                 "fileName": "#93",
                 "githubUrl": "https://github.com/tensorflow/tfjs-vis/blob/v0.5.1/src/render/confusion_matrix.ts#L93-L248",
@@ -309,7 +309,7 @@
                     "isConfigParam": false
                   }
                 ],
-                "returnType": "Promise",
+                "returnType": "Promise<void>",
                 "documentation": "Renders a heatmap.\n\n```js\nconst rows = 50;\nconst cols = 20;\nconst values = [];\nfor (let i = 0; i < rows; i++) {\n   const row = []\n   for (let j = 0; j < cols; j++) {\n     row.push(i * j)\n   }\n   values.push(row);\n}\nconst data = { values };\n\n// Render to visor\nconst surface = { name: 'Heatmap', tab: 'Charts' };\ntfvis.render.heatmap(data, surface);\n```\n\n```js\nconst data = {\n   values: [[4, 2, 8, 20], [1, 7, 2, 10], [3, 3, 20, 13]],\n   xLabels: ['cheese', 'pig', 'font'],\n   yLabels: ['speed', 'smoothness', 'dexterity', 'mana'],\n}\n\n// Render to visor\nconst surface = { name: 'Heatmap w Custom Labels', tab: 'Charts' };\ntfvis.render.heatmap(data, surface);\n```",
                 "fileName": "#90",
                 "githubUrl": "https://github.com/tensorflow/tfjs-vis/blob/v0.5.1/src/render/heatmap.ts#L90-L249",
@@ -420,7 +420,7 @@
                     "isConfigParam": false
                   }
                 ],
-                "returnType": "Promise",
+                "returnType": "Promise<void>",
                 "documentation": "Renders a line chart\n\n```js\nconst series1 = Array(100).fill(0)\n   .map(y => Math.random() * 100 - (Math.random() * 50))\n   .map((y, x) => ({ x, y, }));\n\nconst series2 = Array(100).fill(0)\n   .map(y => Math.random() * 100 - (Math.random() * 150))\n   .map((y, x) => ({ x, y, }));\n\nconst series = ['First', 'Second'];\nconst data = { values: [series1, series2], series }\n\nconst surface = tfvis.visor().surface({ name: 'Line chart', tab: 'Charts' });\ntfvis.render.linechart(data, surface);\n```\n\n```js\nconst series1 = Array(100).fill(0)\n   .map(y => Math.random() * 100 + 50)\n   .map((y, x) => ({ x, y, }));\n\nconst data = { values: [series1] }\n\n// Render to visor\nconst surface = { name: 'Zoomed Line Chart', tab: 'Charts' };\ntfvis.render.linechart(data, surface, { zoomToFit: true });\n```",
                 "fileName": "#82",
                 "githubUrl": "https://github.com/tensorflow/tfjs-vis/blob/v0.5.1/src/render/linechart.ts#L82-L243",
@@ -457,7 +457,7 @@
                     "isConfigParam": false
                   }
                 ],
-                "returnType": "Promise",
+                "returnType": "Promise<void>",
                 "documentation": "Renders a scatter plot\n\n```js\nconst series1 = Array(100).fill(0)\n   .map(y => Math.random() * 100 - (Math.random() * 50))\n   .map((y, x) => ({ x, y, }));\n\nconst series2 = Array(100).fill(0)\n   .map(y => Math.random() * 100 - (Math.random() * 150))\n   .map((y, x) => ({ x, y, }));\n\nconst series = ['First', 'Second'];\nconst data = { values: [series1, series2], series }\n\nconst surface = { name: 'Scatterplot', tab: 'Charts' };\ntfvis.render.scatterplot(data, surface);\n```",
                 "fileName": "#72",
                 "githubUrl": "https://github.com/tensorflow/tfjs-vis/blob/v0.5.1/src/render/scatterplot.ts#L72-L172",
@@ -511,7 +511,7 @@
                     "isConfigParam": false
                   }
                 ],
-                "returnType": "Promise",
+                "returnType": "Promise<number[][]>",
                 "documentation": "Computes a confusion matrix from predictions and labels. Each value in\nlabels and predictions should correspond to some output class. It is assumed\nthat these values go from 0 to numClasses - 1.\n\n```js\nconst labels = tf.tensor1d([1, 2, 4]);\nconst predictions = tf.tensor1d([2, 2, 4]);\nconst result = await tfvis.metrics.confusionMatrix(labels, predictions);\nconsole.log(JSON.stringify(result, null, 2))\n```",
                 "fileName": "#174",
                 "githubUrl": "https://github.com/tensorflow/tfjs-vis/blob/v0.5.1/src/util/math.ts#L174-L227",
@@ -541,7 +541,7 @@
                     "isConfigParam": false
                   }
                 ],
-                "returnType": "Promise",
+                "returnType": "Promise<number>",
                 "documentation": "Computes how often predictions matches labels\n\n```js\nconst labels = tf.tensor1d([0, 0, 1, 2, 2, 2]);\nconst predictions = tf.tensor1d([0, 0, 0, 2, 1, 1]);\n\nconst result = await tfvis.metrics.accuracy(labels, predictions);\nconsole.log(result)\n```",
                 "fileName": "#246",
                 "githubUrl": "https://github.com/tensorflow/tfjs-vis/blob/v0.5.1/src/util/math.ts#L246-L258",
@@ -578,7 +578,7 @@
                     "isConfigParam": false
                   }
                 ],
-                "returnType": "Promise",
+                "returnType": "Promise<Array>",
                 "documentation": "Computes per class accuracy between prediction and labels. Each value in\nlabels and predictions should correspond to some output class. It is assumed\nthat these values go from 0 to numClasses - 1.\n\n```js\nconst labels = tf.tensor1d([0, 0, 1, 2, 2, 2]);\nconst predictions = tf.tensor1d([0, 0, 0, 2, 1, 1]);\n\nconst result = await tfvis.metrics.perClassAccuracy(labels, predictions);\nconsole.log(JSON.stringify(result, null, 2))\n```\n\nReturns an array of objects that each have an an `accuracy` and a `count`\nproperty for each class.",
                 "fileName": "#286",
                 "githubUrl": "https://github.com/tensorflow/tfjs-vis/blob/v0.5.1/src/util/math.ts#L286-L328",
@@ -634,7 +634,7 @@
                     "isConfigParam": false
                   }
                 ],
-                "returnType": "Promise",
+                "returnType": "Promise<void>",
                 "documentation": "Renders a tf.Model training 'History'.\n\n```js\nconst model = tf.sequential({\n  layers: [\n    tf.layers.dense({inputShape: [784], units: 32, activation: 'relu'}),\n    tf.layers.dense({units: 10, activation: 'softmax'}),\n  ]\n});\n\nmodel.compile({\n   optimizer: 'sgd',\n   loss: 'categoricalCrossentropy',\n   metrics: ['accuracy']\n});\n\nconst data = tf.randomNormal([100, 784]);\nconst labels = tf.randomUniform([100, 10]);\n\nfunction onBatchEnd(batch, logs) {\n   console.log('Accuracy', logs.acc);\n}\n\nconst surface = { name: 'show.history', tab: 'Training' };\n// Train for 5 epochs with batch size of 32.\nconst history = await model.fit(data, labels, {\n    epochs: 5,\n    batchSize: 32\n});\n\ntfvis.show.history(surface, history, ['loss', 'acc']);\n```\n\n```js\nconst model = tf.sequential({\n  layers: [\n    tf.layers.dense({inputShape: [784], units: 32, activation: 'relu'}),\n    tf.layers.dense({units: 10, activation: 'softmax'}),\n  ]\n});\n\nmodel.compile({\n   optimizer: 'sgd',\n   loss: 'categoricalCrossentropy',\n   metrics: ['accuracy']\n});\n\nconst data = tf.randomNormal([100, 784]);\nconst labels = tf.randomUniform([100, 10]);\n\nfunction onBatchEnd(batch, logs) {\n   console.log('Accuracy', logs.acc);\n}\n\nconst surface = { name: 'show.history live', tab: 'Training' };\n// Train for 5 epochs with batch size of 32.\nconst history = [];\nawait model.fit(data, labels, {\n    epochs: 5,\n    batchSize: 32,\n    callbacks: {\n      onEpochEnd: (epoch, log) => {\n        history.push(log);\n        tfvis.show.history(surface, history, ['loss', 'acc']);\n      }\n    }\n});\n```",
                 "fileName": "#117",
                 "githubUrl": "https://github.com/tensorflow/tfjs-vis/blob/v0.5.1/src/show/history.ts#L117-L173",
