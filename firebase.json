@@ -53,16 +53,6 @@
         "type": "301"
       },
       {
-        "source": "/tutorials/mnist.html",
-        "destination": "https://tensorflow.org/js/tutorials/handwritten_digit_cnn",
-        "type": "301"
-      },
-      {
-        "source": "/tutorials/mnist.html",
-        "destination": "https://tensorflow.org/js/tutorials/handwritten_digit_cnn",
-        "type": "301"
-      },
-      {
         "source": "/tutorials/webcam-transfer-learning.html",
         "destination": "https://tensorflow.org/js/tutorials/transfer/image_classification",
         "type": "301"
