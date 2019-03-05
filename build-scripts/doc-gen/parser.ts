@@ -340,9 +340,17 @@ export function serializeMethodOrFunction(
   // getting the type. We do this because getting the full text of the
   // type node is better than using the signature return type.
   let returnType;
+  let bit = false;
   node.forEachChild(child => {
     if (ts.isTypeNode(child)) {
       returnType = child.getText();
+
+      // Special case promise return types to show the generic of the promise.
+      if (returnType.indexOf('Promise') != -1 ||
+          returnType.indexOf('TensorBuffer') != -1) {
+        console.log('RETURNING PROMSIE---------------------', returnType);
+        bit = true;
+      }
     }
   });
   if (returnType == null) {
@@ -351,6 +359,9 @@ export function serializeMethodOrFunction(
     returnType = checker.typeToString(signature.getReturnType());
   }
   returnType = util.sanitizeTypeString(returnType, identifierGenericMap);
+  if (bit) {
+    console.log(returnType);
+  }
 
   const method: DocFunction = {
     docInfo: docInfo,
