@@ -99,7 +99,7 @@ const docsManifest = {
   dataVersion: dataTag,
 };
 
-const templateFolder = `source/vis`;
+const templateFolder = `source/api`;
 writeManifestAndTemplate(
     docsFolder, versionedDocsFolder, docsManifest, unionPackageVersion,
     templateFolder);
