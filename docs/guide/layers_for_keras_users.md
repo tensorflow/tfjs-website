@@ -279,7 +279,7 @@ of Keras. But the browser environment is quite different from the backend enviro
 on which staple deep learning frameworks like Keras run, particularly in the
 array of routes for persisting and transimitting data. Hence there are
 some interesting differences between the save/load APIs in TensorFlow.js and in Keras.
-See our tutorial on [Saving and Loading tf.Model](./model-save-load.html) for more
+See our tutorial on [Saving and Loading tf.Model](./save_load.md) for more
 details.
 
 ## Use `fitDataset()` to train models using `tf.data.Dataset` objects
