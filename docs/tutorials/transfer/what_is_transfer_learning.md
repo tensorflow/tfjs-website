@@ -9,5 +9,5 @@ This is useful for rapidly developing new models as well as customizing models i
 Most often when doing transfer learning, we don't adjust the weights of the original model. Instead we remove the final layer and train a new (often fairly shallow) model on top of the output of the truncated model. This is the technique you will see demonstrated in the tutorials in this section.
 
 
-- [Build a transfer-learning based image classifier](image-classification)
-- [Build a transfer-learning based audio recognizer](audio-recognizer)
+- [Build a transfer-learning based image classifier](image_classification)
+- [Build a transfer-learning based audio recognizer](audio_recognizer)
