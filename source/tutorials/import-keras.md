@@ -63,7 +63,7 @@ Now the model is ready for inference, evaluation, or re-training.  For instance,
 ```js
 // JavaScript
 
-const example = tf.fromPixels(webcamElement);  // for example
+const example = tf.browser.fromPixels(webcamElement);  // for example
 const prediction = model.predict(example);
 ```
 
