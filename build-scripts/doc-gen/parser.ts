@@ -102,6 +102,21 @@ function visitNode(
     inlineTypes: {[typeName: string]: string}, checker: ts.TypeChecker,
     node: ts.Node, sourceFile: ts.SourceFile, srcRoot: string, repoPath: string,
     githubRoot: string) {
+  // if (ts.isCallExpression(node)) {
+  //   console.log('FOUND CALL EXPRESSION');
+  //   const candidateSigs = [];
+  //   const resSig: ts.Signature =
+  //       checker.getResolvedSignature(node, candidateSigs);
+
+  //   if (resSig != null) {
+  //     console.log('resSig', checker.signatureToString(resSig))
+  //     // console.log('resolvedsig:', resSig.getDeclaration().get);
+  //   }
+
+  //   // console.log('candidates', candidateSigs);
+  //   console.log('#####')
+  // }
+
   if (ts.isMethodDeclaration(node) || ts.isFunctionDeclaration(node)) {
     const docInfo = util.getDocDecoratorOrAnnotation(
         checker, node, DOCUMENTATION_DECORATOR_AND_ANNOTATION);
@@ -297,6 +312,7 @@ export function serializeClass(
   return docClass;
 }
 
+
 export function serializeMethodOrFunction(
     checker: ts.TypeChecker, node: ts.MethodDeclaration|ts.FunctionDeclaration,
     docInfo: util.DocInfo, sourceFile: ts.SourceFile, repoPath: string,
@@ -309,10 +325,79 @@ export function serializeMethodOrFunction(
         `does not start with srcPath provided ${repoPath}.`);
   }
 
+
   const symbol = checker.getSymbolAtLocation(node.name);
   const type =
       checker.getTypeOfSymbolAtLocation(symbol, symbol.valueDeclaration!);
+
+  console.log('symbol name:', symbol.getEscapedName())
+  // console.log('symbol type:', type.getC);
+  // console.log(
+  //     'symbol declarations:',
+  //     symbol.getDeclarations().map(d => d.getFullText()))
+
+
+  // console.log('symbol type', type)
+
+
+  // const candidateSigs = [];
+  // const resSig = checker.getResolvedSignature(
+  //     (node as ts.CallLikeExpression), candidateSigs);
+
+  // console.log('RESSIG', resSig);
+  // console.log('candidates', candidateSigs);
+
   const signature = type.getCallSignatures()[0];
+  // console.log('symbol-type:', checker.typeToString(type))
+  console.log('symbol-sig ', checker.signatureToString(signature))
+
+
+  console.log(signature.parameters.forEach(s => {
+    console.log('\tparamname:', s.getName());
+    const pType = checker.getTypeOfSymbolAtLocation(s, s.valueDeclaration!);
+    const bType = checker.getBaseConstraintOfType(pType);
+
+    console.log('\tparam-type:', checker.typeToString(pType))
+    if (bType != null) {
+      console.log('\tparam-Btype:', checker.typeToString(bType))
+    }
+
+    if (s.getName().match(/opts/i) || s.getName().match(/config/i) ||
+        s.getName().match(/handlerOrURL/i)) {
+      console.log('type properties')
+      pType.getApparentProperties().map(p => {
+        const decl = p.getDeclarations().map(de => {
+          return de.getText();
+        })
+        console.log('\t\t', decl);
+
+        // can go up the type tree here? e.g. with getTypeOfSymbol
+      })
+
+      if (bType != null) {
+        console.log('basetype properties')
+        bType.getApparentProperties().map(p => {
+          const decl = p.getDeclarations().map(de => de.getText())
+          console.log('\t\t', decl);
+        })
+      }
+
+      // ts.isInterfaceDeclaration()
+      // console.log(pType.getConstructSignatures())
+
+      // console.log(pType.getNam);
+      // pType.checker.getAllPossiblePropertiesOfTypes()
+      // console.log(checker.symbolToString(checker.getAliasedSymbol(s)))
+
+      // console.log(checker.typeToString(checker.getIndexInfoOfType(pType,
+      // pType.g)));
+    }
+
+
+    console.log('')
+  }))
+
+  console.log('----------')
 
   let symbolName = symbol.name;
   if (stripSymbolUnderscoreSuffix) {
