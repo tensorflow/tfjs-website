@@ -11,14 +11,17 @@
   "scripts": {
     "prep": "git submodule init && git submodule update && git submodule foreach git pull origin master && yarn",
     "serve": "export NODE_OPTIONS=--max-old-space-size=8192 hexo clean && hexo server",
-    "build": "export NODE_OPTIONS=--max-old-space-size=4096 hexo clean && hexo generate",
+    "build": "export NODE_OPTIONS=--max-old-space-size=8192 hexo clean && hexo generate",
     "post-build": "babel public/js/layout.js -o public/js/layout.js && babel public/js/api.js -o public/js/api.js",
-    "build-api": "hexo clean && node build-scripts/build-api.js --local",
-    "build-and-serve": "yarn build-api && yarn serve",
-    "build-prod": "export NODE_OPTIONS=--max-old-space-size=4096 yarn prep && hexo clean && node build-scripts/build-api.js && yarn build && yarn post-build"
+    "build-vis-api": "ts-node build-scripts/build-vis-api.ts --local",
+    "build-api": "ts-node build-scripts/build-api.ts --local",
+    "build-and-serve": "yarn build-api && yarn build-vis-api && yarn serve",
+    "build-prod": "export NODE_OPTIONS=--max-old-space-size=8192 yarn && yarn prep && hexo clean && ts-node build-scripts/build-api.ts && ts-node build-scripts/build-vis-api.ts && yarn build && yarn post-build",
+    "serve-prod": "http-server public"
   },
   "dependencies": {
-    "@tensorflow/tfjs": "0.15.1",
+    "@tensorflow/tfjs": "1.0.0",
+    "@tensorflow/tfjs-vis": "1.0.2",
     "babel-cli": "~6.26.0",
     "babel-preset-es2015": "~6.24.1",
     "commander": "~2.14.1",
@@ -33,13 +36,14 @@
     "hexo-renderer-sass": "~0.3.2",
     "hexo-renderer-stylus": "~0.3.1",
     "hexo-server": "~0.2.0",
-    "highlight.js": "^9.12.0",
+    "highlight.js": "^9.15.2",
+    "http-server": "^0.11.1",
     "markdown-it": "^8.4.1",
     "material-components-web": "^0.32.0",
     "mkdirp": "~0.5.1",
     "semver-compare": "^1.0.0",
     "shelljs": "~0.8.1",
-    "ts-node": "~4.1.0",
+    "ts-node": "~8.0.2",
     "typescript": "~2.7.2"
   },
   "devDependencies": {

@@ -20,19 +20,24 @@ import * as fs from 'fs';
 
 import {Skeleton} from './skeleton';
 import * as util from './util';
-import {DocHeading, DocSubheading, RepoDocsAndMetadata} from './view';
+import {DocFunctionParam, DocHeading, DocSubheading, RepoDocsAndMetadata} from './view';
 import {Docs} from './view';
 
-const TOPLEVEL_NAMESPACE = 'tf';
+let TOPLEVEL_NAMESPACE = 'tf';
 
 commander.option('--out <path>', 'merged output JSON file')
     .option('--skeleton <path>', 'path to the skeleton JSON')
+    .option('--toplevel <string>', 'the string for the top level namespace')
     .parse(process.argv);
 if (commander.out == null) {
   throw new Error(`No merged output JSON file target specified.`);
 }
 if (commander.skeleton == null) {
   throw new Error(`No skeleton JSON file specified.`);
+}
+
+if (commander.skeleton != null) {
+  TOPLEVEL_NAMESPACE = commander.toplevel;
 }
 
 const skeleton =
@@ -78,16 +83,64 @@ skeleton.forEach(skeletonHeading => {
   mergedDocs.headings.push(heading);
 });
 
+// Collect all the interfaces for all the repos and merge them.
+const configInterfaceParamMapMerged:
+    {[interfaceName: string]: DocFunctionParam[]} = {};
+docsForRepos.forEach(docsForRepos => {
+  Object.keys(docsForRepos.configInterfaceParamMap).forEach(key => {
+    if (configInterfaceParamMapMerged[key] != null) {
+      console.warn(
+          `WARNING: ${key} interface found in multiple repos. ` +
+          `Using first instantation for config unpacking.`);
+    } else {
+      configInterfaceParamMapMerged[key] =
+          docsForRepos.configInterfaceParamMap[key];
+    }
+  });
+});
+
+// Collected all the types tagged with @docinline to inline.
+const inlineTypesMerged: {[typeName: string]: string} = {};
+docsForRepos.forEach(docsForRepos => {
+  Object.keys(docsForRepos.inlineTypes).forEach(key => {
+    if (inlineTypesMerged[key] != null) {
+      console.warn(
+          `WARNING: ${key} inlined type found in multiple repos. ` +
+          `Using first instantation for inlining.`);
+    } else {
+      inlineTypesMerged[key] = docsForRepos.inlineTypes[key];
+    }
+  });
+});
+
+// Collect all the doc aliases and merge them.
+const docTypeAliasesMerged: {[type: string]: string} = {};
+docsForRepos.forEach(docsForRepos => {
+  Object.keys(docsForRepos.docTypeAliases).forEach(key => {
+    if (docTypeAliasesMerged[key] != null) {
+      console.warn(
+          `WARNING: ${key} doc alias found in multiple repos. ` +
+          `Using first instantation for doc aliasing.`);
+    } else {
+      docTypeAliasesMerged[key] = docsForRepos.docTypeAliases[key];
+    }
+  });
+});
+
+// Merge doc link aliases.
 const mergedDocLinkAliases: {[symbolName: string]: string} = {};
-// Merge the docs for each repo in. Note that this is done in multiplicative
-// time. This could be sped up by using hashmaps if this is a bottleneck.
-docsForRepos.forEach(docsForRepo => {
-  Object.keys(docsForRepo.docLinkAliases).forEach(symbolName => {
+docsForRepos.forEach(docsForRepos => {
+  Object.keys(docsForRepos.docLinkAliases).forEach(symbolName => {
     if (mergedDocLinkAliases[symbolName] != null) {
       throw new Error(`Found duplicate doc link aliases for ${symbolName}.`);
     }
-    mergedDocLinkAliases[symbolName] = docsForRepo.docLinkAliases[symbolName];
+    mergedDocLinkAliases[symbolName] = docsForRepos.docLinkAliases[symbolName];
   });
+});
+
+// Merge the docs for each repo in. Note that this is done in multiplicative
+// time. This could be sped up by using hashmaps if this is a bottleneck.
+docsForRepos.forEach(docsForRepo => {
   docsForRepo.docs.headings.forEach(heading => {
     heading.subheadings.forEach(subheading => {
       let headingFound = false;
@@ -121,6 +174,13 @@ docsForRepos.forEach(docsForRepo => {
 });
 
 util.sortMethods(mergedDocs, pins);
+
+// Unpack the config params on the merged docs.
+util.unpackConfigParams(mergedDocs.headings, configInterfaceParamMapMerged);
+// Inline types
+util.inlineTypes(mergedDocs.headings, inlineTypesMerged);
+// Replace doc aliases
+util.replaceDocTypeAliases(mergedDocs.headings, docTypeAliasesMerged);
 
 // Predefine some custom type links.
 const symbols: util.SymbolAndUrl[] = [

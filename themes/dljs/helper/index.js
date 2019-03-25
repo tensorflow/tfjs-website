@@ -14,6 +14,10 @@ const md = new MarkdownIt({
   }
 });
 
+function isApiVisPage(path) {
+  return path.match(/^api_vis/);
+};
+
 module.exports = function(hexo) {
   return {
     toJson: function(obj) {
@@ -24,8 +28,18 @@ module.exports = function(hexo) {
       return path.match(/^api/);
     },
 
-    getApi: function(siteData, versionString) {
+    isApiVisPage: isApiVisPage,
+
+    getApi: function(siteData, versionString, path) {
+      if (isApiVisPage(path)) {
+        return siteData[`api_vis/${versionString}/docs`];
+      }
       return siteData[`api/${versionString}/docs`];
+    },
+
+    getVisApi: function(siteData, versionString) {
+      const ret = siteData[`api_vis/${versionString}/docs`];
+      return ret;
     },
 
     markdown: function(attr) {
@@ -48,7 +62,10 @@ module.exports = function(hexo) {
       return hexo.locals.cache.data['api/api_manifest'].versions[0];
     },
 
-    docVersions: function() {
+    docVersions: function(path) {
+      if (isApiVisPage(path)) {
+        return hexo.locals.cache.data['api_vis/api_manifest'].versions;
+      }
       return hexo.locals.cache.data['api/api_manifest'].versions;
     },
 

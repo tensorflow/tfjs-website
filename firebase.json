@@ -5,6 +5,78 @@
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
+    ],
+    "redirects": [
+      {
+        "source": "/",
+        "destination": "https://tensorflow.org/js/",
+        "type": "301"
+      },
+      {
+        "source": "/setup",
+        "destination": "https://tensorflow.org/js/tutorials/setup",
+        "type": "301"
+      },
+      {
+        "source": "/tutorials",
+        "destination": "https://tensorflow.org/js/tutorials",
+        "type": "301"
+      },
+      {
+        "source": "/faq",
+        "destination": "https://tensorflow.org/js/tutorials",
+        "type": "301"
+      },
+      {
+        "source": "/demos",
+        "destination": "https://tensorflow.org/js/demos",
+        "type": "301"
+      },
+      {
+        "source": "/tutorials/core-concepts.html",
+        "destination": "https://tensorflow.org/js/guide/tensors_operations",
+        "type": "301"
+      },
+      {
+        "source": "/tutorials/tfjs-layers-for-keras-users.html",
+        "destination": "https://tensorflow.org/js/guide/layers_for_keras_users",
+        "type": "301"
+      },
+      {
+        "source": "/tutorials/how-to-get-started.html",
+        "destination": "https://tensorflow.org/js/tutorials/learning/ml",
+        "type": "301"
+      },
+      {
+        "source": "/tutorials/fit-curve.html",
+        "destination": "https://tensorflow.org/js/tutorials/linear_regression",
+        "type": "301"
+      },
+      {
+        "source": "/tutorials/webcam-transfer-learning.html",
+        "destination": "https://tensorflow.org/js/tutorials/transfer/image_classification",
+        "type": "301"
+      },
+      {
+        "source": "/tutorials/mnist.html",
+        "destination": "https://tensorflow.org/js/tutorials/handwritten_digit_cnn",
+        "type": "301"
+      },
+      {
+        "source": "/tutorials/model-save-load.html",
+        "destination": "https://tensorflow.org/js/tutorials/save_load",
+        "type": "301"
+      },
+      {
+        "source": "/tutorials/import-keras.html",
+        "destination": "https://tensorflow.org/js/tutorials/conversion/import_keras",
+        "type": "301"
+      },
+      {
+        "source": "/tutorials/import-saved-model.html",
+        "destination": "https://tensorflow.org/js/tutorials/conversion/import_saved_model",
+        "type": "301"
+      }
     ]
   }
 }

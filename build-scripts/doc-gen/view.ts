@@ -20,9 +20,14 @@ import {DocInfo} from './util';
 export interface RepoDocsAndMetadata {
   docs: Docs;
   docLinkAliases: {[symbolName: string]: string};
+  configInterfaceParamMap: {[interfaceName: string]: DocFunctionParam[]};
+  inlineTypes: {[typeName: string]: string};
+  docTypeAliases: {[type: string]: string};
 }
 
-export interface Docs { headings: DocHeading[]; }
+export interface Docs {
+  headings: DocHeading[];
+}
 
 export interface DocHeading {
   name: string;

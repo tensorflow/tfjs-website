@@ -307,7 +307,7 @@
                       {
                         "name": "dtype",
                         "documentation": "Data-type to cast the tensor to.",
-                        "type": "'float32'|'int32'|'bool'|'complex64'|'string'",
+                        "type": "DataType",
                         "optional": false,
                         "isConfigParam": false
                       }
@@ -368,7 +368,7 @@
                     "symbolName": "arraySync",
                     "paramStr": "()",
                     "parameters": [],
-                    "returnType": "number[]",
+                    "returnType": "ArrayMap[R]",
                     "documentation": "Returns the tensor data as a nested array. The transfer of data is done\nsynchronously.",
                     "fileName": "#608",
                     "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.15.1/src/tensor.ts#L608-L610",
@@ -491,7 +491,7 @@
                       {
                         "name": "newShape",
                         "documentation": "An array of integers defining the output tensor shape.",
-                        "type": "number[]",
+                        "type": "ShapeMap[Rank]",
                         "optional": false,
                         "isConfigParam": false
                       }
@@ -716,7 +716,7 @@
                   {
                     "name": "dtype",
                     "documentation": "If set, initialValue will be converted to the given type.",
-                    "type": "'float32'|'int32'|'bool'|'complex64'|'string'",
+                    "type": "DataType",
                     "optional": true,
                     "isConfigParam": false
                   }
@@ -738,14 +738,14 @@
                   {
                     "name": "real",
                     "documentation": "",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
                     "name": "imag",
                     "documentation": "",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   }
@@ -767,7 +767,7 @@
                   {
                     "name": "input",
                     "documentation": "",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   }
@@ -789,7 +789,7 @@
                   {
                     "name": "input",
                     "documentation": "",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   }
@@ -811,21 +811,21 @@
                   {
                     "name": "values",
                     "documentation": "The values of the tensor. Can be nested array of numbers,\nor a flat array, or a `TypedArray`.",
-                    "type": "TypedArray|Array",
+                    "type": "TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
                     "name": "shape",
                     "documentation": "The shape of the tensor. Optional. If not provided,\nit is inferred from `values`.",
-                    "type": "number[]",
+                    "type": "ShapeMap[Rank]",
                     "optional": true,
                     "isConfigParam": false
                   },
                   {
                     "name": "dtype",
                     "documentation": "The data type.",
-                    "type": "'float32'|'int32'|'bool'|'complex64'|'string'",
+                    "type": "DataType",
                     "optional": true,
                     "isConfigParam": false
                   }
@@ -854,7 +854,7 @@
                   {
                     "name": "dtype",
                     "documentation": "The data type.",
-                    "type": "'float32'|'int32'|'bool'|'complex64'|'string'",
+                    "type": "DataType",
                     "optional": true,
                     "isConfigParam": false
                   }
@@ -876,14 +876,14 @@
                   {
                     "name": "values",
                     "documentation": "The values of the tensor. Can be array of numbers,\nor a `TypedArray`.",
-                    "type": "TypedArray|Array",
+                    "type": "TensorLike1D",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
                     "name": "dtype",
                     "documentation": "The data type.",
-                    "type": "'float32'|'int32'|'bool'|'complex64'|'string'",
+                    "type": "DataType",
                     "optional": true,
                     "isConfigParam": false
                   }
@@ -905,7 +905,7 @@
                   {
                     "name": "values",
                     "documentation": "The values of the tensor. Can be nested array of numbers,\nor a flat array, or a `TypedArray`.",
-                    "type": "TypedArray|Array",
+                    "type": "TensorLike2D",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -919,7 +919,7 @@
                   {
                     "name": "dtype",
                     "documentation": "The data type.",
-                    "type": "'float32'|'int32'|'bool'|'complex64'|'string'",
+                    "type": "DataType",
                     "optional": true,
                     "isConfigParam": false
                   }
@@ -941,7 +941,7 @@
                   {
                     "name": "values",
                     "documentation": "The values of the tensor. Can be nested array of numbers,\nor a flat array, or a `TypedArray`.",
-                    "type": "TypedArray|Array",
+                    "type": "TensorLike3D",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -955,7 +955,7 @@
                   {
                     "name": "dtype",
                     "documentation": "The data type.",
-                    "type": "'float32'|'int32'|'bool'|'complex64'|'string'",
+                    "type": "DataType",
                     "optional": true,
                     "isConfigParam": false
                   }
@@ -977,7 +977,7 @@
                   {
                     "name": "values",
                     "documentation": "The values of the tensor. Can be nested array of numbers,\nor a flat array, or a `TypedArray`.",
-                    "type": "TypedArray|Array",
+                    "type": "TensorLike4D",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -991,7 +991,7 @@
                   {
                     "name": "dtype",
                     "documentation": "The data type.",
-                    "type": "'float32'|'int32'|'bool'|'complex64'|'string'",
+                    "type": "DataType",
                     "optional": true,
                     "isConfigParam": false
                   }
@@ -1013,7 +1013,7 @@
                   {
                     "name": "values",
                     "documentation": "The values of the tensor. Can be nested array of numbers,\nor a flat array, or a `TypedArray`.",
-                    "type": "TypedArray|Array",
+                    "type": "TensorLike5D",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -1027,7 +1027,7 @@
                   {
                     "name": "dtype",
                     "documentation": "The data type.",
-                    "type": "'float32'|'int32'|'bool'|'complex64'|'string'",
+                    "type": "DataType",
                     "optional": true,
                     "isConfigParam": false
                   }
@@ -1049,7 +1049,7 @@
                   {
                     "name": "values",
                     "documentation": "The values of the tensor. Can be nested array of numbers,\nor a flat array, or a `TypedArray`.",
-                    "type": "TypedArray|Array",
+                    "type": "TensorLike6D",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -1063,7 +1063,7 @@
                   {
                     "name": "dtype",
                     "documentation": "The data type.",
-                    "type": "'float32'|'int32'|'bool'|'complex64'|'string'",
+                    "type": "DataType",
                     "optional": true,
                     "isConfigParam": false
                   }
@@ -1085,14 +1085,14 @@
                   {
                     "name": "shape",
                     "documentation": "An array of integers defining the output tensor shape.",
-                    "type": "number[]",
+                    "type": "ShapeMap[Rank]",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
                     "name": "dtype",
                     "documentation": "The type of an element in the resulting tensor. Defaults to\n'float'.",
-                    "type": "'float32'|'int32'|'bool'|'complex64'|'string'",
+                    "type": "DataType",
                     "optional": true,
                     "isConfigParam": false
                   }
@@ -1114,14 +1114,14 @@
                   {
                     "name": "shape",
                     "documentation": "An array of integers defining the output tensor shape.",
-                    "type": "number[]",
+                    "type": "ShapeMap[Rank]",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
                     "name": "dtype",
                     "documentation": "The type of an element in the resulting tensor. Can\nbe 'float32', 'int32' or 'bool'. Defaults to 'float'.",
-                    "type": "'float32'|'int32'|'bool'|'complex64'|'string'",
+                    "type": "DataType",
                     "optional": true,
                     "isConfigParam": false
                   }
@@ -1143,7 +1143,7 @@
                   {
                     "name": "shape",
                     "documentation": "An array of integers defining the output tensor shape.",
-                    "type": "number[]",
+                    "type": "ShapeMap[Rank]",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -1157,7 +1157,7 @@
                   {
                     "name": "dtype",
                     "documentation": "The type of an element in the resulting tensor. Defaults to\n'float'.",
-                    "type": "'float32'|'int32'|'bool'|'complex64'|'string'",
+                    "type": "DataType",
                     "optional": true,
                     "isConfigParam": false
                   }
@@ -1179,7 +1179,7 @@
                   {
                     "name": "x",
                     "documentation": "A tensor.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   }
@@ -1201,7 +1201,7 @@
                   {
                     "name": "x",
                     "documentation": "The tensor of required shape.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   }
@@ -1302,7 +1302,7 @@
                   {
                     "name": "x",
                     "documentation": "The tensor to clone.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   }
@@ -1345,7 +1345,7 @@
                   {
                     "name": "dtype",
                     "documentation": "Data type.",
-                    "type": "'float32'|'int32'|'bool'|'complex64'|'string'",
+                    "type": "DataType",
                     "optional": true,
                     "isConfigParam": false
                   }
@@ -1367,7 +1367,7 @@
                   {
                     "name": "shape",
                     "documentation": "An array of integers defining the output tensor shape.",
-                    "type": "number[]",
+                    "type": "ShapeMap[Rank]",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -1417,7 +1417,7 @@
                   {
                     "name": "indices",
                     "documentation": "`tf.Tensor` of indices with dtype `int32`.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -1489,7 +1489,7 @@
                   {
                     "name": "shape",
                     "documentation": "An array of integers defining the output tensor shape.",
-                    "type": "number[]",
+                    "type": "ShapeMap[Rank]",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -1588,7 +1588,7 @@
                   {
                     "name": "x",
                     "documentation": "The input tensor to split.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -1624,7 +1624,7 @@
                   {
                     "name": "x",
                     "documentation": "The tensor to tile.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -1682,7 +1682,7 @@
                   {
                     "name": "x",
                     "documentation": "A tensor object.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -1711,7 +1711,7 @@
                   {
                     "name": "x",
                     "documentation": "The input tensor to be reversed.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -1740,7 +1740,7 @@
                   {
                     "name": "x",
                     "documentation": "The input `tf.Tensor` to slice from.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -1776,14 +1776,14 @@
                   {
                     "name": "x",
                     "documentation": "The input tensor whose slices to be gathered.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
                     "name": "indices",
                     "documentation": "The indices of the values to extract.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -1817,7 +1817,7 @@
                   {
                     "name": "shape",
                     "documentation": "An array of integers defining the output tensor shape.",
-                    "type": "number[]",
+                    "type": "ShapeMap[Rank]",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -1867,7 +1867,7 @@
                   {
                     "name": "shape",
                     "documentation": "An array of integers defining the output tensor shape.",
-                    "type": "number[]",
+                    "type": "ShapeMap[Rank]",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -1888,7 +1888,7 @@
                   {
                     "name": "dtype",
                     "documentation": "The data type of the output tensor. Defaults to 'float32'.",
-                    "type": "'float32'|'int32'|'bool'|'complex64'|'string'",
+                    "type": "DataType",
                     "optional": true,
                     "isConfigParam": false
                   }
@@ -1910,7 +1910,7 @@
                   {
                     "name": "logits",
                     "documentation": "1D array with unnormalized log-probabilities, or\n2D array of shape `[batchSize, numOutcomes]`. See the `normalized`\nparameter.",
-                    "type": "Tensor1D|Tensor2D|TypedArray|Array",
+                    "type": "Tensor1D|Tensor2D|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -1958,14 +1958,14 @@
                   {
                     "name": "x",
                     "documentation": "The input tensor to be reshaped.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
                     "name": "shape",
                     "documentation": "An array of integers defining the output tensor shape.",
-                    "type": "number[]",
+                    "type": "ShapeMap[Rank]",
                     "optional": false,
                     "isConfigParam": false
                   }
@@ -1987,7 +1987,7 @@
                   {
                     "name": "x",
                     "documentation": "The input tensor to be squeezed.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -2016,14 +2016,14 @@
                   {
                     "name": "x",
                     "documentation": "The input tensor to be casted.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
                     "name": "dtype",
                     "documentation": "The dtype to cast the input tensor to.",
-                    "type": "'float32'|'int32'|'bool'|'complex64'|'string'",
+                    "type": "DataType",
                     "optional": false,
                     "isConfigParam": false
                   }
@@ -2045,7 +2045,7 @@
                   {
                     "name": "x",
                     "documentation": "The tensor to pad.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -2081,7 +2081,7 @@
                   {
                     "name": "x",
                     "documentation": "A `tf.Tensor`. N-D with `x.shape` = `[batch] + spatialShape +\nremainingShape`, where spatialShape has `M` dimensions.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -2117,7 +2117,7 @@
                   {
                     "name": "x",
                     "documentation": "A `tf.Tensor`. N-D with `x.shape` = `[batch] + spatialShape +\nremainingShape`, where spatialShape has `M` dimensions.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -2153,7 +2153,7 @@
                   {
                     "name": "x",
                     "documentation": "The input tensor whose dimensions to be expanded.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -2182,7 +2182,7 @@
                   {
                     "name": "x",
                     "documentation": "The input tensor of rank 4",
-                    "type": "Tensor4D|TypedArray|Array",
+                    "type": "Tensor4D|TensorLike4D",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -2218,14 +2218,14 @@
                   {
                     "name": "x",
                     "documentation": "1-D Tensor. Values to keep.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
                     "name": "y",
                     "documentation": "1-D Tensor. Must have the same type as x. Values to exclude in the\noutput.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   }
@@ -2336,19 +2336,19 @@
                   {
                     "name": "nameOrFn",
                     "documentation": "The name of the closure, or the function to execute.\nIf a name is provided, the 2nd argument should be the function.\nIf debug mode is on, the timing and the memory usage of the function\nwill be tracked and displayed on the console using the provided name.",
-                    "type": "string|Function",
+                    "type": "string|ScopeFn",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
                     "name": "fn",
                     "documentation": "The function to execute.",
-                    "type": "Function",
+                    "type": "ScopeFn",
                     "optional": true,
                     "isConfigParam": false
                   }
                 ],
-                "returnType": "void|number|string|Tensor|Tensor[]|{[key:\nstring]:Tensor|number|string}",
+                "returnType": "TensorContainer",
                 "documentation": "Executes the provided function `fn` and after it is executed, cleans up all\nintermediate tensors allocated by `fn` except those returned by `fn`.\n`fn` must not return a Promise (async functions not allowed). The returned\nresult can be a complex object.\n\nUsing this method helps avoid memory leaks. In general, wrap calls to\noperations in `tf.tidy` for automatic memory cleanup.\n\nWhen in safe mode, you must enclose all `tf.Tensor` creation and ops\ninside a `tf.tidy` to prevent memory leaks.\n\n```js\n// y = 2 ^ 2 + 1\nconst y = tf.tidy(() => {\n   // a, b, and one will be cleaned up when the tidy ends.\n   const one = tf.scalar(1);\n   const a = tf.scalar(2);\n   const b = a.square();\n\n   console.log('numTensors (in tidy): ' + tf.memory().numTensors);\n\n   // The value returned inside the tidy function will return\n   // through the tidy, in this case to the variable y.\n   return b.add(one);\n});\n\nconsole.log('numTensors (outside tidy): ' + tf.memory().numTensors);\ny.print();\n```",
                 "fileName": "#184",
                 "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.15.1/src/environment.ts#L184-L187",
@@ -2365,7 +2365,7 @@
                   {
                     "name": "container",
                     "documentation": "an object that may be a `tf.Tensor` or may directly\ncontain `tf.Tensor`s, such as a `Tensor[]` or `{key: Tensor, ...}`. If\nthe object is not a `tf.Tensor` or does not contain `Tensors`, nothing\nhappens. In general it is safe to pass any object here, except that\n`Promise`s are not supported.",
-                    "type": "void|number|string|Tensor|Tensor[]|{[key:\nstring]:Tensor|number|string}",
+                    "type": "TensorContainer",
                     "optional": false,
                     "isConfigParam": false
                   }
@@ -2414,7 +2414,7 @@
                   {
                     "name": "f",
                     "documentation": "",
-                    "type": "() => void|number|string|Tensor|Tensor[]|{[key:\nstring]:Tensor|number|string}",
+                    "type": "() => TensorContainer",
                     "optional": false,
                     "isConfigParam": false
                   }
@@ -2588,7 +2588,7 @@
                     "isConfigParam": false
                   }
                 ],
-                "returnType": "{value: Scalar, grads: {[name: string]: Tensor}}",
+                "returnType": "{value: Scalar, grads: NamedTensorMap}",
                 "documentation": "Computes and returns the gradient of f(x) with respect to the list of\ntrainable variables provided by `varList`. If no list is provided, it\ndefaults to all trainable variables.\n\n```js\nconst a = tf.variable(tf.tensor1d([3, 4]));\nconst b = tf.variable(tf.tensor1d([5, 6]));\nconst x = tf.tensor1d([1, 2]);\n\n// f(a, b) = a * x ^ 2 + b * x\nconst f = () => a.mul(x.square()).add(b.mul(x)).sum();\n// df/da = x ^ 2, df/db = x\nconst {value, grads} = tf.variableGrads(f);\n\nObject.keys(grads).forEach(varName => grads[varName].print());\n```",
                 "fileName": "#272",
                 "githubUrl": "https://github.com/tensorflow/tfjs-core/blob/v0.15.1/src/gradients.ts#L272-L319",
@@ -2605,7 +2605,7 @@
                   {
                     "name": "f",
                     "documentation": "The function to evaluate in forward mode, which should return\n`{value: Tensor, gradFunc: (dy) => Tensor[]}`, where `gradFunc` returns\nthe custom gradients of `f` with respect to its inputs.",
-                    "type": "(a: Tensor, b: Tensor,...) => {\nvalue: Tensor, * gradFunc: (dy: Tensor) => Tensor | Tensor[] * }",
+                    "type": "CustomGradientFunc",
                     "optional": false,
                     "isConfigParam": false
                   }
@@ -2634,14 +2634,14 @@
                   {
                     "name": "losses",
                     "documentation": "Tensor of shape `[batch_size, d1, ... dN]`.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
                     "name": "weights",
                     "documentation": "Tensor whose rank is either 0, or the same rank as\n`losses`, and must be broadcastable to `losses` (i.e., all\ndimensions must be either `1`, or the same as the corresponding\n`losses` dimension).",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": true,
                     "isConfigParam": false
                   },
@@ -2672,21 +2672,21 @@
                   {
                     "name": "labels",
                     "documentation": "The ground truth output tensor, same dimensions as\n'predictions'.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
                     "name": "predictions",
                     "documentation": "The predicted outputs.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
                     "name": "weights",
                     "documentation": "Tensor whose rank is either 0, or the same rank as\n`labels`, and must be broadcastable to `labels` (i.e., all dimensions\nmust be either `1`, or the same as the corresponding `losses`\ndimension).",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": true,
                     "isConfigParam": false
                   },
@@ -2717,21 +2717,21 @@
                   {
                     "name": "labels",
                     "documentation": "The ground truth output tensor, same dimensions as\n'predictions'.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
                     "name": "predictions",
                     "documentation": "The predicted outputs.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
                     "name": "weights",
                     "documentation": "Tensor whose rank is either 0, or the same rank as\n`labels`, and must be broadcastable to `labels` (i.e., all dimensions\nmust be either `1`, or the same as the corresponding `losses`\ndimension).",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": true,
                     "isConfigParam": false
                   },
@@ -2762,14 +2762,14 @@
                   {
                     "name": "labels",
                     "documentation": "The ground truth output tensor, same dimensions as\n'predictions'.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
                     "name": "predictions",
                     "documentation": "The predicted outputs.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -2783,7 +2783,7 @@
                   {
                     "name": "weights",
                     "documentation": "Tensor whose rank is either 0, or the same rank as\n`labels`, and must be broadcastable to `labels` (i.e., all dimensions\nmust be either `1`, or the same as the corresponding `losses`\ndimension).",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": true,
                     "isConfigParam": false
                   },
@@ -2814,21 +2814,21 @@
                   {
                     "name": "labels",
                     "documentation": "The ground truth output tensor, same dimensions as\n'predictions'.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
                     "name": "predictions",
                     "documentation": "The predicted outputs.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
                     "name": "weights",
                     "documentation": "Tensor whose rank is either 0, or the same rank as\n`labels`, and must be broadcastable to `labels` (i.e., all dimensions\nmust be either `1`, or the same as the corresponding `losses`\ndimension).",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": true,
                     "isConfigParam": false
                   },
@@ -2859,21 +2859,21 @@
                   {
                     "name": "labels",
                     "documentation": "The ground truth output tensor, same dimensions as\n'predictions'.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
                     "name": "predictions",
                     "documentation": "The predicted outputs.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
                     "name": "weights",
                     "documentation": "Tensor whose rank is either 0, or the same rank as\n`labels`, and must be broadcastable to `labels` (i.e., all dimensions\nmust be either `1`, or the same as the corresponding `losses`\ndimension).",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": true,
                     "isConfigParam": false
                   },
@@ -2911,21 +2911,21 @@
                   {
                     "name": "multiClassLabels",
                     "documentation": "The ground truth output tensor of shape\n[batch_size, num_classes], same dimensions as 'predictions'.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
                     "name": "logits",
                     "documentation": "The predicted outputs.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
                     "name": "weights",
                     "documentation": "Tensor whose rank is either 0, or the same rank as\n`labels`, and must be broadcastable to `labels` (i.e., all dimensions\nmust be either `1`, or the same as the corresponding `losses`\ndimension).",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": true,
                     "isConfigParam": false
                   },
@@ -2963,21 +2963,21 @@
                   {
                     "name": "labels",
                     "documentation": "The ground truth output tensor, same dimensions as\n'predictions'.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
                     "name": "predictions",
                     "documentation": "The predicted outputs.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
                     "name": "weights",
                     "documentation": "Tensor whose rank is either 0, or the same rank as\n`labels`, and must be broadcastable to `labels` (i.e., all dimensions\nmust be either `1`, or the same as the corresponding `losses`\ndimension).",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": true,
                     "isConfigParam": false
                   },
@@ -3015,21 +3015,21 @@
                   {
                     "name": "onehotLabels",
                     "documentation": "One hot encoded labels\n[batch_size, num_classes], same dimensions as 'predictions'.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
                     "name": "logits",
                     "documentation": "The predicted outputs.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
                     "name": "weights",
                     "documentation": "Tensor whose rank is either 0, or 1, and must be\nbroadcastable to `loss`  of shape [batch_size]",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": true,
                     "isConfigParam": false
                   },
@@ -3418,7 +3418,7 @@
                   {
                     "name": "logits",
                     "documentation": "The logits array.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -3447,7 +3447,7 @@
                   {
                     "name": "logits",
                     "documentation": "The logits array.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -3476,35 +3476,35 @@
                   {
                     "name": "x",
                     "documentation": "The input Tensor.",
-                    "type": "Tensor|Tensor1D|TypedArray|Array",
+                    "type": "Tensor|Tensor1D|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
                     "name": "mean",
                     "documentation": "A mean Tensor.",
-                    "type": "Tensor|Tensor1D|TypedArray|Array",
+                    "type": "Tensor|Tensor1D|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
                     "name": "variance",
                     "documentation": "A variance Tensor.",
-                    "type": "Tensor|Tensor1D|TypedArray|Array",
+                    "type": "Tensor|Tensor1D|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
                     "name": "offset",
                     "documentation": "An offset Tensor.",
-                    "type": "Tensor|Tensor1D|TypedArray|Array",
+                    "type": "Tensor|Tensor1D|TensorLike",
                     "optional": true,
                     "isConfigParam": false
                   },
                   {
                     "name": "scale",
                     "documentation": "A scale Tensor.",
-                    "type": "Tensor|Tensor1D|TypedArray|Array",
+                    "type": "Tensor|Tensor1D|TensorLike",
                     "optional": true,
                     "isConfigParam": false
                   },
@@ -3533,7 +3533,7 @@
                   {
                     "name": "x",
                     "documentation": "The input tensor.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -3569,7 +3569,7 @@
                   {
                     "name": "x",
                     "documentation": "The input tensor. The 4-D input tensor is treated as a 3-D array\nof 1D vectors (along the last dimension), and each vector is\nnormalized independently.",
-                    "type": "Tensor3D|Tensor4D|TypedArray|Array",
+                    "type": "Tensor3D|Tensor4D|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -3619,28 +3619,28 @@
                   {
                     "name": "sparseIndices",
                     "documentation": "A 0-D, 1-D, or 2-D Tensor of type int32.\nsparseIndices[i] contains the complete index where sparseValues[i] will be\nplaced.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
                     "name": "sparseValues",
                     "documentation": "A 0-D or 1-D Tensor. Values\ncorresponding to each row of sparseIndices, or a scalar value to be used for\nall sparse indices.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
                     "name": "outputShape",
                     "documentation": "Shape of the dense output tensor. the type is inferred.",
-                    "type": "number[]",
+                    "type": "ShapeMap[Rank]",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
                     "name": "defaultValue",
                     "documentation": "Scalar. Value to set for indices not specified in\nsparseIndices. Defaults to zero.",
-                    "type": "Scalar|TypedArray|Array",
+                    "type": "Scalar|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   }
@@ -3667,7 +3667,7 @@
                   {
                     "name": "x",
                     "documentation": "The input tensor to be summed.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -3715,7 +3715,7 @@
                   {
                     "name": "x",
                     "documentation": "The input tensor.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   }
@@ -3737,7 +3737,7 @@
                   {
                     "name": "x",
                     "documentation": "The input Tensor.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   }
@@ -3759,7 +3759,7 @@
                   {
                     "name": "x",
                     "documentation": "The input tensor.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   }
@@ -3781,7 +3781,7 @@
                   {
                     "name": "x",
                     "documentation": "The input Tensor.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   }
@@ -3803,7 +3803,7 @@
                   {
                     "name": "x",
                     "documentation": "The input tensor.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   }
@@ -3825,7 +3825,7 @@
                   {
                     "name": "x",
                     "documentation": "The input tensor.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   }
@@ -3847,7 +3847,7 @@
                   {
                     "name": "x",
                     "documentation": "The input tensor.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   }
@@ -3869,7 +3869,7 @@
                   {
                     "name": "x",
                     "documentation": "The input tensor.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   }
@@ -3891,7 +3891,7 @@
                   {
                     "name": "x",
                     "documentation": "The input tensor.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   }
@@ -3913,7 +3913,7 @@
                   {
                     "name": "x",
                     "documentation": "The input tensor.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   }
@@ -3935,7 +3935,7 @@
                   {
                     "name": "x",
                     "documentation": "The input tensor.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   }
@@ -3957,7 +3957,7 @@
                   {
                     "name": "x",
                     "documentation": "The input Tensor.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   }
@@ -3979,7 +3979,7 @@
                   {
                     "name": "x",
                     "documentation": "The input tensor.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   }
@@ -4001,7 +4001,7 @@
                   {
                     "name": "x",
                     "documentation": "The input `tf.Tensor`.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   }
@@ -4023,7 +4023,7 @@
                   {
                     "name": "x",
                     "documentation": "The input tensor.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -4059,7 +4059,7 @@
                   {
                     "name": "x",
                     "documentation": "The input tensor.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   }
@@ -4081,7 +4081,7 @@
                   {
                     "name": "x",
                     "documentation": "The input tensor.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   }
@@ -4103,7 +4103,7 @@
                   {
                     "name": "x",
                     "documentation": "The input tensor.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   }
@@ -4125,7 +4125,7 @@
                   {
                     "name": "x",
                     "documentation": "The input tensor.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   }
@@ -4147,7 +4147,7 @@
                   {
                     "name": "x",
                     "documentation": "The input tensor.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   }
@@ -4169,7 +4169,7 @@
                   {
                     "name": "x",
                     "documentation": "The input tensor.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   }
@@ -4191,7 +4191,7 @@
                   {
                     "name": "x",
                     "documentation": "The input tensor.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   }
@@ -4213,7 +4213,7 @@
                   {
                     "name": "x",
                     "documentation": "The input tensor.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   }
@@ -4235,7 +4235,7 @@
                   {
                     "name": "x",
                     "documentation": "The input tensor.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   }
@@ -4257,7 +4257,7 @@
                   {
                     "name": "x",
                     "documentation": "The input tensor.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   }
@@ -4279,7 +4279,7 @@
                   {
                     "name": "x",
                     "documentation": "The input tensor.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   }
@@ -4301,7 +4301,7 @@
                   {
                     "name": "x",
                     "documentation": "The input tensor.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   }
@@ -4323,7 +4323,7 @@
                   {
                     "name": "x",
                     "documentation": "The input tensor.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   }
@@ -4345,7 +4345,7 @@
                   {
                     "name": "x",
                     "documentation": "The input tensor.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   }
@@ -4367,7 +4367,7 @@
                   {
                     "name": "x",
                     "documentation": "The input tensor.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   }
@@ -4389,7 +4389,7 @@
                   {
                     "name": "x",
                     "documentation": "The input tensor.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   }
@@ -4411,7 +4411,7 @@
                   {
                     "name": "x",
                     "documentation": "The input tensor.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -4440,14 +4440,14 @@
                   {
                     "name": "a",
                     "documentation": "The first tensor.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
                     "name": "b",
                     "documentation": "The second tensor. Must have the same dtype as `a`.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   }
@@ -4469,7 +4469,7 @@
                   {
                     "name": "x",
                     "documentation": "The input tensor. If the dtype is `bool`, the output dtype will be\n`int32'.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   }
@@ -4491,7 +4491,7 @@
                   {
                     "name": "x",
                     "documentation": "The input tensor.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   }
@@ -4513,7 +4513,7 @@
                   {
                     "name": "x",
                     "documentation": "The input tensor.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   }
@@ -4535,7 +4535,7 @@
                   {
                     "name": "x",
                     "documentation": "The input tensor.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -4564,14 +4564,14 @@
                   {
                     "name": "x",
                     "documentation": "The input tensor.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
                     "name": "alpha",
                     "documentation": "Scaling factor for negative values.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   }
@@ -4598,14 +4598,14 @@
                   {
                     "name": "a",
                     "documentation": "First matrix in dot product operation.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
                     "name": "b",
                     "documentation": "Second matrix in dot product operation.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -4641,14 +4641,14 @@
                   {
                     "name": "v1",
                     "documentation": "The first vector in the outer product operation.",
-                    "type": "Tensor1D|TypedArray|Array",
+                    "type": "Tensor1D|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
                     "name": "v2",
                     "documentation": "The second vector in the outer product operation.",
-                    "type": "Tensor1D|TypedArray|Array",
+                    "type": "Tensor1D|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   }
@@ -4670,14 +4670,14 @@
                   {
                     "name": "t1",
                     "documentation": "The first tensor in the dot operation.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
                     "name": "t2",
                     "documentation": "The second tensor in the dot operation.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   }
@@ -4699,7 +4699,7 @@
                   {
                     "name": "x",
                     "documentation": "The tensor to transpose.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -4728,7 +4728,7 @@
                   {
                     "name": "x",
                     "documentation": "The input array.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -4773,14 +4773,14 @@
                   {
                     "name": "a",
                     "documentation": "First matrix in dot product operation.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
                     "name": "b",
                     "documentation": "Second matrix in dot product operation.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -4801,7 +4801,7 @@
                   {
                     "name": "bias",
                     "documentation": "Matrix to be added to the result.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": true,
                     "isConfigParam": false
                   },
@@ -4835,14 +4835,14 @@
                   {
                     "name": "x",
                     "documentation": "The input tensor, of rank 3 or rank 2, of shape\n`[batch, width, inChannels]`. If rank 2, batch of 1 is assumed.",
-                    "type": "Tensor2D|Tensor3D|TypedArray|Array",
+                    "type": "Tensor2D|Tensor3D|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
                     "name": "filter",
                     "documentation": "The filter, rank 3, of shape\n`[filterWidth, inDepth, outDepth]`.",
-                    "type": "Tensor3D|TypedArray|Array",
+                    "type": "Tensor3D|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -4899,14 +4899,14 @@
                   {
                     "name": "x",
                     "documentation": "The input tensor, of rank 4 or rank 3, of shape\n`[batch, height, width, inChannels]`. If rank 3, batch of 1 is\nassumed.",
-                    "type": "Tensor3D|Tensor4D|TypedArray|Array",
+                    "type": "Tensor3D|Tensor4D|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
                     "name": "filter",
                     "documentation": "The filter, rank 4, of shape\n`[filterHeight, filterWidth, inDepth, outDepth]`.",
-                    "type": "Tensor4D|TypedArray|Array",
+                    "type": "Tensor4D|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -4963,14 +4963,14 @@
                   {
                     "name": "x",
                     "documentation": "The input image, of rank 4 or rank 3, of shape\n`[batch, height, width, inDepth]`. If rank 3, batch of 1 is assumed.",
-                    "type": "Tensor3D|Tensor4D|TypedArray|Array",
+                    "type": "Tensor3D|Tensor4D|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
                     "name": "filter",
                     "documentation": "The filter, rank 4, of shape\n`[filterHeight, filterWidth, outDepth, inDepth]`.\n`inDepth` must match `inDepth` in `x`.",
-                    "type": "Tensor4D|TypedArray|Array",
+                    "type": "Tensor4D|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -5020,14 +5020,14 @@
                   {
                     "name": "x",
                     "documentation": "The input tensor, of rank 4 or rank 3, of shape\n`[batch, height, width, inChannels]`. If rank 3, batch of 1 is\nassumed.",
-                    "type": "Tensor3D|Tensor4D|TypedArray|Array",
+                    "type": "Tensor3D|Tensor4D|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
                     "name": "filter",
                     "documentation": "The filter tensor, rank 4, of shape\n`[filterHeight, filterWidth, inChannels, channelMultiplier]`.",
-                    "type": "Tensor4D|TypedArray|Array",
+                    "type": "Tensor4D|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -5084,21 +5084,21 @@
                   {
                     "name": "x",
                     "documentation": "The input tensor, of rank 4 or rank 3, of shape\n`[batch, height, width, inChannels]`. If rank 3, batch of 1 is\nassumed.",
-                    "type": "Tensor3D|Tensor4D|TypedArray|Array",
+                    "type": "Tensor3D|Tensor4D|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
                     "name": "depthwiseFilter",
                     "documentation": "The depthwise filter tensor, rank 4, of shape\n`[filterHeight, filterWidth, inChannels, channelMultiplier]`. This is\nthe filter used in the first step.",
-                    "type": "Tensor4D|TypedArray|Array",
+                    "type": "Tensor4D|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
                     "name": "pointwiseFilter",
                     "documentation": "The pointwise filter tensor, rank 4, of shape\n`[1, 1, inChannels * channelMultiplier, outChannels]`. This is\nthe filter used in the second step.",
-                    "type": "Tensor4D|TypedArray|Array",
+                    "type": "Tensor4D|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -5148,14 +5148,14 @@
                   {
                     "name": "x",
                     "documentation": "The input tensor, of rank 5 or rank 4, of shape\n`[batch, depth, height, width, channels]`. If rank 4,\nbatch of 1 is assumed.",
-                    "type": "Tensor4D|Tensor5D|TypedArray|Array",
+                    "type": "Tensor4D|Tensor5D|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
                     "name": "filter",
                     "documentation": "The filter, rank 5, of shape\n`[filterDepth, filterHeight, filterWidth, inChannels, outChannels]`.\ninChannels must match between input and filter.",
-                    "type": "Tensor5D|TypedArray|Array",
+                    "type": "Tensor5D|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -5205,7 +5205,7 @@
                   {
                     "name": "x",
                     "documentation": "The input tensor, of rank 4 or rank 3 of shape\n`[batch, height, width, inChannels]`. If rank 3, batch of 1 is assumed.",
-                    "type": "Tensor3D|Tensor4D|TypedArray|Array",
+                    "type": "Tensor3D|Tensor4D|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -5255,7 +5255,7 @@
                   {
                     "name": "x",
                     "documentation": "The input tensor, of rank 4 or rank 3 of shape\n`[batch, height, width, inChannels]`. If rank 3, batch of 1 is assumed.",
-                    "type": "Tensor3D|Tensor4D|TypedArray|Array",
+                    "type": "Tensor3D|Tensor4D|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -5305,7 +5305,7 @@
                   {
                     "name": "input",
                     "documentation": "The input tensor, of rank 4 or rank 3 of shape\n`[batch, height, width, inChannels]`. If rank 3, batch of 1 is assumed.",
-                    "type": "Tensor3D|Tensor4D|TypedArray|Array",
+                    "type": "Tensor3D|Tensor4D|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -5367,7 +5367,7 @@
                   {
                     "name": "x",
                     "documentation": "The input tensor.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -5403,7 +5403,7 @@
                   {
                     "name": "x",
                     "documentation": "The input tensor to compute the sum over. If the dtype is `bool`\nit will be converted to `int32` and the output dtype will be `int32`.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -5439,7 +5439,7 @@
                   {
                     "name": "x",
                     "documentation": "The input tensor to compute the product over. If the dtype is `bool`\nit will be converted to `int32` and the output dtype will be `int32`.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -5475,7 +5475,7 @@
                   {
                     "name": "x",
                     "documentation": "The input tensor.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -5511,7 +5511,7 @@
                   {
                     "name": "x",
                     "documentation": "The input Tensor.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -5547,7 +5547,7 @@
                   {
                     "name": "x",
                     "documentation": "The input tensor.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -5583,7 +5583,7 @@
                   {
                     "name": "x",
                     "documentation": "The input tensor.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -5612,7 +5612,7 @@
                   {
                     "name": "x",
                     "documentation": "The input tensor.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -5641,7 +5641,7 @@
                   {
                     "name": "x",
                     "documentation": "The input tensor. Must be of dtype bool.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -5677,7 +5677,7 @@
                   {
                     "name": "x",
                     "documentation": "The input tensor. Must be of dtype bool.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -5718,14 +5718,14 @@
                   {
                     "name": "a",
                     "documentation": "The first input tensor.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
                     "name": "b",
                     "documentation": "The second input tensor. Must have the same dtype as `a`.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   }
@@ -5747,14 +5747,14 @@
                   {
                     "name": "a",
                     "documentation": "The first input tensor.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
                     "name": "b",
                     "documentation": "The second input tensor. Must have the same dtype as `a`.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   }
@@ -5776,14 +5776,14 @@
                   {
                     "name": "a",
                     "documentation": "The first input tensor.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
                     "name": "b",
                     "documentation": "The second input tensor. Must have the same dtype as `a`.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   }
@@ -5805,14 +5805,14 @@
                   {
                     "name": "a",
                     "documentation": "The first input tensor.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
                     "name": "b",
                     "documentation": "The second input tensor. Must have the same dtype as `a`.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   }
@@ -5834,14 +5834,14 @@
                   {
                     "name": "a",
                     "documentation": "The first input tensor.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
                     "name": "b",
                     "documentation": "The second input tensor. Must have the same dtype as `a`.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   }
@@ -5863,14 +5863,14 @@
                   {
                     "name": "a",
                     "documentation": "The first input tensor.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
                     "name": "b",
                     "documentation": "The second input tensor. Must have the same dtype as `a`.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   }
@@ -5892,7 +5892,7 @@
                   {
                     "name": "x",
                     "documentation": "The input tensor. Must be of dtype 'bool'.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   }
@@ -5914,14 +5914,14 @@
                   {
                     "name": "a",
                     "documentation": "The first input tensor. Must be of dtype bool.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
                     "name": "b",
                     "documentation": "The second input tensor. Must be of dtype bool.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   }
@@ -5943,14 +5943,14 @@
                   {
                     "name": "a",
                     "documentation": "The first input tensor. Must be of dtype bool.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
                     "name": "b",
                     "documentation": "The second input tensor. Must be of dtype bool.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   }
@@ -5972,14 +5972,14 @@
                   {
                     "name": "a",
                     "documentation": "The first input tensor. Must be of dtype bool.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
                     "name": "b",
                     "documentation": "The second input tensor. Must be of dtype bool.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   }
@@ -6001,21 +6001,21 @@
                   {
                     "name": "condition",
                     "documentation": "The input condition. Must be of dtype bool.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
                     "name": "a",
                     "documentation": "If `condition` is rank 1, `a` may have a higher rank but\nits first dimension must match the size of `condition`.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
                     "name": "b",
                     "documentation": "A tensor with the same shape and type as `a`.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   }
@@ -6037,7 +6037,7 @@
                   {
                     "name": "condition",
                     "documentation": "",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   }
@@ -6064,14 +6064,14 @@
                   {
                     "name": "a",
                     "documentation": "The first `tf.Tensor` to add.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
                     "name": "b",
                     "documentation": "The second `tf.Tensor` to add. Must have the same type as `a`.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   }
@@ -6115,14 +6115,14 @@
                   {
                     "name": "a",
                     "documentation": "The first `tf.Tensor` to subtract from.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
                     "name": "b",
                     "documentation": "The second `tf.Tensor` to be subtracted. Must have the same dtype as\n`a`.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   }
@@ -6144,14 +6144,14 @@
                   {
                     "name": "base",
                     "documentation": "The base `tf.Tensor` to pow element-wise.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
                     "name": "exp",
                     "documentation": "The exponent `tf.Tensor` to pow element-wise.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   }
@@ -6173,14 +6173,14 @@
                   {
                     "name": "a",
                     "documentation": "The first tensor to multiply.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
                     "name": "b",
                     "documentation": "The second tensor to multiply. Must have the same dtype as `a`.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   }
@@ -6202,14 +6202,14 @@
                   {
                     "name": "a",
                     "documentation": "The first tensor as the numerator.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
                     "name": "b",
                     "documentation": "The second tensor as the denominator. Must have the same dtype as\n`a`.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   }
@@ -6231,14 +6231,14 @@
                   {
                     "name": "a",
                     "documentation": "The first tensor as the numerator.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
                     "name": "b",
                     "documentation": "The second tensor as the denominator. Must have the same dtype as\n`a`.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   }
@@ -6260,14 +6260,14 @@
                   {
                     "name": "a",
                     "documentation": "The first tensor.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
                     "name": "b",
                     "documentation": "The second tensor. Must have the same type as `a`.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   }
@@ -6289,14 +6289,14 @@
                   {
                     "name": "a",
                     "documentation": "The first tensor.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
                     "name": "b",
                     "documentation": "The second tensor. Must have the same type as `a`.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   }
@@ -6318,14 +6318,14 @@
                   {
                     "name": "a",
                     "documentation": "The first tensor.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
                     "name": "b",
                     "documentation": "The second tensor. Must have the same type as `a`.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   }
@@ -6347,14 +6347,14 @@
                   {
                     "name": "a",
                     "documentation": "The first tensor.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
                     "name": "b",
                     "documentation": "The second tensor. Must have the same type as `a`.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   }
@@ -6381,14 +6381,14 @@
                   {
                     "name": "x",
                     "documentation": "The `tf.Tensor` that will be summed along its segments.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
                     "name": "segmentIds",
                     "documentation": "A `tf.Tensor1D` whose rank is equal to the rank of `x`'s\ndimension along the `axis`.  Maps each element of `x` to a segment.",
-                    "type": "Tensor1D|TypedArray|Array",
+                    "type": "Tensor1D|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -6422,14 +6422,14 @@
                   {
                     "name": "lstmCells",
                     "documentation": "Array of LSTMCell functions.",
-                    "type": "(data: Tensor2D, c: Tensor2D, h: Tensor2D): [Tensor2D, Tensor2D][]",
+                    "type": "LSTMCellFunc[]",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
                     "name": "data",
                     "documentation": "The input to the cell.",
-                    "type": "Tensor2D|TypedArray|Array",
+                    "type": "Tensor2D|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -6465,42 +6465,42 @@
                   {
                     "name": "forgetBias",
                     "documentation": "Forget bias for the cell.",
-                    "type": "Scalar|TypedArray|Array",
+                    "type": "Scalar|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
                     "name": "lstmKernel",
                     "documentation": "The weights for the cell.",
-                    "type": "Tensor2D|TypedArray|Array",
+                    "type": "Tensor2D|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
                     "name": "lstmBias",
                     "documentation": "The bias for the cell.",
-                    "type": "Tensor1D|TypedArray|Array",
+                    "type": "Tensor1D|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
                     "name": "data",
                     "documentation": "The input to the cell.",
-                    "type": "Tensor2D|TypedArray|Array",
+                    "type": "Tensor2D|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
                     "name": "c",
                     "documentation": "Previous cell state.",
-                    "type": "Tensor2D|TypedArray|Array",
+                    "type": "Tensor2D|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
                     "name": "h",
                     "documentation": "Previous cell output.",
-                    "type": "Tensor2D|TypedArray|Array",
+                    "type": "Tensor2D|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   }
@@ -6527,14 +6527,14 @@
                   {
                     "name": "v",
                     "documentation": "The current moving average value.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
                     "name": "x",
                     "documentation": "New input value, must have the same shape and dtype as `v`.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -6582,7 +6582,7 @@
                   {
                     "name": "x",
                     "documentation": "The tensor to stride slice.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -6660,21 +6660,21 @@
                   {
                     "name": "indices",
                     "documentation": "The tensor contains the indices into the output tensor.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
                     "name": "updates",
                     "documentation": "The tensor contains the value for the indices.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
                     "name": "shape",
                     "documentation": ": The shape of the output tensor.",
-                    "type": "number[]",
+                    "type": "ShapeMap[Rank]",
                     "optional": false,
                     "isConfigParam": false
                   }
@@ -6696,14 +6696,14 @@
                   {
                     "name": "x",
                     "documentation": "The tensor from which to gather values.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
                     "name": "indices",
                     "documentation": "Index tensor, must be of type int32.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   }
@@ -6730,7 +6730,7 @@
                   {
                     "name": "x",
                     "documentation": "1-D or higher `tf.Tensor` with last dimension being at least `k`.",
-                    "type": "Tensor|TypedArray|Array",
+                    "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -6766,14 +6766,14 @@
                   {
                     "name": "labels",
                     "documentation": "The target labels, assumed to be 0-based integers\nfor the classes. The shape is `[numExamples]`, where\n`numExamples` is the number of examples included.",
-                    "type": "Tensor1D|TypedArray|Array",
+                    "type": "Tensor1D|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
                     "name": "predictions",
                     "documentation": "The predicted classes, assumed to be\n0-based integers for the classes. Must have the same shape as `labels`.",
-                    "type": "Tensor1D|TypedArray|Array",
+                    "type": "Tensor1D|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -6970,7 +6970,7 @@
                   {
                     "name": "images",
                     "documentation": "The images, of rank 4 or rank 3, of shape\n`[batch, height, width, inChannels]`. If rank 3, batch of 1 is assumed.",
-                    "type": "Tensor3D|Tensor4D|TypedArray|Array",
+                    "type": "Tensor3D|Tensor4D|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -7008,7 +7008,7 @@
                   {
                     "name": "images",
                     "documentation": "The images, of rank 4 or rank 3, of shape\n`[batch, height, width, inChannels]`. If rank 3, batch of 1 is assumed.",
-                    "type": "Tensor3D|Tensor4D|TypedArray|Array",
+                    "type": "Tensor3D|Tensor4D|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -7046,14 +7046,14 @@
                   {
                     "name": "boxes",
                     "documentation": "a 2d tensor of shape `[numBoxes, 4]`. Each entry is\n`[y1, x1, y2, x2]`, where `(y1, x1)` and `(y2, x2)` are the corners of\nthe bounding box.",
-                    "type": "Tensor2D|TypedArray|Array",
+                    "type": "Tensor2D|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
                     "name": "scores",
                     "documentation": "a 1d tensor providing the box scores of shape `[numBoxes]`.",
-                    "type": "Tensor1D|TypedArray|Array",
+                    "type": "Tensor1D|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -7098,21 +7098,21 @@
                   {
                     "name": "image",
                     "documentation": "4d tensor of shape `[batch,imageHeight,imageWidth, depth]`,\nwhere imageHeight and imageWidth must be positive, specifying the\nbatch of images from which to take crops",
-                    "type": "Tensor4D|TypedArray|Array",
+                    "type": "Tensor4D|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
                     "name": "boxes",
                     "documentation": "2d float32 tensor of shape `[numBoxes, 4]`. Each entry is\n`[y1, x1, y2, x2]`, where `(y1, x1)` and `(y2, x2)` are the normalized\ncoordinates of the box in the boxInd[i]'th image in the batch",
-                    "type": "Tensor2D|TypedArray|Array",
+                    "type": "Tensor2D|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
                     "name": "boxInd",
                     "documentation": "1d int32 tensor of shape `[numBoxes]` with values in range\n`[0, batch)` that specifies the image that the `i`-th box refers to.",
-                    "type": "Tensor1D|TypedArray|Array",
+                    "type": "Tensor1D|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -7196,7 +7196,7 @@
                   {
                     "name": "img",
                     "documentation": "A rank-2 or rank-3 tensor. If rank-2, draws grayscale. If\nrank-3, must have depth of 1, 3 or 4. When depth of 1, draws\ngrayscale. When depth of 3, we draw with the first three components of\nthe depth dimension corresponding to r, g, b and alpha = 1. When depth of\n4, all four components of the depth dimension correspond to r, g, b, a.",
-                    "type": "Tensor2D|Tensor3D|TypedArray|Array",
+                    "type": "Tensor2D|Tensor3D|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -7234,7 +7234,7 @@
                   {
                     "name": "img",
                     "documentation": "A rank-2 or rank-3 tensor. If rank-2, draws grayscale. If\nrank-3, must have depth of 1, 3 or 4. When depth of 1, draws\ngrayscale. When depth of 3, we draw with the first three components of\nthe depth dimension corresponding to r, g, b and alpha = 1. When depth of\n4, all four components of the depth dimension correspond to r, g, b, a.",
-                    "type": "Tensor2D|Tensor3D|TypedArray|Array",
+                    "type": "Tensor2D|Tensor3D|TensorLike",
                     "optional": false,
                     "isConfigParam": false
                   },
@@ -7464,5 +7464,1360 @@
     "SGDOptimizer": "Optimizer",
     "MomentumOptimizer": "Optimizer",
     "RMSPropOptimizer": "Optimizer"
+  },
+  "configInterfaceParamMap": {
+    "ShapeMap": [
+      {
+        "name": "R0",
+        "documentation": "",
+        "type": "number[]",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "R1",
+        "documentation": "",
+        "type": "[number]",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "R2",
+        "documentation": "",
+        "type": "[number, number]",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "R3",
+        "documentation": "",
+        "type": "[number, number, number]",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "R4",
+        "documentation": "",
+        "type": "[number, number, number, number]",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "R5",
+        "documentation": "",
+        "type": "[number, number, number, number, number]",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "R6",
+        "documentation": "",
+        "type": "[number, number, number, number, number, number]",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "ArrayMap": [
+      {
+        "name": "R0",
+        "documentation": "",
+        "type": "number",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "R1",
+        "documentation": "",
+        "type": "number[]",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "R2",
+        "documentation": "",
+        "type": "number[][]",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "R3",
+        "documentation": "",
+        "type": "number[][][]",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "R4",
+        "documentation": "",
+        "type": "number[][][][]",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "R5",
+        "documentation": "",
+        "type": "number[][][][][]",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "R6",
+        "documentation": "",
+        "type": "number[][][][][][]",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "DataTypeMap": [
+      {
+        "name": "float32",
+        "documentation": "",
+        "type": "Float32Array",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "int32",
+        "documentation": "",
+        "type": "Int32Array",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "bool",
+        "documentation": "",
+        "type": "Uint8Array",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "complex64",
+        "documentation": "",
+        "type": "Float32Array",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "string",
+        "documentation": "",
+        "type": "string[]",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "SingleValueMap": [
+      {
+        "name": "bool",
+        "documentation": "",
+        "type": "boolean",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "int32",
+        "documentation": "",
+        "type": "number",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "float32",
+        "documentation": "",
+        "type": "number",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "complex64",
+        "documentation": "",
+        "type": "number",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "string",
+        "documentation": "",
+        "type": "string",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "RecursiveArray": [],
+    "TensorData": [
+      {
+        "name": "values",
+        "documentation": "",
+        "type": "DataTypeMap[D]",
+        "optional": true,
+        "isConfigParam": true
+      },
+      {
+        "name": "dtype",
+        "documentation": "",
+        "type": "D",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "complexTensors",
+        "documentation": "",
+        "type": "{real: Tensor, imag: Tensor}",
+        "optional": true,
+        "isConfigParam": true
+      }
+    ],
+    "TensorTracker": [],
+    "OpHandler": [
+      {
+        "name": "image",
+        "documentation": "",
+        "type": "{\n    resizeBilinear(\n        images: T, size: [number, number], alignCorners: boolean): T;\n    resizeNearestNeighbor<T extends Tensor3D|Tensor4D>(\n        images: T, size: [number, number], alignCorners: boolean): T;\n  }",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "spectral",
+        "documentation": "",
+        "type": "{\n    fft(x: Tensor): Tensor; ifft(x: Tensor): Tensor; rfft(x: Tensor): Tensor;\n    irfft(x: Tensor): Tensor\n  }",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "NumericTensor": [
+      {
+        "name": "dtype",
+        "documentation": "",
+        "type": "NumericDataType",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "StringTensor": [
+      {
+        "name": "dtype",
+        "documentation": "",
+        "type": "'string'",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "BackendTimingInfo": [
+      {
+        "name": "kernelMs",
+        "documentation": "",
+        "type": "number",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "TensorStorage": [],
+    "DataMover": [],
+    "BackendTimer": [],
+    "TensorContainerObject": [],
+    "TensorContainerArray": [],
+    "TensorInfo": [
+      {
+        "name": "name",
+        "documentation": "",
+        "type": "string",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "shape",
+        "documentation": "",
+        "type": "number[]",
+        "optional": true,
+        "isConfigParam": true
+      },
+      {
+        "name": "dtype",
+        "documentation": "",
+        "type": "DataType",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "TapeNode": [
+      {
+        "name": "id",
+        "documentation": "",
+        "type": "number",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "name",
+        "documentation": "",
+        "type": "string",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "outputs",
+        "documentation": "",
+        "type": "Tensor[]",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "inputs",
+        "documentation": "",
+        "type": "NamedTensorMap",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "gradient",
+        "documentation": "",
+        "type": "(dy: Tensor|Tensor[]) => NamedGradientMap",
+        "optional": true,
+        "isConfigParam": true
+      }
+    ],
+    "TimingInfo": [
+      {
+        "name": "wallMs",
+        "documentation": "",
+        "type": "number",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "TensorManager": [],
+    "ScopeState": [
+      {
+        "name": "track",
+        "documentation": "",
+        "type": "Tensor[]",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "name",
+        "documentation": "",
+        "type": "string",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "Features": [
+      {
+        "name": "DEBUG",
+        "documentation": "",
+        "type": "boolean",
+        "optional": true,
+        "isConfigParam": true
+      },
+      {
+        "name": "IS_BROWSER",
+        "documentation": "",
+        "type": "boolean",
+        "optional": true,
+        "isConfigParam": true
+      },
+      {
+        "name": "IS_NODE",
+        "documentation": "",
+        "type": "boolean",
+        "optional": true,
+        "isConfigParam": true
+      },
+      {
+        "name": "WEBGL_LAZILY_UNPACK",
+        "documentation": "",
+        "type": "boolean",
+        "optional": true,
+        "isConfigParam": true
+      },
+      {
+        "name": "WEBGL_CPU_FORWARD",
+        "documentation": "",
+        "type": "boolean",
+        "optional": true,
+        "isConfigParam": true
+      },
+      {
+        "name": "WEBGL_PACK",
+        "documentation": "",
+        "type": "boolean",
+        "optional": true,
+        "isConfigParam": true
+      },
+      {
+        "name": "WEBGL_PACK_BATCHNORMALIZATION",
+        "documentation": "",
+        "type": "boolean",
+        "optional": true,
+        "isConfigParam": true
+      },
+      {
+        "name": "WEBGL_PACK_CLIP",
+        "documentation": "",
+        "type": "boolean",
+        "optional": true,
+        "isConfigParam": true
+      },
+      {
+        "name": "WEBGL_PACK_DEPTHWISECONV",
+        "documentation": "",
+        "type": "boolean",
+        "optional": true,
+        "isConfigParam": true
+      },
+      {
+        "name": "WEBGL_PACK_BINARY_OPERATIONS",
+        "documentation": "",
+        "type": "boolean",
+        "optional": true,
+        "isConfigParam": true
+      },
+      {
+        "name": "WEBGL_PACK_ARRAY_OPERATIONS",
+        "documentation": "",
+        "type": "boolean",
+        "optional": true,
+        "isConfigParam": true
+      },
+      {
+        "name": "WEBGL_CONV_IM2COL",
+        "documentation": "",
+        "type": "boolean",
+        "optional": true,
+        "isConfigParam": true
+      },
+      {
+        "name": "WEBGL_MAX_TEXTURE_SIZE",
+        "documentation": "",
+        "type": "number",
+        "optional": true,
+        "isConfigParam": true
+      },
+      {
+        "name": "WEBGL_MAX_TEXTURES_IN_SHADER",
+        "documentation": "",
+        "type": "number",
+        "optional": true,
+        "isConfigParam": true
+      },
+      {
+        "name": "WEBGL_DISJOINT_QUERY_TIMER_EXTENSION_VERSION",
+        "documentation": "",
+        "type": "number",
+        "optional": true,
+        "isConfigParam": true
+      },
+      {
+        "name": "WEBGL_DISJOINT_QUERY_TIMER_EXTENSION_RELIABLE",
+        "documentation": "",
+        "type": "boolean",
+        "optional": true,
+        "isConfigParam": true
+      },
+      {
+        "name": "WEBGL_VERSION",
+        "documentation": "",
+        "type": "number",
+        "optional": true,
+        "isConfigParam": true
+      },
+      {
+        "name": "HAS_WEBGL",
+        "documentation": "",
+        "type": "boolean",
+        "optional": true,
+        "isConfigParam": true
+      },
+      {
+        "name": "WEBGL_RENDER_FLOAT32_ENABLED",
+        "documentation": "",
+        "type": "boolean",
+        "optional": true,
+        "isConfigParam": true
+      },
+      {
+        "name": "WEBGL_DOWNLOAD_FLOAT_ENABLED",
+        "documentation": "",
+        "type": "boolean",
+        "optional": true,
+        "isConfigParam": true
+      },
+      {
+        "name": "WEBGL_FENCE_API_ENABLED",
+        "documentation": "",
+        "type": "boolean",
+        "optional": true,
+        "isConfigParam": true
+      },
+      {
+        "name": "WEBGL_SIZE_UPLOAD_UNIFORM",
+        "documentation": "",
+        "type": "number",
+        "optional": true,
+        "isConfigParam": true
+      },
+      {
+        "name": "WEBGL_NUM_MB_BEFORE_PAGING",
+        "documentation": "Number of megabytes bytes allocated on the GPU before we start moving data\nto cpu. Moving avoids gpu memory leaks and relies on JS's garbage\ncollector.",
+        "type": "number",
+        "optional": true,
+        "isConfigParam": true
+      },
+      {
+        "name": "BACKEND",
+        "documentation": "",
+        "type": "string",
+        "optional": true,
+        "isConfigParam": true
+      },
+      {
+        "name": "TEST_EPSILON",
+        "documentation": "",
+        "type": "number",
+        "optional": true,
+        "isConfigParam": true
+      },
+      {
+        "name": "IS_CHROME",
+        "documentation": "",
+        "type": "boolean",
+        "optional": true,
+        "isConfigParam": true
+      },
+      {
+        "name": "IS_TEST",
+        "documentation": "",
+        "type": "boolean",
+        "optional": true,
+        "isConfigParam": true
+      },
+      {
+        "name": "EPSILON",
+        "documentation": "",
+        "type": "number",
+        "optional": true,
+        "isConfigParam": true
+      },
+      {
+        "name": "PROD",
+        "documentation": "",
+        "type": "boolean",
+        "optional": true,
+        "isConfigParam": true
+      },
+      {
+        "name": "TENSORLIKE_CHECK_SHAPE_CONSISTENCY",
+        "documentation": "",
+        "type": "boolean",
+        "optional": true,
+        "isConfigParam": true
+      },
+      {
+        "name": "DEPRECATION_WARNINGS_ENABLED",
+        "documentation": "",
+        "type": "boolean",
+        "optional": true,
+        "isConfigParam": true
+      }
+    ],
+    "URLProperty": [
+      {
+        "name": "name",
+        "documentation": "",
+        "type": "keyof Features",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "type",
+        "documentation": "",
+        "type": "Type",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "ReduceInfo": [
+      {
+        "name": "windowSize",
+        "documentation": "",
+        "type": "number",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "batchSize",
+        "documentation": "",
+        "type": "number",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "inSize",
+        "documentation": "",
+        "type": "number",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "ScatterShapeInfo": [
+      {
+        "name": "sliceRank",
+        "documentation": "",
+        "type": "number",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "numUpdates",
+        "documentation": "",
+        "type": "number",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "sliceSize",
+        "documentation": "",
+        "type": "number",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "strides",
+        "documentation": "",
+        "type": "number[]",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "outputSize",
+        "documentation": "",
+        "type": "number",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "SegOpInfo": [
+      {
+        "name": "windowSize",
+        "documentation": "",
+        "type": "number",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "batchSize",
+        "documentation": "",
+        "type": "number",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "inSize",
+        "documentation": "",
+        "type": "number",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "numSegments",
+        "documentation": "",
+        "type": "number",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "GatherOpShapeInfo": [
+      {
+        "name": "batchSize",
+        "documentation": "",
+        "type": "number",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "sliceSize",
+        "documentation": "",
+        "type": "number",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "dimSize",
+        "documentation": "",
+        "type": "number",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "outputShape",
+        "documentation": "",
+        "type": "number[]",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "TextureData": [
+      {
+        "name": "shape",
+        "documentation": "",
+        "type": "number[]",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "dtype",
+        "documentation": "",
+        "type": "DataType",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "values",
+        "documentation": "",
+        "type": "DataValues",
+        "optional": true,
+        "isConfigParam": true
+      },
+      {
+        "name": "texture",
+        "documentation": "",
+        "type": "WebGLTexture",
+        "optional": true,
+        "isConfigParam": true
+      },
+      {
+        "name": "complexTensors",
+        "documentation": "",
+        "type": "{real: Tensor, imag: Tensor}",
+        "optional": true,
+        "isConfigParam": true
+      },
+      {
+        "name": "texShape",
+        "documentation": "[rows, columns] shape of the texture. ",
+        "type": "[number, number]",
+        "optional": true,
+        "isConfigParam": true
+      },
+      {
+        "name": "usage",
+        "documentation": "",
+        "type": "TextureUsage",
+        "optional": true,
+        "isConfigParam": true
+      },
+      {
+        "name": "isPacked",
+        "documentation": "",
+        "type": "boolean",
+        "optional": true,
+        "isConfigParam": true
+      },
+      {
+        "name": "slice",
+        "documentation": "",
+        "type": "{\n    // Offset in the 'flat index' space.\n    flatOffset: number;\n    // Used for counting how many sliced tensors point to the same texture.\n    origDataId: DataId;\n  }",
+        "optional": true,
+        "isConfigParam": true
+      }
+    ],
+    "TextureConfig": [
+      {
+        "name": "internalFormatFloat",
+        "documentation": "",
+        "type": "number",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "textureFormatFloat",
+        "documentation": "",
+        "type": "number",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "internalFormatHalfFloat",
+        "documentation": "",
+        "type": "number",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "internalFormatPackedFloat",
+        "documentation": "",
+        "type": "number",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "downloadTextureFormat",
+        "documentation": "",
+        "type": "number",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "downloadUnpackNumChannels",
+        "documentation": "",
+        "type": "number",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "defaultNumChannels",
+        "documentation": "",
+        "type": "number",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "textureTypeHalfFloat",
+        "documentation": "",
+        "type": "number",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "WebGL2DisjointQueryTimerExtension": [
+      {
+        "name": "TIME_ELAPSED_EXT",
+        "documentation": "",
+        "type": "number",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "GPU_DISJOINT_EXT",
+        "documentation": "",
+        "type": "number",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "WebGL1DisjointQueryTimerExtension": [
+      {
+        "name": "TIME_ELAPSED_EXT",
+        "documentation": "",
+        "type": "number",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "QUERY_RESULT_AVAILABLE_EXT",
+        "documentation": "",
+        "type": "number",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "GPU_DISJOINT_EXT",
+        "documentation": "",
+        "type": "number",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "QUERY_RESULT_EXT",
+        "documentation": "",
+        "type": "number",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "createQueryEXT",
+        "documentation": "",
+        "type": "() => {}",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "beginQueryEXT",
+        "documentation": "",
+        "type": "(ext: number, query: WebGLQuery) => void",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "endQueryEXT",
+        "documentation": "",
+        "type": "(ext: number) => void",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "deleteQueryEXT",
+        "documentation": "",
+        "type": "(query: WebGLQuery) => void",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "isQueryEXT",
+        "documentation": "",
+        "type": "(query: WebGLQuery) => boolean",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "getQueryObjectEXT",
+        "documentation": "",
+        "type": "(query: WebGLQuery, queryResultAvailableExt: number) => number",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "WebGLContextAttributes": [
+      {
+        "name": "alpha",
+        "documentation": "",
+        "type": "boolean",
+        "optional": true,
+        "isConfigParam": true
+      },
+      {
+        "name": "antialias",
+        "documentation": "",
+        "type": "boolean",
+        "optional": true,
+        "isConfigParam": true
+      },
+      {
+        "name": "premultipliedAlpha",
+        "documentation": "",
+        "type": "boolean",
+        "optional": true,
+        "isConfigParam": true
+      },
+      {
+        "name": "preserveDrawingBuffer",
+        "documentation": "",
+        "type": "boolean",
+        "optional": true,
+        "isConfigParam": true
+      },
+      {
+        "name": "depth",
+        "documentation": "",
+        "type": "boolean",
+        "optional": true,
+        "isConfigParam": true
+      },
+      {
+        "name": "stencil",
+        "documentation": "",
+        "type": "boolean",
+        "optional": true,
+        "isConfigParam": true
+      },
+      {
+        "name": "failIfMajorPerformanceCaveat",
+        "documentation": "",
+        "type": "boolean",
+        "optional": true,
+        "isConfigParam": true
+      }
+    ],
+    "FenceContext": [
+      {
+        "name": "query",
+        "documentation": "",
+        "type": "WebGLQuery|WebGLSync",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "GPGPUProgram": [
+      {
+        "name": "variableNames",
+        "documentation": "",
+        "type": "string[]",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "outputShape",
+        "documentation": "",
+        "type": "number[]",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "userCode",
+        "documentation": "",
+        "type": "string",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "usesPackedTextures",
+        "documentation": "",
+        "type": "boolean",
+        "optional": true,
+        "isConfigParam": true
+      },
+      {
+        "name": "isPackShader",
+        "documentation": "",
+        "type": "boolean",
+        "optional": true,
+        "isConfigParam": true
+      }
+    ],
+    "GPGPUBinary": [
+      {
+        "name": "webGLProgram",
+        "documentation": "",
+        "type": "WebGLProgram",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "program",
+        "documentation": "",
+        "type": "GPGPUProgram",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "uniformLocations",
+        "documentation": "",
+        "type": "{[name: string]: WebGLUniformLocation}",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "gpgpu",
+        "documentation": "",
+        "type": "GPGPUContext",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "source",
+        "documentation": "",
+        "type": "string",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "inShapeInfos",
+        "documentation": "",
+        "type": "ShapeInfo[]",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "outShapeInfo",
+        "documentation": "",
+        "type": "ShapeInfo",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "RandGauss": [],
+    "RandNormalDataTypes": [
+      {
+        "name": "float32",
+        "documentation": "",
+        "type": "Float32Array",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "int32",
+        "documentation": "",
+        "type": "Int32Array",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "CPUTimerQuery": [
+      {
+        "name": "startMs",
+        "documentation": "",
+        "type": "number",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "endMs",
+        "documentation": "",
+        "type": "number",
+        "optional": true,
+        "isConfigParam": true
+      }
+    ],
+    "WebGLMemoryInfo": [
+      {
+        "name": "numBytesInGPU",
+        "documentation": "",
+        "type": "number",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "unreliable",
+        "documentation": "",
+        "type": "boolean",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "WebGLTimingInfo": [
+      {
+        "name": "uploadWaitMs",
+        "documentation": "",
+        "type": "number",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "downloadWaitMs",
+        "documentation": "",
+        "type": "number",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "TensorHandle": [
+      {
+        "name": "dataId",
+        "documentation": "",
+        "type": "DataId",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "shape",
+        "documentation": "",
+        "type": "number[]",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "dtype",
+        "documentation": "",
+        "type": "DataType",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "WeightsManifestGroupConfig": [
+      {
+        "name": "paths",
+        "documentation": "An ordered list of paths.\n\nPaths are intentionally abstract in order to be general. For example, they\ncan be relative URL paths or relative paths on the file system.",
+        "type": "string[]",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "weights",
+        "documentation": "Specifications of the weights stored in the paths.",
+        "type": "WeightsManifestEntry[]",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "WeightsManifestEntry": [
+      {
+        "name": "name",
+        "documentation": "Name of the weight, e.g., 'Dense_1/bias'",
+        "type": "string",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "shape",
+        "documentation": "Shape of the weight.",
+        "type": "number[]",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "dtype",
+        "documentation": "Data type of the weight.",
+        "type": "'float32'|'int32'|'bool'",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "quantization",
+        "documentation": "Information for dequantization of the weight.",
+        "type": "{\n    scale: number,           // The scaling constant to multiply by.\n    min: number,             // The (possibly nudged) minimum weight to add.\n    dtype: 'uint16'|'uint8'  // The dtype of the quantized weights.\n  }",
+        "optional": true,
+        "isConfigParam": true
+      }
+    ],
+    "SaveConfig": [
+      {
+        "name": "trainableOnly",
+        "documentation": "Whether to save only the trainable weights of the model, ignoring the\nuntrainable ones.",
+        "type": "boolean",
+        "optional": true,
+        "isConfigParam": true
+      }
+    ],
+    "SaveResult": [
+      {
+        "name": "modelArtifactsInfo",
+        "documentation": "Information about the model artifacts saved.",
+        "type": "ModelArtifactsInfo",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "responses",
+        "documentation": "HTTP responses from the server that handled the model-saving request (if\nany). This is applicable only to server-based saving routes.",
+        "type": "Response[]",
+        "optional": true,
+        "isConfigParam": true
+      },
+      {
+        "name": "errors",
+        "documentation": "Error messages and related data (if any).",
+        "type": "Array",
+        "optional": true,
+        "isConfigParam": true
+      }
+    ],
+    "ModelArtifactsInfo": [
+      {
+        "name": "dateSaved",
+        "documentation": "Timestamp for when the model is saved.",
+        "type": "Date",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "modelTopologyType",
+        "documentation": "Type of the model topology\n\nPossible values:\n   - JSON: JSON config (human-readable, e.g., Keras JSON).\n   - GraphDef: TensorFlow\n     [GraphDef](https://www.tensorflow.org/extend/tool_developers/#graphdef)\n     protocol buffer (binary).",
+        "type": "'JSON'|'GraphDef'",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "modelTopologyBytes",
+        "documentation": "Size of model topology (Keras JSON or GraphDef), in bytes.",
+        "type": "number",
+        "optional": true,
+        "isConfigParam": true
+      },
+      {
+        "name": "weightSpecsBytes",
+        "documentation": "Size of weight specification or manifest, in bytes.",
+        "type": "number",
+        "optional": true,
+        "isConfigParam": true
+      },
+      {
+        "name": "weightDataBytes",
+        "documentation": "Size of weight value data, in bytes.",
+        "type": "number",
+        "optional": true,
+        "isConfigParam": true
+      }
+    ],
+    "ModelArtifacts": [
+      {
+        "name": "modelTopology",
+        "documentation": "Model topology.\n\nFor Keras-style `tf.Model`s, this is a JSON object.\nFor TensorFlow-style models (e.g., `FrozenModel`), this is a binary buffer\ncarrying the `GraphDef` protocol buffer.",
+        "type": "{}|ArrayBuffer",
+        "optional": true,
+        "isConfigParam": true
+      },
+      {
+        "name": "weightSpecs",
+        "documentation": "Weight specifications.\n\nThis corresponds to the weightsData below.",
+        "type": "WeightsManifestEntry[]",
+        "optional": true,
+        "isConfigParam": true
+      },
+      {
+        "name": "weightData",
+        "documentation": "Binary buffer for all weight values concatenated in the order specified\nby `weightSpecs`.",
+        "type": "ArrayBuffer",
+        "optional": true,
+        "isConfigParam": true
+      }
+    ],
+    "IOHandler": [
+      {
+        "name": "save",
+        "documentation": "",
+        "type": "SaveHandler",
+        "optional": true,
+        "isConfigParam": true
+      },
+      {
+        "name": "load",
+        "documentation": "",
+        "type": "LoadHandler",
+        "optional": true,
+        "isConfigParam": true
+      }
+    ],
+    "ModelStoreManager": [],
+    "ConfigDict": [],
+    "ConfigDictArray": [],
+    "DoneFn": [
+      {
+        "name": "fail",
+        "documentation": "",
+        "type": "(message?: Error|string) => void",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "ModelPredictConfig": [
+      {
+        "name": "batchSize",
+        "documentation": "Optional. Batch size (Integer). If unspecified, it will default to 32.",
+        "type": "number",
+        "optional": true,
+        "isConfigParam": true
+      },
+      {
+        "name": "verbose",
+        "documentation": "Optional. Verbosity mode. Defaults to false.",
+        "type": "boolean",
+        "optional": true,
+        "isConfigParam": true
+      }
+    ],
+    "InferenceModel": [
+      {
+        "name": "inputs",
+        "documentation": "Return the array of input tensor info.",
+        "type": "TensorInfo[]",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "outputs",
+        "documentation": "Return the array of output tensor info.",
+        "type": "TensorInfo[]",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ]
+  },
+  "inlineTypes": {},
+  "docTypeAliases": {
+    "ShapeMap": "number[]",
+    "ArrayMap": "number[]",
+    "DataType": "'float32'|'int32'|'bool'|'complex64'|'string'",
+    "TensorLike": "TypedArray|Array",
+    "TensorLike1D": "TypedArray|Array",
+    "TensorLike2D": "TypedArray|Array",
+    "TensorLike3D": "TypedArray|Array",
+    "TensorLike4D": "TypedArray|Array",
+    "TensorLike5D": "TypedArray|Array",
+    "TensorLike6D": "TypedArray|Array",
+    "NamedTensorMap": "{[name: string]: Tensor}",
+    "TensorContainer": "void|number|string|Tensor|Tensor[]|{[key:\nstring]:Tensor|number|string}",
+    "CustomGradientFunc": "(a: Tensor, b: Tensor,...) => {\nvalue: Tensor, * gradFunc: (dy: Tensor) => Tensor | Tensor[] * }",
+    "ScopeFn": "Function",
+    "LSTMCellFunc": "(data: Tensor2D, c: Tensor2D, h: Tensor2D): [Tensor2D, Tensor2D]"
   }
 }

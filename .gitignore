@@ -6,4 +6,6 @@ libs
 .DS_Store
 source/_data/api/local
 source/api/local
-
+source/_data/api_vis/local
+source/api_vis/local
+source/vis/local
