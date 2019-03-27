@@ -51,6 +51,19 @@ module.exports = function(hexo) {
       return ret;
     },
 
+    /*
+     * Find a the matching 'api*' part of a path and return it surrounded by / /
+     */
+    apiRoot: function(path) {
+      const match = path.match(/(api\w*\/)/);
+      if (match) {
+        return '/' + match[0];
+      }
+      // This technically shouldn't happen but to avoid user seeing an error
+      // state we will return the main api path.
+      return '/api/';
+    },
+
     markdown: function(attr) {
       if (attr) {
         return md.render(attr);
