@@ -14,6 +14,15 @@ const md = new MarkdownIt({
   }
 });
 
+function isApiPage(path) {
+  return path.match(/^api/);
+};
+
+function isApiMainPage(path) {
+  // Note the escaped trailing /
+  return path.match(/^api\//);
+};
+
 function isApiVisPage(path) {
   return path.match(/^api_vis/);
 };
@@ -24,11 +33,11 @@ module.exports = function(hexo) {
       return JSON.stringify(obj);
     },
 
-    isApiPage: function(path) {
-      return path.match(/^api/);
-    },
+    isApiPage: isApiPage,
 
     isApiVisPage: isApiVisPage,
+
+    isApiMainPage: isApiMainPage,
 
     getApi: function(siteData, versionString, path) {
       if (isApiVisPage(path)) {
@@ -40,6 +49,19 @@ module.exports = function(hexo) {
     getVisApi: function(siteData, versionString) {
       const ret = siteData[`api_vis/${versionString}/docs`];
       return ret;
+    },
+
+    /*
+     * Find a the matching 'api*' part of a path and return it surrounded by / /
+     */
+    apiRoot: function(path) {
+      const match = path.match(/(api\w*\/)/);
+      if (match) {
+        return '/' + match[0];
+      }
+      // This technically shouldn't happen but to avoid user seeing an error
+      // state we will return the main api path.
+      return '/api/';
     },
 
     markdown: function(attr) {

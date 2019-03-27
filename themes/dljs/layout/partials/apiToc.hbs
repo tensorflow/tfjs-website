@@ -9,37 +9,44 @@
       <div class="mdc-menu mdc-select__menu">
         <ul class="mdc-list mdc-menu__items">
           {{#each (docVersions path)}}
-          <li class="mdc-list-item" role="option" tabindex="0" data-version={{this}} data-link={{url_for (concat '/api/' this)}}/
-            {{#if (eq ../page.title this)}} aria-selected{{/if}}> {{this}} </li> {{/each}} </ul> </div> </div> </div>
-            {{#with (getApi page.site.data page.title path)}} {{#headings}} <div class="heading">
-            <div class="symbol">
-              <a class="heading-name" href="#{{name}}">{{name}}</a>
-            </div>
-
-            {{#subheadings}}
-            <div class="subheading">
-              <div class="symbol">
-                <a class="subheading-name" href="#{{../name}}-{{name}}">{{name}}</a>
-              </div>
-
-              {{#symbols}}
-              <div class="symbol">
-                <a href="#{{urlHash}}">{{displayName}}</a>
-                {{#if isClass}}
-                <div class="method-list">
-                  {{#methods}}
-                  <div class="method">
-                    <a href="#{{urlHash}}">.{{symbolName}}</a>
-                  </div>
-                  {{/methods}}
-                </div>
-                {{/if}}
-              </div>
-              {{/symbols}}
-            </div>
-            {{/subheadings}}
-
+          <li class="mdc-list-item" role="option" tabindex="0" data-version={{this}}
+            data-link={{url_for (concat (apiRoot ../path) this)}}/ {{#if (eq ../page.title this)}} aria-selected{{/if}}>
+            {{this}}
+          </li>
+          {{/each}}
+        </ul>
       </div>
-      {{/headings}}
-      {{/with}}
     </div>
+  </div>
+  {{#with (getApi page.site.data page.title path)}} {{#headings}} <div class="heading">
+    <div class="symbol">
+      <a class="heading-name" href="#{{name}}">{{name}}</a>
+    </div>
+
+    {{#subheadings}}
+    <div class="subheading">
+      <div class="symbol">
+        <a class="subheading-name" href="#{{../name}}-{{name}}">{{name}}</a>
+      </div>
+
+      {{#symbols}}
+      <div class="symbol">
+        <a href="#{{urlHash}}">{{displayName}}</a>
+        {{#if isClass}}
+        <div class="method-list">
+          {{#methods}}
+          <div class="method">
+            <a href="#{{urlHash}}">.{{symbolName}}</a>
+          </div>
+          {{/methods}}
+        </div>
+        {{/if}}
+      </div>
+      {{/symbols}}
+    </div>
+    {{/subheadings}}
+
+  </div>
+  {{/headings}}
+  {{/with}}
+</div>

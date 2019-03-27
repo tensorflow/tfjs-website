@@ -10,6 +10,8 @@ author:
 language:
 timezone:
 
+favicon: favicon.ico
+
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
 url: js.tensorflow.org
@@ -73,7 +75,6 @@ browsersync:
   ghostMode:
     scroll: true
   notify: false
-
 
 markdown:
   render:

@@ -1,0 +1,91 @@
+upper_tabs:
+- name: "Install"
+  lower_tabs:
+    guides:
+    - include: /install/_toc.yaml
+
+- name: "Learn"
+  path: /learn/
+  is_default: true
+  menu:
+  - include: /learn/_menu_toc.yaml
+  lower_tabs:
+    # Subsite tabs
+    other:
+    - name: "Tutorials"
+      contents:
+      - title: "Get started"
+        path: /js/tutorials/
+      - title: "Setup"
+        path: /js/tutorials/setup
+
+      - heading: "Train models"
+      - title: "Fit a curve to two-dimensional data"
+        path: /js/tutorials/training/linear_regression
+      - title: "Recognize handwritten digits with CNNs"
+        path: /js/tutorials/training/handwritten_digit_cnn
+
+      - heading: "Transfer learning"
+      - title: "What is transfer learning?"
+        path: /js/tutorials/transfer/what_is_transfer_learning
+      - title: "Build an image classifier"
+        path: /js/tutorials/transfer/image_classification
+      - title: "Build an audio recognizer"
+        path: /js/tutorials/transfer/audio_recognizer
+
+      - heading: "Import Python models"
+      - title: "Import a Keras model"
+        path: /js/tutorials/conversion/import_keras
+      - title: "Import a TensorFlow SavedModel"
+        path: /js/tutorials/conversion/import_saved_model
+
+      - heading: "Learning resources"
+      - title: "Machine learning"
+        path: /js/tutorials/learning/ml
+
+    - name: "Guide"
+      contents:
+      - heading: "Introduction"
+      - title: "Overview"
+        path: /js/guide/
+      - title: "Tensors and operations"
+        path: /js/guide/tensors_operations
+      - title: "Platform and environment"
+        path: /js/guide/platform_environment
+
+      - heading: "Models"
+      - title: "Models and layers"
+        path: /js/guide/models_and_layers
+      - title: "Train models"
+        path: /js/guide/train_models
+      - title: "Save and load models"
+        path: /js/guide/save_load
+      - title: "Model conversion"
+        path: /js/guide/conversion
+      - title: "Differences from Python tf.keras"
+        path: /js/guide/layers_for_keras_users
+
+      - heading: "Node.js"
+      - title: "Use TensorFlow.js in Node"
+        path: /js/guide/nodejs
+
+    - name: "Models"
+      contents:
+      - title: "Models"
+        path: /js/models/
+
+    - name: "Demos"
+      contents:
+      - title: "Demos"
+        path: /js/demos/
+
+    - name: "API"
+      skip_translation: true
+      contents:
+      - title: "API"
+        path: https://js.tensorflow.org/api/latest/
+        status: external
+
+- include: /api_docs/_upper_tabs_api.yaml
+- include: /resources/_upper_tabs_resources.yaml
+- include: /_upper_tabs_right.yaml
