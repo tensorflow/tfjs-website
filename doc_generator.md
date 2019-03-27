@@ -12,7 +12,7 @@ This is typically visible at https://js.tensorflow.org/api/latest (replace
 
 ## Build Overview
 
-The main script used to build the api docs is `node build-scripts/build-api.js`.
+The main script used to build the api docs is `node build-scripts/build-api.ts`.
 This script depends on the existence of the union package existing in node_modules
 and the _constituent repos of the union package_ exising as **git submodules** in
 the **libs** folder.
