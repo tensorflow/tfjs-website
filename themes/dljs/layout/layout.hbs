@@ -23,50 +23,59 @@ limitations under the License.
 
   <meta property="og:type" content="article" />
   <meta property="og:title" content="TensorFlow.js" />
-  <meta property="og:description" content="A WebGL accelerated, browser based JavaScript library for training and deploying ML models">
+  <meta property="og:description"
+    content="A WebGL accelerated, browser based JavaScript library for training and deploying ML models">
   <meta property="og:url" content="https://js.tensorflow.org" />
   <meta property="og:image" content="https://js.tensorflow.org/images/TF_JS_twitter.png" />
 
   <meta name="twitter:card" value="summary_large_image">
   <meta name="twitter:title" content="TensorFlow.js">
-  <meta name="twitter:description" content="A WebGL accelerated, browser based JavaScript library for training and deploying ML models">
+  <meta name="twitter:description"
+    content="A WebGL accelerated, browser based JavaScript library for training and deploying ML models">
   <meta name="twitter:url" content="https://js.tensorflow.org">
   <meta name="twitter:image" content="https://js.tensorflow.org/images/TF_JS_twitter.png">
   <meta name="twitter:image:width" content="1856">
   <meta name="twitter:image:height" content="431">
 
+  {{#unless (isApiPage path)}}
+  <meta http-equiv="refresh" content="0; URL='https://tensorflow.org/js'" />
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest"> </script>
+  {{/unless}}
+
+  {{!-- Resources for all pages --}}
+
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
-
-  {{!--
-  <link rel="stylesheet" href="/css/material-components-web.css" /> --}}
   <link rel="stylesheet" href="{{url_for 'css/layout.css'}}" />
-
-  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
   <script src="{{url_for 'js/vendor/material-components-web.js'}} "></script>
   <script src="{{url_for 'js/layout.js'}}"></script>
+
+  {{!-- Resources for all API pages --}}
 
   {{#if (isApiPage path)}}
   {{!-- ANY API PAGE --}}
   <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:400,500,700" rel="stylesheet">
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+  {{!-- Syntax highlighting for rendered code cells (before editing) --}}
   <link rel="stylesheet" href="{{url_for 'css/vendor/highlight-railscasts.css'}}">
 
+  {{!-- Syntax highlighting for edit-mode code cells --}}
   <link rel="stylesheet" href="{{url_for 'css/vendor/codemirror.css'}}">
   <link rel="stylesheet" href="{{url_for 'css/vendor/codemirror-railscasts.css'}}">
 
   <link rel="stylesheet" href="{{url_for 'css/api.css'}}" />
 
-  {{#if (isApiVisPage path)}}
-  {{!-- On the vis api page --}}
-  {{#if (eq page.title 'local')}}
-  <script src="{{url_for 'js/vendor/tf.min.js'}}"> </script>
-  {{!-- TODO REPLACE LOCAL VIS BUILD --}}
-  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-vis@latest"> </script>
-  {{else}}
-  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest"> </script>
-  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-vis@{{page.title}}"> </script>
+  <script src="{{url_for 'js/vendor/codemirror.js'}}"></script>
+  <script src="{{url_for 'js/vendor/codemirror-javascript.js'}}"></script>
+  <script src="{{url_for 'js/codeSnippets.js'}}"></script>
+  <script src="{{url_for 'js/api.js'}}"></script>
   {{/if}}
-  {{else}}
+
+  {{!-- Main API page --}}
+  {{#if (isApiMainPage path)}}
   {{#if (eq page.title 'local')}}
   <script src="{{url_for 'js/vendor/tf.min.js'}}"> </script>
   {{else}}
@@ -74,16 +83,17 @@ limitations under the License.
   {{/if}}
   {{/if}}
 
-
-  <script src="{{url_for 'js/vendor/codemirror.js'}}"></script>
-  <script src="{{url_for 'js/vendor/codemirror-javascript.js'}}"></script>
-
-  <script src="{{url_for 'js/codeSnippets.js'}}"></script>
-  <script src="{{url_for 'js/api.js'}}"></script>
+  {{!-- Vis API page --}}
+  {{#if (isApiVisPage path)}}
+  {{#if (eq page.title 'local')}}
+  <script src="{{url_for 'js/vendor/tf.min.js'}}"> </script>
+  <script src="{{url_for 'js/vendor/tfjs-vis.umd.min.js'}}"> </script>
   {{else}}
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
   <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest"> </script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-vis@{{page.title}}"> </script>
   {{/if}}
+  {{/if}}
+
 </head>
 
 <body class="mdc-typography">
@@ -93,8 +103,6 @@ limitations under the License.
   <div class="main">
     {{{body}}}
   </div>
-  {{!-- Footer --}}
-  {{> footer }}
 </body>
 <script>
   (function (i, s, o, g, r, a, m) {
