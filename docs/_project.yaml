@@ -1,0 +1,12 @@
+name: TensorFlow.js
+breadcrumb_name: For JavaScript
+home_url: /js/
+parent_project_metadata_path: /_project.yaml
+description: >
+  A WebGL accelerated, browser based JavaScript library for training and
+  deploying ML models.
+use_site_branding: true
+hide_from_products_list: true
+content_license: cc3-apache2
+buganizer_id: 328934
+include: /_project_included.yaml
