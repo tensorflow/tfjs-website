@@ -1,25 +1,24 @@
-$mdc-theme-primary: #0277BD;
-// $mdc-theme-secondary: #76ff03;
-// $mdc-theme-background: #fff;
+$mdc-theme-primary: #677282;
 
 @import "material-components-web/material-components-web";
 
-$header-height: 91px;
+// $header-height: 91px;
 
 $muted-text-col: #616161;
 $dark-text-col: #212121;
 
-$brand-color-dark:  #ef6c00;
-$brand-color-bright: #F7911F;
+$header-height: 49px;
+
+$brand-color-dark: #ef6c00;
+$brand-color-bright: rgb(252, 184, 74);
+
+$header-color: #fff;
+$header-text-color: #677282;;
 
 body {
   @media (max-width: 720px) {
     overflow: scroll;
     width: 100vw;
-
-    footer {
-      display: none;
-    }
   }
 }
 
@@ -38,9 +37,7 @@ header {
   z-index: 100;
 }
 
-footer {
-  z-index: 100;
-}
+
 
 // Fix overlap of header with current target url fragment.
 :target::before {
@@ -62,7 +59,7 @@ footer {
   // Page layout
   .toc {
     position: fixed;
-    height: calc(100vh - (#{$header-height * 2}));
+    height: calc(100vh - (#{$header-height}));
     top: calc(#{$header-height});
     width: 300px;
     overflow-y: auto;
