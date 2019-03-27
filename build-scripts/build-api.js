@@ -30,25 +30,25 @@ commander.option('--local', 'use a local build').parse(process.argv);
 
 // Get package.json of union package
 const unionPackage =
-  JSON.parse(fs.readFileSync('node_modules/@tensorflow/tfjs/package.json'));
+    JSON.parse(fs.readFileSync('node_modules/@tensorflow/tfjs/package.json'));
 const unionPackageVersion = commander.local ? 'local' : unionPackage.version;
 
 // Get the version strings from the libray
 const coreVersion = `v${unionPackage.dependencies['@tensorflow/tfjs-core']}`;
 const layersVersion =
-  `v${unionPackage.dependencies['@tensorflow/tfjs-layers']}`;
+    `v${unionPackage.dependencies['@tensorflow/tfjs-layers']}`;
 const converterVersion =
-  `v${unionPackage.dependencies['@tensorflow/tfjs-converter']}`;
-const dataVersion =
-  `v${unionPackage.dependencies['@tensorflow/tfjs-data']}`;
+    `v${unionPackage.dependencies['@tensorflow/tfjs-converter']}`;
+const dataVersion = `v${unionPackage.dependencies['@tensorflow/tfjs-data']}`;
 
 console.log(
-  'Union, core, layers, converter, data', unionPackageVersion, coreVersion,
-  layersVersion, converterVersion, dataVersion)
+    'Union, core, layers, converter, data', unionPackageVersion, coreVersion,
+    layersVersion, converterVersion, dataVersion)
 
 const docGenScript = 'build-scripts/doc-gen/make-api.ts';
 
-const libs = [{
+const libs = [
+  {
     repo: 'tfjs-core',
     github: `https://github.com/tensorflow/tfjs-core/blob/${coreVersion}`,
     tag: coreVersion
@@ -60,7 +60,8 @@ const libs = [{
   },
   {
     repo: 'tfjs-converter',
-    github: `https://github.com/tensorflow/tfjs-converter/blob/${converterVersion}`,
+    github:
+        `https://github.com/tensorflow/tfjs-converter/blob/${converterVersion}`,
     tag: converterVersion
   },
   {
@@ -76,7 +77,7 @@ const outputPaths = [];
 console.log('LIBS');
 libs.forEach(lib => {
   const outputPath =
-    path.resolve(`source/_data/api/${unionPackageVersion}/${lib.repo}.json`);
+      path.resolve(`source/_data/api/${unionPackageVersion}/${lib.repo}.json`);
 
   const opts = {
     input: path.resolve(`libs/${lib.repo}/src/index.ts`),
@@ -88,8 +89,8 @@ libs.forEach(lib => {
   }
 
   const docGenCommand =
-    `ts-node --project ${opts.repo}/tsconfig.json ${docGenScript} ` +
-    `--in ${opts.input} --package ${opts.pkg} --src ${opts.src} --github ${
+      `ts-node --project ${opts.repo}/tsconfig.json ${docGenScript} ` +
+      `--in ${opts.input} --package ${opts.pkg} --src ${opts.src} --github ${
           opts.github} --out ${opts.out} --repo ${opts.repo}`;
 
   // Prep the component. If "local" has been passed in then we do nothing
@@ -105,7 +106,7 @@ libs.forEach(lib => {
   console.log(`********* Generating docs for ${lib.repo} *********`);
 
   const buildCommand =
-    `cd libs/${lib.repo} && yarn && cd ../.. && ${docGenCommand}`;
+      `cd libs/${lib.repo} && yarn && cd ../.. && ${docGenCommand}`;
 
   sh(buildCommand, `Error building docs for ${lib.repo}`);
 
@@ -125,12 +126,12 @@ fs.copyFileSync('source/_data/api/skeleton.json', skeletonPath);
 
 // Bundle path will be included on every page of the site.
 const bundlePath = commander.bundle && path.resolve(commander.bundle) ||
-  path.resolve('node_modules/@tensorflow/tfjs/dist/tf.min.js');
-fs.copyFileSync(bundlePath, 'themes/dljs/source/js/vendor/tf.min.js');
+    path.resolve('node_modules/@tensorflow/tfjs/dist/tf.min.js');
+fs.copyFileSync(bundlePath, 'themes/tfjs/source/js/vendor/tf.min.js');
 
 // Merge the docs for each repo.
 const mergeResult = shell.exec(
-  `ts-node ${mergeScript} --out ${mergeOutput} --skeleton ${skeletonPath} \
+    `ts-node ${mergeScript} --out ${mergeOutput} --skeleton ${skeletonPath} \
     ${outputPaths.join(' ')}`);
 bailOnFail(mergeResult.code, 'Error merging doc JSONs.');
 
@@ -144,8 +145,8 @@ const docsManifest = {
 };
 
 fs.writeFileSync(
-  `source/_data/api/${unionPackageVersion}/docs_manifest.json`,
-  JSON.stringify(docsManifest, null, 2));
+    `source/_data/api/${unionPackageVersion}/docs_manifest.json`,
+    JSON.stringify(docsManifest, null, 2));
 
 // Load api docs manifest
 // If the docs version we just generated is not present, generate a new

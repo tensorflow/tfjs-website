@@ -105,7 +105,7 @@ fs.copyFileSync('source/_data/api_vis/skeleton.json', skeletonPath);
 // TODO INCLUDE THE VIS LIBRARY BUNDLE
 // const bundlePath = commander.bundle && path.resolve(commander.bundle) ||
 //     path.resolve('node_modules/@tensorflow/tfjs/dist/tf.min.js');
-// fs.copyFileSync(bundlePath, 'themes/dljs/source/js/vendor/tf.min.js');
+// fs.copyFileSync(bundlePath, 'themes/tfjs/source/js/vendor/tf.min.js');
 
 // Merge the docs for each repo.
 const mergeResult = shell.exec(

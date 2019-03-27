@@ -109,7 +109,7 @@ export function mergeDocs(
 
   // Copy requested bundle into vendor folder
   const targetPath =
-      path.join('themes/dljs/source/js/vendor', path.basename(bundlePath))
+      path.join('themes/tfjs/source/js/vendor', path.basename(bundlePath))
   fs.copyFileSync(bundlePath, targetPath);
 
   // Merge the docs for each repo.
