@@ -38,7 +38,7 @@ limitations under the License.
   <meta name="twitter:image:height" content="431">
 
   {{#unless (isApiPage path)}}
-  {{!-- <meta http-equiv="refresh" content="0; URL='https://tensorflow.org/js'" /> --}}
+  <meta http-equiv="refresh" content="0; URL='https://tensorflow.org/js'" />
   <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest"> </script>
   {{/unless}}
 
@@ -74,6 +74,15 @@ limitations under the License.
   <script src="{{url_for 'js/api.js'}}"></script>
   {{/if}}
 
+  {{!-- Main API page --}}
+  {{#if (isApiMainPage path)}}
+  {{#if (eq page.title 'local')}}
+  <script src="{{url_for 'js/vendor/tf.min.js'}}"> </script>
+  {{else}}
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@{{page.title}}"> </script>
+  {{/if}}
+  {{/if}}
+
   {{!-- Vis API page --}}
   {{#if (isApiVisPage path)}}
   {{#if (eq page.title 'local')}}
@@ -84,16 +93,6 @@ limitations under the License.
   <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-vis@{{page.title}}"> </script>
   {{/if}}
   {{/if}}
-
-  {{!-- Main API page --}}
-  {{#if (isApiMainPage path)}}
-  {{#if (eq page.title 'local')}}
-  <script src="{{url_for 'js/vendor/tf.min.js'}}"> </script>
-  {{else}}
-  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@{{page.title}}"> </script>
-  {{/if}}
-  {{/if}}
-
 
 </head>
 
