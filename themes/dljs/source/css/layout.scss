@@ -1,14 +1,14 @@
-$mdc-theme-primary: #0277bd;
-// $mdc-theme-secondary: #76ff03;
-// $mdc-theme-background: #fff;
+$mdc-theme-primary: #677282;
 
 @import "material-components-web/material-components-web";
 
-$header-height: 64px;
-$footer-height: 64px;
+$header-height: 49px;
 
 $brand-color-dark: #ef6c00;
 $brand-color-bright: rgb(252, 184, 74);
+
+$header-color: #fff;
+$header-text-color: #677282;
 
 body {
 
@@ -16,7 +16,7 @@ body {
   @include mdc-typography-base();
 
   .main {
-    min-height: calc(100vh - #{$header-height} - #{$footer-height});
+    min-height: calc(100vh - #{$header-height});
     background-color: white;
     padding: 0;
   }
@@ -33,23 +33,46 @@ body {
   }
 
   header {
+    font: 500 14px/20px Roboto,sans-serif;
+    height: $header-height;
+    color: $header-text-color;
     padding-right: 24px;
-    background-color: $brand-color-dark !important;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    background-color: $header-color !important;
+    -webkit-box-shadow: 0 1px 2px 0 rgba(60,64,67,.3), 0 2px 6px 2px rgba(60,64,67,.15);
+    box-shadow: 0 1px 2px 0 rgba(60,64,67,.3), 0 2px 6px 2px rgba(60,64,67,.15);
+    // border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+
+    #nav-menu-button {
+      color: $header-text-color !important;
+    }
 
     .mdc-toolbar__section {
       align-items: center;
+    }
+
+    .mdc-toolbar__row {
+      height: $header-height;
+      min-height: auto;
+    }
+
+    .mdc-toolbar__title a {
+      text-decoration: none;
+      margin-left: 10px;
     }
 
     #nav-menu-button {
       padding: 0;
     }
 
+    .header-logo {
+      width: 143px;
+      height: 32px;
+    }
+
     a {
-      padding: 10px 0px 21px 0px;
+      padding: 10px 0px 15px 0px;
       margin: 0px 10px 0px 10px;
 
-      color: white;
       text-decoration: none;
       border-bottom: 1px solid;
       border-color: rgba(255, 255, 255, 0);
@@ -57,7 +80,7 @@ body {
       transition: border-color 200ms;
 
       &:visited {
-        color: white;
+        color: $header-text-color;
       }
 
       &.cta {
@@ -67,7 +90,7 @@ body {
       }
 
       &:hover {
-        border-color: white;
+        border-color: $header-text-color;
       }
 
       &.button-link {
@@ -79,10 +102,7 @@ body {
       display:inline;
     }
 
-    .mdc-toolbar__title a {
-      text-decoration: none;
-      margin-left: 10px;
-    }
+
 
     @media (max-width: 825px) {
       .mobile-hidden {
