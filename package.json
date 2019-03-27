@@ -12,6 +12,7 @@
     "prep": "git submodule init && git submodule update && git submodule foreach git pull origin master && yarn",
     "serve": "export NODE_OPTIONS=--max-old-space-size=8192 hexo clean && hexo server",
     "build": "export NODE_OPTIONS=--max-old-space-size=8192 hexo clean && hexo generate",
+    "build-watch": "export NODE_OPTIONS=--max-old-space-size=8192 hexo clean && hexo generate --watch",
     "post-build": "babel public/js/layout.js -o public/js/layout.js && babel public/js/api.js -o public/js/api.js",
     "build-vis-api": "ts-node build-scripts/build-vis-api.ts --local",
     "build-api": "ts-node build-scripts/build-api.ts --local",
