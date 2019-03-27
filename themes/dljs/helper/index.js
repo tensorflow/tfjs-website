@@ -14,6 +14,15 @@ const md = new MarkdownIt({
   }
 });
 
+function isApiPage(path) {
+  return path.match(/^api/);
+};
+
+function isApiMainPage(path) {
+  // Note the escaped trailing /
+  return path.match(/^api\//);
+};
+
 function isApiVisPage(path) {
   return path.match(/^api_vis/);
 };
@@ -24,11 +33,11 @@ module.exports = function(hexo) {
       return JSON.stringify(obj);
     },
 
-    isApiPage: function(path) {
-      return path.match(/^api/);
-    },
+    isApiPage: isApiPage,
 
     isApiVisPage: isApiVisPage,
+
+    isApiMainPage: isApiMainPage,
 
     getApi: function(siteData, versionString, path) {
       if (isApiVisPage(path)) {
