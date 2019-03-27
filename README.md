@@ -28,7 +28,9 @@ There are two broad classes of changes you might want to make, site content/desi
 
 ### Site Content/Design
 
-All the site content except for the API docs are stored in the `docs` folder as markdown and yaml files. You can submit a change by editing those files. You can preview your changes in any markdown preview tool or using the GitHub pull review interface. These files are built using internal google tools so can't be previewed along with the site design outside of Google.
+All the site content except for the API docs are stored in the `docs` folder as markdown and yaml files. These files are served from tensorflow.org/js
+
+You can submit a change by editing those files and can preview your changes in any markdown preview tool or using the GitHub pull review interface. These files are built using internal google tools so can't be previewed along with the site design outside of Google.
 
 ### API Documentation
 
