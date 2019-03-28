@@ -54,24 +54,28 @@ limitations under the License.
 
   {{#if (isApiPage path)}}
   {{!-- ANY API PAGE --}}
-  <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:400,500,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:400,700" rel="stylesheet">
 
   <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-  <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
   {{!-- Syntax highlighting for rendered code cells (before editing) --}}
   <link rel="stylesheet" href="{{url_for 'css/vendor/highlight-railscasts.css'}}">
+  <link rel="stylesheet" href="{{url_for 'css/api.css'}}" />
+
+  <script src="{{url_for 'js/api.js'}}"></script>
+
+  {{#unless (isApiNodePage path)}}
+  {{!-- Do not make node api snippets browser runnable --}}
 
   {{!-- Syntax highlighting for edit-mode code cells --}}
   <link rel="stylesheet" href="{{url_for 'css/vendor/codemirror.css'}}">
   <link rel="stylesheet" href="{{url_for 'css/vendor/codemirror-railscasts.css'}}">
 
-  <link rel="stylesheet" href="{{url_for 'css/api.css'}}" />
 
   <script src="{{url_for 'js/vendor/codemirror.js'}}"></script>
   <script src="{{url_for 'js/vendor/codemirror-javascript.js'}}"></script>
   <script src="{{url_for 'js/codeSnippets.js'}}"></script>
-  <script src="{{url_for 'js/api.js'}}"></script>
+
+  {{/unless}}
   {{/if}}
 
   {{!-- Main API page --}}
