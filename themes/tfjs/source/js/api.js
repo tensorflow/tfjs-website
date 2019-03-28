@@ -57,5 +57,7 @@ document.addEventListener('DOMContentLoaded', function(e) {
   window.addEventListener('resize', updateTocView);
 
   // Initialize runnable code snippets
-  initCodeBlocks('.language-js');
+  if (typeof initCodeBlocks !== 'undefined') {
+    initCodeBlocks('.language-js');
+  }
 });

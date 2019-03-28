@@ -13,3 +13,6 @@
 [submodule "libs/tfjs-vis"]
 	path = libs/tfjs-vis
 	url = git@github.com:tensorflow/tfjs-vis.git
+[submodule "libs/tfjs-node"]
+	path = libs/tfjs-node
+	url = git@github.com:tensorflow/tfjs-node.git
