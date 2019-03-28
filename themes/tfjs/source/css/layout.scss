@@ -1,0 +1,142 @@
+$mdc-theme-primary: #677282;
+
+@import "material-components-web/material-components-web";
+
+$header-height: 49px;
+
+$header-color: #fff;
+$header-text-color: #677282;
+
+body {
+
+  margin: 0;
+  @include mdc-typography-base();
+
+  .main {
+    min-height: calc(100vh - #{$header-height});
+    background-color: white;
+    padding: 0;
+  }
+
+  .mdc-drawer {
+    z-index: 1000;
+  }
+
+  a {
+    color: #0277bd;
+    &:visited {
+      color: #0277bd;
+    }
+  }
+
+  header {
+    font: 500 14px/20px Roboto,sans-serif;
+    height: $header-height;
+    color: $header-text-color;
+    padding-right: 24px;
+    background-color: $header-color !important;
+    -webkit-box-shadow: 0 1px 2px 0 rgba(60,64,67,.3), 0 2px 6px 2px rgba(60,64,67,.15);
+    box-shadow: 0 1px 2px 0 rgba(60,64,67,.3), 0 2px 6px 2px rgba(60,64,67,.15);
+    // border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+
+    #nav-menu-button {
+      color: $header-text-color !important;
+    }
+
+    .mdc-toolbar__section {
+      align-items: center;
+    }
+
+    .mdc-toolbar__row {
+      height: $header-height;
+      min-height: auto;
+    }
+
+    .mdc-toolbar__title a {
+      text-decoration: none;
+      margin-left: 10px;
+    }
+
+    #nav-menu-button {
+      padding: 0;
+    }
+
+    .header-logo {
+      width: 143px;
+      height: 32px;
+    }
+
+    a {
+      padding: 10px 0px 15px 0px;
+      margin: 0px 10px 0px 10px;
+
+      text-decoration: none;
+      border-bottom: 1px solid;
+      border-color: rgba(255, 255, 255, 0);
+
+      transition: border-color 200ms;
+
+      &:visited {
+        color: $header-text-color;
+      }
+
+      &.cta {
+        padding: 10px 25px 10px 25px;
+        background-color: #6200ee;
+        border-radius: 4px;
+      }
+
+      &:hover {
+        border-color: $header-text-color;
+      }
+
+      &.button-link {
+        border-bottom: none;
+      }
+    }
+
+    #codepen-form {
+      display:inline;
+    }
+
+
+
+    @media (max-width: 825px) {
+      .mobile-hidden {
+        display: none;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .nav-links {
+        display: none;
+      }
+    }
+  }
+
+  .sidebar {
+    .mdc-toolbar__title {
+      margin: 0;
+    }
+  }
+
+  h1 {
+    margin-top: 32px;
+    font-weight: 500;
+    margin-top: 50px;
+    margin-bottom: 35px;
+    color: #4A4A4A;
+  }
+}
+
+.index-hero {
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  text-align: center;
+
+  margin-top: 20px;
+  width: 100%;
+  height: 300px;
+}

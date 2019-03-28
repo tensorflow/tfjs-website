@@ -1,0 +1,64 @@
+<!-- Header -->
+<header class="mdc-toolbar">
+  <div class="mdc-toolbar__row">
+    <section class="mdc-toolbar__section mdc-toolbar__section--align-start mdc-toolbar__section--shrink-to-fit">
+      <button id="nav-menu-button" class="material-icons mdc-toolbar__menu-icon">menu</button>
+      <span class="mdc-toolbar__title">
+        <a href="https://www.tensorflow.org/">
+          <img src="/images/lockup.svg" alt="TensorFlow" class="header-logo">
+        </a>
+      </span>
+
+    </section>
+    <section class="mdc-toolbar__section nav-links">
+      <nav>
+        <a href="https://www.tensorflow.org/js">Overview</a>
+        <a href="{{url_for '/tutorials/'}}">Tutorials & Guides</a>
+        <a href="{{url_for (concat '/api/' (latestVersion))}}/">API Reference</a>
+      </nav>
+    </section>
+    <section
+      class="mdc-toolbar__section mdc-toolbar__section mdc-toolbar__section--shrink-to-fit mdc-toolbar__section--align-end mobile-hidden">
+      <nav>
+        <form id="codepen-form" action="https://codepen.io/pen/define" method="POST" target="_blank">
+          <input type="hidden" name="data"
+            value='{
+                            "title": "Try TensorFlow.js",
+                            "html": {{codepenHtml}},
+                            "js": {{codepenJs}},
+                            "editors": "0012",
+                            "layout": "top",
+                            "description": "Browser based machine learning.",
+                            "js_external": "https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@{{latestVersion}}/dist/tf.min.js"}'>
+          <input class="mdc-button mdc-button--raised" type="submit" value="Try TensorFlow.js!">
+        </form>
+      </nav>
+    </section>
+  </div>
+</header>
+
+<aside class="sidebar mdc-drawer mdc-drawer--temporary">
+  <nav class="mdc-drawer__drawer">
+    <div class="mdc-drawer__toolbar-spacer">
+      <span class="mdc-toolbar__title">TensorFlow.js</span>
+    </div>
+
+    <nav>
+      <ul class="mdc-list">
+        <li class="mdc-list-item">
+          <a href="https://www.tensorflow.org/js">Overview</a>
+        </li>
+        <li class="mdc-list-item">
+          <a href="{{url_for '/tutorials/'}}">Tutorials & Guides</a>
+        </li>
+        <li class="mdc-list-item">
+          <a href="{{url_for (concat '/api/' (latestVersion))}}/">API Reference</a>
+        </li>
+        <li class="mdc-list-item">
+          <a href="https://github.com/tensorflow/tfjs">GitHub</a>
+        </li>
+      </ul>
+    </nav>
+
+  </nav>
+</aside>
