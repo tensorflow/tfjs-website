@@ -298,7 +298,7 @@ export function getJsdoc(
     ts.EnumDeclaration|ts.FunctionDeclaration|ts.MethodDeclaration,
     tag: string): string {
   const symbol = checker.getSymbolAtLocation(node.name);
-  const docs = symbol.getDocumentationComment(undefined);
+  const docs = symbol.getDocumentationComment(checker);
   const tags = symbol.getJsDocTags();
   for (let i = 0; i < tags.length; i++) {
     const jsdocTag = tags[i];

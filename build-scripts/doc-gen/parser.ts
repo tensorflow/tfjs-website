@@ -389,7 +389,7 @@ function serializeParameter(
   const serialized = {
     name,
     documentation:
-        ts.displayPartsToString(symbol.getDocumentationComment(undefined)),
+        ts.displayPartsToString(symbol.getDocumentationComment(checker)),
     // type: util.parameterTypeToString(checker, symbol, identifierGenericMap),
     type: serializedType,
     optional: checker.isOptionalParameter(
