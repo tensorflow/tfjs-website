@@ -175,7 +175,7 @@ function visitNode(
         checker.getTypeOfSymbolAtLocation(symbol, symbol.valueDeclaration!);
     const name = symbol.getName();
     const documentation =
-        ts.displayPartsToString(symbol.getDocumentationComment(undefined));
+        ts.displayPartsToString(symbol.getDocumentationComment(checker));
 
     const signature = type.getCallSignatures()[0];
 
@@ -222,6 +222,7 @@ function visitNode(
 
   // Map types to their text so we inline them.
   if (ts.isTypeAliasDeclaration(node)) {
+    console.log('ts.isTypeAliasDeclaration', node.name, true);
     const docInline = util.getJsdoc(checker, node, DOCUMENTATION_INLINE);
 
     if (docInline != null) {
@@ -268,7 +269,7 @@ export function serializeClass(
     symbolName: name,
     namespace: docInfo.namespace,
     documentation:
-        ts.displayPartsToString(symbol.getDocumentationComment(undefined)),
+        ts.displayPartsToString(symbol.getDocumentationComment(checker)),
     fileName: displayFilename,
     githubUrl,
     methods: [],
@@ -360,7 +361,7 @@ export function serializeMethodOrFunction(
     parameters,
     returnType,
     documentation:
-        ts.displayPartsToString(signature.getDocumentationComment(undefined)),
+        ts.displayPartsToString(signature.getDocumentationComment(checker)),
     fileName: displayFilename,
     githubUrl,
     isFunction: true
@@ -370,6 +371,58 @@ export function serializeMethodOrFunction(
 }
 
 function serializeParameter(
+    checker: ts.TypeChecker, symbol: ts.Symbol,
+    identifierGenericMap: {[identifier: string]: string},
+    isConfigParam: boolean): DocFunctionParam {
+  let name = symbol.getName();
+  if (util.hasSpreadOperator(symbol)) {
+    name = '...' + name;
+  }
+
+  return {
+    name,
+    documentation:
+        ts.displayPartsToString(symbol.getDocumentationComment(checker)),
+    type: util.parameterTypeToString(checker, symbol, identifierGenericMap),
+    optional: checker.isOptionalParameter(
+        symbol.valueDeclaration as ts.ParameterDeclaration),
+    isConfigParam
+  };
+}
+
+
+function serializeInterfaceParams(
+    checker: ts.TypeChecker, symbol: ts.Symbol,
+    identifierGenericMap: {[identifier: string]: string},
+    isConfigParam: boolean): DocFunctionParam {
+  let name = symbol.getName();
+
+  if (util.hasSpreadOperator(symbol)) {
+    name = '...' + name;
+  }
+
+  console.log('serializing parameter', name);
+
+  const parameterType =
+      checker.getTypeOfSymbolAtLocation(symbol, symbol.getDeclarations()[0]);
+  const serializedType =
+      serializeType(checker, parameterType, symbol, identifierGenericMap);
+
+  const serialized = {
+    name,
+    documentation:
+        ts.displayPartsToString(symbol.getDocumentationComment(checker)),
+    // type: util.parameterTypeToString(checker, symbol, identifierGenericMap),
+    type: serializedType,
+    optional: checker.isOptionalParameter(
+        symbol.valueDeclaration as ts.ParameterDeclaration),
+    isConfigParam
+  };
+  console.log(serialized);
+  return serialized;
+}
+
+function serializeTypeParams(
     checker: ts.TypeChecker, symbol: ts.Symbol,
     identifierGenericMap: {[identifier: string]: string},
     isConfigParam: boolean): DocFunctionParam {
