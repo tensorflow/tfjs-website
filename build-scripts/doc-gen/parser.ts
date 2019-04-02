@@ -27,6 +27,7 @@ const DOCUMENTATION_DECORATOR_AND_ANNOTATION = 'doc';
 const DOCUMENTATION_TYPE_ALIAS = 'docalias';
 const DOCUMENTATION_LINK_ALIAS = 'doclink';
 const DOCUMENTATION_INLINE = 'docinline';
+const DOCUMENTATION_UNPACK_TYPE = 'docunpacktype';
 const IN_NAMESPACE_JSDOC = 'innamespace';
 
 /**
@@ -200,40 +201,36 @@ function visitNode(
   // objects.
   if (ts.isInterfaceDeclaration(node)) {
     const symbol = checker.getSymbolAtLocation(node.name);
-    const params = [];
-    node.forEachChild(child => {
-      if (ts.isPropertySignature(child)) {
-        const childSymbol = checker.getSymbolAtLocation(child.name);
-        // We don't support generics on interfaces yet, so pass an empty
-        // generic map.
-        const identifierGenericMap = {};
-        const isConfigParam = true;
-        params.push(serializeParameter(
-            checker, childSymbol, identifierGenericMap, isConfigParam));
-      }
-    });
-
-    // If we have an @innamespace jsdoc, prepend the namespace to the symbol.
     const namespace = util.getJsdoc(checker, node, IN_NAMESPACE_JSDOC);
     const symbolPath =
         (namespace != null ? namespace + '.' : '') + symbol.getName();
-    configInterfaceParamMap[symbolPath] = params;
+    configInterfaceParamMap[symbolPath] =
+        serializeInterfaceParams(checker, symbol);
   }
 
   // Map types to their text so we inline them.
   if (ts.isTypeAliasDeclaration(node)) {
-    console.log('ts.isTypeAliasDeclaration', node.name, true);
-    const docInline = util.getJsdoc(checker, node, DOCUMENTATION_INLINE);
+    const symbol = checker.getSymbolAtLocation(node.name);
 
+    const docInline = util.getJsdoc(checker, node, DOCUMENTATION_INLINE);
     if (docInline != null) {
-      const symbol = checker.getSymbolAtLocation(node.name);
       node.forEachChild(child => {
         if (ts.isTypeNode(child)) {
           inlineTypes[symbol.getName()] = child.getText();
         }
       });
     }
+
+    const docUnpackType =
+        util.getJsdoc(checker, node, DOCUMENTATION_UNPACK_TYPE);
+    if (docUnpackType != null) {
+      // Unpack the type
+      const symbolPath = symbol.getName();
+      inlineTypes[symbolPath] = serializeUnpackedUnionType(checker, node);
+    }
   }
+
+
 
   ts.forEachChild(
       node,
@@ -392,96 +389,60 @@ function serializeParameter(
 
 
 function serializeInterfaceParams(
-    checker: ts.TypeChecker, symbol: ts.Symbol,
-    identifierGenericMap: {[identifier: string]: string},
-    isConfigParam: boolean): DocFunctionParam {
-  let name = symbol.getName();
+    checker: ts.TypeChecker, symbol: ts.Symbol): DocFunctionParam[] {
+  const type = checker.getDeclaredTypeOfSymbol(symbol);
+  const properties = checker.getPropertiesOfType(type)
+  const params: DocFunctionParam[] = properties.map(prop => {
+    const name = prop.getName();
+    // Note: This is where we could recurse to serialize nested interface types
+    // The display of such an interface might be confusing though.
 
-  if (util.hasSpreadOperator(symbol)) {
-    name = '...' + name;
-  }
+    // We don't support generics on interfaces yet, so pass an empty
+    // generic map.
+    const identifierGenericMap = {};
+    const paramType =
+        util.parameterTypeToString(checker, prop, identifierGenericMap);
+    const documentation =
+        ts.displayPartsToString(prop.getDocumentationComment(checker));
+    const optional = checker.isOptionalParameter(
+        symbol.valueDeclaration as ts.ParameterDeclaration);
 
-  console.log('serializing parameter', name);
-
-  const parameterType =
-      checker.getTypeOfSymbolAtLocation(symbol, symbol.getDeclarations()[0]);
-  const serializedType =
-      serializeType(checker, parameterType, symbol, identifierGenericMap);
-
-  const serialized = {
-    name,
-    documentation:
-        ts.displayPartsToString(symbol.getDocumentationComment(checker)),
-    // type: util.parameterTypeToString(checker, symbol, identifierGenericMap),
-    type: serializedType,
-    optional: checker.isOptionalParameter(
-        symbol.valueDeclaration as ts.ParameterDeclaration),
-    isConfigParam
-  };
-  console.log(serialized);
-  return serialized;
-}
-
-function serializeTypeParams(
-    checker: ts.TypeChecker, symbol: ts.Symbol,
-    identifierGenericMap: {[identifier: string]: string},
-    isConfigParam: boolean): DocFunctionParam {
-  let name = symbol.getName();
-
-  if (util.hasSpreadOperator(symbol)) {
-    name = '...' + name;
-  }
-
-  console.log('serializing parameter', name);
-
-  const parameterType =
-      checker.getTypeOfSymbolAtLocation(symbol, symbol.getDeclarations()[0]);
-  const serializedType =
-      serializeType(checker, parameterType, symbol, identifierGenericMap);
-
-  const serialized = {
-    name,
-    documentation:
-        ts.displayPartsToString(symbol.getDocumentationComment(checker)),
-    // type: util.parameterTypeToString(checker, symbol, identifierGenericMap),
-    type: serializedType,
-    optional: checker.isOptionalParameter(
-        symbol.valueDeclaration as ts.ParameterDeclaration),
-    isConfigParam
-  };
-  console.log(serialized);
-  return serialized;
+    return {
+      name,
+      type: paramType,
+      documentation,
+      optional,
+      isConfigParam: true,
+    };
+  });
+  return params;
 }
 
 
-function serializeType(
-    checker: ts.TypeChecker,
-    type: ts.Type,
-    symbol: ts.Symbol,
-    identifierGenericMap: {[identifier: string]: string},
-    ): string {
-  if (isInterface(type, checker)) {
-    let t: ts.TypeFlags;
-    let s: ts.SymbolFlags;
-    return 'interface';
+function serializeUnpackedUnionType(
+    checker: ts.TypeChecker, node: ts.TypeAliasDeclaration): string {
+  const typeStringComponents = [];
+
+  if (ts.isUnionTypeNode(node.type)) {
+    const unionTypeMembers = node.type.types;
+    unionTypeMembers.forEach((typeNode) => {
+      const memberType = checker.getTypeFromTypeNode(typeNode);
+      const properties = memberType.getProperties();
+      if (properties.length === 0) {
+        typeStringComponents.push(typeNode.getText());
+      } else {
+        const subTypeComponents = [];
+        properties.forEach(property => {
+          const propName = property.getName();
+          const propType = util.parameterTypeToString(checker, property, {});
+          subTypeComponents.push(`${propName}: ${propType}`)
+        });
+        const subTypeString = `{${subTypeComponents.join(', ')}}`
+        typeStringComponents.push(subTypeString)
+      }
+    });
+    return typeStringComponents.join('|');
+  } else {
+    return node.type.getText();
   }
-  if (isType(symbol, checker)) {
-    return 'type';
-  }
-
-  // return checker.typeToString(type);
-
-  return util.parameterTypeToString(checker, symbol, identifierGenericMap);
-}
-
-function isInterface(type: ts.Type, checker: ts.TypeChecker): boolean {
-  console.log('\tisInterface', checker.typeToString(type), type.getFlags())
-  return false;
-  // return Boolean(type.getFlags() & ts.SymbolFlags.Interface);
-}
-
-function isType(symbol: ts.Symbol, checker: ts.TypeChecker): boolean {
-  console.log('\tisType', symbol.getName(), symbol.flags)
-  return false;
-  // return Boolean(symbol.getFlags() & ts.SymbolFlags.Type);
 }
