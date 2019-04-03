@@ -17,7 +17,6 @@
 
 import * as fs from 'fs';
 import * as path from 'path';
-import {clearScreenDown} from 'readline';
 import * as ts from 'typescript';
 
 import * as util from './util';
