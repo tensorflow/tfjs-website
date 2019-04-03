@@ -17,6 +17,7 @@
 
 import * as fs from 'fs';
 import * as path from 'path';
+import {clearScreenDown} from 'readline';
 import * as ts from 'typescript';
 
 import * as util from './util';
@@ -175,8 +176,9 @@ function visitNode(
     const type =
         checker.getTypeOfSymbolAtLocation(symbol, symbol.valueDeclaration!);
     const name = symbol.getName();
-    const documentation =
+    let documentation =
         ts.displayPartsToString(symbol.getDocumentationComment(checker));
+    documentation = util.removeStarsFromCommentString(documentation);
 
     const signature = type.getCallSignatures()[0];
 
@@ -261,12 +263,15 @@ export function serializeClass(
 
   const {displayFilename, githubUrl} =
       util.getFileInfo(node, sourceFile, repoPath, srcRoot, githubRoot);
+
+  let documentation =
+      ts.displayPartsToString(symbol.getDocumentationComment(checker));
+  documentation = util.removeStarsFromCommentString(documentation);
   const docClass: DocClass = {
     docInfo: docInfo,
     symbolName: name,
     namespace: docInfo.namespace,
-    documentation:
-        ts.displayPartsToString(symbol.getDocumentationComment(checker)),
+    documentation,
     fileName: displayFilename,
     githubUrl,
     methods: [],
@@ -350,6 +355,10 @@ export function serializeMethodOrFunction(
   }
   returnType = util.sanitizeTypeString(returnType, identifierGenericMap);
 
+  let documentation =
+      ts.displayPartsToString(signature.getDocumentationComment(checker));
+  documentation = util.removeStarsFromCommentString(documentation);
+
   const method: DocFunction = {
     docInfo: docInfo,
     symbolName,
@@ -357,8 +366,7 @@ export function serializeMethodOrFunction(
     paramStr,
     parameters,
     returnType,
-    documentation:
-        ts.displayPartsToString(signature.getDocumentationComment(checker)),
+    documentation,
     fileName: displayFilename,
     githubUrl,
     isFunction: true
