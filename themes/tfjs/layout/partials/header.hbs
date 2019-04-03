@@ -13,8 +13,9 @@
     <section class="mdc-toolbar__section nav-links">
       <nav>
         <a href="https://www.tensorflow.org/js">Overview</a>
-        <a href="{{url_for '/tutorials/'}}">Tutorials & Guides</a>
-        <a href="{{url_for (concat '/api/' (latestVersion))}}/">API Reference</a>
+        <a href="{{url_for (concat '/api/' (latestVersion 'api'))}}/">API Reference</a>
+        <a href="{{url_for (concat '/api_node/' (latestVersion 'api_node'))}}/">Node API</a>
+        <a href="{{url_for (concat '/api_vis/' (latestVersion 'api_vis'))}}/">tfjs-vis API</a>
       </nav>
     </section>
     <section
@@ -29,7 +30,7 @@
                             "editors": "0012",
                             "layout": "top",
                             "description": "Browser based machine learning.",
-                            "js_external": "https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@{{latestVersion}}/dist/tf.min.js"}'>
+                            "js_external": "https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@{{latestUnion}}/dist/tf.min.js"}'>
           <input class="mdc-button mdc-button--raised" type="submit" value="Try TensorFlow.js!">
         </form>
       </nav>
@@ -52,7 +53,13 @@
           <a href="{{url_for '/tutorials/'}}">Tutorials & Guides</a>
         </li>
         <li class="mdc-list-item">
-          <a href="{{url_for (concat '/api/' (latestVersion))}}/">API Reference</a>
+          <a href="{{url_for (concat '/api/' (latestVersion 'api'))}}/">API Reference</a>
+        </li>
+        <li class="mdc-list-item">
+          <a href="{{url_for (concat '/api_node/' (latestVersion 'api_node'))}}/">Node API</a>
+        </li>
+        <li class="mdc-list-item">
+          <a href="{{url_for (concat '/api_vis/' (latestVersion 'api_vis'))}}/">tfjs-vis API</a>
         </li>
         <li class="mdc-list-item">
           <a href="https://github.com/tensorflow/tfjs">GitHub</a>

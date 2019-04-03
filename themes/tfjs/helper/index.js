@@ -27,6 +27,10 @@ function isApiVisPage(path) {
   return path.match(/^api_vis/);
 };
 
+function isApiNodePage(path) {
+  return path.match(/^api_node/);
+};
+
 module.exports = function(hexo) {
   return {
     toJson: function(obj) {
@@ -39,16 +43,16 @@ module.exports = function(hexo) {
 
     isApiMainPage: isApiMainPage,
 
+    isApiNodePage: isApiNodePage,
+
     getApi: function(siteData, versionString, path) {
       if (isApiVisPage(path)) {
         return siteData[`api_vis/${versionString}/docs`];
       }
+      if (isApiNodePage(path)) {
+        return siteData[`api_node/${versionString}/docs`];
+      }
       return siteData[`api/${versionString}/docs`];
-    },
-
-    getVisApi: function(siteData, versionString) {
-      const ret = siteData[`api_vis/${versionString}/docs`];
-      return ret;
     },
 
     /*
@@ -80,13 +84,20 @@ module.exports = function(hexo) {
       }
     },
 
-    latestVersion: function() {
+    latestVersion: function(prefix) {
+      return hexo.locals.cache.data[`${prefix}/api_manifest`].versions[0];
+    },
+
+    latestUnion: function() {
       return hexo.locals.cache.data['api/api_manifest'].versions[0];
     },
 
     docVersions: function(path) {
       if (isApiVisPage(path)) {
         return hexo.locals.cache.data['api_vis/api_manifest'].versions;
+      }
+      if (isApiNodePage(path)) {
+        return hexo.locals.cache.data['api_node/api_manifest'].versions;
       }
       return hexo.locals.cache.data['api/api_manifest'].versions;
     },
