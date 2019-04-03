@@ -619,3 +619,25 @@ export function hasSpreadOperator(symbol: ts.Symbol) {
   return symbol.valueDeclaration != null &&
       symbol.valueDeclaration.getText().startsWith('...');
 }
+
+
+/**
+ * In typescript 3.x ts.displayPartsToString(symbol.getDocumentationComment())
+ * will not strip * from the start of a comment line in a code fence
+ * e.g.
+ * ```js
+ * // the stars at the
+ * // start of these lines
+ * // will be part of the output
+ *```
+ * This function will strip * at the start of lines of the input string
+ */
+export function removeStarsFromCommentString(input: string) {
+  if (input != null) {
+    const lines = input.split('\n');
+    const regex = /^(\s*\*\s*)/;
+    const stripped = lines.map(l => l.replace(regex, ''));
+    return stripped.join('\n');
+  }
+  return input;
+}
