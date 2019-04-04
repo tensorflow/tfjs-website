@@ -47,7 +47,7 @@
     "semver-compare": "^1.0.0",
     "shelljs": "~0.8.1",
     "ts-node": "~8.0.2",
-    "typescript": "~2.7.2"
+    "typescript": "3.3.3333"
   },
   "devDependencies": {
     "@types/node": "~9.4.6",

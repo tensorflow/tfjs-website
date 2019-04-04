@@ -298,7 +298,7 @@ export function getJsdoc(
     ts.EnumDeclaration|ts.FunctionDeclaration|ts.MethodDeclaration,
     tag: string): string {
   const symbol = checker.getSymbolAtLocation(node.name);
-  const docs = symbol.getDocumentationComment(undefined);
+  const docs = symbol.getDocumentationComment(checker);
   const tags = symbol.getJsDocTags();
   for (let i = 0; i < tags.length; i++) {
     const jsdocTag = tags[i];
@@ -618,4 +618,26 @@ function getSymbolReplaceRegex(symbolName: string, isMarkdown: boolean) {
 export function hasSpreadOperator(symbol: ts.Symbol) {
   return symbol.valueDeclaration != null &&
       symbol.valueDeclaration.getText().startsWith('...');
+}
+
+
+/**
+ * In typescript 3.x ts.displayPartsToString(symbol.getDocumentationComment())
+ * will not strip * from the start of a comment line in a code fence
+ * e.g.
+ * ```js
+ * // the stars at the
+ * // start of these lines
+ * // will be part of the output
+ *```
+ * This function will strip * at the start of lines of the input string
+ */
+export function removeStarsFromCommentString(input: string) {
+  if (input != null) {
+    const lines = input.split('\n');
+    const regex = /^(\s*\*\s*)/;
+    const stripped = lines.map(l => l.replace(regex, ''));
+    return stripped.join('\n');
+  }
+  return input;
 }

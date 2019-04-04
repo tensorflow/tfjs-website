@@ -27,6 +27,7 @@ const DOCUMENTATION_DECORATOR_AND_ANNOTATION = 'doc';
 const DOCUMENTATION_TYPE_ALIAS = 'docalias';
 const DOCUMENTATION_LINK_ALIAS = 'doclink';
 const DOCUMENTATION_INLINE = 'docinline';
+const DOCUMENTATION_UNPACK_TYPE = 'docunpacktype';
 const IN_NAMESPACE_JSDOC = 'innamespace';
 
 /**
@@ -174,8 +175,9 @@ function visitNode(
     const type =
         checker.getTypeOfSymbolAtLocation(symbol, symbol.valueDeclaration!);
     const name = symbol.getName();
-    const documentation =
-        ts.displayPartsToString(symbol.getDocumentationComment(undefined));
+    let documentation =
+        ts.displayPartsToString(symbol.getDocumentationComment(checker));
+    documentation = util.removeStarsFromCommentString(documentation);
 
     const signature = type.getCallSignatures()[0];
 
@@ -200,37 +202,32 @@ function visitNode(
   // objects.
   if (ts.isInterfaceDeclaration(node)) {
     const symbol = checker.getSymbolAtLocation(node.name);
-    const params = [];
-    node.forEachChild(child => {
-      if (ts.isPropertySignature(child)) {
-        const childSymbol = checker.getSymbolAtLocation(child.name);
-        // We don't support generics on interfaces yet, so pass an empty
-        // generic map.
-        const identifierGenericMap = {};
-        const isConfigParam = true;
-        params.push(serializeParameter(
-            checker, childSymbol, identifierGenericMap, isConfigParam));
-      }
-    });
-
-    // If we have an @innamespace jsdoc, prepend the namespace to the symbol.
     const namespace = util.getJsdoc(checker, node, IN_NAMESPACE_JSDOC);
     const symbolPath =
         (namespace != null ? namespace + '.' : '') + symbol.getName();
-    configInterfaceParamMap[symbolPath] = params;
+    configInterfaceParamMap[symbolPath] =
+        serializeInterfaceParams(checker, symbol);
   }
 
   // Map types to their text so we inline them.
   if (ts.isTypeAliasDeclaration(node)) {
-    const docInline = util.getJsdoc(checker, node, DOCUMENTATION_INLINE);
+    const symbol = checker.getSymbolAtLocation(node.name);
 
+    const docInline = util.getJsdoc(checker, node, DOCUMENTATION_INLINE);
     if (docInline != null) {
-      const symbol = checker.getSymbolAtLocation(node.name);
       node.forEachChild(child => {
         if (ts.isTypeNode(child)) {
           inlineTypes[symbol.getName()] = child.getText();
         }
       });
+    }
+
+    const docUnpackType =
+        util.getJsdoc(checker, node, DOCUMENTATION_UNPACK_TYPE);
+    if (docUnpackType != null) {
+      // Unpack the type
+      const symbolPath = symbol.getName();
+      inlineTypes[symbolPath] = serializeUnpackedUnionType(checker, node);
     }
   }
 
@@ -263,12 +260,15 @@ export function serializeClass(
 
   const {displayFilename, githubUrl} =
       util.getFileInfo(node, sourceFile, repoPath, srcRoot, githubRoot);
+
+  let documentation =
+      ts.displayPartsToString(symbol.getDocumentationComment(checker));
+  documentation = util.removeStarsFromCommentString(documentation);
   const docClass: DocClass = {
     docInfo: docInfo,
     symbolName: name,
     namespace: docInfo.namespace,
-    documentation:
-        ts.displayPartsToString(symbol.getDocumentationComment(undefined)),
+    documentation,
     fileName: displayFilename,
     githubUrl,
     methods: [],
@@ -325,8 +325,8 @@ export function serializeMethodOrFunction(
 
   const isConfigParam = false;
   const parameters = signature.parameters.map(
-      symbol => serializeParameter(
-          checker, symbol, identifierGenericMap, isConfigParam));
+      (param: ts.Symbol) => serializeParameter(
+          checker, param, identifierGenericMap, isConfigParam));
   const paramStr = '(' +
       parameters.map(param => param.name + (param.optional ? '?' : ''))
           .join(', ') +
@@ -352,6 +352,10 @@ export function serializeMethodOrFunction(
   }
   returnType = util.sanitizeTypeString(returnType, identifierGenericMap);
 
+  let documentation =
+      ts.displayPartsToString(signature.getDocumentationComment(checker));
+  documentation = util.removeStarsFromCommentString(documentation);
+
   const method: DocFunction = {
     docInfo: docInfo,
     symbolName,
@@ -359,8 +363,7 @@ export function serializeMethodOrFunction(
     paramStr,
     parameters,
     returnType,
-    documentation:
-        ts.displayPartsToString(signature.getDocumentationComment(undefined)),
+    documentation,
     fileName: displayFilename,
     githubUrl,
     isFunction: true
@@ -381,10 +384,68 @@ function serializeParameter(
   return {
     name,
     documentation:
-        ts.displayPartsToString(symbol.getDocumentationComment(undefined)),
+        ts.displayPartsToString(symbol.getDocumentationComment(checker)),
     type: util.parameterTypeToString(checker, symbol, identifierGenericMap),
     optional: checker.isOptionalParameter(
         symbol.valueDeclaration as ts.ParameterDeclaration),
     isConfigParam
   };
+}
+
+function serializeInterfaceParams(
+    checker: ts.TypeChecker, symbol: ts.Symbol): DocFunctionParam[] {
+  const type = checker.getDeclaredTypeOfSymbol(symbol);
+  const properties = checker.getPropertiesOfType(type)
+  const params: DocFunctionParam[] = properties.map(prop => {
+    const name = prop.getName();
+    // Note: This is where we could recurse to serialize nested interface types
+    // The display of such an interface might be confusing though.
+
+    // We don't support generics on interfaces yet, so pass an empty
+    // generic map.
+    const identifierGenericMap = {};
+    const paramType =
+        util.parameterTypeToString(checker, prop, identifierGenericMap);
+    const documentation =
+        ts.displayPartsToString(prop.getDocumentationComment(checker));
+    const optional = checker.isOptionalParameter(
+        symbol.valueDeclaration as ts.ParameterDeclaration);
+
+    return {
+      name,
+      type: paramType,
+      documentation,
+      optional,
+      isConfigParam: true,
+    };
+  });
+  return params;
+}
+
+function serializeUnpackedUnionType(
+    checker: ts.TypeChecker, node: ts.TypeAliasDeclaration): string {
+  const typeStringComponents = [];
+
+  if (ts.isUnionTypeNode(node.type)) {
+    const unionTypeMembers = node.type.types;
+    unionTypeMembers.forEach((typeNode) => {
+      const memberType = checker.getTypeFromTypeNode(typeNode);
+      const properties = memberType.getProperties();
+      if (properties.length === 0) {
+        typeStringComponents.push(typeNode.getText());
+      } else {
+        const subTypeComponents = [];
+        properties.forEach(property => {
+          const propName = property.getName();
+          const propType = util.parameterTypeToString(checker, property, {});
+          subTypeComponents.push(`${propName}: ${propType}`)
+        });
+        const subTypeString = `{${subTypeComponents.join(', ')}}`
+        typeStringComponents.push(subTypeString)
+      }
+    });
+    return typeStringComponents.join('|');
+  } else {
+    return node.type.getText();
+  }
 }
