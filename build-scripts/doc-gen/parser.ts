@@ -231,8 +231,6 @@ function visitNode(
     }
   }
 
-
-
   ts.forEachChild(
       node,
       node => visitNode(
@@ -394,7 +392,6 @@ function serializeParameter(
   };
 }
 
-
 function serializeInterfaceParams(
     checker: ts.TypeChecker, symbol: ts.Symbol): DocFunctionParam[] {
   const type = checker.getDeclaredTypeOfSymbol(symbol);
@@ -424,7 +421,6 @@ function serializeInterfaceParams(
   });
   return params;
 }
-
 
 function serializeUnpackedUnionType(
     checker: ts.TypeChecker, node: ts.TypeAliasDeclaration): string {
