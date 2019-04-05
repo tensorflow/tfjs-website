@@ -36,7 +36,7 @@ console.log(tf.getBackend());
 
 #### WebGL backend
 
-The WebGL backend, 'webgl', is currently the most powerful backend for the browser. This backend is up to 100x faster than the vanilla CPU backend. Tensors are stored as WebGL textures and mathematical operations are implemented in WebGL shaders. Here are a few useful things to know when using this backend:  \
+The WebGL backend, 'webgl', is currently the most powerful backend for the browser. This backend is up to 100x faster than the vanilla CPU backend. Tensors are stored as WebGL textures and mathematical operations are implemented in WebGL shaders. Here are a few useful things to know when using this backend:
 
 
 
