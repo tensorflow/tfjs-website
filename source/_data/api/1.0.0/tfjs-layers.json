@@ -1319,7 +1319,7 @@
                   }
                 ],
                 "returnType": "SymbolicTensor",
-                "documentation": "Used to instantiate an input to a model as a `tf.SymbolicTensor`.\n\nUsers should call the `input` factory function for\nconsistency with other generator functions.\n\nExample:\n\n```js\n// Defines a simple logistic regression model with 32 dimensional input\n// and 3 dimensional output.\nconst x = tf.input({shape: [32]});\nconst y = tf.layers.dense({units: 3, activation: 'softmax'}).apply(x);\nconst model = tf.LayersModel({inputs: x, outputs: y});\nmodel.predict(tf.ones([2, 32])).print();\n```\n\nNote: `input` is only necessary when using `model`. When using\n`sequential`, specify `inputShape` for the first layer or use `inputLayer`\nas the first layer.",
+                "documentation": "Used to instantiate an input to a model as a `tf.SymbolicTensor`.\n\nUsers should call the `input` factory function for\nconsistency with other generator functions.\n\nExample:\n\n```js\n// Defines a simple logistic regression model with 32 dimensional input\n// and 3 dimensional output.\nconst x = tf.input({shape: [32]});\nconst y = tf.layers.dense({units: 3, activation: 'softmax'}).apply(x);\nconst model = new tf.LayersModel({inputs: x, outputs: y});\nmodel.predict(tf.ones([2, 32])).print();\n```\n\nNote: `input` is only necessary when using `model`. When using\n`sequential`, specify `inputShape` for the first layer or use `inputLayer`\nas the first layer.",
                 "fileName": "#248",
                 "githubUrl": "https://github.com/tensorflow/tfjs-layers/blob/v1.0.0/src/exports.ts#L248-L250",
                 "isFunction": true
