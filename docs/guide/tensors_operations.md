@@ -4,8 +4,6 @@ TensorFlow.js is a framework to define and run computations using tensors in Jav
 
 ## Tensors
 
-TensorFlow.js is a framework to define and run computations using tensors in JavaScript. A *tensor* is a generalization of vectors and matrices to higher dimensions.
-
 The central unit of data in TensorFlow.js is the `tf.Tensor`: a set of values shaped into an array of one or more dimensions. `tf.Tensor`s are very similar to multidimensional arrays.
 
 A `tf.Tensor` also contains the following properties:
