@@ -1,0 +1,13 @@
+steps:
+- name: 'node:10'
+  entrypoint: 'yarn'
+  id: 'yarn'
+  args: ['test-ci']
+  env: ['NIGHTLY=$_NIGHTLY']
+timeout: 1800s
+logsBucket: 'gs://tfjs-build-logs'
+substitutions:
+  _NIGHTLY: ''
+options:
+  logStreamingOption: 'STREAM_ON'
+  substitution_option: 'ALLOW_LOOSE'
