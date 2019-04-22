@@ -13,6 +13,13 @@ Built on top of TensorFlow.js, the ml5.js library provides access to machine lea
 
 <a class="button button-white" href="https://ml5js.org">Check out ml5.js</a>
 
+## Get started with ML with the easiest library in the world
+
+Are you looking for a simple yet effective general-purposed machine learning library in Javascript just like ScikitLearn?
+
+Machinelearn.js is built on top of powerful linear algebra API of TensorFlow.js, which enables both CPU and GPU acceleration for models like Logsistic Regression and Bayes Naive Classifier.
+
+<a class="button button-white" href="https://www.machinelearnjs.com/">Check out machinelearn.js</a>
 
 ## Get Setup with TensorFlow.js
 
