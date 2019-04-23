@@ -76,7 +76,13 @@
         "source": "/tutorials/import-saved-model.html",
         "destination": "https://tensorflow.org/js/tutorials/conversion/import_saved_model",
         "type": "301"
+      },
+      {
+        "source": "/tutorials/custom-webgl-op.html",
+        "destination": "https://tensorflow.org/js/tutorials",
+        "type": "301"
       }
+      
     ]
   }
 }
