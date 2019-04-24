@@ -79,7 +79,8 @@ export function generateDocs(libs: LibraryInfo[]): string[] {
     sh('pwd', `Error pwd`);
 
     const buildCommand =
-        `cd libs/${lib.repo} && yarn && cd ../.. && ${docGenCommand}`;
+        `cd libs/${lib.repo} && yarn install --frozen-lockfile` +
+        ` && cd ../.. && ${docGenCommand}`;
 
     console.log('buildcommand  ', buildCommand);
 
