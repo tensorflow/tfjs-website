@@ -71,7 +71,7 @@ async function executeCodeSnippet(consoleLogElement, codeSnippet) {
   const evalString = '(async function runner() { try { ' + codeSnippet +
       '} catch (e) { reportError(e); } })()';
 
-  tf.ENV.engine.startScope();
+  window._tfengine.startScope();
 
   // this outer try is for errors that prevent the snippet from being parsed.
   try {
@@ -83,7 +83,7 @@ async function executeCodeSnippet(consoleLogElement, codeSnippet) {
     reportError(e);
   }
 
-  tf.ENV.engine.endScope();
+  window._tfengine.endScope();
 
   console.log = oldLog;
 };
