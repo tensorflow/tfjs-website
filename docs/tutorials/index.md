@@ -16,7 +16,7 @@ Built on top of TensorFlow.js, the ml5.js library provides access to machine lea
 
 ## Get Setup with TensorFlow.js
 
-Comforable with concepts like Tensors, Layers, Optimizers and Loss Functions (or willing to get comfortable with them)? TensorFlow.js provides flexible building blocks for neural network programming in JavaScript.
+Comfortable with concepts like Tensors, Layers, Optimizers and Loss Functions (or willing to get comfortable with them)? TensorFlow.js provides flexible building blocks for neural network programming in JavaScript.
 
 See how to get up and running with TensorFlow.js code in the browser or Node.js.
 
