@@ -635,7 +635,7 @@ export function hasSpreadOperator(symbol: ts.Symbol) {
 export function removeStarsFromCommentString(input: string) {
   if (input != null) {
     const lines = input.split('\n');
-    const regex = /^(\s*\*\s*)/;
+    const regex = /^(\s*\*\s?)/;
     const stripped = lines.map(l => l.replace(regex, ''));
     return stripped.join('\n');
   }
