@@ -123,7 +123,7 @@ You can find a list of the operations TensorFlow.js supports [here](https://js.t
 
 ## Memory
 
-When using the WebGL backend, `tf.Tensor` memory must be managed explicitly (it is **not sufficient** to let a `tf.Tensor` go out of scope for its memory to be released). For more information on backends, see this guide.
+When using the WebGL backend, `tf.Tensor` memory must be managed explicitly (it is **not sufficient** to let a `tf.Tensor` go out of scope for its memory to be released).
 
 To destroy the memory of a tf.Tensor, you can use the `dispose() `method or `tf.dispose()`:
 
