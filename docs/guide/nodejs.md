@@ -75,7 +75,7 @@ Currently, these are:
 
 The two Node.js packages also provide a namespace, `tf.node`, which contain node-specific APIs.
 
-TensorBoard is a noteable example of Node.js-specific APIs.
+TensorBoard is a notable example of Node.js-specific APIs.
 
 An example of exporting summaries to TensorBoard in Node.js:
 

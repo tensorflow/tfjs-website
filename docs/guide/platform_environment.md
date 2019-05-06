@@ -128,6 +128,6 @@ TensorFlow.js has a set of environment flags that are automatically evaluated an
 *   `tf.enableProdMode():` enables production mode, which will remove model validation, NaN checks, and other correctness checks in favor of performance.
 *   `tf.enableDebugMode()`: enables debug mode, which will log to the console every operation that is executed, as well as runtime performance information like memory footprint and total kernel execution time. Note that this will greatly slow down your application, do not use this in production.
 
-> Note: These two methods should be used before using any TensorFlow.js code as they affect the values of other flags which will get cached. For the same reason, there is are no "disable" analog functions.
+> Note: These two methods should be used before using any TensorFlow.js code as they affect the values of other flags which will get cached. For the same reason, there is no "disable" analog functions.
 
-> Note: You can see all of the flags that have been evaluated by logging `tf.ENV.features `to the console. While these are **not part of the public API **(and thus have no guarantee of stability between versions), they can be useful for debugging or fine tuning behavior across platforms & devices. You can use `tf.ENV.set` to override the value of a flag.
+> Note: You can see all of the flags that have been evaluated by logging `tf.ENV.features` to the console. While these are **not part of the public API **(and thus have no guarantee of stability between versions), they can be useful for debugging or fine tuning behavior across platforms & devices. You can use `tf.ENV.set` to override the value of a flag.
