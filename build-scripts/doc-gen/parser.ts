@@ -22,6 +22,7 @@ import * as ts from 'typescript';
 import * as util from './util';
 // tslint:disable-next-line:max-line-length
 import {DocClass, DocFunction, DocFunctionParam, DocHeading, Docs, RepoDocsAndMetadata} from './view';
+import {DocInfo} from './util';
 
 const DOCUMENTATION_DECORATOR_AND_ANNOTATION = 'doc';
 const DOCUMENTATION_TYPE_ALIAS = 'docalias';
@@ -103,8 +104,9 @@ function visitNode(
     inlineTypes: {[typeName: string]: string}, checker: ts.TypeChecker,
     node: ts.Node, sourceFile: ts.SourceFile, srcRoot: string, repoPath: string,
     githubRoot: string) {
+  let docInfo: DocInfo;
   if (ts.isMethodDeclaration(node) || ts.isFunctionDeclaration(node)) {
-    const docInfo = util.getDocDecoratorOrAnnotation(
+    docInfo = util.getDocDecoratorOrAnnotation(
         checker, node, DOCUMENTATION_DECORATOR_AND_ANNOTATION);
 
     if (docInfo != null) {
@@ -116,7 +118,9 @@ function visitNode(
 
       // Static methods are top-level functions.
       if (ts.isFunctionDeclaration(node) || util.isStatic(node)) {
-        subheading.symbols.push(docFunction);
+        if (docInfo.heading !== undefined) {
+          subheading.symbols.push(docFunction);
+        }
       } else {
         // Non-static methods are class-specific.
         if (docInfo.subclasses != null) {
@@ -131,7 +135,7 @@ function visitNode(
       }
     }
   } else if (ts.isClassDeclaration(node)) {
-    const docInfo = util.getDocDecoratorOrAnnotation(
+    docInfo = util.getDocDecoratorOrAnnotation(
         checker, node, DOCUMENTATION_DECORATOR_AND_ANNOTATION);
     if (docInfo != null) {
       const subheading =
@@ -195,7 +199,12 @@ function visitNode(
           [];
     }
 
-    globalSymbolDocMap[name] = {docs: documentation, params};
+    if (docInfo !== undefined && docInfo !== null &&
+        docInfo.docsForwardAlias !== undefined) {
+      globalSymbolDocMap[docInfo.docsForwardAlias] = {docs: documentation, params};
+    } else {
+      globalSymbolDocMap[name] = {docs: documentation, params};
+    }
   }
 
   // Map interfaces to their parameter list so we can unpack configuration
