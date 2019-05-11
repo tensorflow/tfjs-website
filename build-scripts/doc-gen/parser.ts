@@ -118,9 +118,7 @@ function visitNode(
 
       // Static methods are top-level functions.
       if (ts.isFunctionDeclaration(node) || util.isStatic(node)) {
-        if (docInfo.heading !== undefined) {
-          subheading.symbols.push(docFunction);
-        }
+        subheading.symbols.push(docFunction);
       } else {
         // Non-static methods are class-specific.
         if (docInfo.subclasses != null) {
@@ -199,12 +197,14 @@ function visitNode(
           [];
     }
 
-    if (docInfo !== undefined && docInfo !== null &&
-        docInfo.docsForwardAlias !== undefined) {
-      globalSymbolDocMap[docInfo.docsForwardAlias] = {docs: documentation, params};
+    let globalMapKey;
+    if (docInfo != undefined && docInfo != null &&
+        docInfo.namespace != undefined) {
+      globalMapKey = docInfo.namespace + '.' + name;
     } else {
-      globalSymbolDocMap[name] = {docs: documentation, params};
+      globalMapKey = name;
     }
+    globalSymbolDocMap[globalMapKey] = {docs: documentation, params};
   }
 
   // Map interfaces to their parameter list so we can unpack configuration

@@ -27,7 +27,6 @@ export interface DocInfo {
   subclasses?: string[];
   useDocsFrom?: string;
   configParamIndices?: number[];
-  docsForwardAlias?: string;
 }
 
 export function getDocDecoratorOrAnnotation(
