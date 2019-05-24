@@ -24,7 +24,7 @@ See how to get up and running with TensorFlow.js code in the browser or Node.js.
 
 ### Convert Pretrained Models to TensorFlow.js
 
-Learn how to convert pretrained models from python into TensorFlow.js
+Learn how to convert pretrained models from Python into TensorFlow.js
 
 <a class="button button-white" href="/js/tutorials/conversion/import_keras">Keras Model</a>
 <a class="button button-white" href="/js/tutorials/conversion/import_saved_model">GraphDef Model</a>
