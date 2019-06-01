@@ -70,11 +70,11 @@ theme: tfjs
 deploy:
   type:
 
-browsersync:
-  logLevel: "warn"
-  ghostMode:
-    scroll: true
-  notify: false
+# browsersync:
+#   logLevel: "warn"
+#   ghostMode:
+#     scroll: true
+#   notify: false
 
 markdown:
   render:
