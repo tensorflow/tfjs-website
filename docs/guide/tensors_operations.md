@@ -116,7 +116,7 @@ y.print();
 
 Because tensors are immutable, these ops do not change their values. Instead, ops return always return new `tf.Tensor`s.
 
-> Note: most operations return `tf.Tensor`s, however the result may not actually be ready yet. This means the `tf.Tensor` that you get is actually a handle to the computation. When you call `Tensor.data()` or `Tensor.array()`, these methods return promises that resolve with values only when computation is finished. When running in a UI context (such as browser app), you should always prefer the asynchronous versions of these methods instead of their synchronous counterparts to avoid blocking the UI thread till the computation completes.
+> Note: most operations return `tf.Tensor`s, however the result may not actually be ready yet. This means the `tf.Tensor` that you get is actually a handle to the computation. When you call `Tensor.data()` or `Tensor.array()`, these methods return promises that resolve with values only when computation is finished. When running in a UI context (such as browser app), you should always prefer the asynchronous versions of these methods instead of their synchronous counterparts to avoid blocking the UI thread until the computation completes.
 
 You can find a list of the operations TensorFlow.js supports [here](https://js.tensorflow.org/api/latest/#Operations).
 
