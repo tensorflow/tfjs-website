@@ -13,7 +13,7 @@ The TensorFlow.js converter works with several different model formats:
 
 **Keras model**: Keras models are generally saved as an HDF5 file. More information about saving Keras models can be found [here](https://keras.io/getting-started/faq/#savingloading-whole-models-architecture-weights-optimizer-state).
 
-**TensorFlow Hub module**: These are models that have been packaged for distribution on TensorFlow Hub, a platform for sharing and discovering models. The model library can be found [here](tfhub.dev).
+**TensorFlow Hub module**: These are models that have been packaged for distribution on TensorFlow Hub, a platform for sharing and discovering models. The model library can be found [here](https://tfhub.dev/).
 
 Depending on which type of model you’re trying to convert, you’ll need to pass different arguments to the converter. For example, let’s say you have saved a Keras model named `model.h5` to your `tmp/` directory. To convert your model using the TensorFlow.js converter, you can run the following command:
 
