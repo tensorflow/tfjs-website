@@ -130,7 +130,7 @@ To destroy the memory of a tf.Tensor, you can use the `dispose() `method or `tf.
 
 ```js
 const a = tf.tensor([[1, 2], [3, 4]]);
-a.dispose(); // Equivalant to tf.dispose(a)
+a.dispose(); // Equivalent to tf.dispose(a)
 ```
 
 
