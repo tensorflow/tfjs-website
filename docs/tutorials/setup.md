@@ -3,7 +3,9 @@
 ## Browser Setup
 
 There are two main ways to get TensorFlow.js in your browser based projects:
+
   - Using [script tags](https://developer.mozilla.org/en-US/docs/Learn/HTML/Howto/Use_JavaScript_within_a_webpage).
+
   - Installation from [NPM](https://www.npmjs.com) and using a build tool like [Parcel](https://parceljs.org/), [WebPack](https://webpack.js.org/), or [Rollup](https://rollupjs.org/guide/en).
 
 If you are new to web development, or have never heard of tools like webpack or parcel, _we recommend you use the script tag approach_. If you are more experienced or want to write larger programs it might be worthwhile to explore using build tools.
@@ -17,7 +19,7 @@ Add the following script tag to your main HTML file.
 ```
 
 <section class="expandable">
-  <h4 class="showalways">See code sample script tag setup</h4>
+  <h4 class="showalways">See code sample for script tag setup</h4>
   <pre class="prettyprint">
 // Define a model for linear regression.
 const model = tf.sequential();

@@ -16,7 +16,7 @@ Built on top of TensorFlow.js, the ml5.js library provides access to machine lea
 
 ## Get Setup with TensorFlow.js
 
-Comforable with concepts like Tensors, Layers, Optimizers and Loss Functions (or willing to get comfortable with them)? TensorFlow.js provides flexible building blocks for neural network programming in JavaScript.
+Comfortable with concepts like Tensors, Layers, Optimizers and Loss Functions (or willing to get comfortable with them)? TensorFlow.js provides flexible building blocks for neural network programming in JavaScript.
 
 See how to get up and running with TensorFlow.js code in the browser or Node.js.
 
@@ -24,7 +24,7 @@ See how to get up and running with TensorFlow.js code in the browser or Node.js.
 
 ### Convert Pretrained Models to TensorFlow.js
 
-Learn how to convert pretrained models from python into TensorFlow.js
+Learn how to convert pretrained models from Python into TensorFlow.js
 
 <a class="button button-white" href="/js/tutorials/conversion/import_keras">Keras Model</a>
 <a class="button button-white" href="/js/tutorials/conversion/import_saved_model">GraphDef Model</a>
