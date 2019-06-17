@@ -205,7 +205,7 @@ This Python syntax sugar is implemented as the apply() method in TensorFlow.js:
 
 ```js
 // JavaScript:
-const myInput = tf.input{shape: [2, 4]});
+const myInput = tf.input({shape: [2, 4]});
 const flatten = tf.layers.flatten();
 
 console.log(flatten.apply(myInput).shape);
