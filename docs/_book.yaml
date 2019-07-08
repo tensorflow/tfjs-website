@@ -24,6 +24,8 @@ upper_tabs:
         path: /js/tutorials/training/linear_regression
       - title: "Recognize handwritten digits with CNNs"
         path: /js/tutorials/training/handwritten_digit_cnn
+      - title: "Predict baseball pitch types in Node.js"
+        path: /js/tutorials/training/nodejs_training
 
       - heading: "Transfer learning"
       - title: "What is transfer learning?"
