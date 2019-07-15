@@ -98,7 +98,7 @@ The body of the POST is in the `multipart/form-data` format and consists of two 
 Note that the name of the two files will always be exactly as specified above (the name is built in to the function). This [api doc](https://js.tensorflow.org/api/latest/#tf.io.browserHTTPRequest) contains a Python code snippet that demonstrates how one may use the [flask](http://flask.pocoo.org/) web framework to handle the request originated from `save`.
 
 Often you will have to pass more arguments or request headers to your HTTP server (e.g. for authentication or if you want to specify a folder that the model should be saved in). You can gain fine-grained control over
-these aspects of the requests from `save` by replacing the URL string argument a `tf.io.browserHTTPRequest`. This API
+these aspects of the requests from `save` by replacing the URL string argument in `tf.io.browserHTTPRequest`. This API
 affords greater flexiblity in controlling HTTP requests.
 
 For example:
