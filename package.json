@@ -51,6 +51,7 @@
   },
   "devDependencies": {
     "@types/node": "~9.4.6",
-    "clang-format": "~1.2.4"
+    "clang-format": "~1.2.4",
+    "firebase-tools": "^7.2.0"
   }
 }
