@@ -4,6 +4,7 @@ This doc describes how to run a Node.js process with @tensorflow/tfjs-node packa
 
 Starting from tfjs-node@1.2.4, running Node.js project on cloud platforms does not require extra configurations. This guide will use the [mnist-node](https://github.com/tensorflow/tfjs-examples/tree/master/mnist-node) example in @tensorflow/tfjs-examples repository, which trains MNIST with tfjs-node package on Heroku and GCloud. The details of Heroku’s Node.js Support can be found in [Heroku Node.js Support](https://devcenter.heroku.com/articles/nodejs-support) article. The details of Node.js on Google Cloud Platform can be found on the [Google Cloud page](https://cloud.google.com/nodejs/docs/).
 
+## Deploy Node.js project on Heroku
 
 ### Prerequisites
 
