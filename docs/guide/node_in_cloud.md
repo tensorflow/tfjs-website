@@ -8,9 +8,9 @@ Starting from tfjs-node@1.2.4, running Node.js project on cloud platforms does n
 
 ### Prerequisites
 
-- Node.js and npm installed
-- Heroku account
-- Heroku CLI
+1. Node.js and npm installed
+2. Heroku account
+3. Heroku CLI
 
 ### Create the Node.js app
 
