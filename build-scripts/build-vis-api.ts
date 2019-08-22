@@ -34,13 +34,13 @@ const websitePackage =
 const visVersion = commander.local ?
     'local' :
     `${websitePackage.dependencies['@tensorflow/tfjs-vis']}`;
-const visTag = `v${visVersion}`
+const visTag = `tfjs-vis-v${visVersion}`
 
 // The vis docs only use the docs from one library
 const libs = [
   {
-    repo: 'tfjs-vis',
-    github: `https://github.com/tensorflow/tfjs-vis/blob/${visTag}`,
+    packageName: 'tfjs-vis',
+    github: `https://github.com/tensorflow/tfjs/tree/${visTag}/tfjs-vis`,
     version: visVersion,
     outputFolder: `source/_data/api_vis/${visVersion}`
   },

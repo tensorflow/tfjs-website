@@ -2,298 +2,237 @@
   "docs": {
     "headings": [
       {
-        "name": "TensorBoard",
+        "name": "Models",
         "description": "",
         "subheadings": [
           {
+            "name": "Op Registry",
             "symbols": [
               {
                 "docInfo": {
-                  "heading": "TensorBoard",
-                  "namespace": "node"
+                  "heading": "Models",
+                  "subheading": "Op Registry"
                 },
-                "symbolName": "summaryFileWriter",
-                "namespace": "node",
-                "paramStr": "(logdir, maxQueue?, flushMillis?, filenameSuffix?)",
+                "symbolName": "registerOp",
+                "paramStr": "(name, opFunc)",
                 "parameters": [
                   {
-                    "name": "logdir",
-                    "documentation": "Log directory in which the summary data will be written.",
+                    "name": "name",
+                    "documentation": "The Tensorflow Op name.",
                     "type": "string",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
-                    "name": "maxQueue",
-                    "documentation": "Maximum queue length (default: `10`).",
-                    "type": "number",
-                    "optional": true,
-                    "isConfigParam": false
-                  },
-                  {
-                    "name": "flushMillis",
-                    "documentation": "Flush every __ milliseconds (default: `120e3`, i.e,\n`120` seconds).",
-                    "type": "number",
-                    "optional": true,
-                    "isConfigParam": false
-                  },
-                  {
-                    "name": "filenameSuffix",
-                    "documentation": "Suffix of the protocol buffer file names to be\nwritten in the `logdir` (default: `.v2`).",
-                    "type": "string",
-                    "optional": true,
+                    "name": "opFunc",
+                    "documentation": "An op function which is called with the current graph node\nduring execution and needs to return a tensor or a list of tensors. The node\nhas the following attributes:\n- attr: A map from attribute name to its value\n- inputs: A list of input tensors",
+                    "type": "OpExecutor",
+                    "optional": false,
                     "isConfigParam": false
                   }
                 ],
-                "returnType": "SummaryFileWriter",
-                "documentation": "Create a summary file writer for TensorBoard.\n\nExample:\n```js\nconst tf = require('@tensorflow/tfjs-node');\n\nconst summaryWriter = tf.node.summaryFileWriter('/tmp/tfjs_tb_logdir');\n\nfor (let step = 0; step < 100; ++step) {\n summaryWriter.scalar('dummyValue', Math.sin(2 * Math.PI * step / 8), step);\n}\n```",
-                "fileName": "#94",
-                "githubUrl": "https://github.com/tensorflow/tfjs-node/blob/tfjs-node-v1.2.7/src/tensorboard.ts#L94-L112",
+                "returnType": "void",
+                "documentation": "Register an Op for graph model executor. This allow you to register\nTensorFlow custom op or override existing op.\n\nHere is an example of registering a new MatMul Op.\n```js\nconst customMatmul = (node) =>\n   tf.matMul(\n       node.inputs[0], node.inputs[1],\n       node.attrs['transpose_a'], node.attrs['transpose_b']);\n\ntf.registerOp('MatMul', customMatmul);\n```\nThe inputs and attrs of the node object is based on the TensorFlow op\nregistry.",
+                "fileName": "#47",
+                "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-converter-v1.2.8/tfjs-converter/src/operations/custom_op/register.ts#L47-L57",
                 "isFunction": true
               },
               {
                 "docInfo": {
-                  "heading": "TensorBoard",
-                  "namespace": "node"
+                  "heading": "Models",
+                  "subheading": "Op Registry"
                 },
-                "symbolName": "tensorBoard",
-                "namespace": "node",
-                "paramStr": "(logdir?, args?)",
+                "symbolName": "getRegisteredOp",
+                "paramStr": "(name)",
                 "parameters": [
                   {
-                    "name": "logdir",
-                    "documentation": "Directory to which the logs will be written.",
+                    "name": "name",
+                    "documentation": "The Tensorflow Op name.",
                     "type": "string",
-                    "optional": true,
-                    "isConfigParam": false
-                  },
-                  {
-                    "name": "args",
-                    "documentation": "Optional configuration arguments.",
-                    "type": "TensorBoardCallbackArgs",
-                    "optional": true,
+                    "optional": false,
                     "isConfigParam": false
                   }
                 ],
-                "returnType": "TensorBoardCallback",
-                "documentation": "Callback for logging to TensorBoard durnig training.\n\nWrites the loss and metric values (if any) to the specified log directory\n(`logdir`) which can be ingested and visualized by TensorBoard.\nThis callback is usually passed as a callback to `tf.Model.fit()` or\n`tf.Model.fitDataset()` calls during model training. The frequency at which\nthe values are logged can be controlled with the `updateFreq` field of the\nconfiguration object (2nd argument).\n\nUsage example:\n```js\n// Constructor a toy multilayer-perceptron regressor for demo purpose.\nconst model = tf.sequential();\nmodel.add(\n    tf.layers.dense({units: 100, activation: 'relu', inputShape: [200]}));\nmodel.add(tf.layers.dense({units: 1}));\nmodel.compile({\n  loss: 'meanSquaredError',\n  optimizer: 'sgd',\n  metrics: ['MAE']\n});\n\n// Generate some random fake data for demo purpose.\nconst xs = tf.randomUniform([10000, 200]);\nconst ys = tf.randomUniform([10000, 1]);\nconst valXs = tf.randomUniform([1000, 200]);\nconst valYs = tf.randomUniform([1000, 1]);\n\n// Start model training process.\nawait model.fit(xs, ys, {\n  epochs: 100,\n  validationData: [valXs, valYs],\n   // Add the tensorBoard callback here.\n  callbacks: tf.node.tensorBoard('/tmp/fit_logs_1')\n});\n```\n\nThen you can use the following commands to point tensorboard\nto the logdir:\n\n```sh\npip install tensorboard  # Unless you've already installed it.\ntensorboard --logdir /tmp/fit_logs_1\n```",
-                "fileName": "#325",
-                "githubUrl": "https://github.com/tensorflow/tfjs-node/blob/tfjs-node-v1.2.7/src/callbacks.ts#L325-L328",
+                "returnType": "OpMapper",
+                "documentation": "Retrieve the OpMapper object for the registered op.",
+                "fileName": "#66",
+                "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-converter-v1.2.8/tfjs-converter/src/operations/custom_op/register.ts#L66-L68",
+                "isFunction": true
+              },
+              {
+                "docInfo": {
+                  "heading": "Models",
+                  "subheading": "Op Registry"
+                },
+                "symbolName": "deregisterOp",
+                "paramStr": "(name)",
+                "parameters": [
+                  {
+                    "name": "name",
+                    "documentation": "The Tensorflow Op name.",
+                    "type": "string",
+                    "optional": false,
+                    "isConfigParam": false
+                  }
+                ],
+                "returnType": "void",
+                "documentation": "Deregister the Op for graph model executor.",
+                "fileName": "#76",
+                "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-converter-v1.2.8/tfjs-converter/src/operations/custom_op/register.ts#L76-L78",
                 "isFunction": true
               }
             ]
-          }
-        ]
-      },
-      {
-        "name": "Operations",
-        "description": "",
-        "subheadings": [
+          },
           {
-            "name": "Images",
+            "name": "Classes",
             "symbols": [
               {
                 "docInfo": {
-                  "heading": "Operations",
-                  "subheading": "Images",
-                  "namespace": "node"
+                  "heading": "Models",
+                  "subheading": "Classes"
                 },
-                "symbolName": "decodeJpeg",
-                "namespace": "node",
-                "paramStr": "(contents, channels?, ratio?, fancyUpscaling?, tryRecoverTruncated?, acceptableFraction?, dctMethod?)",
-                "parameters": [
+                "symbolName": "GraphModel",
+                "documentation": "A `tf.GraphModel` is a directed, acyclic graph of built from\nSavedModel GraphDef and allows inference exeuction.\n\nA `tf.GraphModel` can only be created by loading from a model converted from\na [TensorFlow SavedModel](https://www.tensorflow.org/guide/saved_model) using\nthe command line converter tool and loaded via `tf.loadGraphModel`.",
+                "fileName": "#39",
+                "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-converter-v1.2.8/tfjs-converter/src/executor/graph_model.ts#L39-L276",
+                "methods": [
                   {
-                    "name": "contents",
-                    "documentation": "The JPEG-encoded image in an Uint8Array.",
-                    "type": "Uint8Array",
-                    "optional": false,
-                    "isConfigParam": false
+                    "docInfo": {
+                      "heading": "Models",
+                      "subheading": "Classes"
+                    },
+                    "symbolName": "predict",
+                    "paramStr": "(inputs, config?)",
+                    "parameters": [
+                      {
+                        "name": "inputs",
+                        "documentation": "",
+                        "type": "Tensor|Tensor[]|NamedTensorMap",
+                        "optional": false,
+                        "isConfigParam": false
+                      },
+                      {
+                        "name": "config",
+                        "documentation": "Prediction configuration for specifying the batch size and\noutput node names. Currently the batch size option is ignored for graph\nmodel.",
+                        "type": "ModelPredictConfig",
+                        "optional": true,
+                        "isConfigParam": false
+                      }
+                    ],
+                    "returnType": "Tensor|Tensor[]|NamedTensorMap",
+                    "documentation": "Execute the inference for the input tensors.",
+                    "fileName": "#187",
+                    "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-converter-v1.2.8/tfjs-converter/src/executor/graph_model.ts#L187-L190",
+                    "isFunction": true
                   },
                   {
-                    "name": "channels",
-                    "documentation": "An optional int. Defaults to 0. Accepted values are\n0: use the number of channels in the PNG-encoded image.\n1: output a grayscale image.\n3: output an RGB image.",
-                    "type": "number",
-                    "optional": true,
-                    "isConfigParam": false
+                    "docInfo": {
+                      "heading": "Models",
+                      "subheading": "Classes"
+                    },
+                    "symbolName": "execute",
+                    "paramStr": "(inputs, outputs?)",
+                    "parameters": [
+                      {
+                        "name": "inputs",
+                        "documentation": "tensor, tensor array or tensor map of the inputs for the\nmodel, keyed by the input node names.",
+                        "type": "Tensor|Tensor[]|NamedTensorMap",
+                        "optional": false,
+                        "isConfigParam": false
+                      },
+                      {
+                        "name": "outputs",
+                        "documentation": "output node name from the Tensorflow model, if no\noutputs are specified, the default outputs of the model would be used.\nYou can inspect intermediate nodes of the model by adding them to the\noutputs array.",
+                        "type": "string|string[]",
+                        "optional": true,
+                        "isConfigParam": false
+                      }
+                    ],
+                    "returnType": "Tensor|Tensor[]",
+                    "documentation": "Executes inference for the model for given input tensors.",
+                    "fileName": "#231",
+                    "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-converter-v1.2.8/tfjs-converter/src/executor/graph_model.ts#L231-L237",
+                    "isFunction": true
                   },
                   {
-                    "name": "ratio",
-                    "documentation": "An optional int. Defaults to 1. Downscaling ratio. It is used\nwhen image is type Jpeg.",
-                    "type": "number",
-                    "optional": true,
-                    "isConfigParam": false
+                    "docInfo": {
+                      "heading": "Models",
+                      "subheading": "Classes"
+                    },
+                    "symbolName": "executeAsync",
+                    "paramStr": "(inputs, outputs?)",
+                    "parameters": [
+                      {
+                        "name": "inputs",
+                        "documentation": "tensor, tensor array or tensor map of the inputs for the\nmodel, keyed by the input node names.",
+                        "type": "Tensor|Tensor[]|NamedTensorMap",
+                        "optional": false,
+                        "isConfigParam": false
+                      },
+                      {
+                        "name": "outputs",
+                        "documentation": "output node name from the Tensorflow model, if no outputs\nare specified, the default outputs of the model would be used. You can\ninspect intermediate nodes of the model by adding them to the outputs\narray.",
+                        "type": "string|string[]",
+                        "optional": true,
+                        "isConfigParam": false
+                      }
+                    ],
+                    "returnType": "Promise<Tensor|Tensor[]>",
+                    "documentation": "Executes inference for the model for given input tensors in async\nfashion, use this method when your model contains control flow ops.",
+                    "fileName": "#253",
+                    "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-converter-v1.2.8/tfjs-converter/src/executor/graph_model.ts#L253-L260",
+                    "isFunction": true
                   },
                   {
-                    "name": "fancyUpscaling",
-                    "documentation": "An optional bool. Defaults to True. If true use a\nslower but nicer upscaling of the chroma planes. It is used when image is\ntype Jpeg.",
-                    "type": "boolean",
-                    "optional": true,
-                    "isConfigParam": false
-                  },
-                  {
-                    "name": "tryRecoverTruncated",
-                    "documentation": "An optional bool. Defaults to False. If true try\nto recover an image from truncated input. It is used when image is type\nJpeg.",
-                    "type": "boolean",
-                    "optional": true,
-                    "isConfigParam": false
-                  },
-                  {
-                    "name": "acceptableFraction",
-                    "documentation": "An optional float. Defaults to 1. The minimum\nrequired fraction of lines before a truncated input is accepted. It is\nused when image is type Jpeg.",
-                    "type": "number",
-                    "optional": true,
-                    "isConfigParam": false
-                  },
-                  {
-                    "name": "dctMethod",
-                    "documentation": "An optional string. Defaults to \"\". string specifying a hint\nabout the algorithm used for decompression. Defaults to \"\" which maps to\na system-specific default. Currently valid values are [\"INTEGER_FAST\",\n\"INTEGER_ACCURATE\"]. The hint may be ignored (e.g., the internal jpeg\nlibrary changes to a version that does not have that specific option.) It\nis used when image is type Jpeg.",
-                    "type": "string",
-                    "optional": true,
-                    "isConfigParam": false
+                    "docInfo": {
+                      "heading": "Models",
+                      "subheading": "Classes"
+                    },
+                    "symbolName": "dispose",
+                    "paramStr": "()",
+                    "parameters": [],
+                    "returnType": "void",
+                    "documentation": "Releases the memory used by the weight tensors.",
+                    "fileName": "#273",
+                    "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-converter-v1.2.8/tfjs-converter/src/executor/graph_model.ts#L273-L275",
+                    "isFunction": true
                   }
                 ],
-                "returnType": "Tensor3D",
-                "documentation": "Decode a JPEG-encoded image to a 3D Tensor of dtype `int32`.",
-                "fileName": "#58",
-                "githubUrl": "https://github.com/tensorflow/tfjs-node/blob/tfjs-node-v1.2.7/src/decode_image.ts#L58-L70",
-                "isFunction": true
-              },
+                "isClass": true,
+                "inheritsFrom": "InferenceModel"
+              }
+            ]
+          },
+          {
+            "name": "Loading",
+            "symbols": [
               {
                 "docInfo": {
-                  "heading": "Operations",
-                  "subheading": "Images",
-                  "namespace": "node"
+                  "heading": "Models",
+                  "subheading": "Loading"
                 },
-                "symbolName": "decodePng",
-                "namespace": "node",
-                "paramStr": "(contents, channels?, dtype?)",
+                "symbolName": "loadGraphModel",
+                "paramStr": "(modelUrl, options?)",
                 "parameters": [
                   {
-                    "name": "contents",
-                    "documentation": "The BMP-encoded image in an Uint8Array.",
-                    "type": "Uint8Array",
+                    "name": "modelUrl",
+                    "documentation": "The url or an `io.IOHandler` that loads the model.",
+                    "type": "string|io.IOHandler",
                     "optional": false,
                     "isConfigParam": false
                   },
                   {
-                    "name": "channels",
-                    "documentation": "An optional int. Defaults to 0. Accepted values are\n0: use the number of channels in the PNG-encoded image.\n1: output a grayscale image.\n3: output an RGB image.\n4: output an RGBA image.",
-                    "type": "number",
-                    "optional": true,
-                    "isConfigParam": false
-                  },
-                  {
-                    "name": "dtype",
-                    "documentation": "The data type of the result. Only `int32` is supported at this\ntime.",
-                    "type": "string",
+                    "name": "options",
+                    "documentation": "Options for the HTTP request, which allows to send credentials\nand custom headers.",
+                    "type": "io.LoadOptions",
                     "optional": true,
                     "isConfigParam": false
                   }
                 ],
-                "returnType": "Tensor3D",
-                "documentation": "Decode a PNG-encoded image to a 3D Tensor of dtype `int32`.",
-                "fileName": "#88",
-                "githubUrl": "https://github.com/tensorflow/tfjs-node/blob/tfjs-node-v1.2.7/src/decode_image.ts#L88-L97",
-                "isFunction": true
-              },
-              {
-                "docInfo": {
-                  "heading": "Operations",
-                  "subheading": "Images",
-                  "namespace": "node"
-                },
-                "symbolName": "decodeBmp",
-                "namespace": "node",
-                "paramStr": "(contents, channels?)",
-                "parameters": [
-                  {
-                    "name": "contents",
-                    "documentation": "The BMP-encoded image in an Uint8Array.",
-                    "type": "Uint8Array",
-                    "optional": false,
-                    "isConfigParam": false
-                  },
-                  {
-                    "name": "channels",
-                    "documentation": "An optional int. Defaults to 0. Accepted values are\n0: use the number of channels in the BMP-encoded image.\n3: output an RGB image.\n4: output an RGBA image.",
-                    "type": "number",
-                    "optional": true,
-                    "isConfigParam": false
-                  }
-                ],
-                "returnType": "Tensor3D",
-                "documentation": "Decode the first frame of a BMP-encoded image to a 3D Tensor of dtype\n`int32`.",
-                "fileName": "#113",
-                "githubUrl": "https://github.com/tensorflow/tfjs-node/blob/tfjs-node-v1.2.7/src/decode_image.ts#L113-L118",
-                "isFunction": true
-              },
-              {
-                "docInfo": {
-                  "heading": "Operations",
-                  "subheading": "Images",
-                  "namespace": "node"
-                },
-                "symbolName": "decodeGif",
-                "namespace": "node",
-                "paramStr": "(contents)",
-                "parameters": [
-                  {
-                    "name": "contents",
-                    "documentation": "The GIF-encoded image in an Uint8Array.",
-                    "type": "Uint8Array",
-                    "optional": false,
-                    "isConfigParam": false
-                  }
-                ],
-                "returnType": "Tensor4D",
-                "documentation": "Decode the frame(s) of a GIF-encoded image to a 4D Tensor of dtype `int32`.",
-                "fileName": "#130",
-                "githubUrl": "https://github.com/tensorflow/tfjs-node/blob/tfjs-node-v1.2.7/src/decode_image.ts#L130-L135",
-                "isFunction": true
-              },
-              {
-                "docInfo": {
-                  "heading": "Operations",
-                  "subheading": "Images",
-                  "namespace": "node"
-                },
-                "symbolName": "decodeImage",
-                "namespace": "node",
-                "paramStr": "(content, channels?, dtype?, expandAnimations?)",
-                "parameters": [
-                  {
-                    "name": "content",
-                    "documentation": "The encoded image in an Uint8Array.",
-                    "type": "Uint8Array",
-                    "optional": false,
-                    "isConfigParam": false
-                  },
-                  {
-                    "name": "channels",
-                    "documentation": "An optional int. Defaults to 0, use the number of channels in\nthe image. Number of color channels for the decoded image. It is used\nwhen image is type Png, Bmp, or Jpeg.",
-                    "type": "number",
-                    "optional": true,
-                    "isConfigParam": false
-                  },
-                  {
-                    "name": "dtype",
-                    "documentation": "The data type of the result. Only `int32` is supported at this\ntime.",
-                    "type": "string",
-                    "optional": true,
-                    "isConfigParam": false
-                  },
-                  {
-                    "name": "expandAnimations",
-                    "documentation": "A boolean which controls the shape of the returned\nop's output. If True, the returned op will produce a 3-D tensor for PNG,\nJPEG, and BMP files; and a 4-D tensor for all GIFs, whether animated or\nnot. If, False, the returned op will produce a 3-D tensor for all file\ntypes and will truncate animated GIFs to the first frame.",
-                    "type": "boolean",
-                    "optional": true,
-                    "isConfigParam": false
-                  }
-                ],
-                "returnType": "Tensor3D|Tensor4D",
-                "documentation": "Given the encoded bytes of an image, it returns a 3D or 4D tensor of the\ndecoded image. Supports BMP, GIF, JPEG and PNG formats.",
-                "fileName": "#160",
-                "githubUrl": "https://github.com/tensorflow/tfjs-node/blob/tfjs-node-v1.2.7/src/decode_image.ts#L160-L191",
+                "returnType": "Promise<GraphModel>",
+                "documentation": "Load a graph model given a URL to the model definition.\n\nExample of loading MobileNetV2 from a URL and making a prediction with a\nzeros input:\n\n```js\nconst modelUrl =\n   'https://storage.googleapis.com/tfjs-models/savedmodel/mobilenet_v2_1.0_224/model.json';\nconst model = await tf.loadGraphModel(modelUrl);\nconst zeros = tf.zeros([1, 224, 224, 3]);\nmodel.predict(zeros).print();\n```\n\nExample of loading MobileNetV2 from a TF Hub URL and making a prediction with\na zeros input:\n\n```js\nconst modelUrl =\n   'https://tfhub.dev/google/imagenet/mobilenet_v2_140_224/classification/2';\nconst model = await tf.loadGraphModel(modelUrl, {fromTFHub: true});\nconst zeros = tf.zeros([1, 224, 224, 3]);\nmodel.predict(zeros).print();\n```",
+                "fileName": "#307",
+                "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-converter-v1.2.8/tfjs-converter/src/executor/graph_model.ts#L307-L330",
                 "isFunction": true
               }
             ]
@@ -1271,168 +1210,459 @@
         "isConfigParam": true
       }
     ],
-    "TFJSBinding": [
+    "TensorWithState": [
       {
-        "name": "TensorMetadata",
-        "type": "typeof TensorMetadata",
+        "name": "tensor",
+        "type": "Tensor",
         "documentation": "",
         "optional": false,
         "isConfigParam": true
       },
       {
-        "name": "TFEOpAttr",
-        "type": "typeof TFEOpAttr",
+        "name": "written",
+        "type": "boolean",
         "documentation": "",
         "optional": false,
         "isConfigParam": true
       },
       {
-        "name": "createTensor",
-        "type": "number",
+        "name": "read",
+        "type": "boolean",
         "documentation": "",
         "optional": false,
         "isConfigParam": true
       },
       {
-        "name": "deleteTensor",
-        "type": "void",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "tensorDataSync",
-        "type": "Float32Array | Int32Array | Uint8Array",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "executeOp",
-        "type": "TensorMetadata[]",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "TF_FLOAT",
-        "type": "number",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "TF_INT32",
-        "type": "number",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "TF_INT64",
-        "type": "number",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "TF_BOOL",
-        "type": "number",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "TF_COMPLEX64",
-        "type": "number",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "TF_STRING",
-        "type": "number",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "TF_RESOURCE",
-        "type": "number",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "TF_UINT8",
-        "type": "number",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "TF_ATTR_STRING",
-        "type": "number",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "TF_ATTR_INT",
-        "type": "number",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "TF_ATTR_FLOAT",
-        "type": "number",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "TF_ATTR_BOOL",
-        "type": "number",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "TF_ATTR_TYPE",
-        "type": "number",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "TF_ATTR_SHAPE",
-        "type": "number",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "TF_ATTR_RESOURCE",
-        "type": "number",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "TF_Version",
-        "type": "string",
+        "name": "cleared",
+        "type": "boolean",
         "documentation": "",
         "optional": false,
         "isConfigParam": true
       }
     ],
-    "DataId": [],
-    "TensorBoardCallbackArgs": [
+    "TensorInfo": [
       {
-        "name": "updateFreq",
-        "type": "'batch'|'epoch'",
-        "documentation": "The frequency at which loss and metric values are written to logs.\n\nCurrently supported options are:\n\n- 'batch': Write logs at the end of every batch of training, in addition\n   to the end of every epoch of training.\n- 'epoch': Write logs at the end of every epoch of training.\n\nNote that writing logs too often slows down the training.\n\nDefault: 'epoch'.",
+        "name": "name",
+        "type": "string",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "shape",
+        "type": "number[]",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "dtype",
+        "type": "DataType",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "ExecutionContextInfo": [
+      {
+        "name": "id",
+        "type": "number",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "frameName",
+        "type": "string",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "iterationId",
+        "type": "number",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "ParamMapper": [
+      {
+        "name": "name",
+        "type": "string",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "type",
+        "type": "ParamType",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "defaultValue",
+        "type": "ValueType",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "notSupported",
+        "type": "boolean",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "InputParamMapper": [
+      {
+        "name": "start",
+        "type": "number",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "end",
+        "type": "number",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "type",
+        "type": "ParamType",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "defaultValue",
+        "type": "ValueType",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "notSupported",
+        "type": "boolean",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "AttrParamMapper": [
+      {
+        "name": "tfName",
+        "type": "string",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "tfDeprecatedName",
+        "type": "string",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "type",
+        "type": "ParamType",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "defaultValue",
+        "type": "ValueType",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "notSupported",
+        "type": "boolean",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "InternalOpExecutor": [],
+    "OpMapper": [
+      {
+        "name": "tfOpName",
+        "type": "string",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "category",
+        "type": "Category",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "inputs",
+        "type": "InputParamMapper[]",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "attrs",
+        "type": "AttrParamMapper[]",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "customExecutor",
+        "type": "OpExecutor",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "Node": [
+      {
+        "name": "name",
+        "type": "string",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "op",
+        "type": "string",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "category",
+        "type": "Category",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "inputNames",
+        "type": "string[]",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "inputs",
+        "type": "Node[]",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "inputParams",
+        "type": "{[key: string]: InputParamValue}",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "attrParams",
+        "type": "{[key: string]: ParamValue}",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "children",
+        "type": "Node[]",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "rawAttrs",
+        "type": "{[k: string]: tensorflow.IAttrValue}",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "Graph": [
+      {
+        "name": "nodes",
+        "type": "{[key: string]: Node}",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "placeholders",
+        "type": "Node[]",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "inputs",
+        "type": "Node[]",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "outputs",
+        "type": "Node[]",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "weights",
+        "type": "Node[]",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "ParamValue": [
+      {
+        "name": "value",
+        "type": "ValueType",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "type",
+        "type": "ParamType",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "InputParamValue": [
+      {
+        "name": "inputIndexStart",
+        "type": "number",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "inputIndexEnd",
+        "type": "number",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "value",
+        "type": "ValueType",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "type",
+        "type": "ParamType",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "OpExecutor": [],
+    "GraphNode": [
+      {
+        "name": "inputs",
+        "type": "Tensor[]",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "attrs",
+        "type": "{[key: string]: ValueType}",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "ExecutionInfo": [
+      {
+        "name": "inputs",
+        "type": "NamedTensorMap",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "outputs",
+        "type": "Node[]",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "usedNodes",
+        "type": "Set",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "missingInputs",
+        "type": "string[]",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "dynamicNode",
+        "type": "Node",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "syncInputs",
+        "type": "string[]",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "NodeWithContexts": [
+      {
+        "name": "contexts",
+        "type": "ExecutionContextInfo[]",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "node",
+        "type": "Node",
+        "documentation": "",
         "optional": false,
         "isConfigParam": true
       }
