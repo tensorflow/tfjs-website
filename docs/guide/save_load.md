@@ -20,7 +20,7 @@ _topology_ and _weights_ of a model.
 
 -  Topology: This is a file describing the architecture of a model (i.e. what operations it uses). It contains references to the models's weights which are stored externally.
 
--  Weights: These are binaray files that store the weights of a given model in an efficient format. They are generally stored in the same folder as the topology.
+-  Weights: These are binary files that store the weights of a given model in an efficient format. They are generally stored in the same folder as the topology.
 
 Let's take a look at what the code for saving a model looks like
 
