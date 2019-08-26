@@ -1,7 +1,7 @@
 # js.tensorflow.org
 
-This repo is for the website for TensorFlow.js. The API docs are built using Hexo (a static site generator) that puts static assets in to the `public` folder. 
-The rest of the webstie is written as markdown and built internally within Google.
+This repo is for the website for TensorFlow.js. The API docs are built using Hexo (a static site generator) that puts static assets in to the `public` folder.
+The rest of the website is written as markdown and built internally within Google.
 
 ## Development Setup
 
@@ -13,7 +13,7 @@ After checking out this repo run
 yarn prep
 ```
 
-This will download the two git submodules (or if you have already downloaded them before **will pull down changes from master**) and then install the project dependencies. 
+This will download the two git submodules (or if you have already downloaded them before **will pull down changes from master**) and then install the project dependencies.
 
 To start a dev server for the site. You should be able to make changes to the site and see them reflected in the dev server
 
@@ -21,8 +21,8 @@ When you pull new commits from git you should run `yarn prep` again.
 
 ## Building and previewing the site
 
-```
-yarn build // note that you may need to build the API before running this (see below for details)
+```sh
+yarn build  # note that you may need to build the API before running this (see below for details)
 ```
 
 ```
@@ -59,7 +59,7 @@ During local development (e.g. if you have changes in libs), run:
 yarn [build-api|build-vis-api|build-node-api] // depending on which api docs you want to regenerate.
 ```
 
-and 
+and
 
 ```
 yarn serve
