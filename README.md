@@ -1,10 +1,11 @@
 # js.tensorflow.org
 
-This repo is for the website for TensorFlow.js. The site is built using Hexo (a static site generator) that puts static assets in to the `public` folder.
+This repo is for the website for TensorFlow.js. The API docs are built using Hexo (a static site generator) that puts static assets in to the `public` folder.
+The rest of the website is written as markdown and built internally within Google.
 
 ## Development Setup
 
-You need node.js, yarn, and git to use this repo effectively. Note that it clones the repos for tfjs-core and tfjs-layers (as git submodules) in order to build API docs.
+You need node.js, yarn, and git to use this repo effectively. Note that it clones the tfjs repo (as a git submodules) in order to build API docs.
 
 After checking out this repo run
 
@@ -12,15 +13,27 @@ After checking out this repo run
 yarn prep
 ```
 
-This will download the two git submodules (or if you have already downloaded them before **will pull down changes from master**) and then install the project dependencies. Once this is done run
+This will download the two git submodules (or if you have already downloaded them before **will pull down changes from master**) and then install the project dependencies.
+
+To start a dev server for the site. You should be able to make changes to the site and see them reflected in the dev server
+
+When you pull new commits from git you should run `yarn prep` again.
+
+## Building and previewing the site
+
+```sh
+yarn build  # note that you may need to build the API before running this (see below for details)
+```
 
 ```
 yarn serve
 ```
 
-To start a dev server for the site. You should be able to make changes to the site and see them reflected in the dev server
+Doing a full build for final deployment can be done using (see below for more details)
 
-When you pull new commits from git you should run `yarn prep` again.
+```
+yarn build-prod
+```
 
 ## Making Changes
 
@@ -36,18 +49,25 @@ You can submit a change by editing those files and can preview your changes in a
 
 Updating the API docs is a bit more involved as they are built from the sources of tfjs-core, tfjs-layers, tfjs-node, tfjs-vis etc. The template for api docs is `api.hbs` and each version of the docs has a corresponding folder in `_data`. Files in `_data` are automatically generated and shouldn't be edited.
 
-To edit the docs and see changes reflected in the site you can edit the repositories that are located in `libs`. Note that these submodules behave like *regular git repositories* and have an origin pointing to the canonical repository for `tfjs-core` and `tfjs-layers`. Making an API doc change involves making a commit to the subproject repo and to this one. You may need to add a new git remote in the submodule if you want to make a PR from a fork of tfjs-website repo. Make sure to do `git checkout master` or make a new branch for your changes.
+To edit the docs and see changes reflected in the site you can edit the repository that is located in `libs`. Note that this submodule behaves like *regular a git repository* and has an origin pointing to the canonical repository for `tfjs`. Making an API doc change involves making a commit to the tfjs repo and to this one. You may need to add a new git remote in the submodule if you want to make a PR from a fork of tfjs-website repo. Make sure to do `git checkout master` or make a new branch for your changes.
 
 There are two ways to regenerate the docs json.
 
 During local development (e.g. if you have changes in libs), run:
 
 ```
-yarn build-api
+yarn [build-api|build-vis-api|build-node-api] // depending on which api docs you want to regenerate.
 ```
 
-This will build a version of the api known as `local`. It will be accessible at `http://localhost:4000/api/local/`. This content is not checked in, nor is it linked to
+and
+
+```
+yarn serve
+```
+
+This will build a version of the api known as `local`. It will be accessible at `http://localhost:8080/api/local/`. This content is not checked in, nor is it linked to
 anywhere on the site, but it is suitable for testing changes to docs.
+
 
 Once the your changes have been accepted into the repo in question (either tfjs-core or tfjs-layers), you can run `yarn prep` again in this repo (tfjs-website) to sync everything up (pull the most recent commits from master for each). You can then commit the **new submodule info** in the tfjs-website repo.
 
@@ -61,14 +81,14 @@ Note that this command will do a number of things that will **modify your workin
 
 In both these cases starting the dev server and refreshing the page should allow you to see changes.
 
-In addition to `http://localhost:4000/api/local/`, the build also provides `http://localhost:4000/api/latest/` which points to the last **production** version of the docs that have been built. `latest` will never point to `local`
+In addition to `http://localhost:8080/api/local/`, the build also provides `http://localhost:8080/api/latest/` which points to the last **production** version of the docs that have been built. `latest` will never point to `local`
 
 ### Other API pages
 
 These are the API pages generated by the project
 
-- http://localhost:4000/api/ : for tfjs (union package)
-- http://localhost:4000/api_vis/ : for tfjs-vis
+- http://localhost:8080/api/ : for tfjs (union package)
+- http://localhost:8080/api_vis/ : for tfjs-vis
 
 ### Deployment
 
