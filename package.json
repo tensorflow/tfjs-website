@@ -9,17 +9,15 @@
     "node": ">=8.9.0"
   },
   "scripts": {
-    "prep": "git submodule init && git submodule update && git submodule foreach git pull origin master && yarn",
-    "serve": "export NODE_OPTIONS=--max-old-space-size=8192 hexo clean && hexo server",
-    "build": "export NODE_OPTIONS=--max-old-space-size=8192 hexo clean && hexo generate",
-    "build-watch": "export NODE_OPTIONS=--max-old-space-size=8192 hexo clean && hexo generate --watch",
+    "prep": "git submodule init && git submodule update && git submodule foreach git pull origin master && yarn",    
+    "build": "export NODE_OPTIONS=--max-old-space-size=8192 hexo clean && ts-node build-scripts/generate-site.ts",    
     "post-build": "babel public/js/layout.js -o public/js/layout.js && babel public/js/api.js -o public/js/api.js",
     "build-vis-api": "ts-node build-scripts/build-vis-api.ts --local",
     "build-node-api": "ts-node build-scripts/build-node-api.ts --local",
     "build-api": "ts-node build-scripts/build-api.ts --local",
     "build-and-serve": "yarn build-api && yarn build-vis-api && yarn serve",
     "build-prod": "export NODE_OPTIONS=--max-old-space-size=8192 yarn && yarn prep && hexo clean && ts-node build-scripts/build-api.ts && ts-node build-scripts/build-vis-api.ts && ts-node build-scripts/build-node-api.ts && yarn build && yarn post-build",
-    "serve-prod": "http-server public",
+    "serve": "http-server public",    
     "deploy-prod": "firebase deploy --project jstensorflow",
     "test-ci": "./test-scripts/test-ci.sh"
   },
