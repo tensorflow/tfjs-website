@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "@tensorflow/tfjs": "1.2.8",
-    "@tensorflow/tfjs-node": "1.2.7",
+    "@tensorflow/tfjs-node": "1.2.8",
     "@tensorflow/tfjs-vis": "1.1.0",
     "babel-cli": "~6.26.0",
     "babel-preset-es2015": "~6.24.1",

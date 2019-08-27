@@ -16,7 +16,7 @@
               "returnType": "[tfvis.Visor](#class:Visor)",
               "documentation": "The primary interface to the visor is the visor() function.\n\nThis returns a singleton instance of the Visor class. The\nsingleton object will be replaced if the visor is removed from the DOM for\nsome reason.\n\n```js\n// Show the visor\ntfvis.visor();\n```",
               "fileName": "#39",
-              "githubUrl": "https://github.com/tensorflow/tfjs-vis/blob/tfjs-vis-v1.1.0/src/visor.ts#L39-L81",
+              "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-vis-v1.1.0/tfjs-vis/src/visor.ts#L39-L81",
               "isFunction": true,
               "displayName": "tfvis.visor",
               "urlHash": "visor"
@@ -34,7 +34,7 @@
               "symbolName": "Visor",
               "documentation": "An instance of the visor. An instance of this class is created using the\n`visor()` function.",
               "fileName": "#88",
-              "githubUrl": "https://github.com/tensorflow/tfjs-vis/blob/tfjs-vis-v1.1.0/src/visor.ts#L88-L234",
+              "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-vis-v1.1.0/tfjs-vis/src/visor.ts#L88-L234",
               "methods": [
                 {
                   "docInfo": {
@@ -76,7 +76,7 @@
                   "returnType": "{ container: any; label: any; drawArea: any; }",
                   "documentation": "Creates a surface on the visor\n\nMost methods in tfjs-vis that take a surface also take a SurfaceInfo\nso you rarely need to call this method unless you want to make a custom\nplot.\n\n```js\n// Create a surface on a tab\ntfvis.visor().surface({name: 'My Surface', tab: 'My Tab'});\n```\n\n```js\n// Create a surface and specify its height\ntfvis.visor().surface({name: 'Custom Height', tab: 'My Tab', styles: {\n   height: 500\n}})\n```",
                   "fileName": "#134",
-                  "githubUrl": "https://github.com/tensorflow/tfjs-vis/blob/tfjs-vis-v1.1.0/src/visor.ts#L134-L158",
+                  "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-vis-v1.1.0/tfjs-vis/src/visor.ts#L134-L158",
                   "isFunction": true,
                   "urlHash": "tfvis.Visor.surface"
                 },
@@ -91,7 +91,7 @@
                   "returnType": "boolean",
                   "documentation": "Returns a boolean indicating if the visor is in 'fullscreen' mode",
                   "fileName": "#164",
-                  "githubUrl": "https://github.com/tensorflow/tfjs-vis/blob/tfjs-vis-v1.1.0/src/visor.ts#L164-L166",
+                  "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-vis-v1.1.0/tfjs-vis/src/visor.ts#L164-L166",
                   "isFunction": true,
                   "urlHash": "tfvis.Visor.isFullscreen"
                 },
@@ -106,7 +106,7 @@
                   "returnType": "boolean",
                   "documentation": "Returns a boolean indicating if the visor is open",
                   "fileName": "#172",
-                  "githubUrl": "https://github.com/tensorflow/tfjs-vis/blob/tfjs-vis-v1.1.0/src/visor.ts#L172-L174",
+                  "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-vis-v1.1.0/tfjs-vis/src/visor.ts#L172-L174",
                   "isFunction": true,
                   "urlHash": "tfvis.Visor.isOpen"
                 },
@@ -121,7 +121,7 @@
                   "returnType": "void",
                   "documentation": "Closes the visor.",
                   "fileName": "#180",
-                  "githubUrl": "https://github.com/tensorflow/tfjs-vis/blob/tfjs-vis-v1.1.0/src/visor.ts#L180-L182",
+                  "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-vis-v1.1.0/tfjs-vis/src/visor.ts#L180-L182",
                   "isFunction": true,
                   "urlHash": "tfvis.Visor.close"
                 },
@@ -136,7 +136,7 @@
                   "returnType": "void",
                   "documentation": "Opens the visor.",
                   "fileName": "#188",
-                  "githubUrl": "https://github.com/tensorflow/tfjs-vis/blob/tfjs-vis-v1.1.0/src/visor.ts#L188-L190",
+                  "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-vis-v1.1.0/tfjs-vis/src/visor.ts#L188-L190",
                   "isFunction": true,
                   "urlHash": "tfvis.Visor.open"
                 },
@@ -151,7 +151,7 @@
                   "returnType": "void",
                   "documentation": "Toggles the visor (closed vs open).",
                   "fileName": "#196",
-                  "githubUrl": "https://github.com/tensorflow/tfjs-vis/blob/tfjs-vis-v1.1.0/src/visor.ts#L196-L198",
+                  "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-vis-v1.1.0/tfjs-vis/src/visor.ts#L196-L198",
                   "isFunction": true,
                   "urlHash": "tfvis.Visor.toggle"
                 },
@@ -166,7 +166,7 @@
                   "returnType": "void",
                   "documentation": "",
                   "fileName": "#201",
-                  "githubUrl": "https://github.com/tensorflow/tfjs-vis/blob/tfjs-vis-v1.1.0/src/visor.ts#L201-L203",
+                  "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-vis-v1.1.0/tfjs-vis/src/visor.ts#L201-L203",
                   "isFunction": true,
                   "urlHash": "tfvis.Visor.toggleFullScreen"
                 },
@@ -181,7 +181,7 @@
                   "returnType": "void",
                   "documentation": "Binds the ~ (tilde) key to toggle the visor.\n\nThis is called by default when the visor is initially created.",
                   "fileName": "#211",
-                  "githubUrl": "https://github.com/tensorflow/tfjs-vis/blob/tfjs-vis-v1.1.0/src/visor.ts#L211-L213",
+                  "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-vis-v1.1.0/tfjs-vis/src/visor.ts#L211-L213",
                   "isFunction": true,
                   "urlHash": "tfvis.Visor.bindKeys"
                 },
@@ -196,7 +196,7 @@
                   "returnType": "void",
                   "documentation": "Unbinds the keyboard control to toggle the visor.",
                   "fileName": "#219",
-                  "githubUrl": "https://github.com/tensorflow/tfjs-vis/blob/tfjs-vis-v1.1.0/src/visor.ts#L219-L221",
+                  "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-vis-v1.1.0/tfjs-vis/src/visor.ts#L219-L221",
                   "isFunction": true,
                   "urlHash": "tfvis.Visor.unbindKeys"
                 },
@@ -219,7 +219,7 @@
                   "returnType": "void",
                   "documentation": "Sets the active tab for the visor.",
                   "fileName": "#227",
-                  "githubUrl": "https://github.com/tensorflow/tfjs-vis/blob/tfjs-vis-v1.1.0/src/visor.ts#L227-L233",
+                  "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-vis-v1.1.0/tfjs-vis/src/visor.ts#L227-L233",
                   "isFunction": true,
                   "urlHash": "tfvis.Visor.setActiveTab"
                 }
@@ -268,7 +268,7 @@
               "returnType": "any",
               "documentation": "Renders summary information about a layer and a histogram of parameters in\nthat layer.\n\n```js\nconst model = tf.sequential({\n layers: [\n   tf.layers.dense({inputShape: [784], units: 32, activation: 'relu'}),\n   tf.layers.dense({units: 10, activation: 'softmax'}),\n ]\n});\n\nconst surface = { name: 'Layer Summary', tab: 'Model Inspection'};\ntfvis.show.layer(surface, model.getLayer(undefined, 1));\n```",
               "fileName": "#97",
-              "githubUrl": "https://github.com/tensorflow/tfjs-vis/blob/tfjs-vis-v1.1.0/src/show/model.ts#L97-L134",
+              "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-vis-v1.1.0/tfjs-vis/src/show/model.ts#L97-L134",
               "isFunction": true,
               "displayName": "tfvis.show.layer",
               "urlHash": "show.layer"
@@ -301,7 +301,7 @@
               "returnType": "any",
               "documentation": "Renders a summary of a tf.Model. Displays a table with layer information.\n\n```js\nconst model = tf.sequential({\n layers: [\n   tf.layers.dense({inputShape: [784], units: 32, activation: 'relu'}),\n   tf.layers.dense({units: 10, activation: 'softmax'}),\n ]\n});\n\nconst surface = { name: 'Model Summary', tab: 'Model Inspection'};\ntfvis.show.modelSummary(surface, model);\n```",
               "fileName": "#51",
-              "githubUrl": "https://github.com/tensorflow/tfjs-vis/blob/tfjs-vis-v1.1.0/src/show/model.ts#L51-L71",
+              "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-vis-v1.1.0/tfjs-vis/src/show/model.ts#L51-L71",
               "isFunction": true,
               "displayName": "tfvis.show.modelSummary",
               "urlHash": "show.modelSummary"
@@ -334,7 +334,7 @@
               "returnType": "any",
               "documentation": "Shows a histogram with the distribution of all values in a given tensor.\n\n```js\nconst tensor = tf.tensor1d([0, 0, 0, 0, 2, 3, 4]);\n\nconst surface = {name: 'Values Distribution', tab: 'Model Inspection'};\nawait tfvis.show.valuesDistribution(surface, tensor);\n```",
               "fileName": "#40",
-              "githubUrl": "https://github.com/tensorflow/tfjs-vis/blob/tfjs-vis-v1.1.0/src/show/tensor.ts#L40-L45",
+              "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-vis-v1.1.0/tfjs-vis/src/show/tensor.ts#L40-L45",
               "isFunction": true,
               "displayName": "tfvis.show.valuesDistribution",
               "urlHash": "show.valuesDistribution"
@@ -464,7 +464,7 @@
               "returnType": "FitCallbackHandlers",
               "documentation": "Returns a collection of callbacks to pass to tf.Model.fit. Callbacks are\nreturned for the following events, `onBatchEnd` & `onEpochEnd`.\n\n```js\nconst model = tf.sequential({\n layers: [\n   tf.layers.dense({inputShape: [784], units: 32, activation: 'relu'}),\n   tf.layers.dense({units: 10, activation: 'softmax'}),\n ]\n});\n\nmodel.compile({\n  optimizer: 'sgd',\n  loss: 'categoricalCrossentropy',\n  metrics: ['accuracy']\n});\n\nconst data = tf.randomNormal([100, 784]);\nconst labels = tf.randomUniform([100, 10]);\n\nfunction onBatchEnd(batch, logs) {\n  console.log('Accuracy', logs.acc);\n}\n\nconst surface = { name: 'show.fitCallbacks', tab: 'Training' };\n// Train for 5 epochs with batch size of 32.\nmodel.fit(data, labels, {\n   epochs: 5,\n   batchSize: 32,\n   callbacks: tfvis.show.fitCallbacks(surface, ['loss', 'acc']),\n});\n```",
               "fileName": "#256",
-              "githubUrl": "https://github.com/tensorflow/tfjs-vis/blob/tfjs-vis-v1.1.0/src/show/history.ts#L256-L309",
+              "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-vis-v1.1.0/tfjs-vis/src/show/history.ts#L256-L309",
               "isFunction": true,
               "displayName": "tfvis.show.fitCallbacks",
               "urlHash": "show.fitCallbacks"
@@ -588,7 +588,7 @@
               "returnType": "Promise<void>",
               "documentation": "Renders a tf.Model training 'History'.\n\n```js\nconst model = tf.sequential({\n layers: [\n   tf.layers.dense({inputShape: [784], units: 32, activation: 'relu'}),\n   tf.layers.dense({units: 10, activation: 'softmax'}),\n ]\n});\n\nmodel.compile({\n  optimizer: 'sgd',\n  loss: 'categoricalCrossentropy',\n  metrics: ['accuracy']\n});\n\nconst data = tf.randomNormal([100, 784]);\nconst labels = tf.randomUniform([100, 10]);\n\nfunction onBatchEnd(batch, logs) {\n  console.log('Accuracy', logs.acc);\n}\n\nconst surface = { name: 'show.history', tab: 'Training' };\n// Train for 5 epochs with batch size of 32.\nconst history = await model.fit(data, labels, {\n   epochs: 5,\n   batchSize: 32\n});\n\ntfvis.show.history(surface, history, ['loss', 'acc']);\n```\n\n```js\nconst model = tf.sequential({\n layers: [\n   tf.layers.dense({inputShape: [784], units: 32, activation: 'relu'}),\n   tf.layers.dense({units: 10, activation: 'softmax'}),\n ]\n});\n\nmodel.compile({\n  optimizer: 'sgd',\n  loss: 'categoricalCrossentropy',\n  metrics: ['accuracy']\n});\n\nconst data = tf.randomNormal([100, 784]);\nconst labels = tf.randomUniform([100, 10]);\n\nfunction onBatchEnd(batch, logs) {\n  console.log('Accuracy', logs.acc);\n}\n\nconst surface = { name: 'show.history live', tab: 'Training' };\n// Train for 5 epochs with batch size of 32.\nconst history = [];\nawait model.fit(data, labels, {\n   epochs: 5,\n   batchSize: 32,\n   callbacks: {\n     onEpochEnd: (epoch, log) => {\n       history.push(log);\n       tfvis.show.history(surface, history, ['loss', 'acc']);\n     }\n   }\n});\n```",
               "fileName": "#106",
-              "githubUrl": "https://github.com/tensorflow/tfjs-vis/blob/tfjs-vis-v1.1.0/src/show/history.ts#L106-L162",
+              "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-vis-v1.1.0/tfjs-vis/src/show/history.ts#L106-L162",
               "isFunction": true,
               "displayName": "tfvis.show.history",
               "urlHash": "show.history"
@@ -691,7 +691,7 @@
               "returnType": "Promise<void>",
               "documentation": "Renders a barchart.\n\n```js\nconst data = [\n  { index: 0, value: 50 },\n  { index: 1, value: 100 },\n  { index: 2, value: 150 },\n ];\n\n// Render to visor\nconst surface = { name: 'Bar chart', tab: 'Charts' };\ntfvis.render.barchart(surface, data);\n```",
               "fileName": "#45",
-              "githubUrl": "https://github.com/tensorflow/tfjs-vis/blob/tfjs-vis-v1.1.0/src/render/barchart.ts#L45-L117",
+              "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-vis-v1.1.0/tfjs-vis/src/render/barchart.ts#L45-L117",
               "isFunction": true,
               "displayName": "tfvis.render.barchart",
               "urlHash": "render.barchart"
@@ -807,7 +807,7 @@
               "returnType": "Promise<void>",
               "documentation": "Renders a confusion matrix.\n\nCan optionally exclude the diagonal from being shaded if one wants the visual\nfocus to be on the incorrect classifications. Note that if the classification\nis perfect (i.e. only the diagonal has values) then the diagonal will always\nbe shaded.\n\n```js\nconst rows = 5;\nconst cols = 5;\nconst values = [];\nfor (let i = 0; i < rows; i++) {\n  const row = []\n  for (let j = 0; j < cols; j++) {\n    row.push(Math.round(Math.random() * 50));\n  }\n  values.push(row);\n}\nconst data = { values };\n\n// Render to visor\nconst surface = { name: 'Confusion Matrix', tab: 'Charts' };\ntfvis.render.confusionMatrix(surface, data);\n```\n\n```js\n// The diagonal can be excluded from shading.\n\nconst data = {\n  values: [[4, 2, 8], [1, 7, 2], [3, 3, 20]],\n}\n\n// Render to visor\nconst surface = {\n name: 'Confusion Matrix with Excluded Diagonal', tab: 'Charts'\n};\n\ntfvis.render.confusionMatrix(surface, data, {\n  shadeDiagonal: false\n});\n```",
               "fileName": "#68",
-              "githubUrl": "https://github.com/tensorflow/tfjs-vis/blob/tfjs-vis-v1.1.0/src/render/confusion_matrix.ts#L68-L222",
+              "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-vis-v1.1.0/tfjs-vis/src/render/confusion_matrix.ts#L68-L222",
               "isFunction": true,
               "displayName": "tfvis.render.confusionMatrix",
               "urlHash": "render.confusionMatrix"
@@ -937,7 +937,7 @@
               "returnType": "Promise<void>",
               "documentation": "Renders a heatmap.\n\n```js\nconst cols = 50;\nconst rows = 20;\nconst values = [];\nfor (let i = 0; i < cols; i++) {\n  const col = []\n  for (let j = 0; j < rows; j++) {\n    col.push(i * j)\n  }\n  values.push(col);\n}\nconst data = { values };\n\n// Render to visor\nconst surface = { name: 'Heatmap', tab: 'Charts' };\ntfvis.render.heatmap(surface, data);\n```\n\n```js\nconst data = {\n  values: [[4, 2, 8, 20], [1, 7, 2, 10], [3, 3, 20, 13]],\n  xTickLabels: ['cheese', 'pig', 'font'],\n  yTickLabels: ['speed', 'smoothness', 'dexterity', 'mana'],\n}\n\n// Render to visor\nconst surface = { name: 'Heatmap w Custom Labels', tab: 'Charts' };\ntfvis.render.heatmap(surface, data);\n```",
               "fileName": "#61",
-              "githubUrl": "https://github.com/tensorflow/tfjs-vis/blob/tfjs-vis-v1.1.0/src/render/heatmap.ts#L61-L252",
+              "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-vis-v1.1.0/tfjs-vis/src/render/heatmap.ts#L61-L252",
               "isFunction": true,
               "displayName": "tfvis.render.heatmap",
               "urlHash": "render.heatmap"
@@ -1039,7 +1039,7 @@
               "returnType": "{}",
               "documentation": "Renders a histogram of values\n\n```js\nconst data = Array(100).fill(0)\n  .map(x => Math.random() * 100 - (Math.random() * 50))\n\n// Push some special values for the stats table.\ndata.push(Infinity);\ndata.push(NaN);\ndata.push(0);\n\nconst surface = { name: 'Histogram', tab: 'Charts' };\ntfvis.render.histogram(surface, data);\n```",
               "fileName": "#49",
-              "githubUrl": "https://github.com/tensorflow/tfjs-vis/blob/tfjs-vis-v1.1.0/src/render/histogram.ts#L49-L128",
+              "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-vis-v1.1.0/tfjs-vis/src/render/histogram.ts#L49-L128",
               "isFunction": true,
               "displayName": "tfvis.render.histogram",
               "urlHash": "render.histogram"
@@ -1162,7 +1162,7 @@
               "returnType": "Promise<void>",
               "documentation": "Renders a line chart\n\n```js\nconst series1 = Array(100).fill(0)\n  .map(y => Math.random() * 100 - (Math.random() * 50))\n  .map((y, x) => ({ x, y, }));\n\nconst series2 = Array(100).fill(0)\n  .map(y => Math.random() * 100 - (Math.random() * 150))\n  .map((y, x) => ({ x, y, }));\n\nconst series = ['First', 'Second'];\nconst data = { values: [series1, series2], series }\n\nconst surface = { name: 'Line chart', tab: 'Charts' };\ntfvis.render.linechart(surface, data);\n```\n\n```js\nconst series1 = Array(100).fill(0)\n  .map(y => Math.random() * 100 + 50)\n  .map((y, x) => ({ x, y, }));\n\nconst data = { values: [series1] }\n\n// Render to visor\nconst surface = { name: 'Zoomed Line Chart', tab: 'Charts' };\ntfvis.render.linechart(surface, data, { zoomToFit: true });\n```",
               "fileName": "#57",
-              "githubUrl": "https://github.com/tensorflow/tfjs-vis/blob/tfjs-vis-v1.1.0/src/render/linechart.ts#L57-L221",
+              "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-vis-v1.1.0/tfjs-vis/src/render/linechart.ts#L57-L221",
               "isFunction": true,
               "displayName": "tfvis.render.linechart",
               "urlHash": "render.linechart"
@@ -1285,7 +1285,7 @@
               "returnType": "Promise<void>",
               "documentation": "Renders a scatter plot\n\n```js\nconst series1 = Array(100).fill(0)\n  .map(y => Math.random() * 100 - (Math.random() * 50))\n  .map((y, x) => ({ x, y, }));\n\nconst series2 = Array(100).fill(0)\n  .map(y => Math.random() * 100 - (Math.random() * 150))\n  .map((y, x) => ({ x, y, }));\n\nconst series = ['First', 'Second'];\nconst data = { values: [series1, series2], series }\n\nconst surface = { name: 'Scatterplot', tab: 'Charts' };\ntfvis.render.scatterplot(surface, data);\n```",
               "fileName": "#45",
-              "githubUrl": "https://github.com/tensorflow/tfjs-vis/blob/tfjs-vis-v1.1.0/src/render/scatterplot.ts#L45-L145",
+              "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-vis-v1.1.0/tfjs-vis/src/render/scatterplot.ts#L45-L145",
               "isFunction": true,
               "displayName": "tfvis.render.scatterplot",
               "urlHash": "render.scatterplot"
@@ -1338,7 +1338,7 @@
               "returnType": "void",
               "documentation": "Renders a table\n\n```js\nconst headers = [\n 'Col 1',\n 'Col 2',\n 'Col 3',\n];\n\nconst values = [\n [1, 2, 3],\n ['4', '5', '6'],\n ['strong>7</strong>', true, false],\n];\n\nconst surface = { name: 'Table', tab: 'Charts' };\ntfvis.render.table(surface, { headers, values });\n```",
               "fileName": "#49",
-              "githubUrl": "https://github.com/tensorflow/tfjs-vis/blob/tfjs-vis-v1.1.0/src/render/table.ts#L49-L115",
+              "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-vis-v1.1.0/tfjs-vis/src/render/table.ts#L49-L115",
               "isFunction": true,
               "displayName": "tfvis.render.table",
               "urlHash": "render.table"
@@ -1380,7 +1380,7 @@
               "returnType": "Promise<number>",
               "documentation": "Computes how often predictions matches labels\n\n```js\nconst labels = tf.tensor1d([0, 0, 1, 2, 2, 2]);\nconst predictions = tf.tensor1d([0, 0, 0, 2, 1, 1]);\n\nconst result = await tfvis.metrics.accuracy(labels, predictions);\nconsole.log(result)\n```",
               "fileName": "#246",
-              "githubUrl": "https://github.com/tensorflow/tfjs-vis/blob/tfjs-vis-v1.1.0/src/util/math.ts#L246-L258",
+              "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-vis-v1.1.0/tfjs-vis/src/util/math.ts#L246-L258",
               "isFunction": true,
               "displayName": "tfvis.metrics.accuracy",
               "urlHash": "metrics.accuracy"
@@ -1426,7 +1426,7 @@
               "returnType": "Promise<number[][]>",
               "documentation": "Computes a confusion matrix from predictions and labels. Each value in\nlabels and predictions should correspond to some output class. It is assumed\nthat these values go from 0 to numClasses - 1.\n\n```js\nconst labels = tf.tensor1d([1, 2, 4]);\nconst predictions = tf.tensor1d([2, 2, 4]);\nconst result = await tfvis.metrics.confusionMatrix(labels, predictions);\nconsole.log(JSON.stringify(result, null, 2))\n```",
               "fileName": "#174",
-              "githubUrl": "https://github.com/tensorflow/tfjs-vis/blob/tfjs-vis-v1.1.0/src/util/math.ts#L174-L227",
+              "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-vis-v1.1.0/tfjs-vis/src/util/math.ts#L174-L227",
               "isFunction": true,
               "displayName": "tfvis.metrics.confusionMatrix",
               "urlHash": "metrics.confusionMatrix"
@@ -1465,7 +1465,7 @@
               "returnType": "Promise<Array>",
               "documentation": "Computes per class accuracy between prediction and labels. Each value in\nlabels and predictions should correspond to some output class. It is assumed\nthat these values go from 0 to numClasses - 1.\n\n```js\nconst labels = tf.tensor1d([0, 0, 1, 2, 2, 2]);\nconst predictions = tf.tensor1d([0, 0, 0, 2, 1, 1]);\n\nconst result = await tfvis.metrics.perClassAccuracy(labels, predictions);\nconsole.log(JSON.stringify(result, null, 2))\n```\n\nReturns an array of objects that each have an an `accuracy` and a `count`\nproperty for each class.",
               "fileName": "#286",
-              "githubUrl": "https://github.com/tensorflow/tfjs-vis/blob/tfjs-vis-v1.1.0/src/util/math.ts#L286-L328",
+              "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-vis-v1.1.0/tfjs-vis/src/util/math.ts#L286-L328",
               "isFunction": true,
               "displayName": "tfvis.metrics.perClassAccuracy",
               "urlHash": "metrics.perClassAccuracy"
