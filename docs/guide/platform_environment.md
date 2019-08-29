@@ -75,7 +75,7 @@ const y = tf.tidy(() => {
 
 ##### Precision
 
-On mobile devices, WebGL only supports 16 bit floating point textures. However, most machine learning models are trained with 32 bit floating point weights and activations. This can cause precision issues when porting a model for a mobile device as 16 bit floating numbers can only represent numbers in the range `[0.000000059605, 65504]`. This means that you should be careful that weights and activations in your model do not exceed this range.
+On mobile devices, WebGL might only support 16 bit floating point textures. However, most machine learning models are trained with 32 bit floating point weights and activations. This can cause precision issues when porting a model for a mobile device as 16 bit floating numbers can only represent numbers in the range `[0.000000059605, 65504]`. This means that you should be careful that weights and activations in your model do not exceed this range. To check whether the device supports 32 bit textures, check the value of `tf.ENV.getBool('WEBGL_RENDER_FLOAT32_CAPABLE')`, if this is false then the device only supports 16 bit floating point textures. You can use `tf.ENV.getBool('WEBGL_RENDER_FLOAT32_ENABLED')` to check if TensorFlow.js is currently using 32 bit textures.
 
 
 ##### Shader compilation & texture uploads
