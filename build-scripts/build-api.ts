@@ -35,14 +35,14 @@ const unionPackageVersion = commander.local ? 'local' : unionPackage.version;
 
 // Get the version strings from the libray
 const coreVersion = `${unionPackage.dependencies['@tensorflow/tfjs-core']}`;
-const coreTag = `v${coreVersion}`;
+const coreTag = `tfjs-core-v${coreVersion}`;
 const layersVersion = `${unionPackage.dependencies['@tensorflow/tfjs-layers']}`;
-const layersTag = `v${layersVersion}`;
+const layersTag = `tfjs-layers-v${layersVersion}`;
 const converterVersion =
     `${unionPackage.dependencies['@tensorflow/tfjs-converter']}`;
-const converterTag = `v${converterVersion}`;
+const converterTag = `tfjs-converter-v${converterVersion}`;
 const dataVersion = `${unionPackage.dependencies['@tensorflow/tfjs-data']}`;
-const dataTag = `v${dataVersion}`;
+const dataTag = `tfjs-data-v${dataVersion}`;
 
 const docsFolder = `source/_data/api`;
 const versionedDocsFolder = `${docsFolder}/${unionPackageVersion}`
@@ -57,26 +57,27 @@ console.log('Versions\n', {
 
 const libs = [
   {
-    repo: 'tfjs-core',
-    github: `https://github.com/tensorflow/tfjs-core/blob/${coreTag}`,
+    packageName: 'tfjs-core',
+    github: `https://github.com/tensorflow/tfjs/tree/${coreTag}/tfjs-core`,
     version: coreVersion,
     outputFolder: versionedDocsFolder
   },
   {
-    repo: 'tfjs-layers',
-    github: `https://github.com/tensorflow/tfjs-layers/blob/${layersTag}`,
+    packageName: 'tfjs-layers',
+    github: `https://github.com/tensorflow/tfjs/tree/${layersTag}/tfjs-layers`,
     version: layersVersion,
     outputFolder: versionedDocsFolder
   },
   {
-    repo: 'tfjs-converter',
-    github: `https://github.com/tensorflow/tfjs-converter/blob/${converterTag}`,
+    packageName: 'tfjs-converter',
+    github: `https://github.com/tensorflow/tfjs/tree/` +
+        `${converterTag}/tfjs-converter`,
     version: converterVersion,
     outputFolder: versionedDocsFolder
   },
   {
-    repo: 'tfjs-data',
-    github: `https://github.com/tensorflow/tfjs-data/blob/${dataTag}`,
+    packageName: 'tfjs-data',
+    github: `https://github.com/tensorflow/tfjs/tree/${dataTag}/tfjs-data`,
     version: dataVersion,
     outputFolder: versionedDocsFolder
   }

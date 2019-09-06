@@ -24,9 +24,9 @@ import * as shell from 'shelljs';
 
 // The information needed to parse a library for symbols and doc comments
 export interface LibraryInfo {
-  repo: string;     // path to the library within the website folder
-  github: string;   // github url for library
-  version: string;  // the version to checkout || 'local' to use repo as is.
+  packageName: string;  // path to the library within the website folder
+  github: string;       // github url for library
+  version: string;      // the version to checkout || 'local' to use repo as is.
   outputFolder: string;  // path to output folder for docs
 }
 
@@ -48,13 +48,14 @@ export function generateDocs(libs: LibraryInfo[]): string[] {
 
   const outputPaths = [];
   libs.forEach(lib => {
-    const outputPath = path.resolve(`${lib.outputFolder}/${lib.repo}.json`);
+    const outputPath =
+        path.resolve(`${lib.outputFolder}/${lib.packageName}.json`);
 
     const opts = {
-      input: path.resolve(`libs/${lib.repo}/src/index.ts`),
-      pkg: path.resolve(`libs/${lib.repo}/package.json`),
-      src: path.resolve(`libs/${lib.repo}/src/`),
-      repo: path.resolve(`libs/${lib.repo}/`),
+      input: path.resolve(`libs/tfjs/${lib.packageName}/src/index.ts`),
+      pkg: path.resolve(`libs/tfjs/${lib.packageName}/package.json`),
+      src: path.resolve(`libs/tfjs/${lib.packageName}/src/`),
+      repo: path.resolve(`libs/tfjs/${lib.packageName}/`),
       github: lib.github,
       out: outputPath,
     };
@@ -68,23 +69,24 @@ export function generateDocs(libs: LibraryInfo[]): string[] {
     // to what is in libs. Else we want to check out a tag that correspond to
     // to the version specified the component.
     if (!commander.local) {
-      const checkoutCommand = `cd libs/${lib.repo} \
+      const checkoutCommand = `cd libs/tfjs \
       && git fetch --tags --force \
-      && git checkout v${lib.version}`;
-      sh(checkoutCommand, `Error checkout out ${lib.version} for ${lib.repo}`);
+      && git checkout ${lib.packageName}-v${lib.version}`;
+      sh(checkoutCommand,
+         `Error checkout out ${lib.version} for ${lib.packageName}`);
     }
 
-    console.log(`********* Generating docs for ${lib.repo} *********`);
+    console.log(`********* Generating docs for ${lib.packageName} *********`);
 
     sh('pwd', `Error pwd`);
 
     const buildCommand =
-        `cd libs/${lib.repo} && yarn install --frozen-lockfile` +
-        ` && cd ../.. && ${docGenCommand}`;
+        `cd libs/tfjs/${lib.packageName} && yarn install --frozen-lockfile` +
+        ` && cd ../../.. && ${docGenCommand}`;
 
     console.log('buildcommand  ', buildCommand);
 
-    sh(buildCommand, `Error building docs for ${lib.repo}`);
+    sh(buildCommand, `Error building docs for ${lib.packageName}`);
 
     outputPaths.push(outputPath);
   });

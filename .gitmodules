@@ -1,18 +1,3 @@
-[submodule "libs/tfjs-core"]
-	path = libs/tfjs-core
-	url = git@github.com:PAIR-code/deeplearnjs.git
-[submodule "libs/tfjs-layers"]
-	path = libs/tfjs-layers
-	url = git@github.com:tensorflow/tfjs-layers.git
-[submodule "libs/tfjs-converter"]
-	path = libs/tfjs-converter
-	url = git@github.com:tensorflow/tfjs-converter
-[submodule "libs/tfjs-data"]
-	path = libs/tfjs-data
-	url = https://github.com/tensorflow/tfjs-data.git
-[submodule "libs/tfjs-vis"]
-	path = libs/tfjs-vis
-	url = git@github.com:tensorflow/tfjs-vis.git
-[submodule "libs/tfjs-node"]
-	path = libs/tfjs-node
-	url = git@github.com:tensorflow/tfjs-node.git
+[submodule "libs/tfjs"]
+	path = libs/tfjs
+	url = git@github.com:tensorflow/tfjs.git
