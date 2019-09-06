@@ -2,7 +2,7 @@
 
 This doc describes how to run a Node.js process with @tensorflow/tfjs-node package on cloud platforms.
 
-Starting from tfjs-node@1.2.4, running Node.js project on cloud platforms does not require extra configurations. This guide will use the [mnist-node](https://github.com/tensorflow/tfjs-examples/tree/master/mnist-node) example in @tensorflow/tfjs-examples repository, which trains MNIST with tfjs-node package on Heroku and GCloud. The details of Heroku’s Node.js Support can be found in [Heroku Node.js Support](https://devcenter.heroku.com/articles/nodejs-support) article. The details of Node.js on Google Cloud Platform can be found on the [Google Cloud page](https://cloud.google.com/nodejs/docs/).
+Starting from tfjs-node@1.2.4, running Node.js project on cloud platforms does not require additional configuration. This guide will show how to run the [mnist-node](https://github.com/tensorflow/tfjs-examples/tree/master/mnist-node) example in the @tensorflow/tfjs-examples repository on Heroku and GCloud. Heroku’s Node.js support is documented in this [article](https://devcenter.heroku.com/articles/nodejs-support). Running Node.js on Google Cloud Platform is documented [here](https://cloud.google.com/nodejs/docs/).
 
 ## Deploy Node.js project on Heroku
 
@@ -19,7 +19,7 @@ Starting from tfjs-node@1.2.4, running Node.js project on cloud platforms does n
 
 ### Build your app and run it locally
 
-1. Run the `npm install` command in your local directory to install the dependencies that are declared in the `package.json` file. You should be able to see the tfjs-node package is installed and libtensorflow is downloaded.
+1. Run the `npm install` command in your local directory to install the dependencies that are declared in the `package.json` file. You should be able to see that the tfjs-node package is installed and libtensorflow is downloaded.
 
 ```
 $ npm install
@@ -55,9 +55,9 @@ Epoch 1 / 20
 
 3. Make sure you ignore build artifacts, such as node_modules, in your .gitignore file.
 
-### Create and deploy the heroku app
+### Create and deploy the Heroku app
 
-1. Create a new app on heroku website
+1. Create a new app on the Heroku website
 2. Commit your change and push to heroku master
 
 ```
@@ -86,7 +86,7 @@ remote:        found 0 vulnerabilities
 remote:
 ```
 
-In the process logs on heroku you should be able to see the model training logs:
+In the process logs on Heroku, you should be able to see the model training logs:
 
 ```
 Total params: 594922
@@ -98,15 +98,15 @@ Epoch 1 / 20
 ====>--------------------------------------------------------------------: 221.9
 ```
 
-You can also start or debug the process in heroku [console](https://devcenter.heroku.com/articles/heroku-dashboard#application-overview).
+You can also start or debug the process in Heroku [console](https://devcenter.heroku.com/articles/heroku-dashboard#application-overview).
 
 ### Using tfjs-node prior to version 1.2.4
 
-If you are using tfjs-node package before version 1.2.4, the package requires g++ to compile the node native addon from source files. You will have to make sure your stack has Linux build-essential package (newer version stack may not have it on default).
+If you are using tfjs-node package before version 1.2.4, the package requires g++ to compile the node native addon from source files. You will have to make sure your stack has the Linux build-essential package (newer version stack may not have it on default).
 
 ## Deploy Node.js project on Google Cloud Platform
 
-###Prerequisite:
+###Prerequisites
 
 1. Have a valid Google Cloud Project with billing account
 2. Install Google Cloud [client tool](https://cloud.google.com/storage/docs/gsutil_install)
@@ -114,7 +114,7 @@ If you are using tfjs-node package before version 1.2.4, the package requires g+
 
 ### Deploy app to GCloud
 
-Run `gcloud app deploy` to deploy the local code and configurations to App Engine. In the deploy logs you should be able to see tfjs-node is installed:
+Run `gcloud app deploy` to deploy the local code and configurations to App Engine. In the deploy logs you should be able to see that tfjs-node is installed:
 
 ```
 $ gcloud app deploy
@@ -131,7 +131,7 @@ Step #1: added 88 packages from 85 contributors and audited 171 packages in 13.3
 Step #1: found 0 vulnerabilities
 ```
 
-And in the apps logs, you should be able to see the model training process:
+In the apps logs, you should be able to see the model training process:
 ```
 Total params: 594922
 Trainable params: 594922
