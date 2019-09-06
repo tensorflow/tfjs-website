@@ -19,3 +19,5 @@ The guide contains these sections:
   the API conventions used in JavaScript.
 * [Using TensorFlow.js in Node.js](nodejs.md) —Understand the tradeoffs between
   the three available Node.js bindings and the system requirements they have.
+* [Deploy TensorFlow.js Node project on cloud](node_in_cloud.md) —How to deploy
+  a Node.js process with tfjs-node package on cloud platforms.
