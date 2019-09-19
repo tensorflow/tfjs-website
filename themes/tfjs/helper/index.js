@@ -68,6 +68,17 @@ module.exports = function(hexo) {
       return '/api/';
     },
 
+    titleFor: function(path) {
+      if (isApiNodePage(path)) {
+        return 'TensorFlow.js Node API';
+      } else if (isApiVisPage(path)) {
+        return 'TensorFlow.js Vis API';
+      } else if (isApiPage(path)) {
+        return 'TensorFlow.js API';
+      }
+      return 'TensorFlow.js';
+    },
+
     markdown: function(attr) {
       if (attr) {
         return md.render(attr);
