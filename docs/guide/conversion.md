@@ -1,6 +1,6 @@
 # Model conversion
 
-TensorFlow.js comes with a variety of pre-trained models that are ready to use in the browser - they can be found in our [models repo](https://github.com/tensorflow/tfjs-models). However you may have found or authored a TensorFlow model elsewhere that you’d like to use in your web application. TensorFlow.js provides a model [converter](https://github.com/tensorflow/tfjs-converter) for this purpose. The TensorFlow.js converter has two components:
+TensorFlow.js comes with a variety of pre-trained models that are ready to use in the browser - they can be found in our [models repo](https://github.com/tensorflow/tfjs-models). However you may have found or authored a TensorFlow model elsewhere that you’d like to use in your web application. TensorFlow.js provides a model [converter](https://github.com/tensorflow/tfjs/tree/master/tfjs-converter) for this purpose. The TensorFlow.js converter has two components:
 
 1. A command line utility that converts Keras and TensorFlow models for use in TensorFlow.js.
 2. An API for loading and executing the model in the browser with TensorFlow.js.
@@ -21,7 +21,7 @@ Depending on which type of model you’re trying to convert, you’ll need to pa
 
 This will convert the model at `/tmp/model.h5` and output a `model.json` file along with binary weight files to your `tmp/tfjs_model/` directory.
 
-More details about the command line arguments corresponding to different model formats can be found at the TensorFlow.js converter [README](https://github.com/tensorflow/tfjs-converter).
+More details about the command line arguments corresponding to different model formats can be found at the TensorFlow.js converter [README](https://github.com/tensorflow/tfjs/tree/master/tfjs-converter).
 
 During the conversion process we traverse the model graph and check that each operation is supported by TensorFlow.js. If so, we write the graph into a format that the browser can consume. We try to optimize the model for being served on the web by sharding the weights into 4MB files - that way they can be cached by browsers. We also attempt to simplify the model graph itself using the open source [Grappler](https://github.com/tensorflow/tensorflow/tree/master/tensorflow/core/grappler) project. Graph simplifications include folding together adjacent operations, eliminating common subgraphs, etc. These changes have no effect on the model’s output. For further optimization, users can pass in an argument that instructs the converter to quantize the model to a certain byte size. Quantization is a technique for reducing model size by representing weights with fewer bits. Users must be careful to ensure that their model maintains an acceptable degree of accuracy after quantization.
 
