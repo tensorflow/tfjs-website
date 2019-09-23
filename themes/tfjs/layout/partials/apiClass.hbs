@@ -5,10 +5,10 @@
     </a>
     <span class="signature">
       {{#if inheritsFrom}}
-        <span>extends {{{markdownInner inheritsFrom}}}</span>
+      <span>extends {{{markdownInner inheritsFrom}}}</span>
       {{/if}}
     </span>
-    <span class="symbol-marker">class</span>
+    <span class="chip">class</span>
     <span class="source-link">
       <a href="{{githubUrl}}" target=_blank>Source</a>
     </span>
@@ -19,7 +19,7 @@
   {{!-- Method List --}}
   <div class="method-list">
     {{#methods}}
-      {{~> apiFunction this isMethod=true~}}
+    {{~> apiFunction this isMethod=true~}}
     {{/methods}}
   </div>
 </div>
