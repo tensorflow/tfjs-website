@@ -94,6 +94,15 @@ header {
 
   // Styles
 
+  .chip {
+    background-color: #eee;
+    padding: 3px 6px 3px 6px;
+    border-radius: 4px;
+    font-weight: 500;
+    margin-left: 10px;
+    font-size: 90%;
+  }
+
   .toc {
     // background-color: #fafafa;
     padding-left: 16px;
