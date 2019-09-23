@@ -95,12 +95,13 @@ header {
   // Styles
 
   .chip {
-    background-color: #eee;
-    padding: 3px 6px 3px 6px;
+    font-size: 12px;
+    background-color: #f5f5f5;
     border-radius: 4px;
-    font-weight: 500;
-    margin-left: 10px;
-    font-size: 90%;
+    padding: 4px 8px 4px 8px;
+    margin-left: 8px;
+    font-weight: bold;
+    color: $muted-text-col;
   }
 
   .toc {
@@ -218,16 +219,6 @@ header {
       .symbol-link:focus {
         outline-color: transparent;
         outline-style: none;
-      }
-
-      .symbol-marker {
-        font-size: 12px;
-        background-color: #f5f5f5;
-        border-radius: 4px;
-        padding: 4px 8px 4px 8px;
-        margin-left: 8px;
-        font-weight: bold;
-        color: $muted-text-col;
       }
 
       .symbol-header {

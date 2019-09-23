@@ -3,18 +3,18 @@
     <a class="symbol-link" name="{{urlHash}}" href="#{{urlHash}}">
       {{!-- TODO remove conditional once https://github.com/tensorflow/tfjs-website/issues/33 is fixed --}}
       {{~#if displayName ~}}
-        {{~{displayName}~}}
+      {{~{displayName}~}}
       {{~else~}}
-        {{~{symbolName}~}}
+      {{~{symbolName}~}}
       {{~/if~}}
     </a>
     <span class="signature">
       {{~{paramStr}~}}
     </span>
     {{#if isMethod}}
-      <span class="symbol-marker">method</span>
+    <span class="chip">method</span>
     {{else}}
-      <span class="symbol-marker">function</span>
+    <span class="chip">function</span>
     {{/if}}
     <span class="source-link">
       <a href="{{githubUrl}}" target=_blank>Source</a>
@@ -32,4 +32,3 @@
     <span class="return-type">{{{markdownInner returnType}}}</span>
   </div>
 </div>
-
