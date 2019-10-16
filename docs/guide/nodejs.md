@@ -81,7 +81,7 @@ An example of exporting summaries to TensorBoard in Node.js:
 
 ```js
 const model = tf.sequential();
-model.add(tf.layers.dense({units: 1}));
+model.add(tf.layers.dense({ units: 1, inputShape: [200] }));
 model.compile({
   loss: 'meanSquaredError',
   optimizer: 'sgd',
@@ -97,10 +97,13 @@ const valYs = tf.randomUniform([1000, 1]);
 
 
 // Start model training process.
-await model.fit(xs, ys, {
-  epochs: 100,
-  validationData: [valXs, valYs],
-   // Add the tensorBoard callback here.
-  callbacks: tf.node.tensorBoard('/tmp/fit_logs_1')
-});
+async function train() {
+  await model.fit(xs, ys, {
+    epochs: 100,
+    validationData: [valXs, valYs],
+    // Add the tensorBoard callback here.
+    callbacks: tf.node.tensorBoard('/tmp/fit_logs_1')
+  });
+}
+train();
 ```
