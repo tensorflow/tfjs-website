@@ -22,8 +22,8 @@
     "test-ci": "./test-scripts/test-ci.sh"
   },
   "dependencies": {
-    "@tensorflow/tfjs": "1.2.10",
-    "@tensorflow/tfjs-node": "1.2.10",
+    "@tensorflow/tfjs": "1.2.11",
+    "@tensorflow/tfjs-node": "1.2.11",
     "@tensorflow/tfjs-vis": "1.2.0",
     "babel-cli": "~6.26.0",
     "babel-preset-es2015": "~6.24.1",
