@@ -6,7 +6,7 @@ TensorFlow GraphDef based models (typically created via the Python API) may be s
 3. [Session Bundle](https://github.com/tensorflow/tensorflow/blob/master/tensorflow/contrib/session_bundle/README.md)
 4. [Tensorflow Hub module](https://www.tensorflow.org/hub/)
 
-All of the above formats can be converted by the [TensorFlow.js converter](https://github.com/tensorflow/tfjs-converter) into a format that can be loaded directly into TensorFlow.js for inference.
+All of the above formats can be converted by the [TensorFlow.js converter](https://github.com/tensorflow/tfjs/tree/master/tfjs-converter) into a format that can be loaded directly into TensorFlow.js for inference.
 
 (Note: TensorFlow has deprecated the session bundle format, please migrate your models to the SavedModel format.)
 
