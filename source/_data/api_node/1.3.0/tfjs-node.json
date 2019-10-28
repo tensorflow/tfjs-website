@@ -1,0 +1,1567 @@
+{
+  "docs": {
+    "headings": [
+      {
+        "name": "TensorBoard",
+        "description": "",
+        "subheadings": [
+          {
+            "symbols": [
+              {
+                "docInfo": {
+                  "heading": "TensorBoard",
+                  "namespace": "node"
+                },
+                "symbolName": "summaryFileWriter",
+                "namespace": "node",
+                "paramStr": "(logdir, maxQueue?, flushMillis?, filenameSuffix?)",
+                "parameters": [
+                  {
+                    "name": "logdir",
+                    "documentation": "Log directory in which the summary data will be written.",
+                    "type": "string",
+                    "optional": false,
+                    "isConfigParam": false
+                  },
+                  {
+                    "name": "maxQueue",
+                    "documentation": "Maximum queue length (default: `10`).",
+                    "type": "number",
+                    "optional": true,
+                    "isConfigParam": false
+                  },
+                  {
+                    "name": "flushMillis",
+                    "documentation": "Flush every __ milliseconds (default: `120e3`, i.e,\n`120` seconds).",
+                    "type": "number",
+                    "optional": true,
+                    "isConfigParam": false
+                  },
+                  {
+                    "name": "filenameSuffix",
+                    "documentation": "Suffix of the protocol buffer file names to be\nwritten in the `logdir` (default: `.v2`).",
+                    "type": "string",
+                    "optional": true,
+                    "isConfigParam": false
+                  }
+                ],
+                "returnType": "SummaryFileWriter",
+                "documentation": "Create a summary file writer for TensorBoard.\n\nExample:\n```js\nconst tf = require('@tensorflow/tfjs-node');\n\nconst summaryWriter = tf.node.summaryFileWriter('/tmp/tfjs_tb_logdir');\n\nfor (let step = 0; step < 100; ++step) {\n summaryWriter.scalar('dummyValue', Math.sin(2 * Math.PI * step / 8), step);\n}\n```",
+                "fileName": "#93",
+                "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-node-v1.3.0/tfjs-node/src/tensorboard.ts#L93-L111",
+                "isFunction": true
+              },
+              {
+                "docInfo": {
+                  "heading": "TensorBoard",
+                  "namespace": "node"
+                },
+                "symbolName": "tensorBoard",
+                "namespace": "node",
+                "paramStr": "(logdir?, args?)",
+                "parameters": [
+                  {
+                    "name": "logdir",
+                    "documentation": "Directory to which the logs will be written.",
+                    "type": "string",
+                    "optional": true,
+                    "isConfigParam": false
+                  },
+                  {
+                    "name": "args",
+                    "documentation": "Optional configuration arguments.",
+                    "type": "TensorBoardCallbackArgs",
+                    "optional": true,
+                    "isConfigParam": false
+                  }
+                ],
+                "returnType": "TensorBoardCallback",
+                "documentation": "Callback for logging to TensorBoard durnig training.\n\nWrites the loss and metric values (if any) to the specified log directory\n(`logdir`) which can be ingested and visualized by TensorBoard.\nThis callback is usually passed as a callback to `tf.Model.fit()` or\n`tf.Model.fitDataset()` calls during model training. The frequency at which\nthe values are logged can be controlled with the `updateFreq` field of the\nconfiguration object (2nd argument).\n\nUsage example:\n```js\n// Constructor a toy multilayer-perceptron regressor for demo purpose.\nconst model = tf.sequential();\nmodel.add(\n    tf.layers.dense({units: 100, activation: 'relu', inputShape: [200]}));\nmodel.add(tf.layers.dense({units: 1}));\nmodel.compile({\n  loss: 'meanSquaredError',\n  optimizer: 'sgd',\n  metrics: ['MAE']\n});\n\n// Generate some random fake data for demo purpose.\nconst xs = tf.randomUniform([10000, 200]);\nconst ys = tf.randomUniform([10000, 1]);\nconst valXs = tf.randomUniform([1000, 200]);\nconst valYs = tf.randomUniform([1000, 1]);\n\n// Start model training process.\nawait model.fit(xs, ys, {\n  epochs: 100,\n  validationData: [valXs, valYs],\n   // Add the tensorBoard callback here.\n  callbacks: tf.node.tensorBoard('/tmp/fit_logs_1')\n});\n```\n\nThen you can use the following commands to point tensorboard\nto the logdir:\n\n```sh\npip install tensorboard  # Unless you've already installed it.\ntensorboard --logdir /tmp/fit_logs_1\n```",
+                "fileName": "#325",
+                "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-node-v1.3.0/tfjs-node/src/callbacks.ts#L325-L328",
+                "isFunction": true
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Operations",
+        "description": "",
+        "subheadings": [
+          {
+            "name": "Images",
+            "symbols": [
+              {
+                "docInfo": {
+                  "heading": "Operations",
+                  "subheading": "Images",
+                  "namespace": "node"
+                },
+                "symbolName": "decodeJpeg",
+                "namespace": "node",
+                "paramStr": "(contents, channels?, ratio?, fancyUpscaling?, tryRecoverTruncated?, acceptableFraction?, dctMethod?)",
+                "parameters": [
+                  {
+                    "name": "contents",
+                    "documentation": "The JPEG-encoded image in an Uint8Array.",
+                    "type": "Uint8Array",
+                    "optional": false,
+                    "isConfigParam": false
+                  },
+                  {
+                    "name": "channels",
+                    "documentation": "An optional int. Defaults to 0. Accepted values are\n0: use the number of channels in the PNG-encoded image.\n1: output a grayscale image.\n3: output an RGB image.",
+                    "type": "number",
+                    "optional": true,
+                    "isConfigParam": false
+                  },
+                  {
+                    "name": "ratio",
+                    "documentation": "An optional int. Defaults to 1. Downscaling ratio. It is used\nwhen image is type Jpeg.",
+                    "type": "number",
+                    "optional": true,
+                    "isConfigParam": false
+                  },
+                  {
+                    "name": "fancyUpscaling",
+                    "documentation": "An optional bool. Defaults to True. If true use a\nslower but nicer upscaling of the chroma planes. It is used when image is\ntype Jpeg.",
+                    "type": "boolean",
+                    "optional": true,
+                    "isConfigParam": false
+                  },
+                  {
+                    "name": "tryRecoverTruncated",
+                    "documentation": "An optional bool. Defaults to False. If true try\nto recover an image from truncated input. It is used when image is type\nJpeg.",
+                    "type": "boolean",
+                    "optional": true,
+                    "isConfigParam": false
+                  },
+                  {
+                    "name": "acceptableFraction",
+                    "documentation": "An optional float. Defaults to 1. The minimum\nrequired fraction of lines before a truncated input is accepted. It is\nused when image is type Jpeg.",
+                    "type": "number",
+                    "optional": true,
+                    "isConfigParam": false
+                  },
+                  {
+                    "name": "dctMethod",
+                    "documentation": "An optional string. Defaults to \"\". string specifying a hint\nabout the algorithm used for decompression. Defaults to \"\" which maps to\na system-specific default. Currently valid values are [\"INTEGER_FAST\",\n\"INTEGER_ACCURATE\"]. The hint may be ignored (e.g., the internal jpeg\nlibrary changes to a version that does not have that specific option.) It\nis used when image is type Jpeg.",
+                    "type": "string",
+                    "optional": true,
+                    "isConfigParam": false
+                  }
+                ],
+                "returnType": "Tensor3D",
+                "documentation": "Decode a JPEG-encoded image to a 3D Tensor of dtype `int32`.",
+                "fileName": "#59",
+                "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-node-v1.3.0/tfjs-node/src/image.ts#L59-L71",
+                "isFunction": true
+              },
+              {
+                "docInfo": {
+                  "heading": "Operations",
+                  "subheading": "Images",
+                  "namespace": "node"
+                },
+                "symbolName": "decodePng",
+                "namespace": "node",
+                "paramStr": "(contents, channels?, dtype?)",
+                "parameters": [
+                  {
+                    "name": "contents",
+                    "documentation": "The BMP-encoded image in an Uint8Array.",
+                    "type": "Uint8Array",
+                    "optional": false,
+                    "isConfigParam": false
+                  },
+                  {
+                    "name": "channels",
+                    "documentation": "An optional int. Defaults to 0. Accepted values are\n0: use the number of channels in the PNG-encoded image.\n1: output a grayscale image.\n3: output an RGB image.\n4: output an RGBA image.",
+                    "type": "number",
+                    "optional": true,
+                    "isConfigParam": false
+                  },
+                  {
+                    "name": "dtype",
+                    "documentation": "The data type of the result. Only `int32` is supported at this\ntime.",
+                    "type": "string",
+                    "optional": true,
+                    "isConfigParam": false
+                  }
+                ],
+                "returnType": "Tensor3D",
+                "documentation": "Decode a PNG-encoded image to a 3D Tensor of dtype `int32`.",
+                "fileName": "#89",
+                "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-node-v1.3.0/tfjs-node/src/image.ts#L89-L98",
+                "isFunction": true
+              },
+              {
+                "docInfo": {
+                  "heading": "Operations",
+                  "subheading": "Images",
+                  "namespace": "node"
+                },
+                "symbolName": "decodeBmp",
+                "namespace": "node",
+                "paramStr": "(contents, channels?)",
+                "parameters": [
+                  {
+                    "name": "contents",
+                    "documentation": "The BMP-encoded image in an Uint8Array.",
+                    "type": "Uint8Array",
+                    "optional": false,
+                    "isConfigParam": false
+                  },
+                  {
+                    "name": "channels",
+                    "documentation": "An optional int. Defaults to 0. Accepted values are\n0: use the number of channels in the BMP-encoded image.\n3: output an RGB image.\n4: output an RGBA image.",
+                    "type": "number",
+                    "optional": true,
+                    "isConfigParam": false
+                  }
+                ],
+                "returnType": "Tensor3D",
+                "documentation": "Decode the first frame of a BMP-encoded image to a 3D Tensor of dtype\n`int32`.",
+                "fileName": "#114",
+                "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-node-v1.3.0/tfjs-node/src/image.ts#L114-L119",
+                "isFunction": true
+              },
+              {
+                "docInfo": {
+                  "heading": "Operations",
+                  "subheading": "Images",
+                  "namespace": "node"
+                },
+                "symbolName": "decodeGif",
+                "namespace": "node",
+                "paramStr": "(contents)",
+                "parameters": [
+                  {
+                    "name": "contents",
+                    "documentation": "The GIF-encoded image in an Uint8Array.",
+                    "type": "Uint8Array",
+                    "optional": false,
+                    "isConfigParam": false
+                  }
+                ],
+                "returnType": "Tensor4D",
+                "documentation": "Decode the frame(s) of a GIF-encoded image to a 4D Tensor of dtype `int32`.",
+                "fileName": "#131",
+                "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-node-v1.3.0/tfjs-node/src/image.ts#L131-L136",
+                "isFunction": true
+              },
+              {
+                "docInfo": {
+                  "heading": "Operations",
+                  "subheading": "Images",
+                  "namespace": "node"
+                },
+                "symbolName": "decodeImage",
+                "namespace": "node",
+                "paramStr": "(content, channels?, dtype?, expandAnimations?)",
+                "parameters": [
+                  {
+                    "name": "content",
+                    "documentation": "The encoded image in an Uint8Array.",
+                    "type": "Uint8Array",
+                    "optional": false,
+                    "isConfigParam": false
+                  },
+                  {
+                    "name": "channels",
+                    "documentation": "An optional int. Defaults to 0, use the number of channels in\nthe image. Number of color channels for the decoded image. It is used\nwhen image is type Png, Bmp, or Jpeg.",
+                    "type": "number",
+                    "optional": true,
+                    "isConfigParam": false
+                  },
+                  {
+                    "name": "dtype",
+                    "documentation": "The data type of the result. Only `int32` is supported at this\ntime.",
+                    "type": "string",
+                    "optional": true,
+                    "isConfigParam": false
+                  },
+                  {
+                    "name": "expandAnimations",
+                    "documentation": "A boolean which controls the shape of the returned\nop's output. If True, the returned op will produce a 3-D tensor for PNG,\nJPEG, and BMP files; and a 4-D tensor for all GIFs, whether animated or\nnot. If, False, the returned op will produce a 3-D tensor for all file\ntypes and will truncate animated GIFs to the first frame.",
+                    "type": "boolean",
+                    "optional": true,
+                    "isConfigParam": false
+                  }
+                ],
+                "returnType": "Tensor3D|Tensor4D",
+                "documentation": "Given the encoded bytes of an image, it returns a 3D or 4D tensor of the\ndecoded image. Supports BMP, GIF, JPEG and PNG formats.",
+                "fileName": "#161",
+                "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-node-v1.3.0/tfjs-node/src/image.ts#L161-L192",
+                "isFunction": true
+              },
+              {
+                "docInfo": {
+                  "heading": "Operations",
+                  "subheading": "Images",
+                  "namespace": "node"
+                },
+                "symbolName": "encodeJpeg",
+                "namespace": "node",
+                "paramStr": "(image, format?, quality?, progressive?, optimizeSize?, chromaDownsampling?, densityUnit?, xDensity?, yDensity?, xmpMetadata?)",
+                "parameters": [
+                  {
+                    "name": "image",
+                    "documentation": "A 3-D uint8 Tensor of shape [height, width, channels].",
+                    "type": "Tensor3D",
+                    "optional": false,
+                    "isConfigParam": false
+                  },
+                  {
+                    "name": "format",
+                    "documentation": "An optional string from: \"\", \"grayscale\", \"rgb\".\nDefaults to \"\". Per pixel image format.\n- '': Use a default format based on the number of channels in the image.\n- grayscale: Output a grayscale JPEG image. The channels dimension of\nimage must be 1.\n- rgb: Output an RGB JPEG image. The channels dimension of image must\nbe 3.",
+                    "type": "''|'grayscale'|'rgb'",
+                    "optional": true,
+                    "isConfigParam": false
+                  },
+                  {
+                    "name": "quality",
+                    "documentation": "An optional int. Defaults to 95. Quality of the compression\nfrom 0 to 100 (higher is better and slower).",
+                    "type": "number",
+                    "optional": true,
+                    "isConfigParam": false
+                  },
+                  {
+                    "name": "progressive",
+                    "documentation": "An optional bool. Defaults to False. If True, create a\nJPEG that loads progressively (coarse to fine).",
+                    "type": "boolean",
+                    "optional": true,
+                    "isConfigParam": false
+                  },
+                  {
+                    "name": "optimizeSize",
+                    "documentation": "An optional bool. Defaults to False. If True, spend\nCPU/RAM to reduce size with no quality change.",
+                    "type": "boolean",
+                    "optional": true,
+                    "isConfigParam": false
+                  },
+                  {
+                    "name": "chromaDownsampling",
+                    "documentation": "An optional bool. Defaults to True.\nSee http://en.wikipedia.org/wiki/Chroma_subsampling.",
+                    "type": "boolean",
+                    "optional": true,
+                    "isConfigParam": false
+                  },
+                  {
+                    "name": "densityUnit",
+                    "documentation": "An optional string from: \"in\", \"cm\". Defaults to \"in\".\nUnit used to specify x_density and y_density: pixels per inch ('in') or\ncentimeter ('cm').",
+                    "type": "'in'|'cm'",
+                    "optional": true,
+                    "isConfigParam": false
+                  },
+                  {
+                    "name": "xDensity",
+                    "documentation": "An optional int. Defaults to 300. Horizontal pixels per\ndensity unit.",
+                    "type": "number",
+                    "optional": true,
+                    "isConfigParam": false
+                  },
+                  {
+                    "name": "yDensity",
+                    "documentation": "An optional int. Defaults to 300. Vertical pixels per\ndensity unit.",
+                    "type": "number",
+                    "optional": true,
+                    "isConfigParam": false
+                  },
+                  {
+                    "name": "xmpMetadata",
+                    "documentation": "An optional string. Defaults to \"\". If not empty, embed\nthis XMP metadata in the image header.",
+                    "type": "string",
+                    "optional": true,
+                    "isConfigParam": false
+                  }
+                ],
+                "returnType": "Promise<Uint8Array>",
+                "documentation": "Encodes an image tensor to JPEG.",
+                "fileName": "#227",
+                "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-node-v1.3.0/tfjs-node/src/image.ts#L227-L240",
+                "isFunction": true
+              },
+              {
+                "docInfo": {
+                  "heading": "Operations",
+                  "subheading": "Images",
+                  "namespace": "node"
+                },
+                "symbolName": "encodePng",
+                "namespace": "node",
+                "paramStr": "(image, compression?)",
+                "parameters": [
+                  {
+                    "name": "image",
+                    "documentation": "A 3-D uint8 Tensor of shape [height, width, channels].",
+                    "type": "Tensor3D",
+                    "optional": false,
+                    "isConfigParam": false
+                  },
+                  {
+                    "name": "compression",
+                    "documentation": "An optional int. Defaults to -1. Compression level.",
+                    "type": "number",
+                    "optional": true,
+                    "isConfigParam": false
+                  }
+                ],
+                "returnType": "Promise<Uint8Array>",
+                "documentation": "Encodes an image tensor to PNG.",
+                "fileName": "#252",
+                "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-node-v1.3.0/tfjs-node/src/image.ts#L252-L259",
+                "isFunction": true
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "docLinkAliases": {},
+  "configInterfaceParamMap": {
+    "IAny": [
+      {
+        "name": "typeUrl",
+        "type": "(string|null)",
+        "documentation": "Any typeUrl",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "value",
+        "type": "(Uint8Array|null)",
+        "documentation": "Any value",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "ITensorShape": [
+      {
+        "name": "dim",
+        "type": "(TensorShape.IDim[]|null)",
+        "documentation": "TensorShape dim",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "unknownRank",
+        "type": "(boolean|null)",
+        "documentation": "TensorShape unknownRank",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "IDim": [
+      {
+        "name": "size",
+        "type": "(number|string|null)",
+        "documentation": "Dim size",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "name",
+        "type": "(string|null)",
+        "documentation": "Dim name",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "ITensor": [
+      {
+        "name": "dtype",
+        "type": "(DataType|null)",
+        "documentation": "Tensor dtype",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "tensorShape",
+        "type": "(ITensorShape|null)",
+        "documentation": "Tensor tensorShape",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "versionNumber",
+        "type": "(number|null)",
+        "documentation": "Tensor versionNumber",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "tensorContent",
+        "type": "(Uint8Array|null)",
+        "documentation": "Tensor tensorContent",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "floatVal",
+        "type": "(number[]|null)",
+        "documentation": "Tensor floatVal",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "doubleVal",
+        "type": "(number[]|null)",
+        "documentation": "Tensor doubleVal",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "intVal",
+        "type": "(number[]|null)",
+        "documentation": "Tensor intVal",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "stringVal",
+        "type": "(Uint8Array[]|null)",
+        "documentation": "Tensor stringVal",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "scomplexVal",
+        "type": "(number[]|null)",
+        "documentation": "Tensor scomplexVal",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "int64Val",
+        "type": "((number | string)[]|null)",
+        "documentation": "Tensor int64Val",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "boolVal",
+        "type": "(boolean[]|null)",
+        "documentation": "Tensor boolVal",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "uint32Val",
+        "type": "(number[]|null)",
+        "documentation": "Tensor uint32Val",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "uint64Val",
+        "type": "((number | string)[]|null)",
+        "documentation": "Tensor uint64Val",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "IAttrValue": [
+      {
+        "name": "list",
+        "type": "(AttrValue.IListValue|null)",
+        "documentation": "AttrValue list",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "s",
+        "type": "(string|null)",
+        "documentation": "AttrValue s",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "i",
+        "type": "(number|string|null)",
+        "documentation": "AttrValue i",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "f",
+        "type": "(number|null)",
+        "documentation": "AttrValue f",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "b",
+        "type": "(boolean|null)",
+        "documentation": "AttrValue b",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "type",
+        "type": "(DataType|null)",
+        "documentation": "AttrValue type",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "shape",
+        "type": "(ITensorShape|null)",
+        "documentation": "AttrValue shape",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "tensor",
+        "type": "(ITensor|null)",
+        "documentation": "AttrValue tensor",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "placeholder",
+        "type": "(string|null)",
+        "documentation": "AttrValue placeholder",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "func",
+        "type": "(INameAttrList|null)",
+        "documentation": "AttrValue func",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "IListValue": [
+      {
+        "name": "s",
+        "type": "(string[]|null)",
+        "documentation": "ListValue s",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "i",
+        "type": "((number | string)[]|null)",
+        "documentation": "ListValue i",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "f",
+        "type": "(number[]|null)",
+        "documentation": "ListValue f",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "b",
+        "type": "(boolean[]|null)",
+        "documentation": "ListValue b",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "type",
+        "type": "(DataType[]|null)",
+        "documentation": "ListValue type",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "shape",
+        "type": "(ITensorShape[]|null)",
+        "documentation": "ListValue shape",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "tensor",
+        "type": "(ITensor[]|null)",
+        "documentation": "ListValue tensor",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "func",
+        "type": "(INameAttrList[]|null)",
+        "documentation": "ListValue func",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "INameAttrList": [
+      {
+        "name": "name",
+        "type": "(string|null)",
+        "documentation": "NameAttrList name",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "attr",
+        "type": "({[k: string]: IAttrValue}|null)",
+        "documentation": "NameAttrList attr",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "INodeDef": [
+      {
+        "name": "name",
+        "type": "(string|null)",
+        "documentation": "NodeDef name",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "op",
+        "type": "(string|null)",
+        "documentation": "NodeDef op",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "input",
+        "type": "(string[]|null)",
+        "documentation": "NodeDef input",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "device",
+        "type": "(string|null)",
+        "documentation": "NodeDef device",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "attr",
+        "type": "({[k: string]: IAttrValue}|null)",
+        "documentation": "NodeDef attr",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "IVersionDef": [
+      {
+        "name": "producer",
+        "type": "(number|null)",
+        "documentation": "VersionDef producer",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "minConsumer",
+        "type": "(number|null)",
+        "documentation": "VersionDef minConsumer",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "badConsumers",
+        "type": "(number[]|null)",
+        "documentation": "VersionDef badConsumers",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "IGraphDef": [
+      {
+        "name": "node",
+        "type": "(INodeDef[]|null)",
+        "documentation": "GraphDef node",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "versions",
+        "type": "(IVersionDef|null)",
+        "documentation": "GraphDef versions",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "library",
+        "type": "(IFunctionDefLibrary|null)",
+        "documentation": "GraphDef library",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "ICollectionDef": [
+      {
+        "name": "nodeList",
+        "type": "(CollectionDef.INodeList|null)",
+        "documentation": "CollectionDef nodeList",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "bytesList",
+        "type": "(CollectionDef.IBytesList|null)",
+        "documentation": "CollectionDef bytesList",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "int64List",
+        "type": "(CollectionDef.IInt64List|null)",
+        "documentation": "CollectionDef int64List",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "floatList",
+        "type": "(CollectionDef.IFloatList|null)",
+        "documentation": "CollectionDef floatList",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "anyList",
+        "type": "(CollectionDef.IAnyList|null)",
+        "documentation": "CollectionDef anyList",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "INodeList": [
+      {
+        "name": "value",
+        "type": "(string[]|null)",
+        "documentation": "NodeList value",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "IBytesList": [
+      {
+        "name": "value",
+        "type": "(Uint8Array[]|null)",
+        "documentation": "BytesList value",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "IInt64List": [
+      {
+        "name": "value",
+        "type": "((number | string)[]|null)",
+        "documentation": "Int64List value",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "IFloatList": [
+      {
+        "name": "value",
+        "type": "(number[]|null)",
+        "documentation": "FloatList value",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "IAnyList": [
+      {
+        "name": "value",
+        "type": "(IAny[]|null)",
+        "documentation": "AnyList value",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "ISaverDef": [
+      {
+        "name": "filenameTensorName",
+        "type": "(string|null)",
+        "documentation": "SaverDef filenameTensorName",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "saveTensorName",
+        "type": "(string|null)",
+        "documentation": "SaverDef saveTensorName",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "restoreOpName",
+        "type": "(string|null)",
+        "documentation": "SaverDef restoreOpName",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "maxToKeep",
+        "type": "(number|null)",
+        "documentation": "SaverDef maxToKeep",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "sharded",
+        "type": "(boolean|null)",
+        "documentation": "SaverDef sharded",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "keepCheckpointEveryNHours",
+        "type": "(number|null)",
+        "documentation": "SaverDef keepCheckpointEveryNHours",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "version",
+        "type": "(SaverDef.CheckpointFormatVersion|null)",
+        "documentation": "SaverDef version",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "ITensorInfo": [
+      {
+        "name": "name",
+        "type": "(string|null)",
+        "documentation": "TensorInfo name",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "cooSparse",
+        "type": "(TensorInfo.ICooSparse|null)",
+        "documentation": "TensorInfo cooSparse",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "dtype",
+        "type": "(DataType|null)",
+        "documentation": "TensorInfo dtype",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "tensorShape",
+        "type": "(ITensorShape|null)",
+        "documentation": "TensorInfo tensorShape",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "ICooSparse": [
+      {
+        "name": "valuesTensorName",
+        "type": "(string|null)",
+        "documentation": "CooSparse valuesTensorName",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "indicesTensorName",
+        "type": "(string|null)",
+        "documentation": "CooSparse indicesTensorName",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "denseShapeTensorName",
+        "type": "(string|null)",
+        "documentation": "CooSparse denseShapeTensorName",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "ISignatureDef": [
+      {
+        "name": "inputs",
+        "type": "({[k: string]: ITensorInfo}|null)",
+        "documentation": "SignatureDef inputs",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "outputs",
+        "type": "({[k: string]: ITensorInfo}|null)",
+        "documentation": "SignatureDef outputs",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "methodName",
+        "type": "(string|null)",
+        "documentation": "SignatureDef methodName",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "IAssetFileDef": [
+      {
+        "name": "tensorInfo",
+        "type": "(ITensorInfo|null)",
+        "documentation": "AssetFileDef tensorInfo",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "filename",
+        "type": "(string|null)",
+        "documentation": "AssetFileDef filename",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "IOpDef": [
+      {
+        "name": "name",
+        "type": "(string|null)",
+        "documentation": "OpDef name",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "inputArg",
+        "type": "(OpDef.IArgDef[]|null)",
+        "documentation": "OpDef inputArg",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "outputArg",
+        "type": "(OpDef.IArgDef[]|null)",
+        "documentation": "OpDef outputArg",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "attr",
+        "type": "(OpDef.IAttrDef[]|null)",
+        "documentation": "OpDef attr",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "deprecation",
+        "type": "(OpDef.IOpDeprecation|null)",
+        "documentation": "OpDef deprecation",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "summary",
+        "type": "(string|null)",
+        "documentation": "OpDef summary",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "description",
+        "type": "(string|null)",
+        "documentation": "OpDef description",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "isCommutative",
+        "type": "(boolean|null)",
+        "documentation": "OpDef isCommutative",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "isAggregate",
+        "type": "(boolean|null)",
+        "documentation": "OpDef isAggregate",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "isStateful",
+        "type": "(boolean|null)",
+        "documentation": "OpDef isStateful",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "allowsUninitializedInput",
+        "type": "(boolean|null)",
+        "documentation": "OpDef allowsUninitializedInput",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "IArgDef": [
+      {
+        "name": "name",
+        "type": "(string|null)",
+        "documentation": "ArgDef name",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "description",
+        "type": "(string|null)",
+        "documentation": "ArgDef description",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "type",
+        "type": "(DataType|null)",
+        "documentation": "ArgDef type",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "typeAttr",
+        "type": "(string|null)",
+        "documentation": "ArgDef typeAttr",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "numberAttr",
+        "type": "(string|null)",
+        "documentation": "ArgDef numberAttr",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "typeListAttr",
+        "type": "(string|null)",
+        "documentation": "ArgDef typeListAttr",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "isRef",
+        "type": "(boolean|null)",
+        "documentation": "ArgDef isRef",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "IAttrDef": [
+      {
+        "name": "name",
+        "type": "(string|null)",
+        "documentation": "AttrDef name",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "type",
+        "type": "(string|null)",
+        "documentation": "AttrDef type",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "defaultValue",
+        "type": "(IAttrValue|null)",
+        "documentation": "AttrDef defaultValue",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "description",
+        "type": "(string|null)",
+        "documentation": "AttrDef description",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "hasMinimum",
+        "type": "(boolean|null)",
+        "documentation": "AttrDef hasMinimum",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "minimum",
+        "type": "(number|string|null)",
+        "documentation": "AttrDef minimum",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "allowedValues",
+        "type": "(IAttrValue|null)",
+        "documentation": "AttrDef allowedValues",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "IOpDeprecation": [
+      {
+        "name": "version",
+        "type": "(number|null)",
+        "documentation": "OpDeprecation version",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "explanation",
+        "type": "(string|null)",
+        "documentation": "OpDeprecation explanation",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "IOpList": [
+      {
+        "name": "op",
+        "type": "(IOpDef[]|null)",
+        "documentation": "OpList op",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "IMetaGraphDef": [
+      {
+        "name": "metaInfoDef",
+        "type": "(MetaGraphDef.IMetaInfoDef|null)",
+        "documentation": "MetaGraphDef metaInfoDef",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "graphDef",
+        "type": "(IGraphDef|null)",
+        "documentation": "MetaGraphDef graphDef",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "saverDef",
+        "type": "(ISaverDef|null)",
+        "documentation": "MetaGraphDef saverDef",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "collectionDef",
+        "type": "({[k: string]: ICollectionDef}|null)",
+        "documentation": "MetaGraphDef collectionDef",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "signatureDef",
+        "type": "({[k: string]: ISignatureDef}|null)",
+        "documentation": "MetaGraphDef signatureDef",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "assetFileDef",
+        "type": "(IAssetFileDef[]|null)",
+        "documentation": "MetaGraphDef assetFileDef",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "IMetaInfoDef": [
+      {
+        "name": "metaGraphVersion",
+        "type": "(string|null)",
+        "documentation": "MetaInfoDef metaGraphVersion",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "strippedOpList",
+        "type": "(IOpList|null)",
+        "documentation": "MetaInfoDef strippedOpList",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "anyInfo",
+        "type": "(IAny|null)",
+        "documentation": "MetaInfoDef anyInfo",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "tags",
+        "type": "(string[]|null)",
+        "documentation": "MetaInfoDef tags",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "tensorflowVersion",
+        "type": "(string|null)",
+        "documentation": "MetaInfoDef tensorflowVersion",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "tensorflowGitVersion",
+        "type": "(string|null)",
+        "documentation": "MetaInfoDef tensorflowGitVersion",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "ISavedModel": [
+      {
+        "name": "savedModelSchemaVersion",
+        "type": "(number|string|null)",
+        "documentation": "SavedModel savedModelSchemaVersion",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "metaGraphs",
+        "type": "(IMetaGraphDef[]|null)",
+        "documentation": "SavedModel metaGraphs",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "IFunctionDefLibrary": [
+      {
+        "name": "function",
+        "type": "(IFunctionDef[]|null)",
+        "documentation": "FunctionDefLibrary function",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "gradient",
+        "type": "(IGradientDef[]|null)",
+        "documentation": "FunctionDefLibrary gradient",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "IFunctionDef": [
+      {
+        "name": "signature",
+        "type": "(IOpDef|null)",
+        "documentation": "FunctionDef signature",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "attr",
+        "type": "({[k: string]: IAttrValue}|null)",
+        "documentation": "FunctionDef attr",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "nodeDef",
+        "type": "(INodeDef[]|null)",
+        "documentation": "FunctionDef nodeDef",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "ret",
+        "type": "({[k: string]: string}|null)",
+        "documentation": "FunctionDef ret",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "IGradientDef": [
+      {
+        "name": "functionName",
+        "type": "(string|null)",
+        "documentation": "GradientDef functionName",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "gradientFunc",
+        "type": "(string|null)",
+        "documentation": "GradientDef gradientFunc",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "TFJSBinding": [
+      {
+        "name": "TensorMetadata",
+        "type": "typeof TensorMetadata",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "TFEOpAttr",
+        "type": "typeof TFEOpAttr",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "createTensor",
+        "type": "number",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "deleteTensor",
+        "type": "void",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "tensorDataSync",
+        "type": "Float32Array|Int32Array|Uint8Array",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "executeOp",
+        "type": "TensorMetadata[]",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "isUsingGpuDevice",
+        "type": "boolean",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "TF_FLOAT",
+        "type": "number",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "TF_INT32",
+        "type": "number",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "TF_INT64",
+        "type": "number",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "TF_BOOL",
+        "type": "number",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "TF_COMPLEX64",
+        "type": "number",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "TF_STRING",
+        "type": "number",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "TF_RESOURCE",
+        "type": "number",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "TF_UINT8",
+        "type": "number",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "TF_ATTR_STRING",
+        "type": "number",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "TF_ATTR_INT",
+        "type": "number",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "TF_ATTR_FLOAT",
+        "type": "number",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "TF_ATTR_BOOL",
+        "type": "number",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "TF_ATTR_TYPE",
+        "type": "number",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "TF_ATTR_SHAPE",
+        "type": "number",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "TF_ATTR_RESOURCE",
+        "type": "number",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "TF_Version",
+        "type": "string",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "TensorBoardCallbackArgs": [
+      {
+        "name": "updateFreq",
+        "type": "'batch'|'epoch'",
+        "documentation": "The frequency at which loss and metric values are written to logs.\n\nCurrently supported options are:\n\n- 'batch': Write logs at the end of every batch of training, in addition\n   to the end of every epoch of training.\n- 'epoch': Write logs at the end of every epoch of training.\n\nNote that writing logs too often slows down the training.\n\nDefault: 'epoch'.",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ]
+  },
+  "inlineTypes": {},
+  "docTypeAliases": {}
+}
