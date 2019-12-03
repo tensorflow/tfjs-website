@@ -41,10 +41,6 @@ upper_tabs:
       - title: "Import a TensorFlow SavedModel"
         path: /js/tutorials/conversion/import_saved_model
 
-      - heading: "Learning resources"
-      - title: "Machine learning"
-        path: /js/tutorials/learning/ml
-
     - name: "Guide"
       contents:
       - heading: "Introduction"
