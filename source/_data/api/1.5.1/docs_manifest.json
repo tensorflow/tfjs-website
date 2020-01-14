@@ -1,0 +1,7 @@
+{
+  "tfjsVersion": "1.5.1",
+  "coreVersion": "tfjs-core-v1.5.1",
+  "layersVersion": "tfjs-layers-v1.5.1",
+  "converterVersion": "tfjs-converter-v1.5.1",
+  "dataVersion": "tfjs-data-v1.5.1"
+}
