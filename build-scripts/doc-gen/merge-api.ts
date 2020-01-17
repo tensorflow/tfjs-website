@@ -36,12 +36,18 @@ if (commander.skeleton == null) {
   throw new Error(`No skeleton JSON file specified.`);
 }
 
-if (commander.skeleton != null) {
+if (commander.toplevel != null) {
   TOPLEVEL_NAMESPACE = commander.toplevel;
+}
+
+// We have a special value if the symbols do not have a top level namespace
+if (TOPLEVEL_NAMESPACE === '__BARE__') {
+  TOPLEVEL_NAMESPACE = '';
 }
 
 const skeleton =
     JSON.parse(fs.readFileSync(commander.skeleton, 'utf8')) as Skeleton;
+
 const docsForRepos =
     commander.args.map(arg => JSON.parse(fs.readFileSync(arg, 'utf8'))) as
     RepoDocsAndMetadata[];

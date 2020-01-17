@@ -62,7 +62,7 @@ limitations under the License.
 
   <script src="{{url_for 'js/api.js'}}"></script>
 
-  {{#unless (isApiNodePage path)}}
+  {{#unless (isNonBrowserApiPage path)}}
   {{!-- Do not make node api snippets browser runnable --}}
 
   {{!-- Syntax highlighting for edit-mode code cells --}}

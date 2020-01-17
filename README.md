@@ -62,7 +62,7 @@ yarn [build-api|build-vis-api|build-node-api] // depending on which api docs you
 and
 
 ```
-yarn serve
+yarn build && yarn serve
 ```
 
 This will build a version of the api known as `local`. It will be accessible at `http://localhost:8080/api/local/`. This content is not checked in, nor is it linked to

@@ -480,8 +480,13 @@ export function linkSymbols(
                  symbol.namespace + '.' :
                  '');
 
-        symbol.displayName =
-            toplevelNamespace + '.' + namespace + symbol.symbolName;
+        if (toplevelNamespace.length > 0) {
+          symbol.displayName =
+              toplevelNamespace + '.' + namespace + symbol.symbolName;
+        } else {
+          symbol.displayName = namespace + symbol.symbolName
+        }
+
 
         const referenceName = namespace + symbol.symbolName;
         symbol.urlHash = (symbol['isClass'] ? 'class:' : '') + referenceName;
