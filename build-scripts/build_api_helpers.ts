@@ -37,6 +37,7 @@ export interface Manifest {
   converterVersion?: string;
   dataVersion?: string;
   visVersion?: string;
+  rnVersion?: string;
 }
 
 /**
