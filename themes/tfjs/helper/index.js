@@ -31,13 +31,13 @@ function isApiNodePage(path) {
   return path.match(/^api_node/);
 };
 
-function isApiRNPage(path) {
-  return path.match(/^api_rn/);
+function isApiReactNativePage(path) {
+  return path.match(/^api_react_native/);
 };
 
 // The snippets on these api pages cannot be run in a browser.
 function isNonBrowserApiPage(path) {
-  return isApiNodePage(path) || isApiRNPage(path);
+  return isApiNodePage(path) || isApiReactNativePage(path);
 }
 
 module.exports = function(hexo) {
@@ -63,8 +63,8 @@ module.exports = function(hexo) {
       if (isApiNodePage(path)) {
         return siteData[`api_node/${versionString}/docs`];
       }
-      if (isApiRNPage(path)) {
-        return siteData[`api_rn/${versionString}/docs`];
+      if (isApiReactNativePage(path)) {
+        return siteData[`api_react_native/${versionString}/docs`];
       }
       return siteData[`api/${versionString}/docs`];
     },
@@ -87,7 +87,7 @@ module.exports = function(hexo) {
         return 'TensorFlow.js Node API';
       } else if (isApiVisPage(path)) {
         return 'TensorFlow.js Vis API';
-      } else if (isApiRNPage(path)) {
+      } else if (isApiReactNativePage(path)) {
         return 'TensorFlow.js React Native API';
       } else if (isApiPage(path)) {
         return 'TensorFlow.js API';
@@ -126,8 +126,8 @@ module.exports = function(hexo) {
       if (isApiNodePage(path)) {
         return hexo.locals.cache.data['api_node/api_manifest'].versions;
       }
-      if (isApiRNPage(path)) {
-        return hexo.locals.cache.data['api_rn/api_manifest'].versions;
+      if (isApiReactNativePage(path)) {
+        return hexo.locals.cache.data['api_react_native/api_manifest'].versions;
       }
       return hexo.locals.cache.data['api/api_manifest'].versions;
     },

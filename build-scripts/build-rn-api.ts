@@ -34,10 +34,10 @@ const websitePackage =
 const rnVersion = commander.local ?
     'local' :
     `${websitePackage.dependencies['@tensorflow/tfjs-react-native']}`;
-const rnTag = `tfjs-rn-v${rnVersion}`
+const rnTag = `tfjs-react_native-v${rnVersion}`
 
 // The react native docs only use the docs from one library
-const docsFolder = `source/_data/api_rn`;
+const docsFolder = `source/_data/api_react_native`;
 const versionedDocsFolder = `${docsFolder}/${rnVersion}`
 const libs = [
   {
@@ -53,8 +53,8 @@ console.log(`********* Generating Docs *********`);
 const outputPaths = generateDocs(libs);
 
 console.log(`********* Merging docs *********`);
-// Note: there isn't really a bundle path that makes sense for node, so use
-// union package as a fallback.
+// Note: there isn't really a bundle path that makes sense for react native,
+// so use union package as a fallback.
 const bundlePath = commander.bundle && path.resolve(commander.bundle) ||
     path.resolve('node_modules/@tensorflow/tfjs/dist/tf.min.js');
 mergeDocs(docsFolder, versionedDocsFolder, outputPaths, bundlePath, '__BARE__');
@@ -63,7 +63,7 @@ console.log(`********* Writing Manifest & Template *********`);
 const docsManifest = {
   rnVersion: rnVersion,
 };
-const templateFolder = `source/api_rn`;
+const templateFolder = `source/api_react_native`;
 writeManifestAndTemplate(
     docsFolder, versionedDocsFolder, docsManifest, rnVersion, templateFolder);
 
