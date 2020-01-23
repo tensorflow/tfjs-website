@@ -17,7 +17,7 @@
     "build-node-api": "ts-node build-scripts/build-node-api.ts --local",
     "build-api": "ts-node build-scripts/build-api.ts --local",
     "build-and-serve": "yarn build-api && yarn build-vis-api && yarn serve",
-    "build-prod": "export NODE_OPTIONS=--max-old-space-size=8192 yarn && yarn prep && hexo clean && ts-node build-scripts/build-api.ts && ts-node build-scripts/build-vis-api.ts && ts-node build-scripts/build-node-api.ts && yarn build && yarn post-build",
+    "build-prod": "export NODE_OPTIONS=--max-old-space-size=8192 yarn && yarn prep && hexo clean && ts-node build-scripts/build-api.ts && ts-node build-scripts/build-vis-api.ts && ts-node build-scripts/build-node-api.ts && ts-node build-scripts/build-rn-api.ts && yarn build && yarn post-build",
     "serve": "http-server public",
     "deploy-prod": "firebase deploy --project jstensorflow",
     "test-ci": "./test-scripts/test-ci.sh"
@@ -26,7 +26,7 @@
     "@tensorflow/tfjs": "1.5.1",
     "@tensorflow/tfjs-node": "1.5.1",
     "@tensorflow/tfjs-vis": "1.4.0",
-    "@tensorflow/tfjs-react-native": "^0.1.0-alpha.3",
+    "@tensorflow/tfjs-react-native": "0.2.1",
     "babel-cli": "~6.26.0",
     "babel-preset-es2015": "~6.24.1",
     "commander": "~2.14.1",
