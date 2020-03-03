@@ -101,8 +101,6 @@ warmupResult.dispose();
 const result = model.predict(userData);
 ```
 
-
-
 #### Node.js TensorFlow backend
 
 In the TensorFlow Node.js backend, 'node', the TensorFlow C API is used to accelerate operations. This will use the machine's available hardware acceleration, like CUDA, if available.
@@ -113,6 +111,88 @@ For this reason, if you intend to use this in a production application, you shou
 
 For more information on Node.js, see this guide.
 
+
+#### WASM backend
+
+TensorFlow.js provides a WebAssembly backend (`wasm`), which offers CPU acceleration and can be used as an alternative to the vanilla JavaScript CPU (`cpu`) and WebGL accelerated (`webgl`) backends.  To use it:
+
+```js
+// Set the backend to WASM and wait for the module to be ready.
+tf.setBackend('wasm');
+tf.ready().then(() => {...});
+```
+
+If your server is serving the `.wasm` file on a different path or a different name, use `setWasmPath` before you initialize the backend. See the ["Using Bundlers"](https://github.com/tensorflow/tfjs/tree/master/tfjs-backend-wasm#using-bundlers) section in the README for more info:
+
+```js
+import {setWasmPath} from '@tensorflow/tfjs-backend-wasm';
+setWasmPath(yourCustomPath);
+tf.setBackend('wasm');
+tf.ready().then(() => {...});
+```
+
+> Note: TensorFlow.js defines a priority for each backend and will automatically choose the best supported backend for a given environment. To explicitly use the WASM backend, we need to call `tf.setBackend('wasm')`.
+
+##### Why WASM?
+
+[WASM](https://webassembly.org/) was introduced in 2015 as a new web-based binary format, providing programs written
+in JavaScript, C, C++, etc. a compilation target for running on the web. WASM has been [supported](https://webassembly.org/roadmap/)
+by Chrome, Safari, Firefox, and Edge since 2017, and is supported by [90% of devices](https://caniuse.com/#feat=wasm)
+worldwide.
+
+**Performance**
+
+*Versus JavaScript*: WASM binaries are generally much faster than JavaScript bundles for browsers to load, parse, and
+execute. JavaScript is dynamically typed and garbage collected, which can cause slowdowns at runtime.
+
+*Versus WebGL*: WASM is faster than WebGL at the point where the benefits of GPU parallelization are outweighed by the
+fixed overhead costs of executing WebGL shaders. The “When should I use WASM” section below discusses heuristics for
+making this decision.
+
+**Portability and Stability**
+
+WASM has portable 32bit float arithmetic, offering precision parity across all devices. WebGL, on the other hand, is
+hardware-specific and different devices can have varying precision (e.g. fallback to 16bit floats on iOS devices).
+
+Like WebGL, WASM is officially supported by all major browsers.
+
+##### When should I use WASM?
+
+**Model size and computational demand**
+In general, WASM is a good choice when models are smaller or you care about older mobile devices that lack WebGL
+support (`OES_texture_float` extension). The chart below shows inference times (as of TensorFlow.js 1.5.2) in Chrome
+on a 2018 MacBook Pro for 5 of our officially supported [models](https://github.com/tensorflow/tfjs-models) across the
+WebGL, WASM, and CPU backends:
+
+**Smaller models**
+(inference time in ms)
+| Model     | WebGL | WASM | CPU   | MB  |
+|-----------|-------|------|-------|-----|
+| BlazeFace | 22.5  | 15.6 | 315.2 | 0.4 |
+| FaceMesh  | 19.3  | 19.2 | 335   | 2.8 |
+
+**Larger models**
+(inference time in ms)
+| Model        | WebGL | WASM  | CPU    | MB  |
+|--------------|-------|-------|--------|-----|
+| PoseNet      | 42.5  | 173.9 | 1514.7 | 4.5 |
+| BodyPix      | 77    | 188.4 | 2683   | 4.6 |
+| MobileNet v2 | 37    | 94    | 923.6  | 13  |
+
+The table above shows that WASM is 10-30x faster than the plain JS CPU backend across models, and competitive with
+WebGL for smaller models like BlazeFace, which is lightweight (400KB), yet has a decent number of ops (~140). Given
+that WebGL programs have a fixed overhead cost per-op execution, this explains why models like BlazeFace are faster
+on WASM.
+
+**These results will vary depending on your device. The best way to determine whether WASM is right for your application is to test it on our different backends.**
+
+##### Inference vs Training
+
+To address the primary use-case for deployment of pre-trained models, the WASM backend development will prioritize
+inference over training support. See an [up-to-date list](https://github.com/tensorflow/tfjs/blob/master/tfjs-backend-wasm/src/kernels/all_kernels.ts)
+of supported ops in WASM and [let us know](https://github.com/tensorflow/tfjs/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc)
+if your model has an unsupported op. For training models, we recommend using the Node (TensorFlow C++) backend or the
+WebGL backend.
 
 #### CPU backend
 
