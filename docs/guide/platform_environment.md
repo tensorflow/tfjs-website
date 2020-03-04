@@ -116,7 +116,7 @@ For more information on Node.js, see this guide.
 
 #### WASM backend
 
-TensorFlow.js provides a WebAssembly backend (`wasm`), which offers CPU acceleration and can be used as an alternative to the vanilla JavaScript CPU (`cpu`) and WebGL accelerated (`webgl`) backends.  To use it:
+TensorFlow.js provides a [WebAssembly backend](https://github.com/tensorflow/tfjs/blob/master/tfjs-backend-wasm/README.md) (`wasm`), which offers CPU acceleration and can be used as an alternative to the vanilla JavaScript CPU (`cpu`) and WebGL accelerated (`webgl`) backends.  To use it:
 
 ```js
 // Set the backend to WASM and wait for the module to be ready.
@@ -147,7 +147,7 @@ worldwide.
 *Versus JavaScript*: WASM binaries are generally much faster than JavaScript bundles for browsers to load, parse, and
 execute. JavaScript is dynamically typed and garbage collected, which can cause slowdowns at runtime.
 
-*Versus WebGL*: WASM is faster than WebGL at the point where the benefits of GPU parallelization are outweighed by the
+*Versus WebGL*: WebGL is faster than WASM for most models, but for tiny models WASM can outperform WebGL due to the
 fixed overhead costs of executing WebGL shaders. The “When should I use WASM” section below discusses heuristics for
 making this decision.
 
@@ -161,28 +161,29 @@ Like WebGL, WASM is officially supported by all major browsers.
 ##### When should I use WASM?
 
 **Model size and computational demand**
+
 In general, WASM is a good choice when models are smaller or you care about older mobile devices that lack WebGL
 support (`OES_texture_float` extension). The chart below shows inference times (as of TensorFlow.js 1.5.2) in Chrome
 on a 2018 MacBook Pro for 5 of our officially supported [models](https://github.com/tensorflow/tfjs-models) across the
 WebGL, WASM, and CPU backends:
 
 **Smaller models**
-(inference time in ms)
-| Model     | WebGL | WASM | CPU   | MB  |
-|-----------|-------|------|-------|-----|
-| BlazeFace | 22.5  | 15.6 | 315.2 | 0.4 |
-| FaceMesh  | 19.3  | 19.2 | 335   | 2.8 |
+
+| Model     | WebGL | WASM | CPU   | Memory  |
+|-----------|-------|------|-------|---------|
+| BlazeFace | 22.5 ms | 15.6 ms | 315.2 ms | .4 MB  |
+| FaceMesh  | 19.3 ms | 19.2 ms | 335 ms   | 2.8 MB |
 
 **Larger models**
-(inference time in ms)
-| Model        | WebGL | WASM  | CPU    | MB  |
+
+| Model        | WebGL | WASM  | CPU    | Memory  |
 |--------------|-------|-------|--------|-----|
-| PoseNet      | 42.5  | 173.9 | 1514.7 | 4.5 |
-| BodyPix      | 77    | 188.4 | 2683   | 4.6 |
-| MobileNet v2 | 37    | 94    | 923.6  | 13  |
+| PoseNet      | 42.5 ms | 173.9 ms | 1514.7 ms | 4.5 MB |
+| BodyPix      | 77 ms   | 188.4 ms | 2683 ms   | 4.6 MB |
+| MobileNet v2 | 37 ms   | 94 ms    | 923.6 ms  | 13 MB  |
 
 The table above shows that WASM is 10-30x faster than the plain JS CPU backend across models, and competitive with
-WebGL for smaller models like BlazeFace, which is lightweight (400KB), yet has a decent number of ops (~140). Given
+WebGL for smaller models like [BlazeFace](https://github.com/tensorflow/tfjs-models/tree/master/blazeface), which is lightweight (400KB), yet has a decent number of ops (~140). Given
 that WebGL programs have a fixed overhead cost per-op execution, this explains why models like BlazeFace are faster
 on WASM.
 
