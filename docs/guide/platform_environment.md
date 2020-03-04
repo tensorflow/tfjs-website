@@ -153,8 +153,8 @@ making this decision.
 
 **Portability and Stability**
 
-WASM has portable 32bit float arithmetic, offering precision parity across all devices. WebGL, on the other hand, is
-hardware-specific and different devices can have varying precision (e.g. fallback to 16bit floats on iOS devices).
+WASM has portable 32-bit float arithmetic, offering precision parity across all devices. WebGL, on the other hand, is
+hardware-specific and different devices can have varying precision (e.g. fallback to 16-bit floats on iOS devices).
 
 Like WebGL, WASM is officially supported by all major browsers.
 
