@@ -1,4 +1,4 @@
 ---
-title: 1.5.2
+title: 1.6.0
 layout: api
 ---
