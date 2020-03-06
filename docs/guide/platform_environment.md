@@ -144,6 +144,9 @@ worldwide.
 
 **Performance**
 
+WASM backend leverages the [XNNPACK library](https://github.com/google/XNNPACK) for optimized implementation of neural
+network operators.
+
 *Versus JavaScript*: WASM binaries are generally much faster than JavaScript bundles for browsers to load, parse, and
 execute. JavaScript is dynamically typed and garbage collected, which can cause slowdowns at runtime.
 
@@ -156,14 +159,15 @@ making this decision.
 WASM has portable 32-bit float arithmetic, offering precision parity across all devices. WebGL, on the other hand, is
 hardware-specific and different devices can have varying precision (e.g. fallback to 16-bit floats on iOS devices).
 
-Like WebGL, WASM is officially supported by all major browsers.
+Like WebGL, WASM is officially supported by all major browsers. Unlike WebGL, WASM can run in Node.js, and be used
+server-side without any need to compile native libraries.
 
 ##### When should I use WASM?
 
 **Model size and computational demand**
 
-In general, WASM is a good choice when models are smaller or you care about older mobile devices that lack WebGL
-support (`OES_texture_float` extension). The chart below shows inference times (as of TensorFlow.js 1.5.2) in Chrome
+In general, WASM is a good choice when models are smaller or you care about lower-end devices that lack WebGL
+support (`OES_texture_float` extension) or have less powerful GPUs. The chart below shows inference times (as of TensorFlow.js 1.5.2) in Chrome
 on a 2018 MacBook Pro for 5 of our officially supported [models](https://github.com/tensorflow/tfjs-models) across the
 WebGL, WASM, and CPU backends:
 
@@ -184,7 +188,7 @@ WebGL, WASM, and CPU backends:
 
 The table above shows that WASM is 10-30x faster than the plain JS CPU backend across models, and competitive with
 WebGL for smaller models like [BlazeFace](https://github.com/tensorflow/tfjs-models/tree/master/blazeface), which is lightweight (400KB), yet has a decent number of ops (~140). Given
-that WebGL programs have a fixed overhead cost per-op execution, this explains why models like BlazeFace are faster
+that WebGL programs have a fixed overhead cost per op execution, this explains why models like BlazeFace are faster
 on WASM.
 
 **These results will vary depending on your device. The best way to determine whether WASM is right for your application is to test it on our different backends.**
