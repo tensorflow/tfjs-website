@@ -23,8 +23,8 @@
     "test-ci": "./test-scripts/test-ci.sh"
   },
   "dependencies": {
-    "@tensorflow/tfjs": "1.7.0",
-    "@tensorflow/tfjs-node": "1.7.0",
+    "@tensorflow/tfjs": "1.7.1",
+    "@tensorflow/tfjs-node": "1.7.1",
     "@tensorflow/tfjs-vis": "1.4.0",
     "@tensorflow/tfjs-react-native": "0.2.3",
     "babel-cli": "~6.26.0",
