@@ -30,7 +30,7 @@
     "babel-cli": "~6.26.0",
     "babel-preset-es2015": "~6.24.1",
     "commander": "~2.14.1",
-    "hexo": "~3.9.0",
+    "hexo": "~4.2.0",
     "hexo-renderer-ejs": "~1.0.0",
     "hexo-renderer-handlebars": "~2.0.2",
     "hexo-renderer-markdown-it": "^3.4.1",
