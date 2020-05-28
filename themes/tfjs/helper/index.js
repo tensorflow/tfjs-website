@@ -112,24 +112,25 @@ module.exports = function(hexo) {
     },
 
     latestVersion: function(prefix) {
-      return hexo.locals.cache.data[`${prefix}/api_manifest`].versions[0];
+      return hexo.locals.toObject().data[`${prefix}/api_manifest`].versions[0];
     },
 
     latestUnion: function() {
-      return hexo.locals.cache.data['api/api_manifest'].versions[0];
+      return hexo.locals.toObject().data['api/api_manifest'].versions[0];
     },
 
     docVersions: function(path) {
+      const hexoLocals = hexo.locals.toObject();
       if (isApiVisPage(path)) {
-        return hexo.locals.cache.data['api_vis/api_manifest'].versions;
+        return hexoLocals.data['api_vis/api_manifest'].versions;
       }
       if (isApiNodePage(path)) {
-        return hexo.locals.cache.data['api_node/api_manifest'].versions;
+        return hexoLocals.data['api_node/api_manifest'].versions;
       }
       if (isApiReactNativePage(path)) {
-        return hexo.locals.cache.data['api_react_native/api_manifest'].versions;
+        return hexoLocals.data['api_react_native/api_manifest'].versions;
       }
-      return hexo.locals.cache.data['api/api_manifest'].versions;
+      return hexoLocals.data['api/api_manifest'].versions;
     },
 
     eq(a, b) {
