@@ -2299,7 +2299,7 @@
                 "parameters": [
                   {
                     "name": "x",
-                    "documentation": "A `tf.Tensor`. N-D with `x.shape` = `[batch] + spatialShape +\n * remainingShape`, where spatialShape has `M` dimensions.",
+                    "documentation": "A `tf.Tensor`. N-D with `x.shape` = `[batch] + spatialShape +\nremainingShape`, where spatialShape has `M` dimensions.",
                     "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
@@ -2313,7 +2313,7 @@
                   },
                   {
                     "name": "paddings",
-                    "documentation": "A 2-D array. Must have shape `[M, 2]`, all values must be >=\n0. `paddings[i] = [padStart, padEnd]` specifies the amount to zero-pad\nfrom input dimension `i + 1`, which corresponds to spatial dimension `i`. It\nis required that\n`(inputShape[i + 1] + padStart + padEnd) % blockShape[i] === 0`\n\nThis operation is equivalent to the following steps:\n\n1. Zero-pad the start and end of dimensions `[1, ..., M]` of the input\naccording to `paddings` to produce `padded` of shape paddedShape.\n\n2. Reshape `padded` to `reshapedPadded` of shape:\n`[batch] + [paddedShape[1] / blockShape[0], blockShape[0], ...,\n * paddedShape[M] / blockShape[M-1], blockShape[M-1]] + remainingShape`\n\n3. Permute dimensions of `reshapedPadded` to produce `permutedReshapedPadded`\nof shape: `blockShape + [batch] + [paddedShape[1] / blockShape[0], ...,\n * paddedShape[M] / blockShape[M-1]] + remainingShape`\n\n4. Reshape `permutedReshapedPadded` to flatten `blockShape` into the\nbatch dimension, producing an output tensor of shape:\n`[batch * prod(blockShape)] + [paddedShape[1] / blockShape[0], ...,\n * paddedShape[M] / blockShape[M-1]] + remainingShape`",
+                    "documentation": "A 2-D array. Must have shape `[M, 2]`, all values must be >=\n0. `paddings[i] = [padStart, padEnd]` specifies the amount to zero-pad\nfrom input dimension `i + 1`, which corresponds to spatial dimension `i`. It\nis required that\n`(inputShape[i + 1] + padStart + padEnd) % blockShape[i] === 0`\n\nThis operation is equivalent to the following steps:\n\n1. Zero-pad the start and end of dimensions `[1, ..., M]` of the input\naccording to `paddings` to produce `padded` of shape paddedShape.\n\n2. Reshape `padded` to `reshapedPadded` of shape:\n`[batch] + [paddedShape[1] / blockShape[0], blockShape[0], ...,\npaddedShape[M] / blockShape[M-1], blockShape[M-1]] + remainingShape`\n\n3. Permute dimensions of `reshapedPadded` to produce `permutedReshapedPadded`\nof shape: `blockShape + [batch] + [paddedShape[1] / blockShape[0], ...,\npaddedShape[M] / blockShape[M-1]] + remainingShape`\n\n4. Reshape `permutedReshapedPadded` to flatten `blockShape` into the\nbatch dimension, producing an output tensor of shape:\n`[batch * prod(blockShape)] + [paddedShape[1] / blockShape[0], ...,\npaddedShape[M] / blockShape[M-1]] + remainingShape`",
                     "type": "number[][]",
                     "optional": false,
                     "isConfigParam": false
@@ -2335,7 +2335,7 @@
                 "parameters": [
                   {
                     "name": "x",
-                    "documentation": "A `tf.Tensor`. N-D with `x.shape` = `[batch] + spatialShape +\n * remainingShape`, where spatialShape has `M` dimensions.",
+                    "documentation": "A `tf.Tensor`. N-D with `x.shape` = `[batch] + spatialShape +\nremainingShape`, where spatialShape has `M` dimensions.",
                     "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
@@ -2349,7 +2349,7 @@
                   },
                   {
                     "name": "crops",
-                    "documentation": "A 2-D array.  Must have shape `[M, 2]`, all values must be >= 0.\n`crops[i] = [cropStart, cropEnd]` specifies the amount to crop from input\ndimension `i + 1`, which corresponds to spatial dimension `i`. It is required\nthat `cropStart[i] + cropEnd[i] <= blockShape[i] * inputShape[i + 1]`\n\nThis operation is equivalent to the following steps:\n\n1. Reshape `x` to `reshaped` of shape: `[blockShape[0], ...,\n * blockShape[M-1], batch / prod(blockShape), x.shape[1], ...,\n * x.shape[N-1]]`\n\n2. Permute dimensions of `reshaped`to produce `permuted` of shape `[batch /\n * prod(blockShape),x.shape[1], blockShape[0], ..., x.shape[M],\n * blockShape[M-1],x.shape[M+1], ..., x.shape[N-1]]`\n\n3. Reshape `permuted` to produce `reshapedPermuted` of shape `[batch /\n * prod(blockShape),x.shape[1] * blockShape[0], ..., x.shape[M] *\n * blockShape[M-1],x.shape[M+1], ..., x.shape[N-1]]`\n\n4. Crop the start and end of dimensions `[1, ..., M]` of `reshapedPermuted`\naccording to `crops` to produce the output of shape: `[batch /\n * prod(blockShape),x.shape[1] * blockShape[0] - crops[0,0] - crops[0,1],\n * ..., x.shape[M] * blockShape[M-1] - crops[M-1,0] -\n * crops[M-1,1],x.shape[M+1], ..., x.shape[N-1]]`",
+                    "documentation": "A 2-D array.  Must have shape `[M, 2]`, all values must be >= 0.\n`crops[i] = [cropStart, cropEnd]` specifies the amount to crop from input\ndimension `i + 1`, which corresponds to spatial dimension `i`. It is required\nthat `cropStart[i] + cropEnd[i] <= blockShape[i] * inputShape[i + 1]`\n\nThis operation is equivalent to the following steps:\n\n1. Reshape `x` to `reshaped` of shape: `[blockShape[0], ...,\nblockShape[M-1], batch / prod(blockShape), x.shape[1], ...,\nx.shape[N-1]]`\n\n2. Permute dimensions of `reshaped`to produce `permuted` of shape `[batch /\nprod(blockShape),x.shape[1], blockShape[0], ..., x.shape[M],\nblockShape[M-1],x.shape[M+1], ..., x.shape[N-1]]`\n\n3. Reshape `permuted` to produce `reshapedPermuted` of shape `[batch /\nprod(blockShape),x.shape[1] * blockShape[0], ..., x.shape[M] *\nblockShape[M-1],x.shape[M+1], ..., x.shape[N-1]]`\n\n4. Crop the start and end of dimensions `[1, ..., M]` of `reshapedPermuted`\naccording to `crops` to produce the output of shape: `[batch /\nprod(blockShape),x.shape[1] * blockShape[0] - crops[0,0] - crops[0,1],\n..., x.shape[M] * blockShape[M-1] - crops[M-1,0] -\ncrops[M-1,1],x.shape[M+1], ..., x.shape[N-1]]`",
                     "type": "number[][]",
                     "optional": false,
                     "isConfigParam": false
@@ -3521,7 +3521,7 @@
                   },
                   {
                     "name": "strides",
-                    "documentation": "The strides of the convolution: `[strideHeight,\n * strideWidth]`.",
+                    "documentation": "The strides of the convolution: `[strideHeight,\nstrideWidth]`.",
                     "type": "[number, number]|number",
                     "optional": false,
                     "isConfigParam": false
@@ -3706,7 +3706,7 @@
                   },
                   {
                     "name": "strides",
-                    "documentation": "The strides of the convolution: `[strideDepth, strideHeight,\n * strideWidth]`.",
+                    "documentation": "The strides of the convolution: `[strideDepth, strideHeight,\nstrideWidth]`.",
                     "type": "[number, number, number]|number",
                     "optional": false,
                     "isConfigParam": false
@@ -3727,7 +3727,7 @@
                   },
                   {
                     "name": "dilations",
-                    "documentation": "The dilation rates: `[dilationDepth, dilationHeight,\n *     dilationWidth]` in which we sample input values across the height\nand width dimensions in atrous convolution. Defaults to `[1, 1, 1]`.\nIf `dilations` is a single number, then\n`dilationDepth == dilationHeight == dilationWidth`. If it is greater\nthan 1, then all values of `strides` must be 1.",
+                    "documentation": "The dilation rates: `[dilationDepth, dilationHeight,\ndilationWidth]` in which we sample input values across the height\nand width dimensions in atrous convolution. Defaults to `[1, 1, 1]`.\nIf `dilations` is a single number, then\n`dilationDepth == dilationHeight == dilationWidth`. If it is greater\nthan 1, then all values of `strides` must be 1.",
                     "type": "[number, number, number]|number",
                     "optional": true,
                     "isConfigParam": false
@@ -3813,7 +3813,7 @@
                   },
                   {
                     "name": "strides",
-                    "documentation": "The strides of the convolution: `[strideHeight,\n * strideWidth]`. If strides is a single number, then `strideHeight ==\n * strideWidth`.",
+                    "documentation": "The strides of the convolution: `[strideHeight,\nstrideWidth]`. If strides is a single number, then `strideHeight ==\nstrideWidth`.",
                     "type": "[number, number]|number",
                     "optional": false,
                     "isConfigParam": false
@@ -3884,7 +3884,7 @@
                   },
                   {
                     "name": "strides",
-                    "documentation": "The strides of the convolution: `[strideHeight,\n * strideWidth]`. If strides is a single number, then `strideHeight ==\n * strideWidth`.",
+                    "documentation": "The strides of the convolution: `[strideHeight,\nstrideWidth]`. If strides is a single number, then `strideHeight ==\nstrideWidth`.",
                     "type": "[number, number]|number",
                     "optional": false,
                     "isConfigParam": false
@@ -5433,7 +5433,7 @@
                 "parameters": [
                   {
                     "name": "x",
-                    "documentation": "The input tensor. If the dtype is `bool`, the output dtype will be\n`int32'.\n *",
+                    "documentation": "The input tensor. If the dtype is `bool`, the output dtype will be\n`int32'.",
                     "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
@@ -5455,7 +5455,7 @@
                 "parameters": [
                   {
                     "name": "x",
-                    "documentation": "The input tensor. If the dtype is `bool`, the output dtype will be\n`int32'.\n *",
+                    "documentation": "The input tensor. If the dtype is `bool`, the output dtype will be\n`int32'.",
                     "type": "Tensor|TensorLike",
                     "optional": false,
                     "isConfigParam": false
@@ -6307,7 +6307,7 @@
                   }
                 ],
                 "returnType": "Tensor",
-                "documentation": "Extracts a strided slice of a tensor.\n\nRoughly speaking, this op extracts a slice of size (end-begin)/stride from\nthe given input tensor (x). Starting at the location specified by begin the\nslice continues by adding stride to the index until all dimensions are not\nless than end. Note that a stride can be negative, which causes a reverse\nslice.\n\n```js\nconst t = tf.tensor3d([1, 1, 1 ,2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5, 6, 6, 6],\n   [3, 2, 3]);\nt.stridedSlice([1, 0, 0], [2, 1, 3], [1, 1, 1]).print()  // [[[3, 3, 3]]]\nt.stridedSlice([1, 0, 0], [2, 2, 3], [1, 1, 1]).print()  // [[[3, 3, 3],\n                                                    // [4, 4, 4]]]\nt.stridedSlice([1, -1, 0], [2, -3, 3], [1, -1, 1]).print() // [[[4, 4, 4],\n                                                    // [3, 3, 3]]]\n```",
+                "documentation": "Extracts a strided slice of a tensor.\n\nRoughly speaking, this op extracts a slice of size (end-begin)/stride from\nthe given input tensor (x). Starting at the location specified by begin the\nslice continues by adding stride to the index until all dimensions are not\nless than end. Note that a stride can be negative, which causes a reverse\nslice.\n\n```js\nconst t = tf.tensor3d([1, 1, 1 ,2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5, 6, 6, 6],\n    [3, 2, 3]);\nt.stridedSlice([1, 0, 0], [2, 1, 3], [1, 1, 1]).print()  // [[[3, 3, 3]]]\nt.stridedSlice([1, 0, 0], [2, 2, 3], [1, 1, 1]).print()  // [[[3, 3, 3],\n                                                     // [4, 4, 4]]]\nt.stridedSlice([1, -1, 0], [2, -3, 3], [1, -1, 1]).print() // [[[4, 4, 4],\n                                                     // [3, 3, 3]]]\n```",
                 "fileName": "#59",
                 "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-core-v2.0.0/tfjs-core/src/ops/strided_slice.ts#L59-L107",
                 "isFunction": true
@@ -6728,7 +6728,7 @@
                   }
                 ],
                 "returnType": "Tensor",
-                "documentation": "Copy a tensor setting everything outside a central band in each innermost\nmatrix to zero.\n\nThe band part is computed as follows: Assume input has `k` dimensions\n`[I, J, K, ..., M, N]`, then the output is a tensor with the same shape where\n`band[i, j, k, ..., m, n] = in_band(m, n) * input[i, j, k, ..., m, n]`.\nThe indicator function\n`in_band(m, n) = (num_lower < 0 || (m-n) <= num_lower))`\n`&& (num_upper < 0 || (n-m) <= num_upper)`\n\n```js\nconst x = tf.tensor2d([[ 0,  1,  2, 3],\n                       [-1,  0,  1, 2],\n                       [-2, -1,  0, 1],\n                       [-3, -2, -1, 0]]);\nlet y = tf.linalg.bandPart(x, 1, -1);\ny.print(); // [[ 0,  1,  2, 3],\n           //  [-1,  0,  1, 2],\n           //  [ 0, -1,  0, 1],\n           //  [ 0, 0 , -1, 0]]\nlet z = tf.linalg.bandPart(x, 2, 1);\nz.print(); // [[ 0,  1,  0, 0],\n           //  [-1,  0,  1, 0],\n           //  [-2, -1,  0, 1],\n           //  [ 0, -2, -1, 0]]\n```",
+                "documentation": "Copy a tensor setting everything outside a central band in each innermost\nmatrix to zero.\n\nThe band part is computed as follows: Assume input has `k` dimensions\n`[I, J, K, ..., M, N]`, then the output is a tensor with the same shape where\n`band[i, j, k, ..., m, n] = in_band(m, n) * input[i, j, k, ..., m, n]`.\nThe indicator function\n`in_band(m, n) = (num_lower < 0 || (m-n) <= num_lower))`\n`&& (num_upper < 0 || (n-m) <= num_upper)`\n\n```js\nconst x = tf.tensor2d([[ 0,  1,  2, 3],\n                        [-1,  0,  1, 2],\n                        [-2, -1,  0, 1],\n                        [-3, -2, -1, 0]]);\nlet y = tf.linalg.bandPart(x, 1, -1);\ny.print(); // [[ 0,  1,  2, 3],\n            //  [-1,  0,  1, 2],\n            //  [ 0, -1,  0, 1],\n            //  [ 0, 0 , -1, 0]]\nlet z = tf.linalg.bandPart(x, 2, 1);\nz.print(); // [[ 0,  1,  0, 0],\n            //  [-1,  0,  1, 0],\n            //  [-2, -1,  0, 1],\n            //  [ 0, -2, -1, 0]]\n```",
                 "fileName": "#80",
                 "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-core-v2.0.0/tfjs-core/src/ops/linalg_ops.ts#L80-L129",
                 "isFunction": true
@@ -7184,7 +7184,7 @@
                   }
                 ],
                 "returnType": "(...args: Tensor[]) => Tensor",
-                "documentation": "Overrides the gradient computation of a function `f`.\n\nTakes a function\n`f(...inputs, save) => {value: Tensor, gradFunc: (dy, saved) => Tensor[]}`\nand returns another function `g(...inputs)` which takes the same inputs as\n`f`. When called, `g` returns `f().value`. In backward mode, custom gradients\nwith respect to each input of `f` are computed using `f().gradFunc`.\n\nThe `save` function passsed to `f` should be used for saving tensors needed\nin the gradient. And the `saved` passed to the `gradFunc` is a\n`NamedTensorMap`, which contains those saved tensor.\n\n```js\nconst customOp = tf.customGrad((x, save) => {\n  // Save x to make sure it's available later for the gradient.\n  save([x]);\n  // Override gradient of our custom x ^ 2 op to be dy * abs(x);\n  return {\n    value: x.square(),\n    // Note `saved.x` which points to the `x` we saved earlier.\n    gradFunc: (dy, saved) => [dy.mul(saved[0].abs())]\n  };\n});\n\nconst x = tf.tensor1d([-1, -2, 3]);\nconst dx = tf.grad(x => customOp(x));\n\nconsole.log(`f(x):`);\ncustomOp(x).print();\nconsole.log(`f'(x):`);\ndx(x).print();\n```",
+                "documentation": "Overrides the gradient computation of a function `f`.\n\nTakes a function\n`f(...inputs, save) => {value: Tensor, gradFunc: (dy, saved) => Tensor[]}`\nand returns another function `g(...inputs)` which takes the same inputs as\n`f`. When called, `g` returns `f().value`. In backward mode, custom gradients\nwith respect to each input of `f` are computed using `f().gradFunc`.\n\nThe `save` function passsed to `f` should be used for saving tensors needed\nin the gradient. And the `saved` passed to the `gradFunc` is a\n`NamedTensorMap`, which contains those saved tensor.\n\n```js\nconst customOp = tf.customGrad((x, save) => {\n   // Save x to make sure it's available later for the gradient.\n   save([x]);\n   // Override gradient of our custom x ^ 2 op to be dy * abs(x);\n   return {\n     value: x.square(),\n     // Note `saved.x` which points to the `x` we saved earlier.\n     gradFunc: (dy, saved) => [dy.mul(saved[0].abs())]\n   };\n});\n\nconst x = tf.tensor1d([-1, -2, 3]);\nconst dx = tf.grad(x => customOp(x));\n\nconsole.log(`f(x):`);\ncustomOp(x).print();\nconsole.log(`f'(x):`);\ndx(x).print();\n```",
                 "fileName": "#367",
                 "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-core-v2.0.0/tfjs-core/src/gradients.ts#L367-L370",
                 "isFunction": true
@@ -7708,7 +7708,7 @@
                   }
                 ],
                 "returnType": "SGDOptimizer",
-                "documentation": "Constructs a `tf.SGDOptimizer` that uses stochastic gradient descent.\n\n```js\n// Fit a quadratic function by learning the coefficients a, b, c.\nconst xs = tf.tensor1d([0, 1, 2, 3]);\nconst ys = tf.tensor1d([1.1, 5.9, 16.8, 33.9]);\n\nconst a = tf.scalar(Math.random()).variable();\nconst b = tf.scalar(Math.random()).variable();\nconst c = tf.scalar(Math.random()).variable();\n\n// y = a * x^2 + b * x + c.\nconst f = x => a.mul(x.square()).add(b.mul(x)).add(c);\nconst loss = (pred, label) => pred.sub(label).square().mean();\n\nconst learningRate = 0.01;\nconst optimizer = tf.train.sgd(learningRate);\n\n// Train the model.\nfor (let i = 0; i < 10; i++) {\n  optimizer.minimize(() => loss(f(xs), ys));\n}\n\n// Make predictions.\nconsole.log(\n    `a: ${a.dataSync()}, b: ${b.dataSync()}, c: ${c.dataSync()}`);\nconst preds = f(xs).dataSync();\npreds.forEach((pred, i) => {\n  console.log(`x: ${i}, pred: ${pred}`);\n});\n```",
+                "documentation": "Constructs a `tf.SGDOptimizer` that uses stochastic gradient descent.\n\n```js\n// Fit a quadratic function by learning the coefficients a, b, c.\nconst xs = tf.tensor1d([0, 1, 2, 3]);\nconst ys = tf.tensor1d([1.1, 5.9, 16.8, 33.9]);\n\nconst a = tf.scalar(Math.random()).variable();\nconst b = tf.scalar(Math.random()).variable();\nconst c = tf.scalar(Math.random()).variable();\n\n// y = a * x^2 + b * x + c.\nconst f = x => a.mul(x.square()).add(b.mul(x)).add(c);\nconst loss = (pred, label) => pred.sub(label).square().mean();\n\nconst learningRate = 0.01;\nconst optimizer = tf.train.sgd(learningRate);\n\n// Train the model.\nfor (let i = 0; i < 10; i++) {\n   optimizer.minimize(() => loss(f(xs), ys));\n}\n\n// Make predictions.\nconsole.log(\n     `a: ${a.dataSync()}, b: ${b.dataSync()}, c: ${c.dataSync()}`);\nconst preds = f(xs).dataSync();\npreds.forEach((pred, i) => {\n   console.log(`x: ${i}, pred: ${pred}`);\n});\n```",
                 "fileName": "#65",
                 "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-core-v2.0.0/tfjs-core/src/optimizers/optimizer_constructors.ts#L65-L67",
                 "isFunction": true
@@ -8018,7 +8018,7 @@
                   }
                 ],
                 "returnType": "TensorContainer",
-                "documentation": "Executes the provided function `fn` and after it is executed, cleans up all\nintermediate tensors allocated by `fn` except those returned by `fn`.\n`fn` must not return a Promise (async functions not allowed). The returned\nresult can be a complex object.\n\nUsing this method helps avoid memory leaks. In general, wrap calls to\noperations in `tf.tidy` for automatic memory cleanup.\n\nNOTE: Variables do *not* get cleaned up when inside a tidy(). If you want to\ndispose variables, please use `tf.disposeVariables` or call dispose()\ndirectly on variables.\n\n```js\n// y = 2 ^ 2 + 1\nconst y = tf.tidy(() => {\n  // a, b, and one will be cleaned up when the tidy ends.\n  const one = tf.scalar(1);\n  const a = tf.scalar(2);\n  const b = a.square();\n\n  console.log('numTensors (in tidy): ' + tf.memory().numTensors);\n\n  // The value returned inside the tidy function will return\n  // through the tidy, in this case to the variable y.\n  return b.add(one);\n});\n\nconsole.log('numTensors (outside tidy): ' + tf.memory().numTensors);\ny.print();\n```",
+                "documentation": "Executes the provided function `fn` and after it is executed, cleans up all\nintermediate tensors allocated by `fn` except those returned by `fn`.\n`fn` must not return a Promise (async functions not allowed). The returned\nresult can be a complex object.\n\nUsing this method helps avoid memory leaks. In general, wrap calls to\noperations in `tf.tidy` for automatic memory cleanup.\n\nNOTE: Variables do *not* get cleaned up when inside a tidy(). If you want to\ndispose variables, please use `tf.disposeVariables` or call dispose()\ndirectly on variables.\n\n```js\n// y = 2 ^ 2 + 1\nconst y = tf.tidy(() => {\n   // a, b, and one will be cleaned up when the tidy ends.\n   const one = tf.scalar(1);\n   const a = tf.scalar(2);\n   const b = a.square();\n\n   console.log('numTensors (in tidy): ' + tf.memory().numTensors);\n\n   // The value returned inside the tidy function will return\n   // through the tidy, in this case to the variable y.\n   return b.add(one);\n});\n\nconsole.log('numTensors (outside tidy): ' + tf.memory().numTensors);\ny.print();\n```",
                 "fileName": "#180",
                 "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-core-v2.0.0/tfjs-core/src/globals.ts#L180-L183",
                 "isFunction": true
@@ -8062,7 +8062,7 @@
                   }
                 ],
                 "returnType": "Tensor",
-                "documentation": "Keeps a `tf.Tensor` generated inside a `tf.tidy` from being disposed\nautomatically.\n\n```js\nlet b;\nconst y = tf.tidy(() => {\n  const one = tf.scalar(1);\n  const a = tf.scalar(2);\n\n  // b will not be cleaned up by the tidy. a and one will be cleaned up\n  // when the tidy ends.\n  b = tf.keep(a.square());\n\n  console.log('numTensors (in tidy): ' + tf.memory().numTensors);\n\n  // The value returned inside the tidy function will return\n  // through the tidy, in this case to the variable y.\n  return b.add(one);\n});\n\nconsole.log('numTensors (outside tidy): ' + tf.memory().numTensors);\nconsole.log('y:');\ny.print();\nconsole.log('b:');\nb.print();\n```",
+                "documentation": "Keeps a `tf.Tensor` generated inside a `tf.tidy` from being disposed\nautomatically.\n\n```js\nlet b;\nconst y = tf.tidy(() => {\n   const one = tf.scalar(1);\n   const a = tf.scalar(2);\n\n   // b will not be cleaned up by the tidy. a and one will be cleaned up\n   // when the tidy ends.\n   b = tf.keep(a.square());\n\n   console.log('numTensors (in tidy): ' + tf.memory().numTensors);\n\n   // The value returned inside the tidy function will return\n   // through the tidy, in this case to the variable y.\n   return b.add(one);\n});\n\nconsole.log('numTensors (outside tidy): ' + tf.memory().numTensors);\nconsole.log('y:');\ny.print();\nconsole.log('b:');\nb.print();\n```",
                 "fileName": "#231",
                 "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-core-v2.0.0/tfjs-core/src/globals.ts#L231-L233",
                 "isFunction": true
@@ -8089,7 +8089,7 @@
                   }
                 ],
                 "returnType": "Promise<ProfileInfo>",
-                "documentation": "Executes the provided function `f()` and returns a promise that resolves\nwith information about the function's memory use:\n- `newBytes`: the number of new bytes allocated\n- `newTensors`: the number of new tensors created\n- `peakBytes`: the peak number of bytes allocated\n- `kernels`: an array of objects for each kernel involved that reports\ntheir input and output shapes, number of bytes used, and number of new\ntensors created.\n\n```js\nconst profile = await tf.profile(() => {\n  const x = tf.tensor1d([1, 2, 3]);\n  let x2 = x.square();\n  x2.dispose();\n  x2 = x.square();\n  x2.dispose();\n  return x;\n});\n\nconsole.log(`newBytes: ${profile.newBytes}`);\nconsole.log(`newTensors: ${profile.newTensors}`);\nconsole.log(`byte usage over all kernels: ${profile.kernels.map(k =>\nk.totalBytesSnapshot)}`);\n```",
+                "documentation": "Executes the provided function `f()` and returns a promise that resolves\nwith information about the function's memory use:\n- `newBytes`: the number of new bytes allocated\n- `newTensors`: the number of new tensors created\n- `peakBytes`: the peak number of bytes allocated\n- `kernels`: an array of objects for each kernel involved that reports\ntheir input and output shapes, number of bytes used, and number of new\ntensors created.\n\n```js\nconst profile = await tf.profile(() => {\n   const x = tf.tensor1d([1, 2, 3]);\n   let x2 = x.square();\n   x2.dispose();\n   x2 = x.square();\n   x2.dispose();\n   return x;\n});\n\nconsole.log(`newBytes: ${profile.newBytes}`);\nconsole.log(`newTensors: ${profile.newTensors}`);\nconsole.log(`byte usage over all kernels: ${profile.kernels.map(k =>\nk.totalBytesSnapshot)}`);\n```",
                 "fileName": "#137",
                 "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-core-v2.0.0/tfjs-core/src/globals.ts#L137-L139",
                 "isFunction": true
@@ -8284,7 +8284,7 @@
                 "paramStr": "()",
                 "parameters": [],
                 "returnType": "Promise<{[url: string]: ModelArtifactsInfo}>",
-                "documentation": "List all models stored in registered storage mediums.\n\nFor a web browser environment, the registered mediums are Local Storage and\nIndexedDB.\n\n```js\n// First create and save a model.\nconst model = tf.sequential();\nmodel.add(tf.layers.dense(\n    {units: 1, inputShape: [10], activation: 'sigmoid'}));\nawait model.save('localstorage://demo/management/model1');\n\n// Then list existing models.\nconsole.log(JSON.stringify(await tf.io.listModels()));\n\n// Delete the model.\nawait tf.io.removeModel('localstorage://demo/management/model1');\n\n// List models again.\nconsole.log(JSON.stringify(await tf.io.listModels()));\n```",
+                "documentation": "List all models stored in registered storage mediums.\n\nFor a web browser environment, the registered mediums are Local Storage and\nIndexedDB.\n\n```js\n// First create and save a model.\nconst model = tf.sequential();\nmodel.add(tf.layers.dense(\n     {units: 1, inputShape: [10], activation: 'sigmoid'}));\nawait model.save('localstorage://demo/management/model1');\n\n// Then list existing models.\nconsole.log(JSON.stringify(await tf.io.listModels()));\n\n// Delete the model.\nawait tf.io.removeModel('localstorage://demo/management/model1');\n\n// List models again.\nconsole.log(JSON.stringify(await tf.io.listModels()));\n```",
                 "fileName": "#199",
                 "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-core-v2.0.0/tfjs-core/src/io/model_management.ts#L199-L211",
                 "isFunction": true
@@ -8309,7 +8309,7 @@
                   }
                 ],
                 "returnType": "Promise<ModelArtifactsInfo>",
-                "documentation": "Remove a model specified by URL from a reigstered storage medium.\n\n```js\n// First create and save a model.\nconst model = tf.sequential();\nmodel.add(tf.layers.dense(\n    {units: 1, inputShape: [10], activation: 'sigmoid'}));\nawait model.save('localstorage://demo/management/model1');\n\n// Then list existing models.\nconsole.log(JSON.stringify(await tf.io.listModels()));\n\n// Delete the model.\nawait tf.io.removeModel('localstorage://demo/management/model1');\n\n// List models again.\nconsole.log(JSON.stringify(await tf.io.listModels()));\n```",
+                "documentation": "Remove a model specified by URL from a reigstered storage medium.\n\n```js\n// First create and save a model.\nconst model = tf.sequential();\nmodel.add(tf.layers.dense(\n     {units: 1, inputShape: [10], activation: 'sigmoid'}));\nawait model.save('localstorage://demo/management/model1');\n\n// Then list existing models.\nconsole.log(JSON.stringify(await tf.io.listModels()));\n\n// Delete the model.\nawait tf.io.removeModel('localstorage://demo/management/model1');\n\n// List models again.\nconsole.log(JSON.stringify(await tf.io.listModels()));\n```",
                 "fileName": "#247",
                 "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-core-v2.0.0/tfjs-core/src/io/model_management.ts#L247-L251",
                 "isFunction": true
@@ -8341,7 +8341,7 @@
                   }
                 ],
                 "returnType": "Promise<ModelArtifactsInfo>",
-                "documentation": "Copy a model from one URL to another.\n\nThis function supports:\n\n1. Copying within a storage medium, e.g.,\n    `tf.io.copyModel('localstorage://model-1', 'localstorage://model-2')`\n2. Copying between two storage mediums, e.g.,\n    `tf.io.copyModel('localstorage://model-1', 'indexeddb://model-1')`\n\n```js\n// First create and save a model.\nconst model = tf.sequential();\nmodel.add(tf.layers.dense(\n    {units: 1, inputShape: [10], activation: 'sigmoid'}));\nawait model.save('localstorage://demo/management/model1');\n\n// Then list existing models.\nconsole.log(JSON.stringify(await tf.io.listModels()));\n\n// Copy the model, from Local Storage to IndexedDB.\nawait tf.io.copyModel(\n    'localstorage://demo/management/model1',\n    'indexeddb://demo/management/model1');\n\n// List models again.\nconsole.log(JSON.stringify(await tf.io.listModels()));\n\n// Remove both models.\nawait tf.io.removeModel('localstorage://demo/management/model1');\nawait tf.io.removeModel('indexeddb://demo/management/model1');\n```",
+                "documentation": "Copy a model from one URL to another.\n\nThis function supports:\n\n1. Copying within a storage medium, e.g.,\n    `tf.io.copyModel('localstorage://model-1', 'localstorage://model-2')`\n2. Copying between two storage mediums, e.g.,\n    `tf.io.copyModel('localstorage://model-1', 'indexeddb://model-1')`\n\n```js\n// First create and save a model.\nconst model = tf.sequential();\nmodel.add(tf.layers.dense(\n     {units: 1, inputShape: [10], activation: 'sigmoid'}));\nawait model.save('localstorage://demo/management/model1');\n\n// Then list existing models.\nconsole.log(JSON.stringify(await tf.io.listModels()));\n\n// Copy the model, from Local Storage to IndexedDB.\nawait tf.io.copyModel(\n     'localstorage://demo/management/model1',\n     'indexeddb://demo/management/model1');\n\n// List models again.\nconsole.log(JSON.stringify(await tf.io.listModels()));\n\n// Remove both models.\nawait tf.io.removeModel('localstorage://demo/management/model1');\nawait tf.io.removeModel('indexeddb://demo/management/model1');\n```",
                 "fileName": "#301",
                 "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-core-v2.0.0/tfjs-core/src/io/model_management.ts#L301-L305",
                 "isFunction": true
@@ -8373,7 +8373,7 @@
                   }
                 ],
                 "returnType": "Promise<ModelArtifactsInfo>",
-                "documentation": "Move a model from one URL to another.\n\nThis function supports:\n\n1. Moving within a storage medium, e.g.,\n    `tf.io.moveModel('localstorage://model-1', 'localstorage://model-2')`\n2. Moving between two storage mediums, e.g.,\n    `tf.io.moveModel('localstorage://model-1', 'indexeddb://model-1')`\n\n```js\n// First create and save a model.\nconst model = tf.sequential();\nmodel.add(tf.layers.dense(\n    {units: 1, inputShape: [10], activation: 'sigmoid'}));\nawait model.save('localstorage://demo/management/model1');\n\n// Then list existing models.\nconsole.log(JSON.stringify(await tf.io.listModels()));\n\n// Move the model, from Local Storage to IndexedDB.\nawait tf.io.moveModel(\n    'localstorage://demo/management/model1',\n    'indexeddb://demo/management/model1');\n\n// List models again.\nconsole.log(JSON.stringify(await tf.io.listModels()));\n\n// Remove the moved model.\nawait tf.io.removeModel('indexeddb://demo/management/model1');\n```",
+                "documentation": "Move a model from one URL to another.\n\nThis function supports:\n\n1. Moving within a storage medium, e.g.,\n    `tf.io.moveModel('localstorage://model-1', 'localstorage://model-2')`\n2. Moving between two storage mediums, e.g.,\n    `tf.io.moveModel('localstorage://model-1', 'indexeddb://model-1')`\n\n```js\n// First create and save a model.\nconst model = tf.sequential();\nmodel.add(tf.layers.dense(\n     {units: 1, inputShape: [10], activation: 'sigmoid'}));\nawait model.save('localstorage://demo/management/model1');\n\n// Then list existing models.\nconsole.log(JSON.stringify(await tf.io.listModels()));\n\n// Move the model, from Local Storage to IndexedDB.\nawait tf.io.moveModel(\n     'localstorage://demo/management/model1',\n     'indexeddb://demo/management/model1');\n\n// List models again.\nconsole.log(JSON.stringify(await tf.io.listModels()));\n\n// Remove the moved model.\nawait tf.io.removeModel('indexeddb://demo/management/model1');\n```",
                 "fileName": "#354",
                 "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-core-v2.0.0/tfjs-core/src/io/model_management.ts#L354-L358",
                 "isFunction": true
@@ -8403,7 +8403,7 @@
                   }
                 ],
                 "returnType": "IOHandler",
-                "documentation": "Creates an IOHandler that triggers file downloads from the browser.\n\nThe returned `IOHandler` instance can be used as model exporting methods such\nas `tf.Model.save` and supports only saving.\n\n```js\nconst model = tf.sequential();\nmodel.add(tf.layers.dense(\n    {units: 1, inputShape: [10], activation: 'sigmoid'}));\nconst saveResult = await model.save('downloads://mymodel');\n// This will trigger downloading of two files:\n//   'mymodel.json' and 'mymodel.weights.bin'.\nconsole.log(saveResult);\n```",
+                "documentation": "Creates an IOHandler that triggers file downloads from the browser.\n\nThe returned `IOHandler` instance can be used as model exporting methods such\nas `tf.Model.save` and supports only saving.\n\n```js\nconst model = tf.sequential();\nmodel.add(tf.layers.dense(\n     {units: 1, inputShape: [10], activation: 'sigmoid'}));\nconst saveResult = await model.save('downloads://mymodel');\n// This will trigger downloading of two files:\n//   'mymodel.json' and 'mymodel.weights.bin'.\nconsole.log(saveResult);\n```",
                 "fileName": "#304",
                 "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-core-v2.0.0/tfjs-core/src/io/browser_files.ts#L304-L306",
                 "isFunction": true
@@ -8428,7 +8428,7 @@
                   }
                 ],
                 "returnType": "IOHandler",
-                "documentation": "Creates an IOHandler that loads model artifacts from user-selected files.\n\nThis method can be used for loading from files such as user-selected files\nin the browser.\nWhen used in conjunction with `tf.loadLayersModel`, an instance of\n`tf.LayersModel` (Keras-style) can be constructed from the loaded artifacts.\n\n```js\n// Note: This code snippet won't run properly without the actual file input\n//   elements in the HTML DOM.\n\n// Suppose there are two HTML file input (`<input type=\"file\" ...>`)\n// elements.\nconst uploadJSONInput = document.getElementById('upload-json');\nconst uploadWeightsInput = document.getElementById('upload-weights');\nconst model = await tf.loadLayersModel(tf.io.browserFiles(\n    [uploadJSONInput.files[0], uploadWeightsInput.files[0]]));\n```",
+                "documentation": "Creates an IOHandler that loads model artifacts from user-selected files.\n\nThis method can be used for loading from files such as user-selected files\nin the browser.\nWhen used in conjunction with `tf.loadLayersModel`, an instance of\n`tf.LayersModel` (Keras-style) can be constructed from the loaded artifacts.\n\n```js\n// Note: This code snippet won't run properly without the actual file input\n//   elements in the HTML DOM.\n\n// Suppose there are two HTML file input (`<input type=\"file\" ...>`)\n// elements.\nconst uploadJSONInput = document.getElementById('upload-json');\nconst uploadWeightsInput = document.getElementById('upload-weights');\nconst model = await tf.loadLayersModel(tf.io.browserFiles(\n     [uploadJSONInput.files[0], uploadWeightsInput.files[0]]));\n```",
                 "fileName": "#349",
                 "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-core-v2.0.0/tfjs-core/src/io/browser_files.ts#L349-L351",
                 "isFunction": true
@@ -8460,7 +8460,7 @@
                   }
                 ],
                 "returnType": "IOHandler",
-                "documentation": "Creates an IOHandler subtype that sends model artifacts to HTTP server.\n\nAn HTTP request of the `multipart/form-data` mime type will be sent to the\n`path` URL. The form data includes artifacts that represent the topology\nand/or weights of the model. In the case of Keras-style `tf.Model`, two\nblobs (files) exist in form-data:\n   - A JSON file consisting of `modelTopology` and `weightsManifest`.\n   - A binary weights file consisting of the concatenated weight values.\nThese files are in the same format as the one generated by\n[tfjs_converter](https://js.tensorflow.org/tutorials/import-keras.html).\n\nThe following code snippet exemplifies the client-side code that uses this\nfunction:\n\n```js\nconst model = tf.sequential();\nmodel.add(\n    tf.layers.dense({units: 1, inputShape: [100], activation: 'sigmoid'}));\n\nconst saveResult = await model.save(tf.io.http(\n    'http://model-server:5000/upload', {requestInit: {method: 'PUT'}}));\nconsole.log(saveResult);\n```\n\nIf the default `POST` method is to be used, without any custom parameters\nsuch as headers, you can simply pass an HTTP or HTTPS URL to `model.save`:\n\n```js\nconst saveResult = await model.save('http://model-server:5000/upload');\n```\n\nThe following GitHub Gist\nhttps://gist.github.com/dsmilkov/1b6046fd6132d7408d5257b0976f7864\nimplements a server based on [flask](https://github.com/pallets/flask) that\ncan receive the request. Upon receiving the model artifacts via the requst,\nthis particular server reconsistutes instances of [Keras\nModels](https://keras.io/models/model/) in memory.",
+                "documentation": "Creates an IOHandler subtype that sends model artifacts to HTTP server.\n\nAn HTTP request of the `multipart/form-data` mime type will be sent to the\n`path` URL. The form data includes artifacts that represent the topology\nand/or weights of the model. In the case of Keras-style `tf.Model`, two\nblobs (files) exist in form-data:\n   - A JSON file consisting of `modelTopology` and `weightsManifest`.\n   - A binary weights file consisting of the concatenated weight values.\nThese files are in the same format as the one generated by\n[tfjs_converter](https://js.tensorflow.org/tutorials/import-keras.html).\n\nThe following code snippet exemplifies the client-side code that uses this\nfunction:\n\n```js\nconst model = tf.sequential();\nmodel.add(\n     tf.layers.dense({units: 1, inputShape: [100], activation: 'sigmoid'}));\n\nconst saveResult = await model.save(tf.io.http(\n     'http://model-server:5000/upload', {requestInit: {method: 'PUT'}}));\nconsole.log(saveResult);\n```\n\nIf the default `POST` method is to be used, without any custom parameters\nsuch as headers, you can simply pass an HTTP or HTTPS URL to `model.save`:\n\n```js\nconst saveResult = await model.save('http://model-server:5000/upload');\n```\n\nThe following GitHub Gist\nhttps://gist.github.com/dsmilkov/1b6046fd6132d7408d5257b0976f7864\nimplements a server based on [flask](https://github.com/pallets/flask) that\ncan receive the request. Upon receiving the model artifacts via the requst,\nthis particular server reconsistutes instances of [Keras\nModels](https://keras.io/models/model/) in memory.",
                 "fileName": "#351",
                 "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-core-v2.0.0/tfjs-core/src/io/http.ts#L351-L353",
                 "isFunction": true
@@ -8488,7 +8488,7 @@
                   }
                 ],
                 "returnType": "void",
-                "documentation": "Register a class with the serialization map of TensorFlow.js.\n\nThis is often used for registering custom Layers, so they can be\nserialized and deserialized.\n\nExample:\n\n```js\nclass MyCustomLayer extends tf.layers.Layer {\n  static className = 'MyCustomLayer';\n\n  constructor(config) {\n    super(config);\n  }\n}\ntf.serialization.registerClass(MyCustomLayer);\n```",
+                "documentation": "Register a class with the serialization map of TensorFlow.js.\n\nThis is often used for registering custom Layers, so they can be\nserialized and deserialized.\n\nExample:\n\n```js\nclass MyCustomLayer extends tf.layers.Layer {\n   static className = 'MyCustomLayer';\n\n   constructor(config) {\n     super(config);\n   }\n}\ntf.serialization.registerClass(MyCustomLayer);\n```",
                 "fileName": "#160",
                 "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-core-v2.0.0/tfjs-core/src/serialization.ts#L160-L176",
                 "isFunction": true
@@ -13879,1219 +13879,6 @@
       {
         "name": "variable",
         "type": "Variable",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      }
-    ],
-    "Tensor": [
-      {
-        "name": "id",
-        "type": "number",
-        "documentation": "Unique id of this tensor.",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "dataId",
-        "type": "DataId",
-        "documentation": "Id of the bucket holding the data for this tensor. Multiple arrays can\npoint to the same bucket (e.g. when calling array.reshape()).",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "shape",
-        "type": "ShapeMap[R]",
-        "documentation": "The shape of the tensor.",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "size",
-        "type": "number",
-        "documentation": "Number of elements in the tensor.",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "dtype",
-        "type": "DataType",
-        "documentation": "The data type for the array.",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "rankType",
-        "type": "R",
-        "documentation": "The rank type for the array (see `Rank` enum).",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "kept",
-        "type": "boolean",
-        "documentation": "Whether this tensor has been globally kept.",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "scopeId",
-        "type": "number",
-        "documentation": "The id of the scope this tensor is being tracked in.",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "strides",
-        "type": "number[]",
-        "documentation": "Number of elements to skip in each dimension when indexing. See\nhttps://docs.scipy.org/doc/numpy/reference/generated/\\\nnumpy.ndarray.strides.html",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "flatten",
-        "type": "Tensor1D",
-        "documentation": "Flatten a Tensor to a 1D array.",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "asScalar",
-        "type": "Scalar",
-        "documentation": "Converts a size-1 `tf.Tensor` to a `tf.Scalar`.",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "as1D",
-        "type": "Tensor1D",
-        "documentation": "Converts a `tf.Tensor` to a `tf.Tensor1D`.",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "as2D",
-        "type": "Tensor2D",
-        "documentation": "Converts a `tf.Tensor` to a `tf.Tensor2D`.",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "as3D",
-        "type": "Tensor3D",
-        "documentation": "Converts a `tf.Tensor` to a `tf.Tensor3D`.",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "as4D",
-        "type": "Tensor4D",
-        "documentation": "Converts a `tf.Tensor` to a `tf.Tensor4D`.",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "as5D",
-        "type": "Tensor5D",
-        "documentation": "Converts a `tf.Tensor` to a `tf.Tensor5D`.",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "asType",
-        "type": "T",
-        "documentation": "Casts a `tf.Tensor` to a specified dtype.",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "rank",
-        "type": "number",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "buffer",
-        "type": "Promise<TensorBuffer>",
-        "documentation": "Returns a promise of `tf.TensorBuffer` that holds the underlying data.",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "bufferSync",
-        "type": "TensorBuffer",
-        "documentation": "Returns a `tf.TensorBuffer` that holds the underlying data.",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "array",
-        "type": "Promise<ArrayMap[R]>",
-        "documentation": "Returns the tensor data as a nested array. The transfer of data is done\nasynchronously.",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "arraySync",
-        "type": "ArrayMap[R]",
-        "documentation": "Returns the tensor data as a nested array. The transfer of data is done\nsynchronously.",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "data",
-        "type": "Promise<DataTypeMap[D]>",
-        "documentation": "Asynchronously downloads the values from the `tf.Tensor`. Returns a\npromise of `TypedArray` that resolves when the computation has finished.",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "dataSync",
-        "type": "DataTypeMap[D]",
-        "documentation": "Synchronously downloads the values from the `tf.Tensor`. This blocks the\nUI thread until the values are ready, which can cause performance issues.",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "bytes",
-        "type": "Promise<Uint8Array[]|Uint8Array>",
-        "documentation": "Returns the underlying bytes of the tensor's data.",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "dispose",
-        "type": "void",
-        "documentation": "Disposes `tf.Tensor` from memory.",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "isDisposedInternal",
-        "type": "boolean",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "isDisposed",
-        "type": "boolean",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "throwIfDisposed",
-        "type": "() => void",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "toFloat",
-        "type": "T",
-        "documentation": "Casts the array to type `float32`",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "toInt",
-        "type": "() => Tensor",
-        "documentation": "Casts the array to type `int32`",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "toBool",
-        "type": "() => Tensor",
-        "documentation": "Casts the array to type `bool`",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "print",
-        "type": "void",
-        "documentation": "Prints the `tf.Tensor`. See `tf.print` for details.",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "reshape",
-        "type": "Tensor",
-        "documentation": "Reshapes the tensor into the provided shape.\nSee `tf.reshape` for more details.",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "reshapeAs",
-        "type": "T",
-        "documentation": "Reshapes the tensor into the shape of the provided tensor.",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "expandDims",
-        "type": "Tensor",
-        "documentation": "Returns a `tf.Tensor` that has expanded rank, by inserting a dimension\ninto the tensor's shape. See `tf.expandDims` for details.",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "cumsum",
-        "type": "T",
-        "documentation": "Returns the cumulative sum of the `tf.Tensor` along `axis`.",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "squeeze",
-        "type": "T",
-        "documentation": "Returns a `tf.Tensor` with dimensions of size 1 removed from the shape.\nSee `tf.squeeze` for more details.",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "clone",
-        "type": "T",
-        "documentation": "Returns a copy of the tensor. See `tf.clone` for details.",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "toString",
-        "type": "string",
-        "documentation": "Returns a human-readable description of the tensor. Useful for logging.",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "gather",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "norm",
-        "type": "Tensor",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "slice",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "reverse",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "stack",
-        "type": "Tensor",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "unstack",
-        "type": "Tensor[]",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "all",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "any",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "logSumExp",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "sum",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "prod",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "mean",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "min",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "argMin",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "argMax",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "cast",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "addStrict",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "atan2",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "subStrict",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "pow",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "powStrict",
-        "type": "Tensor",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "mul",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "mulStrict",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "floorDiv",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "divStrict",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "minimum",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "minimumStrict",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "maximum",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "maximumStrict",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "mod",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "modStrict",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "squaredDifferenceStrict",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "notEqualStrict",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "lessStrict",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "equalStrict",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "lessEqualStrict",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "greaterStrict",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "greaterEqualStrict",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "logicalAnd",
-        "type": "Tensor",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "logicalOr",
-        "type": "Tensor",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "logicalNot",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "logicalXor",
-        "type": "Tensor",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "where",
-        "type": "Tensor",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "neg",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "ceil",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "floor",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "sign",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "isNaN",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "isInf",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "isFinite",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "exp",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "expm1",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "log",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "log1p",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "sqrt",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "rsqrt",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "square",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "reciprocal",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "abs",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "clipByValue",
-        "type": "Tensor",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "relu",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "relu6",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "elu",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "selu",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "leakyRelu",
-        "type": "Tensor",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "prelu",
-        "type": "Tensor",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "sigmoid",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "logSigmoid",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "softplus",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "zerosLike",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "onesLike",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "sin",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "cos",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "tan",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "asin",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "acos",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "atan",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "sinh",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "cosh",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "tanh",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "asinh",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "acosh",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "atanh",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "erf",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "round",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "step",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "softmax",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "logSoftmax",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "resizeBilinear",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "resizeNearestNeighbor",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "avgPool",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "maxPool",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "pool",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "variable",
-        "type": "Variable",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "unsortedSegmentSum",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "topk",
-        "type": "{values: T, indices: T}",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "stridedSlice",
-        "type": "Tensor",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "fft",
-        "type": "Tensor",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "ifft",
-        "type": "Tensor",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "rfft",
-        "type": "Tensor",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "irfft",
-        "type": "Tensor",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "add",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "batchNorm",
-        "type": "Tensor",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "broadcastTo",
-        "type": "Tensor",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "batchToSpaceND",
-        "type": "Tensor",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "max",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "concat",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "conv1d",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "conv2d",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "conv2dTranspose",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "depthToSpace",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "depthwiseConv2d",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "depthwiseConv2D",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "div",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "divNoNan",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "dot",
-        "type": "Tensor",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "equal",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "greater",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "greaterEqual",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "less",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "lessEqual",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "localResponseNormalization",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "matMul",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "oneHot",
-        "type": "Tensor",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "notEqual",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "pad",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "separableConv2d",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "split",
-        "type": "T[]",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "squaredDifference",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "spaceToBatchND",
-        "type": "Tensor",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "sub",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "tile",
-        "type": "T",
-        "documentation": "",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "transpose",
-        "type": "T",
         "documentation": "",
         "optional": false,
         "isConfigParam": true
