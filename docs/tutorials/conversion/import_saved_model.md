@@ -108,7 +108,7 @@ const cat = document.getElementById('cat');
 model.execute(tf.browser.fromPixels(cat));
 ```
 
-Check out our [MobileNet demo](https://github.com/tensorflow/tfjs-converter/tree/master/tfjs-converter/demo/mobilenet).
+Check out our [MobileNet demo](https://github.com/tensorflow/tfjs/tree/master/tfjs-converter/demo/mobilenet).
 
 The `loadGraphModel` API accepts an additional `LoadOptions` parameter, which can be used to send credentials or custom headers along with the request. Please see the [loadGraphModel() documentation](https://js.tensorflow.org/api/1.0.0/#loadGraphModel) for more details.
 
