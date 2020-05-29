@@ -22,7 +22,7 @@ When you pull new commits from git you should run `yarn prep` again.
 ## Building and previewing the site
 
 ```sh
-yarn build  # note that you may need to build the API before running this (see below for details)
+yarn build-api && yarn build
 ```
 
 ```
