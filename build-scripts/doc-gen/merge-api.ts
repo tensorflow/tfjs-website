@@ -92,29 +92,29 @@ skeleton.forEach(skeletonHeading => {
 // Collect all the interfaces for all the repos and merge them.
 const configInterfaceParamMapMerged:
     {[interfaceName: string]: DocFunctionParam[]} = {};
-docsForRepos.forEach(docsForRepos => {
-  Object.keys(docsForRepos.configInterfaceParamMap).forEach(key => {
+docsForRepos.forEach(docsForRepo => {
+  Object.keys(docsForRepo.configInterfaceParamMap).forEach(key => {
     if (configInterfaceParamMapMerged[key] != null) {
       console.warn(
           `WARNING: ${key} interface found in multiple repos. ` +
           `Using first instantation for config unpacking.`);
     } else {
       configInterfaceParamMapMerged[key] =
-          docsForRepos.configInterfaceParamMap[key];
+          docsForRepo.configInterfaceParamMap[key];
     }
   });
 });
 
 // Collected all the types tagged with @docinline to inline.
 const inlineTypesMerged: {[typeName: string]: string} = {};
-docsForRepos.forEach(docsForRepos => {
-  Object.keys(docsForRepos.inlineTypes).forEach(key => {
+docsForRepos.forEach(docsForRepo => {
+  Object.keys(docsForRepo.inlineTypes).forEach(key => {
     if (inlineTypesMerged[key] != null) {
       console.warn(
           `WARNING: ${key} inlined type found in multiple repos. ` +
           `Using first instantation for inlining.`);
     } else {
-      inlineTypesMerged[key] = docsForRepos.inlineTypes[key];
+      inlineTypesMerged[key] = docsForRepo.inlineTypes[key];
     }
   });
 });

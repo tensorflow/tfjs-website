@@ -202,11 +202,14 @@ function visitNode(
   // objects.
   if (ts.isInterfaceDeclaration(node)) {
     const symbol = checker.getSymbolAtLocation(node.name);
-    const namespace = util.getJsdoc(checker, node, IN_NAMESPACE_JSDOC);
-    const symbolPath =
-        (namespace != null ? namespace + '.' : '') + symbol.getName();
-    configInterfaceParamMap[symbolPath] =
-        serializeInterfaceParams(checker, symbol);
+    // Never allow the Tensor type to be unpacked
+    if (symbol.getName() !== 'Tensor') {
+      const namespace = util.getJsdoc(checker, node, IN_NAMESPACE_JSDOC);
+      const symbolPath =
+          (namespace != null ? namespace + '.' : '') + symbol.getName();
+      configInterfaceParamMap[symbolPath] =
+          serializeInterfaceParams(checker, symbol);
+    }
   }
 
   // Map types to their text so we inline them.
