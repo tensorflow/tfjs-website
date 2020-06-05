@@ -203,6 +203,11 @@ function visitNode(
   if (ts.isInterfaceDeclaration(node)) {
     const symbol = checker.getSymbolAtLocation(node.name);
     // Never allow the Tensor type to be unpacked
+    // Note for future: This _may_ have started happening when the
+    // `export declare namespace Tensor {}` was added in tensorflow core
+    // If this happens to other symbols infuture we may want to look into a more
+    // general way to detect this, however tscompiler API docs are sparse so
+    // the explicit solution below has that in its favor.
     if (symbol.getName() !== 'Tensor') {
       const namespace = util.getJsdoc(checker, node, IN_NAMESPACE_JSDOC);
       const symbolPath =
