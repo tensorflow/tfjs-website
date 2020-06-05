@@ -34,7 +34,7 @@
                 "returnType": "void",
                 "documentation": "Register an Op for graph model executor. This allow you to register\nTensorFlow custom op or override existing op.\n\nHere is an example of registering a new MatMul Op.\n```js\nconst customMatmul = (node) =>\n    tf.matMul(\n        node.inputs[0], node.inputs[1],\n        node.attrs['transpose_a'], node.attrs['transpose_b']);\n\ntf.registerOp('MatMul', customMatmul);\n```\nThe inputs and attrs of the node object is based on the TensorFlow op\nregistry.",
                 "fileName": "#47",
-                "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-converter-v2.0.0/tfjs-converter/src/operations/custom_op/register.ts#L47-L57",
+                "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-converter-v1.7.4/tfjs-converter/src/operations/custom_op/register.ts#L47-L57",
                 "isFunction": true
               },
               {
@@ -56,7 +56,7 @@
                 "returnType": "OpMapper",
                 "documentation": "Retrieve the OpMapper object for the registered op.",
                 "fileName": "#66",
-                "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-converter-v2.0.0/tfjs-converter/src/operations/custom_op/register.ts#L66-L68",
+                "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-converter-v1.7.4/tfjs-converter/src/operations/custom_op/register.ts#L66-L68",
                 "isFunction": true
               },
               {
@@ -78,7 +78,7 @@
                 "returnType": "void",
                 "documentation": "Deregister the Op for graph model executor.",
                 "fileName": "#76",
-                "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-converter-v2.0.0/tfjs-converter/src/operations/custom_op/register.ts#L76-L78",
+                "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-converter-v1.7.4/tfjs-converter/src/operations/custom_op/register.ts#L76-L78",
                 "isFunction": true
               }
             ]
@@ -94,7 +94,7 @@
                 "symbolName": "GraphModel",
                 "documentation": "A `tf.GraphModel` is a directed, acyclic graph of built from\nSavedModel GraphDef and allows inference exeuction.\n\nA `tf.GraphModel` can only be created by loading from a model converted from\na [TensorFlow SavedModel](https://www.tensorflow.org/guide/saved_model) using\nthe command line converter tool and loaded via `tf.loadGraphModel`.",
                 "fileName": "#37",
-                "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-converter-v2.0.0/tfjs-converter/src/executor/graph_model.ts#L37-L329",
+                "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-converter-v1.7.4/tfjs-converter/src/executor/graph_model.ts#L37-L330",
                 "methods": [
                   {
                     "docInfo": {
@@ -122,8 +122,8 @@
                     ],
                     "returnType": "Promise<io.SaveResult>",
                     "documentation": "Save the configuration and/or weights of the GraphModel.\n\nAn `IOHandler` is an object that has a `save` method of the proper\nsignature defined. The `save` method manages the storing or\ntransmission of serialized data (\"artifacts\") that represent the\nmodel's topology and weights onto or via a specific medium, such as\nfile downloads, local storage, IndexedDB in the web browser and HTTP\nrequests to a server. TensorFlow.js provides `IOHandler`\nimplementations for a number of frequently used saving mediums, such as\n`tf.io.browserDownloads` and `tf.io.browserLocalStorage`. See `tf.io`\nfor more details.\n\nThis method also allows you to refer to certain types of `IOHandler`s\nas URL-like string shortcuts, such as 'localstorage://' and\n'indexeddb://'.\n\nExample 1: Save `model`'s topology and weights to browser [local\nstorage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage);\nthen load it back.\n\n```js\nconst modelUrl =\n    'https://storage.googleapis.com/tfjs-models/savedmodel/mobilenet_v2_1.0_224/model.json';\nconst model = await tf.loadGraphModel(modelUrl);\nconst zeros = tf.zeros([1, 224, 224, 3]);\nmodel.predict(zeros).print();\n\nconst saveResults = await model.save('localstorage://my-model-1');\n\nconst loadedModel = await tf.loadGraphModel('localstorage://my-model-1');\nconsole.log('Prediction from loaded model:');\nmodel.predict(zeros).print();\n```",
-                    "fileName": "#180",
-                    "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-converter-v2.0.0/tfjs-converter/src/executor/graph_model.ts#L180-L201",
+                    "fileName": "#181",
+                    "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-converter-v1.7.4/tfjs-converter/src/executor/graph_model.ts#L181-L202",
                     "isFunction": true
                   },
                   {
@@ -151,8 +151,8 @@
                     ],
                     "returnType": "Tensor|Tensor[]|NamedTensorMap",
                     "documentation": "Execute the inference for the input tensors.",
-                    "fileName": "#240",
-                    "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-converter-v2.0.0/tfjs-converter/src/executor/graph_model.ts#L240-L243",
+                    "fileName": "#241",
+                    "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-converter-v1.7.4/tfjs-converter/src/executor/graph_model.ts#L241-L244",
                     "isFunction": true
                   },
                   {
@@ -180,8 +180,8 @@
                     ],
                     "returnType": "Tensor|Tensor[]",
                     "documentation": "Executes inference for the model for given input tensors.",
-                    "fileName": "#284",
-                    "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-converter-v2.0.0/tfjs-converter/src/executor/graph_model.ts#L284-L290",
+                    "fileName": "#285",
+                    "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-converter-v1.7.4/tfjs-converter/src/executor/graph_model.ts#L285-L291",
                     "isFunction": true
                   },
                   {
@@ -209,8 +209,8 @@
                     ],
                     "returnType": "Promise<Tensor|Tensor[]>",
                     "documentation": "Executes inference for the model for given input tensors in async\nfashion, use this method when your model contains control flow ops.",
-                    "fileName": "#306",
-                    "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-converter-v2.0.0/tfjs-converter/src/executor/graph_model.ts#L306-L313",
+                    "fileName": "#307",
+                    "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-converter-v1.7.4/tfjs-converter/src/executor/graph_model.ts#L307-L314",
                     "isFunction": true
                   },
                   {
@@ -223,8 +223,8 @@
                     "parameters": [],
                     "returnType": "void",
                     "documentation": "Releases the memory used by the weight tensors.",
-                    "fileName": "#326",
-                    "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-converter-v2.0.0/tfjs-converter/src/executor/graph_model.ts#L326-L328",
+                    "fileName": "#327",
+                    "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-converter-v1.7.4/tfjs-converter/src/executor/graph_model.ts#L327-L329",
                     "isFunction": true
                   }
                 ],
@@ -261,8 +261,8 @@
                 ],
                 "returnType": "Promise<GraphModel>",
                 "documentation": "Load a graph model given a URL to the model definition.\n\nExample of loading MobileNetV2 from a URL and making a prediction with a\nzeros input:\n\n```js\nconst modelUrl =\n    'https://storage.googleapis.com/tfjs-models/savedmodel/mobilenet_v2_1.0_224/model.json';\nconst model = await tf.loadGraphModel(modelUrl);\nconst zeros = tf.zeros([1, 224, 224, 3]);\nmodel.predict(zeros).print();\n```\n\nExample of loading MobileNetV2 from a TF Hub URL and making a prediction with\na zeros input:\n\n```js\nconst modelUrl =\n    'https://tfhub.dev/google/imagenet/mobilenet_v2_140_224/classification/2';\nconst model = await tf.loadGraphModel(modelUrl, {fromTFHub: true});\nconst zeros = tf.zeros([1, 224, 224, 3]);\nmodel.predict(zeros).print();\n```",
-                "fileName": "#360",
-                "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-converter-v2.0.0/tfjs-converter/src/executor/graph_model.ts#L360-L383",
+                "fileName": "#361",
+                "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-converter-v1.7.4/tfjs-converter/src/executor/graph_model.ts#L361-L384",
                 "isFunction": true
               }
             ]

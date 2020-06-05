@@ -17,8 +17,8 @@
                 "symbolName": "Dataset",
                 "namespace": "data",
                 "documentation": "Represents a potentially large list of independent data elements (typically\n'samples' or 'examples').\n\nA 'data example' may be a primitive, an array, a map from string keys to\nvalues, or any nested structure of these.\n\nA `Dataset` represents an ordered collection of elements, together with a\nchain of transformations to be performed on those elements. Each\ntransformation is a method of `Dataset` that returns another `Dataset`, so\nthese may be chained, e.g.\n`const processedDataset = rawDataset.filter(...).map(...).batch(...)`.\n\nData loading and transformation is done in a lazy, streaming fashion.  The\ndataset may be iterated over multiple times; each iteration starts the data\nloading anew and recapitulates the transformations.\n\nA `Dataset` is typically processed as a stream of unbatched examples --i.e.,\nits transformations are applied one example at a time. Batching produces a\nnew `Dataset` where each element is a batch. Batching should usually come\nlast in a pipeline, because data transformations are easier to express on a\nper-example basis than on a per-batch basis.\n\nThe following code examples are calling `await dataset.forEachAsync(...)` to\niterate once over the entire dataset in order to print out the data.",
-                "fileName": "#61",
-                "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-data-v2.0.0/tfjs-data/src/dataset.ts#L61-L519",
+                "fileName": "#60",
+                "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-data-v1.7.4/tfjs-data/src/dataset.ts#L60-L526",
                 "methods": [
                   {
                     "docInfo": {
@@ -45,8 +45,8 @@
                     ],
                     "returnType": "Dataset",
                     "documentation": "Groups elements into batches.\n\nIt is assumed that each of the incoming dataset elements has the same\nstructure-- i.e. the same set of keys at each location in an object\nhierarchy.  For each key, the resulting `Dataset` provides a batched\nelement collecting all of the incoming values for that key.\n\nIncoming primitives are grouped into a 1-D Tensor.\nIncoming Tensors are grouped into a new Tensor where the 0'th axis is\n    the batch dimension.\nIncoming arrays are converted to Tensor and then batched.\nA nested array is interpreted as an n-D Tensor, so the batched result\n    has n+1 dimensions.\nAn array that cannot be converted to Tensor produces an error.\n\nIf an array should not be batched as a unit, it should first be converted\nto an object with integer keys.\n\nHere are a few examples:\n\nBatch a dataset of numbers:\n```js\nconst a = tf.data.array([1, 2, 3, 4, 5, 6, 7, 8]).batch(4);\nawait a.forEachAsync(e => e.print());\n```\n\nBatch a dataset of arrays:\n```js\nconst b = tf.data.array([[1], [2], [3], [4], [5], [6], [7], [8]]).batch(4);\nawait b.forEachAsync(e => e.print());\n```\n\nBatch a dataset of objects:\n```js\nconst c = tf.data.array([{a: 1, b: 11}, {a: 2, b: 12}, {a: 3, b: 13},\n   {a: 4, b: 14}, {a: 5, b: 15}, {a: 6, b: 16}, {a: 7, b: 17},\n   {a: 8, b: 18}]).batch(4);\nawait c.forEachAsync(e => {\n   console.log('{');\n   for(var key in e) {\n     console.log(key+':');\n     e[key].print();\n   }\n   console.log('}');\n})\n```",
-                    "fileName": "#134",
-                    "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-data-v2.0.0/tfjs-data/src/dataset.ts#L134-L157",
+                    "fileName": "#133",
+                    "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-data-v1.7.4/tfjs-data/src/dataset.ts#L133-L156",
                     "isFunction": true
                   },
                   {
@@ -67,8 +67,8 @@
                     ],
                     "returnType": "Dataset",
                     "documentation": "Concatenates this `Dataset` with another.\n\n```js\nconst a = tf.data.array([1, 2, 3]);\nconst b = tf.data.array([4, 5, 6]);\nconst c = a.concatenate(b);\nawait c.forEachAsync(e => console.log(e));\n```",
-                    "fileName": "#173",
-                    "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-data-v2.0.0/tfjs-data/src/dataset.ts#L173-L193",
+                    "fileName": "#172",
+                    "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-data-v1.7.4/tfjs-data/src/dataset.ts#L172-L192",
                     "isFunction": true
                   },
                   {
@@ -89,8 +89,8 @@
                     ],
                     "returnType": "Dataset",
                     "documentation": "Filters this dataset according to `predicate`.\n\n```js\nconst a = tf.data.array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])\n   .filter(x => x%2 === 0);\nawait a.forEachAsync(e => console.log(e));\n```",
-                    "fileName": "#210",
-                    "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-data-v2.0.0/tfjs-data/src/dataset.ts#L210-L224",
+                    "fileName": "#209",
+                    "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-data-v1.7.4/tfjs-data/src/dataset.ts#L209-L223",
                     "isFunction": true
                   },
                   {
@@ -111,8 +111,8 @@
                     ],
                     "returnType": "Promise<void>",
                     "documentation": "Apply a function to every element of the dataset.\n\nAfter the function is applied to a dataset element, any Tensors contained\nwithin that element are disposed.\n\n```js\nconst a = tf.data.array([1, 2, 3]);\nawait a.forEachAsync(e => console.log(e));\n```",
-                    "fileName": "#241",
-                    "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-data-v2.0.0/tfjs-data/src/dataset.ts#L241-L243",
+                    "fileName": "#240",
+                    "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-data-v1.7.4/tfjs-data/src/dataset.ts#L240-L242",
                     "isFunction": true
                   },
                   {
@@ -133,8 +133,8 @@
                     ],
                     "returnType": "Dataset",
                     "documentation": "Maps this dataset through a 1-to-1 transform.\n\n```js\nconst a = tf.data.array([1, 2, 3]).map(x => x*x);\nawait a.forEachAsync(e => console.log(e));\n```",
-                    "fileName": "#259",
-                    "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-data-v2.0.0/tfjs-data/src/dataset.ts#L259-L264",
+                    "fileName": "#266",
+                    "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-data-v1.7.4/tfjs-data/src/dataset.ts#L266-L271",
                     "isFunction": true
                   },
                   {
@@ -155,8 +155,8 @@
                     ],
                     "returnType": "Dataset",
                     "documentation": "Maps this dataset through an async 1-to-1 transform.\n\n```js\nconst a =\n  tf.data.array([1, 2, 3]).mapAsync(x => new Promise(function(resolve){\n    setTimeout(() => {\n      resolve(x * x);\n    }, Math.random()*1000 + 500);\n  }));\nconsole.log(await a.toArray());\n```",
-                    "fileName": "#288",
-                    "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-data-v2.0.0/tfjs-data/src/dataset.ts#L288-L294",
+                    "fileName": "#295",
+                    "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-data-v1.7.4/tfjs-data/src/dataset.ts#L295-L301",
                     "isFunction": true
                   },
                   {
@@ -177,8 +177,8 @@
                     ],
                     "returnType": "Dataset",
                     "documentation": "Creates a `Dataset` that prefetches elements from this dataset.",
-                    "fileName": "#304",
-                    "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-data-v2.0.0/tfjs-data/src/dataset.ts#L304-L313",
+                    "fileName": "#311",
+                    "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-data-v1.7.4/tfjs-data/src/dataset.ts#L311-L320",
                     "isFunction": true
                   },
                   {
@@ -199,8 +199,8 @@
                     ],
                     "returnType": "Dataset",
                     "documentation": "Repeats this dataset `count` times.\n\nNOTE: If this dataset is a function of global state (e.g. a random number\ngenerator), then different repetitions may produce different elements.\n\n```js\nconst a = tf.data.array([1, 2, 3]).repeat(3);\nawait a.forEachAsync(e => console.log(e));\n```",
-                    "fileName": "#332",
-                    "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-data-v2.0.0/tfjs-data/src/dataset.ts#L332-L356",
+                    "fileName": "#339",
+                    "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-data-v1.7.4/tfjs-data/src/dataset.ts#L339-L363",
                     "isFunction": true
                   },
                   {
@@ -221,8 +221,8 @@
                     ],
                     "returnType": "Dataset",
                     "documentation": "Creates a `Dataset` that skips `count` initial elements from this dataset.\n\n```js\nconst a = tf.data.array([1, 2, 3, 4, 5, 6]).skip(3);\nawait a.forEachAsync(e => console.log(e));\n```",
-                    "fileName": "#374",
-                    "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-data-v2.0.0/tfjs-data/src/dataset.ts#L374-L394",
+                    "fileName": "#381",
+                    "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-data-v1.7.4/tfjs-data/src/dataset.ts#L381-L401",
                     "isFunction": true
                   },
                   {
@@ -257,8 +257,8 @@
                     ],
                     "returnType": "Dataset",
                     "documentation": "Pseudorandomly shuffles the elements of this dataset. This is done in a\nstreaming manner, by sampling from a given number of prefetched elements.\n\n```js\nconst a = tf.data.array([1, 2, 3, 4, 5, 6]).shuffle(3);\nawait a.forEachAsync(e => console.log(e));\n```",
-                    "fileName": "#420",
-                    "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-data-v2.0.0/tfjs-data/src/dataset.ts#L420-L443",
+                    "fileName": "#427",
+                    "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-data-v1.7.4/tfjs-data/src/dataset.ts#L427-L450",
                     "isFunction": true
                   },
                   {
@@ -279,8 +279,8 @@
                     ],
                     "returnType": "Dataset",
                     "documentation": "Creates a `Dataset` with at most `count` initial elements from this\ndataset.\n\n```js\nconst a = tf.data.array([1, 2, 3, 4, 5, 6]).take(3);\nawait a.forEachAsync(e => console.log(e));\n```",
-                    "fileName": "#461",
-                    "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-data-v2.0.0/tfjs-data/src/dataset.ts#L461-L478",
+                    "fileName": "#468",
+                    "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-data-v1.7.4/tfjs-data/src/dataset.ts#L468-L485",
                     "isFunction": true
                   },
                   {
@@ -291,10 +291,10 @@
                     "symbolName": "toArray",
                     "paramStr": "()",
                     "parameters": [],
-                    "returnType": "Promise<T[]>",
+                    "returnType": "unknown",
                     "documentation": "Collect all elements of this dataset into an array.\n\nObviously this will succeed only for small datasets that fit in memory.\nUseful for testing and generally should be avoided if possible.\n\n```js\nconst a = tf.data.array([1, 2, 3, 4, 5, 6]);\nconsole.log(await a.toArray());\n```",
-                    "fileName": "#495",
-                    "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-data-v2.0.0/tfjs-data/src/dataset.ts#L495-L500",
+                    "fileName": "#502",
+                    "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-data-v1.7.4/tfjs-data/src/dataset.ts#L502-L507",
                     "isFunction": true
                   }
                 ],
@@ -310,7 +310,7 @@
                 "namespace": "data",
                 "documentation": "Represents a potentially large collection of delimited text records.\n\nThe produced `TensorContainer`s each contain one key-value pair for\nevery column of the table.  When a field is empty in the incoming data, the\nresulting value is `undefined`, or throw error if it is required.  Values\nthat can be parsed as numbers are emitted as type `number`, other values\nare parsed as `string`.\n\nThe results are not batched.",
                 "fileName": "#45",
-                "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-data-v2.0.0/tfjs-data/src/datasets/csv_dataset.ts#L45-L390",
+                "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-data-v1.7.4/tfjs-data/src/datasets/csv_dataset.ts#L45-L390",
                 "methods": [
                   {
                     "docInfo": {
@@ -320,10 +320,10 @@
                     "symbolName": "columnNames",
                     "paramStr": "()",
                     "parameters": [],
-                    "returnType": "Promise<string[]>",
+                    "returnType": "unknown",
                     "documentation": "Returns column names of the csv dataset. If `configuredColumnsOnly` is\ntrue, return column names in `columnConfigs`. If `configuredColumnsOnly` is\nfalse and `columnNames` is provided, `columnNames`. If\n`configuredColumnsOnly` is false and `columnNames` is not provided, return\nall column names parsed from the csv file. For example usage please go to\n`tf.data.csv`.",
                     "fileName": "#64",
-                    "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-data-v2.0.0/tfjs-data/src/datasets/csv_dataset.ts#L64-L70",
+                    "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-data-v1.7.4/tfjs-data/src/datasets/csv_dataset.ts#L64-L70",
                     "isFunction": true
                   }
                 ],
@@ -355,8 +355,8 @@
                 ],
                 "returnType": "Dataset",
                 "documentation": "Create a `Dataset` from an array of elements.\n\nCreate a Dataset from an array of objects:\n```js\nconst a = tf.data.array([{'item': 1}, {'item': 2}, {'item': 3}]);\nawait a.forEachAsync(e => console.log(e));\n```\n\nCreate a Dataset from an array of numbers:\n```js\nconst a = tf.data.array([4, 5, 6]);\nawait a.forEachAsync(e => console.log(e));\n```",
-                "fileName": "#567",
-                "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-data-v2.0.0/tfjs-data/src/dataset.ts#L567-L570",
+                "fileName": "#574",
+                "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-data-v1.7.4/tfjs-data/src/dataset.ts#L574-L577",
                 "isFunction": true
               },
               {
@@ -390,7 +390,7 @@
                 "returnType": "CSVDataset",
                 "documentation": "Create a `CSVDataset` by reading and decoding CSV file(s) from provided URL\nor local path if it's in Node environment.\n\nNote: If isLabel in columnConfigs is `true` for at least one column, the\nelement in returned `CSVDataset` will be an object of\n`{xs:features, ys:labels}`: xs is a dict of features key/value pairs, ys\nis a dict of labels key/value pairs. If no column is marked as label,\nreturns a dict of features only.\n\n```js\nconst csvUrl =\n'https://storage.googleapis.com/tfjs-examples/multivariate-linear-regression/data/boston-housing-train.csv';\n\nasync function run() {\n   // We want to predict the column \"medv\", which represents a median value of\n   // a home (in $1000s), so we mark it as a label.\n   const csvDataset = tf.data.csv(\n     csvUrl, {\n       columnConfigs: {\n         medv: {\n           isLabel: true\n         }\n       }\n     });\n\n   // Number of features is the number of column names minus one for the label\n   // column.\n   const numOfFeatures = (await csvDataset.columnNames()).length - 1;\n\n   // Prepare the Dataset for training.\n   const flattenedDataset =\n     csvDataset\n     .map(({xs, ys}) =>\n       {\n         // Convert xs(features) and ys(labels) from object form (keyed by\n         // column name) to array form.\n         return {xs:Object.values(xs), ys:Object.values(ys)};\n       })\n     .batch(10);\n\n   // Define the model.\n   const model = tf.sequential();\n   model.add(tf.layers.dense({\n     inputShape: [numOfFeatures],\n     units: 1\n   }));\n   model.compile({\n     optimizer: tf.train.sgd(0.000001),\n     loss: 'meanSquaredError'\n   });\n\n   // Fit the model using the prepared Dataset\n   return model.fitDataset(flattenedDataset, {\n     epochs: 10,\n     callbacks: {\n       onEpochEnd: async (epoch, logs) => {\n         console.log(epoch + ':' + logs.loss);\n       }\n     }\n   });\n}\n\nawait run();\n```",
                 "fileName": "#107",
-                "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-data-v2.0.0/tfjs-data/src/readers.ts#L107-L110",
+                "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-data-v1.7.4/tfjs-data/src/readers.ts#L107-L110",
                 "isFunction": true
               },
               {
@@ -417,7 +417,7 @@
                 "returnType": "Dataset",
                 "documentation": "Create a `Dataset` that produces each element from provided JavaScript\ngenerator, which is a function*\n(https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_Generators#Generator_functions),\nor a function that returns an\niterator\n(https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_Generators#Generator_functions).\n\nThe returned iterator should have `.next()` function that returns element in\nformat of `{value: TensorContainer, done:boolean}`.\n\nExample of creating a dataset from an iterator factory:\n```js\nfunction makeIterator() {\n   const numElements = 10;\n   let index = 0;\n\n   const iterator = {\n     next: () => {\n       let result;\n       if (index < numElements) {\n         result = {value: index, done: false};\n         index++;\n         return result;\n       }\n       return {value: index, done: true};\n     }\n   };\n   return iterator;\n}\nconst ds = tf.data.generator(makeIterator);\nawait ds.forEachAsync(e => console.log(e));\n```\n\nExample of creating a dataset from a generator:\n```js\nfunction* dataGenerator() {\n   const numElements = 10;\n   let index = 0;\n   while (index < numElements) {\n     const x = index;\n     index++;\n     yield x;\n   }\n}\n\nconst ds = tf.data.generator(dataGenerator);\nawait ds.forEachAsync(e => console.log(e));\n```",
                 "fileName": "#203",
-                "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-data-v2.0.0/tfjs-data/src/readers.ts#L203-L209",
+                "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-data-v1.7.4/tfjs-data/src/readers.ts#L203-L209",
                 "isFunction": true
               },
               {
@@ -449,7 +449,7 @@
                 "returnType": "Promise<WebcamIterator>",
                 "documentation": "Create an iterator that generate `Tensor`s from webcam video stream. This API\nonly works in Browser environment when the device has webcam.\n\nNote: this code snippet only works when the device has a webcam. It will\nrequest permission to open the webcam when running.\n```js\nconst videoElement = document.createElement('video');\nvideoElement.width = 100;\nvideoElement.height = 100;\nconst cam = await tf.data.webcam(videoElement);\nconst img = await cam.capture();\nimg.print();\ncam.stop();\n```",
                 "fileName": "#242",
-                "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-data-v2.0.0/tfjs-data/src/readers.ts#L242-L246",
+                "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-data-v1.7.4/tfjs-data/src/readers.ts#L242-L246",
                 "isFunction": true
               },
               {
@@ -474,7 +474,7 @@
                 "returnType": "Promise<MicrophoneIterator>",
                 "documentation": "Create an iterator that generate frequency-domain spectrogram `Tensor`s from\nmicrophone audio stream with browser's native FFT. This API only works in\nbrowser environment when the device has microphone.\n\nNote: this code snippet only works when the device has a microphone. It will\nrequest permission to open the microphone when running.\n```js\nconst mic = await tf.data.microphone({\n   fftSize: 1024,\n   columnTruncateLength: 232,\n   numFramesPerSpectrogram: 43,\n   sampleRateHz:44100,\n   includeSpectrogram: true,\n   includeWaveform: true\n});\nconst audioData = await mic.capture();\nconst spectrogramTensor = audioData.spectrogram;\nspectrogramTensor.print();\nconst waveformTensor = audioData.waveform;\nwaveformTensor.print();\nmic.stop();\n```",
                 "fileName": "#283",
-                "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-data-v2.0.0/tfjs-data/src/readers.ts#L283-L286",
+                "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-data-v1.7.4/tfjs-data/src/readers.ts#L283-L286",
                 "isFunction": true
               }
             ]
@@ -502,8 +502,8 @@
                 ],
                 "returnType": "Dataset",
                 "documentation": "Create a `Dataset` by zipping together an array, dict, or nested\nstructure of `Dataset`s (and perhaps additional constants).\nThe underlying datasets must provide elements in a consistent order such that\nthey correspond.\n\nThe number of elements in the resulting dataset is the same as the size of\nthe smallest dataset in datasets.\n\nThe nested structure of the `datasets` argument determines the\nstructure of elements in the resulting iterator.\n\nNote this means that, given an array of two datasets that produce dict\nelements, the result is a dataset that produces elements that are arrays\nof two dicts:\n\nZip an array of datasets:\n```js\nconsole.log('Zip two datasets of objects:');\nconst ds1 = tf.data.array([{a: 1}, {a: 2}, {a: 3}]);\nconst ds2 = tf.data.array([{b: 4}, {b: 5}, {b: 6}]);\nconst ds3 = tf.data.zip([ds1, ds2]);\nawait ds3.forEachAsync(e => console.log(JSON.stringify(e)));\n\n// If the goal is to merge the dicts in order to produce elements like\n// {a: ..., b: ...}, this requires a second step such as:\nconsole.log('Merge the objects:');\nconst ds4 = ds3.map(x => {return {a: x[0].a, b: x[1].b}});\nawait ds4.forEachAsync(e => console.log(e));\n```\n\nZip a dict of datasets:\n```js\nconst a = tf.data.array([{a: 1}, {a: 2}, {a: 3}]);\nconst b = tf.data.array([{b: 4}, {b: 5}, {b: 6}]);\nconst c = tf.data.zip({c: a, d: b});\nawait c.forEachAsync(e => console.log(JSON.stringify(e)));\n```",
-                "fileName": "#612",
-                "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-data-v2.0.0/tfjs-data/src/dataset.ts#L612-L644",
+                "fileName": "#619",
+                "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-data-v1.7.4/tfjs-data/src/dataset.ts#L619-L651",
                 "isFunction": true
               }
             ]
@@ -515,162 +515,7 @@
   "docLinkAliases": {},
   "configInterfaceParamMap": {
     "ContainerObject": [],
-    "ContainerArray": [
-      {
-        "name": "length",
-        "type": "number",
-        "documentation": "Gets or sets the length of the array. This is a number one higher than the highest element defined in an array.",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "toString",
-        "type": "string",
-        "documentation": "Returns a string representation of an array.",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "toLocaleString",
-        "type": "string",
-        "documentation": "Returns a string representation of an array. The elements are converted to string using their toLocalString methods.",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "pop",
-        "type": "T | undefined",
-        "documentation": "Removes the last element from an array and returns it.",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "push",
-        "type": "number",
-        "documentation": "Appends new elements to an array, and returns the new length of the array.",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "concat",
-        "type": "T[]",
-        "documentation": "Combines two or more arrays.\nCombines two or more arrays.",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "join",
-        "type": "string",
-        "documentation": "Adds all the elements of an array separated by the specified separator string.",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "reverse",
-        "type": "T[]",
-        "documentation": "Reverses the elements in an Array.",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "shift",
-        "type": "T | undefined",
-        "documentation": "Removes the first element from an array and returns it.",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "slice",
-        "type": "T[]",
-        "documentation": "Returns a section of an array.",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "sort",
-        "type": "this",
-        "documentation": "Sorts an array.",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "splice",
-        "type": "T[]",
-        "documentation": "Removes elements from an array and, if necessary, inserts new elements in their place, returning the deleted elements.\nRemoves elements from an array and, if necessary, inserts new elements in their place, returning the deleted elements.",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "unshift",
-        "type": "number",
-        "documentation": "Inserts new elements at the start of an array.",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "indexOf",
-        "type": "number",
-        "documentation": "Returns the index of the first occurrence of a value in an array.",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "lastIndexOf",
-        "type": "number",
-        "documentation": "Returns the index of the last occurrence of a specified value in an array.",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "every",
-        "type": "boolean",
-        "documentation": "Determines whether all the members of an array satisfy the specified test.",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "some",
-        "type": "boolean",
-        "documentation": "Determines whether the specified callback function returns true for any element of an array.",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "forEach",
-        "type": "void",
-        "documentation": "Performs the specified action for each element in an array.",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "map",
-        "type": "U[]",
-        "documentation": "Calls a defined callback function on each element of an array, and returns an array that contains the results.",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "filter",
-        "type": "S[]",
-        "documentation": "Returns the elements of an array that meet the condition specified in a callback function.\nReturns the elements of an array that meet the condition specified in a callback function.",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "reduce",
-        "type": "T",
-        "documentation": "Calls the specified callback function for all the elements in an array. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function.\nCalls the specified callback function for all the elements in an array. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function.",
-        "optional": false,
-        "isConfigParam": true
-      },
-      {
-        "name": "reduceRight",
-        "type": "T",
-        "documentation": "Calls the specified callback function for all the elements in an array, in descending order. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function.\nCalls the specified callback function for all the elements in an array, in descending order. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function.",
-        "optional": false,
-        "isConfigParam": true
-      }
-    ],
+    "ContainerArray": [],
     "ColumnConfig": [
       {
         "name": "required",
@@ -688,7 +533,7 @@
       },
       {
         "name": "default",
-        "type": "TensorContainer",
+        "type": "DataElement",
         "documentation": "",
         "optional": false,
         "isConfigParam": true
