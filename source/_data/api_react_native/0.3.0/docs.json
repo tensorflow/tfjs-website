@@ -1,0 +1,423 @@
+{
+  "headings": [
+    {
+      "name": "Platform helpers",
+      "description": "<p><a href=\"https://www.npmjs.com/package/@tensorflow/tfjs-react-native\">tfjs-react-native</a> \nprovides a TensorFlow.js platform adapter for react native.\n<p>All symbols are <b>named exports</b> from the tfjs-react-native package.</p>",
+      "subheadings": [
+        {
+          "name": "http",
+          "description": "",
+          "symbols": [
+            {
+              "docInfo": {
+                "heading": "Platform helpers",
+                "subheading": "http"
+              },
+              "symbolName": "fetch",
+              "paramStr": "(path, init?, options?)",
+              "parameters": [
+                {
+                  "name": "path",
+                  "documentation": "The URL path to make a request to",
+                  "type": "string",
+                  "optional": false,
+                  "isConfigParam": false
+                },
+                {
+                  "name": "init",
+                  "documentation": "The request init. See init here:\nhttps://developer.mozilla.org/en-US/docs/Web/API/Request/Request",
+                  "type": "RequestInit",
+                  "optional": true,
+                  "isConfigParam": false
+                },
+                {
+                  "name": "options",
+                  "documentation": "A RequestDetails object.\n- __options.isBinary__ boolean indicating whether this request is for a\nbinary file.",
+                  "type": "tf.io.RequestDetails",
+                  "optional": true,
+                  "isConfigParam": false
+                }
+              ],
+              "returnType": "Promise<Response>",
+              "documentation": "Makes an HTTP request.",
+              "fileName": "#77",
+              "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-react_native-v0.3.0/tfjs-react-native/src/platform_react_native.ts#L77-L128",
+              "isFunction": true,
+              "displayName": "fetch",
+              "urlHash": "fetch"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Models",
+      "description": "<p>Model loading and saving.</p> ",
+      "subheadings": [
+        {
+          "name": "IOHandlers",
+          "description": "",
+          "symbols": [
+            {
+              "docInfo": {
+                "heading": "Models",
+                "subheading": "IOHandlers"
+              },
+              "symbolName": "asyncStorageIO",
+              "paramStr": "(modelPath)",
+              "parameters": [
+                {
+                  "name": "modelPath",
+                  "documentation": "A unique identifier for the model to be saved. Must be a\nnon-empty string.",
+                  "type": "string",
+                  "optional": false,
+                  "isConfigParam": false
+                }
+              ],
+              "returnType": "io.IOHandler",
+              "documentation": "Factory function for AsyncStorage IOHandler.\n\nThis `IOHandler` supports both `save` and `load`.\n\nFor each model's saved artifacts, three items are saved to async storage.\n   - `tensorflowjs_models/${modelPath}/info`: Contains meta-info about the\n     model, such as date saved, type of the topology, size in bytes, etc.\n   - `tensorflowjs_models/${modelPath}/model_without_weight`: The topology,\n     weights_specs and all other information about the model except for the\n     weights.\n   - `tensorflowjs_models/${modelPath}/weight_data`: Concatenated binary\n     weight values, stored as a base64-encoded string.\n\n```js\n  async function asyncStorageExample() {\n    // Define a model\n    const model = tf.sequential();\n    model.add(tf.layers.dense({units: 5, inputShape: [1]}));\n    model.add(tf.layers.dense({units: 1}));\n    model.compile({loss: 'meanSquaredError', optimizer: 'sgd'});\n\n    // Save the model to async storage\n    await model.save(asyncStorageIO('custom-model-test'));\n    // Load the model from async storage\n    await tf.loadLayersModel(asyncStorageIO('custom-model-test'));\n}\n```",
+              "fileName": "#197",
+              "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-react_native-v0.3.0/tfjs-react-native/src/async_storage_io.ts#L197-L199",
+              "isFunction": true,
+              "displayName": "asyncStorageIO",
+              "urlHash": "asyncStorageIO"
+            },
+            {
+              "docInfo": {
+                "heading": "Models",
+                "subheading": "IOHandlers"
+              },
+              "symbolName": "bundleResourceIO",
+              "paramStr": "(modelJson, modelWeightsId)",
+              "parameters": [
+                {
+                  "name": "modelJson",
+                  "documentation": "The JSON object for the serialized model.",
+                  "type": "io.ModelJSON",
+                  "optional": false,
+                  "isConfigParam": false
+                },
+                {
+                  "name": "modelWeightsId",
+                  "documentation": "An identifier for the model weights file. This is\ngenerally a resourceId or a path to the resource in the app package.\nThis is typically obtained with a `require` statement.\n\nSee\nfacebook.github.io/react-native/docs/images#static-non-image-resources\nfor more details on how to include static resources into your react-native\napp including how to configure `metro` to bundle `.bin` files.",
+                  "type": "number",
+                  "optional": false,
+                  "isConfigParam": false
+                }
+              ],
+              "returnType": "io.IOHandler",
+              "documentation": "Factory function for BundleResource IOHandler.\n\nThis `IOHandler` only supports `load`. It is designed to support\nloading models that have been statically bundled (at compile time)\nwith an app.\n\nThis IOHandler is not compatible with managed expo apps.\n\n```js\n  const modelJson = require('../path/to/model.json');\n  const modelWeights = require('../path/to/model_weights.bin');\n  async function bundleResourceIOExample() {\n    const model =\n      await tf.loadLayersModel(bundleResourceIO(modelJson, modelWeights));\n\n     const res = model.predict(tf.randomNormal([1, 28, 28, 1])) as tf.Tensor;\n  }\n```",
+              "fileName": "#171",
+              "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-react_native-v0.3.0/tfjs-react-native/src/bundle_resource_io.ts#L171-L185",
+              "isFunction": true,
+              "displayName": "bundleResourceIO",
+              "urlHash": "bundleResourceIO"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Media",
+      "description": "<p>Utilities for dealing with images and cameras.</p> ",
+      "subheadings": [
+        {
+          "name": "Images",
+          "description": "",
+          "symbols": [
+            {
+              "docInfo": {
+                "heading": "Media",
+                "subheading": "Images"
+              },
+              "symbolName": "decodeJpeg",
+              "paramStr": "(contents, channels?)",
+              "parameters": [
+                {
+                  "name": "contents",
+                  "documentation": "The JPEG-encoded image in an Uint8Array.",
+                  "type": "Uint8Array",
+                  "optional": false,
+                  "isConfigParam": false
+                },
+                {
+                  "name": "channels",
+                  "documentation": "An optional int. Defaults to 3. Accepted values are\n0: use the number of channels in the JPG-encoded image.\n1: output a grayscale image.\n3: output an RGB image.",
+                  "type": "0|1|3",
+                  "optional": true,
+                  "isConfigParam": false
+                }
+              ],
+              "returnType": "Tensor3D",
+              "documentation": "Decode a JPEG-encoded image to a 3D Tensor of dtype `int32`.\n\n```js\n// Load an image as a Uint8Array\nconst imageUri = 'http://image-uri-here.example.com/image.jpg'; *\nconst response = await fetch(imageUri, {}, { isBinary: true });\nconst imageDataArrayBuffer = await response.arrayBuffer();\ncosnt imageData = new Uint8Array(imageDataArrayBuffer);\n\n// Decode image data to a tensor\nconst imageTensor = decodeJpeg(imageData);\n```",
+              "fileName": "#33",
+              "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-react_native-v0.3.0/tfjs-react-native/src/decode_image.ts#L33-L55",
+              "isFunction": true,
+              "displayName": "decodeJpeg",
+              "urlHash": "decodeJpeg"
+            }
+          ]
+        },
+        {
+          "name": "Camera",
+          "description": "",
+          "symbols": [
+            {
+              "docInfo": {
+                "heading": "Media",
+                "subheading": "Camera"
+              },
+              "symbolName": "cameraWithTensors",
+              "paramStr": "(CameraComponent)",
+              "parameters": [
+                {
+                  "name": "CameraComponent",
+                  "documentation": "an expo Camera component constructor",
+                  "type": "React.ComponentType",
+                  "optional": false,
+                  "isConfigParam": false
+                }
+              ],
+              "returnType": "typeof CameraWithTensorStream",
+              "documentation": "A higher-order-component (HOC) that augments the [Expo.Camera](https://docs.expo.io/versions/latest/sdk/camera/)\ncomponent with the ability to yield tensors representing the camera stream.\n\nBecause the camera data will be consumed in the process, the original\ncamera component will not render any content. A provided by this component\nis used to render the camera preview.\n\nNotably the component allows on-the-fly resizing of the camera image to\nsmaller dimensions, this speeds up data transfer between the native and\njavascript threads immensely.\n\n__In addition to__ all the props taken by Expo.Camera. The returned\ncomponent takes the following props\n\n- __cameraTextureWidth__: number — the width the camera preview texture\n   (see example and note below)\n- __cameraTextureHeight__: number — the height the camera preview texture\n   (see example and note below)\n- __resizeWidth__: number — the width of the output tensor\n- __resizeHeight__: number — the height of the output tensor\n- __resizeDepth__: number — the depth (num of channels) of the output tensor.\n    Should be 3 or 4.\n- __autorender__: boolean — if true the view will be automatically updated\n   with the contents of the camera. Set this to false if you want more direct\n   control on when rendering happens.\n- __onReady__: (\n    images: IterableIterator<tf.Tensor3D>,\n    updateCameraPreview: () => void,\n    gl: ExpoWebGLRenderingContext,\n    cameraTexture: WebGLTexture\n  ) => void — When the component is mounted and ready this callback will\n  be called and recieve the following 3 elements:\n    - __images__ is a (iterator)[https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_Generators]\n      that yields tensors representing the camera image on demand.\n    - __updateCameraPreview__ is a function that will update the WebGL render\n      buffer with the contents of the camera. Not needed when `autorender`\n      is true\n    - __gl__ is the ExpoWebGl context used to do the rendering. After calling\n      `updateCameraPreview` and any other operations you want to synchronize\n      to the camera rendering you must call gl.endFrameExp() to display it\n      on the screen. This is also provided in case you want to do other\n      rendering using WebGL. Not needed when `autorender` is true.\n    - __cameraTexture__ The underlying cameraTexture. This can be used to\n      implement your own __updateCameraPreview__.\n\n```js\nimport { Camera } from 'expo-camera';\nimport { cameraWithTensors } from '@tensorflow/tfjs-react-native';\n\nconst TensorCamera = cameraWithTensors(Camera);\n\nclass MyComponent {\n\n   handleCameraStream(images, updatePreview, gl) {\n     const loop = async () => {\n       const nextImageTensor = images.next().value\n\n       //\n       // do something with tensor here\n       //\n\n       // if autorender is false you need the following two lines.\n       // updatePreview();\n       // gl.endFrameEXP();\n\n       requestAnimationFrame(loop);\n     }\n     loop();\n   }\n\n   render() {\n    // Currently expo does not support automatically determining the\n    // resolution of the camera texture used. So it must be determined\n    // empirically for the supported devices and preview size.\n\n    let textureDims;\n    if (Platform.OS === 'ios') {\n     textureDims = {\n       height: 1920,\n       width: 1080,\n     };\n    } else {\n     textureDims = {\n       height: 1200,\n       width: 1600,\n     };\n    }\n\n    return <View>\n      <TensorCamera\n       // Standard Camera props\n       style={styles.camera}\n       type={Camera.Constants.Type.front}\n       // Tensor related props\n       cameraTextureHeight={textureDims.height}\n       cameraTextureWidth={textureDims.width}\n       resizeHeight={200}\n       resizeWidth={152}\n       resizeDepth={3}\n       onReady={this.handleCameraStream}\n       autorender={true}\n      />\n    </View>\n   }\n}\n```",
+              "fileName": "#169",
+              "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-react_native-v0.3.0/tfjs-react-native/src/camera/camera_stream.tsx#L169-L397",
+              "isFunction": true,
+              "displayName": "cameraWithTensors",
+              "urlHash": "cameraWithTensors"
+            },
+            {
+              "docInfo": {
+                "heading": "Media",
+                "subheading": "Camera"
+              },
+              "symbolName": "detectGLCapabilities",
+              "paramStr": "(gl)",
+              "parameters": [
+                {
+                  "name": "gl",
+                  "documentation": "",
+                  "type": "WebGL2RenderingContext",
+                  "optional": false,
+                  "isConfigParam": false
+                }
+              ],
+              "returnType": "any",
+              "documentation": "Utility function that tests the GL context for capabilities to enable\noptimizations.\n\nFor best performance this should be be called once before using the other\ncamera related functions.",
+              "fileName": "#51",
+              "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-react_native-v0.3.0/tfjs-react-native/src/camera/camera.ts#L51-L94",
+              "isFunction": true,
+              "displayName": "detectGLCapabilities",
+              "urlHash": "detectGLCapabilities"
+            },
+            {
+              "docInfo": {
+                "heading": "Media",
+                "subheading": "Camera"
+              },
+              "symbolName": "fromTexture",
+              "paramStr": "(gl, texture, sourceDims, targetShape, options?)",
+              "parameters": [
+                {
+                  "name": "gl",
+                  "documentation": "the WebGL context that owns the input texture",
+                  "type": "WebGL2RenderingContext",
+                  "optional": false,
+                  "isConfigParam": false
+                },
+                {
+                  "name": "texture",
+                  "documentation": "the texture to convert into a tensor",
+                  "type": "WebGLTexture",
+                  "optional": false,
+                  "isConfigParam": false
+                },
+                {
+                  "name": "sourceDims",
+                  "documentation": "source dimensions of input texture (width, height, depth)",
+                  "type": "Object",
+                  "optional": false,
+                  "isConfigParam": false
+                },
+                {
+                  "name": "width",
+                  "type": "number",
+                  "documentation": "",
+                  "optional": false,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "height",
+                  "type": "number",
+                  "documentation": "",
+                  "optional": false,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "depth",
+                  "type": "number",
+                  "documentation": "",
+                  "optional": false,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "targetShape",
+                  "documentation": "desired shape of output tensor",
+                  "type": "Object",
+                  "optional": false,
+                  "isConfigParam": false
+                },
+                {
+                  "name": "width",
+                  "type": "number",
+                  "documentation": "",
+                  "optional": false,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "height",
+                  "type": "number",
+                  "documentation": "",
+                  "optional": false,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "depth",
+                  "type": "number",
+                  "documentation": "",
+                  "optional": false,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "options",
+                  "documentation": "",
+                  "type": "Object",
+                  "optional": true,
+                  "isConfigParam": false
+                },
+                {
+                  "name": "alignCorners",
+                  "type": "boolean",
+                  "documentation": "",
+                  "optional": false,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "interpolation",
+                  "type": "'nearest_neighbor'|'bilinear'",
+                  "documentation": "",
+                  "optional": false,
+                  "isConfigParam": true
+                }
+              ],
+              "returnType": "tf.Tensor3D",
+              "documentation": "Creates a tensor3D from a texture.\n\nAllows for resizing the image and dropping the alpha channel from the\nresulting tensor.\n\nNote that if you the output depth is 3 then the output width should be a\nmultiple of 4.",
+              "fileName": "#138",
+              "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-react_native-v0.3.0/tfjs-react-native/src/camera/camera.ts#L138-L213",
+              "isFunction": true,
+              "displayName": "fromTexture",
+              "urlHash": "fromTexture"
+            },
+            {
+              "docInfo": {
+                "heading": "Media",
+                "subheading": "Camera"
+              },
+              "symbolName": "renderToGLView",
+              "paramStr": "(gl, texture, size, flipHorizontal?)",
+              "parameters": [
+                {
+                  "name": "gl",
+                  "documentation": "",
+                  "type": "WebGL2RenderingContext",
+                  "optional": false,
+                  "isConfigParam": false
+                },
+                {
+                  "name": "texture",
+                  "documentation": "",
+                  "type": "WebGLTexture",
+                  "optional": false,
+                  "isConfigParam": false
+                },
+                {
+                  "name": "size",
+                  "documentation": "",
+                  "type": "Object",
+                  "optional": false,
+                  "isConfigParam": false
+                },
+                {
+                  "name": "width",
+                  "type": "number",
+                  "documentation": "",
+                  "optional": false,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "height",
+                  "type": "number",
+                  "documentation": "",
+                  "optional": false,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "flipHorizontal",
+                  "documentation": "",
+                  "type": "boolean",
+                  "optional": true,
+                  "isConfigParam": false
+                }
+              ],
+              "returnType": "void",
+              "documentation": "Render a texture to the GLView. This will use the default framebuffer\nand present the contents of the texture on the screen.",
+              "fileName": "#224",
+              "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-react_native-v0.3.0/tfjs-react-native/src/camera/camera.ts#L224-L232",
+              "isFunction": true,
+              "displayName": "renderToGLView",
+              "urlHash": "renderToGLView"
+            },
+            {
+              "docInfo": {
+                "heading": "Media",
+                "subheading": "Camera"
+              },
+              "symbolName": "toTexture",
+              "paramStr": "(gl, imageTensor, texture?)",
+              "parameters": [
+                {
+                  "name": "gl",
+                  "documentation": "the WebGL context that owns the texture.",
+                  "type": "WebGL2RenderingContext",
+                  "optional": false,
+                  "isConfigParam": false
+                },
+                {
+                  "name": "imageTensor",
+                  "documentation": "the tensor to upload",
+                  "type": "tf.Tensor3D",
+                  "optional": false,
+                  "isConfigParam": false
+                },
+                {
+                  "name": "texture",
+                  "documentation": "optional the target texture. If none is passed in a new\ntexture will be created.",
+                  "type": "WebGLTexture",
+                  "optional": true,
+                  "isConfigParam": false
+                }
+              ],
+              "returnType": "Promise<WebGLTexture>",
+              "documentation": "Transfers tensor data to an RGB(A) texture.",
+              "fileName": "#105",
+              "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-react_native-v0.3.0/tfjs-react-native/src/camera/camera.ts#L105-L121",
+              "isFunction": true,
+              "displayName": "toTexture",
+              "urlHash": "toTexture"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,2658 @@
+{
+  "docs": {
+    "headings": [
+      {
+        "name": "Environment",
+        "description": "",
+        "subheadings": [
+          {
+            "symbols": [
+              {
+                "docInfo": {
+                  "heading": "Environment"
+                },
+                "symbolName": "Environment",
+                "documentation": "The environment contains evaluated flags as well as the registered platform.\nThis is always used as a global singleton and can be retrieved with\n`tf.env()`.",
+                "fileName": "#39",
+                "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-converter-v2.0.1/tfjs-converter/node_modules/@tensorflow/tfjs-core/src/environment.ts#L39-L165",
+                "methods": [],
+                "isClass": true
+              },
+              {
+                "docInfo": {
+                  "heading": "Environment"
+                },
+                "symbolName": "env",
+                "paramStr": "()",
+                "parameters": [],
+                "returnType": "Environment",
+                "documentation": "Returns the current environment (a global singleton).\n\nThe environment object contains the evaluated feature values as well as the\nactive platform.",
+                "fileName": "#199",
+                "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-converter-v2.0.1/tfjs-converter/node_modules/@tensorflow/tfjs-core/src/environment.ts#L199-L201",
+                "isFunction": true
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Util",
+        "description": "",
+        "subheadings": [
+          {
+            "symbols": [
+              {
+                "docInfo": {
+                  "heading": "Util",
+                  "namespace": "util"
+                },
+                "symbolName": "shuffle",
+                "namespace": "util",
+                "paramStr": "(array)",
+                "parameters": [
+                  {
+                    "name": "array",
+                    "documentation": "The array to shuffle in-place.",
+                    "type": "any[]|Uint32Array|Int32Array|\n                        Float32Array",
+                    "optional": false,
+                    "isConfigParam": false
+                  }
+                ],
+                "returnType": "void",
+                "documentation": "Shuffles the array in-place using Fisher-Yates algorithm.\n\n```js\nconst a = [1, 2, 3, 4, 5];\ntf.util.shuffle(a);\nconsole.log(a);\n```",
+                "fileName": "#35",
+                "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-converter-v2.0.1/tfjs-converter/node_modules/@tensorflow/tfjs-core/src/util.ts#L35-L51",
+                "isFunction": true
+              },
+              {
+                "docInfo": {
+                  "heading": "Util",
+                  "namespace": "util"
+                },
+                "symbolName": "assert",
+                "namespace": "util",
+                "paramStr": "(expr, msg)",
+                "parameters": [
+                  {
+                    "name": "expr",
+                    "documentation": "The expression to assert (as a boolean).",
+                    "type": "boolean",
+                    "optional": false,
+                    "isConfigParam": false
+                  },
+                  {
+                    "name": "msg",
+                    "documentation": "A function that returns the message to report when throwing an\nerror. We use a function for performance reasons.",
+                    "type": "() => string",
+                    "optional": false,
+                    "isConfigParam": false
+                  }
+                ],
+                "returnType": "void",
+                "documentation": "Asserts that the expression is true. Otherwise throws an error with the\nprovided message.\n\n```js\nconst x = 2;\ntf.util.assert(x === 2, 'x is not 2');\n```",
+                "fileName": "#106",
+                "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-converter-v2.0.1/tfjs-converter/node_modules/@tensorflow/tfjs-core/src/util.ts#L106-L110",
+                "isFunction": true
+              },
+              {
+                "docInfo": {
+                  "heading": "Util",
+                  "namespace": "util"
+                },
+                "symbolName": "flatten",
+                "namespace": "util",
+                "paramStr": "(arr, result?, skipTypedArray?)",
+                "parameters": [
+                  {
+                    "name": "arr",
+                    "documentation": "The nested array to flatten.",
+                    "type": "number|boolean|string|Promise<number>|TypedArray|RecursiveArray|TypedArray>",
+                    "optional": false,
+                    "isConfigParam": false
+                  },
+                  {
+                    "name": "result",
+                    "documentation": "The destination array which holds the elements.",
+                    "type": "number|boolean|string|Promise<number>|TypedArray[]",
+                    "optional": true,
+                    "isConfigParam": false
+                  },
+                  {
+                    "name": "skipTypedArray",
+                    "documentation": "If true, avoids flattening the typed arrays. Defaults\nto false.",
+                    "type": "boolean",
+                    "optional": true,
+                    "isConfigParam": false
+                  }
+                ],
+                "returnType": "number|boolean|string|Promise<number>|TypedArray[]",
+                "documentation": "Flattens an arbitrarily nested array.\n\n```js\nconst a = [[1, 2], [3, 4], [5, [6, [7]]]];\nconst flat = tf.util.flatten(a);\nconsole.log(flat);\n```",
+                "fileName": "#143",
+                "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-converter-v2.0.1/tfjs-converter/node_modules/@tensorflow/tfjs-core/src/util.ts#L143-L157",
+                "isFunction": true
+              },
+              {
+                "docInfo": {
+                  "heading": "Util",
+                  "namespace": "util"
+                },
+                "symbolName": "sizeFromShape",
+                "namespace": "util",
+                "paramStr": "(shape)",
+                "parameters": [
+                  {
+                    "name": "shape",
+                    "documentation": "",
+                    "type": "number[]",
+                    "optional": false,
+                    "isConfigParam": false
+                  }
+                ],
+                "returnType": "number",
+                "documentation": "Returns the size (number of elements) of the tensor given its shape.\n\n```js\nconst shape = [3, 4, 2];\nconst size = tf.util.sizeFromShape(shape);\nconsole.log(size);\n```",
+                "fileName": "#169",
+                "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-converter-v2.0.1/tfjs-converter/node_modules/@tensorflow/tfjs-core/src/util.ts#L169-L179",
+                "isFunction": true
+              },
+              {
+                "docInfo": {
+                  "heading": "Util",
+                  "namespace": "util"
+                },
+                "symbolName": "createShuffledIndices",
+                "namespace": "util",
+                "paramStr": "(n)",
+                "parameters": [
+                  {
+                    "name": "n",
+                    "documentation": "",
+                    "type": "number",
+                    "optional": false,
+                    "isConfigParam": false
+                  }
+                ],
+                "returnType": "Uint32Array",
+                "documentation": "Creates a new array with randomized indicies to a given quantity.\n\n```js\nconst randomTen = tf.util.createShuffledIndices(10);\nconsole.log(randomTen);\n```",
+                "fileName": "#240",
+                "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-converter-v2.0.1/tfjs-converter/node_modules/@tensorflow/tfjs-core/src/util.ts#L240-L247",
+                "isFunction": true
+              },
+              {
+                "docInfo": {
+                  "heading": "Util",
+                  "namespace": "util"
+                },
+                "symbolName": "now",
+                "namespace": "util",
+                "paramStr": "()",
+                "parameters": [],
+                "returnType": "number",
+                "documentation": "Returns the current high-resolution time in milliseconds relative to an\narbitrary time in the past. It works across different platforms (node.js,\nbrowsers).\n\n```js\nconsole.log(tf.util.now());\n```",
+                "fileName": "#656",
+                "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-converter-v2.0.1/tfjs-converter/node_modules/@tensorflow/tfjs-core/src/util.ts#L656-L658",
+                "isFunction": true
+              },
+              {
+                "docInfo": {
+                  "heading": "Util"
+                },
+                "symbolName": "fetch",
+                "paramStr": "(path, requestInits?)",
+                "parameters": [
+                  {
+                    "name": "path",
+                    "documentation": "",
+                    "type": "string",
+                    "optional": false,
+                    "isConfigParam": false
+                  },
+                  {
+                    "name": "requestInits",
+                    "documentation": "",
+                    "type": "RequestInit",
+                    "optional": true,
+                    "isConfigParam": false
+                  }
+                ],
+                "returnType": "Promise<Response>",
+                "documentation": "Returns a platform-specific implementation of\n[`fetch`](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API).\n\nIf `fetch` is defined on the global object (`window`, `process`, etc.),\n`tf.util.fetch` returns that function.\n\nIf not, `tf.util.fetch` returns a platform-specific solution.\n\n```js\nconst resource = await tf.util.fetch('https://unpkg.com/@tensorflow/tfjs');\n// handle response\n```",
+                "fileName": "#685",
+                "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-converter-v2.0.1/tfjs-converter/node_modules/@tensorflow/tfjs-core/src/util.ts#L685-L688",
+                "isFunction": true
+              },
+              {
+                "docInfo": {
+                  "heading": "Util"
+                },
+                "symbolName": "encodeString",
+                "paramStr": "(s, encoding?)",
+                "parameters": [
+                  {
+                    "name": "s",
+                    "documentation": "The string to encode.",
+                    "type": "string",
+                    "optional": false,
+                    "isConfigParam": false
+                  },
+                  {
+                    "name": "encoding",
+                    "documentation": "The encoding scheme. Defaults to utf-8.",
+                    "type": "string",
+                    "optional": true,
+                    "isConfigParam": false
+                  }
+                ],
+                "returnType": "Uint8Array",
+                "documentation": "Encodes the provided string into bytes using the provided encoding scheme.",
+                "fileName": "#698",
+                "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-converter-v2.0.1/tfjs-converter/node_modules/@tensorflow/tfjs-core/src/util.ts#L698-L701",
+                "isFunction": true
+              },
+              {
+                "docInfo": {
+                  "heading": "Util"
+                },
+                "symbolName": "decodeString",
+                "paramStr": "(bytes, encoding?)",
+                "parameters": [
+                  {
+                    "name": "bytes",
+                    "documentation": "The bytes to decode.",
+                    "type": "Uint8Array",
+                    "optional": false,
+                    "isConfigParam": false
+                  },
+                  {
+                    "name": "encoding",
+                    "documentation": "The encoding scheme. Defaults to utf-8.",
+                    "type": "string",
+                    "optional": true,
+                    "isConfigParam": false
+                  }
+                ],
+                "returnType": "string",
+                "documentation": "Decodes the provided bytes into a string using the provided encoding scheme.",
+                "fileName": "#710",
+                "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-converter-v2.0.1/tfjs-converter/node_modules/@tensorflow/tfjs-core/src/util.ts#L710-L713",
+                "isFunction": true
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Models",
+        "description": "",
+        "subheadings": [
+          {
+            "name": "Op Registry",
+            "symbols": [
+              {
+                "docInfo": {
+                  "heading": "Models",
+                  "subheading": "Op Registry"
+                },
+                "symbolName": "registerOp",
+                "paramStr": "(name, opFunc)",
+                "parameters": [
+                  {
+                    "name": "name",
+                    "documentation": "The Tensorflow Op name.",
+                    "type": "string",
+                    "optional": false,
+                    "isConfigParam": false
+                  },
+                  {
+                    "name": "opFunc",
+                    "documentation": "An op function which is called with the current graph node\nduring execution and needs to return a tensor or a list of tensors. The node\nhas the following attributes:\n- attr: A map from attribute name to its value\n- inputs: A list of input tensors",
+                    "type": "OpExecutor",
+                    "optional": false,
+                    "isConfigParam": false
+                  }
+                ],
+                "returnType": "void",
+                "documentation": "Register an Op for graph model executor. This allow you to register\nTensorFlow custom op or override existing op.\n\nHere is an example of registering a new MatMul Op.\n```js\nconst customMatmul = (node) =>\n    tf.matMul(\n        node.inputs[0], node.inputs[1],\n        node.attrs['transpose_a'], node.attrs['transpose_b']);\n\ntf.registerOp('MatMul', customMatmul);\n```\nThe inputs and attrs of the node object is based on the TensorFlow op\nregistry.",
+                "fileName": "#47",
+                "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-converter-v2.0.1/tfjs-converter/src/operations/custom_op/register.ts#L47-L57",
+                "isFunction": true
+              },
+              {
+                "docInfo": {
+                  "heading": "Models",
+                  "subheading": "Op Registry"
+                },
+                "symbolName": "getRegisteredOp",
+                "paramStr": "(name)",
+                "parameters": [
+                  {
+                    "name": "name",
+                    "documentation": "The Tensorflow Op name.",
+                    "type": "string",
+                    "optional": false,
+                    "isConfigParam": false
+                  }
+                ],
+                "returnType": "OpMapper",
+                "documentation": "Retrieve the OpMapper object for the registered op.",
+                "fileName": "#66",
+                "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-converter-v2.0.1/tfjs-converter/src/operations/custom_op/register.ts#L66-L68",
+                "isFunction": true
+              },
+              {
+                "docInfo": {
+                  "heading": "Models",
+                  "subheading": "Op Registry"
+                },
+                "symbolName": "deregisterOp",
+                "paramStr": "(name)",
+                "parameters": [
+                  {
+                    "name": "name",
+                    "documentation": "The Tensorflow Op name.",
+                    "type": "string",
+                    "optional": false,
+                    "isConfigParam": false
+                  }
+                ],
+                "returnType": "void",
+                "documentation": "Deregister the Op for graph model executor.",
+                "fileName": "#76",
+                "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-converter-v2.0.1/tfjs-converter/src/operations/custom_op/register.ts#L76-L78",
+                "isFunction": true
+              }
+            ]
+          },
+          {
+            "name": "Classes",
+            "symbols": [
+              {
+                "docInfo": {
+                  "heading": "Models",
+                  "subheading": "Classes"
+                },
+                "symbolName": "GraphModel",
+                "documentation": "A `tf.GraphModel` is a directed, acyclic graph built from a\nSavedModel GraphDef and allows inference execution.\n\nA `tf.GraphModel` can only be created by loading from a model converted from\na [TensorFlow SavedModel](https://www.tensorflow.org/guide/saved_model) using\nthe command line converter tool and loaded via `tf.loadGraphModel`.",
+                "fileName": "#37",
+                "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-converter-v2.0.1/tfjs-converter/src/executor/graph_model.ts#L37-L340",
+                "methods": [
+                  {
+                    "docInfo": {
+                      "heading": "Models",
+                      "subheading": "Classes",
+                      "ignoreCI": true
+                    },
+                    "symbolName": "loadSync",
+                    "paramStr": "(artifacts)",
+                    "parameters": [
+                      {
+                        "name": "artifacts",
+                        "documentation": "",
+                        "type": "io.ModelArtifacts",
+                        "optional": false,
+                        "isConfigParam": false
+                      }
+                    ],
+                    "returnType": "boolean",
+                    "documentation": "Synchronously construct the in memory weight map and\ncompile the inference graph.",
+                    "fileName": "#127",
+                    "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-converter-v2.0.1/tfjs-converter/src/executor/graph_model.ts#L127-L144",
+                    "isFunction": true
+                  },
+                  {
+                    "docInfo": {
+                      "heading": "Models",
+                      "subheading": "Classes",
+                      "ignoreCI": true
+                    },
+                    "symbolName": "save",
+                    "paramStr": "(handlerOrURL, config?)",
+                    "parameters": [
+                      {
+                        "name": "handlerOrURL",
+                        "documentation": "An instance of `IOHandler` or a URL-like,\nscheme-based string shortcut for `IOHandler`.",
+                        "type": "io.IOHandler|string",
+                        "optional": false,
+                        "isConfigParam": false
+                      },
+                      {
+                        "name": "config",
+                        "documentation": "Options for saving the model.",
+                        "type": "io.SaveConfig",
+                        "optional": true,
+                        "isConfigParam": false
+                      }
+                    ],
+                    "returnType": "Promise<io.SaveResult>",
+                    "documentation": "Save the configuration and/or weights of the GraphModel.\n\nAn `IOHandler` is an object that has a `save` method of the proper\nsignature defined. The `save` method manages the storing or\ntransmission of serialized data (\"artifacts\") that represent the\nmodel's topology and weights onto or via a specific medium, such as\nfile downloads, local storage, IndexedDB in the web browser and HTTP\nrequests to a server. TensorFlow.js provides `IOHandler`\nimplementations for a number of frequently used saving mediums, such as\n`tf.io.browserDownloads` and `tf.io.browserLocalStorage`. See `tf.io`\nfor more details.\n\nThis method also allows you to refer to certain types of `IOHandler`s\nas URL-like string shortcuts, such as 'localstorage://' and\n'indexeddb://'.\n\nExample 1: Save `model`'s topology and weights to browser [local\nstorage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage);\nthen load it back.\n\n```js\nconst modelUrl =\n    'https://storage.googleapis.com/tfjs-models/savedmodel/mobilenet_v2_1.0_224/model.json';\nconst model = await tf.loadGraphModel(modelUrl);\nconst zeros = tf.zeros([1, 224, 224, 3]);\nmodel.predict(zeros).print();\n\nconst saveResults = await model.save('localstorage://my-model-1');\n\nconst loadedModel = await tf.loadGraphModel('localstorage://my-model-1');\nconsole.log('Prediction from loaded model:');\nmodel.predict(zeros).print();\n```",
+                    "fileName": "#191",
+                    "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-converter-v2.0.1/tfjs-converter/src/executor/graph_model.ts#L191-L212",
+                    "isFunction": true
+                  },
+                  {
+                    "docInfo": {
+                      "heading": "Models",
+                      "subheading": "Classes"
+                    },
+                    "symbolName": "predict",
+                    "paramStr": "(inputs, config?)",
+                    "parameters": [
+                      {
+                        "name": "inputs",
+                        "documentation": "",
+                        "type": "Tensor|Tensor[]|NamedTensorMap",
+                        "optional": false,
+                        "isConfigParam": false
+                      },
+                      {
+                        "name": "config",
+                        "documentation": "Prediction configuration for specifying the batch size and\noutput node names. Currently the batch size option is ignored for graph\nmodel.",
+                        "type": "ModelPredictConfig",
+                        "optional": true,
+                        "isConfigParam": false
+                      }
+                    ],
+                    "returnType": "Tensor|Tensor[]|NamedTensorMap",
+                    "documentation": "Execute the inference for the input tensors.",
+                    "fileName": "#251",
+                    "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-converter-v2.0.1/tfjs-converter/src/executor/graph_model.ts#L251-L254",
+                    "isFunction": true
+                  },
+                  {
+                    "docInfo": {
+                      "heading": "Models",
+                      "subheading": "Classes"
+                    },
+                    "symbolName": "execute",
+                    "paramStr": "(inputs, outputs?)",
+                    "parameters": [
+                      {
+                        "name": "inputs",
+                        "documentation": "tensor, tensor array or tensor map of the inputs for the\nmodel, keyed by the input node names.",
+                        "type": "Tensor|Tensor[]|NamedTensorMap",
+                        "optional": false,
+                        "isConfigParam": false
+                      },
+                      {
+                        "name": "outputs",
+                        "documentation": "output node name from the Tensorflow model, if no\noutputs are specified, the default outputs of the model would be used.\nYou can inspect intermediate nodes of the model by adding them to the\noutputs array.",
+                        "type": "string|string[]",
+                        "optional": true,
+                        "isConfigParam": false
+                      }
+                    ],
+                    "returnType": "Tensor|Tensor[]",
+                    "documentation": "Executes inference for the model for given input tensors.",
+                    "fileName": "#295",
+                    "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-converter-v2.0.1/tfjs-converter/src/executor/graph_model.ts#L295-L301",
+                    "isFunction": true
+                  },
+                  {
+                    "docInfo": {
+                      "heading": "Models",
+                      "subheading": "Classes"
+                    },
+                    "symbolName": "executeAsync",
+                    "paramStr": "(inputs, outputs?)",
+                    "parameters": [
+                      {
+                        "name": "inputs",
+                        "documentation": "tensor, tensor array or tensor map of the inputs for the\nmodel, keyed by the input node names.",
+                        "type": "Tensor|Tensor[]|NamedTensorMap",
+                        "optional": false,
+                        "isConfigParam": false
+                      },
+                      {
+                        "name": "outputs",
+                        "documentation": "output node name from the Tensorflow model, if no outputs\nare specified, the default outputs of the model would be used. You can\ninspect intermediate nodes of the model by adding them to the outputs\narray.",
+                        "type": "string|string[]",
+                        "optional": true,
+                        "isConfigParam": false
+                      }
+                    ],
+                    "returnType": "Promise<Tensor|Tensor[]>",
+                    "documentation": "Executes inference for the model for given input tensors in async\nfashion, use this method when your model contains control flow ops.",
+                    "fileName": "#317",
+                    "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-converter-v2.0.1/tfjs-converter/src/executor/graph_model.ts#L317-L324",
+                    "isFunction": true
+                  },
+                  {
+                    "docInfo": {
+                      "heading": "Models",
+                      "subheading": "Classes"
+                    },
+                    "symbolName": "dispose",
+                    "paramStr": "()",
+                    "parameters": [],
+                    "returnType": "void",
+                    "documentation": "Releases the memory used by the weight tensors.",
+                    "fileName": "#337",
+                    "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-converter-v2.0.1/tfjs-converter/src/executor/graph_model.ts#L337-L339",
+                    "isFunction": true
+                  }
+                ],
+                "isClass": true,
+                "inheritsFrom": "InferenceModel"
+              }
+            ]
+          },
+          {
+            "name": "Loading",
+            "symbols": [
+              {
+                "docInfo": {
+                  "heading": "Models",
+                  "subheading": "Loading"
+                },
+                "symbolName": "loadGraphModel",
+                "paramStr": "(modelUrl, options?)",
+                "parameters": [
+                  {
+                    "name": "modelUrl",
+                    "documentation": "The url or an `io.IOHandler` that loads the model.",
+                    "type": "string|io.IOHandler",
+                    "optional": false,
+                    "isConfigParam": false
+                  },
+                  {
+                    "name": "options",
+                    "documentation": "Options for the HTTP request, which allows to send credentials\nand custom headers.",
+                    "type": "io.LoadOptions",
+                    "optional": true,
+                    "isConfigParam": false
+                  }
+                ],
+                "returnType": "Promise<GraphModel>",
+                "documentation": "Load a graph model given a URL to the model definition.\n\nExample of loading MobileNetV2 from a URL and making a prediction with a\nzeros input:\n\n```js\nconst modelUrl =\n    'https://storage.googleapis.com/tfjs-models/savedmodel/mobilenet_v2_1.0_224/model.json';\nconst model = await tf.loadGraphModel(modelUrl);\nconst zeros = tf.zeros([1, 224, 224, 3]);\nmodel.predict(zeros).print();\n```\n\nExample of loading MobileNetV2 from a TF Hub URL and making a prediction with\na zeros input:\n\n```js\nconst modelUrl =\n    'https://tfhub.dev/google/imagenet/mobilenet_v2_140_224/classification/2';\nconst model = await tf.loadGraphModel(modelUrl, {fromTFHub: true});\nconst zeros = tf.zeros([1, 224, 224, 3]);\nmodel.predict(zeros).print();\n```",
+                "fileName": "#371",
+                "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-converter-v2.0.1/tfjs-converter/src/executor/graph_model.ts#L371-L394",
+                "isFunction": true
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "docLinkAliases": {},
+  "configInterfaceParamMap": {
+    "WeightsManifestGroupConfig": [
+      {
+        "name": "paths",
+        "type": "string[]",
+        "documentation": "An ordered list of paths.\n\nPaths are intentionally abstract in order to be general. For example, they\ncan be relative URL paths or relative paths on the file system.",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "weights",
+        "type": "WeightsManifestEntry[]",
+        "documentation": "Specifications of the weights stored in the paths.",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "WeightsManifestEntry": [
+      {
+        "name": "name",
+        "type": "string",
+        "documentation": "Name of the weight, e.g., 'Dense_1/bias'",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "shape",
+        "type": "number[]",
+        "documentation": "Shape of the weight.",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "dtype",
+        "type": "'float32'|'int32'|'bool'|'string'|'complex64'",
+        "documentation": "Data type of the weight.",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "group",
+        "type": "WeightGroup",
+        "documentation": "Type of the weight.\n\nOptional.\n\nThe value 'optimizer' indicates the weight belongs to an optimizer\n(i.e., used only during model training and not during inference).",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "quantization",
+        "type": "{\n    scale?: number,           // The scaling constant to multiply by.\n    min?: number,             // The (possibly nudged) minimum weight to add.\n    dtype: 'uint16'|'uint8'|'float16'  // The dtype of the quantized weights.\n  }",
+        "documentation": "Information for dequantization of the weight.",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "io.SaveConfig": [
+      {
+        "name": "trainableOnly",
+        "type": "boolean",
+        "documentation": "Whether to save only the trainable weights of the model, ignoring the\nnon-trainable ones.",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "includeOptimizer",
+        "type": "boolean",
+        "documentation": "Whether the optimizer will be saved (if exists).\n\nDefault: `false`.",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "SaveResult": [
+      {
+        "name": "modelArtifactsInfo",
+        "type": "ModelArtifactsInfo",
+        "documentation": "Information about the model artifacts saved.",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "responses",
+        "type": "Response[]",
+        "documentation": "HTTP responses from the server that handled the model-saving request (if\nany). This is applicable only to server-based saving routes.",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "errors",
+        "type": "Array",
+        "documentation": "Error messages and related data (if any).",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "ModelArtifactsInfo": [
+      {
+        "name": "dateSaved",
+        "type": "Date",
+        "documentation": "Timestamp for when the model is saved.",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "modelTopologyType",
+        "type": "'JSON'|'GraphDef'",
+        "documentation": "TODO (cais,yassogba) consider removing GraphDef as GraphDefs now\ncome in a JSON format and none of our IOHandlers support a non json\nformat. We could conder replacing this with 'Binary' if we want to\nallow future handlers to save to non json formats (though they will\nprobably want more information than 'Binary').\nType of the model topology\n\nType of the model topology\n\nPossible values:\n   - JSON: JSON config (human-readable, e.g., Keras JSON).\n   - GraphDef: TensorFlow\n     [GraphDef](https://www.tensorflow.org/extend/tool_developers/#graphdef)\n     protocol buffer (binary).",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "modelTopologyBytes",
+        "type": "number",
+        "documentation": "Size of model topology (Keras JSON or GraphDef), in bytes.",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "weightSpecsBytes",
+        "type": "number",
+        "documentation": "Size of weight specification or manifest, in bytes.",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "weightDataBytes",
+        "type": "number",
+        "documentation": "Size of weight value data, in bytes.",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "TrainingConfig": [
+      {
+        "name": "optimizer_config",
+        "type": "{}",
+        "documentation": "Optimizer used for the model training.",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "loss",
+        "type": "string|string[]|{[key: string]: string}",
+        "documentation": "Loss function(s) for the model's output(s).",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "metrics",
+        "type": "string[]|{[key: string]: string}",
+        "documentation": "Metric function(s) for the model's output(s).",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "weighted_metrics",
+        "type": "string[]",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "sample_weight_mode",
+        "type": "string",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "loss_weights",
+        "type": "number[]|{[key: string]: number}",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "ModelArtifacts": [
+      {
+        "name": "modelTopology",
+        "type": "{}|ArrayBuffer",
+        "documentation": "Model topology.\n\nFor Keras-style `tf.Model`s, this is a JSON object.\nFor TensorFlow-style models (e.g., `SavedModel`), this is the JSON\nencoding of the `GraphDef` protocol buffer.",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "trainingConfig",
+        "type": "TrainingConfig",
+        "documentation": "Serialized configuration for the model's training.",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "weightSpecs",
+        "type": "WeightsManifestEntry[]",
+        "documentation": "Weight specifications.\n\nThis corresponds to the weightsData below.",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "weightData",
+        "type": "ArrayBuffer",
+        "documentation": "Binary buffer for all weight values concatenated in the order specified\nby `weightSpecs`.",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "format",
+        "type": "string",
+        "documentation": "Hard-coded format name for models saved from TensorFlow.js or converted\nby TensorFlow.js Converter.",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "generatedBy",
+        "type": "string",
+        "documentation": "What library is responsible for originally generating this artifact.\n\nUsed for debugging purposes. E.g., 'TensorFlow.js v1.0.0'.",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "convertedBy",
+        "type": "string|null",
+        "documentation": "What library or tool is responsible for converting the original model\nto this format, applicable only if the model is output by a converter.\n\nUsed for debugging purposes.  E.g., 'TensorFlow.js Converter v1.0.0'.\n\nA value of `null` means the model artifacts are generated without any\nconversion process (e.g., saved directly from a TensorFlow.js\n`tf.LayersModel` instance.)",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "userDefinedMetadata",
+        "type": "{}",
+        "documentation": "User-defined metadata about the model.",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "ModelJSON": [
+      {
+        "name": "modelTopology",
+        "type": "{}",
+        "documentation": "Model topology.\n\nFor Keras-style `tf.Model`s, this is a JSON object.\nFor TensorFlow-style models (e.g., `SavedModel`), this is the JSON\nencoding of the `GraphDef` protocol buffer.",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "trainingConfig",
+        "type": "TrainingConfig",
+        "documentation": "Model training configuration.",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "weightsManifest",
+        "type": "WeightsManifestConfig",
+        "documentation": "Weights manifest.\n\nThe weights manifest consists of an ordered list of weight-manifest\ngroups. Each weight-manifest group consists of a number of weight values\nstored in a number of paths. See the documentation of\n`WeightsManifestConfig` for more details.",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "format",
+        "type": "string",
+        "documentation": "Hard-coded format name for models saved from TensorFlow.js or converted\nby TensorFlow.js Converter.",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "generatedBy",
+        "type": "string",
+        "documentation": "What library is responsible for originally generating this artifact.\n\nUsed for debugging purposes. E.g., 'TensorFlow.js v1.0.0'.",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "convertedBy",
+        "type": "string|null",
+        "documentation": "What library or tool is responsible for converting the original model\nto this format, applicable only if the model is output by a converter.\n\nUsed for debugging purposes.  E.g., 'TensorFlow.js Converter v1.0.0'.\n\nA value of `null` means the model artifacts are generated without any\nconversion process (e.g., saved directly from a TensorFlow.js\n`tf.LayersModel` instance.)",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "userDefinedMetadata",
+        "type": "{}",
+        "documentation": "User-defined metadata about the model.",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "IOHandler": [
+      {
+        "name": "save",
+        "type": "SaveHandler",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "load",
+        "type": "LoadHandler",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "ModelStoreManager": [
+      {
+        "name": "listModels",
+        "type": "Promise<{[path: string]: ModelArtifactsInfo}>",
+        "documentation": "List all models in the model store.",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "removeModel",
+        "type": "Promise<ModelArtifactsInfo>",
+        "documentation": "Remove a model specified by `path`.",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "io.LoadOptions": [
+      {
+        "name": "requestInit",
+        "type": "RequestInit",
+        "documentation": "RequestInit (options) for HTTP requests.\n\nFor detailed information on the supported fields, see\n[https://developer.mozilla.org/en-US/docs/Web/API/Request/Request](\n     https://developer.mozilla.org/en-US/docs/Web/API/Request/Request)",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "onProgress",
+        "type": "OnProgressCallback",
+        "documentation": "Progress callback.",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "fetchFunc",
+        "type": "Function",
+        "documentation": "A function used to override the `window.fetch` function.",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "strict",
+        "type": "boolean",
+        "documentation": "Strict loading model: whether extraneous weights or missing\nweights should trigger an `Error`.\n\nIf `true`, require that the provided weights exactly match those\nrequired by the layers. `false` means that both extra weights\nand missing weights will be silently ignored.\n\nDefault: `true`.",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "weightPathPrefix",
+        "type": "string",
+        "documentation": "Path prefix for weight files, by default this is calculated from the\npath of the model JSON file.\n\nFor instance, if the path to the model JSON file is\n`http://localhost/foo/model.json`, then the default path prefix will be\n`http://localhost/foo/`. If a weight file has the path value\n`group1-shard1of2` in the weight manifest, then the weight file will be\nloaded from `http://localhost/foo/group1-shard1of2` by default. However,\nif you provide a `weightPathPrefix` value of\n`http://localhost/foo/alt-weights`, then the weight file will be loaded\nfrom the path `http://localhost/foo/alt-weights/group1-shard1of2` instead.",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "fromTFHub",
+        "type": "boolean",
+        "documentation": "Whether the module or model is to be loaded from TF Hub.\n\nSetting this to `true` allows passing a TF-Hub module URL, omitting the\nstandard model file name and the query parameters.\n\nDefault: `false`.",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "RequestDetails": [
+      {
+        "name": "isBinary",
+        "type": "boolean",
+        "documentation": "Is this request for a binary file (as opposed to a json file)",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "Platform": [
+      {
+        "name": "fetch",
+        "type": "Promise<Response>",
+        "documentation": "Makes an HTTP request.",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "now",
+        "type": "number",
+        "documentation": "Returns the current high-resolution time in milliseconds relative to an\narbitrary time in the past. It works across different platforms (node.js,\nbrowsers).",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "encode",
+        "type": "Uint8Array",
+        "documentation": "Encode the provided string into an array of bytes using the provided\nencoding.",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "decode",
+        "type": "string",
+        "documentation": "Decode the provided bytes into a string using the provided encoding.",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "ShapeMap": [
+      {
+        "name": "R0",
+        "type": "number[]",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "R1",
+        "type": "[number]",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "R2",
+        "type": "[number, number]",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "R3",
+        "type": "[number, number, number]",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "R4",
+        "type": "[number, number, number, number]",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "R5",
+        "type": "[number, number, number, number, number]",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "R6",
+        "type": "[number, number, number, number, number, number]",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "ArrayMap": [
+      {
+        "name": "R0",
+        "type": "number",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "R1",
+        "type": "number[]",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "R2",
+        "type": "number[][]",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "R3",
+        "type": "number[][][]",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "R4",
+        "type": "number[][][][]",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "R5",
+        "type": "number[][][][][]",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "R6",
+        "type": "number[][][][][][]",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "DataTypeMap": [
+      {
+        "name": "float32",
+        "type": "Float32Array",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "int32",
+        "type": "Int32Array",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "bool",
+        "type": "Uint8Array",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "complex64",
+        "type": "Float32Array",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "string",
+        "type": "string[]",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "SingleValueMap": [
+      {
+        "name": "bool",
+        "type": "boolean",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "int32",
+        "type": "number",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "float32",
+        "type": "number",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "complex64",
+        "type": "number",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "string",
+        "type": "string",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "RecursiveArray": [],
+    "PixelData": [
+      {
+        "name": "width",
+        "type": "number",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "height",
+        "type": "number",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "data",
+        "type": "Uint8Array",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "IAny": [
+      {
+        "name": "typeUrl",
+        "type": "(string|null)",
+        "documentation": "Any typeUrl",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "value",
+        "type": "(Uint8Array|null)",
+        "documentation": "Any value",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "ITensorShape": [
+      {
+        "name": "dim",
+        "type": "(TensorShape.IDim[]|null)",
+        "documentation": "TensorShape dim",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "unknownRank",
+        "type": "(boolean|null)",
+        "documentation": "TensorShape unknownRank",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "IDim": [
+      {
+        "name": "size",
+        "type": "(number|string|null)",
+        "documentation": "Dim size",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "name",
+        "type": "(string|null)",
+        "documentation": "Dim name",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "ITensor": [
+      {
+        "name": "dtype",
+        "type": "(DataType|null)",
+        "documentation": "Tensor dtype",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "tensorShape",
+        "type": "(ITensorShape|null)",
+        "documentation": "Tensor tensorShape",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "versionNumber",
+        "type": "(number|null)",
+        "documentation": "Tensor versionNumber",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "tensorContent",
+        "type": "(Uint8Array|null)",
+        "documentation": "Tensor tensorContent",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "floatVal",
+        "type": "(number[]|null)",
+        "documentation": "Tensor floatVal",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "doubleVal",
+        "type": "(number[]|null)",
+        "documentation": "Tensor doubleVal",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "intVal",
+        "type": "(number[]|null)",
+        "documentation": "Tensor intVal",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "stringVal",
+        "type": "(Uint8Array[]|null)",
+        "documentation": "Tensor stringVal",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "scomplexVal",
+        "type": "(number[]|null)",
+        "documentation": "Tensor scomplexVal",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "int64Val",
+        "type": "((number | string)[]|null)",
+        "documentation": "Tensor int64Val",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "boolVal",
+        "type": "(boolean[]|null)",
+        "documentation": "Tensor boolVal",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "uint32Val",
+        "type": "(number[]|null)",
+        "documentation": "Tensor uint32Val",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "uint64Val",
+        "type": "((number | string)[]|null)",
+        "documentation": "Tensor uint64Val",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "IAttrValue": [
+      {
+        "name": "list",
+        "type": "(AttrValue.IListValue|null)",
+        "documentation": "AttrValue list",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "s",
+        "type": "(string|null)",
+        "documentation": "AttrValue s",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "i",
+        "type": "(number|string|null)",
+        "documentation": "AttrValue i",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "f",
+        "type": "(number|null)",
+        "documentation": "AttrValue f",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "b",
+        "type": "(boolean|null)",
+        "documentation": "AttrValue b",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "type",
+        "type": "(DataType|null)",
+        "documentation": "AttrValue type",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "shape",
+        "type": "(ITensorShape|null)",
+        "documentation": "AttrValue shape",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "tensor",
+        "type": "(ITensor|null)",
+        "documentation": "AttrValue tensor",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "placeholder",
+        "type": "(string|null)",
+        "documentation": "AttrValue placeholder",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "func",
+        "type": "(INameAttrList|null)",
+        "documentation": "AttrValue func",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "IListValue": [
+      {
+        "name": "s",
+        "type": "(string[]|null)",
+        "documentation": "ListValue s",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "i",
+        "type": "((number | string)[]|null)",
+        "documentation": "ListValue i",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "f",
+        "type": "(number[]|null)",
+        "documentation": "ListValue f",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "b",
+        "type": "(boolean[]|null)",
+        "documentation": "ListValue b",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "type",
+        "type": "(DataType[]|null)",
+        "documentation": "ListValue type",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "shape",
+        "type": "(ITensorShape[]|null)",
+        "documentation": "ListValue shape",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "tensor",
+        "type": "(ITensor[]|null)",
+        "documentation": "ListValue tensor",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "func",
+        "type": "(INameAttrList[]|null)",
+        "documentation": "ListValue func",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "INameAttrList": [
+      {
+        "name": "name",
+        "type": "(string|null)",
+        "documentation": "NameAttrList name",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "attr",
+        "type": "({[k: string]: IAttrValue}|null)",
+        "documentation": "NameAttrList attr",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "INodeDef": [
+      {
+        "name": "name",
+        "type": "(string|null)",
+        "documentation": "NodeDef name",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "op",
+        "type": "(string|null)",
+        "documentation": "NodeDef op",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "input",
+        "type": "(string[]|null)",
+        "documentation": "NodeDef input",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "device",
+        "type": "(string|null)",
+        "documentation": "NodeDef device",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "attr",
+        "type": "({[k: string]: IAttrValue}|null)",
+        "documentation": "NodeDef attr",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "IVersionDef": [
+      {
+        "name": "producer",
+        "type": "(number|null)",
+        "documentation": "VersionDef producer",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "minConsumer",
+        "type": "(number|null)",
+        "documentation": "VersionDef minConsumer",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "badConsumers",
+        "type": "(number[]|null)",
+        "documentation": "VersionDef badConsumers",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "IGraphDef": [
+      {
+        "name": "node",
+        "type": "(INodeDef[]|null)",
+        "documentation": "GraphDef node",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "versions",
+        "type": "(IVersionDef|null)",
+        "documentation": "GraphDef versions",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "library",
+        "type": "(IFunctionDefLibrary|null)",
+        "documentation": "GraphDef library",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "ICollectionDef": [
+      {
+        "name": "nodeList",
+        "type": "(CollectionDef.INodeList|null)",
+        "documentation": "CollectionDef nodeList",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "bytesList",
+        "type": "(CollectionDef.IBytesList|null)",
+        "documentation": "CollectionDef bytesList",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "int64List",
+        "type": "(CollectionDef.IInt64List|null)",
+        "documentation": "CollectionDef int64List",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "floatList",
+        "type": "(CollectionDef.IFloatList|null)",
+        "documentation": "CollectionDef floatList",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "anyList",
+        "type": "(CollectionDef.IAnyList|null)",
+        "documentation": "CollectionDef anyList",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "INodeList": [
+      {
+        "name": "value",
+        "type": "(string[]|null)",
+        "documentation": "NodeList value",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "IBytesList": [
+      {
+        "name": "value",
+        "type": "(Uint8Array[]|null)",
+        "documentation": "BytesList value",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "IInt64List": [
+      {
+        "name": "value",
+        "type": "((number | string)[]|null)",
+        "documentation": "Int64List value",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "IFloatList": [
+      {
+        "name": "value",
+        "type": "(number[]|null)",
+        "documentation": "FloatList value",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "IAnyList": [
+      {
+        "name": "value",
+        "type": "(IAny[]|null)",
+        "documentation": "AnyList value",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "ISaverDef": [
+      {
+        "name": "filenameTensorName",
+        "type": "(string|null)",
+        "documentation": "SaverDef filenameTensorName",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "saveTensorName",
+        "type": "(string|null)",
+        "documentation": "SaverDef saveTensorName",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "restoreOpName",
+        "type": "(string|null)",
+        "documentation": "SaverDef restoreOpName",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "maxToKeep",
+        "type": "(number|null)",
+        "documentation": "SaverDef maxToKeep",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "sharded",
+        "type": "(boolean|null)",
+        "documentation": "SaverDef sharded",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "keepCheckpointEveryNHours",
+        "type": "(number|null)",
+        "documentation": "SaverDef keepCheckpointEveryNHours",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "version",
+        "type": "(SaverDef.CheckpointFormatVersion|null)",
+        "documentation": "SaverDef version",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "ITensorInfo": [
+      {
+        "name": "name",
+        "type": "(string|null)",
+        "documentation": "TensorInfo name",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "cooSparse",
+        "type": "(TensorInfo.ICooSparse|null)",
+        "documentation": "TensorInfo cooSparse",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "dtype",
+        "type": "(DataType|null)",
+        "documentation": "TensorInfo dtype",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "tensorShape",
+        "type": "(ITensorShape|null)",
+        "documentation": "TensorInfo tensorShape",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "ICooSparse": [
+      {
+        "name": "valuesTensorName",
+        "type": "(string|null)",
+        "documentation": "CooSparse valuesTensorName",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "indicesTensorName",
+        "type": "(string|null)",
+        "documentation": "CooSparse indicesTensorName",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "denseShapeTensorName",
+        "type": "(string|null)",
+        "documentation": "CooSparse denseShapeTensorName",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "ISignatureDef": [
+      {
+        "name": "inputs",
+        "type": "({[k: string]: ITensorInfo}|null)",
+        "documentation": "SignatureDef inputs",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "outputs",
+        "type": "({[k: string]: ITensorInfo}|null)",
+        "documentation": "SignatureDef outputs",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "methodName",
+        "type": "(string|null)",
+        "documentation": "SignatureDef methodName",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "IAssetFileDef": [
+      {
+        "name": "tensorInfo",
+        "type": "(ITensorInfo|null)",
+        "documentation": "AssetFileDef tensorInfo",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "filename",
+        "type": "(string|null)",
+        "documentation": "AssetFileDef filename",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "IOpDef": [
+      {
+        "name": "name",
+        "type": "(string|null)",
+        "documentation": "OpDef name",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "inputArg",
+        "type": "(OpDef.IArgDef[]|null)",
+        "documentation": "OpDef inputArg",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "outputArg",
+        "type": "(OpDef.IArgDef[]|null)",
+        "documentation": "OpDef outputArg",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "attr",
+        "type": "(OpDef.IAttrDef[]|null)",
+        "documentation": "OpDef attr",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "deprecation",
+        "type": "(OpDef.IOpDeprecation|null)",
+        "documentation": "OpDef deprecation",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "summary",
+        "type": "(string|null)",
+        "documentation": "OpDef summary",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "description",
+        "type": "(string|null)",
+        "documentation": "OpDef description",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "isCommutative",
+        "type": "(boolean|null)",
+        "documentation": "OpDef isCommutative",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "isAggregate",
+        "type": "(boolean|null)",
+        "documentation": "OpDef isAggregate",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "isStateful",
+        "type": "(boolean|null)",
+        "documentation": "OpDef isStateful",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "allowsUninitializedInput",
+        "type": "(boolean|null)",
+        "documentation": "OpDef allowsUninitializedInput",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "IArgDef": [
+      {
+        "name": "name",
+        "type": "(string|null)",
+        "documentation": "ArgDef name",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "description",
+        "type": "(string|null)",
+        "documentation": "ArgDef description",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "type",
+        "type": "(DataType|null)",
+        "documentation": "ArgDef type",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "typeAttr",
+        "type": "(string|null)",
+        "documentation": "ArgDef typeAttr",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "numberAttr",
+        "type": "(string|null)",
+        "documentation": "ArgDef numberAttr",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "typeListAttr",
+        "type": "(string|null)",
+        "documentation": "ArgDef typeListAttr",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "isRef",
+        "type": "(boolean|null)",
+        "documentation": "ArgDef isRef",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "IAttrDef": [
+      {
+        "name": "name",
+        "type": "(string|null)",
+        "documentation": "AttrDef name",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "type",
+        "type": "(string|null)",
+        "documentation": "AttrDef type",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "defaultValue",
+        "type": "(IAttrValue|null)",
+        "documentation": "AttrDef defaultValue",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "description",
+        "type": "(string|null)",
+        "documentation": "AttrDef description",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "hasMinimum",
+        "type": "(boolean|null)",
+        "documentation": "AttrDef hasMinimum",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "minimum",
+        "type": "(number|string|null)",
+        "documentation": "AttrDef minimum",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "allowedValues",
+        "type": "(IAttrValue|null)",
+        "documentation": "AttrDef allowedValues",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "IOpDeprecation": [
+      {
+        "name": "version",
+        "type": "(number|null)",
+        "documentation": "OpDeprecation version",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "explanation",
+        "type": "(string|null)",
+        "documentation": "OpDeprecation explanation",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "IOpList": [
+      {
+        "name": "op",
+        "type": "(IOpDef[]|null)",
+        "documentation": "OpList op",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "IMetaGraphDef": [
+      {
+        "name": "metaInfoDef",
+        "type": "(MetaGraphDef.IMetaInfoDef|null)",
+        "documentation": "MetaGraphDef metaInfoDef",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "graphDef",
+        "type": "(IGraphDef|null)",
+        "documentation": "MetaGraphDef graphDef",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "saverDef",
+        "type": "(ISaverDef|null)",
+        "documentation": "MetaGraphDef saverDef",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "collectionDef",
+        "type": "({[k: string]: ICollectionDef}|null)",
+        "documentation": "MetaGraphDef collectionDef",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "signatureDef",
+        "type": "({[k: string]: ISignatureDef}|null)",
+        "documentation": "MetaGraphDef signatureDef",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "assetFileDef",
+        "type": "(IAssetFileDef[]|null)",
+        "documentation": "MetaGraphDef assetFileDef",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "IMetaInfoDef": [
+      {
+        "name": "metaGraphVersion",
+        "type": "(string|null)",
+        "documentation": "MetaInfoDef metaGraphVersion",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "strippedOpList",
+        "type": "(IOpList|null)",
+        "documentation": "MetaInfoDef strippedOpList",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "anyInfo",
+        "type": "(IAny|null)",
+        "documentation": "MetaInfoDef anyInfo",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "tags",
+        "type": "(string[]|null)",
+        "documentation": "MetaInfoDef tags",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "tensorflowVersion",
+        "type": "(string|null)",
+        "documentation": "MetaInfoDef tensorflowVersion",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "tensorflowGitVersion",
+        "type": "(string|null)",
+        "documentation": "MetaInfoDef tensorflowGitVersion",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "ISavedModel": [
+      {
+        "name": "savedModelSchemaVersion",
+        "type": "(number|string|null)",
+        "documentation": "SavedModel savedModelSchemaVersion",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "metaGraphs",
+        "type": "(IMetaGraphDef[]|null)",
+        "documentation": "SavedModel metaGraphs",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "IFunctionDefLibrary": [
+      {
+        "name": "function",
+        "type": "(IFunctionDef[]|null)",
+        "documentation": "FunctionDefLibrary function",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "gradient",
+        "type": "(IGradientDef[]|null)",
+        "documentation": "FunctionDefLibrary gradient",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "IFunctionDef": [
+      {
+        "name": "signature",
+        "type": "(IOpDef|null)",
+        "documentation": "FunctionDef signature",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "attr",
+        "type": "({[k: string]: IAttrValue}|null)",
+        "documentation": "FunctionDef attr",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "nodeDef",
+        "type": "(INodeDef[]|null)",
+        "documentation": "FunctionDef nodeDef",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "ret",
+        "type": "({[k: string]: string}|null)",
+        "documentation": "FunctionDef ret",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "IGradientDef": [
+      {
+        "name": "functionName",
+        "type": "(string|null)",
+        "documentation": "GradientDef functionName",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "gradientFunc",
+        "type": "(string|null)",
+        "documentation": "GradientDef gradientFunc",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "TensorWithState": [
+      {
+        "name": "tensor",
+        "type": "Tensor",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "written",
+        "type": "boolean",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "read",
+        "type": "boolean",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "cleared",
+        "type": "boolean",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "TensorInfo": [
+      {
+        "name": "name",
+        "type": "string",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "shape",
+        "type": "number[]",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "dtype",
+        "type": "DataType",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "FunctionExecutor": [
+      {
+        "name": "executeFunctionAsync",
+        "type": "Promise<Tensor[]>",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "weightMap",
+        "type": "NamedTensorsMap",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "ExecutionContextInfo": [
+      {
+        "name": "id",
+        "type": "number",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "frameName",
+        "type": "string",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "iterationId",
+        "type": "number",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "ParamMapper": [
+      {
+        "name": "name",
+        "type": "string",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "type",
+        "type": "ParamType",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "defaultValue",
+        "type": "ValueType",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "notSupported",
+        "type": "boolean",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "InputParamMapper": [
+      {
+        "name": "start",
+        "type": "number",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "end",
+        "type": "number",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "type",
+        "type": "ParamType",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "defaultValue",
+        "type": "ValueType",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "notSupported",
+        "type": "boolean",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "AttrParamMapper": [
+      {
+        "name": "tfName",
+        "type": "string",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "tfDeprecatedName",
+        "type": "string",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "type",
+        "type": "ParamType",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "defaultValue",
+        "type": "ValueType",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "notSupported",
+        "type": "boolean",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "InternalOpExecutor": [],
+    "InternalOpAsyncExecutor": [],
+    "OpMapper": [
+      {
+        "name": "tfOpName",
+        "type": "string",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "category",
+        "type": "Category",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "inputs",
+        "type": "InputParamMapper[]",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "attrs",
+        "type": "AttrParamMapper[]",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "customExecutor",
+        "type": "OpExecutor",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "Node": [
+      {
+        "name": "signatureKey",
+        "type": "string",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "op",
+        "type": "string",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "category",
+        "type": "Category",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "inputNames",
+        "type": "string[]",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "inputs",
+        "type": "Node[]",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "inputParams",
+        "type": "{[key: string]: InputParamValue}",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "attrParams",
+        "type": "{[key: string]: ParamValue}",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "children",
+        "type": "Node[]",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "rawAttrs",
+        "type": "{[k: string]: tensorflow.IAttrValue}",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "defaultOutput",
+        "type": "number",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "Graph": [
+      {
+        "name": "nodes",
+        "type": "{[key: string]: Node}",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "placeholders",
+        "type": "Node[]",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "inputs",
+        "type": "Node[]",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "outputs",
+        "type": "Node[]",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "weights",
+        "type": "Node[]",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "signature",
+        "type": "tensorflow.ISignatureDef",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "functions",
+        "type": "{[key: string]: Graph}",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "ParamValue": [
+      {
+        "name": "value",
+        "type": "ValueType",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "type",
+        "type": "ParamType",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "InputParamValue": [
+      {
+        "name": "inputIndexStart",
+        "type": "number",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "inputIndexEnd",
+        "type": "number",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "value",
+        "type": "ValueType",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "type",
+        "type": "ParamType",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "OpExecutor": [],
+    "GraphNode": [
+      {
+        "name": "inputs",
+        "type": "Tensor[]",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "attrs",
+        "type": "{[key: string]: ValueType}",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "ExecutionInfo": [
+      {
+        "name": "inputs",
+        "type": "NamedTensorMap",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "outputs",
+        "type": "Node[]",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "usedNodes",
+        "type": "Set",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "missingInputs",
+        "type": "string[]",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "dynamicNode",
+        "type": "Node",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "syncInputs",
+        "type": "string[]",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "NodeWithContexts": [
+      {
+        "name": "contexts",
+        "type": "ExecutionContextInfo[]",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "node",
+        "type": "Node",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ]
+  },
+  "inlineTypes": {},
+  "docTypeAliases": {
+    "ShapeMap": "number[]",
+    "ArrayMap": "number[]",
+    "DataType": "'float32'|'int32'|'bool'|'complex64'|'string'",
+    "TensorLike": "TypedArray|Array",
+    "TensorLike1D": "TypedArray|Array",
+    "TensorLike2D": "TypedArray|Array",
+    "TensorLike3D": "TypedArray|Array",
+    "TensorLike4D": "TypedArray|Array",
+    "TensorLike5D": "TypedArray|Array",
+    "TensorLike6D": "TypedArray|Array"
+  }
+}

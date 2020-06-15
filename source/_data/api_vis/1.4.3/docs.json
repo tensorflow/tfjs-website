@@ -1,0 +1,1527 @@
+{
+  "headings": [
+    {
+      "name": "Visor & Surfaces",
+      "description": "<p>tfjs-vis provides some UI helpers to make it easier to render \nvisualizations in an unobtrusive way.</p>",
+      "subheadings": [
+        {
+          "symbols": [
+            {
+              "docInfo": {
+                "heading": "Visor & Surfaces"
+              },
+              "symbolName": "visor",
+              "paramStr": "()",
+              "parameters": [],
+              "returnType": "[tfvis.Visor](#class:Visor)",
+              "documentation": "The primary interface to the visor is the visor() function.\n\nThis returns a singleton instance of the Visor class. The\nsingleton object will be replaced if the visor is removed from the DOM for\nsome reason.\n\n```js\n// Show the visor\ntfvis.visor();\n```",
+              "fileName": "#39",
+              "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-vis-v1.4.3/tfjs-vis/src/visor.ts#L39-L81",
+              "isFunction": true,
+              "displayName": "tfvis.visor",
+              "urlHash": "visor"
+            }
+          ]
+        },
+        {
+          "name": "Visor Methods",
+          "symbols": [
+            {
+              "docInfo": {
+                "heading": "Visor & Surfaces",
+                "subheading": "Visor Methods"
+              },
+              "symbolName": "Visor",
+              "documentation": "An instance of the visor. An instance of this class is created using the\n`visor()` function.",
+              "fileName": "#88",
+              "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-vis-v1.4.3/tfjs-vis/src/visor.ts#L88-L234",
+              "methods": [
+                {
+                  "docInfo": {
+                    "heading": "Visor & Surfaces",
+                    "subheading": "Visor Methods"
+                  },
+                  "symbolName": "surface",
+                  "paramStr": "(options)",
+                  "parameters": [
+                    {
+                      "name": "options",
+                      "documentation": "",
+                      "type": "Object",
+                      "optional": false,
+                      "isConfigParam": false
+                    },
+                    {
+                      "name": "name",
+                      "type": "string",
+                      "documentation": "The name / label of this surface",
+                      "optional": false,
+                      "isConfigParam": true
+                    },
+                    {
+                      "name": "tab",
+                      "type": "string",
+                      "documentation": "The name of the tab this surface should appear on",
+                      "optional": false,
+                      "isConfigParam": true
+                    },
+                    {
+                      "name": "styles",
+                      "type": "StyleOptions",
+                      "documentation": "Display Styles for the surface",
+                      "optional": false,
+                      "isConfigParam": true
+                    }
+                  ],
+                  "returnType": "{ container: any; label: any; drawArea: any; }",
+                  "documentation": "Creates a surface on the visor\n\nMost methods in tfjs-vis that take a surface also take a SurfaceInfo\nso you rarely need to call this method unless you want to make a custom\nplot.\n\n```js\n// Create a surface on a tab\ntfvis.visor().surface({name: 'My Surface', tab: 'My Tab'});\n```\n\n```js\n// Create a surface and specify its height\ntfvis.visor().surface({name: 'Custom Height', tab: 'My Tab', styles: {\n    height: 500\n}})\n```",
+                  "fileName": "#134",
+                  "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-vis-v1.4.3/tfjs-vis/src/visor.ts#L134-L158",
+                  "isFunction": true,
+                  "urlHash": "tfvis.Visor.surface"
+                },
+                {
+                  "docInfo": {
+                    "heading": "Visor & Surfaces",
+                    "subheading": "Visor Methods"
+                  },
+                  "symbolName": "isFullscreen",
+                  "paramStr": "()",
+                  "parameters": [],
+                  "returnType": "boolean",
+                  "documentation": "Returns a boolean indicating if the visor is in 'fullscreen' mode",
+                  "fileName": "#164",
+                  "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-vis-v1.4.3/tfjs-vis/src/visor.ts#L164-L166",
+                  "isFunction": true,
+                  "urlHash": "tfvis.Visor.isFullscreen"
+                },
+                {
+                  "docInfo": {
+                    "heading": "Visor & Surfaces",
+                    "subheading": "Visor Methods"
+                  },
+                  "symbolName": "isOpen",
+                  "paramStr": "()",
+                  "parameters": [],
+                  "returnType": "boolean",
+                  "documentation": "Returns a boolean indicating if the visor is open",
+                  "fileName": "#172",
+                  "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-vis-v1.4.3/tfjs-vis/src/visor.ts#L172-L174",
+                  "isFunction": true,
+                  "urlHash": "tfvis.Visor.isOpen"
+                },
+                {
+                  "docInfo": {
+                    "heading": "Visor & Surfaces",
+                    "subheading": "Visor Methods"
+                  },
+                  "symbolName": "close",
+                  "paramStr": "()",
+                  "parameters": [],
+                  "returnType": "void",
+                  "documentation": "Closes the visor.",
+                  "fileName": "#180",
+                  "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-vis-v1.4.3/tfjs-vis/src/visor.ts#L180-L182",
+                  "isFunction": true,
+                  "urlHash": "tfvis.Visor.close"
+                },
+                {
+                  "docInfo": {
+                    "heading": "Visor & Surfaces",
+                    "subheading": "Visor Methods"
+                  },
+                  "symbolName": "open",
+                  "paramStr": "()",
+                  "parameters": [],
+                  "returnType": "void",
+                  "documentation": "Opens the visor.",
+                  "fileName": "#188",
+                  "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-vis-v1.4.3/tfjs-vis/src/visor.ts#L188-L190",
+                  "isFunction": true,
+                  "urlHash": "tfvis.Visor.open"
+                },
+                {
+                  "docInfo": {
+                    "heading": "Visor & Surfaces",
+                    "subheading": "Visor Methods"
+                  },
+                  "symbolName": "toggle",
+                  "paramStr": "()",
+                  "parameters": [],
+                  "returnType": "void",
+                  "documentation": "Toggles the visor (closed vs open).",
+                  "fileName": "#196",
+                  "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-vis-v1.4.3/tfjs-vis/src/visor.ts#L196-L198",
+                  "isFunction": true,
+                  "urlHash": "tfvis.Visor.toggle"
+                },
+                {
+                  "docInfo": {
+                    "heading": "Visor & Surfaces",
+                    "subheading": "Visor Methods"
+                  },
+                  "symbolName": "toggleFullScreen",
+                  "paramStr": "()",
+                  "parameters": [],
+                  "returnType": "void",
+                  "documentation": "",
+                  "fileName": "#201",
+                  "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-vis-v1.4.3/tfjs-vis/src/visor.ts#L201-L203",
+                  "isFunction": true,
+                  "urlHash": "tfvis.Visor.toggleFullScreen"
+                },
+                {
+                  "docInfo": {
+                    "heading": "Visor & Surfaces",
+                    "subheading": "Visor Methods"
+                  },
+                  "symbolName": "bindKeys",
+                  "paramStr": "()",
+                  "parameters": [],
+                  "returnType": "void",
+                  "documentation": "Binds the ~ (tilde) key to toggle the visor.\n\nThis is called by default when the visor is initially created.",
+                  "fileName": "#211",
+                  "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-vis-v1.4.3/tfjs-vis/src/visor.ts#L211-L213",
+                  "isFunction": true,
+                  "urlHash": "tfvis.Visor.bindKeys"
+                },
+                {
+                  "docInfo": {
+                    "heading": "Visor & Surfaces",
+                    "subheading": "Visor Methods"
+                  },
+                  "symbolName": "unbindKeys",
+                  "paramStr": "()",
+                  "parameters": [],
+                  "returnType": "void",
+                  "documentation": "Unbinds the keyboard control to toggle the visor.",
+                  "fileName": "#219",
+                  "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-vis-v1.4.3/tfjs-vis/src/visor.ts#L219-L221",
+                  "isFunction": true,
+                  "urlHash": "tfvis.Visor.unbindKeys"
+                },
+                {
+                  "docInfo": {
+                    "heading": "Visor & Surfaces",
+                    "subheading": "Visor Methods"
+                  },
+                  "symbolName": "setActiveTab",
+                  "paramStr": "(tabName)",
+                  "parameters": [
+                    {
+                      "name": "tabName",
+                      "documentation": "",
+                      "type": "string",
+                      "optional": false,
+                      "isConfigParam": false
+                    }
+                  ],
+                  "returnType": "void",
+                  "documentation": "Sets the active tab for the visor.",
+                  "fileName": "#227",
+                  "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-vis-v1.4.3/tfjs-vis/src/visor.ts#L227-L233",
+                  "isFunction": true,
+                  "urlHash": "tfvis.Visor.setActiveTab"
+                }
+              ],
+              "isClass": true,
+              "displayName": "tfvis.Visor",
+              "urlHash": "class:Visor"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Models & Tensors",
+      "description": "<p>This library exposes a show namespace that provides a number of higher level functions\nuseful for rendering tfjs concepts. They lean towards being opinionated rather than flexible\nbut are generally combinations of Renderers (see below), so one can easily roll their own.</p>",
+      "subheadings": [
+        {
+          "name": "Model Inspection",
+          "description": "<p>These functions are useful for examing models, layers and tensors",
+          "symbols": [
+            {
+              "docInfo": {
+                "heading": "Models & Tensors",
+                "subheading": "Model Inspection",
+                "namespace": "show"
+              },
+              "symbolName": "layer",
+              "namespace": "show",
+              "paramStr": "(container, layer)",
+              "parameters": [
+                {
+                  "name": "container",
+                  "documentation": "",
+                  "type": "HTMLElement|{name: string, tab?: string}|Surface|{drawArea:\nHTMLElement}",
+                  "optional": false,
+                  "isConfigParam": false
+                },
+                {
+                  "name": "layer",
+                  "documentation": "",
+                  "type": "Layer",
+                  "optional": false,
+                  "isConfigParam": false
+                }
+              ],
+              "returnType": "any",
+              "documentation": "Renders summary information about a layer and a histogram of parameters in\nthat layer.\n\n```js\nconst model = tf.sequential({\n  layers: [\n    tf.layers.dense({inputShape: [784], units: 32, activation: 'relu'}),\n    tf.layers.dense({units: 10, activation: 'softmax'}),\n  ]\n});\n\nconst surface = { name: 'Layer Summary', tab: 'Model Inspection'};\ntfvis.show.layer(surface, model.getLayer(undefined, 1));\n```",
+              "fileName": "#98",
+              "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-vis-v1.4.3/tfjs-vis/src/show/model.ts#L98-L135",
+              "isFunction": true,
+              "displayName": "tfvis.show.layer",
+              "urlHash": "show.layer"
+            },
+            {
+              "docInfo": {
+                "heading": "Models & Tensors",
+                "subheading": "Model Inspection",
+                "namespace": "show"
+              },
+              "symbolName": "modelSummary",
+              "namespace": "show",
+              "paramStr": "(container, model)",
+              "parameters": [
+                {
+                  "name": "container",
+                  "documentation": "",
+                  "type": "HTMLElement|{name: string, tab?: string}|Surface|{drawArea:\nHTMLElement}",
+                  "optional": false,
+                  "isConfigParam": false
+                },
+                {
+                  "name": "model",
+                  "documentation": "",
+                  "type": "tf.LayersModel",
+                  "optional": false,
+                  "isConfigParam": false
+                }
+              ],
+              "returnType": "any",
+              "documentation": "Renders a summary of a tf.Model. Displays a table with layer information.\n\n```js\nconst model = tf.sequential({\n  layers: [\n    tf.layers.dense({inputShape: [784], units: 32, activation: 'relu'}),\n    tf.layers.dense({units: 10, activation: 'softmax'}),\n  ]\n});\n\nconst surface = { name: 'Model Summary', tab: 'Model Inspection'};\ntfvis.show.modelSummary(surface, model);\n```",
+              "fileName": "#52",
+              "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-vis-v1.4.3/tfjs-vis/src/show/model.ts#L52-L72",
+              "isFunction": true,
+              "displayName": "tfvis.show.modelSummary",
+              "urlHash": "show.modelSummary"
+            },
+            {
+              "docInfo": {
+                "heading": "Models & Tensors",
+                "subheading": "Model Inspection",
+                "namespace": "show"
+              },
+              "symbolName": "valuesDistribution",
+              "namespace": "show",
+              "paramStr": "(container, tensor)",
+              "parameters": [
+                {
+                  "name": "container",
+                  "documentation": "",
+                  "type": "HTMLElement|{name: string, tab?: string}|Surface|{drawArea:\nHTMLElement}",
+                  "optional": false,
+                  "isConfigParam": false
+                },
+                {
+                  "name": "tensor",
+                  "documentation": "",
+                  "type": "Tensor",
+                  "optional": false,
+                  "isConfigParam": false
+                }
+              ],
+              "returnType": "any",
+              "documentation": "Shows a histogram with the distribution of all values in a given tensor.\n\n```js\nconst tensor = tf.tensor1d([0, 0, 0, 0, 2, 3, 4]);\n\nconst surface = {name: 'Values Distribution', tab: 'Model Inspection'};\nawait tfvis.show.valuesDistribution(surface, tensor);\n```",
+              "fileName": "#40",
+              "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-vis-v1.4.3/tfjs-vis/src/show/tensor.ts#L40-L45",
+              "isFunction": true,
+              "displayName": "tfvis.show.valuesDistribution",
+              "urlHash": "show.valuesDistribution"
+            }
+          ]
+        },
+        {
+          "name": "Model Training",
+          "description": "<p>\nThese functions are useful for monitoring training.\n</p>",
+          "symbols": [
+            {
+              "docInfo": {
+                "heading": "Models & Tensors",
+                "subheading": "Model Training",
+                "namespace": "show"
+              },
+              "symbolName": "fitCallbacks",
+              "namespace": "show",
+              "paramStr": "(container, metrics, opts?)",
+              "parameters": [
+                {
+                  "name": "container",
+                  "documentation": "",
+                  "type": "HTMLElement|{name: string, tab?: string}|Surface|{drawArea:\nHTMLElement}",
+                  "optional": false,
+                  "isConfigParam": false
+                },
+                {
+                  "name": "metrics",
+                  "documentation": "List of metrics to plot.",
+                  "type": "string[]",
+                  "optional": false,
+                  "isConfigParam": false
+                },
+                {
+                  "name": "opts",
+                  "documentation": "Optional parameters",
+                  "type": "Object",
+                  "optional": true,
+                  "isConfigParam": false
+                },
+                {
+                  "name": "callbacks",
+                  "type": "string[]",
+                  "documentation": "Array of callback names. Valid options\nare 'onEpochEnd' and 'onBatchEnd'. Defaults to ['onEpochEnd',\n'onBatchEnd'].",
+                  "optional": false,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "zoomToFitAccuracy",
+                  "type": "boolean",
+                  "documentation": "",
+                  "optional": false,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "xAxisDomain",
+                  "type": "[number, number]",
+                  "documentation": "domain of the x axis. Overriden by zoomToFit",
+                  "optional": false,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "yAxisDomain",
+                  "type": "[number, number]",
+                  "documentation": "domain of the y axis. Overriden by zoomToFit",
+                  "optional": false,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "zoomToFit",
+                  "type": "boolean",
+                  "documentation": "Set the chart bounds to just fit the data. This may modify the axis scales\nbut allows fitting more data into view.",
+                  "optional": false,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "seriesColors",
+                  "type": "string[]",
+                  "documentation": "Colors to for each series plotted. An array of valid CSS color strings.",
+                  "optional": false,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "width",
+                  "type": "number",
+                  "documentation": "Width of chart in px",
+                  "optional": false,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "height",
+                  "type": "number",
+                  "documentation": "Height of chart in px",
+                  "optional": false,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "xLabel",
+                  "type": "string",
+                  "documentation": "Label for xAxis",
+                  "optional": false,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "yLabel",
+                  "type": "string",
+                  "documentation": "Label for yAxis",
+                  "optional": false,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "fontSize",
+                  "type": "number",
+                  "documentation": "Fontsize in px",
+                  "optional": false,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "xType",
+                  "type": "'quantitative'|'ordinal'|'nominal'",
+                  "documentation": "Will be set automatically",
+                  "optional": false,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "yType",
+                  "type": "'quantitative'|'ordinal'|'nominal'",
+                  "documentation": "Will be set automatically",
+                  "optional": false,
+                  "isConfigParam": true
+                }
+              ],
+              "returnType": "FitCallbackHandlers",
+              "documentation": "Returns a collection of callbacks to pass to tf.Model.fit. Callbacks are\nreturned for the following events, `onBatchEnd` & `onEpochEnd`.\n\n```js\nconst model = tf.sequential({\n  layers: [\n    tf.layers.dense({inputShape: [784], units: 32, activation: 'relu'}),\n    tf.layers.dense({units: 10, activation: 'softmax'}),\n  ]\n});\n\nmodel.compile({\n   optimizer: 'sgd',\n   loss: 'categoricalCrossentropy',\n   metrics: ['accuracy']\n});\n\nconst data = tf.randomNormal([100, 784]);\nconst labels = tf.randomUniform([100, 10]);\n\nfunction onBatchEnd(batch, logs) {\n   console.log('Accuracy', logs.acc);\n}\n\nconst surface = { name: 'show.fitCallbacks', tab: 'Training' };\n// Train for 5 epochs with batch size of 32.\nawait model.fit(data, labels, {\n    epochs: 5,\n    batchSize: 32,\n    callbacks: tfvis.show.fitCallbacks(surface, ['loss', 'acc']),\n});\n```",
+              "fileName": "#256",
+              "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-vis-v1.4.3/tfjs-vis/src/show/history.ts#L256-L309",
+              "isFunction": true,
+              "displayName": "tfvis.show.fitCallbacks",
+              "urlHash": "show.fitCallbacks"
+            },
+            {
+              "docInfo": {
+                "heading": "Models & Tensors",
+                "subheading": "Model Training",
+                "namespace": "show"
+              },
+              "symbolName": "history",
+              "namespace": "show",
+              "paramStr": "(container, history, metrics, opts?)",
+              "parameters": [
+                {
+                  "name": "container",
+                  "documentation": "",
+                  "type": "HTMLElement|{name: string, tab?: string}|Surface|{drawArea:\nHTMLElement}",
+                  "optional": false,
+                  "isConfigParam": false
+                },
+                {
+                  "name": "history",
+                  "documentation": "A history like object. Either a tfjs-layers `History` object\nor an array of tfjs-layers `Logs` objects.",
+                  "type": "HistoryLike",
+                  "optional": false,
+                  "isConfigParam": false
+                },
+                {
+                  "name": "metrics",
+                  "documentation": "An array of strings for each metric to plot from the history\nobject. Using this allows you to control which metrics appear on the same\nplot.",
+                  "type": "string[]",
+                  "optional": false,
+                  "isConfigParam": false
+                },
+                {
+                  "name": "opts",
+                  "documentation": "Optional parameters for the line charts.",
+                  "type": "Object",
+                  "optional": true,
+                  "isConfigParam": false
+                },
+                {
+                  "name": "zoomToFitAccuracy",
+                  "type": "boolean",
+                  "documentation": "",
+                  "optional": false,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "xAxisDomain",
+                  "type": "[number, number]",
+                  "documentation": "domain of the x axis. Overriden by zoomToFit",
+                  "optional": false,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "yAxisDomain",
+                  "type": "[number, number]",
+                  "documentation": "domain of the y axis. Overriden by zoomToFit",
+                  "optional": false,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "zoomToFit",
+                  "type": "boolean",
+                  "documentation": "Set the chart bounds to just fit the data. This may modify the axis scales\nbut allows fitting more data into view.",
+                  "optional": false,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "seriesColors",
+                  "type": "string[]",
+                  "documentation": "Colors to for each series plotted. An array of valid CSS color strings.",
+                  "optional": false,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "width",
+                  "type": "number",
+                  "documentation": "Width of chart in px",
+                  "optional": false,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "height",
+                  "type": "number",
+                  "documentation": "Height of chart in px",
+                  "optional": false,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "xLabel",
+                  "type": "string",
+                  "documentation": "Label for xAxis",
+                  "optional": false,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "yLabel",
+                  "type": "string",
+                  "documentation": "Label for yAxis",
+                  "optional": false,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "fontSize",
+                  "type": "number",
+                  "documentation": "Fontsize in px",
+                  "optional": false,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "xType",
+                  "type": "'quantitative'|'ordinal'|'nominal'",
+                  "documentation": "Will be set automatically",
+                  "optional": false,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "yType",
+                  "type": "'quantitative'|'ordinal'|'nominal'",
+                  "documentation": "Will be set automatically",
+                  "optional": false,
+                  "isConfigParam": true
+                }
+              ],
+              "returnType": "Promise<void>",
+              "documentation": "Renders a tf.Model training 'History'.\n\n```js\nconst model = tf.sequential({\n  layers: [\n    tf.layers.dense({inputShape: [784], units: 32, activation: 'relu'}),\n    tf.layers.dense({units: 10, activation: 'softmax'}),\n  ]\n});\n\nmodel.compile({\n   optimizer: 'sgd',\n   loss: 'categoricalCrossentropy',\n   metrics: ['accuracy']\n});\n\nconst data = tf.randomNormal([100, 784]);\nconst labels = tf.randomUniform([100, 10]);\n\nfunction onBatchEnd(batch, logs) {\n   console.log('Accuracy', logs.acc);\n}\n\nconst surface = { name: 'show.history', tab: 'Training' };\n// Train for 5 epochs with batch size of 32.\nconst history = await model.fit(data, labels, {\n    epochs: 5,\n    batchSize: 32\n});\n\ntfvis.show.history(surface, history, ['loss', 'acc']);\n```\n\n```js\nconst model = tf.sequential({\n  layers: [\n    tf.layers.dense({inputShape: [784], units: 32, activation: 'relu'}),\n    tf.layers.dense({units: 10, activation: 'softmax'}),\n  ]\n});\n\nmodel.compile({\n   optimizer: 'sgd',\n   loss: 'categoricalCrossentropy',\n   metrics: ['accuracy']\n});\n\nconst data = tf.randomNormal([100, 784]);\nconst labels = tf.randomUniform([100, 10]);\n\nfunction onBatchEnd(batch, logs) {\n   console.log('Accuracy', logs.acc);\n}\n\nconst surface = { name: 'show.history live', tab: 'Training' };\n// Train for 5 epochs with batch size of 32.\nconst history = [];\nawait model.fit(data, labels, {\n    epochs: 5,\n    batchSize: 32,\n    callbacks: {\n      onEpochEnd: (epoch, log) => {\n        history.push(log);\n        tfvis.show.history(surface, history, ['loss', 'acc']);\n      }\n    }\n});\n```",
+              "fileName": "#106",
+              "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-vis-v1.4.3/tfjs-vis/src/show/history.ts#L106-L162",
+              "isFunction": true,
+              "displayName": "tfvis.show.history",
+              "urlHash": "show.history"
+            }
+          ]
+        },
+        {
+          "name": "Model Evaluation",
+          "description": "<p>These functions are useful for evaluating the quality of a model.</p>",
+          "symbols": []
+        }
+      ]
+    },
+    {
+      "name": "Charts",
+      "description": "<p>The library exposes a render namespace that provides a number of functions that plot \nparticular visualizations. Most of these functions take regular JavaScript objects</p>",
+      "subheadings": [
+        {
+          "symbols": [
+            {
+              "docInfo": {
+                "heading": "Charts",
+                "namespace": "render"
+              },
+              "symbolName": "barchart",
+              "namespace": "render",
+              "paramStr": "(container, data, opts?)",
+              "parameters": [
+                {
+                  "name": "container",
+                  "documentation": "",
+                  "type": "HTMLElement|{name: string, tab?: string}|Surface|{drawArea:\nHTMLElement}",
+                  "optional": false,
+                  "isConfigParam": false
+                },
+                {
+                  "name": "data",
+                  "documentation": "Data in the following format, (an array of objects)\n`[ {index: number, value: number} ... ]`",
+                  "type": "Array",
+                  "optional": false,
+                  "isConfigParam": false
+                },
+                {
+                  "name": "opts",
+                  "documentation": "",
+                  "type": "Object",
+                  "optional": true,
+                  "isConfigParam": false
+                },
+                {
+                  "name": "color",
+                  "type": "string|string[]",
+                  "documentation": "Fill color for bars. Should be a valid CSS color string",
+                  "optional": false,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "width",
+                  "type": "number",
+                  "documentation": "Width of chart in px",
+                  "optional": false,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "height",
+                  "type": "number",
+                  "documentation": "Height of chart in px",
+                  "optional": false,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "xLabel",
+                  "type": "string",
+                  "documentation": "Label for xAxis",
+                  "optional": false,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "yLabel",
+                  "type": "string",
+                  "documentation": "Label for yAxis",
+                  "optional": false,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "fontSize",
+                  "type": "number",
+                  "documentation": "Fontsize in px",
+                  "optional": false,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "xType",
+                  "type": "'quantitative'|'ordinal'|'nominal'",
+                  "documentation": "Will be set automatically",
+                  "optional": false,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "yType",
+                  "type": "'quantitative'|'ordinal'|'nominal'",
+                  "documentation": "Will be set automatically",
+                  "optional": false,
+                  "isConfigParam": true
+                }
+              ],
+              "returnType": "Promise<void>",
+              "documentation": "Renders a barchart.\n\n```js\nconst data = [\n   { index: 0, value: 50 },\n   { index: 1, value: 100 },\n   { index: 2, value: 150 },\n  ];\n\n// Render to visor\nconst surface = { name: 'Bar chart', tab: 'Charts' };\ntfvis.render.barchart(surface, data);\n```",
+              "fileName": "#45",
+              "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-vis-v1.4.3/tfjs-vis/src/render/barchart.ts#L45-L139",
+              "isFunction": true,
+              "displayName": "tfvis.render.barchart",
+              "urlHash": "render.barchart"
+            },
+            {
+              "docInfo": {
+                "heading": "Charts",
+                "namespace": "render"
+              },
+              "symbolName": "confusionMatrix",
+              "namespace": "render",
+              "paramStr": "(container, data, opts?)",
+              "parameters": [
+                {
+                  "name": "container",
+                  "documentation": "",
+                  "type": "HTMLElement|{name: string, tab?: string}|Surface|{drawArea:\nHTMLElement}",
+                  "optional": false,
+                  "isConfigParam": false
+                },
+                {
+                  "name": "data",
+                  "documentation": "",
+                  "type": "Object",
+                  "optional": false,
+                  "isConfigParam": false
+                },
+                {
+                  "name": "values",
+                  "type": "number[][]",
+                  "documentation": "a square matrix of numbers representing counts for each (label, prediction)\npair",
+                  "optional": false,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "tickLabels",
+                  "type": "string[]",
+                  "documentation": "Human readable labels for each class in the matrix. Optional",
+                  "optional": false,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "opts",
+                  "documentation": "",
+                  "type": "Object",
+                  "optional": true,
+                  "isConfigParam": false
+                },
+                {
+                  "name": "shadeDiagonal",
+                  "type": "boolean",
+                  "documentation": "Color cells on the diagonal. Defaults to true",
+                  "optional": false,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "showTextOverlay",
+                  "type": "boolean",
+                  "documentation": "render the values of each cell as text. Defaults to true",
+                  "optional": false,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "colorMap",
+                  "type": "'greyscale'|'viridis'|'blues'|[string, string]",
+                  "documentation": "Output range of color scale. Either a 2 element array of valid\ncss color or one of 'greyscale'|'viridis'|'blues'",
+                  "optional": false,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "width",
+                  "type": "number",
+                  "documentation": "Width of chart in px",
+                  "optional": false,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "height",
+                  "type": "number",
+                  "documentation": "Height of chart in px",
+                  "optional": false,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "xLabel",
+                  "type": "string",
+                  "documentation": "Label for xAxis",
+                  "optional": false,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "yLabel",
+                  "type": "string",
+                  "documentation": "Label for yAxis",
+                  "optional": false,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "fontSize",
+                  "type": "number",
+                  "documentation": "Fontsize in px",
+                  "optional": false,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "xType",
+                  "type": "'quantitative'|'ordinal'|'nominal'",
+                  "documentation": "Will be set automatically",
+                  "optional": false,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "yType",
+                  "type": "'quantitative'|'ordinal'|'nominal'",
+                  "documentation": "Will be set automatically",
+                  "optional": false,
+                  "isConfigParam": true
+                }
+              ],
+              "returnType": "Promise<void>",
+              "documentation": "Renders a confusion matrix.\n\nCan optionally exclude the diagonal from being shaded if one wants the visual\nfocus to be on the incorrect classifications. Note that if the classification\nis perfect (i.e. only the diagonal has values) then the diagonal will always\nbe shaded.\n\n```js\nconst rows = 5;\nconst cols = 5;\nconst values = [];\nfor (let i = 0; i < rows; i++) {\n   const row = []\n   for (let j = 0; j < cols; j++) {\n     row.push(Math.round(Math.random() * 50));\n   }\n   values.push(row);\n}\nconst data = { values };\n\n// Render to visor\nconst surface = { name: 'Confusion Matrix', tab: 'Charts' };\ntfvis.render.confusionMatrix(surface, data);\n```\n\n```js\n// The diagonal can be excluded from shading.\n\nconst data = {\n   values: [[4, 2, 8], [1, 7, 2], [3, 3, 20]],\n}\n\n// Render to visor\nconst surface = {\n  name: 'Confusion Matrix with Excluded Diagonal', tab: 'Charts'\n};\n\ntfvis.render.confusionMatrix(surface, data, {\n   shadeDiagonal: false\n});\n```",
+              "fileName": "#68",
+              "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-vis-v1.4.3/tfjs-vis/src/render/confusion_matrix.ts#L68-L246",
+              "isFunction": true,
+              "displayName": "tfvis.render.confusionMatrix",
+              "urlHash": "render.confusionMatrix"
+            },
+            {
+              "docInfo": {
+                "heading": "Charts",
+                "namespace": "render"
+              },
+              "symbolName": "heatmap",
+              "namespace": "render",
+              "paramStr": "(container, data, opts?)",
+              "parameters": [
+                {
+                  "name": "container",
+                  "documentation": "",
+                  "type": "HTMLElement|{name: string, tab?: string}|Surface|{drawArea:\nHTMLElement}",
+                  "optional": false,
+                  "isConfigParam": false
+                },
+                {
+                  "name": "data",
+                  "documentation": "",
+                  "type": "Object",
+                  "optional": false,
+                  "isConfigParam": false
+                },
+                {
+                  "name": "values",
+                  "type": "number[][]|Tensor2D",
+                  "documentation": "Matrix of values in column-major order.\n\nRow major order is supported by setting a boolean in options.",
+                  "optional": false,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "xTickLabels",
+                  "type": "string[]",
+                  "documentation": "x axis tick labels",
+                  "optional": false,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "yTickLabels",
+                  "type": "string[]",
+                  "documentation": "y axis tick labels",
+                  "optional": false,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "opts",
+                  "documentation": "",
+                  "type": "Object",
+                  "optional": true,
+                  "isConfigParam": false
+                },
+                {
+                  "name": "colorMap",
+                  "type": "'greyscale'|'viridis'|'blues'",
+                  "documentation": "Defaults to viridis",
+                  "optional": false,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "domain",
+                  "type": "number[]",
+                  "documentation": "Custom input domain for the color scale.\nUseful if you want to plot multiple heatmaps using the same scale.",
+                  "optional": false,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "rowMajor",
+                  "type": "boolean",
+                  "documentation": "Pass in data values in row-major order.\n\nInternally this will transpose the data values before rendering.",
+                  "optional": false,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "width",
+                  "type": "number",
+                  "documentation": "Width of chart in px",
+                  "optional": false,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "height",
+                  "type": "number",
+                  "documentation": "Height of chart in px",
+                  "optional": false,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "xLabel",
+                  "type": "string",
+                  "documentation": "Label for xAxis",
+                  "optional": false,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "yLabel",
+                  "type": "string",
+                  "documentation": "Label for yAxis",
+                  "optional": false,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "fontSize",
+                  "type": "number",
+                  "documentation": "Fontsize in px",
+                  "optional": false,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "xType",
+                  "type": "'quantitative'|'ordinal'|'nominal'",
+                  "documentation": "Will be set automatically",
+                  "optional": false,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "yType",
+                  "type": "'quantitative'|'ordinal'|'nominal'",
+                  "documentation": "Will be set automatically",
+                  "optional": false,
+                  "isConfigParam": true
+                }
+              ],
+              "returnType": "Promise<void>",
+              "documentation": "Renders a heatmap.\n\n```js\nconst cols = 50;\nconst rows = 20;\nconst values = [];\nfor (let i = 0; i < cols; i++) {\n   const col = []\n   for (let j = 0; j < rows; j++) {\n     col.push(i * j)\n   }\n   values.push(col);\n}\nconst data = { values };\n\n// Render to visor\nconst surface = { name: 'Heatmap', tab: 'Charts' };\ntfvis.render.heatmap(surface, data);\n```\n\n```js\nconst data = {\n   values: [[4, 2, 8, 20], [1, 7, 2, 10], [3, 3, 20, 13]],\n   xTickLabels: ['cheese', 'pig', 'font'],\n   yTickLabels: ['speed', 'smoothness', 'dexterity', 'mana'],\n}\n\n// Render to visor\nconst surface = { name: 'Heatmap w Custom Labels', tab: 'Charts' };\ntfvis.render.heatmap(surface, data);\n```",
+              "fileName": "#62",
+              "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-vis-v1.4.3/tfjs-vis/src/render/heatmap.ts#L62-L252",
+              "isFunction": true,
+              "displayName": "tfvis.render.heatmap",
+              "urlHash": "render.heatmap"
+            },
+            {
+              "docInfo": {
+                "heading": "Charts",
+                "namespace": "render"
+              },
+              "symbolName": "histogram",
+              "namespace": "render",
+              "paramStr": "(container, data, opts?)",
+              "parameters": [
+                {
+                  "name": "container",
+                  "documentation": "",
+                  "type": "HTMLElement|{name: string, tab?: string}|Surface|{drawArea:\nHTMLElement}",
+                  "optional": false,
+                  "isConfigParam": false
+                },
+                {
+                  "name": "data",
+                  "documentation": "",
+                  "type": "Array|number[]|[TypedArray](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray)",
+                  "optional": false,
+                  "isConfigParam": false
+                },
+                {
+                  "name": "opts",
+                  "documentation": "",
+                  "type": "Object",
+                  "optional": true,
+                  "isConfigParam": false
+                },
+                {
+                  "name": "stats",
+                  "type": "HistogramStats|false",
+                  "documentation": "By default a histogram will also compute and display summary statistics.\nIf stats is set to false then summary statistics will not be displayed.\n\nPre computed stats can also be passed in and should have the following\nformat:\n  {\n    numVals?: number,\n    min?: number,\n    max?: number,\n    numNans?: number,\n    numZeros?: number,\n    numInfs?: number,\n  }",
+                  "optional": false,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "maxBins",
+                  "type": "number",
+                  "documentation": "Maximum number of bins in histogram.",
+                  "optional": false,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "color",
+                  "type": "string",
+                  "documentation": "Fill color for bars. Should be a valid CSS color string",
+                  "optional": false,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "width",
+                  "type": "number",
+                  "documentation": "Width of chart in px",
+                  "optional": false,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "height",
+                  "type": "number",
+                  "documentation": "Height of chart in px",
+                  "optional": false,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "xLabel",
+                  "type": "string",
+                  "documentation": "Label for xAxis",
+                  "optional": false,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "yLabel",
+                  "type": "string",
+                  "documentation": "Label for yAxis",
+                  "optional": false,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "fontSize",
+                  "type": "number",
+                  "documentation": "Fontsize in px",
+                  "optional": false,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "xType",
+                  "type": "'quantitative'|'ordinal'|'nominal'",
+                  "documentation": "Will be set automatically",
+                  "optional": false,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "yType",
+                  "type": "'quantitative'|'ordinal'|'nominal'",
+                  "documentation": "Will be set automatically",
+                  "optional": false,
+                  "isConfigParam": true
+                }
+              ],
+              "returnType": "unknown",
+              "documentation": "Renders a histogram of values\n\n```js\nconst data = Array(100).fill(0)\n   .map(x => Math.random() * 100 - (Math.random() * 50))\n\n// Push some special values for the stats table.\ndata.push(Infinity);\ndata.push(NaN);\ndata.push(0);\n\nconst surface = { name: 'Histogram', tab: 'Charts' };\ntfvis.render.histogram(surface, data);\n```",
+              "fileName": "#49",
+              "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-vis-v1.4.3/tfjs-vis/src/render/histogram.ts#L49-L135",
+              "isFunction": true,
+              "displayName": "tfvis.render.histogram",
+              "urlHash": "render.histogram"
+            },
+            {
+              "docInfo": {
+                "heading": "Charts",
+                "namespace": "render"
+              },
+              "symbolName": "linechart",
+              "namespace": "render",
+              "paramStr": "(container, data, opts?)",
+              "parameters": [
+                {
+                  "name": "container",
+                  "documentation": "",
+                  "type": "HTMLElement|{name: string, tab?: string}|Surface|{drawArea:\nHTMLElement}",
+                  "optional": false,
+                  "isConfigParam": false
+                },
+                {
+                  "name": "data",
+                  "documentation": "",
+                  "type": "Object",
+                  "optional": false,
+                  "isConfigParam": false
+                },
+                {
+                  "name": "values",
+                  "type": "Point2D[][]|Point2D[]",
+                  "documentation": "An array (or nested array) of {x, y} tuples.",
+                  "optional": false,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "series",
+                  "type": "string[]",
+                  "documentation": "Series names/labels",
+                  "optional": false,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "opts",
+                  "documentation": "",
+                  "type": "Object",
+                  "optional": true,
+                  "isConfigParam": false
+                },
+                {
+                  "name": "xAxisDomain",
+                  "type": "[number, number]",
+                  "documentation": "domain of the x axis. Overriden by zoomToFit",
+                  "optional": false,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "yAxisDomain",
+                  "type": "[number, number]",
+                  "documentation": "domain of the y axis. Overriden by zoomToFit",
+                  "optional": false,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "zoomToFit",
+                  "type": "boolean",
+                  "documentation": "Set the chart bounds to just fit the data. This may modify the axis scales\nbut allows fitting more data into view.",
+                  "optional": false,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "seriesColors",
+                  "type": "string[]",
+                  "documentation": "Colors to for each series plotted. An array of valid CSS color strings.",
+                  "optional": false,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "width",
+                  "type": "number",
+                  "documentation": "Width of chart in px",
+                  "optional": false,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "height",
+                  "type": "number",
+                  "documentation": "Height of chart in px",
+                  "optional": false,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "xLabel",
+                  "type": "string",
+                  "documentation": "Label for xAxis",
+                  "optional": false,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "yLabel",
+                  "type": "string",
+                  "documentation": "Label for yAxis",
+                  "optional": false,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "fontSize",
+                  "type": "number",
+                  "documentation": "Fontsize in px",
+                  "optional": false,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "xType",
+                  "type": "'quantitative'|'ordinal'|'nominal'",
+                  "documentation": "Will be set automatically",
+                  "optional": false,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "yType",
+                  "type": "'quantitative'|'ordinal'|'nominal'",
+                  "documentation": "Will be set automatically",
+                  "optional": false,
+                  "isConfigParam": true
+                }
+              ],
+              "returnType": "Promise<void>",
+              "documentation": "Renders a line chart\n\n```js\nconst series1 = Array(100).fill(0)\n   .map(y => Math.random() * 100 - (Math.random() * 50))\n   .map((y, x) => ({ x, y, }));\n\nconst series2 = Array(100).fill(0)\n   .map(y => Math.random() * 100 - (Math.random() * 150))\n   .map((y, x) => ({ x, y, }));\n\nconst series = ['First', 'Second'];\nconst data = { values: [series1, series2], series }\n\nconst surface = { name: 'Line chart', tab: 'Charts' };\ntfvis.render.linechart(surface, data);\n```\n\n```js\nconst series1 = Array(100).fill(0)\n   .map(y => Math.random() * 100 + 50)\n   .map((y, x) => ({ x, y, }));\n\nconst data = { values: [series1] }\n\n// Render to visor\nconst surface = { name: 'Zoomed Line Chart', tab: 'Charts' };\ntfvis.render.linechart(surface, data, { zoomToFit: true });\n```",
+              "fileName": "#60",
+              "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-vis-v1.4.3/tfjs-vis/src/render/linechart.ts#L60-L207",
+              "isFunction": true,
+              "displayName": "tfvis.render.linechart",
+              "urlHash": "render.linechart"
+            },
+            {
+              "docInfo": {
+                "heading": "Charts",
+                "namespace": "render"
+              },
+              "symbolName": "scatterplot",
+              "namespace": "render",
+              "paramStr": "(container, data, opts?)",
+              "parameters": [
+                {
+                  "name": "container",
+                  "documentation": "",
+                  "type": "HTMLElement|{name: string, tab?: string}|Surface|{drawArea:\nHTMLElement}",
+                  "optional": false,
+                  "isConfigParam": false
+                },
+                {
+                  "name": "data",
+                  "documentation": "",
+                  "type": "Object",
+                  "optional": false,
+                  "isConfigParam": false
+                },
+                {
+                  "name": "values",
+                  "type": "Point2D[][]|Point2D[]",
+                  "documentation": "An array (or nested array) of {x, y} tuples.",
+                  "optional": false,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "series",
+                  "type": "string[]",
+                  "documentation": "Series names/labels",
+                  "optional": false,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "opts",
+                  "documentation": "",
+                  "type": "Object",
+                  "optional": true,
+                  "isConfigParam": false
+                },
+                {
+                  "name": "xAxisDomain",
+                  "type": "[number, number]",
+                  "documentation": "domain of the x axis. Overriden by zoomToFit",
+                  "optional": false,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "yAxisDomain",
+                  "type": "[number, number]",
+                  "documentation": "domain of the y axis. Overriden by zoomToFit",
+                  "optional": false,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "zoomToFit",
+                  "type": "boolean",
+                  "documentation": "Set the chart bounds to just fit the data. This may modify the axis scales\nbut allows fitting more data into view.",
+                  "optional": false,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "seriesColors",
+                  "type": "string[]",
+                  "documentation": "Colors to for each series plotted. An array of valid CSS color strings.",
+                  "optional": false,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "width",
+                  "type": "number",
+                  "documentation": "Width of chart in px",
+                  "optional": false,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "height",
+                  "type": "number",
+                  "documentation": "Height of chart in px",
+                  "optional": false,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "xLabel",
+                  "type": "string",
+                  "documentation": "Label for xAxis",
+                  "optional": false,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "yLabel",
+                  "type": "string",
+                  "documentation": "Label for yAxis",
+                  "optional": false,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "fontSize",
+                  "type": "number",
+                  "documentation": "Fontsize in px",
+                  "optional": false,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "xType",
+                  "type": "'quantitative'|'ordinal'|'nominal'",
+                  "documentation": "Will be set automatically",
+                  "optional": false,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "yType",
+                  "type": "'quantitative'|'ordinal'|'nominal'",
+                  "documentation": "Will be set automatically",
+                  "optional": false,
+                  "isConfigParam": true
+                }
+              ],
+              "returnType": "Promise<void>",
+              "documentation": "Renders a scatter plot\n\n```js\nconst series1 = Array(100).fill(0)\n   .map(y => Math.random() * 100 - (Math.random() * 50))\n   .map((y, x) => ({ x, y, }));\n\nconst series2 = Array(100).fill(0)\n   .map(y => Math.random() * 100 - (Math.random() * 150))\n   .map((y, x) => ({ x, y, }));\n\nconst series = ['First', 'Second'];\nconst data = { values: [series1, series2], series }\n\nconst surface = { name: 'Scatterplot', tab: 'Charts' };\ntfvis.render.scatterplot(surface, data);\n```",
+              "fileName": "#46",
+              "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-vis-v1.4.3/tfjs-vis/src/render/scatterplot.ts#L46-L156",
+              "isFunction": true,
+              "displayName": "tfvis.render.scatterplot",
+              "urlHash": "render.scatterplot"
+            },
+            {
+              "docInfo": {
+                "heading": "Charts",
+                "namespace": "render"
+              },
+              "symbolName": "table",
+              "namespace": "render",
+              "paramStr": "(container, data, opts?)",
+              "parameters": [
+                {
+                  "name": "container",
+                  "documentation": "",
+                  "type": "HTMLElement|{name: string, tab?: string}|Surface|{drawArea:\nHTMLElement}",
+                  "optional": false,
+                  "isConfigParam": false
+                },
+                {
+                  "name": "data",
+                  "documentation": "",
+                  "type": "Object",
+                  "optional": false,
+                  "isConfigParam": false
+                },
+                {
+                  "name": "headers",
+                  "type": "string[]",
+                  "documentation": "Column names",
+                  "optional": false,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "values",
+                  "type": "any[][]",
+                  "documentation": "An array of arrays (one for  each row). The inner\narray length usually matches the length of data.headers.\n\nTypically the values are numbers or strings.",
+                  "optional": false,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "opts",
+                  "documentation": "",
+                  "type": "{fontSize?: number}",
+                  "optional": true,
+                  "isConfigParam": false
+                }
+              ],
+              "returnType": "void",
+              "documentation": "Renders a table\n\n```js\nconst headers = [\n  'Col 1',\n  'Col 2',\n  'Col 3',\n];\n\nconst values = [\n  [1, 2, 3],\n  ['4', '5', '6'],\n  ['strong>7</strong>', true, false],\n];\n\nconst surface = { name: 'Table', tab: 'Charts' };\ntfvis.render.table(surface, { headers, values });\n```",
+              "fileName": "#48",
+              "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-vis-v1.4.3/tfjs-vis/src/render/table.ts#L48-L130",
+              "isFunction": true,
+              "displayName": "tfvis.render.table",
+              "urlHash": "render.table"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Metrics",
+      "description": "<p>The metrics namespace contains a few utility functions for computing \nquality metrics like accuracy or creating confusion matrices.</p>",
+      "subheadings": [
+        {
+          "symbols": [
+            {
+              "docInfo": {
+                "heading": "Metrics",
+                "namespace": "metrics"
+              },
+              "symbolName": "accuracy",
+              "namespace": "metrics",
+              "paramStr": "(labels, predictions)",
+              "parameters": [
+                {
+                  "name": "labels",
+                  "documentation": "tensor of true values",
+                  "type": "Tensor",
+                  "optional": false,
+                  "isConfigParam": false
+                },
+                {
+                  "name": "predictions",
+                  "documentation": "tensor of predicted values",
+                  "type": "Tensor",
+                  "optional": false,
+                  "isConfigParam": false
+                }
+              ],
+              "returnType": "Promise<number>",
+              "documentation": "Computes how often predictions matches labels\n\n```js\nconst labels = tf.tensor1d([0, 0, 1, 2, 2, 2]);\nconst predictions = tf.tensor1d([0, 0, 0, 2, 1, 1]);\n\nconst result = await tfvis.metrics.accuracy(labels, predictions);\nconsole.log(result)\n```",
+              "fileName": "#246",
+              "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-vis-v1.4.3/tfjs-vis/src/util/math.ts#L246-L258",
+              "isFunction": true,
+              "displayName": "tfvis.metrics.accuracy",
+              "urlHash": "metrics.accuracy"
+            },
+            {
+              "docInfo": {
+                "heading": "Metrics",
+                "namespace": "metrics"
+              },
+              "symbolName": "confusionMatrix",
+              "namespace": "metrics",
+              "paramStr": "(labels, predictions, numClasses?, weights?)",
+              "parameters": [
+                {
+                  "name": "labels",
+                  "documentation": "1D tensor of true values",
+                  "type": "Tensor1D",
+                  "optional": false,
+                  "isConfigParam": false
+                },
+                {
+                  "name": "predictions",
+                  "documentation": "1D tensor of predicted values",
+                  "type": "Tensor1D",
+                  "optional": false,
+                  "isConfigParam": false
+                },
+                {
+                  "name": "numClasses",
+                  "documentation": "Number of distinct classes. Optional. If not passed in\nnumClasses will equal the highest number in either labels or predictions\nplus 1",
+                  "type": "number",
+                  "optional": true,
+                  "isConfigParam": false
+                },
+                {
+                  "name": "weights",
+                  "documentation": "1d tensor that is the same size as predictions.\nIf weights is passed in then each prediction contributes its corresponding\nweight to the total value of the confusion matrix cell.",
+                  "type": "Tensor1D",
+                  "optional": true,
+                  "isConfigParam": false
+                }
+              ],
+              "returnType": "Promise<number[][]>",
+              "documentation": "Computes a confusion matrix from predictions and labels. Each value in\nlabels and predictions should correspond to some output class. It is assumed\nthat these values go from 0 to numClasses - 1.\n\n```js\nconst labels = tf.tensor1d([1, 2, 4]);\nconst predictions = tf.tensor1d([2, 2, 4]);\nconst result = await tfvis.metrics.confusionMatrix(labels, predictions);\nconsole.log(JSON.stringify(result, null, 2))\n```",
+              "fileName": "#174",
+              "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-vis-v1.4.3/tfjs-vis/src/util/math.ts#L174-L227",
+              "isFunction": true,
+              "displayName": "tfvis.metrics.confusionMatrix",
+              "urlHash": "metrics.confusionMatrix"
+            },
+            {
+              "docInfo": {
+                "heading": "Metrics",
+                "namespace": "metrics"
+              },
+              "symbolName": "perClassAccuracy",
+              "namespace": "metrics",
+              "paramStr": "(labels, predictions, numClasses?)",
+              "parameters": [
+                {
+                  "name": "labels",
+                  "documentation": "1D tensor of true values",
+                  "type": "Tensor1D",
+                  "optional": false,
+                  "isConfigParam": false
+                },
+                {
+                  "name": "predictions",
+                  "documentation": "1D tensor of predicted values",
+                  "type": "Tensor1D",
+                  "optional": false,
+                  "isConfigParam": false
+                },
+                {
+                  "name": "numClasses",
+                  "documentation": "Number of distinct classes. Optional. If not passed in\nnumClasses will equal the highest number in either labels or predictions\nplus 1",
+                  "type": "number",
+                  "optional": true,
+                  "isConfigParam": false
+                }
+              ],
+              "returnType": "Promise<Array>",
+              "documentation": "Computes per class accuracy between prediction and labels. Each value in\nlabels and predictions should correspond to some output class. It is assumed\nthat these values go from 0 to numClasses - 1.\n\n```js\nconst labels = tf.tensor1d([0, 0, 1, 2, 2, 2]);\nconst predictions = tf.tensor1d([0, 0, 0, 2, 1, 1]);\n\nconst result = await tfvis.metrics.perClassAccuracy(labels, predictions);\nconsole.log(JSON.stringify(result, null, 2))\n```\n\nReturns an array of objects that each have an an `accuracy` and a `count`\nproperty for each class.",
+              "fileName": "#286",
+              "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-vis-v1.4.3/tfjs-vis/src/util/math.ts#L286-L328",
+              "isFunction": true,
+              "displayName": "tfvis.metrics.perClassAccuracy",
+              "urlHash": "metrics.perClassAccuracy"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
