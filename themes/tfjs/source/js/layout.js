@@ -1,3 +1,5 @@
+'use strict';
+
 document.addEventListener('DOMContentLoaded', function(e) {
   function initNavDraw() {
     var drawer = new mdc.drawer.MDCTemporaryDrawer(

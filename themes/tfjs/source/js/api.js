@@ -1,19 +1,20 @@
+'use strict';
+
 document.addEventListener('DOMContentLoaded', function(e) {
   // Set up version selector
   var select = new mdc.select.MDCSelect(document.querySelector('.mdc-select'));
-  select.listen('MDCSelect:change', () => {
+  select.listen('MDCSelect:change', function() {
     var link = select.selectedOptions[0].getAttribute('data-link');
     window.location.href = link;
   });
 
-  var isInViewport = function(elem) {
+  var isInViewport = function isInViewport(elem) {
     var bounding = elem.getBoundingClientRect();
-    return (
-        bounding.top >= 0 && bounding.left >= 0 &&
+    return bounding.top >= 0 && bounding.left >= 0 &&
         bounding.bottom <=
-            (window.innerHeight || document.documentElement.clientHeight) &&
+        (window.innerHeight || document.documentElement.clientHeight) &&
         bounding.right <=
-            (window.innerWidth || document.documentElement.clientWidth));
+        (window.innerWidth || document.documentElement.clientWidth);
   };
   // Find the symbol closest to the top of the page in the reference
   // section and highlight it in the TOC section.
@@ -38,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function(e) {
 
     if (found) {
       tocFound =
-          tocArea.querySelector(`[href="#${found.getAttribute('name')}"]`)
+          tocArea.querySelector('[href="#' + found.getAttribute('name') + '"]');
 
       if (tocFound) {
         if (lastHighlightedTocElement) {
