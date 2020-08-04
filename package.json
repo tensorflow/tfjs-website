@@ -22,8 +22,8 @@
     "test-ci": "./test-scripts/test-ci.sh"
   },
   "dependencies": {
-    "@tensorflow/tfjs": "2.0.1",
-    "@tensorflow/tfjs-node": "2.0.1",
+    "@tensorflow/tfjs": "2.1.0",
+    "@tensorflow/tfjs-node": "2.1.0",
     "@tensorflow/tfjs-react-native": "0.3.0",
     "@tensorflow/tfjs-vis": "1.4.3",
     "commander": "~2.14.1",
