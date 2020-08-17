@@ -34,7 +34,7 @@ const websitePackage =
 const nodeVersion = commander.local ?
     'local' :
     `${websitePackage.dependencies['@tensorflow/tfjs-node']}`;
-const nodeTag = `tfjs-node-v${nodeVersion}`
+const nodeTag = `tfjs-v${nodeVersion}`
 
 // The node docs only use the docs from one library
 const libs = [

@@ -31,54 +31,40 @@ commander.option('--local', 'use a local build').parse(process.argv);
 // Get package.json of union package
 const unionPackage = JSON.parse(fs.readFileSync(
     'node_modules/@tensorflow/tfjs/package.json', {encoding: 'utf8'}));
-const unionPackageVersion = commander.local ? 'local' : unionPackage.version;
-
-// Get the version strings from the libray
-const coreVersion = `${unionPackage.dependencies['@tensorflow/tfjs-core']}`;
-const coreTag = `tfjs-core-v${coreVersion}`;
-const layersVersion = `${unionPackage.dependencies['@tensorflow/tfjs-layers']}`;
-const layersTag = `tfjs-layers-v${layersVersion}`;
-const converterVersion =
-    `${unionPackage.dependencies['@tensorflow/tfjs-converter']}`;
-const converterTag = `tfjs-converter-v${converterVersion}`;
-const dataVersion = `${unionPackage.dependencies['@tensorflow/tfjs-data']}`;
-const dataTag = `tfjs-data-v${dataVersion}`;
+const tfjsVersion = commander.local ? 'local' : unionPackage.version;
+const tfjsTag = `tfjs-v${tfjsVersion}`;
 
 const docsFolder = `source/_data/api`;
-const versionedDocsFolder = `${docsFolder}/${unionPackageVersion}`
+const versionedDocsFolder = `${docsFolder}/${tfjsVersion}`
 
 console.log('Versions\n', {
-  'Union': unionPackageVersion,
-  'core': coreVersion,
-  'layers': layersVersion,
-  'converter': converterVersion,
-  'data': dataVersion,
+  'tfjs': tfjsVersion
 });
 
 const libs = [
   {
     packageName: 'tfjs-core',
-    github: `https://github.com/tensorflow/tfjs/tree/${coreTag}/tfjs-core`,
-    version: coreVersion,
+    github: `https://github.com/tensorflow/tfjs/tree/${tfjsTag}/tfjs-core`,
+    version: tfjsVersion,
     outputFolder: versionedDocsFolder
   },
   {
     packageName: 'tfjs-layers',
-    github: `https://github.com/tensorflow/tfjs/tree/${layersTag}/tfjs-layers`,
-    version: layersVersion,
+    github: `https://github.com/tensorflow/tfjs/tree/${tfjsTag}/tfjs-layers`,
+    version: tfjsVersion,
     outputFolder: versionedDocsFolder
   },
   {
     packageName: 'tfjs-converter',
     github: `https://github.com/tensorflow/tfjs/tree/` +
-        `${converterTag}/tfjs-converter`,
-    version: converterVersion,
+        `${tfjsTag}/tfjs-converter`,
+    version: tfjsVersion,
     outputFolder: versionedDocsFolder
   },
   {
     packageName: 'tfjs-data',
-    github: `https://github.com/tensorflow/tfjs/tree/${dataTag}/tfjs-data`,
-    version: dataVersion,
+    github: `https://github.com/tensorflow/tfjs/tree/${tfjsTag}/tfjs-data`,
+    version: tfjsVersion,
     outputFolder: versionedDocsFolder
   }
 ];
@@ -93,16 +79,12 @@ mergeDocs(docsFolder, versionedDocsFolder, outputPaths, bundlePath);
 
 console.log(`********* Writing Manifest & Template *********`);
 const docsManifest = {
-  tfjsVersion: unionPackageVersion,
-  coreVersion: coreTag,
-  layersVersion: layersTag,
-  converterVersion: converterTag,
-  dataVersion: dataTag,
+  tfjsVersion: tfjsVersion
 };
 
 const templateFolder = `source/api`;
 writeManifestAndTemplate(
-    docsFolder, versionedDocsFolder, docsManifest, unionPackageVersion,
+    docsFolder, versionedDocsFolder, docsManifest, tfjsVersion,
     templateFolder);
 
 // At this point a website build should be able to produce an api docs page
