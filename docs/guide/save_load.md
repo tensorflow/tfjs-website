@@ -69,7 +69,7 @@ await model.save('downloads://my-model');
 This will cause the browser to download the model files to the user's machine. Two files will be produced:
 
  1. A text JSON file named `[my-model].json`, which carries the topology and reference to the weights file described below.
-  2. A binary file carrying the weight values named `[my-model].weights.bin`.
+ 2. A binary file carrying the weight values named `[my-model].weights.bin`.
 
 You can change the name `[my-model]` to get files with a different name.
 
@@ -121,7 +121,7 @@ await model.save('file:///path/to/my-model');
 When running on Node.js we also have direct access to the filesystem and can save models there. The command above will save two files to the `path` specified afer the `scheme`.
 
  1. A text JSON file named `[model].json`, which carries the topology and reference to the weights file described below.
-  2. A binary file carrying the weight values named `[model].weights.bin`.
+ 2. A binary file carrying the weight values named `[model].weights.bin`.
 
 Note that the name of the two files will always be exactly as specified above (the name is built in to the function).
 
