@@ -9,14 +9,15 @@
     "node": ">=8.9.0"
   },
   "scripts": {
-    "prep": "git submodule init && git submodule update && git submodule foreach git pull origin master && yarn",
+    "prep": "git clone git@github.com:tensorflow/tfjs.git libs/tfjs",
+    "fetch-tfjs": "cd libs/tfjs && git fetch && cd ../..",
     "build": "export NODE_OPTIONS=--max-old-space-size=8192 hexo clean && ts-node build-scripts/generate-site.ts",
     "build-vis-api": "ts-node build-scripts/build-vis-api.ts --local",
     "build-rn-api": "ts-node build-scripts/build-rn-api.ts --local",
     "build-node-api": "ts-node build-scripts/build-node-api.ts --local",
     "build-api": "ts-node build-scripts/build-api.ts --local",
     "build-and-serve": "yarn build-api && yarn build-vis-api && yarn serve",
-    "build-prod": "export NODE_OPTIONS=--max-old-space-size=8192 yarn && yarn prep && hexo clean && ts-node build-scripts/build-api.ts && ts-node build-scripts/build-vis-api.ts && ts-node build-scripts/build-node-api.ts && ts-node build-scripts/build-rn-api.ts && yarn build",
+    "build-prod": "export NODE_OPTIONS=--max-old-space-size=8192 yarn && yarn fetch-tfjs && hexo clean && ts-node build-scripts/build-api.ts && ts-node build-scripts/build-vis-api.ts && ts-node build-scripts/build-node-api.ts && ts-node build-scripts/build-rn-api.ts && yarn build",
     "serve": "http-server public",
     "deploy-prod": "firebase deploy --project jstensorflow",
     "test-ci": "./test-scripts/test-ci.sh"
