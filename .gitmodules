@@ -1,3 +1,0 @@
-[submodule "libs/tfjs"]
-	path = libs/tfjs
-	url = git@github.com:tensorflow/tfjs.git
