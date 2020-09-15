@@ -37,9 +37,7 @@ const tfjsTag = `tfjs-v${tfjsVersion}`;
 const docsFolder = `source/_data/api`;
 const versionedDocsFolder = `${docsFolder}/${tfjsVersion}`
 
-console.log('Versions\n', {
-  'tfjs': tfjsVersion
-});
+console.log('Versions\n', {'tfjs': tfjsVersion});
 
 const libs = [
   {
@@ -84,7 +82,6 @@ const docsManifest = {
 
 const templateFolder = `source/api`;
 writeManifestAndTemplate(
-    docsFolder, versionedDocsFolder, docsManifest, tfjsVersion,
-    templateFolder);
+    docsFolder, versionedDocsFolder, docsManifest, tfjsVersion, templateFolder);
 
 // At this point a website build should be able to produce an api docs page

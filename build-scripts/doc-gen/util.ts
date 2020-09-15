@@ -315,21 +315,32 @@ export function getJsdoc(
 export function parameterTypeToString(
     checker: ts.TypeChecker, symbol: ts.Symbol,
     identifierGenericMap: {[identifier: string]: string}): string {
-  const valueDeclaration = symbol.valueDeclaration;
-
   // Look for type nodes that aren't null and get the full text of the type
   // node, falling back to using the checker to serialize the type.
   let typeStr;
-  valueDeclaration.forEachChild(child => {
-    if (ts.isTypeNode(child) && child.kind !== ts.SyntaxKind.NullKeyword) {
-      typeStr = child.getText();
-    }
-  });
-  if (typeStr == null) {
+
+  const valueDeclaration = symbol.valueDeclaration;
+
+  if (valueDeclaration == null) {
+    // See bug https://github.com/microsoft/TypeScript/issues/24706
+    // value declaration is not optional but is sometimes undefined.
+
     // Fall back to using the checkers method for converting the type to a
     // string.
     typeStr = checker.typeToString(
         checker.getTypeOfSymbolAtLocation(symbol, valueDeclaration));
+  } else {
+    valueDeclaration.forEachChild(child => {
+      if (ts.isTypeNode(child) && child.kind !== ts.SyntaxKind.NullKeyword) {
+        typeStr = child.getText();
+      }
+    });
+    if (typeStr == null) {
+      // Fall back to using the checkers method for converting the type to a
+      // string.
+      typeStr = checker.typeToString(
+          checker.getTypeOfSymbolAtLocation(symbol, valueDeclaration));
+    }
   }
 
   return sanitizeTypeString(typeStr, identifierGenericMap);
