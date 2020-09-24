@@ -86,7 +86,7 @@ async function executeCodeSnippet(consoleLogElement, codeSnippet) {
   // It is important that codeSnippet and 'try {' be on the same line
   // in order to not modify the line number on an error.
   const evalString = '(async function runner() { try { ' + codeSnippet +
-      '} catch (e) { reportError(e); } })()';
+      '\n} catch (e) { reportError(e); } })()';
 
   if (window._tfengine && window._tfengine.startScope) {
     window._tfengine.startScope();
