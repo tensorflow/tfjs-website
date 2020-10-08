@@ -1,4 +1,4 @@
 ---
-title: 2.4.0
+title: 2.6.0
 layout: api
 ---
