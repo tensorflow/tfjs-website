@@ -395,10 +395,10 @@
     rimraf "^2.6.2"
     tar "^4.4.6"
 
-"@tensorflow/tfjs-react-native@0.4.0":
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/@tensorflow/tfjs-react-native/-/tfjs-react-native-0.4.0.tgz#75b32428104fad0d078d1db5c3fd479c828ffd96"
-  integrity sha512-Bfo7wAGOJXQxm7Lz4ss53089kwXivBicWXqfhCpPKY5Z17GAE8CeChRA+pkzrhAMk8GrJTYte1Cn9Gi739FDaw==
+"@tensorflow/tfjs-react-native@0.5.0":
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/@tensorflow/tfjs-react-native/-/tfjs-react-native-0.5.0.tgz#fd9c770b6f18578fa7d4debe22f5ddc32c10d061"
+  integrity sha512-m2DXnozWY1Ng60dyg8olEvBAIrXab3X1BBJudSD7jLOePiu8qJqmy+UQxMfInt+xHxXwF834ZYdMmbEFqXMgzw==
   dependencies:
     base64-js "^1.3.0"
     buffer "^5.2.1"
