@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Platform helpers",
+    "description": [
+      "<p><a href=\"https://www.npmjs.com/package/@tensorflow/tfjs-react-native\">tfjs-react-native</a> ",
+      "provides a TensorFlow.js platform adapter for react native.",
+      "<p>All symbols are <b>named exports</b> from the tfjs-react-native package.</p>"
+    ],
+    "subheadings": [
+      {"name": "http", "description": []}
+    ]
+  },
+  {
+    "name": "Models",
+    "description": [
+      "<p>Model loading and saving.</p> "
+    ],
+    "subheadings": [
+      {"name": "IOHandlers", "description": []}
+    ]
+  },
+  {
+    "name": "Media",
+    "description": [
+      "<p>Utilities for dealing with images and cameras.</p> "
+    ],
+    "subheadings": [
+      {"name": "Images", "description": []},
+      {"name": "Camera", "description": []}
+    ]
+  }
+]
