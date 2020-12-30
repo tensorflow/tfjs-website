@@ -1,0 +1,314 @@
+[
+  {
+    "name": "Tensors",
+    "description": [
+      "<p>Tensors are the core datastructure of TensorFlow.js",
+      "They are a generalization of vectors and matrices to potentially",
+      "higher dimensions.</p>"
+    ],
+    "subheadings": [
+      {
+        "name": "Creation",
+        "description": [
+          "<p>We have utility functions for common cases like Scalar, 1D,",
+          "2D, 3D and 4D tensors, as well a number of functions to initialize",
+          "tensors in ways useful for machine learning.</p>"
+        ],
+        "pin": [
+          "tensor",
+          "scalar",
+          "tensor1d",
+          "tensor2d",
+          "tensor3d",
+          "tensor4d",
+          "tensor5d",
+          "tensor6d"
+        ]
+      },
+      {
+        "name": "Classes",
+        "description": [
+          "<p>",
+          "This section shows the main Tensor related classes in TensorFlow.js and",
+          "the methods we expose on them.",
+          "</p>"
+        ],
+        "pin": [
+          "Tensor",
+          "Variable",
+          "TensorBuffer"
+        ]
+      },
+      {
+        "name": "Transformations",
+        "description": [
+          "<p>This section describes some common Tensor",
+          "transformations for reshaping and type-casting.</p>"
+        ]
+      },
+      {
+        "name": "Slicing and Joining",
+        "description": [
+          "<p>TensorFlow.js provides several operations",
+          "to slice or extract parts of a tensor, or join multiple",
+          "tensors together."
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Models",
+    "description": [
+      "<p>Models are one of the primary abstractions used in",
+      "TensorFlow.js Layers.  Models can be trained, evaluated, and used",
+      "for prediction.  A model's state (topology, and optionally, trained",
+      "weights) can be restored from various formats.</p>",
+      "<p>Models are a collection of Layers, see Model Creation for",
+      "details about how Layers can be connected.</p>"
+    ],
+    "subheadings": [
+      {
+        "name": "Creation",
+        "description": [
+          "<p>There are two primary ways of creating models.</p>",
+          "<ul><li>Sequential &mdash; Easiest, works if the models is a",
+          "simple stack of each layer's input resting on the top of the",
+          "previous layer's output.</li>",
+          "<li>Model &mdash; Offers more control if the layers need to be",
+          "wired together in graph-like ways &mdash; multiple 'towers',",
+          "layers that skip a layer, etc.</li></ul>"
+        ],
+        "pin": [
+          "sequential",
+          "model"
+        ]
+      },
+      {
+        "name": "Inputs",
+        "description": []
+      },
+      {
+        "name": "Loading",
+        "description": [],
+        "pin": [
+          "loadGraphModel",
+          "loadLayersModel"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Layers",
+    "description": [
+      "<p>Layers are the primary building block for ",
+      "constructing a Model.  Each layer will typically perform some",
+      "computation to transform its input to its output.</p>",
+      "<p>Layers will automatically take care of creating and initializing",
+      "the various internal variables/weights they need to function.</p>"
+    ],
+    "subheadings": [
+      {
+        "name": "Advanced Activation",
+        "description": []
+      },
+      {
+        "name": "Basic",
+        "description": []
+      },
+      {
+        "name": "Convolutional",
+        "description": []
+      },
+      {
+        "name": "Merge",
+        "description": []
+      },
+      {
+        "name": "Normalization",
+        "description": []
+      },
+      {
+        "name": "Pooling",
+        "description": []
+      },
+      {
+        "name": "Recurrent",
+        "description": []
+      },
+      {
+        "name": "Wrapper",
+        "description": []
+      }
+    ]
+  },
+  {
+    "name": "Operations",
+    "description": [],
+    "subheadings": [
+      {
+        "name": "Arithmetic",
+        "description": [
+          "<p>To perform mathematical computation on Tensors, we use",
+          "operations. Tensors are immutable, so all operations always return",
+          "new Tensors and never modify input Tensors.</p>"
+        ],
+        "pin": [
+          "add",
+          "sub",
+          "mul",
+          "div"
+        ]
+      },
+      {
+        "name": "Basic math"
+      },
+      {
+        "name": "Matrices"
+      },
+      {
+        "name": "Convolution"
+      },
+      {
+        "name": "Reduction"
+      },
+      {
+        "name": "Normalization"
+      },
+      {
+        "name": "Images"
+      },
+      {
+        "name": "RNN"
+      },
+      {
+        "name": "Logical"
+      }
+    ]
+  },
+  {
+    "name": "Training",
+    "description": [
+      "<p>We also provide an API to do perform training, and",
+      "compute gradients. We compute gradients eagerly, users provide a function",
+      "that is a combination of operations and we automatically differentiate",
+      "that function's output with respect to its inputs.",
+      "<p>For those familiar with TensorFlow, the API we expose exactly mirrors",
+      "the TensorFlow Eager API.",
+      "</p>"
+    ],
+    "subheadings": [
+      {
+        "name": "Gradients",
+        "pin": [
+          "grad",
+          "grads",
+          "valAndGrad",
+          "valAndGrads",
+          "customGrad"
+        ]
+      },
+      {
+        "name": "Optimizers",
+        "pin": [
+          "sgd",
+          "momentum",
+          "adagrad",
+          "adadelta"
+        ]
+      },
+      {
+        "name": "Losses"
+      },
+      {
+        "name": "Classes"
+      }
+    ]
+  },
+  {
+    "name": "Performance",
+    "description": [],
+    "subheadings": [
+      {
+        "name": "Memory",
+        "pin": [
+          "tidy"
+        ]
+      },
+      {
+        "name": "Timing",
+        "pin": [
+          "time"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Environment",
+    "description": [
+      "<p>TensorFlow.js can run mathematical operations on",
+      "different backends. Currently, we support WebGL and JavaScript",
+      "CPU. By default, we choose the 'best' backend available, but",
+      "allow users to customize their backend.</p>"
+    ],
+    "subheadings": []
+  },
+  {
+    "name": "Constraints",
+    "description": [
+      "<p>Constraints are added to attributes",
+      "of a Layer (such as weights, kernels, or biases) at",
+      "construction time to clamp, or otherwise enforce an allowed range,",
+      "of values for different components of the Layer.</p>"
+    ],
+    "subheadings": []
+  },
+  {
+    "name": "Initializers",
+    "description": [
+      "<p>Initializers are used in Layers",
+      "to establish the starting the values of weights, biases, kernels, ",
+      "etc.</p>"
+    ],
+    "subheadings": []
+  },
+  {
+    "name": "Regularizers",
+    "description": [
+      "<p>Regularizers can be attached to various components",
+      "of a Layer to add a 'scoring' function to help drive weights, or ",
+      "other trainable values, away from excessively large values.  They're",
+      "typically used to promote a notion that a 'simpler' model is better",
+      "than a complicated model, assuming equal performance.</p>"
+    ],
+    "subheadings": []
+  },
+  {
+    "name": "Data",
+    "description": [
+      "<p>TensorFlow.js Data provides simple APIs to load and parse data ",
+      "from disk or over the web in a variety of formats, and to prepare ",
+      "that data for use in machine learning models (e.g. via operations ",
+      "like filter, map, shuffle, and batch)."
+    ],
+    "subheadings": [
+      {
+        "name": "Creation"
+      },
+      {
+        "name": "Operations"
+      },
+      {
+        "name": "Classes"
+      }
+    ]
+  },
+  {
+    "name": "Visualization",
+    "description": [
+      "<p>tfjs-vis is a companion library for TensorFlow.js that provides ",
+      "in-browser visualization capabilities for training and understanding ",
+      "models. <a href='/api_vis/latest/'>API docs for tfjs-vis are available here</a>"
+    ],
+    "subheadings": []
+  }
+]
