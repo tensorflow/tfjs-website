@@ -88,7 +88,7 @@ To enable better [tree-shaking](https://developers.google.com/web/fundamentals/p
 
 We also no longer register gradients for kernels by default. If you want gradient/training support you can `import '@tensorflow/tfjs-core/dist/register_all_gradients';`
 
-**Note: If you are using @tensorflow/tfjs or @tensorflow/tfjs-layers or any of the other higher level packages, this is done for you automatically.**
+> Note: If you are using @tensorflow/tfjs or @tensorflow/tfjs-layers or any of the other higher level packages, this is done for you automatically.
 
 
 ### Code Reorganization, kernel & gradient registries
