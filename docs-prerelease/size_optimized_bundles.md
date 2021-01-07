@@ -2,7 +2,7 @@
 
 ## Overview
 
-TensorFlow.js 3.0 brings support for building _size-optimized, production oriented browser bundles. _To put it another way we want to make it easier for you to ship less JavaScript to the browser.
+TensorFlow.js 3.0 brings support for building _size-optimized, production oriented browser bundles_. To put it another way we want to make it easier for you to ship less JavaScript to the browser.
 
 This feature is geared towards users with production use cases who would particularly benefit from shaving bytes off their payload (and are thus willing to put in the effort to achieve this). To use this feature you should be familiar with [ES Modules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules), JavaScript bundling tools such as [webpack](https://webpack.js.org/) or [rollup](https://rollupjs.org/guide/en/), and concepts such as [tree-shaking/dead-code elimination](https://developers.google.com/web/fundamentals/performance/optimizing-javascript/tree-shaking).
 
@@ -28,7 +28,7 @@ In the context of this document there are a few key terms we will be using:
 
 ### Inference only graph-models
 
-The primary use case we heard about from users related to this, and are supporting in this release is that of doing **inference with _TensorFlow.js graph models. _**If you are using a _TensorFlow.js layers model, _you can convert this to the graph-model format using the [tfjs-converter](https://www.npmjs.com/package/@tensorflow/tfjs-converter). The graph model format is more efficient for the inference use case.
+The primary use case we heard about from users related to this, and are supporting in this release is that of doing **inference with _TensorFlow.js graph models_**. If you are using a _TensorFlow.js layers model_, you can convert this to the graph-model format using the [tfjs-converter](https://www.npmjs.com/package/@tensorflow/tfjs-converter). The graph model format is more efficient for the inference use case.
 
 ### Low level Tensor manipulation with tfjs-core
 

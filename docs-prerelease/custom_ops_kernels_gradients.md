@@ -29,7 +29,7 @@ For this guide a few key terms are useful to describe upfront.
 
 **Kernel** — A specific implementation of an op tied to specific hardware/platform capabilities. Kernels are ‘low level’  and backend specific. Some ops have a one-to-one mapping from op to kernel while other ops use multiple kernels.
 
-**Gradient** **/ GradFunc** — The ‘backward mode’ definition of a** op/kernel** that computes the derivative of that function with regards to some input. Gradients are ‘high level’ code (not backend specific) and can call other ops or kernels.
+**Gradient** **/ GradFunc** — The ‘backward mode’ definition of an **op/kernel** that computes the derivative of that function with regards to some input. Gradients are ‘high level’ code (not backend specific) and can call other ops or kernels.
 
 **Kernel Registry** - A map from a **(kernel name, backend name)** tuple to a kernel implementation.
 
