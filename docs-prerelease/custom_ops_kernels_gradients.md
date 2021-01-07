@@ -16,7 +16,7 @@ This is a fairly advanced guide that touches on some internals of TensorFlow.js,
 *   Users building libraries that extend TensorFlow.js (e.g. a general linear algebra library built on top of TensorFlow.js primitives or a new TensorFlow.js backend).
 *   Users interested in contributing new ops to tensorflow.js who want to get a general overview of how these mechanisms work.
 
-This **is not** **a guide to general use** of TensorFlow.js as it goes into internal implementation mechanisms. You do not need to understand these mechanisms to use TensorFlow.js
+This **is not** a guide to general use of TensorFlow.js as it goes into internal implementation mechanisms. You do not need to understand these mechanisms to use TensorFlow.js
 
 You do need to be comfortable with (or willing to try) reading TensorFlow.js source code to make the most use of this guide.
 
@@ -31,9 +31,9 @@ For this guide a few key terms are useful to describe upfront.
 
 **Gradient** **/ GradFunc** — The ‘backward mode’ definition of a** op/kernel** that computes the derivative of that function with regards to some input. Gradients are ‘high level’ code (not backend specific) and can call other ops or kernels.
 
-**Kernel Registry **—** **A map from a **(kernel name, backend name) tuple to a kernel implementation**.
+**Kernel Registry** - A map from a **(kernel name, backend name)** tuple to a kernel implementation.
 
-**Gradient Registry **— A map from a **kernel name to a gradient implementation**.
+**Gradient Registry** — A map from a **kernel name to a gradient implementation**.
 
 
 ## Code organization
