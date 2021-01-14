@@ -7,7 +7,7 @@ Release notes are [available here](https://github.com/tensorflow/tfjs/releases).
 
 ### Custom Modules
 
-We provide support for creating custom tfjs modules to support producing size optimized browser bundles. Ship less JavaScript to your users. To learn more about this, [see this tutorial](https://docs.google.com/document/d/1-GFTKXyZQ8_L7j7XRSdWdOMClR5gVlPJfu9j1NxBxGk/edit?resourcekey=0-p69-LC9O5TUGojrMSPuLvA#heading=h.270r6grxlecj).
+We provide support for creating custom tfjs modules to support producing size optimized browser bundles. Ship less JavaScript to your users. To learn more about this, [see this tutorial](size_optimized_bundles.md).
 
 This feature is geared towards deployment in the browser, however enabling this capability motivates some of the changes described below.
 
@@ -93,7 +93,7 @@ We also no longer register gradients for kernels by default. If you want gradien
 
 ### Code Reorganization, kernel & gradient registries
 
-We have re-organized our code to make it easier to both contribute ops and kernels as well as implement custom ops, kernels and gradients. [See this guide for more information](https://docs.google.com/document/d/1cFIjNa5YArApTY5BwLyuBu5-aHRGgS0cGu6_brQWieI/edit?resourcekey=0-oYyeDC7HlutHeHVVTN9vqA).
+We have re-organized our code to make it easier to both contribute ops and kernels as well as implement custom ops, kernels and gradients. [See this guide for more information](custom_ops_kernels_gradients.md).
 
 
 ### Breaking Changes
