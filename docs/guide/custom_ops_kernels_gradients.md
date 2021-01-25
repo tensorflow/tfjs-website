@@ -57,7 +57,7 @@ One way to think of a custom op is just as a JavaScript function that returns so
 
 ## Implementing Custom Kernels
 
-Backend specific kernel implementations allow for optimized implementation of the logic for a given operation. Kernels are invoked by ops calling `tf.engine().runKernel()` [TODO link to signature]. A kernel implementations is defined by four things
+Backend specific kernel implementations allow for optimized implementation of the logic for a given operation. Kernels are invoked by ops calling [`tf.engine().runKernel()`](https://cs.opensource.google/tensorflow/tfjs/+/master:tfjs-core/src/engine.ts?q=runKernel&ss=tensorflow%2Ftfjs:tfjs-core%2F). A kernel implementations is defined by four things
 
 
 
@@ -70,7 +70,7 @@ Here is an example of [a kernel implementation](https://github.com/tensorflow/tf
 
 Generally kernels operate at a level lower than tensors and instead directly read and write to memory that will be eventually wrapped into tensors by tfjs-core.
 
-Once a kernel is implemented it can be registered with TensorFlow.js by using `registerKernel` function from tfjs-core [TODO link to signature]. You can register a kernel for every backend you want that kernel to work in. Once registered the kernel can be invoked with `tf.engine().runKernel(...)` and TensorFlow.js will make sure to dispatch to the implementation in the current active backend.
+Once a kernel is implemented it can be registered with TensorFlow.js by using [`registerKernel` function](https://cs.opensource.google/tensorflow/tfjs/+/master:tfjs-core/src/kernel_registry.ts?q=registerKernel&ss=tensorflow%2Ftfjs:tfjs-core%2F) from tfjs-core. You can register a kernel for every backend you want that kernel to work in. Once registered the kernel can be invoked with `tf.engine().runKernel(...)` and TensorFlow.js will make sure to dispatch to the implementation in the current active backend.
 
 
 
@@ -88,7 +88,7 @@ Gradients are generally defined for a given kernel (identified by the same kerne
 
 You can see examples of [gradient implementations here](https://github.com/tensorflow/tfjs/tree/master/tfjs-core/src/gradients).
 
-Once you have implemented a gradient for a given call it can be registered with TensorFlow.js by using `registerGradient` function from tfjs-core [TODO link to signature]
+Once you have implemented a gradient for a given call it can be registered with TensorFlow.js by using [`registerGradient` function](https://cs.opensource.google/tensorflow/tfjs/+/master:tfjs-core/src/kernel_registry.ts?q=registerGradient&ss=tensorflow%2Ftfjs:tfjs-core%2F) from tfjs-core.
 
 The other approach to implementing custom gradients that by-passes the gradient registry (and thus allows for computing gradients for arbitrary functions in arbitrary ways is using [tf.customGrad](https://js.tensorflow.org/api/latest/#customGrad).
 

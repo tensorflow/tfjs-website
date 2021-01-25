@@ -18,6 +18,8 @@ upper_tabs:
         path: /js/tutorials/
       - title: "Setup"
         path: /js/tutorials/setup
+      - title: "Upgrade to TensorFlow.js 3.0"
+        path: /js/tutorials/upgrading_to_3_0
 
       - heading: "Train models"
       - title: "Fit a curve to two-dimensional data"
@@ -41,6 +43,10 @@ upper_tabs:
       - title: "Import a TensorFlow SavedModel"
         path: /js/tutorials/conversion/import_saved_model
 
+      - heading: "Deployment & Optimization"
+      - title: "Generating size-optimized browser bundles"
+        path: /js/tutorials/deployment/size_optimized_bundles
+
     - name: "Guide"
       contents:
       - heading: "Introduction"
@@ -50,6 +56,8 @@ upper_tabs:
         path: /js/guide/tensors_operations
       - title: "Platform and environment"
         path: /js/guide/platform_environment
+      - title: "Custom Ops, Kernels & Gradients"
+        path: /js/guide/custom_ops_kernels_gradients
 
       - heading: "Models"
       - title: "Models and layers"
