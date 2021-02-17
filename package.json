@@ -34,7 +34,7 @@
     "hexo-renderer-markdown-it": "^3.4.1",
     "hexo-renderer-sass": "~0.4.0",
     "hexo-server": "~1.0.0",
-    "highlight.js": "^9.15.2",
+    "highlight.js": "^10.4.1",
     "http-server": "^0.12.3",
     "markdown-it": "^8.4.1",
     "material-components-web": "^0.32.0",
