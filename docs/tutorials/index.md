@@ -22,7 +22,7 @@ See how to get up and running with TensorFlow.js code in the browser or Node.js.
 
 <a class="button button-white" href="/js/tutorials/setup">Get Setup</a>
 
-### Convert Pretrained Models to TensorFlow.js
+## Convert Pretrained Models to TensorFlow.js
 
 Learn how to convert pretrained models from Python into TensorFlow.js
 
