@@ -28,7 +28,7 @@
     "@tensorflow/tfjs-react-native": "0.5.0",
     "@tensorflow/tfjs-vis": "1.5.0",
     "commander": "~2.14.1",
-    "hexo": "~4.2.0",
+    "hexo": "~4.2.1",
     "hexo-renderer-ejs": "~1.0.0",
     "hexo-renderer-handlebars": "~2.0.2",
     "hexo-renderer-markdown-it": "^3.4.1",
@@ -48,6 +48,10 @@
     "clang-format": "~1.2.4",
     "fastify": "^3.12.0",
     "fastify-static": "^4.0.0",
-    "firebase-tools": "~7.4.0"
+    "firebase-tools": "~9.8.0"
+  },
+  "resolutions": {
+    "vega": "5.17.3",
+    "jpeg-js": "0.4.0"
   }
 }
