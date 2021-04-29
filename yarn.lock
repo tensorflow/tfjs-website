@@ -538,35 +538,35 @@
   dependencies:
     defer-to-connect "^1.0.1"
 
-"@tensorflow/tfjs-backend-cpu@3.5.0":
-  version "3.5.0"
-  resolved "https://registry.yarnpkg.com/@tensorflow/tfjs-backend-cpu/-/tfjs-backend-cpu-3.5.0.tgz#6058fcefa28931f18d774278f53f0f3176e0f229"
-  integrity sha512-aFSbjVLBKV0OpvE4QGSpIvtxhxpqyz09WhnuMZMhxjxCrjrPYbX7gEjXIHvgF8dEs6SX19XUaChgIftyKd2YIQ==
+"@tensorflow/tfjs-backend-cpu@3.6.0":
+  version "3.6.0"
+  resolved "https://registry.npmjs.org/@tensorflow/tfjs-backend-cpu/-/tfjs-backend-cpu-3.6.0.tgz#4e64a7cf1c33b203f71f8f77cd7b0ac1ef25a871"
+  integrity sha512-ZpAs17hPdKXadbtNjAsymYUILe8V7+pY4fYo8j25nfDTW/HfBpyAwsHPbMcA/n5zyJ7ZJtGKFcCUv1sl24KL1Q==
   dependencies:
     "@types/seedrandom" "2.4.27"
     seedrandom "2.4.3"
 
-"@tensorflow/tfjs-backend-webgl@3.5.0":
-  version "3.5.0"
-  resolved "https://registry.yarnpkg.com/@tensorflow/tfjs-backend-webgl/-/tfjs-backend-webgl-3.5.0.tgz#55160168fd7e21c26f8f84cb06e699ae5c2a41b5"
-  integrity sha512-zeuOmfi0wbrZwjUp6M4hsctQvUuQVmO18A8V68xp+u6QC4jp3P5hNdjF7iOiMW/3iNVylYht8MbHYjQLyJAQdw==
+"@tensorflow/tfjs-backend-webgl@3.6.0":
+  version "3.6.0"
+  resolved "https://registry.npmjs.org/@tensorflow/tfjs-backend-webgl/-/tfjs-backend-webgl-3.6.0.tgz#1ea1a73abea8d6324fd81aedf7f187ab6eb73692"
+  integrity sha512-zp7l4TmD1khgeSux/Ujaaj8M/v+e8JVIKjOci6HCGaeMNrn74lTSH9oqGPWKUCmpZME17/V0LfRHK34ddmrPSA==
   dependencies:
-    "@tensorflow/tfjs-backend-cpu" "3.5.0"
+    "@tensorflow/tfjs-backend-cpu" "3.6.0"
     "@types/offscreencanvas" "~2019.3.0"
     "@types/seedrandom" "2.4.27"
     "@types/webgl-ext" "0.0.30"
     "@types/webgl2" "0.0.5"
     seedrandom "2.4.3"
 
-"@tensorflow/tfjs-converter@3.5.0":
-  version "3.5.0"
-  resolved "https://registry.yarnpkg.com/@tensorflow/tfjs-converter/-/tfjs-converter-3.5.0.tgz#6625723e347a452c227469a92541930d5b4aa12f"
-  integrity sha512-eAx1nEaREzPfcIOnyp1PUvQdjob9MtCJM/syh4v05FBV7UrUNpxNMliA4JgjiFvdnhrM4e06/CeqMA8/AVw2wg==
+"@tensorflow/tfjs-converter@3.6.0":
+  version "3.6.0"
+  resolved "https://registry.npmjs.org/@tensorflow/tfjs-converter/-/tfjs-converter-3.6.0.tgz#32b3ff31b47e29630a82e30fbe01708facad7fd6"
+  integrity sha512-9MtatbTSvo3gpEulYI6+byTA3OeXSMT2lzyGAegXO9nMxsvjR01zBvlZ5SmsNyecNh6fMSzdL2+cCdQfQtsIBg==
 
-"@tensorflow/tfjs-core@3.5.0":
-  version "3.5.0"
-  resolved "https://registry.yarnpkg.com/@tensorflow/tfjs-core/-/tfjs-core-3.5.0.tgz#e1ff14f2121208242a192e935f52e86b19be279e"
-  integrity sha512-NOs9hY9nj/iPaz2cSrWpq8G07i96/ot+1l1RoBoA1s1cZakb43pLhntm1Mj4vhSxp7dbc/BSs+t6/S+45OZTUA==
+"@tensorflow/tfjs-core@3.6.0":
+  version "3.6.0"
+  resolved "https://registry.npmjs.org/@tensorflow/tfjs-core/-/tfjs-core-3.6.0.tgz#6b4d8175790bdff78868eabe6adc6442eb4dc276"
+  integrity sha512-bb2c3zwK4SgXZRvkTiC7EhCpWbCGp0GMd+1/3Vo2/Z54jiLB/h3sXIgHQrTNiWwhKPtst/xxA+MsslFlvD0A5w==
   dependencies:
     "@types/offscreencanvas" "~2019.3.0"
     "@types/seedrandom" "2.4.27"
@@ -574,25 +574,25 @@
     node-fetch "~2.6.1"
     seedrandom "2.4.3"
 
-"@tensorflow/tfjs-data@3.5.0":
-  version "3.5.0"
-  resolved "https://registry.yarnpkg.com/@tensorflow/tfjs-data/-/tfjs-data-3.5.0.tgz#95313eed34a8d5bcf94ae69bbdbe006dd3fd2b68"
-  integrity sha512-zCyMiqa94Wsyt5N6z9iPYrw16RANVA1LFPIjMqzk66EUPfBJNa2qiOaDnjQOEUNuUsM0jB7NO3BPh51LSWSOKQ==
+"@tensorflow/tfjs-data@3.6.0":
+  version "3.6.0"
+  resolved "https://registry.npmjs.org/@tensorflow/tfjs-data/-/tfjs-data-3.6.0.tgz#af2f03cffb75ad8e4c2f46e192e392d9b7f977ed"
+  integrity sha512-5KU7fnU7cj/opb4aCNDoW4qma64ggDwI0PCs5KEO41T3waVHDLk6bjlFlBVRdjfZqvM0K6EfWEyoiXzdvz/Ieg==
   dependencies:
     "@types/node-fetch" "^2.1.2"
     node-fetch "~2.6.1"
 
-"@tensorflow/tfjs-layers@3.5.0":
-  version "3.5.0"
-  resolved "https://registry.yarnpkg.com/@tensorflow/tfjs-layers/-/tfjs-layers-3.5.0.tgz#032c7afd93615dad0158d65a6341c57dbd0305ae"
-  integrity sha512-vuJsJdJej5uFC4d5xlRvNm7iONEL1pS5owjNoJ4MpNcZOtNd7kfI8qYPL8ICickG0EdXjUVa3A209iDdH0qiqA==
+"@tensorflow/tfjs-layers@3.6.0":
+  version "3.6.0"
+  resolved "https://registry.npmjs.org/@tensorflow/tfjs-layers/-/tfjs-layers-3.6.0.tgz#5358af559fc8baed304b3e567319fe93f1aa46a6"
+  integrity sha512-B7EHwAT6KFqhKzdf0e2Sr6haj9qpqpyEATV8OCPHdk+g8z2AGXOLlFfbgW6vCMjy1wb5jzYqCyZDoY3EWdgJAw==
 
-"@tensorflow/tfjs-node@3.5.0":
-  version "3.5.0"
-  resolved "https://registry.yarnpkg.com/@tensorflow/tfjs-node/-/tfjs-node-3.5.0.tgz#837a69da04bdce484130430f26d4e9885d885443"
-  integrity sha512-GnFv7+A1Uwcm6sfaD2ICux1qdJ0zvzLZhMLRIjnm4rSoyc8BbaUXPOxz6tIQAfab5sWO5M403nmL4IpnfS9S3Q==
+"@tensorflow/tfjs-node@3.6.0":
+  version "3.6.0"
+  resolved "https://registry.npmjs.org/@tensorflow/tfjs-node/-/tfjs-node-3.6.0.tgz#66f1b9db66af6d21a19b737d1eb3886d1ca92b75"
+  integrity sha512-fmMS6aUrXfYWoSNpq+7XOdeSbgvQNMtYBrVV/CguoXTDMcO+PnJDu3BSO0Vy4uxIm+fxztketAeK8jf1x9AyIg==
   dependencies:
-    "@tensorflow/tfjs" "3.5.0"
+    "@tensorflow/tfjs" "3.6.0"
     adm-zip "^0.4.11"
     google-protobuf "^3.9.2"
     https-proxy-agent "^2.2.1"
@@ -610,30 +610,30 @@
     buffer "^5.2.1"
     jpeg-js "^0.3.6"
 
-"@tensorflow/tfjs-vis@1.5.0":
-  version "1.5.0"
-  resolved "https://registry.yarnpkg.com/@tensorflow/tfjs-vis/-/tfjs-vis-1.5.0.tgz#65f0ea4995ee8e618606e25f46e6c12c66e3160d"
-  integrity sha512-40iXfb0a9sXWO1XpdWwiRUz8a/FhDu5f4BEFfF8CkJCffaUV59QM2yBIGrTkHFLGCYBFgByJ+BPb2QqPHLaWJw==
+"@tensorflow/tfjs-vis@1.5.1":
+  version "1.5.1"
+  resolved "https://registry.npmjs.org/@tensorflow/tfjs-vis/-/tfjs-vis-1.5.1.tgz#e959832ee42ed99f71b073a3e6cf8bbfe136e589"
+  integrity sha512-oNithKiR7VZaE+xUvz6Leww4TYEPhKi8j5xnEYvT3j7brK2Njdvril7UgFtZ8EYZBdeX6XNim5Eu3/23gTQ1dA==
   dependencies:
     d3-format "~1.3.0"
     d3-selection "~1.3.0"
     glamor "~2.20.40"
     preact "~8.2.9"
-    vega "5.13.0"
-    vega-embed "6.8.0"
+    vega "5.20.0"
+    vega-embed "6.17.0"
     vega-lite "4.13.1"
 
-"@tensorflow/tfjs@3.5.0":
-  version "3.5.0"
-  resolved "https://registry.yarnpkg.com/@tensorflow/tfjs/-/tfjs-3.5.0.tgz#399d12abe91e7c7d0411d91f33b9969cebcfdf25"
-  integrity sha512-+n8CxuSh1XwrLiS9jKXhHS/hpcSiUosrK4BYBbKBGhoBVjLl47NnlNYtx5o5cTvWW3HD/PoJxa3jpaSB1ukuaw==
+"@tensorflow/tfjs@3.6.0":
+  version "3.6.0"
+  resolved "https://registry.npmjs.org/@tensorflow/tfjs/-/tfjs-3.6.0.tgz#e65956cd40c96523e3f5ec7a58a4bef9ef5e349c"
+  integrity sha512-uLDMDzyRkJa3fYBeR6etQTFD/t+nkQIH/DznL9hxmYoIYG8PigY2gcrc482TAvsdhiuvxCZ9rl5SyDtP93MvxQ==
   dependencies:
-    "@tensorflow/tfjs-backend-cpu" "3.5.0"
-    "@tensorflow/tfjs-backend-webgl" "3.5.0"
-    "@tensorflow/tfjs-converter" "3.5.0"
-    "@tensorflow/tfjs-core" "3.5.0"
-    "@tensorflow/tfjs-data" "3.5.0"
-    "@tensorflow/tfjs-layers" "3.5.0"
+    "@tensorflow/tfjs-backend-cpu" "3.6.0"
+    "@tensorflow/tfjs-backend-webgl" "3.6.0"
+    "@tensorflow/tfjs-converter" "3.6.0"
+    "@tensorflow/tfjs-core" "3.6.0"
+    "@tensorflow/tfjs-data" "3.6.0"
+    "@tensorflow/tfjs-layers" "3.6.0"
     argparse "^1.0.10"
     chalk "^4.1.0"
     core-js "3"
@@ -3859,7 +3859,12 @@ json-schema@0.2.3:
   resolved "https://registry.yarnpkg.com/json-schema/-/json-schema-0.2.3.tgz#b480c892e59a2f05954ce727bd3f2a4e882f9e13"
   integrity sha1-tIDIkuWaLwWVTOcnvT8qTogvnhM=
 
-json-stringify-pretty-compact@^2.0.0, json-stringify-pretty-compact@~2.0.0:
+json-stringify-pretty-compact@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.npmjs.org/json-stringify-pretty-compact/-/json-stringify-pretty-compact-3.0.0.tgz#f71ef9d82ef16483a407869556588e91b681d9ab"
+  integrity sha512-Rc2suX5meI0S3bfdZuA7JMFBGkJ875ApfVyq2WHELjBiiG22My/l7/8zPpH/CfFVQHuVLd8NLR0nv6vi0BYYKA==
+
+json-stringify-pretty-compact@~2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/json-stringify-pretty-compact/-/json-stringify-pretty-compact-2.0.0.tgz#e77c419f52ff00c45a31f07f4c820c2433143885"
   integrity sha512-WRitRfs6BGq4q8gTgOy4ek7iPFXjbra0H3PmDLKm2xnZ+Gh1HUhiKGgCZkSPNULlP7mvfu6FV/mOLhCarspADQ==
@@ -5856,9 +5861,9 @@ semver@^6.0.0, semver@^6.2.0, semver@^6.3.0:
   resolved "https://registry.yarnpkg.com/semver/-/semver-6.3.0.tgz#ee0a64c8af5e8ceea67687b133761e1becbd1d3d"
   integrity sha512-b39TBaTSfV6yBrapU89p5fKekE2m/NwnDocOVruQFS1/veMgdzuPcnOM34M6CwxW8jH/lxEa5rBoDeUwu5HHTw==
 
-semver@^7.0.0, semver@^7.1.3, semver@^7.3.2:
+semver@^7.0.0, semver@^7.1.3, semver@^7.3.2, semver@^7.3.5:
   version "7.3.5"
-  resolved "https://registry.yarnpkg.com/semver/-/semver-7.3.5.tgz#0b621c879348d8998e4b0e4be94b3f12e6018ef7"
+  resolved "https://registry.npmjs.org/semver/-/semver-7.3.5.tgz#0b621c879348d8998e4b0e4be94b3f12e6018ef7"
   integrity sha512-PoeGJYh8HK4BTO/a9Tf6ZG3veo/A7ZVsYrSA6J8ny9nb3B1VrpkuN+z9OE5wfE5p6H4LchYZsegiQgbJD94ZFQ==
   dependencies:
     lru-cache "^6.0.0"
@@ -6757,17 +6762,17 @@ vega-dataflow@^5.7.3, vega-dataflow@^5.7.4, vega-dataflow@~5.7.3:
     vega-loader "^4.3.2"
     vega-util "^1.16.1"
 
-vega-embed@6.8.0:
-  version "6.8.0"
-  resolved "https://registry.yarnpkg.com/vega-embed/-/vega-embed-6.8.0.tgz#600ff2d302e4170c1261fcd3fe787c2af7c33c5e"
-  integrity sha512-MRT6uy9ghUqS8xtIOnhcYCEXG6eabNI0GIgKsFHAAzKF0rY1IuUkwrMO3XucOYzcedVXyBWPJOxlPC3iSgXjAA==
+vega-embed@6.17.0:
+  version "6.17.0"
+  resolved "https://registry.npmjs.org/vega-embed/-/vega-embed-6.17.0.tgz#6afe157ef31c473a799fce1d45e3878a3c80c5e2"
+  integrity sha512-9eiVZCrLDb/EiVCMbMYouWB/q9dOeVkL5Bh0vU6wsUpIV/bbEvS47uljuo3YSxFqkfNpJ+Qt8xvLRiYSnN4lqw==
   dependencies:
     fast-json-patch "^3.0.0-1"
-    json-stringify-pretty-compact "^2.0.0"
-    semver "^7.3.2"
-    vega-schema-url-parser "^1.1.0"
-    vega-themes "^2.8.3"
-    vega-tooltip "^0.23.0"
+    json-stringify-pretty-compact "^3.0.0"
+    semver "^7.3.5"
+    vega-schema-url-parser "^2.1.0"
+    vega-themes "^2.10.0"
+    vega-tooltip "^0.25.1"
 
 vega-encode@~4.8.3:
   version "4.8.3"
@@ -6975,10 +6980,10 @@ vega-scenegraph@^4.9.2, vega-scenegraph@^4.9.3, vega-scenegraph@~4.9.2:
     vega-scale "^7.1.1"
     vega-util "^1.15.2"
 
-vega-schema-url-parser@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/vega-schema-url-parser/-/vega-schema-url-parser-1.1.0.tgz#39168ec04e5468ce278a06c16ec0d126035a85b5"
-  integrity sha512-Tc85J2ofMZZOsxiqDM9sbvfsa+Vdo3GwNLjEEsPOsCDeYqsUHKAlc1IpbbhPLZ6jusyM9Lk0e1izF64GGklFDg==
+vega-schema-url-parser@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.npmjs.org/vega-schema-url-parser/-/vega-schema-url-parser-2.1.0.tgz#847f9cf9f1624f36f8a51abc1adb41ebc6673cb4"
+  integrity sha512-JHT1PfOyVzOohj89uNunLPirs05Nf59isPT5gnwIkJph96rRgTIBJE7l7yLqndd7fLjr3P8JXHGAryRp74sCaQ==
 
 vega-selections@^5.1.5, vega-selections@^5.3.0:
   version "5.3.0"
@@ -6995,9 +7000,9 @@ vega-statistics@^1.7.9, vega-statistics@~1.7.9:
   dependencies:
     d3-array "^2.7.1"
 
-vega-themes@^2.8.3:
+vega-themes@^2.10.0:
   version "2.10.0"
-  resolved "https://registry.yarnpkg.com/vega-themes/-/vega-themes-2.10.0.tgz#82768b14686e3fbfbdab0e77cb63e12c62b4911e"
+  resolved "https://registry.npmjs.org/vega-themes/-/vega-themes-2.10.0.tgz#82768b14686e3fbfbdab0e77cb63e12c62b4911e"
   integrity sha512-prePRUKFUFGWniuZsJOfkdb+27Gwrrm82yAlVuU+912kcknsx1DVmMSg2yF79f4jdtqnAFIGycZgxoj13SEIuQ==
 
 vega-time@^2.0.3, vega-time@^2.0.4, vega-time@~2.0.4:
@@ -7009,12 +7014,12 @@ vega-time@^2.0.3, vega-time@^2.0.4, vega-time@~2.0.4:
     d3-time "^2.0.0"
     vega-util "^1.15.2"
 
-vega-tooltip@^0.23.0:
-  version "0.23.2"
-  resolved "https://registry.yarnpkg.com/vega-tooltip/-/vega-tooltip-0.23.2.tgz#f4e22c4ce967ce9f1de6518381a74f6fe5102a86"
-  integrity sha512-H7cIA1tZ26H+GJijTi1ZCBg5XWelWUv57ZNJB7No7VL6ZvV8ha7LJrFPvYQadqMP2bSdbbntKMP8oGtsKUFA7A==
+vega-tooltip@^0.25.1:
+  version "0.25.1"
+  resolved "https://registry.npmjs.org/vega-tooltip/-/vega-tooltip-0.25.1.tgz#cb7e438438649eb46896e7bee6f54e25d25b3c09"
+  integrity sha512-ugGwGi2/p3OpB8N15xieuzP8DyV5DreqMWcmJ9zpWT8GlkyKtef4dGRXnvHeHQ+iJFmWrq4oZJ+kLTrdiECjAg==
   dependencies:
-    vega-util "^1.14.1"
+    vega-util "^1.16.0"
 
 vega-transforms@~4.9.3:
   version "4.9.4"
@@ -7034,7 +7039,7 @@ vega-typings@~0.19.2:
   dependencies:
     vega-util "^1.15.2"
 
-vega-util@^1.14.1, vega-util@^1.15.0, vega-util@^1.15.2, vega-util@^1.16.0, vega-util@^1.16.1, vega-util@~1.16.0:
+vega-util@^1.15.0, vega-util@^1.15.2, vega-util@^1.16.0, vega-util@^1.16.1, vega-util@~1.16.0:
   version "1.16.1"
   resolved "https://registry.yarnpkg.com/vega-util/-/vega-util-1.16.1.tgz#992bf3c3b6e145797214d99862841baea417ba39"
   integrity sha512-FdgD72fmZMPJE99FxvFXth0IL4BbLA93WmBg/lvcJmfkK4Uf90WIlvGwaIUdSePIsdpkZjBPyQcHMQ8OcS8Smg==
@@ -7087,7 +7092,7 @@ vega-wordcloud@~4.1.3:
     vega-statistics "^1.7.9"
     vega-util "^1.15.2"
 
-vega@5.13.0, vega@5.17.3:
+vega@5.17.3, vega@5.20.0:
   version "5.17.3"
   resolved "https://registry.yarnpkg.com/vega/-/vega-5.17.3.tgz#9901f24c8cf5ff2e98f3fddb372b8f5a6d8502d8"
   integrity sha512-c8N2pNg9MMmC6shNpoxVw3aVp2XPFOgmWNX5BEOAdCaGHRnSgzNy44+gYdGRaIe6+ljTzZg99Mf+OLO50IP42A==
