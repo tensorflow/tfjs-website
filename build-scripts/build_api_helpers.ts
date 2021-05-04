@@ -68,7 +68,8 @@ export function generateDocs(libs: LibraryInfo[]): string[] {
     // to the version specified the component.
     if (!commander.local) {
       const identifier = (lib.packageName !== 'tfjs-vis' &&
-                          lib.packageName !== 'tfjs-react-native') ?
+                          lib.packageName !== 'tfjs-react-native' &&
+                          lib.packageName !== 'tfjs-tflite') ?
           'tfjs' :
           lib.packageName;
       const checkoutCommand = `cd libs/tfjs \
