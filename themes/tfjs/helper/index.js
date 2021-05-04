@@ -52,9 +52,14 @@ function isApiReactNativePage(path) {
   return path.match(/^api_react_native/);
 };
 
+function isTflitePage(path) {
+  return path.match(/^api_tflite/);
+};
+
 // The snippets on these api pages cannot be run in a browser.
 function isNonBrowserApiPage(path) {
-  return isApiNodePage(path) || isApiReactNativePage(path);
+  return isApiNodePage(path) || isApiReactNativePage(path) ||
+      isTflitePage(path);
 }
 
 module.exports = function(hexo) {
@@ -83,6 +88,9 @@ module.exports = function(hexo) {
       if (isApiReactNativePage(path)) {
         return siteData[`api_react_native/${versionString}/docs`];
       }
+      if (isTflitePage(path)) {
+        return siteData[`api_tflite/${versionString}/docs`];
+      }
       return siteData[`api/${versionString}/docs`];
     },
 
@@ -106,6 +114,8 @@ module.exports = function(hexo) {
         return 'TensorFlow.js Vis API';
       } else if (isApiReactNativePage(path)) {
         return 'TensorFlow.js React Native API';
+      } else if (isTflitePage(path)) {
+        return 'TensorFlow.js TFLite API';
       } else if (isApiPage(path)) {
         return 'TensorFlow.js API';
       }
@@ -146,6 +156,9 @@ module.exports = function(hexo) {
       }
       if (isApiReactNativePage(path)) {
         return hexoLocals.data['api_react_native/api_manifest'].versions;
+      }
+      if (isTflitePage(path)) {
+        return hexoLocals.data['api_tflite/api_manifest'].versions;
       }
       return hexoLocals.data['api/api_manifest'].versions;
     },

@@ -34,6 +34,7 @@ export interface Manifest {
   tfjsVersion?: string;
   visVersion?: string;
   rnVersion?: string;
+  tfliteVersion?: string;
 }
 
 /**
@@ -66,7 +67,11 @@ export function generateDocs(libs: LibraryInfo[]): string[] {
     // to what is in libs. Else we want to check out a tag that correspond to
     // to the version specified the component.
     if (!commander.local) {
-      const identifier = (lib.packageName !== 'tfjs-vis' && lib.packageName !== 'tfjs-react-native') ? 'tfjs' : lib.packageName;
+      const identifier = (lib.packageName !== 'tfjs-vis' &&
+                          lib.packageName !== 'tfjs-react-native' &&
+                          lib.packageName !== 'tfjs-tflite') ?
+          'tfjs' :
+          lib.packageName;
       const checkoutCommand = `cd libs/tfjs \
       && git fetch --tags --force \
       && git checkout ${identifier}-v${lib.version}`;
