@@ -41,6 +41,8 @@ const libs: LibraryInfo[] = [
         `https://github.com/tensorflow/tfjs-models/tree/${taskApiTag}/tasks`,
     version: taskApiVersion,
     outputFolder: `source/_data/api_tasks/${taskApiVersion}`,
+    // Allow to extract docs related data from the following dependent packages.
+    // Add more as needed.
     allowedDeclarationFileSubpaths: [
       'tasks/node_modules/@tensorflow-models/mobilenet',
     ],

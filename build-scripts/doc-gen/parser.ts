@@ -28,12 +28,12 @@ const DOCUMENTATION_TYPE_ALIAS = 'docalias';
 const DOCUMENTATION_LINK_ALIAS = 'doclink';
 const DOCUMENTATION_INLINE = 'docinline';
 
-// Use this to include extra type documents in the class comment.
+// Use this decorator to include extra type documents in the class comment.
 //
 // Example usage:
 //
 // @docextratypes [
-//   {description: 'Options 1' symbol: 'MyOptions1'},
+//   {description: 'Options 1', symbol: 'MyOptions1'},
 //   {description: 'Options 2', symbol: 'MyOptions2'}
 // ]
 //
@@ -51,8 +51,9 @@ const DOCUMENTATION_INLINE = 'docinline';
 const DOCUMENTATION_EXTRA_TYPES = 'docextratypes';
 
 // By default, we don't "unpack" the return type. But sometimes it is useful to
-// let users know what the return type looks like. Use this to specify a list
-// of types to show documents for after the return document line.
+// let users know what the return type looks like. Use this decorator to specify
+// a list of types to show documents for after the document line of the return
+// statement.
 //
 // TODO: in theory, it is possible to automatically extract (nested) types from
 // the return type, but it requires more work. For now, we ask users to
@@ -437,12 +438,6 @@ export function serializeMethodOrFunction(
       util.getDocDecoratorOrAnnotation(
           checker, node, DOCUMENTATION_UNPACK_RETURN) as {} as string[];
   if (docUnpackReturnTypes != null) {
-    let typeToUnpack = returnType;
-    // The return type could be wrapped in Promise. Extract the type inside.
-    const match = returnType.match(/Promise<(.*)>/);
-    if (match) {
-      typeToUnpack = match[1];
-    }
     method.unpackedReturnTypes = docUnpackReturnTypes.map(t => {
       return {
         description: '`' + t + '`',
