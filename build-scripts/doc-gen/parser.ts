@@ -21,12 +21,57 @@ import * as ts from 'typescript';
 
 import * as util from './util';
 // tslint:disable-next-line:max-line-length
-import {DocClass, DocFunction, DocFunctionParam, DocHeading, Docs, RepoDocsAndMetadata} from './view';
+import {DocClass, DocExtraType, DocFunction, DocFunctionParam, DocHeading, Docs, RepoDocsAndMetadata} from './view';
 
 const DOCUMENTATION_DECORATOR_AND_ANNOTATION = 'doc';
 const DOCUMENTATION_TYPE_ALIAS = 'docalias';
 const DOCUMENTATION_LINK_ALIAS = 'doclink';
 const DOCUMENTATION_INLINE = 'docinline';
+
+// Use this to include extra type documents in the class comment.
+//
+// Example usage:
+//
+// @docextratypes [
+//   {description: 'Options 1' symbol: 'MyOptions1'},
+//   {description: 'Options 2', symbol: 'MyOptions2'}
+// ]
+//
+// This will produce:
+//
+// Options 1:
+//     field1-1: ...
+//     field1-2: ...
+//
+// Options 2:
+//     field2-1: ...
+//     field2-2: ...
+//
+// For now it is only supported in class comments.
+const DOCUMENTATION_EXTRA_TYPES = 'docextratypes';
+
+// By default, we don't "unpack" the return type. But sometimes it is useful to
+// let users know what the return type looks like. Use this to specify a list
+// of types to show documents for after the return document line.
+//
+// TODO: in theory, it is possible to automatically extract (nested) types from
+// the return type, but it requires more work. For now, we ask users to
+// explicitly list the types in this decorator.
+//
+// Example usage:
+//
+// @docunpackreturn ['MyOptions', 'MySubFieldType']
+//
+// This will produce:
+//
+// MyOptions:
+//     field1-1: ...
+//     field1-2: ...
+//
+// MySubFieldType::
+//     field2-1: ...
+const DOCUMENTATION_UNPACK_RETURN = 'docunpackreturn';
+
 const DOCUMENTATION_UNPACK_TYPE = 'docunpacktype';
 const IN_NAMESPACE_JSDOC = 'innamespace';
 
@@ -34,8 +79,8 @@ const IN_NAMESPACE_JSDOC = 'innamespace';
  * Parses the program.
  */
 export function parse(
-    programRoot: string, srcRoot: string, repoPath: string,
-    githubRoot: string): RepoDocsAndMetadata {
+    programRoot: string, srcRoot: string, repoPath: string, githubRoot: string,
+    allowedDeclarationFileSubpaths: string[]): RepoDocsAndMetadata {
   if (!fs.existsSync(programRoot)) {
     throw new Error(
         `Program root ${programRoot} does not exist. Please run this script ` +
@@ -67,7 +112,9 @@ export function parse(
   // Visit all the nodes that are transitively linked from the source
   // root.
   for (const sourceFile of program.getSourceFiles()) {
-    if (!sourceFile.isDeclarationFile) {
+    if (!sourceFile.isDeclarationFile ||
+        allowedDeclarationFileSubpaths.some(
+            allowedPath => sourceFile.fileName.includes(allowedPath))) {
       ts.forEachChild(
           sourceFile,
           node => visitNode(
@@ -107,7 +154,7 @@ function visitNode(
     const docInfo = util.getDocDecoratorOrAnnotation(
         checker, node, DOCUMENTATION_DECORATOR_AND_ANNOTATION);
 
-    if (docInfo != null) {
+    if (docInfo != null && !sourceFile.isDeclarationFile) {
       const subheading =
           util.fillHeadingsAndGetSubheading(docInfo, docHeadings);
 
@@ -133,7 +180,7 @@ function visitNode(
   } else if (ts.isClassDeclaration(node)) {
     const docInfo = util.getDocDecoratorOrAnnotation(
         checker, node, DOCUMENTATION_DECORATOR_AND_ANNOTATION);
-    if (docInfo != null) {
+    if (docInfo != null && !sourceFile.isDeclarationFile) {
       const subheading =
           util.fillHeadingsAndGetSubheading(docInfo, docHeadings);
 
@@ -302,6 +349,14 @@ export function serializeClass(
     }
   });
 
+  // Fill in `extraTypes` if specified.
+  const docExtraTypes =
+      util.getDocDecoratorOrAnnotation(
+          checker, node, DOCUMENTATION_EXTRA_TYPES) as {} as DocExtraType[];
+  if (docExtraTypes != null) {
+    docClass.extraTypes = docExtraTypes;
+  }
+
   return docClass;
 }
 
@@ -376,6 +431,25 @@ export function serializeMethodOrFunction(
     githubUrl,
     isFunction: true
   };
+
+  // Unpack return types.
+  const docUnpackReturnTypes =
+      util.getDocDecoratorOrAnnotation(
+          checker, node, DOCUMENTATION_UNPACK_RETURN) as {} as string[];
+  if (docUnpackReturnTypes != null) {
+    let typeToUnpack = returnType;
+    // The return type could be wrapped in Promise. Extract the type inside.
+    const match = returnType.match(/Promise<(.*)>/);
+    if (match) {
+      typeToUnpack = match[1];
+    }
+    method.unpackedReturnTypes = docUnpackReturnTypes.map(t => {
+      return {
+        description: '`' + t + '`',
+        symbol: t,
+      };
+    })
+  }
 
   return method;
 }

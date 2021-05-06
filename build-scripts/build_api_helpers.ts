@@ -24,10 +24,25 @@ import * as shell from 'shelljs';
 
 // The information needed to parse a library for symbols and doc comments
 export interface LibraryInfo {
+  // The name the repo. Default to `tfjs`.
+  // This will be used to locate the repo dir under lib/.
+  repoName?: string;
   packageName: string;  // path to the library within the website folder
   github: string;       // github url for library
   version: string;      // the version to checkout || 'local' to use repo as is.
   outputFolder: string;  // path to output folder for docs
+
+  // Sub paths of allowed declaration files (d.ts files).
+  //
+  // By default, the parse would skip all the declaration files. If this array
+  // is set, the parser will process the declaration files whose path contains
+  // any element in the array. This is useful for cases (e.g. tasks API) where
+  // the main library needs to pull in comments from dependent packages.
+  //
+  // Note that we will only use declaration files to collect complementary data
+  // (such as configInterfaceParamMap, inlineTypes, etc). We will not generate
+  // actual docs from declaration files.
+  allowedDeclarationFileSubpaths?: string[];
 }
 
 export interface Manifest {
@@ -35,6 +50,7 @@ export interface Manifest {
   visVersion?: string;
   rnVersion?: string;
   tfliteVersion?: string;
+  taskApiVersion?: string;
 }
 
 /**
@@ -49,30 +65,36 @@ export function generateDocs(libs: LibraryInfo[]): string[] {
     const outputPath =
         path.resolve(`${lib.outputFolder}/${lib.packageName}.json`);
 
+    const repoName = lib.repoName || 'tfjs';
     const opts = {
-      input: path.resolve(`libs/tfjs/${lib.packageName}/src/index.ts`),
-      pkg: path.resolve(`libs/tfjs/${lib.packageName}/package.json`),
-      src: path.resolve(`libs/tfjs/${lib.packageName}/src/`),
-      repo: path.resolve(`libs/tfjs/${lib.packageName}/`),
+      input: path.resolve(`libs/${repoName}/${lib.packageName}/src/index.ts`),
+      pkg: path.resolve(`libs/${repoName}/${lib.packageName}/package.json`),
+      src: path.resolve(`libs/${repoName}/${lib.packageName}/src/`),
+      repo: path.resolve(`libs/${repoName}/${lib.packageName}/`),
       github: lib.github,
       out: outputPath,
+      allowedDeclarationFileSubpaths: lib.allowedDeclarationFileSubpaths ?
+          lib.allowedDeclarationFileSubpaths.join(',') :
+          '',
     };
 
-    const docGenCommand =
-        `ts-node --project tsconfig.json ${docGenScript} ` +
+    const docGenCommand = `ts-node --project tsconfig.json ${docGenScript} ` +
         `--in ${opts.input} --package ${opts.pkg} --src ${opts.src} --github ${
-            opts.github} --out ${opts.out} --repo ${opts.repo}`;
+                              opts.github} --out ${opts.out} --repo ${
+                              opts.repo} --allowed-declaration-file-subpaths ${
+                              opts.allowedDeclarationFileSubpaths}`;
 
     // Prep the component. If "local" has been passed in then we do nothing
     // to what is in libs. Else we want to check out a tag that correspond to
     // to the version specified the component.
     if (!commander.local) {
-      const identifier = (lib.packageName !== 'tfjs-vis' &&
-                          lib.packageName !== 'tfjs-react-native' &&
-                          lib.packageName !== 'tfjs-tflite') ?
+      const identifier =
+          (lib.packageName !== 'tfjs-vis' &&
+           lib.packageName !== 'tfjs-react-native' &&
+           lib.packageName !== 'tfjs-tflite' && lib.packageName !== 'tasks') ?
           'tfjs' :
           lib.packageName;
-      const checkoutCommand = `cd libs/tfjs \
+      const checkoutCommand = `cd libs/${repoName} \
       && git fetch --tags --force \
       && git checkout ${identifier}-v${lib.version}`;
       sh(checkoutCommand,
@@ -84,7 +106,8 @@ export function generateDocs(libs: LibraryInfo[]): string[] {
     sh('pwd', `Error pwd`);
 
     const buildCommand =
-        `cd libs/tfjs/${lib.packageName} && yarn install --frozen-lockfile` +
+        `cd libs/${repoName}/${
+            lib.packageName} && yarn install --frozen-lockfile` +
         ` && cd ../../.. && ${docGenCommand}`;
 
     console.log('buildcommand  ', buildCommand);
