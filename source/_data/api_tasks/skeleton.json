@@ -28,7 +28,8 @@
       "<p>",
       "<b>Clean up resources</b>",
       "<p>",
-      "All loaded models have a <code>cleanUp</code> method defined to clean up resources:",
+      "All loaded models have a <code>cleanUp</code> method defined to clean up resources. ",
+      "The model should not be used after this call.",
       "<p>",
       "<code>model.cleanUp();</code>",
       "<p>"
@@ -39,7 +40,7 @@
     "name": "Image Classification",
     "description": [
       "<p>",
-      "The task of predicting what an image represents."
+      "The task of classifying images into a preset of labels."
     ],
     "subheadings": []
   }
