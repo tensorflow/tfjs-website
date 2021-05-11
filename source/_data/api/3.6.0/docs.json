@@ -15833,6 +15833,53 @@
               "isFunction": true,
               "displayName": "tf.image.transform",
               "urlHash": "image.transform"
+            },
+            {
+              "docInfo": {
+                "heading": "Operations",
+                "subheading": "Images",
+                "namespace": "image"
+              },
+              "symbolName": "threshold",
+              "namespace": "image",
+              "paramStr": "(image, method?, inverted?, threshValue?)",
+              "parameters": [
+                {
+                  "name": "image",
+                  "documentation": "3d tensor of shape [imageHeight,imageWidth, depth]`,\nwhere imageHeight and imageWidth must be positive. The image color\nrange should be [0, 255].",
+                  "type": "[tf.Tensor3D](#class:Tensor)|[TypedArray](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray)|Array",
+                  "optional": false,
+                  "isConfigParam": false
+                },
+                {
+                  "name": "method",
+                  "documentation": "method Optional string from `'binary' | 'otsu'`\nwhich specifies the method for thresholding. Defaults to 'binary'.",
+                  "type": "'binary' | 'otsu'",
+                  "optional": true,
+                  "isConfigParam": false
+                },
+                {
+                  "name": "inverted",
+                  "documentation": "Optional boolean which specifies\nif colours should be inverted. Defaults to false.",
+                  "type": "boolean",
+                  "optional": true,
+                  "isConfigParam": false
+                },
+                {
+                  "name": "threshValue",
+                  "documentation": "Optional number which defines threshold value from 0 to 1.`\nDefaults to 0.5.",
+                  "type": "number",
+                  "optional": true,
+                  "isConfigParam": false
+                }
+              ],
+              "returnType": "[tf.Tensor3D](#class:Tensor)",
+              "documentation": "Performs image binarization with corresponding threshold (depends on the method) value,\nwhich creates a binary image from an image.",
+              "fileName": "#59",
+              "githubUrl": "https://github.com/tensorflow/tfjs/blob/tfjs-v3.6.0/tfjs-core/src/ops/image/threshold.ts#L57-L119",
+              "isFunction": true,
+              "displayName": "tf.image.threshold",
+              "urlHash": "image.threshold"
             }
           ]
         },
