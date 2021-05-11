@@ -12,8 +12,8 @@
 
 {{!-- Main template --}}
 {{#if parameters.length}}
-<div class="parameter-list">
-  <div class="heading">Parameters:</div>
+<div class="parameter-list {{#if indent}}indent{{/if}}">
+  <div class="heading">{{{valueOrDefault (markdownInner heading) 'Parameters'}}}:</div>
   <ul>
     {{#parameters}}
         {{#if isConfigParam}}

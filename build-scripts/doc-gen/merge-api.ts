@@ -183,6 +183,11 @@ util.sortMethods(mergedDocs, pins);
 
 // Unpack the config params on the merged docs.
 util.unpackConfigParams(mergedDocs.headings, configInterfaceParamMapMerged);
+// Unpack extra types.
+util.unpackExtraTypesInClasses(
+    mergedDocs.headings, configInterfaceParamMapMerged);
+// Unpack return types.
+util.unpackReturnTypes(mergedDocs.headings, configInterfaceParamMapMerged);
 // Inline types
 util.inlineTypes(mergedDocs.headings, inlineTypesMerged);
 // Replace doc aliases

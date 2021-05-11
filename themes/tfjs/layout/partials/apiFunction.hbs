@@ -31,4 +31,10 @@
     <span class="returns-header">Returns:</span>
     <span class="return-type">{{{markdownInner returnType}}}</span>
   </div>
+
+  {{#if unpackedReturnTypes}}
+    {{#unpackedReturnTypes}}
+    {{> apiParamList parameters=params heading=description indent=true}}
+    {{/unpackedReturnTypes}}
+  {{/if}}
 </div>

@@ -55,6 +55,8 @@ export interface DocClass {
   methods: DocFunction[];
   inheritsFrom?: string;
 
+  extraTypes?: DocExtraType[];
+
   isClass: true;
 
   // Filled in by the linker.
@@ -75,6 +77,8 @@ export interface DocFunction {
   paramStr: string;
   returnType: string;
 
+  unpackedReturnTypes?: DocExtraType[];
+
   isFunction: true;
 
   // Filled in by the linker.
@@ -88,4 +92,10 @@ export interface DocFunctionParam {
   optional: boolean;
   documentation: string;
   isConfigParam: boolean;
+}
+
+export interface DocExtraType {
+  description: string;
+  symbol: string;
+  params?: DocFunctionParam[];
 }

@@ -22,7 +22,7 @@ const hljs = require('highlight.js');
 const md = new MarkdownIt({
   highlight(str, lang) {
     if (lang === 'js' && hljs.getLanguage(lang)) {
-      const highlighted = hljs.highlight(lang, str).value;
+      const highlighted = hljs.highlight(str, {language: lang}).value;
       return '<pre class="hljs"><code class="hljs language-js">' + highlighted +
           '</code></pre>\n';
     }
@@ -56,10 +56,14 @@ function isTflitePage(path) {
   return path.match(/^api_tflite/);
 };
 
+function isTaskApiPage(path) {
+  return path.match(/^api_tasks/);
+};
+
 // The snippets on these api pages cannot be run in a browser.
 function isNonBrowserApiPage(path) {
   return isApiNodePage(path) || isApiReactNativePage(path) ||
-      isTflitePage(path);
+      isTflitePage(path) || isTaskApiPage(path);
 }
 
 module.exports = function(hexo) {
@@ -90,6 +94,9 @@ module.exports = function(hexo) {
       }
       if (isTflitePage(path)) {
         return siteData[`api_tflite/${versionString}/docs`];
+      }
+      if (isTaskApiPage(path)) {
+        return siteData[`api_tasks/${versionString}/docs`];
       }
       return siteData[`api/${versionString}/docs`];
     },
@@ -160,6 +167,9 @@ module.exports = function(hexo) {
       if (isTflitePage(path)) {
         return hexoLocals.data['api_tflite/api_manifest'].versions;
       }
+      if (isTaskApiPage(path)) {
+        return hexoLocals.data['api_tasks/api_manifest'].versions;
+      }
       return hexoLocals.data['api/api_manifest'].versions;
     },
 
@@ -195,6 +205,10 @@ model.fit(xs, ys).then(() => {
   model.predict(tf.tensor2d([5], [1, 1])).print();
 });
       `);
+    },
+
+    valueOrDefault: function(v, d) {
+      return v || d;
     }
   };
 };

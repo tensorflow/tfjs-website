@@ -1,0 +1,47 @@
+[
+  {
+    "name": "Overview",
+    "description": [
+      "<p>",
+      "TFJS Task API groups models into different <b>tasks</b>. ",
+      "To use a specific model, you first need to load it, then call the ",
+      "<code>predict</code> method on the model to run the inference. ",
+      "<p>",
+      "<b>Load model</b>",
+      "<p>",
+      "To load a model, use a model loader as follows. ",
+      "<b>Do not</b> construct the model manually. ",
+      "<p>",
+      "<code>const model = await tfTask.{<i>task_name</i>}.{<i>model_name</i>}.{<i>runtime</i>}.load(options);</code>",
+      "<p>",
+      "Please refer to a specific model below for details about the exact ",
+      "model loader to use and the corrsponding options.",
+      "<p>",
+      "<b>Run inference</b>",
+      "<p>",
+      "All loaded models have a <cod>predict</code> method defined. Call it with ",
+      "model-specific input and options to get the inference result.",
+      "Please refer to a specific model below for details about the input and ",
+      "the corresponding options. ",
+      "<p>",
+      "<code>const result = await model.predict(input, options);</code>",
+      "<p>",
+      "<b>Clean up resources</b>",
+      "<p>",
+      "All loaded models have a <code>cleanUp</code> method defined to clean up resources. ",
+      "The model should not be used after this call.",
+      "<p>",
+      "<code>model.cleanUp();</code>",
+      "<p>"
+    ],
+    "subheadings": []
+  },
+  {
+    "name": "Image Classification",
+    "description": [
+      "<p>",
+      "The task of classifying images into a preset of labels."
+    ],
+    "subheadings": []
+  }
+]
