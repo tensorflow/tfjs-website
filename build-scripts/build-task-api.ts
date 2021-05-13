@@ -45,6 +45,8 @@ const libs: LibraryInfo[] = [
     // Add more as needed.
     allowedDeclarationFileSubpaths: [
       'tasks/node_modules/@tensorflow-models/mobilenet',
+      'tasks/node_modules/@tensorflow-models/coco-ssd',
+      'tasks/node_modules/@tensorflow-models/deeplab',
     ],
   },
 ];

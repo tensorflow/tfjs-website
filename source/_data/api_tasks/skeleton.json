@@ -43,5 +43,21 @@
       "The task of classifying images into a preset of labels."
     ],
     "subheadings": []
+  },
+  {
+    "name": "Image Segmentation",
+    "description": [
+      "<p>",
+      "The task of predicting associated class for each pixel of an image."
+    ],
+    "subheadings": []
+  },
+  {
+    "name": "Object Detection",
+    "description": [
+      "<p>",
+      "The task of localizing and identifing multiple objects in a single image."
+    ],
+    "subheadings": []
   }
 ]
