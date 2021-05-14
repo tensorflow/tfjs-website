@@ -538,10 +538,10 @@
   dependencies:
     defer-to-connect "^1.0.1"
 
-"@tensorflow-models/tasks@0.0.1-alpha.5":
-  version "0.0.1-alpha.5"
-  resolved "https://registry.yarnpkg.com/@tensorflow-models/tasks/-/tasks-0.0.1-alpha.5.tgz#d498e113fac34469602243aa2db29abe3e793dac"
-  integrity sha512-EWSx3tP0/pEULhi8CI/TLhNShv+uNDdtEVYoR2jm7SqPBOIGFTsbvsPR290uh/jrmj7KcEzrOUDDDm0JvG+sgQ==
+"@tensorflow-models/tasks@0.0.1-alpha.6":
+  version "0.0.1-alpha.6"
+  resolved "https://registry.yarnpkg.com/@tensorflow-models/tasks/-/tasks-0.0.1-alpha.6.tgz#d17e3ccdaf21e2d75e780769c30ab612bcf5f29b"
+  integrity sha512-S+NW1N0Jw4bx2ttvTUh7xBjecW6A2sIcJqz+EHGqywVQrv/TJbxL+vpIJu5qtciNEtTTD9oGDwCymKcPFmT1VQ==
 
 "@tensorflow/tfjs-backend-cpu@3.6.0":
   version "3.6.0"
@@ -615,10 +615,10 @@
     buffer "^5.2.1"
     jpeg-js "^0.3.6"
 
-"@tensorflow/tfjs-tflite@0.0.1-alpha.3":
-  version "0.0.1-alpha.3"
-  resolved "https://registry.yarnpkg.com/@tensorflow/tfjs-tflite/-/tfjs-tflite-0.0.1-alpha.3.tgz#8aacb9d6677e698ee23dd10735efbe6775689a05"
-  integrity sha512-2ZpoWG5yvvp4lGIiOm8TBgp2CZCJCXtLGEcbUyIUDDzGeYrMjlpD2K+VJvQ3JFpMhTPgjzyRfy5WjwcWPrRfUw==
+"@tensorflow/tfjs-tflite@0.0.1-alpha.4":
+  version "0.0.1-alpha.4"
+  resolved "https://registry.yarnpkg.com/@tensorflow/tfjs-tflite/-/tfjs-tflite-0.0.1-alpha.4.tgz#9afd0b25f9a160a65b5c4b762c0d3466669492fd"
+  integrity sha512-j1E28YfLllvlgcbyZBe0dHVWudhjJ2SOWjX3LvRqdqRt2O3hyhJ1NzTq+YTpAT+cCWOAjB/+PMVMHhuFuYLNgQ==
 
 "@tensorflow/tfjs-vis@1.5.1":
   version "1.5.1"

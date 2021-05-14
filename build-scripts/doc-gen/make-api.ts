@@ -70,7 +70,8 @@ mkdirp(outputDir, (err: any) => {
 // Parse the library for docs.
 const repoDocsAndMetadata = parser.parse(
     commander.in, commander.src, commander.repo, commander.github,
-    commander.allowedDeclarationFileSubpaths.split(','));
+    commander.allowedDeclarationFileSubpaths.split(',').filter(
+        ele => ele !== ''));
 
 // Write the JSON.
 mkdirp.sync(path.dirname(commander.out));
