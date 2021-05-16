@@ -75,7 +75,7 @@ export function generateDocs(libs: LibraryInfo[]): string[] {
       out: outputPath,
       allowedDeclarationFileSubpaths: lib.allowedDeclarationFileSubpaths ?
           lib.allowedDeclarationFileSubpaths.join(',') :
-          '',
+          '""',
     };
 
     const docGenCommand = `ts-node --project tsconfig.json ${docGenScript} ` +
