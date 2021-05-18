@@ -15626,7 +15626,7 @@
               ],
               "returnType": "Promise<{[name: string]: [tf.Tensor](#class:Tensor)}>",
               "documentation": "Asynchronously performs non maximum suppression of bounding boxes based on\niou (intersection over union).\n\nThis op also supports a Soft-NMS mode (c.f.\nBodla et al, https://arxiv.org/abs/1704.04503) where boxes reduce the score\nof other overlapping boxes, therefore favoring different regions of the image\nwith high scores. To enable this Soft-NMS mode, set the `softNmsSigma`\nparameter to be larger than 0.",
-              "fileName": "#54",
+              "fileName": "ts#54",
               "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-v3.6.0/tfjs-core/src/ops/image/non_max_suppression_with_score_async.ts#L54-L92",
               "isFunction": true,
               "displayName": "tf.image.nonMaxSuppressionWithScoreAsync",

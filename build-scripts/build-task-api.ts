@@ -47,13 +47,14 @@ const libs: LibraryInfo[] = [
       'tasks/node_modules/@tensorflow-models/mobilenet',
       'tasks/node_modules/@tensorflow-models/coco-ssd',
       'tasks/node_modules/@tensorflow-models/deeplab',
+      'tasks/node_modules/@tensorflow-models/toxicity',
+      'tasks/node_modules/@tensorflow-models/qna',
     ],
   },
 ];
 
 console.log(`********* Generating Docs *********`);
 const outputPaths = generateDocs(libs);
-console.log(outputPaths);
 
 console.log(`********* Merging docs *********`);
 const docsFolder = `source/_data/api_tasks`;

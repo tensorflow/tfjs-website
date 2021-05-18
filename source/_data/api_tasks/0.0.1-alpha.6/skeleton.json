@@ -59,29 +59,5 @@
       "The task of localizing and identifing multiple objects in a single image."
     ],
     "subheadings": []
-  },
-  {
-    "name": "Sentiment Detection",
-    "description": [
-      "<p>",
-      "The task of detecting sentiments in a given paragraph of text."
-    ],
-    "subheadings": []
-  },
-  {
-    "name": "NL Classification",
-    "description": [
-      "<p>",
-      "The task of classifying texts into a preset of labels."
-    ],
-    "subheadings": []
-  },
-  {
-    "name": "Question & Answer",
-    "description": [
-      "<p>",
-      "The task of answering questions based on the content of a given passage."
-    ],
-    "subheadings": []
   }
 ]
