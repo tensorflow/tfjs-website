@@ -538,10 +538,10 @@
   dependencies:
     defer-to-connect "^1.0.1"
 
-"@tensorflow-models/tasks@0.0.1-alpha.6":
-  version "0.0.1-alpha.6"
-  resolved "https://registry.yarnpkg.com/@tensorflow-models/tasks/-/tasks-0.0.1-alpha.6.tgz#d17e3ccdaf21e2d75e780769c30ab612bcf5f29b"
-  integrity sha512-S+NW1N0Jw4bx2ttvTUh7xBjecW6A2sIcJqz+EHGqywVQrv/TJbxL+vpIJu5qtciNEtTTD9oGDwCymKcPFmT1VQ==
+"@tensorflow-models/tasks@0.0.1-alpha.8":
+  version "0.0.1-alpha.8"
+  resolved "https://registry.yarnpkg.com/@tensorflow-models/tasks/-/tasks-0.0.1-alpha.8.tgz#7d2247a2b44540c3bc349f34fa474a28dfadfecc"
+  integrity sha512-D3BNN5m0K7qCAdFWRo83/nohSYmMF/JiKntqZnQQGMlOiEq0RfSAjrs7LR6E0Zt67PsnS41GOCOQICs5KMx83w==
 
 "@tensorflow/tfjs-backend-cpu@3.6.0":
   version "3.6.0"

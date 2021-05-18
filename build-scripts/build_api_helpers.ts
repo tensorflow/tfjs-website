@@ -182,7 +182,7 @@ export function writeManifestAndTemplate(
     // showing up in the dropdown menu.
     if (docsVersion !== 'local') {
       apiManifest.versions.unshift(docsVersion);
-      apiManifest.versions.sort(cmp).reverse();
+      apiManifest.versions.sort(comparePackageVersions).reverse();
       fs.writeFileSync(apiManifestPath, JSON.stringify(apiManifest, null, 2));
 
 
@@ -215,4 +215,32 @@ function bailOnFail(exitCode: number, msg: string) {
 function sh(cmd: string, errMsg: string) {
   const ret = shell.exec(cmd);
   bailOnFail(ret.code, errMsg);
+}
+
+/**
+ * Compares given package version strings with support for pre-release versions.
+ *
+ * Modified from from:
+ * https://github.com/substack/semver-compare/blob/master/index.js
+ *
+ * Fixes `semver-compare` not being able to compare versions with alpha/beta/etc
+ * "tags". https://github.com/catamphetamine/libphonenumber-js/issues/381
+ */
+function comparePackageVersions(a: string, b: string) {
+  const partsA = a.split('-');
+  const partsB = b.split('-');
+  const pa = partsA[0].split('.');
+  const pb = partsB[0].split('.');
+  for (let i = 0; i < 3; i++) {
+    const na = Number(pa[i]);
+    const nb = Number(pb[i]);
+    if (na > nb) return 1;
+    if (nb > na) return -1;
+    if (!isNaN(na) && isNaN(nb)) return 1;
+    if (isNaN(na) && !isNaN(nb)) return -1;
+  }
+  if (partsA[1] && partsB[1]) {
+    return partsA[1] > partsB[1] ? 1 : (partsA[1] < partsB[1] ? -1 : 0);
+  }
+  return !partsA[1] && partsB[1] ? 1 : (partsA[1] && !partsB[1] ? -1 : 0);
 }

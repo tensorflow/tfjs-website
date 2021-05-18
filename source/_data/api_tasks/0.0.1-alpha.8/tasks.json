@@ -1,0 +1,1495 @@
+{
+  "docs": {
+    "headings": [
+      {
+        "name": "Image Classification",
+        "description": "",
+        "subheadings": [
+          {
+            "name": "Base model",
+            "symbols": [
+              {
+                "docInfo": {
+                  "heading": "Image Classification",
+                  "subheading": "Base model"
+                },
+                "symbolName": "ImageClassifier",
+                "documentation": "The base class for all ImageClassification task models.",
+                "fileName": "#30",
+                "githubUrl": "https://github.com/tensorflow/tfjs-models/tree/tasks-v0.0.1-alpha.8/tasks/src/tasks/image_classification/common.ts#L30-L53",
+                "methods": [
+                  {
+                    "docInfo": {
+                      "heading": "Image Classification",
+                      "subheading": "Base model"
+                    },
+                    "symbolName": "predict",
+                    "paramStr": "(img, options?)",
+                    "parameters": [
+                      {
+                        "name": "img",
+                        "documentation": "The image-like element to run classification on.",
+                        "type": "ImageData|HTMLImageElement|HTMLCanvasElement|HTMLVideoElement",
+                        "optional": false,
+                        "isConfigParam": false
+                      },
+                      {
+                        "name": "options",
+                        "documentation": "Inference options. Different models have different\ninference options. See individual model for more details.",
+                        "type": "IO",
+                        "optional": true,
+                        "isConfigParam": false
+                      }
+                    ],
+                    "returnType": "Promise<ImageClassificationResult>",
+                    "documentation": "Performs classification on the given image-like input, and returns\nresult.",
+                    "fileName": "#43",
+                    "githubUrl": "https://github.com/tensorflow/tfjs-models/tree/tasks-v0.0.1-alpha.8/tasks/src/tasks/image_classification/common.ts#L43-L45",
+                    "isFunction": true,
+                    "unpackedReturnTypes": [
+                      {
+                        "description": "`ImageClassificationResult`",
+                        "symbol": "ImageClassificationResult"
+                      },
+                      {
+                        "description": "`Class`",
+                        "symbol": "Class"
+                      }
+                    ]
+                  },
+                  {
+                    "docInfo": {
+                      "heading": "Image Classification",
+                      "subheading": "Base model"
+                    },
+                    "symbolName": "cleanUp",
+                    "paramStr": "()",
+                    "parameters": [],
+                    "returnType": "void",
+                    "documentation": "Cleans up resources if needed.",
+                    "fileName": "#52",
+                    "githubUrl": "https://github.com/tensorflow/tfjs-models/tree/tasks-v0.0.1-alpha.8/tasks/src/tasks/image_classification/common.ts#L52-L52",
+                    "isFunction": true
+                  }
+                ],
+                "isClass": true,
+                "inheritsFrom": "TaskModel"
+              }
+            ]
+          },
+          {
+            "name": "Models",
+            "symbols": [
+              {
+                "docInfo": {
+                  "heading": "Image Classification",
+                  "subheading": "Models"
+                },
+                "symbolName": "ICCustomModelTFLite",
+                "documentation": "A custom TFLite image classification model loaded from a model url or\nan `ArrayBuffer` in memory.\n\nThe underlying image classifier is built on top of the [TFLite Task\nLibrary](https://www.tensorflow.org/lite/inference_with_metadata/task_library/overview).\nAs a result, the custom model needs to meet the [metadata\nrequirements](https://www.tensorflow.org/lite/inference_with_metadata/task_library/image_classifier#model_compatibility_requirements).\n\nUsage:\n\n```js\n// Load the model from a custom url with other options (optional).\nconst model = await tfTask.ImageClassification.CustomModel.TFLite.load({\n   model:\n'https://tfhub.dev/google/lite-model/aiy/vision/classifier/plants_V1/3',\n});\n\n// Run inference on an image.\nconst img = document.querySelector('img');\nconst result = await model.predict(img);\nconsole.log(result.classes);\n\n// Clean up.\nmodel.cleanUp();\n```\n\nRefer to `tfTask.ImageClassifier` for the `predict` and `cleanUp` method.",
+                "fileName": "#112",
+                "githubUrl": "https://github.com/tensorflow/tfjs-models/tree/tasks-v0.0.1-alpha.8/tasks/src/tasks/image_classification/custom_model_tflite.ts#L112-L113",
+                "methods": [],
+                "isClass": true,
+                "inheritsFrom": "ImageClassifierTFLite",
+                "extraTypes": [
+                  {
+                    "description": "Options for `load`",
+                    "symbol": "ICCustomModelTFLiteLoadingOptions"
+                  },
+                  {
+                    "description": "Options for `predict`",
+                    "symbol": "ICCustomModelTFLiteInferenceOptions"
+                  }
+                ]
+              },
+              {
+                "docInfo": {
+                  "heading": "Image Classification",
+                  "subheading": "Models"
+                },
+                "symbolName": "MobilenetTFJS",
+                "documentation": "Pre-trained TFJS mobilenet model.\n\nUsage:\n\n```js\n// Load the model with options (optional).\n//\n// By default, it uses mobilenet V1 with webgl backend. You can change them\n// in the options parameter of the `load` function (see below for docs).\nconst model = await tfTask.ImageClassification.Mobilenet.TFJS.load();\n\n// Run inference on an image with options (optional).\nconst img = document.querySelector('img');\nconst result = await model.predict(img, {topK: 5});\nconsole.log(result.classes);\n\n// Clean up.\nmodel.cleanUp();\n```\n\nRefer to `tfTask.ImageClassifier` for the `predict` and `cleanUp` method.",
+                "fileName": "#96",
+                "githubUrl": "https://github.com/tensorflow/tfjs-models/tree/tasks-v0.0.1-alpha.8/tasks/src/tasks/image_classification/mobilenet_tfjs.ts#L96-L125",
+                "methods": [],
+                "isClass": true,
+                "inheritsFrom": "ImageClassifier",
+                "extraTypes": [
+                  {
+                    "description": "Options for `load`",
+                    "symbol": "MobilenetTFJSLoadingOptions"
+                  },
+                  {
+                    "description": "Options for `predict`",
+                    "symbol": "MobilenetTFJSInferenceOptions"
+                  }
+                ]
+              },
+              {
+                "docInfo": {
+                  "heading": "Image Classification",
+                  "subheading": "Models"
+                },
+                "symbolName": "MobilenetTFLite",
+                "documentation": "Pre-trained TFLite mobilenet image classification model.\n\nUsage:\n\n```js\n// Load the model with options (optional).\n//\n// By default, it uses mobilenet V1. You can change it in the options\n// parameter of the `load` function (see below for docs).\nconst model = await tfTask.ImageClassification.Mobilenet.TFJS.load();\n\n// Run inference on an image.\nconst img = document.querySelector('img');\nconst result = await model.predict(img);\nconsole.log(result.classes);\n\n// Clean up.\nmodel.cleanUp();\n```\n\nRefer to `tfTask.ImageClassifier` for the `predict` and `cleanUp` method.",
+                "fileName": "#126",
+                "githubUrl": "https://github.com/tensorflow/tfjs-models/tree/tasks-v0.0.1-alpha.8/tasks/src/tasks/image_classification/mobilenet_tflite.ts#L126-L127",
+                "methods": [],
+                "isClass": true,
+                "inheritsFrom": "ImageClassifierTFLite",
+                "extraTypes": [
+                  {
+                    "description": "Options for `load`",
+                    "symbol": "MobilenetTFLiteLoadingOptions"
+                  },
+                  {
+                    "description": "Options for `predict`",
+                    "symbol": "MobilenetTFLiteInferenceOptions"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Image Segmentation",
+        "description": "",
+        "subheadings": [
+          {
+            "name": "Base model",
+            "symbols": [
+              {
+                "docInfo": {
+                  "heading": "Image Segmentation",
+                  "subheading": "Base model"
+                },
+                "symbolName": "ImageSegmenter",
+                "documentation": "The base class for all ImageSegmentation task models.",
+                "fileName": "#29",
+                "githubUrl": "https://github.com/tensorflow/tfjs-models/tree/tasks-v0.0.1-alpha.8/tasks/src/tasks/image_segmentation/common.ts#L29-L52",
+                "methods": [
+                  {
+                    "docInfo": {
+                      "heading": "Image Segmentation",
+                      "subheading": "Base model"
+                    },
+                    "symbolName": "predict",
+                    "paramStr": "(img, options?)",
+                    "parameters": [
+                      {
+                        "name": "img",
+                        "documentation": "The image-like element to run segmentation on.",
+                        "type": "ImageData|HTMLImageElement|HTMLCanvasElement|HTMLVideoElement",
+                        "optional": false,
+                        "isConfigParam": false
+                      },
+                      {
+                        "name": "options",
+                        "documentation": "Inference options. Different models have different\ninference options. See individual model for more details.",
+                        "type": "IO",
+                        "optional": true,
+                        "isConfigParam": false
+                      }
+                    ],
+                    "returnType": "Promise<ImageSegmentationResult>",
+                    "documentation": "Performs segmentation on the given image-like input, and returns\nresult.",
+                    "fileName": "#42",
+                    "githubUrl": "https://github.com/tensorflow/tfjs-models/tree/tasks-v0.0.1-alpha.8/tasks/src/tasks/image_segmentation/common.ts#L42-L44",
+                    "isFunction": true,
+                    "unpackedReturnTypes": [
+                      {
+                        "description": "`ImageSegmentationResult`",
+                        "symbol": "ImageSegmentationResult"
+                      },
+                      {
+                        "description": "`Legend`",
+                        "symbol": "Legend"
+                      },
+                      {
+                        "description": "`Color`",
+                        "symbol": "Color"
+                      }
+                    ]
+                  },
+                  {
+                    "docInfo": {
+                      "heading": "Image Segmentation",
+                      "subheading": "Base model"
+                    },
+                    "symbolName": "cleanUp",
+                    "paramStr": "()",
+                    "parameters": [],
+                    "returnType": "void",
+                    "documentation": "Cleans up resources if needed.",
+                    "fileName": "#51",
+                    "githubUrl": "https://github.com/tensorflow/tfjs-models/tree/tasks-v0.0.1-alpha.8/tasks/src/tasks/image_segmentation/common.ts#L51-L51",
+                    "isFunction": true
+                  }
+                ],
+                "isClass": true,
+                "inheritsFrom": "TaskModel"
+              }
+            ]
+          },
+          {
+            "name": "Models",
+            "symbols": [
+              {
+                "docInfo": {
+                  "heading": "Image Segmentation",
+                  "subheading": "Models"
+                },
+                "symbolName": "ISCustomModelTFLite",
+                "documentation": "A custom TFLite image segmentation model loaded from a model url or an\n`ArrayBuffer` in memory.\n\nThe underlying image segmenter is built on top of the [TFLite Task\nLibrary](https://www.tensorflow.org/lite/inference_with_metadata/task_library/overview).\nAs a result, the custom model needs to meet the [metadata\nrequirements](https://www.tensorflow.org/lite/inference_with_metadata/task_library/image_segmenter#model_compatibility_requirements).\n\nUsage:\n\n```js\n// Load the model from a custom url with other options (optional).\nconst model = await tfTask.ImageSemgentation.CustomModel.TFLite.load({\n   model:\n'https://tfhub.dev/tensorflow/lite-model/deeplabv3/1/metadata/2?lite-format=tflite',\n});\n\n// Run inference on an image.\nconst img = document.querySelector('img');\nconst result = await model.predict(img);\nconsole.log(result);\n\n// Clean up.\nmodel.cleanUp();\n```\n\nRefer to `tfTask.ImageSegmenter` for the `predict` and `cleanUp` method.",
+                "fileName": "#111",
+                "githubUrl": "https://github.com/tensorflow/tfjs-models/tree/tasks-v0.0.1-alpha.8/tasks/src/tasks/image_segmentation/custom_model_tflite.ts#L111-L112",
+                "methods": [],
+                "isClass": true,
+                "inheritsFrom": "ImageSegmenterTFLite",
+                "extraTypes": [
+                  {
+                    "description": "Options for `load`",
+                    "symbol": "ISCustomModelTFLiteLoadingOptions"
+                  },
+                  {
+                    "description": "Options for `predict`",
+                    "symbol": "ISCustomModelTFLiteInferenceOptions"
+                  }
+                ]
+              },
+              {
+                "docInfo": {
+                  "heading": "Image Segmentation",
+                  "subheading": "Models"
+                },
+                "symbolName": "DeeplabTFJS",
+                "documentation": "Pre-trained TFJS depelab model.\n\nUsage:\n\n```js\n// Load the model with options (optional).\n//\n// By default, it uses base='pascal' and quantizationBytes=2 with webgl\n// backend. You can change them in the options parameter of the `load`\n// function (see below for docs).\nconst model = await tfTask.ImageSegmentation.Deeplab.TFJS.load();\n\n// Run inference on an image with options (optional).\nconst img = document.querySelector('img');\nconst result = await model.predict(img);\nconsole.log(result);\n\n// Clean up.\nmodel.cleanUp();\n```\n\nRefer to `tfTask.ImageSegmenter` for the `predict` and `cleanUp` method.",
+                "fileName": "#104",
+                "githubUrl": "https://github.com/tensorflow/tfjs-models/tree/tasks-v0.0.1-alpha.8/tasks/src/tasks/image_segmentation/deeplab_tfjs.ts#L104-L143",
+                "methods": [],
+                "isClass": true,
+                "inheritsFrom": "ImageSegmenter",
+                "extraTypes": [
+                  {
+                    "description": "Options for `load`",
+                    "symbol": "DeeplabTFJSLoadingOptions"
+                  },
+                  {
+                    "description": "Options for `predict`",
+                    "symbol": "DeeplabTFJSInferenceOptions"
+                  }
+                ]
+              },
+              {
+                "docInfo": {
+                  "heading": "Image Segmentation",
+                  "subheading": "Models"
+                },
+                "symbolName": "DeeplabTFLite",
+                "documentation": "Pre-trained TFLite deeplab image segmentation model.\n\nUsage:\n\n```js\n// Load the model with options (optional).\nconst model = await tfTask.ImageSegmentation.Deeplab.TFLite.load();\n\n// Run inference on an image.\nconst img = document.querySelector('img');\nconst result = await model.predict(img);\nconsole.log(result);\n\n// Clean up.\nmodel.cleanUp();\n```\n\nRefer to `tfTask.ImageSegmenter` for the `predict` and `cleanUp` method.",
+                "fileName": "#92",
+                "githubUrl": "https://github.com/tensorflow/tfjs-models/tree/tasks-v0.0.1-alpha.8/tasks/src/tasks/image_segmentation/deeplab_tflite.ts#L92-L93",
+                "methods": [],
+                "isClass": true,
+                "inheritsFrom": "ImageSegmenterTFLite",
+                "extraTypes": [
+                  {
+                    "description": "Options for `load`",
+                    "symbol": "DeeplabTFLiteLoadingOptions"
+                  },
+                  {
+                    "description": "Options for `predict`",
+                    "symbol": "DeeplabTFLiteInferenceOptions"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "NL Classification",
+        "description": "",
+        "subheadings": [
+          {
+            "name": "Base model",
+            "symbols": [
+              {
+                "docInfo": {
+                  "heading": "NL Classification",
+                  "subheading": "Base model"
+                },
+                "symbolName": "NLClassifier",
+                "documentation": "The base class for all NLClassification task models.",
+                "fileName": "#30",
+                "githubUrl": "https://github.com/tensorflow/tfjs-models/tree/tasks-v0.0.1-alpha.8/tasks/src/tasks/nl_classification/common.ts#L30-L50",
+                "methods": [
+                  {
+                    "docInfo": {
+                      "heading": "NL Classification",
+                      "subheading": "Base model"
+                    },
+                    "symbolName": "predict",
+                    "paramStr": "(text, options?)",
+                    "parameters": [
+                      {
+                        "name": "text",
+                        "documentation": "The text to predict on.",
+                        "type": "string",
+                        "optional": false,
+                        "isConfigParam": false
+                      },
+                      {
+                        "name": "options",
+                        "documentation": "Inference options. Different models have different\ninference options. See individual model for more details.",
+                        "type": "IO",
+                        "optional": true,
+                        "isConfigParam": false
+                      }
+                    ],
+                    "returnType": "Promise<NLClassificationResult>",
+                    "documentation": "Predicts classes on the given text, and returns result.",
+                    "fileName": "#42",
+                    "githubUrl": "https://github.com/tensorflow/tfjs-models/tree/tasks-v0.0.1-alpha.8/tasks/src/tasks/nl_classification/common.ts#L42-L42",
+                    "isFunction": true,
+                    "unpackedReturnTypes": [
+                      {
+                        "description": "`NLClassificationResult`",
+                        "symbol": "NLClassificationResult"
+                      },
+                      {
+                        "description": "`Class`",
+                        "symbol": "Class"
+                      }
+                    ]
+                  },
+                  {
+                    "docInfo": {
+                      "heading": "NL Classification",
+                      "subheading": "Base model"
+                    },
+                    "symbolName": "cleanUp",
+                    "paramStr": "()",
+                    "parameters": [],
+                    "returnType": "void",
+                    "documentation": "Cleans up resources if needed.",
+                    "fileName": "#49",
+                    "githubUrl": "https://github.com/tensorflow/tfjs-models/tree/tasks-v0.0.1-alpha.8/tasks/src/tasks/nl_classification/common.ts#L49-L49",
+                    "isFunction": true
+                  }
+                ],
+                "isClass": true,
+                "inheritsFrom": "TaskModel"
+              }
+            ]
+          },
+          {
+            "name": "Models",
+            "symbols": [
+              {
+                "docInfo": {
+                  "heading": "NL Classification",
+                  "subheading": "Models"
+                },
+                "symbolName": "NCCustomModelTFLite",
+                "documentation": "A custom TFLite natural language classification model loaded from a model url\nor an `ArrayBuffer` in memory.\n\nThe underlying NL classifier is built on top of the NLClassifier in\n[TFLite Task\nLibrary](https://www.tensorflow.org/lite/inference_with_metadata/task_library/overview).\nAs a result, the custom model needs to meet the [metadata\nrequirements](https://www.tensorflow.org/lite/inference_with_metadata/task_library/nl_classifier#model_compatibility_requirements).\n\nUsage:\n\n```js\n// Load the model from a custom url with other options (optional).\nconst model = await tfTask.NLClassification.CustomModel.TFLite.load({\n   model:\n'https://storage.googleapis.com/download.tensorflow.org/models/tflite/text_classification/text_classification_v2.tflite',\n});\n\n// Run inference on text.\nconst result = await model.predict('This is a great movie!');\nconsole.log(result.classes);\n\n// Clean up.\nmodel.cleanUp();\n```\n\nRefer to `tfTask.NLClassifier` for the `predict` and `cleanUp` method.",
+                "fileName": "#110",
+                "githubUrl": "https://github.com/tensorflow/tfjs-models/tree/tasks-v0.0.1-alpha.8/tasks/src/tasks/nl_classification/custom_model_tflite.ts#L110-L111",
+                "methods": [],
+                "isClass": true,
+                "inheritsFrom": "NLClassifierTFLite",
+                "extraTypes": [
+                  {
+                    "description": "Options for `load`",
+                    "symbol": "NCCustomModelTFLiteLoadingOptions"
+                  },
+                  {
+                    "description": "Options for `predict`",
+                    "symbol": "NCCustomModelTFLiteInferenceOptions"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Object Detection",
+        "description": "",
+        "subheadings": [
+          {
+            "name": "Base model",
+            "symbols": [
+              {
+                "docInfo": {
+                  "heading": "Object Detection",
+                  "subheading": "Base model"
+                },
+                "symbolName": "ObjectDetector",
+                "documentation": "The base class for all ObjectDetection task models.",
+                "fileName": "#30",
+                "githubUrl": "https://github.com/tensorflow/tfjs-models/tree/tasks-v0.0.1-alpha.8/tasks/src/tasks/object_detection/common.ts#L30-L53",
+                "methods": [
+                  {
+                    "docInfo": {
+                      "heading": "Object Detection",
+                      "subheading": "Base model"
+                    },
+                    "symbolName": "predict",
+                    "paramStr": "(img, options?)",
+                    "parameters": [
+                      {
+                        "name": "img",
+                        "documentation": "The image-like element to detect objects on.",
+                        "type": "ImageData|HTMLImageElement|HTMLCanvasElement|HTMLVideoElement",
+                        "optional": false,
+                        "isConfigParam": false
+                      },
+                      {
+                        "name": "options",
+                        "documentation": "Inference options. Different models have different\ninference options. See individual model for more details.",
+                        "type": "IO",
+                        "optional": true,
+                        "isConfigParam": false
+                      }
+                    ],
+                    "returnType": "Promise<ObjectDetectionResult>",
+                    "documentation": "Detects objects on the given image-like input, and returns result.",
+                    "fileName": "#43",
+                    "githubUrl": "https://github.com/tensorflow/tfjs-models/tree/tasks-v0.0.1-alpha.8/tasks/src/tasks/object_detection/common.ts#L43-L45",
+                    "isFunction": true,
+                    "unpackedReturnTypes": [
+                      {
+                        "description": "`ObjectDetectionResult`",
+                        "symbol": "ObjectDetectionResult"
+                      },
+                      {
+                        "description": "`DetectedObject`",
+                        "symbol": "DetectedObject"
+                      },
+                      {
+                        "description": "`BoundingBox`",
+                        "symbol": "BoundingBox"
+                      },
+                      {
+                        "description": "`Class`",
+                        "symbol": "Class"
+                      }
+                    ]
+                  },
+                  {
+                    "docInfo": {
+                      "heading": "Object Detection",
+                      "subheading": "Base model"
+                    },
+                    "symbolName": "cleanUp",
+                    "paramStr": "()",
+                    "parameters": [],
+                    "returnType": "void",
+                    "documentation": "Cleans up resources if needed.",
+                    "fileName": "#52",
+                    "githubUrl": "https://github.com/tensorflow/tfjs-models/tree/tasks-v0.0.1-alpha.8/tasks/src/tasks/object_detection/common.ts#L52-L52",
+                    "isFunction": true
+                  }
+                ],
+                "isClass": true,
+                "inheritsFrom": "TaskModel"
+              }
+            ]
+          },
+          {
+            "name": "Models",
+            "symbols": [
+              {
+                "docInfo": {
+                  "heading": "Object Detection",
+                  "subheading": "Models"
+                },
+                "symbolName": "CocoSsdTFJS",
+                "documentation": "Pre-trained TFJS coco-ssd model.\n\nUsage:\n\n```js\n// Load the model with options (optional).\n//\n// By default, it uses lite_mobilenet_v2 as the base model with webgl\n// backend. You can change them in the `options` parameter of the `load`\n// function (see below for docs).\nconst model = await tfTask.ObjectDetection.CocoSsd.TFJS.load();\n\n// Run detection on an image with options (optional).\nconst img = document.querySelector('img');\nconst result = await model.predict(img, {numMaxBoxes: 5});\nconsole.log(result.objects);\n\n// Clean up.\nmodel.cleanUp();\n```\n\nRefer to `tfTask.ObjectDetector` for the `predict` and `cleanUp` method.",
+                "fileName": "#106",
+                "githubUrl": "https://github.com/tensorflow/tfjs-models/tree/tasks-v0.0.1-alpha.8/tasks/src/tasks/object_detection/cocossd_tfjs.ts#L106-L148",
+                "methods": [],
+                "isClass": true,
+                "inheritsFrom": "ObjectDetector",
+                "extraTypes": [
+                  {
+                    "description": "Options for `load`",
+                    "symbol": "CocoSsdTFJSLoadingOptions"
+                  },
+                  {
+                    "description": "Options for `predict`",
+                    "symbol": "CocoSsdTFJSInferenceOptions"
+                  }
+                ]
+              },
+              {
+                "docInfo": {
+                  "heading": "Object Detection",
+                  "subheading": "Models"
+                },
+                "symbolName": "CocoSsdTFLite",
+                "documentation": "Pre-trained TFLite coco-ssd object detection model.\n\nUsage:\n\n```js\n// Load the model with options (optional).\nconst model = await tfTask.ObjectDetection.CocoSsd.TFLite.load();\n\n// Run inference on an image.\nconst img = document.querySelector('img');\nconst result = await model.predict(img);\nconsole.log(result.objects);\n\n// Clean up.\nmodel.cleanUp();\n```\n\nRefer to `tfTask.ObjectDetector` for the `predict` and `cleanUp` method.",
+                "fileName": "#92",
+                "githubUrl": "https://github.com/tensorflow/tfjs-models/tree/tasks-v0.0.1-alpha.8/tasks/src/tasks/object_detection/cocossd_tflite.ts#L92-L93",
+                "methods": [],
+                "isClass": true,
+                "inheritsFrom": "ObjectDetectorTFLite",
+                "extraTypes": [
+                  {
+                    "description": "Options for `load`",
+                    "symbol": "CocoSsdTFLiteLoadingOptions"
+                  },
+                  {
+                    "description": "Options for `predict`",
+                    "symbol": "CocoSsdTFLiteInferenceOptions"
+                  }
+                ]
+              },
+              {
+                "docInfo": {
+                  "heading": "Object Detection",
+                  "subheading": "Models"
+                },
+                "symbolName": "ODCustomModelTFLite",
+                "documentation": "A custom TFLite object detection model loaded from a model url or an\n`ArrayBuffer` in memory.\n\nThe underlying object detector is built on top of the [TFLite Task\nLibrary](https://www.tensorflow.org/lite/inference_with_metadata/task_library/overview).\nAs a result, the custom model needs to meet the [metadata\nrequirements](https://www.tensorflow.org/lite/inference_with_metadata/task_library/object_detector#model_compatibility_requirements).\n\nUsage:\n\n```js\n// Load the model from a custom url with other options (optional).\nconst model = await tfTask.ObjectDetection.CustomModel.TFLite.load({\n   model:\n'https://tfhub.dev/tensorflow/lite-model/ssd_mobilenet_v1/1/metadata/2?lite-format=tflite',\n});\n\n// Run inference on an image.\nconst img = document.querySelector('img');\nconst result = await model.predict(img);\nconsole.log(result.objects);\n\n// Clean up.\nmodel.cleanUp();\n```\n\nRefer to `tfTask.ObjectDetector` for the `predict` and `cleanUp` method.",
+                "fileName": "#111",
+                "githubUrl": "https://github.com/tensorflow/tfjs-models/tree/tasks-v0.0.1-alpha.8/tasks/src/tasks/object_detection/custom_model_tflite.ts#L111-L112",
+                "methods": [],
+                "isClass": true,
+                "inheritsFrom": "ObjectDetectorTFLite",
+                "extraTypes": [
+                  {
+                    "description": "Options for `load`",
+                    "symbol": "ODCustomModelTFLiteLoadingOptions"
+                  },
+                  {
+                    "description": "Options for `predict`",
+                    "symbol": "ODCustomModelTFLiteInferenceOptions"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Question & Answer",
+        "description": "",
+        "subheadings": [
+          {
+            "name": "Base model",
+            "symbols": [
+              {
+                "docInfo": {
+                  "heading": "Question & Answer",
+                  "subheading": "Base model"
+                },
+                "symbolName": "QuestionAnswerer",
+                "documentation": "The base class for all Q&A task models.",
+                "fileName": "#29",
+                "githubUrl": "https://github.com/tensorflow/tfjs-models/tree/tasks-v0.0.1-alpha.8/tasks/src/tasks/question_and_answer/common.ts#L29-L50",
+                "methods": [
+                  {
+                    "docInfo": {
+                      "heading": "Question & Answer",
+                      "subheading": "Base model"
+                    },
+                    "symbolName": "predict",
+                    "paramStr": "(question, context, options?)",
+                    "parameters": [
+                      {
+                        "name": "question",
+                        "documentation": "",
+                        "type": "string",
+                        "optional": false,
+                        "isConfigParam": false
+                      },
+                      {
+                        "name": "context",
+                        "documentation": "Context where the answer are looked up from.",
+                        "type": "string",
+                        "optional": false,
+                        "isConfigParam": false
+                      },
+                      {
+                        "name": "options",
+                        "documentation": "",
+                        "type": "IO",
+                        "optional": true,
+                        "isConfigParam": false
+                      }
+                    ],
+                    "returnType": "Promise<QuestionAnswerResult>",
+                    "documentation": "Gets the answer to the given question based on the content of a given\npassage.",
+                    "fileName": "#41",
+                    "githubUrl": "https://github.com/tensorflow/tfjs-models/tree/tasks-v0.0.1-alpha.8/tasks/src/tasks/question_and_answer/common.ts#L41-L42",
+                    "isFunction": true,
+                    "unpackedReturnTypes": [
+                      {
+                        "description": "`QuestionAnswerResult`",
+                        "symbol": "QuestionAnswerResult"
+                      },
+                      {
+                        "description": "`Answer`",
+                        "symbol": "Answer"
+                      }
+                    ]
+                  },
+                  {
+                    "docInfo": {
+                      "heading": "Question & Answer",
+                      "subheading": "Base model"
+                    },
+                    "symbolName": "cleanUp",
+                    "paramStr": "()",
+                    "parameters": [],
+                    "returnType": "void",
+                    "documentation": "Cleans up resources if needed.",
+                    "fileName": "#49",
+                    "githubUrl": "https://github.com/tensorflow/tfjs-models/tree/tasks-v0.0.1-alpha.8/tasks/src/tasks/question_and_answer/common.ts#L49-L49",
+                    "isFunction": true
+                  }
+                ],
+                "isClass": true,
+                "inheritsFrom": "TaskModel"
+              }
+            ]
+          },
+          {
+            "name": "Models",
+            "symbols": [
+              {
+                "docInfo": {
+                  "heading": "Question & Answer",
+                  "subheading": "Models"
+                },
+                "symbolName": "BertQATFJS",
+                "documentation": "Pre-trained TFJS Bert Q&A model.\n\nUsage:\n\n```js\n// Load the model with options (optional).\nconst model = await tfTask.QuestionAndAnswer.BertQA.TFJS.load();\n\n// Run inference with question and context.\nconst result = await model.predict(question, context);\nconsole.log(result.answers);\n\n// Clean up.\nmodel.cleanUp();\n```\n\nRefer to `tfTask.QuestionAnswerer` for the `predict` and `cleanUp` method.",
+                "fileName": "#98",
+                "githubUrl": "https://github.com/tensorflow/tfjs-models/tree/tasks-v0.0.1-alpha.8/tasks/src/tasks/question_and_answer/bert_qa_tfjs.ts#L98-L116",
+                "methods": [],
+                "isClass": true,
+                "inheritsFrom": "QuestionAnswerer",
+                "extraTypes": [
+                  {
+                    "description": "Options for `load`",
+                    "symbol": "BertQATFJSLoadingOptions"
+                  },
+                  {
+                    "description": "Options for `predict`",
+                    "symbol": "BertQATFJSInferenceOptions"
+                  }
+                ]
+              },
+              {
+                "docInfo": {
+                  "heading": "Question & Answer",
+                  "subheading": "Models"
+                },
+                "symbolName": "BertQATFLite",
+                "documentation": "Pre-trained TFLite Bert Q&A model.\n\nUsage:\n\n```js\n// Load the model.\nconst model = await tfTask.QuestionAndAnswer.BertQA.TFLite.load();\n\n// Run inference on an image.\nconst result = await model.predict(question, context);\nconsole.log(result);\n\n// Clean up.\nmodel.cleanUp();\n```\n\nRefer to `tfTask.QuestionAnswerer` for the `predict` and `cleanUp` method.",
+                "fileName": "#93",
+                "githubUrl": "https://github.com/tensorflow/tfjs-models/tree/tasks-v0.0.1-alpha.8/tasks/src/tasks/question_and_answer/bert_qa_tflite.ts#L93-L94",
+                "methods": [],
+                "isClass": true,
+                "inheritsFrom": "QuestionAnswererTFLite",
+                "extraTypes": [
+                  {
+                    "description": "Options for `load`",
+                    "symbol": "BertQATFLiteLoadingOptions"
+                  },
+                  {
+                    "description": "Options for `predict`",
+                    "symbol": "BertQATFLiteInferenceOptions"
+                  }
+                ]
+              },
+              {
+                "docInfo": {
+                  "heading": "Question & Answer",
+                  "subheading": "Models"
+                },
+                "symbolName": "QACustomModelTFLite",
+                "documentation": "A custom TFLite Q&A model loaded from a model url or an `ArrayBuffer` in\nmemory.\n\nThe underlying question answerer is built on top of the [TFLite Task\nLibrary](https://www.tensorflow.org/lite/inference_with_metadata/task_library/overview).\nAs a result, the custom model needs to meet the [metadata\nrequirements](https://www.tensorflow.org/lite/inference_with_metadata/task_library/bert_question_answerer#model_compatibility_requirements).\n\nUsage:\n\n```js\n// Load the model from a custom url.\nconst model = await tfTask.QuestionAndAnswer.CustomModel.TFLite.load({\n   model:\n'https://tfhub.dev/tensorflow/lite-model/mobilebert/1/metadata/1?lite-format=tflite',\n});\n\n// Run inference with question and context.\nconst result = await model.predict(question, context);\nconsole.log(result.answers);\n\n// Clean up.\nmodel.cleanUp();\n```\n\nRefer to `tfTask.QuestionAnswerer` for the `predict` and `cleanUp` method.",
+                "fileName": "#110",
+                "githubUrl": "https://github.com/tensorflow/tfjs-models/tree/tasks-v0.0.1-alpha.8/tasks/src/tasks/question_and_answer/custom_model_tflite.ts#L110-L111",
+                "methods": [],
+                "isClass": true,
+                "inheritsFrom": "QuestionAnswererTFLite",
+                "extraTypes": [
+                  {
+                    "description": "Options for `load`",
+                    "symbol": "QACustomModelTFLiteLoadingOptions"
+                  },
+                  {
+                    "description": "Options for `predict`",
+                    "symbol": "QACustomModelTFLiteInferenceOptions"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Sentiment Detection",
+        "description": "",
+        "subheadings": [
+          {
+            "name": "Base model",
+            "symbols": [
+              {
+                "docInfo": {
+                  "heading": "Sentiment Detection",
+                  "subheading": "Base model"
+                },
+                "symbolName": "SentimentDetector",
+                "documentation": "The base class for all SentimentDetection task models.",
+                "fileName": "#29",
+                "githubUrl": "https://github.com/tensorflow/tfjs-models/tree/tasks-v0.0.1-alpha.8/tasks/src/tasks/sentiment_detection/common.ts#L29-L50",
+                "methods": [
+                  {
+                    "docInfo": {
+                      "heading": "Sentiment Detection",
+                      "subheading": "Base model"
+                    },
+                    "symbolName": "predict",
+                    "paramStr": "(text, options?)",
+                    "parameters": [
+                      {
+                        "name": "text",
+                        "documentation": "The text to detect sentiment on.",
+                        "type": "string",
+                        "optional": false,
+                        "isConfigParam": false
+                      },
+                      {
+                        "name": "options",
+                        "documentation": "Inference options. Different models have different\ninference options. See individual model for more details.",
+                        "type": "IO",
+                        "optional": true,
+                        "isConfigParam": false
+                      }
+                    ],
+                    "returnType": "Promise<SentimentDetectionResult>",
+                    "documentation": "Detects sentiment on the given text, and returns result.",
+                    "fileName": "#41",
+                    "githubUrl": "https://github.com/tensorflow/tfjs-models/tree/tasks-v0.0.1-alpha.8/tasks/src/tasks/sentiment_detection/common.ts#L41-L42",
+                    "isFunction": true,
+                    "unpackedReturnTypes": [
+                      {
+                        "description": "`SentimentDetectionResult`",
+                        "symbol": "SentimentDetectionResult"
+                      },
+                      {
+                        "description": "`Sentiment`",
+                        "symbol": "Sentiment"
+                      }
+                    ]
+                  },
+                  {
+                    "docInfo": {
+                      "heading": "Sentiment Detection",
+                      "subheading": "Base model"
+                    },
+                    "symbolName": "cleanUp",
+                    "paramStr": "()",
+                    "parameters": [],
+                    "returnType": "void",
+                    "documentation": "Cleans up resources if needed.",
+                    "fileName": "#49",
+                    "githubUrl": "https://github.com/tensorflow/tfjs-models/tree/tasks-v0.0.1-alpha.8/tasks/src/tasks/sentiment_detection/common.ts#L49-L49",
+                    "isFunction": true
+                  }
+                ],
+                "isClass": true,
+                "inheritsFrom": "TaskModel"
+              }
+            ]
+          },
+          {
+            "name": "Models",
+            "symbols": [
+              {
+                "docInfo": {
+                  "heading": "Sentiment Detection",
+                  "subheading": "Models"
+                },
+                "symbolName": "MovieReviewTFLite",
+                "documentation": "Pre-trained TFLite movie review sentiment detection model.\n\nIt detects whether the review text is positive or negetive.\n\nUsage:\n\n```js\n// Load the model with options (optional).\nconst model = await tfTask.SentimentDetection.MovieReview.TFLite.load();\n\n// Run inference on a review text.\nconst result = await model.predict('This is a great movie!');\nconsole.log(result.sentimentLabels);\n\n// Clean up.\nmodel.cleanUp();\n```\n\nThe model returns the prediction results of the following sentiment labels:\n\n- positive\n- negative\n\nRefer to `tfTask.SentimentDetector` for the `predict` and `cleanUp` method,\nand more details about the result interface.",
+                "fileName": "#107",
+                "githubUrl": "https://github.com/tensorflow/tfjs-models/tree/tasks-v0.0.1-alpha.8/tasks/src/tasks/sentiment_detection/movie_review_tflite.ts#L107-L146",
+                "methods": [],
+                "isClass": true,
+                "inheritsFrom": "SentimentDetector",
+                "extraTypes": [
+                  {
+                    "description": "Options for `load`",
+                    "symbol": "MovieReviewTFLiteLoadingOptions"
+                  },
+                  {
+                    "description": "Options for `predict`",
+                    "symbol": "MovieReviewTFLiteInferenceOptions"
+                  }
+                ]
+              },
+              {
+                "docInfo": {
+                  "heading": "Sentiment Detection",
+                  "subheading": "Models"
+                },
+                "symbolName": "ToxicityTFJS",
+                "documentation": "Pre-trained TFJS toxicity model.\n\nIt detects whether text contains toxic content such as threatening language,\ninsults, obscenities, identity-based hate, or sexually explicit language.\n\nUsage:\n\n```js\n// Load the model with options (optional. See below for docs).\nconst model = await tfTask.SentimentDetection.Toxicity.TFJS.load();\n\n// Run detection on text.\nconst result = await model.predict('You are stupid');\nconsole.log(result.sentimentLabels);\n\n// Clean up.\nmodel.cleanUp();\n```\n\nBy default, the model returns the prediction results of the following\nsentiment labels:\n\n- toxicity\n- severe_toxicity\n- identity_attack\n- insult\n- threat\n- sexual_explicit\n- obscene\n\nRefer to `tfTask.SentimentDetection` for the `predict` and `cleanUp` method,\nand more details about the result interface.",
+                "fileName": "#118",
+                "githubUrl": "https://github.com/tensorflow/tfjs-models/tree/tasks-v0.0.1-alpha.8/tasks/src/tasks/sentiment_detection/toxicity_tfjs.ts#L118-L142",
+                "methods": [],
+                "isClass": true,
+                "inheritsFrom": "SentimentDetector",
+                "extraTypes": [
+                  {
+                    "description": "Options for `load`",
+                    "symbol": "ToxicityTFJSLoadingOptions"
+                  },
+                  {
+                    "description": "Options for `predict`",
+                    "symbol": "ToxicityTFJSInferenceOptions"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "docLinkAliases": {},
+  "configInterfaceParamMap": {
+    "TFJSModelCommonLoadingOption": [
+      {
+        "name": "backend",
+        "type": "TFJSBackend",
+        "documentation": "The backend to use to run TFJS models. Default to 'webgl'.",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "TFLiteCustomModelCommonLoadingOption": [
+      {
+        "name": "model",
+        "type": "string|ArrayBuffer",
+        "documentation": "The model url, or the model content stored in an `ArrayBuffer`.\n\nYou can use TFLite model urls from `tfhub.dev` directly. For model\ncompatibility, see comments in the corresponding model class.",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "Class": [
+      {
+        "name": "className",
+        "type": "string",
+        "documentation": "The name of the class.",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "score",
+        "type": "number",
+        "documentation": "The score of the class.",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "TaskModel": [
+      {
+        "name": "cleanUp",
+        "type": "void",
+        "documentation": "Cleans up resources if necessary.",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "TaskModelMetadata": [
+      {
+        "name": "name",
+        "type": "string",
+        "documentation": "Human-readable model name.",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "description",
+        "type": "string",
+        "documentation": "The model description. Can have simple HTML tags.",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "resourceUrls",
+        "type": "{[name: string]: string}",
+        "documentation": "Resource urls (e.g. github page, docs, etc) indexed by names.",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "runtime",
+        "type": "Runtime",
+        "documentation": "The model runtime.",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "version",
+        "type": "string",
+        "documentation": "The model version.\n\nThis should be used to construct the main package url in the `packageUrls`\nfield below so that the package version matches the version specified here.\n\nTODO: allow users to dynamically specify which version to load.",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "supportedTasks",
+        "type": "Task[]",
+        "documentation": "Tasks that the model supports.\n\nThis needs to match the location(s) of this model loader in the main index\nin all_tasks.ts file. A test will run to make sure of this.",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "ImageClassificationResult": [
+      {
+        "name": "classes",
+        "type": "Class[]",
+        "documentation": "All predicted classes.",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "ICCustomModelTFLiteLoadingOptions": [
+      {
+        "name": "model",
+        "type": "string|ArrayBuffer",
+        "documentation": "The model url, or the model content stored in an `ArrayBuffer`.\n\nYou can use TFLite model urls from `tfhub.dev` directly. For model\ncompatibility, see comments in the corresponding model class.",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "maxResults",
+        "type": "number",
+        "documentation": "Maximum number of top scored results to return. If < 0, all results will\nbe returned. If 0, an invalid argument error is returned.",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "scoreThreshold",
+        "type": "number",
+        "documentation": "Score threshold in [0,1), overrides the ones provided in the model metadata\n(if any). Results below this value are rejected.",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "numThreads",
+        "type": "number",
+        "documentation": "The number of threads to be used for TFLite ops that support\nmulti-threading when running inference with CPU. num_threads should be\ngreater than 0 or equal to -1. Setting num_threads to -1 has the effect to\nlet TFLite runtime set the value.\n\nDefault to number of physical CPU cores, or -1 if WASM multi-threading is\nnot supported by user's browser.",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "ICCustomModelTFLiteInferenceOptions": [],
+    "MobilenetTFJSLoadingOptions": [
+      {
+        "name": "backend",
+        "type": "TFJSBackend",
+        "documentation": "The backend to use to run TFJS models. Default to 'webgl'.",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "MobilenetTFJSInferenceOptions": [
+      {
+        "name": "topK",
+        "type": "number",
+        "documentation": "Number of top classes to return.",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "MobilenetTFLiteLoadingOptions": [
+      {
+        "name": "version",
+        "type": "1|2",
+        "documentation": "The MobileNet version number. Use 1 for MobileNetV1, and 2 for\nMobileNetV2. Defaults to 1.",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "alpha",
+        "type": "0.25|0.50|0.75|1.0",
+        "documentation": "Controls the width of the network, trading accuracy for performance. A\nsmaller alpha decreases accuracy and increases performance. Defaults\nto 1.0.",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "maxResults",
+        "type": "number",
+        "documentation": "Maximum number of top scored results to return. If < 0, all results will\nbe returned. If 0, an invalid argument error is returned.",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "scoreThreshold",
+        "type": "number",
+        "documentation": "Score threshold in [0,1), overrides the ones provided in the model metadata\n(if any). Results below this value are rejected.",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "numThreads",
+        "type": "number",
+        "documentation": "The number of threads to be used for TFLite ops that support\nmulti-threading when running inference with CPU. num_threads should be\ngreater than 0 or equal to -1. Setting num_threads to -1 has the effect to\nlet TFLite runtime set the value.\n\nDefault to number of physical CPU cores, or -1 if WASM multi-threading is\nnot supported by user's browser.",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "MobilenetTFLiteInferenceOptions": [],
+    "Legend": [],
+    "Color": [
+      {
+        "name": "r",
+        "type": "number",
+        "documentation": "The red color component for the label, in the [0, 255] range.",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "g",
+        "type": "number",
+        "documentation": "The green color component for the label, in the [0, 255] range.",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "b",
+        "type": "number",
+        "documentation": "The blue color component for the label, in the [0, 255] range.",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "ImageSegmentationResult": [
+      {
+        "name": "legend",
+        "type": "Legend",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "width",
+        "type": "number",
+        "documentation": "The width of the returned segmentation map.",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "height",
+        "type": "number",
+        "documentation": "The height of the returned segmentation map.",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "segmentationMap",
+        "type": "Uint8ClampedArray",
+        "documentation": "The colored segmentation map as `Uint8ClampedArray` which can be\nfed into `ImageData` and mapped to a canvas.",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "ISCustomModelTFLiteLoadingOptions": [
+      {
+        "name": "model",
+        "type": "string|ArrayBuffer",
+        "documentation": "The model url, or the model content stored in an `ArrayBuffer`.\n\nYou can use TFLite model urls from `tfhub.dev` directly. For model\ncompatibility, see comments in the corresponding model class.",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "outputType",
+        "type": "OutputType",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "numThreads",
+        "type": "number",
+        "documentation": "The number of threads to be used for TFLite ops that support\nmulti-threading when running inference with CPU. num_threads should be\ngreater than 0 or equal to -1. Setting num_threads to -1 has the effect to\nlet TFLite runtime set the value.\n\nDefault to number of physical CPU cores, or -1 if WASM multi-threading is\nnot supported by user's browser.",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "ISCustomModelTFLiteInferenceOptions": [],
+    "DeeplabTFJSLoadingOptions": [
+      {
+        "name": "backend",
+        "type": "'cpu'|'webgl'",
+        "documentation": "The backend to use to run TFJS models. Default to 'webgl'.",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "DeeplabTFJSInferenceOptions": [],
+    "DeeplabTFLiteLoadingOptions": [
+      {
+        "name": "outputType",
+        "type": "OutputType",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "numThreads",
+        "type": "number",
+        "documentation": "The number of threads to be used for TFLite ops that support\nmulti-threading when running inference with CPU. num_threads should be\ngreater than 0 or equal to -1. Setting num_threads to -1 has the effect to\nlet TFLite runtime set the value.\n\nDefault to number of physical CPU cores, or -1 if WASM multi-threading is\nnot supported by user's browser.",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "DeeplabTFLiteInferenceOptions": [],
+    "NLClassificationResult": [
+      {
+        "name": "classes",
+        "type": "Class[]",
+        "documentation": "All predicted classes.",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "NCCustomModelTFLiteLoadingOptions": [
+      {
+        "name": "model",
+        "type": "string|ArrayBuffer",
+        "documentation": "The model url, or the model content stored in an `ArrayBuffer`.\n\nYou can use TFLite model urls from `tfhub.dev` directly. For model\ncompatibility, see comments in the corresponding model class.",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "inputTensorIndex",
+        "type": "number",
+        "documentation": "Index of the input tensor.",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "outputScoreTensorIndex",
+        "type": "number",
+        "documentation": "Index of the output score tensor.",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "outputLabelTensorIndex",
+        "type": "number",
+        "documentation": "Index of the output label tensor.",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "inputTensorName",
+        "type": "string",
+        "documentation": "Name of the input tensor.",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "outputScoreTensorName",
+        "type": "string",
+        "documentation": "Name of the output score tensor.",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "outputLabelTensorName",
+        "type": "string",
+        "documentation": "Name of the output label tensor.",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "NCCustomModelTFLiteInferenceOptions": [],
+    "ObjectDetectionResult": [
+      {
+        "name": "objects",
+        "type": "DetectedObject[]",
+        "documentation": "All detected objects.",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "DetectedObject": [
+      {
+        "name": "boundingBox",
+        "type": "BoundingBox",
+        "documentation": "The bounding box of the object.",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "documentation": "The name of the class.",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "score",
+        "type": "number",
+        "documentation": "The score of the class.",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "BoundingBox": [
+      {
+        "name": "originX",
+        "type": "number",
+        "documentation": "The X coordinate of the top-left corner of the bounding box.",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "originY",
+        "type": "number",
+        "documentation": "The Y coordinate of the top-left corner of the bounding box.",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "width",
+        "type": "number",
+        "documentation": "The width of bounding box.",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "height",
+        "type": "number",
+        "documentation": "The height of bounding box.",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "CocoSsdTFJSLoadingOptions": [
+      {
+        "name": "backend",
+        "type": "TFJSBackend",
+        "documentation": "The backend to use to run TFJS models. Default to 'webgl'.",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "CocoSsdTFJSInferenceOptions": [
+      {
+        "name": "maxNumBoxes",
+        "type": "number",
+        "documentation": "The maximum number of bounding boxes of detected objects. There can be\nmultiple objects of the same class, but at different locations. Defaults\nto 20.",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "minScore",
+        "type": "number",
+        "documentation": "The minimum score of the returned bounding boxes of detected objects. Value\nbetween 0 and 1. Defaults to 0.5.",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "CocoSsdTFLiteLoadingOptions": [
+      {
+        "name": "maxResults",
+        "type": "number",
+        "documentation": "Maximum number of top scored results to return. If < 0, all results will\nbe returned. If 0, an invalid argument error is returned.",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "scoreThreshold",
+        "type": "number",
+        "documentation": "Score threshold in [0,1), overrides the ones provided in the model metadata\n(if any). Results below this value are rejected.",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "numThreads",
+        "type": "number",
+        "documentation": "The number of threads to be used for TFLite ops that support\nmulti-threading when running inference with CPU. num_threads should be\ngreater than 0 or equal to -1. Setting num_threads to -1 has the effect to\nlet TFLite runtime set the value.\n\nDefault to number of physical CPU cores, or -1 if WASM multi-threading is\nnot supported by user's browser.",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "CocoSsdTFLiteInferenceOptions": [],
+    "ODCustomModelTFLiteLoadingOptions": [
+      {
+        "name": "model",
+        "type": "string|ArrayBuffer",
+        "documentation": "The model url, or the model content stored in an `ArrayBuffer`.\n\nYou can use TFLite model urls from `tfhub.dev` directly. For model\ncompatibility, see comments in the corresponding model class.",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "maxResults",
+        "type": "number",
+        "documentation": "Maximum number of top scored results to return. If < 0, all results will\nbe returned. If 0, an invalid argument error is returned.",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "scoreThreshold",
+        "type": "number",
+        "documentation": "Score threshold in [0,1), overrides the ones provided in the model metadata\n(if any). Results below this value are rejected.",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "numThreads",
+        "type": "number",
+        "documentation": "The number of threads to be used for TFLite ops that support\nmulti-threading when running inference with CPU. num_threads should be\ngreater than 0 or equal to -1. Setting num_threads to -1 has the effect to\nlet TFLite runtime set the value.\n\nDefault to number of physical CPU cores, or -1 if WASM multi-threading is\nnot supported by user's browser.",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "ODCustomModelTFLiteInferenceOptions": [],
+    "QuestionAnswerResult": [
+      {
+        "name": "answers",
+        "type": "Answer[]",
+        "documentation": "All predicted answers.",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "Answer": [
+      {
+        "name": "text",
+        "type": "string",
+        "documentation": "The text of the answer.",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "startIndex",
+        "type": "number",
+        "documentation": "The index of the starting character of the answer in the passage.",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "endIndex",
+        "type": "number",
+        "documentation": "The index of the last character of the answer text.",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "score",
+        "type": "number",
+        "documentation": "Indicates the confident level.",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "BertQATFJSLoadingOptions": [
+      {
+        "name": "backend",
+        "type": "TFJSBackend",
+        "documentation": "The backend to use to run TFJS models. Default to 'webgl'.",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "BertQATFJSInferenceOptions": [],
+    "BertQATFLiteLoadingOptions": [],
+    "BertQATFLiteInferenceOptions": [],
+    "QACustomModelTFLiteLoadingOptions": [
+      {
+        "name": "model",
+        "type": "string|ArrayBuffer",
+        "documentation": "The model url, or the model content stored in an `ArrayBuffer`.\n\nYou can use TFLite model urls from `tfhub.dev` directly. For model\ncompatibility, see comments in the corresponding model class.",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "QACustomModelTFLiteInferenceOptions": [],
+    "SentimentDetectionResult": [
+      {
+        "name": "sentimentLabels",
+        "type": "{[label: string]: Sentiment}",
+        "documentation": "A map from sentiment labels to their detection result along with the raw\nprobabilities ([negative probability, positive probability]).\n\nFor example:\n{\n   'insult': {result: true, probabilities: [0.3, 0.7]}\n   'threat': {result: false, probabilities: [0.7, 0.3]}\n}",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "Sentiment": [
+      {
+        "name": "result",
+        "type": "boolean|null",
+        "documentation": "Whether the sentiment is considered true or false. It is set to null when\nthe result cannot be determined (e.g. below a threshold).",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "probabilities",
+        "type": "number[]",
+        "documentation": "The raw probabilities for this sentiment.",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "SentimentDetectionBaseOptions": [
+      {
+        "name": "threshold",
+        "type": "number",
+        "documentation": "A prediction is considered valid only if its confidence exceeds the\nthreshold. Defaults to 0.65.",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "MovieReviewTFLiteLoadingOptions": [
+      {
+        "name": "threshold",
+        "type": "number",
+        "documentation": "A prediction is considered valid only if its confidence exceeds the\nthreshold. Defaults to 0.65.",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "MovieReviewTFLiteInferenceOptions": [],
+    "ToxicityTFJSLoadingOptions": [
+      {
+        "name": "toxicityLabels",
+        "type": "string[]",
+        "documentation": "An array of strings indicating which types of toxicity to detect. Labels\nmust be one of `toxicity` | `severe_toxicity` | `identity_attack` |\n`insult` | `threat` | `sexual_explicit` | `obscene`. Defaults to all\nlabels.",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "backend",
+        "type": "TFJSBackend",
+        "documentation": "The backend to use to run TFJS models. Default to 'webgl'.",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "threshold",
+        "type": "number",
+        "documentation": "A prediction is considered valid only if its confidence exceeds the\nthreshold. Defaults to 0.65.",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "ToxicityTFJSInferenceOptions": []
+  },
+  "inlineTypes": {
+    "TFJSBackend": "'cpu'|'webgl'|'wasm'"
+  },
+  "docTypeAliases": {}
+}

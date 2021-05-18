@@ -44,7 +44,6 @@ const libs = [
 
 console.log(`********* Generating Docs *********`);
 const outputPaths = generateDocs(libs);
-console.log(outputPaths);
 
 console.log(`********* Merging docs *********`);
 const docsFolder = `source/_data/api_tflite`;
