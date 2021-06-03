@@ -1,4 +1,4 @@
 ---
-title: 3.6.0
+title: 3.7.0
 layout: api
 ---
