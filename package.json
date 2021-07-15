@@ -25,9 +25,9 @@
     "test-ci": "./test-scripts/test-ci.sh"
   },
   "dependencies": {
-    "@tensorflow/tfjs": "3.7.0",
-    "@tensorflow/tfjs-node": "3.7.0",
-    "@tensorflow/tfjs-react-native": "0.5.0",
+    "@tensorflow/tfjs": "3.8.0",
+    "@tensorflow/tfjs-node": "3.8.0",
+    "@tensorflow/tfjs-react-native": "0.6.0",
     "@tensorflow/tfjs-tflite": "0.0.1-alpha.4",
     "@tensorflow/tfjs-vis": "1.5.1",
     "@tensorflow-models/tasks": "0.0.1-alpha.8",
