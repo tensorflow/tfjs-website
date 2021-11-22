@@ -99,7 +99,7 @@ Note that the name of the two files will always be exactly as specified above (t
 
 Often you will have to pass more arguments or request headers to your HTTP server (e.g. for authentication or if you want to specify a folder that the model should be saved in). You can gain fine-grained control over
 these aspects of the requests from `save` by replacing the URL string argument in `tf.io.browserHTTPRequest`. This API
-affords greater flexiblity in controlling HTTP requests.
+affords greater flexibility in controlling HTTP requests.
 
 For example:
 
@@ -118,7 +118,7 @@ await model.save(tf.io.browserHTTPRequest(
 await model.save('file:///path/to/my-model');
 ```
 
-When running on Node.js we also have direct access to the filesystem and can save models there. The command above will save two files to the `path` specified afer the `scheme`.
+When running on Node.js we also have direct access to the filesystem and can save models there. The command above will save two files to the `path` specified after the `scheme`.
 
  1. A text JSON file named `[model].json`, which carries the topology and reference to the weights file described below.
  2. A binary file carrying the weight values named `[model].weights.bin`.
