@@ -1,0 +1,799 @@
+{
+  "docs": {
+    "headings": [
+      {
+        "name": "Models",
+        "description": "",
+        "subheadings": [
+          {
+            "name": "Classes",
+            "symbols": [
+              {
+                "docInfo": {
+                  "heading": "Models",
+                  "subheading": "Classes"
+                },
+                "symbolName": "TFLiteModel",
+                "documentation": "A `tflite.TFLiteModel` is built from a TFLite model flatbuffer and executable\non TFLite interpreter. To load it, use the `loadTFLiteModel` function below.\n\nSample usage:\n\n```js\n// Load the MobilenetV2 tflite model from tfhub.\nconst tfliteModel = tflite.loadTFLiteModel(\n     'https://tfhub.dev/tensorflow/lite-model/mobilenet_v2_1.0_224/1/metadata/1');\n\nconst outputTensor = tf.tidy(() => {\n    // Get pixels data from an image.\n    const img = tf.browser.fromPixels(document.querySelector('img'));\n    // Normalize (might also do resize here if necessary).\n    const input = tf.sub(tf.div(tf.expandDims(img), 127.5), 1);\n    // Run the inference.\n    let outputTensor = tfliteModel.predict(input) as tf.Tensor;\n    // De-normalize the result.\n    return tf.mul(tf.add(outputTensor, 1), 127.5)\n  });\nconsole.log(outputTensor);\n\n```",
+                "fileName": "#52",
+                "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-tflite-v0.0.1-alpha.8/tfjs-tflite/src/tflite_model.ts#L52-L307",
+                "methods": [
+                  {
+                    "docInfo": {
+                      "heading": "Models",
+                      "subheading": "Classes"
+                    },
+                    "symbolName": "predict",
+                    "paramStr": "(inputs, config?)",
+                    "parameters": [
+                      {
+                        "name": "inputs",
+                        "documentation": "The input tensors, when there is single input for the model,\ninputs param should be a Tensor. For models with multiple inputs,\ninputs params should be in either Tensor[] if the input order is fixed,\nor otherwise NamedTensorMap format.",
+                        "type": "Tensor|Tensor[]|NamedTensorMap",
+                        "optional": false,
+                        "isConfigParam": false
+                      },
+                      {
+                        "name": "config",
+                        "documentation": "Prediction configuration for specifying the batch size.\nCurrently this field is not used, and batch inference is not supported.",
+                        "type": "ModelPredictConfig",
+                        "optional": true,
+                        "isConfigParam": false
+                      }
+                    ],
+                    "returnType": "Tensor|Tensor[]|NamedTensorMap",
+                    "documentation": "Execute the inference for the input tensors.",
+                    "fileName": "#82",
+                    "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-tflite-v0.0.1-alpha.8/tfjs-tflite/src/tflite_model.ts#L82-L156",
+                    "isFunction": true
+                  }
+                ],
+                "isClass": true,
+                "inheritsFrom": "InferenceModel"
+              }
+            ]
+          },
+          {
+            "name": "Loading",
+            "symbols": [
+              {
+                "docInfo": {
+                  "heading": "Models",
+                  "subheading": "Loading"
+                },
+                "symbolName": "loadTFLiteModel",
+                "paramStr": "(model, options?)",
+                "parameters": [
+                  {
+                    "name": "model",
+                    "documentation": "The path to the model (string), or the model content in memory\n(ArrayBuffer).",
+                    "type": "string|ArrayBuffer",
+                    "optional": false,
+                    "isConfigParam": false
+                  },
+                  {
+                    "name": "options",
+                    "documentation": "Options related to model inference.",
+                    "type": "TFLiteWebModelRunnerOptions",
+                    "optional": true,
+                    "isConfigParam": false
+                  }
+                ],
+                "returnType": "Promise<TFLiteModel>",
+                "documentation": "Loads a TFLiteModel from the given model url.",
+                "fileName": "#318",
+                "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-tflite-v0.0.1-alpha.8/tfjs-tflite/src/tflite_model.ts#L318-L331",
+                "isFunction": true
+              }
+            ]
+          },
+          {
+            "name": "Utilities",
+            "symbols": [
+              {
+                "docInfo": {
+                  "heading": "Models",
+                  "subheading": "Utilities"
+                },
+                "symbolName": "getDTypeFromTFLiteType",
+                "paramStr": "(tfliteType)",
+                "parameters": [
+                  {
+                    "name": "tfliteType",
+                    "documentation": "The type in TFLite.",
+                    "type": "TFLiteDataType",
+                    "optional": false,
+                    "isConfigParam": false
+                  }
+                ],
+                "returnType": "DataType",
+                "documentation": "Returns the compatible tfjs DataType from the given TFLite data type.",
+                "fileName": "#340",
+                "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-tflite-v0.0.1-alpha.8/tfjs-tflite/src/tflite_model.ts#L340-L361",
+                "isFunction": true
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "docLinkAliases": {},
+  "configInterfaceParamMap": {
+    "Category": [
+      {
+        "name": "score",
+        "type": "number",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "Class": [
+      {
+        "name": "className",
+        "type": "string",
+        "documentation": "The name of the class.",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "probability",
+        "type": "number",
+        "documentation": "The probability/score of the class.",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "WasmFeatures": [
+      {
+        "name": "simd",
+        "type": "boolean",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "multiThreading",
+        "type": "boolean",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "BertNLClassifierOptions": [
+      {
+        "name": "maxSeqLen",
+        "type": "number",
+        "documentation": "Max number of tokens to pass to the model.\n\nDefault to 128.",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "BertNLClassifierClass": [
+      {
+        "name": "create",
+        "type": "Promise<BertNLClassifier>",
+        "documentation": "The factory function to create a NLClassifier instance.",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "QaAnswer": [
+      {
+        "name": "text",
+        "type": "string",
+        "documentation": "The text of the answer.",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "pos",
+        "type": "Pos",
+        "documentation": "The position and logit of the answer.",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "Pos": [
+      {
+        "name": "start",
+        "type": "number",
+        "documentation": "The start position.",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "end",
+        "type": "number",
+        "documentation": "The end position.",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "logit",
+        "type": "number",
+        "documentation": "The logit.",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "BertQuestionAnswererClass": [
+      {
+        "name": "create",
+        "type": "Promise<BertQuestionAnswerer>",
+        "documentation": "The factory function to create an ImageClassifier instance.",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "ImageClassifierOptions": [
+      {
+        "name": "maxResults",
+        "type": "number",
+        "documentation": "Maximum number of top scored results to return. If < 0, all results will\nbe returned. If 0, an invalid argument error is returned.",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "scoreThreshold",
+        "type": "number",
+        "documentation": "Score threshold in [0,1), overrides the ones provided in the model metadata\n(if any). Results below this value are rejected.",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "numThreads",
+        "type": "number",
+        "documentation": "The number of threads to be used for TFLite ops that support\nmulti-threading when running inference with CPU. num_threads should be\ngreater than 0 or equal to -1. Setting num_threads to -1 has the effect to\nlet TFLite runtime set the value.\n\nDefault to number of physical CPU cores, or -1 if WASM multi-threading is\nnot supported by user's browser.",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "ClassificationResult": [
+      {
+        "name": "getClassificationsList",
+        "type": "Classification[]",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "Classification": [
+      {
+        "name": "getClassesList",
+        "type": "Class[]",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "ImageClassifierClass": [
+      {
+        "name": "create",
+        "type": "Promise<ImageClassifier>",
+        "documentation": "The factory function to create an ImageClassifier instance.",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "ImageSegmenterOptions": [
+      {
+        "name": "outputType",
+        "type": "OutputType",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "numThreads",
+        "type": "number",
+        "documentation": "The number of threads to be used for TFLite ops that support\nmulti-threading when running inference with CPU. num_threads should be\ngreater than 0 or equal to -1. Setting num_threads to -1 has the effect to\nlet TFLite runtime set the value.\n\nDefault to number of physical CPU cores, or -1 if WASM multi-threading is\nnot supported by user's browser.",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "SegmentationResult": [
+      {
+        "name": "getSegmentationList",
+        "type": "Segmentation[]",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "Segmentation": [
+      {
+        "name": "width",
+        "type": "number",
+        "documentation": "The width of the mask. This is an intrinsic parameter of the model being\nused, and does not depend on the input image dimensions.",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "height",
+        "type": "number",
+        "documentation": "The height of the mask. This is an intrinsic parameter of the model being\nused, and does not depend on the input image dimensions.",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "categoryMask",
+        "type": "Uint8Array",
+        "documentation": "This is a flattened 2D-array of size `width` x `height`, in row major\norder. The value of each pixel in this mask represents the class to which\nthe pixel in the mask belongs. See `coloredLabels` for instructions on how\nto get pixel labels and display color.",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "coloredLabels",
+        "type": "ColoredLabel[]",
+        "documentation": "The list of colored labels for all the supported categories. Depending on\nwhich is present, this list is in 1:1 correspondence with:\n- * `categoryMask` pixel values, i.e. a pixel with value `i` is associated\nwith `coloredLabels[i]`,\n- `confidenceMasks` indices, i.e. `confidence_masks[i]` is associated with\n`coloredLabels[i]` (TODO: to be supported here).",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "ColoredLabel": [
+      {
+        "name": "r",
+        "type": "number",
+        "documentation": "The red color component for the label, in the [0, 255] range.",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "g",
+        "type": "number",
+        "documentation": "The green color component for the label, in the [0, 255] range.",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "b",
+        "type": "number",
+        "documentation": "The blue color component for the label, in the [0, 255] range.",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "documentation": "The class name, as provided in the label map packed in the TFLite Model\nMetadata.",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "displayName",
+        "type": "string",
+        "documentation": "The display name, as provided in the label map (if available) packed in\nthe TFLite Model Metadata.",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "ImageSegmenterClass": [
+      {
+        "name": "create",
+        "type": "Promise<ImageSegmenter>",
+        "documentation": "The factory function to create an ImageSegmenter instance.",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "NLClassifierOptions": [
+      {
+        "name": "inputTensorIndex",
+        "type": "number",
+        "documentation": "Index of the input tensor.",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "outputScoreTensorIndex",
+        "type": "number",
+        "documentation": "Index of the output score tensor.",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "outputLabelTensorIndex",
+        "type": "number",
+        "documentation": "Index of the output label tensor.",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "inputTensorName",
+        "type": "string",
+        "documentation": "Name of the input tensor.",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "outputScoreTensorName",
+        "type": "string",
+        "documentation": "Name of the output score tensor.",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "outputLabelTensorName",
+        "type": "string",
+        "documentation": "Name of the output label tensor.",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "NLClassifierClass": [
+      {
+        "name": "create",
+        "type": "Promise<NLClassifier>",
+        "documentation": "The factory function to create a NLClassifier instance.",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "NLClassifier": [
+      {
+        "name": "classify",
+        "type": "Category[]|undefined",
+        "documentation": "Performs classification on a string input, returns classified results.",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "cleanUp",
+        "type": "void",
+        "documentation": "Cleans up resources when the instance is no longer needed.",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "ObjectDetectorOptions": [
+      {
+        "name": "maxResults",
+        "type": "number",
+        "documentation": "Maximum number of top scored results to return. If < 0, all results will\nbe returned. If 0, an invalid argument error is returned.",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "scoreThreshold",
+        "type": "number",
+        "documentation": "Score threshold in [0,1), overrides the ones provided in the model metadata\n(if any). Results below this value are rejected.",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "numThreads",
+        "type": "number",
+        "documentation": "The number of threads to be used for TFLite ops that support\nmulti-threading when running inference with CPU. num_threads should be\ngreater than 0 or equal to -1. Setting num_threads to -1 has the effect to\nlet TFLite runtime set the value.\n\nDefault to number of physical CPU cores, or -1 if WASM multi-threading is\nnot supported by user's browser.",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "DetectionResult": [
+      {
+        "name": "getDetectionsList",
+        "type": "Detection[]",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "Detection": [
+      {
+        "name": "boundingBox",
+        "type": "BoundingBox",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "classes",
+        "type": "Class[]",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "BoundingBox": [
+      {
+        "name": "originX",
+        "type": "number",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "originY",
+        "type": "number",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "width",
+        "type": "number",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "height",
+        "type": "number",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "ObjectDetectorClass": [
+      {
+        "name": "create",
+        "type": "Promise<ObjectDetector>",
+        "documentation": "The factory function to create an ImageClassifier instance.",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "TFLiteWebModelRunnerClass": [
+      {
+        "name": "create",
+        "type": "Promise<TFLiteWebModelRunner>",
+        "documentation": "The factory function to create a TFLiteWebModelRunner instance.",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "TFLiteWebModelRunner": [
+      {
+        "name": "getInputs",
+        "type": "TFLiteWebModelRunnerTensorInfo[]",
+        "documentation": "Gets model inputs.",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "getOutputs",
+        "type": "TFLiteWebModelRunnerTensorInfo[]",
+        "documentation": "Gets model outputs.",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "infer",
+        "type": "boolean",
+        "documentation": "Run inference.",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "getProfilingResults",
+        "type": "ProfileItem[]",
+        "documentation": "Gets per-node profiling results.\n\nThis is only useful when TFLiteWebModelRunnerOptions.enableProfiling is\nset to true.",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "getProfilingSummary",
+        "type": "string",
+        "documentation": "Gets the profiling summary.\n\nThis is only useful when TFLiteWebModelRunnerOptions.enableProfiling is\nset to true.",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "cleanUp",
+        "type": "void",
+        "documentation": "Cleans up resources when the instance is no longer needed.",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "ProfileItem": [
+      {
+        "name": "nodeType",
+        "type": "string",
+        "documentation": "The type of the node, e.g. \"CONV_2D\".",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "nodeName",
+        "type": "string",
+        "documentation": "The name of the node, e.g. \"MobilenetV1/MobilenetV1/Conv2d_0/Relu6\".",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "nodeExecMs",
+        "type": "number",
+        "documentation": "The execution time (in ms) of the node.",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "TFLiteWebModelRunnerOptions": [
+      {
+        "name": "numThreads",
+        "type": "number",
+        "documentation": "Number of threads to use when running inference.\n\nDefault to number of physical CPU cores, or -1 if WASM multi-threading is\nnot supported by user's browser.",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "enableProfiling",
+        "type": "boolean",
+        "documentation": "Whether to enable profiling.\n\nDefault to false. After it is enabled, the profiling results can be\nretrieved by calling TFLiteWebModelRunner.getProfilingResults or\nTFLiteWebModelRunner.getProfilingSummary. See their comments for more\ndetails.",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "maxProfilingBufferEntries",
+        "type": "number",
+        "documentation": "Maximum nmber of entries that the profiler can keep.\n\nDefault to 1024.",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "TFLiteWebModelRunnerTensorInfo": [
+      {
+        "name": "id",
+        "type": "number",
+        "documentation": "The id of the tensor (generated by TFLite runtime).",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "dataType",
+        "type": "TFLiteDataType",
+        "documentation": "TFLite data type.",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "documentation": "The name of the TFLite tensor.",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "shape",
+        "type": "string",
+        "documentation": "The shape of the tensor in string form, e.g. \"2,3,5\".",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "data",
+        "type": "Int8Array|Uint8Array|Int16Array|Int32Array|Uint32Array|Float32Array\n      |Float64Array",
+        "documentation": "Gets the direct access to the underlying buffer.",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "TFLiteWebAPIClient": [
+      {
+        "name": "tflite_web_api",
+        "type": "{\n    /**\n     * Sets the path to load all the WASM module files from.\n     *\n     * TFLite web API will automatically load WASM module with the best\n     * performance based on whether the current browser supports WebAssembly\n     * SIMD and multi-threading.\n     *\n     * @param path The path to load WASM module files from.\n     *     For relative path, use :\n     *         'relative/path/' (relative to current url path) or\n     *         '/relative/path' (relative to the domain root).\n     *     For absolute path, use https://some-server.com/absolute/path/.\n     */\n    setWasmPath(path: string): void;\n\n    /**\n     * Gets the WASM features supported by user's browser.\n     */\n    getWasmFeatures(): Promise<WasmFeatures>;\n  }",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "TFLiteWebModelRunner",
+        "type": "TFLiteWebModelRunnerClass",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "NLClassifier",
+        "type": "NLClassifierClass",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "BertQuestionAnswerer",
+        "type": "BertQuestionAnswererClass",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "BertNLClassifier",
+        "type": "BertNLClassifierClass",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "BertNLClassifierOptions",
+        "type": "new() => BertNLClassifierOptions",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "ImageClassifier",
+        "type": "ImageClassifierClass",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "ImageClassifierOptions",
+        "type": "new() => ImageClassifierOptions",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "ClassificationResult",
+        "type": "new() => ClassificationResult",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "ObjectDetector",
+        "type": "ObjectDetectorClass",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "ObjectDetectorOptions",
+        "type": "new() => ObjectDetectorOptions",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "DetectionResult",
+        "type": "new() => DetectionResult",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "ImageSegmenter",
+        "type": "ImageSegmenterClass",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "ImageSegmenterOptions",
+        "type": "new() => ImageSegmenterOptions",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "SegmentationResult",
+        "type": "new() => SegmentationResult",
+        "documentation": "",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ],
+    "CommonTaskLibraryOptions": [
+      {
+        "name": "numThreads",
+        "type": "number",
+        "documentation": "The number of threads to be used for TFLite ops that support\nmulti-threading when running inference with CPU. num_threads should be\ngreater than 0 or equal to -1. Setting num_threads to -1 has the effect to\nlet TFLite runtime set the value.\n\nDefault to number of physical CPU cores, or -1 if WASM multi-threading is\nnot supported by user's browser.",
+        "optional": false,
+        "isConfigParam": true
+      }
+    ]
+  },
+  "inlineTypes": {},
+  "docTypeAliases": {}
+}
