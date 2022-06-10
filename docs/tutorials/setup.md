@@ -40,6 +40,35 @@ model.fit(xs, ys, {epochs: 10}).then(() => {
   </pre>
 </section>
 
+### Get tfjs version
+
+```
+import * as tf from '@tensorflow/tfjs'
+const tf = require('@tensorflow/tfjs')
+
+>tf.version
+{
+  'tfjs-core': '3.18.0',
+  'tfjs-backend-cpu': '3.18.0',
+  'tfjs-backend-webgl': '3.18.0',
+  'tfjs-data': '3.18.0',
+  'tfjs-layers': '3.18.0',
+  'tfjs-converter': '3.18.0',
+  tfjs: '3.18.0'
+}
+```
+If you are using individual packages you can get version as below
+```
+import * as core from '@tensorflow/tfjs-core';
+import * as cpu from '@tensorflow/tfjs-backend-cpu';
+```
+```
+console.log('core: ', core.version_core, 'cpu: ', cpu.version_cpu);
+```
+```
+core:  3.18.0 cpu:  3.18.0
+```
+
 ### Installation from NPM
 
 You can use either the [npm cli](https://docs.npmjs.com/cli/npm) tool or [yarn](https://yarnpkg.com/en/) to install TensorFlow.js.
