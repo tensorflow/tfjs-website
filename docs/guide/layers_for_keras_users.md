@@ -277,7 +277,7 @@ In general, saving and loading `tf.Model`s in TensorFlow.js is done using the
 [the save and load_model API](https://keras.io/getting_started/faq/#what-are-my-options-for-saving-models)
 of Keras. But the browser environment is quite different from the backend environment
 on which staple deep learning frameworks like Keras run, particularly in the
-array of routes for persisting and transimitting data. Hence there are
+array of routes for persisting and transmitting data. Hence there are
 some interesting differences between the save/load APIs in TensorFlow.js and in Keras.
 See our tutorial on [Saving and Loading tf.Model](./save_load.md) for more
 details.
