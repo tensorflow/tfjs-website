@@ -177,7 +177,7 @@ const model = await tf.loadLayersModel('http://model-server.domain/download/mode
 
 This loads a model from an http endpoint. After loading the `json` file the function will make requests for corresponding `.bin` files that the `json` file references.
 
-> NOTE: This implementation relies on the presence of the [`fetch`](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch) method, if you are in an environment that does not provide the fetch method natively you can provide a global method names [`fetch`](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch) that satisfies that interface or use a library like (`node-fetch`)[https://www.npmjs.com/package/node-fetch].
+> NOTE: This implementation relies on the presence of the [`fetch`](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch) method, if you are in an environment that does not provide the fetch method natively you can provide a global method names [`fetch`](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch) that satisfies that interface or use a library like [`node-fetch`](https://www.npmjs.com/package/node-fetch).
 
 ### Native File System (Node.js only)
 
