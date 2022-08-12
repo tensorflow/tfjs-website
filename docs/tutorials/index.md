@@ -1,50 +1,48 @@
-# Get Started
+# Get started
 
-TensorFlow.js is a JavaScript Library for training and deploying machine learning models in the browser and in Node.js.
+TensorFlow.js is a JavaScript library for training and deploying machine learning models in the web browser and in Node.js.
 
-See the sections below for different ways you can get started.
-
-
-## Code ML programs without dealing directly with Tensors
-
-Want to get started with Machine Learning but not worry about any low level details like Tensors or Optimizers?
-
-Built on top of TensorFlow.js, the ml5.js library provides access to machine learning algorithms and models in the browser with a concise, approachable API.
-
-<a class="button button-white" href="https://ml5js.org">Check out ml5.js</a>
+This page lists some ways to get started with TensorFlow.js.
 
 
-## Get Setup with TensorFlow.js
+## Code ML programs without dealing directly with tensors
 
-Comfortable with concepts like Tensors, Layers, Optimizers and Loss Functions (or willing to get comfortable with them)? TensorFlow.js provides flexible building blocks for neural network programming in JavaScript.
+If you want to get started with machine learning without managing optimizers or tensor manipulation, then check out the ml5.js library.
 
-See how to get up and running with TensorFlow.js code in the browser or Node.js.
+Built on top of TensorFlow.js, the ml5.js library provides access to machine learning algorithms and models in the web browser with a concise, approachable API.
 
-<a class="button button-white" href="/js/tutorials/setup">Get Setup</a>
+<a class="button button-white" href="https://ml5js.org">Check Out ml5.js</a>
 
-## Convert Pretrained Models to TensorFlow.js
 
-Learn how to convert pretrained models from Python into TensorFlow.js
+## Install TensorFlow.js
+
+See how to install TensorFlow.js for implementation in the web browser or Node.js.
+
+<a class="button button-white" href="/js/tutorials/setup">Install TensorFlow.js</a>
+
+## Convert pretrained models to TensorFlow.js
+
+Learn how to convert pretrained models from Python to TensorFlow.js.
 
 <a class="button button-white" href="/js/tutorials/conversion/import_keras">Keras Model</a>
 <a class="button button-white" href="/js/tutorials/conversion/import_saved_model">GraphDef Model</a>
 
 ## Learn from existing TensorFlow.js code
 
-tfjs-examples provides small code examples that implement various ML tasks using TensorFlow.js.
+The `tfjs-examples` repository provides small example implementations for various ML tasks using TensorFlow.js.
 
-<a class="button button-white" href="https://github.com/tensorflow/tfjs-examples">See it on GitHub</a>
+<a class="button button-white" href="https://github.com/tensorflow/tfjs-examples">View tfjs-examples on GitHub</a>
 
-## Visualize the Behaviour of your TensorFlow.js Model
+## Visualize the behavior of your TensorFlow.js model
 
-tfjs-vis is a small library for in browser visualization intended for use with TensorFlow.js.
+`tfjs-vis` is a small library for visualization in the web browser intended for use with TensorFlow.js.
 
-<a class="button button-white" href="https://github.com/tensorflow/tfjs-vis">See it on GitHub</a>
+<a class="button button-white" href="https://github.com/tensorflow/tfjs/tree/master/tfjs-vis">View tfjs-vis on GitHub</a>
 <a class="button button-white" href="https://storage.googleapis.com/tfjs-vis/mnist/dist/index.html">See Demo</a>
 
 
-## Get your data ready for processing with TensorFlow.js
+## Prepare data for processing with TensorFlow.js
 
 TensorFlow.js has support for processing data using ML best practices.
 
-<a class="button button-white" href="https://js.tensorflow.org/api/latest/#Data">See docs</a>
+<a class="button button-white" href="https://js.tensorflow.org/api/latest/#Data">View Documentation</a>
