@@ -46,7 +46,7 @@ function getLineNumber(error) {
 async function executeCodeSnippet(consoleLogElement, codeSnippet) {
   consoleLogElement.innerText = '';
   var oldLog = console.log;
-  console.log = function(...values) {
+  console.log = function (...values) {
     let logStrs = [];
     for (let i = 0; i < values.length; i++) {
       const value = values[i];
@@ -86,7 +86,7 @@ async function executeCodeSnippet(consoleLogElement, codeSnippet) {
   // It is important that codeSnippet and 'try {' be on the same line
   // in order to not modify the line number on an error.
   const evalString = '(async function runner() { try { ' + codeSnippet +
-      '} catch (e) { reportError(e); } })()';
+    '\n} catch (e) { reportError(e); } })()';
 
   if (window._tfengine && window._tfengine.startScope) {
     window._tfengine.startScope();
@@ -96,7 +96,7 @@ async function executeCodeSnippet(consoleLogElement, codeSnippet) {
 
   // this outer try is for errors that prevent the snippet from being parsed.
   try {
-    await eval(evalString).catch(function(e) {
+    await eval(evalString).catch(function (e) {
       // This catch is for errors within promises within snippets
       reportError(e);
     });
@@ -134,9 +134,9 @@ function makeEditable(codeBlock) {
 function initCodeBlocks(selector) {
   // Find all the code blocks.
   var jsBlocks =
-      Array.prototype.slice.call(document.querySelectorAll(selector));
+    Array.prototype.slice.call(document.querySelectorAll(selector));
 
-  jsBlocks.forEach(function(block) {
+  jsBlocks.forEach(function (block) {
     var consoleElement = document.createElement('div');
     consoleElement.className = 'snippet-console';
 
@@ -157,9 +157,9 @@ function initCodeBlocks(selector) {
 
     block.parentElement.insertAdjacentElement('afterend', consoleElement);
 
-    consoleRunElement.addEventListener('click', function() {
+    consoleRunElement.addEventListener('click', function () {
       var consoleLogElement =
-          this.parentElement.querySelector('.snippet-console-log');
+        this.parentElement.querySelector('.snippet-console-log');
 
       var snippetText;
       if (block.codeMirror) {
@@ -171,7 +171,7 @@ function initCodeBlocks(selector) {
       executeCodeSnippet(consoleLogElement, snippetText);
     });
 
-    consoleEditElement.addEventListener('click', function() {
+    consoleEditElement.addEventListener('click', function () {
       makeEditable(block);
       this.disabled = true;
     });
