@@ -96,7 +96,7 @@ async function executeCodeSnippet(consoleLogElement, codeSnippet) {
 
   // this outer try is for errors that prevent the snippet from being parsed.
   try {
-    await eval(evalString).catch(function (e) {
+    await eval(evalString).catch(function(e) {
       // This catch is for errors within promises within snippets
       reportError(e);
     });
@@ -136,7 +136,7 @@ function initCodeBlocks(selector) {
   var jsBlocks =
     Array.prototype.slice.call(document.querySelectorAll(selector));
 
-  jsBlocks.forEach(function (block) {
+  jsBlocks.forEach(function(block) {
     var consoleElement = document.createElement('div');
     consoleElement.className = 'snippet-console';
 
@@ -157,7 +157,7 @@ function initCodeBlocks(selector) {
 
     block.parentElement.insertAdjacentElement('afterend', consoleElement);
 
-    consoleRunElement.addEventListener('click', function () {
+    consoleRunElement.addEventListener('click', function() {
       var consoleLogElement =
         this.parentElement.querySelector('.snippet-console-log');
 
@@ -171,7 +171,7 @@ function initCodeBlocks(selector) {
       executeCodeSnippet(consoleLogElement, snippetText);
     });
 
-    consoleEditElement.addEventListener('click', function () {
+    consoleEditElement.addEventListener('click', function() {
       makeEditable(block);
       this.disabled = true;
     });
