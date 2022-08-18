@@ -46,7 +46,7 @@ function getLineNumber(error) {
 async function executeCodeSnippet(consoleLogElement, codeSnippet) {
   consoleLogElement.innerText = '';
   var oldLog = console.log;
-  console.log = function (...values) {
+  console.log = function(...values) {
     let logStrs = [];
     for (let i = 0; i < values.length; i++) {
       const value = values[i];
