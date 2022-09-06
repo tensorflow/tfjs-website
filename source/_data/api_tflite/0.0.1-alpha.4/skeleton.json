@@ -1,0 +1,13 @@
+[
+  {
+    "name": "Models",
+    "description": [
+      "<p>This library is a wrapper of TFLite interpreter. ",
+      "It is packaged in a WebAssembly binary that runs in a browser. ",
+      "For more details and related concepts about TFLite Interpreter ",
+      "and what the inference process looks like, check out the ",
+      "<a href=\"https://www.tensorflow.org/lite/guide/inference\">official doc</a>.</p>"
+    ],
+    "subheadings": []
+  }
+]

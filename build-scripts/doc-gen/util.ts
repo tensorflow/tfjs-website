@@ -17,7 +17,7 @@
 import * as ts from 'typescript';
 
 // tslint:disable-next-line:max-line-length
-import {DocClass, DocFunction, DocFunctionParam, DocHeading, Docs, DocSubheading} from './view';
+import {DocClass, DocExtraType, DocFunction, DocFunctionParam, DocHeading, Docs, DocSubheading} from './view';
 
 // Mirrors the info argument to @doc in decorators.ts.
 export interface DocInfo {
@@ -135,6 +135,35 @@ export function unpackConfigParams(
   });
 }
 
+export function unpackExtraTypesInClasses(
+    docHeadings: DocHeading[],
+    configInterfaceParamMap: {[interfaceName: string]: DocFunctionParam[]}) {
+  foreachDocClass(docHeadings, docClass => {
+    if (docClass.extraTypes) {
+      docClass.extraTypes.forEach(extraType => {
+        const params = configInterfaceParamMap[extraType.symbol];
+        if (params != null) {
+          extraType.params = params;
+        }
+      });
+    }
+  });
+}
+
+export function unpackReturnTypes(
+    docHeadings: DocHeading[],
+    configInterfaceParamMap: {[interfaceName: string]: DocFunctionParam[]}) {
+  foreachDocFunction(docHeadings, docFunction => {
+    if (docFunction.unpackedReturnTypes) {
+      for (const returnType of docFunction.unpackedReturnTypes) {
+        const params = configInterfaceParamMap[returnType.symbol];
+        if (params != null) {
+          returnType.params = params;
+        }
+      }
+    }
+  });
+}
 
 export function replaceUseDocsFromDocStrings(
     docHeadings: DocHeading[],
@@ -428,6 +457,28 @@ export function foreachDocFunction(
 }
 
 /**
+ * Iterate over all classes in the docs.
+ */
+export function foreachDocClass(
+    docHeadings: DocHeading[], fn: (docClass: DocClass) => void) {
+  docHeadings.forEach(heading => {
+    if (heading.subheadings == null) {
+      return;
+    }
+    heading.subheadings.forEach(subheading => {
+      if (subheading.symbols == null) {
+        return;
+      }
+      subheading.symbols.forEach(untypedSymbol => {
+        if (untypedSymbol['isClass']) {
+          fn(untypedSymbol as DocClass);
+        }
+      });
+    });
+  });
+}
+
+/**
  * Replace all types with their aliases. e.g. ShapeMap[R2] => number[]
  */
 export function replaceDocTypeAliases(
@@ -460,6 +511,28 @@ export function inlineTypes(
       docFunction.parameters.forEach(param => {
         param.type = param.type.replace(re, types[typeName]);
       });
+    });
+    foreachDocClass(docHeadings, docClass => {
+      if (docClass.extraTypes) {
+        docClass.extraTypes.forEach(extraType => {
+          if (extraType.params) {
+            extraType.params.forEach(param => {
+              param.type = param.type.replace(re, types[typeName]);
+            });
+          }
+        });
+      }
+    });
+    foreachDocFunction(docHeadings, foreachDocFunction => {
+      if (foreachDocFunction.unpackedReturnTypes) {
+        foreachDocFunction.unpackedReturnTypes.forEach(returnType => {
+          if (returnType.params) {
+            returnType.params.forEach(param => {
+              param.type = param.type.replace(re, types[typeName]);
+            });
+          }
+        });
+      }
     });
   });
 }

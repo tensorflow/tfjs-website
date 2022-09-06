@@ -16,6 +16,12 @@
 
   <div class="documentation">{{{markdown documentation}}}</div>
 
+  {{#if extraTypes}}
+    {{#extraTypes}}
+    {{> apiParamList parameters=params heading=description}}
+    {{/extraTypes}}
+  {{/if}}
+
   {{!-- Method List --}}
   <div class="method-list">
     {{#methods}}
