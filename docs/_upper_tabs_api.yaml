@@ -1,0 +1,12 @@
+toc:
+- name: API
+  # Go straight to the JS api.
+  path: https://js.tensorflow.org/api/latest/
+  skip_translation: true
+  menu:
+  - include: /api_docs/_menu_toc.yaml
+  lower_tabs:
+    guides:
+    # should not display
+    - title: Versions
+      path: /versions

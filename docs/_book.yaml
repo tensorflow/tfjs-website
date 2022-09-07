@@ -92,6 +92,6 @@ upper_tabs:
         path: https://js.tensorflow.org/api/latest/
         status: external
 
-- include: /api_docs/_upper_tabs_api.yaml
+- include: /js/_upper_tabs_api.yaml
 - include: /resources/_upper_tabs_resources.yaml
 - include: /_upper_tabs_right.yaml
