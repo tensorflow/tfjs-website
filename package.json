@@ -39,7 +39,7 @@
     "hexo-renderer-sass": "~0.4.0",
     "hexo-server": "~1.0.0",
     "highlight.js": "^10.4.1",
-    "markdown-it": "^8.4.1",
+    "markdown-it": "^12.3.2",
     "material-components-web": "^0.32.0",
     "mkdirp": "~0.5.1",
     "semver-compare": "^1.0.0",
