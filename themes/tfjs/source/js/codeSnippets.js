@@ -86,7 +86,7 @@ async function executeCodeSnippet(consoleLogElement, codeSnippet) {
   // It is important that codeSnippet and 'try {' be on the same line
   // in order to not modify the line number on an error.
   const evalString = '(async function runner() { try { ' + codeSnippet +
-      '} catch (e) { reportError(e); } })()';
+    '\n} catch (e) { reportError(e); } })()';
 
   if (window._tfengine && window._tfengine.startScope) {
     window._tfengine.startScope();
@@ -134,7 +134,7 @@ function makeEditable(codeBlock) {
 function initCodeBlocks(selector) {
   // Find all the code blocks.
   var jsBlocks =
-      Array.prototype.slice.call(document.querySelectorAll(selector));
+    Array.prototype.slice.call(document.querySelectorAll(selector));
 
   jsBlocks.forEach(function(block) {
     var consoleElement = document.createElement('div');
@@ -159,7 +159,7 @@ function initCodeBlocks(selector) {
 
     consoleRunElement.addEventListener('click', function() {
       var consoleLogElement =
-          this.parentElement.querySelector('.snippet-console-log');
+        this.parentElement.querySelector('.snippet-console-log');
 
       var snippetText;
       if (block.codeMirror) {
