@@ -1,13 +1,7 @@
 {
-  "name": "tensorflow-js-website",
-  "version": "0.0.1",
+  "name": "hexo-site",
+  "version": "0.0.0",
   "private": true,
-  "hexo": {
-    "version": "4.2.1"
-  },
-  "engines": {
-    "node": ">=8.9.0"
-  },
   "scripts": {
     "prep": "git clone git@github.com:tensorflow/tfjs.git libs/tfjs && git clone git@github.com:tensorflow/tfjs-models.git libs/tfjs-models",
     "fetch-tfjs": "cd libs/tfjs && git fetch && cd ../..",
@@ -24,41 +18,34 @@
     "deploy-prod": "firebase deploy --project jstensorflow",
     "test-ci": "./test-scripts/test-ci.sh"
   },
+  "hexo": {
+    "version": "6.3.0"
+  },
   "dependencies": {
+    "@tensorflow-models/tasks": "^0.0.1-alpha.8",
     "@tensorflow/tfjs": "3.19.0",
     "@tensorflow/tfjs-node": "3.19.0",
-    "@tensorflow/tfjs-react-native": "0.8.0",
-    "@tensorflow/tfjs-tflite": "0.0.1-alpha.8",
-    "@tensorflow/tfjs-vis": "1.5.1",
-    "@tensorflow-models/tasks": "0.0.1-alpha.8",
-    "commander": "~2.14.1",
-    "hexo": "~4.2.1",
-    "hexo-renderer-ejs": "~1.0.0",
-    "hexo-renderer-handlebars": "~2.0.2",
-    "hexo-renderer-markdown-it": "^3.4.1",
-    "hexo-renderer-sass": "~0.4.0",
-    "hexo-server": "~1.0.0",
-    "highlight.js": "^10.4.1",
-    "markdown-it": "^12.3.2",
-    "material-components-web": "^0.32.0",
-    "mkdirp": "~0.5.1",
+    "@tensorflow/tfjs-react-native": "^0.8.0",
+    "@tensorflow/tfjs-tflite": "^0.0.1-alpha.8",
+    "@tensorflow/tfjs-vis": "^1.5.1",
+    "commander": "^9.4.0",
+    "hexo": "^6.3.0",
+    "hexo-generator-archive": "^1.0.0",
+    "hexo-generator-category": "^1.0.0",
+    "hexo-generator-index": "^2.0.0",
+    "hexo-generator-tag": "^1.0.0",
+    "hexo-renderer-ejs": "^2.0.0",
+    "hexo-renderer-marked": "^5.0.0",
+    "hexo-renderer-stylus": "^2.1.0",
+    "hexo-server": "^3.0.0",
+    "hexo-theme-landscape": "^0.0.3",
+    "highlight.js": "^11.6.0",
+    "markdown-it": "^13.0.1",
+    "material-components-web": "^14.0.0",
+    "mkdirp": "0.5.0",
     "semver-compare": "^1.0.0",
-    "shelljs": "~0.8.5",
-    "ts-node": "~8.0.2",
+    "shelljs": "^0.8.5",
+    "ts-node": "8.0.2",
     "typescript": "3.5.3"
-  },
-  "devDependencies": {
-    "@types/node": "~9.4.6",
-    "clang-format": "~1.2.4",
-    "fastify": "^3.12.0",
-    "fastify-static": "^4.4.1",
-    "firebase-tools": "~9.8.0"
-  },
-  "resolutions": {
-    "vega": "5.17.3",
-    "jpeg-js": "0.4.0",
-    "minimist": "1.2.5",
-    "highlight.js": "10.4.1",
-    "tar": "4.4.18"
   }
 }

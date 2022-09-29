@@ -15,7 +15,7 @@
  * =============================================================================
  */
 
-import * as commander from 'commander';
+const commander = require('commander');
 import * as fs from 'fs';
 import * as mkdirp from 'mkdirp';
 import * as path from 'path';
@@ -31,27 +31,28 @@ commander.option('--in <path>', 'main source entry')
     .option('--repo <path>', 'Path to repo')
     .option('--github <url>', 'Github repository URL')
     .option('--out <path>', 'Output Path')
-    .option(
-        '--allowed-declaration-file-subpaths <paths>',
+    .option('--allowed-declaration-file-subpaths <paths>',
         'Sub paths of allowed declaration files, separated by ","')
     .parse(process.argv);
 
+const options = commander.opts();
+
 console.log('make-api params', [
-  commander.in,
-  commander.package,
-  commander.src,
-  commander.github,
-  commander.out,
-  commander.allowedDeclarationFileSubpaths,
+  options.in,
+  options.package,
+  options.src,
+  options.github,
+  options.out,
+  options.allowedDeclarationFileSubpaths,
 ])
 
 const allParamsPresent = [
-  commander.in,
-  commander.package,
-  commander.src,
-  commander.github,
-  commander.out,
-  commander.allowedDeclarationFileSubpaths,
+  options.in,
+  options.package,
+  options.src,
+  options.github,
+  options.out,
+  options.allowedDeclarationFileSubpaths,
 ].every((param) => param !== undefined);
 
 if (!allParamsPresent) {
@@ -59,7 +60,7 @@ if (!allParamsPresent) {
   process.exit(1);
 }
 
-const outputDir = path.dirname(commander.out);
+const outputDir = path.dirname(options.out);
 mkdirp(outputDir, (err: any) => {
   if (err) {
     console.log('Error creating output dir', outputDir);
@@ -69,19 +70,19 @@ mkdirp(outputDir, (err: any) => {
 
 // Parse the library for docs.
 const repoDocsAndMetadata = parser.parse(
-    commander.in, commander.src, commander.repo, commander.github,
-    commander.allowedDeclarationFileSubpaths.split(',').filter(
+    options.in, options.src, options.repo, options.github,
+    options.allowedDeclarationFileSubpaths.split(',').filter(
         ele => ele !== ''));
 
 // Write the JSON.
-mkdirp.sync(path.dirname(commander.out));
-fs.writeFileSync(commander.out, JSON.stringify(repoDocsAndMetadata, null, 2));
+mkdirp.sync(path.dirname(options.out));
+fs.writeFileSync(options.out, JSON.stringify(repoDocsAndMetadata, null, 2));
 
 // Compute some statics and render them.
 const {headingsCount, subheadingsCount, methodCount} =
     util.computeStatistics(repoDocsAndMetadata.docs);
 console.log(
-    `API reference written to ${commander.out}\n` +
+    `API reference written to ${options.out}\n` +
     `Found: \n` +
     `  ${headingsCount} headings\n` +
     `  ${subheadingsCount} subheadings\n` +

@@ -3701,6 +3701,97 @@
         "documentation": "Calls the specified callback function for all the elements in an array, in descending order. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function.\nCalls the specified callback function for all the elements in an array, in descending order. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function.",
         "optional": false,
         "isConfigParam": true
+      },
+      {
+        "name": "find",
+        "type": "S | undefined",
+        "documentation": "Returns the value of the first element in the array where predicate is true, and undefined\r\notherwise.",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "findIndex",
+        "type": "number",
+        "documentation": "Returns the index of the first element in the array where predicate is true, and -1\r\notherwise.",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "fill",
+        "type": "this",
+        "documentation": "Returns the this object after filling the section identified by start and end with value",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "copyWithin",
+        "type": "this",
+        "documentation": "Returns the this object after copying a section of the array identified by start and end\r\nto the same array starting at position target",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "__@iterator",
+        "type": "IterableIterator",
+        "documentation": "Iterator",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "entries",
+        "type": "IterableIterator",
+        "documentation": "Returns an iterable of key, value pairs for every entry in the array",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "keys",
+        "type": "IterableIterator",
+        "documentation": "Returns an iterable of keys in the array",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "values",
+        "type": "IterableIterator",
+        "documentation": "Returns an iterable of values in the array",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "__@unscopables",
+        "type": "{\r\n        copyWithin: boolean;\r\n        entries: boolean;\r\n        fill: boolean;\r\n        find: boolean;\r\n        findIndex: boolean;\r\n        keys: boolean;\r\n        values: boolean;\r\n    }",
+        "documentation": "Returns an object whose properties have the value 'true'\r\nwhen they will be absent when used in a 'with' statement.",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "includes",
+        "type": "boolean",
+        "documentation": "Determines whether an array includes a certain element, returning true or false as appropriate.",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "flatMap",
+        "type": "U[]",
+        "documentation": "Calls a defined callback function on each element of an array. Then, flattens the result into\r\na new array.\r\nThis is identical to a map followed by flat with depth 1.",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "flat",
+        "type": "U[]",
+        "documentation": "Returns a new array with all sub-array elements concatenated into it recursively up to the\r\nspecified depth.\nReturns a new array with all sub-array elements concatenated into it recursively up to the\r\nspecified depth.\nReturns a new array with all sub-array elements concatenated into it recursively up to the\r\nspecified depth.\nReturns a new array with all sub-array elements concatenated into it recursively up to the\r\nspecified depth.\nReturns a new array with all sub-array elements concatenated into it recursively up to the\r\nspecified depth.\nReturns a new array with all sub-array elements concatenated into it recursively up to the\r\nspecified depth.\nReturns a new array with all sub-array elements concatenated into it recursively up to the\r\nspecified depth.\nReturns a new array with all sub-array elements concatenated into it recursively up to the\r\nspecified depth.\nReturns a new array with all sub-array elements concatenated into it recursively up to the\r\nspecified depth. If no depth is provided, flat method defaults to the depth of 1.",
+        "optional": false,
+        "isConfigParam": true
+      },
+      {
+        "name": "at",
+        "type": "T | undefined",
+        "documentation": "Takes an integer value and returns the item at that index,\nallowing for positive and negative integers.\nNegative integers count back from the last item in the array.",
+        "optional": false,
+        "isConfigParam": true
       }
     ],
     "BaseSerialization": [

@@ -15,7 +15,7 @@
  * =============================================================================
  */
 
-import * as commander from 'commander';
+const commander = require('commander');
 import * as fs from 'fs';
 import * as path from 'path';
 

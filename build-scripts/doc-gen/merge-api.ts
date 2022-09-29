@@ -15,7 +15,7 @@
  * =============================================================================
  */
 
-import * as commander from 'commander';
+const commander = require('commander');
 import * as fs from 'fs';
 
 import {Skeleton} from './skeleton';
@@ -29,15 +29,17 @@ commander.option('--out <path>', 'merged output JSON file')
     .option('--skeleton <path>', 'path to the skeleton JSON')
     .option('--toplevel <string>', 'the string for the top level namespace')
     .parse(process.argv);
-if (commander.out == null) {
+
+const options = commander.opts();
+if (options.out == null) {
   throw new Error(`No merged output JSON file target specified.`);
 }
-if (commander.skeleton == null) {
+if (options.skeleton == null) {
   throw new Error(`No skeleton JSON file specified.`);
 }
 
-if (commander.toplevel != null) {
-  TOPLEVEL_NAMESPACE = commander.toplevel;
+if (options.toplevel != null) {
+  TOPLEVEL_NAMESPACE = options.toplevel;
 }
 
 // We have a special value if the symbols do not have a top level namespace
@@ -46,7 +48,7 @@ if (TOPLEVEL_NAMESPACE === '__BARE__') {
 }
 
 const skeleton =
-    JSON.parse(fs.readFileSync(commander.skeleton, 'utf8')) as Skeleton;
+    JSON.parse(fs.readFileSync(options.skeleton, 'utf8')) as Skeleton;
 
 const docsForRepos =
     commander.args.map(arg => JSON.parse(fs.readFileSync(arg, 'utf8'))) as
@@ -229,13 +231,13 @@ const symbols: util.SymbolAndUrl[] = [
 ];
 util.linkSymbols(mergedDocs, symbols, TOPLEVEL_NAMESPACE, mergedDocLinkAliases);
 
-fs.writeFileSync(commander.out, JSON.stringify(mergedDocs, undefined, 2));
+fs.writeFileSync(options.out, JSON.stringify(mergedDocs, undefined, 2));
 
 // Compute some statics and render them.
 const {headingsCount, subheadingsCount, methodCount} =
     util.computeStatistics(mergedDocs);
 console.log(
-    `Merged API reference written to ${commander.out}\n` +
+    `Merged API reference written to ${options.out}\n` +
     `Total found: \n` +
     `  ${headingsCount} headings\n` +
     `  ${subheadingsCount} subheadings\n` +

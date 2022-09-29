@@ -14,8 +14,7 @@
  * limitations under the License.
  * =============================================================================
  */
-
-import * as commander from 'commander';
+const commander = require('commander');
 import * as fs from 'fs';
 import * as path from 'path';
 
@@ -24,7 +23,6 @@ import {generateDocs, mergeDocs, writeManifestAndTemplate} from './build_api_hel
 //
 // Script Start
 //
-
 // Get command line params
 commander.option('--local', 'use a local build').parse(process.argv);
 
