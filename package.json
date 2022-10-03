@@ -1,6 +1,6 @@
 {
-  "name": "hexo-site",
-  "version": "0.0.0",
+  "name": "tensorflow-js-website",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
     "prep": "git clone git@github.com:tensorflow/tfjs.git libs/tfjs && git clone git@github.com:tensorflow/tfjs-models.git libs/tfjs-models",
@@ -25,9 +25,9 @@
     "@tensorflow-models/tasks": "^0.0.1-alpha.8",
     "@tensorflow/tfjs": "3.19.0",
     "@tensorflow/tfjs-node": "3.19.0",
-    "@tensorflow/tfjs-react-native": "^0.8.0",
+    "@tensorflow/tfjs-react-native": "0.8.0",
     "@tensorflow/tfjs-tflite": "^0.0.1-alpha.8",
-    "@tensorflow/tfjs-vis": "^1.5.1",
+    "@tensorflow/tfjs-vis": "1.4.3",
     "commander": "^9.4.0",
     "hexo": "^6.3.0",
     "hexo-generator-archive": "^1.0.0",
@@ -47,5 +47,19 @@
     "shelljs": "^0.8.5",
     "ts-node": "8.0.2",
     "typescript": "3.5.3"
+  },
+  "devDependencies": {
+    "@fastify/static": "5.0.0",
+    "@types/node": "~9.4.6",
+    "clang-format": "~1.2.4",
+    "fastify": "^3.12.0",
+    "firebase-tools": "~9.8.0"
+  },
+  "resolutions": {
+    "vega": "5.17.3",
+    "jpeg-js": "0.4.0",
+    "minimist": "1.2.5",
+    "highlight.js": "10.4.1",
+    "tar": "4.4.18"
   }
 }

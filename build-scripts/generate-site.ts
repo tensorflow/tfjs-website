@@ -25,5 +25,8 @@ hexo.init().then(function() {
     // before_exit handler. That handler will try and save the hexo database
     // but will error out as it hits the V8 string size limit.
     process.exit();
+  }).catch(function (error)  {
+    console.error(error);
+    process.exit();
   });
 });
