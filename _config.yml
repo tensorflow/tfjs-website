@@ -79,3 +79,8 @@ deploy:
 markdown:
   render:
     html: true
+
+sass:
+  outputStyle: nested
+  precision: 5
+  sourceComments: false

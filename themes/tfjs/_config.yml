@@ -1,3 +1,9 @@
 # Do not delete.
 node_sass:
   includePaths: ['./node_modules/']
+
+sass:
+  outputStyle: nested
+  precision: 5
+  sourceComments: false
+  includePaths: ['./node_modules/']
