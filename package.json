@@ -22,6 +22,7 @@
     "version": "6.3.0"
   },
   "dependencies": {
+    "@material/typography": "^14.0.0",
     "@tensorflow-models/tasks": "0.0.1-alpha.8",
     "@tensorflow/tfjs": "3.19.0",
     "@tensorflow/tfjs-node": "3.19.0",

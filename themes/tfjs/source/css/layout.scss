@@ -10,7 +10,7 @@ $header-text-color: #677282;
 body {
 
   margin: 0;
-  @include mdc-typography-base();
+  // @include mdc-typography-base();
 
   .main {
     min-height: calc(100vh - #{$header-height});

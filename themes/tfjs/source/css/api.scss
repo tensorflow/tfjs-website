@@ -113,7 +113,7 @@ header {
     }
 
     .header {
-      // @include mdc-typography("headline");
+      // @include mdc-typography("headline1");
       margin-top: 28px;
 
       .version-string {
@@ -168,7 +168,7 @@ header {
 
       .heading {
         .title {
-          @include mdc-typography("headline");
+          // @include mdc-typography("headline");
           margin-top: 64px;
           border-bottom: 4px solid #0277BD;
           font-weight: 700;
@@ -185,7 +185,7 @@ header {
 
       .subheading {
         .title {
-          @include mdc-typography("headline");
+          // @include mdc-typography("headline");
           margin-top: 64px;
 
           border-bottom: 1px solid #0277BD;
