@@ -37,7 +37,7 @@
     "hexo-renderer-ejs": "^2.0.0",
     "hexo-renderer-handlebars": "^2.0.2",
     "hexo-renderer-markdown-it": "^6.1.0",
-    "hexo-renderer-sass": "^0.4.0",
+    "hexo-renderer-sass": "https://github.com/kmuncie/hexo-renderer-sass",
     "hexo-renderer-stylus": "^2.1.0",
     "hexo-server": "^3.0.0",
     "hexo-theme-landscape": "^0.0.3",
