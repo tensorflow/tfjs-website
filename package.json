@@ -22,7 +22,6 @@
     "version": "6.3.0"
   },
   "dependencies": {
-    "@material/typography": "^14.0.0",
     "@tensorflow-models/tasks": "0.0.1-alpha.8",
     "@tensorflow/tfjs": "3.19.0",
     "@tensorflow/tfjs-node": "3.19.0",
@@ -30,7 +29,6 @@
     "@tensorflow/tfjs-tflite": "0.0.1-alpha.8",
     "@tensorflow/tfjs-vis": "1.4.3",
     "commander": "^9.4.0",
-    "glob": "7.2.3",
     "hexo": "^6.3.0",
     "hexo-generator-archive": "^1.0.0",
     "hexo-generator-category": "^1.0.0",
@@ -45,7 +43,7 @@
     "hexo-theme-landscape": "^0.0.3",
     "highlight.js": "^11.6.0",
     "markdown-it": "^13.0.1",
-    "material-components-web": "^14.0.0",
+    "material-components-web": "0.32.0",
     "mkdirp": "0.5.0",
     "semver-compare": "^1.0.0",
     "shelljs": "^0.8.5",
