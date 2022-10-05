@@ -79,7 +79,7 @@ function convertDocStringToDocInfoObject(docString: string): DocInfo {
       docString.replace(/([a-zA-Z0-9]+):/g, '"$1":').replace(/\'/g, '"');
       try {
         let json = JSON.parse(jsonString);
-        return json
+        return json;
       } catch (error) {
         console.log(error);
         return null;
