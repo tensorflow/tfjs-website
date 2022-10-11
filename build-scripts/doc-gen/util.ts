@@ -77,7 +77,14 @@ export function parseDocDecorators(
 function convertDocStringToDocInfoObject(docString: string): DocInfo {
   const jsonString =
       docString.replace(/([a-zA-Z0-9]+):/g, '"$1":').replace(/\'/g, '"');
-  return JSON.parse(jsonString);
+      try {
+        let json = JSON.parse(jsonString);
+        return json;
+      } catch (error) {
+        console.log(error);
+        return null;
+      }
+      // return JSON.parse(jsonString);
 }
 
 export function addSubclassMethods(
@@ -332,7 +339,7 @@ export function getJsdoc(
   for (let i = 0; i < tags.length; i++) {
     const jsdocTag = tags[i];
     if (jsdocTag.name === tag) {
-      return jsdocTag.text != null ? jsdocTag.text.trim() : '';
+      return jsdocTag.text != null ? jsdocTag.text.toString() : '';
     }
   }
   return null;

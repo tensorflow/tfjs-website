@@ -1,6 +1,6 @@
 const fastify = require('fastify')();
 const path = require('path');
-const fastifyStatic = require('fastify-static');
+const fastifyStatic = require('@fastify/static');
 const PORT = 8080;
 
 fastify.register(fastifyStatic, {

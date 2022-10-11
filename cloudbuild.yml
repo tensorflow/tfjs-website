@@ -1,5 +1,5 @@
 steps:
-- name: 'node:10'
+- name: 'node:16'
   entrypoint: 'yarn'
   id: 'yarn'
   args: ['test-ci']

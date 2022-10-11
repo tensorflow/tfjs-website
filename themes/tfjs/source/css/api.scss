@@ -8,7 +8,8 @@ $dark-text-col: #212121;
 $header-height: 49px;
 
 $header-color: #fff;
-$header-text-color: #677282;;
+$header-text-color: #677282;
+;
 
 body {
   @media (max-width: 720px) {
@@ -82,7 +83,7 @@ header {
     flex-direction: column;
 
     .toc {
-      display:none;
+      display: none;
     }
 
     .reference {
@@ -113,7 +114,6 @@ header {
     }
 
     .header {
-      // @include mdc-typography("headline");
       margin-top: 28px;
 
       .version-string {
@@ -208,7 +208,7 @@ header {
       border-radius: 8px;
 
       .source-link {
-        float:right;
+        float: right;
         text-align: right;
         text-transform: lowercase;
         font-weight: normal;
@@ -238,7 +238,7 @@ header {
       }
 
       ul {
-        padding-left:16px;
+        padding-left: 16px;
       }
 
       li.parameter {
@@ -313,6 +313,7 @@ header {
       position: relative;
       max-width: 720px;
     }
+
     .snippet-console-log {
       border-radius: 5px;
       background: #f4f4f4;
@@ -321,6 +322,7 @@ header {
       white-space: pre-wrap;
       font-family: "Roboto Mono", monospace;
     }
+
     .snippet-run-button {
       position: absolute;
       right: 4px;
@@ -338,7 +340,7 @@ header {
     }
 
     .snippet-error {
-      background-color: rgba(255, 0,0,0.1);
+      background-color: rgba(255, 0, 0, 0.1);
       padding: 10px;
       border-radius: 5px;
 
