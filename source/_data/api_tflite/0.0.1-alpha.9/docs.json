@@ -1,0 +1,147 @@
+{
+  "headings": [
+    {
+      "name": "Models",
+      "description": "<p>This library is a wrapper of TFLite interpreter. \nIt is packaged in a WebAssembly binary that runs in a browser. \nFor more details and related concepts about TFLite Interpreter \nand what the inference process looks like, check out the \n<a href=\"https://www.tensorflow.org/lite/guide/inference\">official doc</a>.</p>",
+      "subheadings": [
+        {
+          "name": "Classes",
+          "symbols": [
+            {
+              "docInfo": {
+                "heading": "Models",
+                "subheading": "Classes"
+              },
+              "symbolName": "TFLiteModel",
+              "documentation": "A [tflite.TFLiteModel](#class:TFLiteModel) is built from a TFLite model flatbuffer and executable\non TFLite interpreter. To load it, use the `loadTFLiteModel` function below.\n\nSample usage:\n\n```js\n// Load the MobilenetV2 tflite model from tfhub.\nconst tfliteModel = await tflite.loadTFLiteModel(\n     'https://tfhub.dev/tensorflow/lite-model/mobilenet_v2_1.0_224/1/metadata/1');\n\nconst outputTensor = tf.tidy(() => {\n    // Get pixels data from an image.\n    let img = tf.browser.fromPixels(document.querySelector('img'));\n    // Resize and normalize:\n    img = tf.image.resizeBilinear(img, [224, 224]);\n    img = tf.sub(tf.div(tf.expandDims(img), 127.5), 1);\n    // Run the inference.\n    let outputTensor = tfliteModel.predict(img);\n    // De-normalize the result.\n    return tf.mul(tf.add(outputTensor, 1), 127.5)\n  });\nconsole.log(outputTensor);\n\n```",
+              "fileName": "#53",
+              "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-tflite-v0.0.1-alpha.9/tfjs-tflite/src/tflite_model.ts#L53-L308",
+              "methods": [
+                {
+                  "docInfo": {
+                    "heading": "Models",
+                    "subheading": "Classes"
+                  },
+                  "symbolName": "predict",
+                  "paramStr": "(inputs, config?)",
+                  "parameters": [
+                    {
+                      "name": "inputs",
+                      "documentation": "The input tensors, when there is single input for the model,\ninputs param should be a Tensor. For models with multiple inputs,\ninputs params should be in either Tensor[] if the input order is fixed,\nor otherwise NamedTensorMap format.",
+                      "type": "Tensor|Tensor[]|NamedTensorMap",
+                      "optional": false,
+                      "isConfigParam": false
+                    },
+                    {
+                      "name": "config",
+                      "documentation": "Prediction configuration for specifying the batch size.\nCurrently this field is not used, and batch inference is not supported.",
+                      "type": "ModelPredictConfig",
+                      "optional": true,
+                      "isConfigParam": false
+                    }
+                  ],
+                  "returnType": "Tensor|Tensor[]|NamedTensorMap",
+                  "documentation": "Execute the inference for the input tensors.",
+                  "fileName": "#83",
+                  "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-tflite-v0.0.1-alpha.9/tfjs-tflite/src/tflite_model.ts#L83-L157",
+                  "isFunction": true,
+                  "urlHash": "tflite.TFLiteModel.predict"
+                }
+              ],
+              "isClass": true,
+              "inheritsFrom": "InferenceModel",
+              "displayName": "tflite.TFLiteModel",
+              "urlHash": "class:TFLiteModel"
+            }
+          ]
+        },
+        {
+          "name": "Loading",
+          "symbols": [
+            {
+              "docInfo": {
+                "heading": "Models",
+                "subheading": "Loading"
+              },
+              "symbolName": "loadTFLiteModel",
+              "paramStr": "(model, options?)",
+              "parameters": [
+                {
+                  "name": "model",
+                  "documentation": "The path to the model (string), or the model content in memory\n(ArrayBuffer).",
+                  "type": "string|ArrayBuffer",
+                  "optional": false,
+                  "isConfigParam": false
+                },
+                {
+                  "name": "options",
+                  "documentation": "Options related to model inference.",
+                  "type": "Object",
+                  "optional": true,
+                  "isConfigParam": false
+                },
+                {
+                  "name": "numThreads",
+                  "type": "number",
+                  "documentation": "Number of threads to use when running inference.\n\nDefault to number of physical CPU cores, or -1 if WASM multi-threading is\nnot supported by user's browser.",
+                  "optional": false,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "enableProfiling",
+                  "type": "boolean",
+                  "documentation": "Whether to enable profiling.\n\nDefault to false. After it is enabled, the profiling results can be\nretrieved by calling TFLiteWebModelRunner.getProfilingResults or\nTFLiteWebModelRunner.getProfilingSummary. See their comments for more\ndetails.",
+                  "optional": false,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "maxProfilingBufferEntries",
+                  "type": "number",
+                  "documentation": "Maximum nmber of entries that the profiler can keep.\n\nDefault to 1024.",
+                  "optional": false,
+                  "isConfigParam": true
+                }
+              ],
+              "returnType": "Promise<[tflite.TFLiteModel](#class:TFLiteModel)>",
+              "documentation": "Loads a TFLiteModel from the given model url.",
+              "fileName": "#319",
+              "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-tflite-v0.0.1-alpha.9/tfjs-tflite/src/tflite_model.ts#L319-L332",
+              "isFunction": true,
+              "displayName": "tflite.loadTFLiteModel",
+              "urlHash": "loadTFLiteModel"
+            }
+          ]
+        },
+        {
+          "name": "Utilities",
+          "symbols": [
+            {
+              "docInfo": {
+                "heading": "Models",
+                "subheading": "Utilities"
+              },
+              "symbolName": "getDTypeFromTFLiteType",
+              "paramStr": "(tfliteType)",
+              "parameters": [
+                {
+                  "name": "tfliteType",
+                  "documentation": "The type in TFLite.",
+                  "type": "TFLiteDataType",
+                  "optional": false,
+                  "isConfigParam": false
+                }
+              ],
+              "returnType": "DataType",
+              "documentation": "Returns the compatible tfjs DataType from the given TFLite data type.",
+              "fileName": "#341",
+              "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-tflite-v0.0.1-alpha.9/tfjs-tflite/src/tflite_model.ts#L341-L362",
+              "isFunction": true,
+              "displayName": "tflite.getDTypeFromTFLiteType",
+              "urlHash": "getDTypeFromTFLiteType"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
