@@ -25,7 +25,7 @@ node_modules/@webgpu/types/dist/index.d.ts:587:16 - error TS2304: Cannot find na
 ...
 ```
 
-This can be fixed by upgrading TypeScript to 4.4.2 or greater, or by adding the file `predefined_color_space.d.ts` (name and path can be changed) with the following contents to your project to define the missing type. If this file is added, it will need to be removed when TypeScript is upgraded past 4.3.
+To fix this, upgrade TypeScript to 4.4.2 or greater, or add the file `predefined_color_space.d.ts` (name and path can be changed) with the following contents to your project to define the missing type. Remove this file when TypeScript is upgraded to 4.4 or higher.
 
 **predefined_color_space.d.ts**
 ```typescript
@@ -42,4 +42,4 @@ node_modules/@tensorflow/tfjs-core/dist/engine.d.ts:127:9 - error TS1086: An acc
 ...
 ```
 
-Enabling [`skipLibCheck`](https://www.typescriptlang.org/tsconfig#skipLibCheck) suppresses this error, and upgrading to at least TypeScript 3.6.2 fixes it (although the above fix for `PredefinedColorSpace` will also need to be applied).
+Enable [`skipLibCheck`](https://www.typescriptlang.org/tsconfig#skipLibCheck) to suppress this error, or upgrade to at least TypeScript 3.6.2 to fix it (the above fix for `PredefinedColorSpace` will also need to be applied).
