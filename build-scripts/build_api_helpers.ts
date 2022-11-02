@@ -27,6 +27,7 @@ export interface LibraryInfo {
   // The name the repo. Default to `tfjs`.
   // This will be used to locate the repo dir under lib/.
   repoName?: string;
+  fileName?: string;
   packageName: string;  // path to the library within the website folder
   github: string;       // github url for library
   version: string;      // the version to checkout || 'local' to use repo as is.
@@ -67,7 +68,9 @@ export function generateDocs(libs: LibraryInfo[]): string[] {
 
     const repoName = lib.repoName || 'tfjs';
     const opts = {
-      input: path.resolve(`libs/${repoName}/${lib.packageName}/src/index.ts`),
+      input: lib.fileName == null ?
+        path.resolve(`libs/${repoName}/${lib.packageName}/src/index.ts`) :
+        path.resolve(`libs/${repoName}/${lib.packageName}/${lib.fileName}`),
       pkg: path.resolve(`libs/${repoName}/${lib.packageName}/package.json`),
       src: path.resolve(`libs/${repoName}/${lib.packageName}/src/`),
       repo: path.resolve(`libs/${repoName}/${lib.packageName}/`),
@@ -76,13 +79,14 @@ export function generateDocs(libs: LibraryInfo[]): string[] {
       allowedDeclarationFileSubpaths: lib.allowedDeclarationFileSubpaths ?
           lib.allowedDeclarationFileSubpaths.join(',') :
           '""',
+      type: lib.fileName == null ? 'package' : 'file'
     };
 
     const docGenCommand = `ts-node --project tsconfig.json ${docGenScript} ` +
         `--in ${opts.input} --package ${opts.pkg} --src ${opts.src} --github ${
                               opts.github} --out ${opts.out} --repo ${
                               opts.repo} --allowed-declaration-file-subpaths ${
-                              opts.allowedDeclarationFileSubpaths}`;
+                              opts.allowedDeclarationFileSubpaths} --type ${opts.type}`;
 
     // Prep the component. If "local" has been passed in then we do nothing
     // to what is in libs. Else we want to check out a tag that correspond to

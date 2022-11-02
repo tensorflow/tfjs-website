@@ -45,6 +45,13 @@ const libs = [
     outputFolder: versionedDocsFolder
   },
   {
+    packageName: 'tfjs-backend-webgl',
+    fileName: 'src/flags_webgl.ts',
+    github: `https://github.com/tensorflow/tfjs/tree/${tfjsTag}/tfjs-backend-webgl`,
+    version: tfjsVersion,
+    outputFolder: versionedDocsFolder
+  },
+  {
     packageName: 'tfjs-layers',
     github: `https://github.com/tensorflow/tfjs/tree/${tfjsTag}/tfjs-layers`,
     version: tfjsVersion,
