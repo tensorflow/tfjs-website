@@ -81,7 +81,7 @@ const IN_NAMESPACE_JSDOC = 'innamespace';
  */
 export function parse(
     programRoot: string, srcRoot: string, repoPath: string, githubRoot: string,
-    allowedDeclarationFileSubpaths: string[]): RepoDocsAndMetadata {
+    allowedDeclarationFileSubpaths: string[], isFile: boolean): RepoDocsAndMetadata {
   if (!fs.existsSync(programRoot)) {
     throw new Error(
         `Program root ${programRoot} does not exist. Please run this script ` +
@@ -112,7 +112,11 @@ export function parse(
 
   // Visit all the nodes that are transitively linked from the source
   // root.
-  for (const sourceFile of program.getSourceFiles()) {
+  let sourceFiles = program.getSourceFiles();
+  if (isFile) {
+    sourceFiles.filter(e => e.fileName === programRoot);
+  }
+  for (const sourceFile of sourceFiles) {
     if (!sourceFile.isDeclarationFile ||
         allowedDeclarationFileSubpaths.some(
             allowedPath => sourceFile.fileName.includes(allowedPath))) {

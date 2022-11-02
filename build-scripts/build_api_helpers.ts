@@ -79,14 +79,14 @@ export function generateDocs(libs: LibraryInfo[]): string[] {
       allowedDeclarationFileSubpaths: lib.allowedDeclarationFileSubpaths ?
           lib.allowedDeclarationFileSubpaths.join(',') :
           '""',
-      type: lib.fileName == null ? 'package' : 'file'
+      isFile: lib.fileName != null
     };
 
     const docGenCommand = `ts-node --project tsconfig.json ${docGenScript} ` +
         `--in ${opts.input} --package ${opts.pkg} --src ${opts.src} --github ${
                               opts.github} --out ${opts.out} --repo ${
                               opts.repo} --allowed-declaration-file-subpaths ${
-                              opts.allowedDeclarationFileSubpaths} --type ${opts.type}`;
+                              opts.allowedDeclarationFileSubpaths} ${opts.isFile ? '--isFile' : ''}`;
 
     // Prep the component. If "local" has been passed in then we do nothing
     // to what is in libs. Else we want to check out a tag that correspond to
