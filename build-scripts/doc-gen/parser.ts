@@ -114,7 +114,7 @@ export function parse(
   // root.
   let sourceFiles = program.getSourceFiles();
   if (isFile) {
-    sourceFiles.filter(e => e.fileName === programRoot);
+    sourceFiles = sourceFiles.filter(e => e.fileName === programRoot);
   }
   for (const sourceFile of sourceFiles) {
     if (!sourceFile.isDeclarationFile ||
