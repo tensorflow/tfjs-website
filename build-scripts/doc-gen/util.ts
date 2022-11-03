@@ -455,6 +455,8 @@ export function foreachDocFunction(
           symbol.methods.forEach(method => {
             fn(method);
           });
+        } else if (untypedSymbol['isFlag']) {
+          return;
         } else {
           fn(untypedSymbol as DocFunction);
         }
@@ -571,7 +573,9 @@ export function linkSymbols(
                  symbol.namespace + '.' :
                  '');
 
-        if (toplevelNamespace.length > 0) {
+        if (symbol['isFlag']) {
+          symbol.displayName = symbol.symbolName
+        } else if (toplevelNamespace.length > 0) {
           symbol.displayName =
               toplevelNamespace + '.' + namespace + symbol.symbolName;
         } else {
