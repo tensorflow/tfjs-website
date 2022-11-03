@@ -81,7 +81,7 @@ const IN_NAMESPACE_JSDOC = 'innamespace';
 */
 export function parse(
     programRoot: string, srcRoot: string, repoPath: string, githubRoot: string,
-    allowedDeclarationFileSubpaths: string[], isFile: boolean, parseConst: boolean): RepoDocsAndMetadata {
+    allowedDeclarationFileSubpaths: string[], isFile: boolean, parseFlag: boolean): RepoDocsAndMetadata {
   if (!fs.existsSync(programRoot)) {
     throw new Error(
         `Program root ${programRoot} does not exist. Please run this script ` +
@@ -126,7 +126,7 @@ export function parse(
           node => visitNode(
               docHeadings, subclassMethodMap, docTypeAliases, docLinkAliases,
               globalSymbolDocMap, configInterfaceParamMap, inlineTypes, checker,
-              node, sourceFile, srcRoot, repoPath, githubRoot, parseConst));
+              node, sourceFile, srcRoot, repoPath, githubRoot, parseFlag));
     }
   }
 
@@ -155,7 +155,7 @@ function visitNode(
     configInterfaceParamMap: {[interfaceName: string]: DocFunctionParam[]},
     inlineTypes: {[typeName: string]: string}, checker: ts.TypeChecker,
     node: ts.Node, sourceFile: ts.SourceFile, srcRoot: string, repoPath: string,
-    githubRoot: string, parseConst: boolean) {
+    githubRoot: string, parseFlag: boolean) {
   if (ts.isMethodDeclaration(node) || ts.isFunctionDeclaration(node)) {
     const docInfo = util.getDocDecoratorOrAnnotation(
         checker, node, DOCUMENTATION_DECORATOR_AND_ANNOTATION);
@@ -202,7 +202,9 @@ function visitNode(
           `Class ${node.name.getText()} has both a ` +
           `doc link alias and a doc decorator.`);
     }
-  } else if (parseConst && ts.isVariableDeclaration(node)) {
+
+  // To parse a flag, the flag has to be defined as a `var` or `const` and attach `@doc` comments.
+  } else if (parseFlag && ts.isVariableDeclaration(node)) {
     const docInfo = util.getDocDecoratorOrAnnotation(
       checker, node, DOCUMENTATION_DECORATOR_AND_ANNOTATION);
 
@@ -309,7 +311,7 @@ function visitNode(
       node => visitNode(
           docHeadings, subclassMethodMap, docTypeAliases, docLinkAliases,
           globalSymbolDocMap, configInterfaceParamMap, inlineTypes, checker,
-          node, sourceFile, srcRoot, repoPath, githubRoot, parseConst));
+          node, sourceFile, srcRoot, repoPath, githubRoot, parseFlag));
 }
 
 
