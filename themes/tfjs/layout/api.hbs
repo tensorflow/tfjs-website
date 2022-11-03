@@ -14,6 +14,8 @@
       {{#symbols}}
       {{#if isClass}}
       {{~> apiClass symbol=this~}}
+      {{else if isFlag}}
+      {{~> apiFlag symbol=this~}}
       {{else}}
       {{~> apiFunction symbol=this ~}}
       {{/if}}
