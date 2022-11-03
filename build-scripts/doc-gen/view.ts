@@ -41,7 +41,7 @@ export interface DocSubheading {
   symbols?: DocSymbol[];
 }
 
-export type DocSymbol = DocFunction|DocClass;
+export type DocSymbol = DocFunction|DocClass|DocFlag;
 
 export interface DocClass {
   docInfo: DocInfo;
@@ -58,6 +58,22 @@ export interface DocClass {
   extraTypes?: DocExtraType[];
 
   isClass: true;
+
+  // Filled in by the linker.
+  displayName?: string;
+  urlHash?: string;
+}
+
+export interface DocFlag {
+  docInfo: DocInfo;
+
+  symbolName: string;
+  namespace: string;
+  documentation: string;
+  fileName: string;
+  githubUrl: string;
+
+  isFlag: true;
 
   // Filled in by the linker.
   displayName?: string;
