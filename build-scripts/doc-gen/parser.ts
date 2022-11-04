@@ -75,6 +75,17 @@ const DOCUMENTATION_UNPACK_RETURN = 'docunpackreturn';
 
 const DOCUMENTATION_UNPACK_TYPE = 'docunpacktype';
 const IN_NAMESPACE_JSDOC = 'innamespace';
+
+// Use this to generate tags following the signatures.
+//
+// Example usage:
+//
+// @doctags performance, webgl
+//
+// This will produce two spans following the signatures.
+//
+// <span class="chip">performance</span>
+// <span class="chip">webgl</span>
 const DOCUMENTATION_TAGS = 'doctags';
 
 /**
