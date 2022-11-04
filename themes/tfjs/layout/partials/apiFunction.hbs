@@ -16,6 +16,9 @@
     {{else}}
     <span class="chip">function</span>
     {{/if}}
+    {{#each tags}}
+      <span class="chip">{{.}}</span>
+    {{/each}}
     <span class="source-link">
       <a href="{{githubUrl}}" target=_blank>Source</a>
     </span>

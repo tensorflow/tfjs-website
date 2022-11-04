@@ -9,6 +9,9 @@
       {{/if}}
     </span>
     <span class="chip">class</span>
+    {{#each tags}}
+    <span class="chip">{{.}}</span>
+    {{/each}}
     <span class="source-link">
       <a href="{{githubUrl}}" target=_blank>Source</a>
     </span>

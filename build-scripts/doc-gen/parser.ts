@@ -75,6 +75,7 @@ const DOCUMENTATION_UNPACK_RETURN = 'docunpackreturn';
 
 const DOCUMENTATION_UNPACK_TYPE = 'docunpacktype';
 const IN_NAMESPACE_JSDOC = 'innamespace';
+const DOCUMENTATION_TAGS = 'doctags';
 
 /**
  * Parses the program.
@@ -210,9 +211,9 @@ function visitNode(
       const subheading =
           util.fillHeadingsAndGetSubheading(docInfo, docHeadings);
 
-      const docFunction = serializeVariable(
+      const docVariable = serializeVariable(
           checker, node, docInfo, sourceFile, repoPath, srcRoot, githubRoot);
-      subheading.symbols.push(docFunction);
+      subheading.symbols.push(docVariable);
     }
   }
 
@@ -332,6 +333,7 @@ export function serializeVariable(
     documentation,
     fileName: displayFilename,
     githubUrl,
+    tags: getTags(checker, node),
     isVariable: true
   };
 
@@ -371,6 +373,7 @@ export function serializeClass(
     fileName: displayFilename,
     githubUrl,
     methods: [],
+    tags: getTags(checker, node),
     isClass: true
   };
   if (inheritsFrom != null) {
@@ -473,6 +476,7 @@ export function serializeMethodOrFunction(
     documentation,
     fileName: displayFilename,
     githubUrl,
+    tags: getTags(checker, node),
     isFunction: true
   };
 
@@ -490,6 +494,12 @@ export function serializeMethodOrFunction(
   }
 
   return method;
+}
+
+function getTags(checker: ts.TypeChecker, node: ts.MethodDeclaration|ts.FunctionDeclaration|
+  ts.ClassDeclaration|ts.VariableDeclaration) {
+  const docTags = util.getJsdoc(checker, node, DOCUMENTATION_TAGS);
+  return docTags == null ? [] : docTags.replace(/\s/g, '').split(/,/g);
 }
 
 function serializeParameter(

@@ -58,6 +58,7 @@ export interface DocClass {
   extraTypes?: DocExtraType[];
 
   isClass: true;
+  tags: string[];
 
   // Filled in by the linker.
   displayName?: string;
@@ -80,6 +81,7 @@ export interface DocFunction {
   unpackedReturnTypes?: DocExtraType[];
 
   isFunction: true;
+  tags: string[];
 
   // Filled in by the linker.
   displayName?: string;
@@ -110,6 +112,7 @@ export interface DocVariable {
   githubUrl: string;
 
   isVariable: true;
+  tags: string[];
 
   // Filled in by the linker.
   displayName?: string;
