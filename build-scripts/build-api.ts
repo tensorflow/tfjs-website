@@ -65,8 +65,18 @@ const libs = [
   }
 ];
 
+const flagFiles = [
+  {
+    packageName: 'tfjs-backend-webgl',
+    fileName: 'src/flags_webgl.ts',
+    github: `https://github.com/tensorflow/tfjs/tree/${tfjsTag}/tfjs-backend-webgl`,
+    version: tfjsVersion,
+    outputFolder: versionedDocsFolder
+  },
+];
+
 console.log(`********* Generating Docs *********`);
-const outputPaths = generateDocs(libs);
+const outputPaths = [...generateDocs(libs, false, false), ...generateDocs(flagFiles, true, true)];
 
 console.log(`********* Merging docs *********`);
 const bundlePath = commander.bundle && path.resolve(commander.bundle) ||
