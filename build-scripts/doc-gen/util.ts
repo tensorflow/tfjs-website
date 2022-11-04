@@ -31,7 +31,7 @@ export interface DocInfo {
 
 export function getDocDecoratorOrAnnotation(
     checker: ts.TypeChecker,
-    node: ts.MethodDeclaration|ts.ClassDeclaration|ts.FunctionDeclaration,
+    node: ts.MethodDeclaration|ts.ClassDeclaration|ts.FunctionDeclaration|ts.VariableDeclaration,
     annotationName: string): DocInfo {
   let docInfo: DocInfo;
   // Try to parse decorators.
@@ -331,7 +331,7 @@ export function isStatic(node: ts.MethodDeclaration): boolean {
 export function getJsdoc(
     checker: ts.TypeChecker,
     node: ts.InterfaceDeclaration|ts.TypeAliasDeclaration|ts.ClassDeclaration|
-    ts.EnumDeclaration|ts.FunctionDeclaration|ts.MethodDeclaration,
+    ts.EnumDeclaration|ts.FunctionDeclaration|ts.MethodDeclaration|ts.VariableDeclaration,
     tag: string): string {
   const symbol = checker.getSymbolAtLocation(node.name);
   const docs = symbol.getDocumentationComment(checker);
@@ -455,6 +455,8 @@ export function foreachDocFunction(
           symbol.methods.forEach(method => {
             fn(method);
           });
+        } else if (untypedSymbol['isFlag']) {
+          return;
         } else {
           fn(untypedSymbol as DocFunction);
         }
@@ -571,7 +573,9 @@ export function linkSymbols(
                  symbol.namespace + '.' :
                  '');
 
-        if (toplevelNamespace.length > 0) {
+        if (symbol['isFlag']) {
+          symbol.displayName = symbol.symbolName
+        } else if (toplevelNamespace.length > 0) {
           symbol.displayName =
               toplevelNamespace + '.' + namespace + symbol.symbolName;
         } else {

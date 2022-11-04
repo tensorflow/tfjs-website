@@ -21,7 +21,7 @@ import * as ts from 'typescript';
 
 import * as util from './util';
 // tslint:disable-next-line:max-line-length
-import {DocClass, DocExtraType, DocFunction, DocFunctionParam, DocHeading, Docs, RepoDocsAndMetadata} from './view';
+import {DocClass, DocExtraType, DocFlag, DocFunction, DocFunctionParam, DocHeading, Docs, RepoDocsAndMetadata} from './view';
 
 const DOCUMENTATION_DECORATOR_AND_ANNOTATION = 'doc';
 const DOCUMENTATION_TYPE_ALIAS = 'docalias';
@@ -113,10 +113,8 @@ export function parse(
 
   // Visit all the nodes that are transitively linked from the source
   // root.
-  let sourceFiles = program.getSourceFiles();
-  if (isFile) {
-    sourceFiles = sourceFiles.filter(e => e.fileName === programRoot);
-  }
+  const sourceFiles = isFile ? [program.getSourceFile(programRoot)] :
+    program.getSourceFiles();
   for (const sourceFile of sourceFiles) {
     if (!sourceFile.isDeclarationFile ||
         allowedDeclarationFileSubpaths.some(
@@ -126,7 +124,7 @@ export function parse(
           node => visitNode(
               docHeadings, subclassMethodMap, docTypeAliases, docLinkAliases,
               globalSymbolDocMap, configInterfaceParamMap, inlineTypes, checker,
-              node, sourceFile, srcRoot, repoPath, githubRoot));
+              node, sourceFile, srcRoot, repoPath, githubRoot, parseFlags));
     }
   }
 
@@ -155,7 +153,7 @@ function visitNode(
     configInterfaceParamMap: {[interfaceName: string]: DocFunctionParam[]},
     inlineTypes: {[typeName: string]: string}, checker: ts.TypeChecker,
     node: ts.Node, sourceFile: ts.SourceFile, srcRoot: string, repoPath: string,
-    githubRoot: string) {
+    githubRoot: string, parseFlags: boolean) {
   if (ts.isMethodDeclaration(node) || ts.isFunctionDeclaration(node)) {
     const docInfo = util.getDocDecoratorOrAnnotation(
         checker, node, DOCUMENTATION_DECORATOR_AND_ANNOTATION);
@@ -201,6 +199,20 @@ function visitNode(
       throw new Error(
           `Class ${node.name.getText()} has both a ` +
           `doc link alias and a doc decorator.`);
+    }
+
+  // To parse a flag, the flag has to be defined as a `var` or `const` and attach `@doc` comments.
+  } else if (parseFlags && ts.isVariableDeclaration(node)) {
+    const docInfo = util.getDocDecoratorOrAnnotation(
+      checker, node, DOCUMENTATION_DECORATOR_AND_ANNOTATION);
+
+    if (docInfo != null && !sourceFile.isDeclarationFile) {
+      const subheading =
+          util.fillHeadingsAndGetSubheading(docInfo, docHeadings);
+
+      const docFunction = serializeFlag(
+          checker, node, docInfo, sourceFile, repoPath, srcRoot, githubRoot);
+      subheading.symbols.push(docFunction);
     }
   }
 
@@ -297,7 +309,33 @@ function visitNode(
       node => visitNode(
           docHeadings, subclassMethodMap, docTypeAliases, docLinkAliases,
           globalSymbolDocMap, configInterfaceParamMap, inlineTypes, checker,
-          node, sourceFile, srcRoot, repoPath, githubRoot));
+          node, sourceFile, srcRoot, repoPath, githubRoot, parseFlags));
+}
+
+export function serializeFlag(
+    checker: ts.TypeChecker, node: ts.VariableDeclaration, docInfo: util.DocInfo,
+    sourceFile: ts.SourceFile, repoPath: string,
+    srcRoot: string, githubRoot: string): DocFlag {
+  const symbol = checker.getSymbolAtLocation(node.name);
+  const name = symbol.getName();
+
+  const {displayFilename, githubUrl} =
+      util.getFileInfo(node, sourceFile, repoPath, srcRoot, githubRoot);
+
+  let documentation =
+      ts.displayPartsToString(symbol.getDocumentationComment(checker));
+  documentation = util.removeStarsFromCommentString(documentation);
+  const docFlag: DocFlag = {
+    docInfo: docInfo,
+    symbolName: name,
+    namespace: docInfo.namespace,
+    documentation,
+    fileName: displayFilename,
+    githubUrl,
+    isFlag: true
+  };
+
+  return docFlag;
 }
 
 export function serializeClass(
