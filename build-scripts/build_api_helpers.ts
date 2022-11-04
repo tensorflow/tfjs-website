@@ -109,7 +109,8 @@ export function generateDocs(libs: LibraryInfo[], isFlagFile: boolean = false): 
          `Error checkout out ${lib.version} for ${lib.packageName}`);
     }
 
-    console.log(`********* Generating docs for ${lib.packageName} *********`);
+    console.log(`********* Generating docs for ${lib.packageName}${
+      isFlagFile ? '\'s flags' : ''} *********`);
 
     sh('pwd', `Error pwd`);
 
