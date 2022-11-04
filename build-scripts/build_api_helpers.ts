@@ -58,14 +58,21 @@ export interface Manifest {
  * Parse the libraries and generate the JSON with symbols and docs.
  * @param libs
  */
-export function generateDocs(libs: LibraryInfo[], isFlagFile: boolean = false): string[] {
+export function generateDocs(libs: LibraryInfo[], isFile: boolean = false,
+    parseVariables: boolean = false): string[] {
   const docGenScript = 'build-scripts/doc-gen/make-api.ts';
 
   const outputPaths = [];
   libs.forEach(lib => {
+    if (isFile && lib.fileName == null) {
+      throw new Error('If isFile === true, fileName has to be provided.');
+    }
+
     const outputPath =
-        path.resolve(`${lib.outputFolder}/${lib.packageName}${
-          isFlagFile ? '_flags' : ''}.json`);
+        path.resolve(`${lib.outputFolder}/${
+          isFile ?
+            [lib.packageName, ...lib.fileName.split(/\.|\//g)].join('_')
+           : lib.packageName}.json`);
 
     const repoName = lib.repoName || 'tfjs';
     const opts = {
@@ -80,8 +87,8 @@ export function generateDocs(libs: LibraryInfo[], isFlagFile: boolean = false): 
       allowedDeclarationFileSubpaths: lib.allowedDeclarationFileSubpaths ?
           lib.allowedDeclarationFileSubpaths.join(',') :
           '""',
-      isFile: isFlagFile,
-      parseFlags: isFlagFile
+      isFile,
+      parseVariables
     };
 
     const docGenCommand = `ts-node --project tsconfig.json ${docGenScript} ` +
@@ -90,7 +97,7 @@ export function generateDocs(libs: LibraryInfo[], isFlagFile: boolean = false): 
                               opts.repo} --allowed-declaration-file-subpaths ${
                               opts.allowedDeclarationFileSubpaths} ${
                               opts.isFile ? '--isFile' : ''} ${
-                              opts.parseFlags ? '--parseFlags' : ''}`;
+                              opts.parseVariables ? '--parseVariables' : ''}`;
 
     // Prep the component. If "local" has been passed in then we do nothing
     // to what is in libs. Else we want to check out a tag that correspond to
@@ -110,7 +117,7 @@ export function generateDocs(libs: LibraryInfo[], isFlagFile: boolean = false): 
     }
 
     console.log(`********* Generating docs for ${lib.packageName}${
-      isFlagFile ? '\'s flags' : ''} *********`);
+      isFile ? `/${lib.fileName}` : ''} *********`);
 
     sh('pwd', `Error pwd`);
 

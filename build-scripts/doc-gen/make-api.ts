@@ -35,7 +35,7 @@ commander.option('--in <path>', 'main source entry')
     .option('--out <path>', 'Output Path')
     .option('--allowed-declaration-file-subpaths <paths>',
         'Sub paths of allowed declaration files, separated by ","')
-    .option('--parseFlags', 'If set, the parser will traverse variables too.')
+    .option('--parseVariables', 'If set, the parser will traverse variables too.')
     .parse(process.argv);
 
 const options = commander.opts();
@@ -48,7 +48,7 @@ console.log('make-api params', [
   options.github,
   options.out,
   options.allowedDeclarationFileSubpaths,
-  options.parseFlags
+  options.parseVariables
 ])
 
 const allParamsPresent = [
@@ -77,7 +77,7 @@ mkdirp(outputDir, (err: any) => {
 let repoDocsAndMetadata = parser.parse(
   options.in, options.src, options.repo, options.github,
   options.allowedDeclarationFileSubpaths.split(',').filter(
-      ele => ele !== ''), options.isFile, options.parseFlags);
+      ele => ele !== ''), options.isFile, options.parseVariables);
 
 // Write the JSON.
 mkdirp.sync(path.dirname(options.out));

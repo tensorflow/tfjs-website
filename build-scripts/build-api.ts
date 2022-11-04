@@ -76,7 +76,7 @@ const flagFiles = [
 ];
 
 console.log(`********* Generating Docs *********`);
-const outputPaths = [...generateDocs(libs, false), ...generateDocs(flagFiles, true)];
+const outputPaths = [...generateDocs(libs, false, false), ...generateDocs(flagFiles, true, true)];
 
 console.log(`********* Merging docs *********`);
 const bundlePath = commander.bundle && path.resolve(commander.bundle) ||

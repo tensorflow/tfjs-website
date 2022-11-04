@@ -455,7 +455,7 @@ export function foreachDocFunction(
           symbol.methods.forEach(method => {
             fn(method);
           });
-        } else if (untypedSymbol['isFlag']) {
+        } else if (untypedSymbol['isVariable']) {
           return;
         } else {
           fn(untypedSymbol as DocFunction);
@@ -573,7 +573,7 @@ export function linkSymbols(
                  symbol.namespace + '.' :
                  '');
 
-        if (symbol['isFlag']) {
+        if (symbol['isVariable']) {
           symbol.displayName = symbol.symbolName
         } else if (toplevelNamespace.length > 0) {
           symbol.displayName =

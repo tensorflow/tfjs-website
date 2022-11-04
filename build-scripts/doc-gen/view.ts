@@ -41,7 +41,7 @@ export interface DocSubheading {
   symbols?: DocSymbol[];
 }
 
-export type DocSymbol = DocFunction|DocClass|DocFlag;
+export type DocSymbol = DocFunction|DocClass|DocVariable;
 
 export interface DocClass {
   docInfo: DocInfo;
@@ -100,7 +100,7 @@ export interface DocExtraType {
   params?: DocFunctionParam[];
 }
 
-export interface DocFlag {
+export interface DocVariable {
   docInfo: DocInfo;
 
   symbolName: string;
@@ -109,7 +109,7 @@ export interface DocFlag {
   fileName: string;
   githubUrl: string;
 
-  isFlag: true;
+  isVariable: true;
 
   // Filled in by the linker.
   displayName?: string;
