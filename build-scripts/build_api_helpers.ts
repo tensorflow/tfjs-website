@@ -27,6 +27,7 @@ export interface LibraryInfo {
   // The name the repo. Default to `tfjs`.
   // This will be used to locate the repo dir under lib/.
   repoName?: string;
+  fileName?: string;
   packageName: string;  // path to the library within the website folder
   github: string;       // github url for library
   version: string;      // the version to checkout || 'local' to use repo as is.
@@ -57,17 +58,27 @@ export interface Manifest {
  * Parse the libraries and generate the JSON with symbols and docs.
  * @param libs
  */
-export function generateDocs(libs: LibraryInfo[]): string[] {
+export function generateDocs(libs: LibraryInfo[], isFile: boolean = false,
+    parseVariables: boolean = false): string[] {
   const docGenScript = 'build-scripts/doc-gen/make-api.ts';
 
   const outputPaths = [];
   libs.forEach(lib => {
+    if (isFile && lib.fileName == null) {
+      throw new Error('If isFile === true, fileName has to be provided.');
+    }
+
     const outputPath =
-        path.resolve(`${lib.outputFolder}/${lib.packageName}.json`);
+        path.resolve(`${lib.outputFolder}/${
+          isFile ?
+            [lib.packageName, ...lib.fileName.split(/\.|\//g)].join('_')
+           : lib.packageName}.json`);
 
     const repoName = lib.repoName || 'tfjs';
     const opts = {
-      input: path.resolve(`libs/${repoName}/${lib.packageName}/src/index.ts`),
+      input: lib.fileName == null ?
+        path.resolve(`libs/${repoName}/${lib.packageName}/src/index.ts`) :
+        path.resolve(`libs/${repoName}/${lib.packageName}/${lib.fileName}`),
       pkg: path.resolve(`libs/${repoName}/${lib.packageName}/package.json`),
       src: path.resolve(`libs/${repoName}/${lib.packageName}/src/`),
       repo: path.resolve(`libs/${repoName}/${lib.packageName}/`),
@@ -76,13 +87,17 @@ export function generateDocs(libs: LibraryInfo[]): string[] {
       allowedDeclarationFileSubpaths: lib.allowedDeclarationFileSubpaths ?
           lib.allowedDeclarationFileSubpaths.join(',') :
           '""',
+      isFile,
+      parseVariables
     };
 
     const docGenCommand = `ts-node --project tsconfig.json ${docGenScript} ` +
         `--in ${opts.input} --package ${opts.pkg} --src ${opts.src} --github ${
                               opts.github} --out ${opts.out} --repo ${
                               opts.repo} --allowed-declaration-file-subpaths ${
-                              opts.allowedDeclarationFileSubpaths}`;
+                              opts.allowedDeclarationFileSubpaths} ${
+                              opts.isFile ? '--isFile' : ''} ${
+                              opts.parseVariables ? '--parseVariables' : ''}`;
 
     // Prep the component. If "local" has been passed in then we do nothing
     // to what is in libs. Else we want to check out a tag that correspond to
@@ -101,7 +116,8 @@ export function generateDocs(libs: LibraryInfo[]): string[] {
          `Error checkout out ${lib.version} for ${lib.packageName}`);
     }
 
-    console.log(`********* Generating docs for ${lib.packageName} *********`);
+    console.log(`********* Generating docs for ${lib.packageName}${
+      isFile ? `/${lib.fileName}` : ''} *********`);
 
     sh('pwd', `Error pwd`);
 
