@@ -58,13 +58,14 @@ export interface Manifest {
  * Parse the libraries and generate the JSON with symbols and docs.
  * @param libs
  */
-export function generateDocs(libs: LibraryInfo[]): string[] {
+export function generateDocs(libs: LibraryInfo[], isFlagFile: boolean = false): string[] {
   const docGenScript = 'build-scripts/doc-gen/make-api.ts';
 
   const outputPaths = [];
   libs.forEach(lib => {
     const outputPath =
-        path.resolve(`${lib.outputFolder}/${lib.packageName}.json`);
+        path.resolve(`${lib.outputFolder}/${lib.packageName}${
+          isFlagFile ? '_flags' : ''}.json`);
 
     const repoName = lib.repoName || 'tfjs';
     const opts = {
@@ -79,14 +80,17 @@ export function generateDocs(libs: LibraryInfo[]): string[] {
       allowedDeclarationFileSubpaths: lib.allowedDeclarationFileSubpaths ?
           lib.allowedDeclarationFileSubpaths.join(',') :
           '""',
-      isFile: lib.fileName != null
+      isFile: isFlagFile,
+      parseFlags: isFlagFile
     };
 
     const docGenCommand = `ts-node --project tsconfig.json ${docGenScript} ` +
         `--in ${opts.input} --package ${opts.pkg} --src ${opts.src} --github ${
                               opts.github} --out ${opts.out} --repo ${
                               opts.repo} --allowed-declaration-file-subpaths ${
-                              opts.allowedDeclarationFileSubpaths} ${opts.isFile ? '--isFile' : ''}`;
+                              opts.allowedDeclarationFileSubpaths} ${
+                              opts.isFile ? '--isFile' : ''} ${
+                              opts.parseFlags ? '--parseFlags' : ''}`;
 
     // Prep the component. If "local" has been passed in then we do nothing
     // to what is in libs. Else we want to check out a tag that correspond to

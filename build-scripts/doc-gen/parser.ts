@@ -81,7 +81,8 @@ const IN_NAMESPACE_JSDOC = 'innamespace';
  */
 export function parse(
     programRoot: string, srcRoot: string, repoPath: string, githubRoot: string,
-    allowedDeclarationFileSubpaths: string[], isFile: boolean): RepoDocsAndMetadata {
+    allowedDeclarationFileSubpaths: string[], isFile: boolean, parseFlags: boolean):
+    RepoDocsAndMetadata {
   if (!fs.existsSync(programRoot)) {
     throw new Error(
         `Program root ${programRoot} does not exist. Please run this script ` +

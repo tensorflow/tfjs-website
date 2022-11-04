@@ -26,14 +26,16 @@ import * as parser from './parser';
 import * as util from './util';
 
 commander.option('--in <path>', 'main source entry')
-    .option('--isFile', `If 'in' is a file. If not set, 'in' is considered as a package`)
+    .option('--isFile', `If 'in' is a file. If not set, ` +
+        `'in' is considered as a package`)
     .option('--package <path>', 'Package.json path')
     .option('--src <path>', 'Path to src folder of repo')
     .option('--repo <path>', 'Path to repo')
     .option('--github <url>', 'Github repository URL')
     .option('--out <path>', 'Output Path')
     .option('--allowed-declaration-file-subpaths <paths>',
-    'Sub paths of allowed declaration files, separated by ","')
+        'Sub paths of allowed declaration files, separated by ","')
+    .option('--parseFlags', 'If set, the parser will traverse variables too.')
     .parse(process.argv);
 
 const options = commander.opts();
@@ -45,7 +47,8 @@ console.log('make-api params', [
   options.src,
   options.github,
   options.out,
-  options.allowedDeclarationFileSubpaths
+  options.allowedDeclarationFileSubpaths,
+  options.parseFlags
 ])
 
 const allParamsPresent = [
@@ -74,7 +77,7 @@ mkdirp(outputDir, (err: any) => {
 let repoDocsAndMetadata = parser.parse(
   options.in, options.src, options.repo, options.github,
   options.allowedDeclarationFileSubpaths.split(',').filter(
-      ele => ele !== ''), options.isFile);
+      ele => ele !== ''), options.isFile, options.parseFlags);
 
 // Write the JSON.
 mkdirp.sync(path.dirname(options.out));
