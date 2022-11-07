@@ -1,0 +1,15 @@
+<div class="symbol class">
+  <div class="symbol-header">
+    <a class="symbol-link" name="{{urlHash}}" href="#{{urlHash}}">
+      {{~displayName~}}
+    </a>
+    {{#each tags}}
+    <span class="chip">{{.}}</span>
+    {{/each}}
+    <span class="source-link">
+      <a href="{{githubUrl}}" target=_blank>Source</a>
+    </span>
+  </div>
+
+  <div class="documentation">{{{markdown documentation}}}</div>
+</div>
