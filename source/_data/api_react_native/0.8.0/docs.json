@@ -42,6 +42,7 @@
               "documentation": "Makes an HTTP request.",
               "fileName": "#69",
               "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-react_native-v0.8.0/tfjs-react-native/src/platform_react_native.ts#L69-L120",
+              "tags": [],
               "isFunction": true,
               "displayName": "fetch",
               "urlHash": "fetch"
@@ -78,6 +79,7 @@
               "documentation": "Factory function for AsyncStorage IOHandler.\n\nThis `IOHandler` supports both `save` and `load`.\n\nFor each model's saved artifacts, three items are saved to async storage.\n   - `tensorflowjs_models/${modelPath}/info`: Contains meta-info about the\n     model, such as date saved, type of the topology, size in bytes, etc.\n   - `tensorflowjs_models/${modelPath}/model_without_weight`: The topology,\n     weights_specs and all other information about the model except for the\n     weights.\n   - `tensorflowjs_models/${modelPath}/weight_data`: Concatenated binary\n     weight values, stored as a base64-encoded string.\n\n```js\n  async function asyncStorageExample() {\n    // Define a model\n    const model = tf.sequential();\n    model.add(tf.layers.dense({units: 5, inputShape: [1]}));\n    model.add(tf.layers.dense({units: 1}));\n    model.compile({loss: 'meanSquaredError', optimizer: 'sgd'});\n\n    // Save the model to async storage\n    await model.save(asyncStorageIO('custom-model-test'));\n    // Load the model from async storage\n    await tf.loadLayersModel(asyncStorageIO('custom-model-test'));\n}\n```",
               "fileName": "#198",
               "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-react_native-v0.8.0/tfjs-react-native/src/async_storage_io.ts#L198-L200",
+              "tags": [],
               "isFunction": true,
               "displayName": "asyncStorageIO",
               "urlHash": "asyncStorageIO"
@@ -109,6 +111,7 @@
               "documentation": "Factory function for BundleResource IOHandler.\n\nThis `IOHandler` only supports `load`. It is designed to support\nloading models that have been statically bundled (at compile time)\nwith an app.\n\nThis IOHandler is not compatible with managed expo apps.\n\n```js\n  const modelJson = require('../path/to/model.json');\n  const modelWeights = require('../path/to/model_weights.bin');\n  async function bundleResourceIOExample() {\n    const model =\n      await tf.loadLayersModel(bundleResourceIO(modelJson, modelWeights));\n\n     const res = model.predict(tf.randomNormal([1, 28, 28, 1])) as tf.Tensor;\n  }\n```",
               "fileName": "#169",
               "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-react_native-v0.8.0/tfjs-react-native/src/bundle_resource_io.ts#L169-L185",
+              "tags": [],
               "isFunction": true,
               "displayName": "bundleResourceIO",
               "urlHash": "bundleResourceIO"
@@ -152,6 +155,7 @@
               "documentation": "Decode a JPEG-encoded image to a 3D Tensor of dtype `int32`.\n\n```js\n// Load an image as a Uint8Array\nconst imageUri = 'http://image-uri-here.example.com/image.jpg'; *\nconst response = await fetch(imageUri, {}, { isBinary: true });\nconst imageDataArrayBuffer = await response.arrayBuffer();\ncosnt imageData = new Uint8Array(imageDataArrayBuffer);\n\n// Decode image data to a tensor\nconst imageTensor = decodeJpeg(imageData);\n```",
               "fileName": "#34",
               "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-react_native-v0.8.0/tfjs-react-native/src/decode_image.ts#L34-L55",
+              "tags": [],
               "isFunction": true,
               "displayName": "decodeJpeg",
               "urlHash": "decodeJpeg"
@@ -182,6 +186,7 @@
               "documentation": "A higher-order-component (HOC) that augments the [Expo.Camera](https://docs.expo.io/versions/latest/sdk/camera/)\ncomponent with the ability to yield tensors representing the camera stream.\n\nBecause the camera data will be consumed in the process, the original\ncamera component will not render any content. This component provides\noptions that can be used to render the camera preview.\n\nNotably the component allows on-the-fly resizing of the camera image to\nsmaller dimensions, this speeds up data transfer between the native and\njavascript threads immensely.\n\n__In addition to__ all the props taken by Expo.Camera. The returned\ncomponent takes the following props\n\n- __use_custom_shaders_to_resize__: boolean — whether to use custom shaders\n   to resize the camera image to smaller dimensions that fit the output\n   tensor.\n   - If it is set to false (default and recommended), the resize will be done\n     by the underlying GL system when drawing the camera image texture to the\n     target output texture with TEXTURE_MIN_FILTER/TEXTURE_MAG_FILTER set to\n     gl.LINEAR, and there is no need to provide `cameraTextureWidth` and\n     `cameraTextureHeight` props below.\n   - If it is set to true (legacy), the resize will be done by the custom\n     shaders defined in `resize_bilinear_program_info.ts`. Setting it to true\n     also requires that client provide the correct `cameraTextureWidth` and\n     `cameraTextureHeight` props below. Unfortunately there is no official API\n     to get the camera texture size programmatically so they have to be\n     decided empirically. From our experience, it is hard to cover all cases\n     in this way because different devices models and/or preview sizes might\n     produce different camera texture sizes.\n- __cameraTextureWidth__: number — the width the camera preview texture\n   (see note above)\n- __cameraTextureHeight__: number — the height the camera preview texture\n   (see note above)\n- __resizeWidth__: number — the width of the output tensor\n- __resizeHeight__: number — the height of the output tensor\n- __resizeDepth__: number — the depth (num of channels) of the output tensor.\n    Should be 3 or 4.\n- __autorender__: boolean — if true the view will be automatically updated\n   with the contents of the camera. Set this to false if you want more direct\n   control on when rendering happens.\n- __rotation__: number — the degrees that the internal camera texture and\n   preview will be rotated. Accepted values: 0, +/- 90, +/- 180, +/- 270 or\n   360.\n- __onReady__: (\n    images: IterableIterator<tf.Tensor3D>,\n    updateCameraPreview: () => void,\n    gl: ExpoWebGLRenderingContext,\n    cameraTexture: WebGLTexture\n  ) => void — When the component is mounted and ready this callback will\n  be called and recieve the following 3 elements:\n    - __images__ is a (iterator)[https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_Generators]\n      that yields tensors representing the camera image on demand.\n    - __updateCameraPreview__ is a function that will update the WebGL render\n      buffer with the contents of the camera. Not needed when `autorender`\n      is true\n    - __gl__ is the ExpoWebGl context used to do the rendering. After calling\n      `updateCameraPreview` and any other operations you want to synchronize\n      to the camera rendering you must call gl.endFrameExp() to display it\n      on the screen. This is also provided in case you want to do other\n      rendering using WebGL. Not needed when `autorender` is true.\n    - __cameraTexture__ The underlying cameraTexture. This can be used to\n      implement your own __updateCameraPreview__.\n\n```js\nimport { Camera } from 'expo-camera';\nimport { cameraWithTensors } from '@tensorflow/tfjs-react-native';\n\nconst TensorCamera = cameraWithTensors(Camera);\n\nclass MyComponent {\n\n   handleCameraStream(images, updatePreview, gl) {\n     const loop = async () => {\n       const nextImageTensor = images.next().value\n\n       //\n       // do something with tensor here\n       //\n\n       // if autorender is false you need the following two lines.\n       // updatePreview();\n       // gl.endFrameEXP();\n\n       requestAnimationFrame(loop);\n     }\n     loop();\n   }\n\n   render() {\n    return <View>\n      <TensorCamera\n       // Standard Camera props\n       style={styles.camera}\n       type={Camera.Constants.Type.front}\n       // Tensor related props\n       resizeHeight={200}\n       resizeWidth={152}\n       resizeDepth={3}\n       onReady={this.handleCameraStream}\n       autorender={true}\n      />\n    </View>\n   }\n}\n```",
               "fileName": "#173",
               "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-react_native-v0.8.0/tfjs-react-native/src/camera/camera_stream.tsx#L173-L426",
+              "tags": [],
               "isFunction": true,
               "displayName": "cameraWithTensors",
               "urlHash": "cameraWithTensors"
@@ -206,6 +211,7 @@
               "documentation": "Utility function that tests the GL context for capabilities to enable\noptimizations.\n\nFor best performance this should be be called once before using the other\ncamera related functions.",
               "fileName": "#54",
               "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-react_native-v0.8.0/tfjs-react-native/src/camera/camera.ts#L54-L97",
+              "tags": [],
               "isFunction": true,
               "displayName": "detectGLCapabilities",
               "urlHash": "detectGLCapabilities"
@@ -328,6 +334,7 @@
               "documentation": "Creates a tensor3D from a texture.\n\nAllows for resizing the image and dropping the alpha channel from the\nresulting tensor.\n\nNote that if you the output depth is 3 then the output width should be a\nmultiple of 4.",
               "fileName": "#145",
               "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-react_native-v0.8.0/tfjs-react-native/src/camera/camera.ts#L145-L228",
+              "tags": [],
               "isFunction": true,
               "displayName": "fromTexture",
               "urlHash": "fromTexture"
@@ -394,6 +401,7 @@
               "documentation": "Render a texture to the GLView. This will use the default framebuffer\nand present the contents of the texture on the screen.",
               "fileName": "#240",
               "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-react_native-v0.8.0/tfjs-react-native/src/camera/camera.ts#L240-L253",
+              "tags": [],
               "isFunction": true,
               "displayName": "renderToGLView",
               "urlHash": "renderToGLView"
@@ -432,6 +440,7 @@
               "documentation": "Transfers tensor data to an RGB(A) texture.",
               "fileName": "#109",
               "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-react_native-v0.8.0/tfjs-react-native/src/camera/camera.ts#L109-L125",
+              "tags": [],
               "isFunction": true,
               "displayName": "toTexture",
               "urlHash": "toTexture"

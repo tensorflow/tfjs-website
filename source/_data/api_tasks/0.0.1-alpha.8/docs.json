@@ -49,6 +49,7 @@
                   "documentation": "Performs classification on the given image-like input, and returns\nresult.",
                   "fileName": "#43",
                   "githubUrl": "https://github.com/tensorflow/tfjs-models/tree/tasks-v0.0.1-alpha.8/tasks/src/tasks/image_classification/common.ts#L43-L45",
+                  "tags": [],
                   "isFunction": true,
                   "unpackedReturnTypes": [
                     {
@@ -99,10 +100,12 @@
                   "documentation": "Cleans up resources if needed.",
                   "fileName": "#52",
                   "githubUrl": "https://github.com/tensorflow/tfjs-models/tree/tasks-v0.0.1-alpha.8/tasks/src/tasks/image_classification/common.ts#L52-L52",
+                  "tags": [],
                   "isFunction": true,
                   "urlHash": "tfTask.ImageClassifier.cleanUp"
                 }
               ],
+              "tags": [],
               "isClass": true,
               "inheritsFrom": "TaskModel",
               "displayName": "tfTask.ImageClassifier",
@@ -123,6 +126,7 @@
               "fileName": "#112",
               "githubUrl": "https://github.com/tensorflow/tfjs-models/tree/tasks-v0.0.1-alpha.8/tasks/src/tasks/image_classification/custom_model_tflite.ts#L112-L113",
               "methods": [],
+              "tags": [],
               "isClass": true,
               "inheritsFrom": "ImageClassifierTFLite",
               "extraTypes": [
@@ -179,6 +183,7 @@
               "fileName": "#96",
               "githubUrl": "https://github.com/tensorflow/tfjs-models/tree/tasks-v0.0.1-alpha.8/tasks/src/tasks/image_classification/mobilenet_tfjs.ts#L96-L125",
               "methods": [],
+              "tags": [],
               "isClass": true,
               "inheritsFrom": "[tfTask.ImageClassifier](#class:ImageClassifier)",
               "extraTypes": [
@@ -222,6 +227,7 @@
               "fileName": "#126",
               "githubUrl": "https://github.com/tensorflow/tfjs-models/tree/tasks-v0.0.1-alpha.8/tasks/src/tasks/image_classification/mobilenet_tflite.ts#L126-L127",
               "methods": [],
+              "tags": [],
               "isClass": true,
               "inheritsFrom": "ImageClassifierTFLite",
               "extraTypes": [
@@ -323,6 +329,7 @@
                   "documentation": "Performs segmentation on the given image-like input, and returns\nresult.",
                   "fileName": "#42",
                   "githubUrl": "https://github.com/tensorflow/tfjs-models/tree/tasks-v0.0.1-alpha.8/tasks/src/tasks/image_segmentation/common.ts#L42-L44",
+                  "tags": [],
                   "isFunction": true,
                   "unpackedReturnTypes": [
                     {
@@ -406,10 +413,12 @@
                   "documentation": "Cleans up resources if needed.",
                   "fileName": "#51",
                   "githubUrl": "https://github.com/tensorflow/tfjs-models/tree/tasks-v0.0.1-alpha.8/tasks/src/tasks/image_segmentation/common.ts#L51-L51",
+                  "tags": [],
                   "isFunction": true,
                   "urlHash": "tfTask.ImageSegmenter.cleanUp"
                 }
               ],
+              "tags": [],
               "isClass": true,
               "inheritsFrom": "TaskModel",
               "displayName": "tfTask.ImageSegmenter",
@@ -430,6 +439,7 @@
               "fileName": "#104",
               "githubUrl": "https://github.com/tensorflow/tfjs-models/tree/tasks-v0.0.1-alpha.8/tasks/src/tasks/image_segmentation/deeplab_tfjs.ts#L104-L143",
               "methods": [],
+              "tags": [],
               "isClass": true,
               "inheritsFrom": "[tfTask.ImageSegmenter](#class:ImageSegmenter)",
               "extraTypes": [
@@ -465,6 +475,7 @@
               "fileName": "#92",
               "githubUrl": "https://github.com/tensorflow/tfjs-models/tree/tasks-v0.0.1-alpha.8/tasks/src/tasks/image_segmentation/deeplab_tflite.ts#L92-L93",
               "methods": [],
+              "tags": [],
               "isClass": true,
               "inheritsFrom": "ImageSegmenterTFLite",
               "extraTypes": [
@@ -507,6 +518,7 @@
               "fileName": "#111",
               "githubUrl": "https://github.com/tensorflow/tfjs-models/tree/tasks-v0.0.1-alpha.8/tasks/src/tasks/image_segmentation/custom_model_tflite.ts#L111-L112",
               "methods": [],
+              "tags": [],
               "isClass": true,
               "inheritsFrom": "ImageSegmenterTFLite",
               "extraTypes": [
@@ -594,6 +606,7 @@
                   "documentation": "Detects objects on the given image-like input, and returns result.",
                   "fileName": "#43",
                   "githubUrl": "https://github.com/tensorflow/tfjs-models/tree/tasks-v0.0.1-alpha.8/tasks/src/tasks/object_detection/common.ts#L43-L45",
+                  "tags": [],
                   "isFunction": true,
                   "unpackedReturnTypes": [
                     {
@@ -705,10 +718,12 @@
                   "documentation": "Cleans up resources if needed.",
                   "fileName": "#52",
                   "githubUrl": "https://github.com/tensorflow/tfjs-models/tree/tasks-v0.0.1-alpha.8/tasks/src/tasks/object_detection/common.ts#L52-L52",
+                  "tags": [],
                   "isFunction": true,
                   "urlHash": "tfTask.ObjectDetector.cleanUp"
                 }
               ],
+              "tags": [],
               "isClass": true,
               "inheritsFrom": "TaskModel",
               "displayName": "tfTask.ObjectDetector",
@@ -729,6 +744,7 @@
               "fileName": "#106",
               "githubUrl": "https://github.com/tensorflow/tfjs-models/tree/tasks-v0.0.1-alpha.8/tasks/src/tasks/object_detection/cocossd_tfjs.ts#L106-L148",
               "methods": [],
+              "tags": [],
               "isClass": true,
               "inheritsFrom": "[tfTask.ObjectDetector](#class:ObjectDetector)",
               "extraTypes": [
@@ -779,6 +795,7 @@
               "fileName": "#92",
               "githubUrl": "https://github.com/tensorflow/tfjs-models/tree/tasks-v0.0.1-alpha.8/tasks/src/tasks/object_detection/cocossd_tflite.ts#L92-L93",
               "methods": [],
+              "tags": [],
               "isClass": true,
               "inheritsFrom": "ObjectDetectorTFLite",
               "extraTypes": [
@@ -828,6 +845,7 @@
               "fileName": "#111",
               "githubUrl": "https://github.com/tensorflow/tfjs-models/tree/tasks-v0.0.1-alpha.8/tasks/src/tasks/object_detection/custom_model_tflite.ts#L111-L112",
               "methods": [],
+              "tags": [],
               "isClass": true,
               "inheritsFrom": "ObjectDetectorTFLite",
               "extraTypes": [
@@ -922,6 +940,7 @@
                   "documentation": "Detects sentiment on the given text, and returns result.",
                   "fileName": "#41",
                   "githubUrl": "https://github.com/tensorflow/tfjs-models/tree/tasks-v0.0.1-alpha.8/tasks/src/tasks/sentiment_detection/common.ts#L41-L42",
+                  "tags": [],
                   "isFunction": true,
                   "unpackedReturnTypes": [
                     {
@@ -972,10 +991,12 @@
                   "documentation": "Cleans up resources if needed.",
                   "fileName": "#49",
                   "githubUrl": "https://github.com/tensorflow/tfjs-models/tree/tasks-v0.0.1-alpha.8/tasks/src/tasks/sentiment_detection/common.ts#L49-L49",
+                  "tags": [],
                   "isFunction": true,
                   "urlHash": "tfTask.SentimentDetector.cleanUp"
                 }
               ],
+              "tags": [],
               "isClass": true,
               "inheritsFrom": "TaskModel",
               "displayName": "tfTask.SentimentDetector",
@@ -996,6 +1017,7 @@
               "fileName": "#107",
               "githubUrl": "https://github.com/tensorflow/tfjs-models/tree/tasks-v0.0.1-alpha.8/tasks/src/tasks/sentiment_detection/movie_review_tflite.ts#L107-L146",
               "methods": [],
+              "tags": [],
               "isClass": true,
               "inheritsFrom": "[tfTask.SentimentDetector](#class:SentimentDetector)",
               "extraTypes": [
@@ -1031,6 +1053,7 @@
               "fileName": "#118",
               "githubUrl": "https://github.com/tensorflow/tfjs-models/tree/tasks-v0.0.1-alpha.8/tasks/src/tasks/sentiment_detection/toxicity_tfjs.ts#L118-L142",
               "methods": [],
+              "tags": [],
               "isClass": true,
               "inheritsFrom": "[tfTask.SentimentDetector](#class:SentimentDetector)",
               "extraTypes": [
@@ -1118,6 +1141,7 @@
                   "documentation": "Predicts classes on the given text, and returns result.",
                   "fileName": "#42",
                   "githubUrl": "https://github.com/tensorflow/tfjs-models/tree/tasks-v0.0.1-alpha.8/tasks/src/tasks/nl_classification/common.ts#L42-L42",
+                  "tags": [],
                   "isFunction": true,
                   "unpackedReturnTypes": [
                     {
@@ -1168,10 +1192,12 @@
                   "documentation": "Cleans up resources if needed.",
                   "fileName": "#49",
                   "githubUrl": "https://github.com/tensorflow/tfjs-models/tree/tasks-v0.0.1-alpha.8/tasks/src/tasks/nl_classification/common.ts#L49-L49",
+                  "tags": [],
                   "isFunction": true,
                   "urlHash": "tfTask.NLClassifier.cleanUp"
                 }
               ],
+              "tags": [],
               "isClass": true,
               "inheritsFrom": "TaskModel",
               "displayName": "tfTask.NLClassifier",
@@ -1192,6 +1218,7 @@
               "fileName": "#110",
               "githubUrl": "https://github.com/tensorflow/tfjs-models/tree/tasks-v0.0.1-alpha.8/tasks/src/tasks/nl_classification/custom_model_tflite.ts#L110-L111",
               "methods": [],
+              "tags": [],
               "isClass": true,
               "inheritsFrom": "NLClassifierTFLite",
               "extraTypes": [
@@ -1314,6 +1341,7 @@
                   "documentation": "Gets the answer to the given question based on the content of a given\npassage.",
                   "fileName": "#41",
                   "githubUrl": "https://github.com/tensorflow/tfjs-models/tree/tasks-v0.0.1-alpha.8/tasks/src/tasks/question_and_answer/common.ts#L41-L42",
+                  "tags": [],
                   "isFunction": true,
                   "unpackedReturnTypes": [
                     {
@@ -1378,10 +1406,12 @@
                   "documentation": "Cleans up resources if needed.",
                   "fileName": "#49",
                   "githubUrl": "https://github.com/tensorflow/tfjs-models/tree/tasks-v0.0.1-alpha.8/tasks/src/tasks/question_and_answer/common.ts#L49-L49",
+                  "tags": [],
                   "isFunction": true,
                   "urlHash": "tfTask.QuestionAnswerer.cleanUp"
                 }
               ],
+              "tags": [],
               "isClass": true,
               "inheritsFrom": "TaskModel",
               "displayName": "tfTask.QuestionAnswerer",
@@ -1402,6 +1432,7 @@
               "fileName": "#98",
               "githubUrl": "https://github.com/tensorflow/tfjs-models/tree/tasks-v0.0.1-alpha.8/tasks/src/tasks/question_and_answer/bert_qa_tfjs.ts#L98-L116",
               "methods": [],
+              "tags": [],
               "isClass": true,
               "inheritsFrom": "[tfTask.QuestionAnswerer](#class:QuestionAnswerer)",
               "extraTypes": [
@@ -1437,6 +1468,7 @@
               "fileName": "#93",
               "githubUrl": "https://github.com/tensorflow/tfjs-models/tree/tasks-v0.0.1-alpha.8/tasks/src/tasks/question_and_answer/bert_qa_tflite.ts#L93-L94",
               "methods": [],
+              "tags": [],
               "isClass": true,
               "inheritsFrom": "QuestionAnswererTFLite",
               "extraTypes": [
@@ -1464,6 +1496,7 @@
               "fileName": "#110",
               "githubUrl": "https://github.com/tensorflow/tfjs-models/tree/tasks-v0.0.1-alpha.8/tasks/src/tasks/question_and_answer/custom_model_tflite.ts#L110-L111",
               "methods": [],
+              "tags": [],
               "isClass": true,
               "inheritsFrom": "QuestionAnswererTFLite",
               "extraTypes": [
