@@ -44,10 +44,12 @@
                   "documentation": "Execute the inference for the input tensors.",
                   "fileName": "#83",
                   "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-tflite-v0.0.1-alpha.9/tfjs-tflite/src/tflite_model.ts#L83-L157",
+                  "tags": [],
                   "isFunction": true,
                   "urlHash": "tflite.TFLiteModel.predict"
                 }
               ],
+              "tags": [],
               "isClass": true,
               "inheritsFrom": "InferenceModel",
               "displayName": "tflite.TFLiteModel",
@@ -106,6 +108,7 @@
               "documentation": "Loads a TFLiteModel from the given model url.",
               "fileName": "#319",
               "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-tflite-v0.0.1-alpha.9/tfjs-tflite/src/tflite_model.ts#L319-L332",
+              "tags": [],
               "isFunction": true,
               "displayName": "tflite.loadTFLiteModel",
               "urlHash": "loadTFLiteModel"
@@ -135,6 +138,7 @@
               "documentation": "Returns the compatible tfjs DataType from the given TFLite data type.",
               "fileName": "#341",
               "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-tflite-v0.0.1-alpha.9/tfjs-tflite/src/tflite_model.ts#L341-L362",
+              "tags": [],
               "isFunction": true,
               "displayName": "tflite.getDTypeFromTFLiteType",
               "urlHash": "getDTypeFromTFLiteType"
