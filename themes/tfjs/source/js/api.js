@@ -17,10 +17,10 @@
 
 'use strict';
 
-document.addEventListener('DOMContentLoaded', function(e) {
+document.addEventListener('DOMContentLoaded', function (e) {
   // Set up version selector
   var select = new mdc.select.MDCSelect(document.querySelector('.mdc-select'));
-  select.listen('MDCSelect:change', function() {
+  select.listen('MDCSelect:change', function () {
     var link = select.selectedOptions[0].getAttribute('data-link');
     window.location.href = link;
   });
@@ -28,10 +28,10 @@ document.addEventListener('DOMContentLoaded', function(e) {
   var isInViewport = function isInViewport(elem) {
     var bounding = elem.getBoundingClientRect();
     return bounding.top >= 0 && bounding.left >= 0 &&
-        bounding.bottom <=
-        (window.innerHeight || document.documentElement.clientHeight) &&
-        bounding.right <=
-        (window.innerWidth || document.documentElement.clientWidth);
+      bounding.bottom <=
+      (window.innerHeight || document.documentElement.clientHeight) &&
+      bounding.right <=
+      (window.innerWidth || document.documentElement.clientWidth);
   };
   // Find the symbol closest to the top of the page in the reference
   // section and highlight it in the TOC section.
@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', function(e) {
 
     if (found) {
       tocFound =
-          tocArea.querySelector('[href="#' + found.getAttribute('name') + '"]');
+        tocArea.querySelector('[href="#' + found.getAttribute('name') + '"]');
 
       if (tocFound) {
         if (lastHighlightedTocElement) {
@@ -71,6 +71,16 @@ document.addEventListener('DOMContentLoaded', function(e) {
     }
   }
 
+  // Prevent scrolling of other element when TOC section's scroll position
+  // reaches top/bottom.
+  tocArea.onmousewheel = function (e) {
+    e = e || window.event;
+    tocArea.scrollTop -= e.wheelDeltaY;
+    if (e.preventDefault) {
+      e.preventDefault();
+    }
+    e.returnValue = false;
+  }
   window.addEventListener('scroll', updateTocView);
   window.addEventListener('resize', updateTocView);
 
