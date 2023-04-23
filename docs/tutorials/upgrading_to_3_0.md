@@ -6,7 +6,7 @@ Release notes are [available here](https://github.com/tensorflow/tfjs/releases).
 
 ### Custom Modules
 
-We provide support for creating custom tfjs modules to support producing size optimized browser bundles. Ship less JavaScript to your users. To learn more about this, [see this tutorial](size_optimized_bundles.md).
+We provide support for creating custom tfjs modules to support producing size optimized browser bundles. Ship less JavaScript to your users. To learn more about this, [see this tutorial](https://github.com/tensorflow/tfjs-website/blob/master/docs/tutorials/deployment/size_optimized_bundles.md).
 
 This feature is geared towards deployment in the browser, however enabling this capability motivates some of the changes described below.
 
