@@ -157,7 +157,7 @@ function initCodeBlocks(selector) {
 
     block.parentElement.insertAdjacentElement('afterend', consoleElement);
 
-    function runCodeSnippet() {
+    consoleRunElement.addEventListener('click', async function() {
       var consoleLogElement =
           this.parentElement.querySelector('.snippet-console-log');
 
@@ -167,16 +167,14 @@ function initCodeBlocks(selector) {
       } else {
         snippetText = this.parentElement.previousElementSibling.innerText;
       }
-      executeCodeSnippet(consoleLogElement, snippetText);
-    }
 
-    if (tf != null && tf.ready != null) {
-      tf.ready().then(() => {
-        consoleRunElement.addEventListener('click', runCodeSnippet);
-      });
-    } else {
-      consoleRunElement.addEventListener('click', runCodeSnippet);
-    }
+      if (tf == null || tf.ready == null) {
+        throw new Error('Failed to load TFJS.');
+      }
+      await tf.ready();
+
+      executeCodeSnippet(consoleLogElement, snippetText);
+    });
 
     consoleEditElement.addEventListener('click', function() {
       makeEditable(block);
