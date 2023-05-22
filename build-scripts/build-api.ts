@@ -25,6 +25,7 @@ import {generateDocs, mergeDocs, writeManifestAndTemplate} from './build_api_hel
 //
 // Get command line params
 commander.option('--local', 'use a local build').parse(process.argv);
+const options = commander.opts();
 
 // Get package.json of union package
 const unionPackage = JSON.parse(fs.readFileSync(
