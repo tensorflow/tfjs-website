@@ -87,7 +87,7 @@ We also no longer register gradients for kernels by default. If you want gradien
 
 ### Code Reorganization, kernel & gradient registries
 
-We have re-organized our code to make it easier to both contribute ops and kernels as well as implement custom ops, kernels and gradients. [See this guide for more information](custom_ops_kernels_gradients.md).
+We have re-organized our code to make it easier to both contribute ops and kernels as well as implement custom ops, kernels and gradients. [See this guide for more information](https://github.com/tensorflow/tfjs-website/blob/master/docs/guide/custom_ops_kernels_gradients.md).
 
 ### Breaking Changes
 
