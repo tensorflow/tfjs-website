@@ -74,6 +74,13 @@ const flagFiles = [
     version: tfjsVersion,
     outputFolder: versionedDocsFolder
   },
+  {
+    packageName: 'tfjs-backend-webgpu',
+    fileName: 'src/flags_webgpu.ts',
+    github: `https://github.com/tensorflow/tfjs/tree/${tfjsTag}/tfjs-backend-webgpu`,
+    version: tfjsVersion,
+    outputFolder: versionedDocsFolder
+  },
 ];
 
 console.log(`********* Generating Docs *********`);

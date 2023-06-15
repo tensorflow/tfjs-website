@@ -66,6 +66,26 @@ function isNonBrowserApiPage(path) {
       isTflitePage(path) || isTaskApiPage(path);
 }
 
+// WebGPU is supported since version 4.6.0, WebGL is 2.0.0, Wasm is 1.7.0.
+const firstWebgpuVersion = '4.6.0';
+const firstWebglVersion = '2.0.0';
+const firstWasmVersion = '1.7.0';
+function isVersionSupported(version, oldVersion) {
+  const versionArray = version.split('.');
+  const oldVersionArray = oldVersion.split('.');
+  for (var i = 0; i < versionArray.length; i++) {
+    const a = ~~versionArray[i];
+    const b = ~~oldVersionArray[i];
+    if (a > b) {
+      return true
+    };
+    if (a < b) {
+      return false;
+    }
+  }
+  return true;
+}
+
 module.exports = function(hexo) {
   return {
     toJson: function(obj) {
@@ -81,6 +101,8 @@ module.exports = function(hexo) {
     isApiNodePage: isApiNodePage,
 
     isNonBrowserApiPage: isNonBrowserApiPage,
+
+    isVersionSupported: isVersionSupported,
 
     getApi: function(siteData, versionString, path) {
       if (isApiVisPage(path)) {
@@ -147,6 +169,18 @@ module.exports = function(hexo) {
 
     latestVersion: function(prefix) {
       return hexo.locals.toObject().data[`${prefix}/api_manifest`].versions[0];
+    },
+
+    isWebGPUSupported: function(version) {
+      return isVersionSupported(version, firstWebgpuVersion);
+    },
+
+    isWebGLSupported: function(version) {
+      return isVersionSupported(version, firstWebglVersion);
+    },
+
+    isWasmSupported: function(version) {
+      return isVersionSupported(version, firstWasmVersion);
     },
 
     latestUnion: function() {

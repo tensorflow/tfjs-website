@@ -171,6 +171,11 @@ function initCodeBlocks(selector) {
       if (tf == null || tf.ready == null) {
         throw new Error('Failed to load TFJS.');
       }
+      const backendName =
+          document.querySelector('.mdc-select__selected-text.backend-selector')
+              .innerText;
+
+      tf.setBackend(backendName);
       await tf.ready();
 
       executeCodeSnippet(consoleLogElement, snippetText);

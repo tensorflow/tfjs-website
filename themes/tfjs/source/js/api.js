@@ -19,11 +19,13 @@
 
 document.addEventListener('DOMContentLoaded', function (e) {
   // Set up version selector
-  var select = new mdc.select.MDCSelect(document.querySelector('.mdc-select'));
+  var select = new mdc.select.MDCSelect(document.querySelector('.mdc-select.version-selector'));
   select.listen('MDCSelect:change', function () {
     var link = select.selectedOptions[0].getAttribute('data-link');
     window.location.href = link;
   });
+  // Set up backend selector
+  new mdc.select.MDCSelect(document.querySelector('.mdc-select.backend-selector'));
 
   var isInViewport = function isInViewport(elem) {
     var bounding = elem.getBoundingClientRect();

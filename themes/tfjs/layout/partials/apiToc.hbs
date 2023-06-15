@@ -17,6 +17,27 @@
         </ul>
       </div>
     </div>
+    <div class="mdc-select backend-selector" role="listbox">
+      <div class="mdc-select__surface" tabindex="0">
+        <div class="mdc-select__label mdc-select__label--float-above">Backend</div>
+        <div class="mdc-select__selected-text backend-selector"></div>
+        <div class="mdc-select__bottom-line"></div>
+      </div>
+      <div class="mdc-menu mdc-select__menu">
+        <ul class="mdc-list mdc-menu__items">
+          {{#if (isWebGPUSupported page.title)}}
+          <li class="mdc-list-item" role="option" tabindex="0" data-version={{this}} backend-name='webgpu' aria-selected>webgpu</li>
+          {{/if}}
+          {{#if (isWebGLSupported page.title)}}
+          <li class="mdc-list-item" role="option" tabindex="0" data-version={{this}} backend-name='webgl'>webgl</li>
+          {{/if}}
+          {{#if (isWasmSupported page.title)}}
+          <li class="mdc-list-item" role="option" tabindex="0" data-version={{this}} backend-name='wasm'>wasm</li>
+          {{/if}}
+          <li class="mdc-list-item" role="option" tabindex="0" data-version={{this}} backend-name='cpu' {{#unless (isWebGPUSupported page.title)}}aria-selected {{/unless}}>cpu</li>
+        </ul>
+      </div>
+    </div>
   </div>
   {{#with (getApi page.site.data page.title path)}} {{#headings}} <div class="heading">
     <div class="symbol">

@@ -24,6 +24,7 @@
   "dependencies": {
     "@tensorflow-models/tasks": "0.0.1-alpha.8",
     "@tensorflow/tfjs": "4.8.0",
+    "@tensorflow/tfjs-backend-webgpu": "4.8.0",
     "@tensorflow/tfjs-node": "4.8.0",
     "@tensorflow/tfjs-react-native": "0.8.0",
     "@tensorflow/tfjs-tflite": "0.0.1-alpha.9",
