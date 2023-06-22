@@ -1,0 +1,638 @@
+{
+  "headings": [
+    {
+      "name": "TensorBoard",
+      "description": "<p>Functions for visualizing training in  \n<a href=\"https://github.com/tensorflow/tensorboard\">TensorBoard</a></p>",
+      "subheadings": [
+        {
+          "symbols": [
+            {
+              "docInfo": {
+                "heading": "TensorBoard",
+                "namespace": "node"
+              },
+              "symbolName": "summaryFileWriter",
+              "namespace": "node",
+              "paramStr": "(logdir, maxQueue?, flushMillis?, filenameSuffix?)",
+              "parameters": [
+                {
+                  "name": "logdir",
+                  "documentation": "Log directory in which the summary data will be written.",
+                  "type": "string",
+                  "optional": false,
+                  "isConfigParam": false
+                },
+                {
+                  "name": "maxQueue",
+                  "documentation": "Maximum queue length (default: `10`).",
+                  "type": "number",
+                  "optional": true,
+                  "isConfigParam": false
+                },
+                {
+                  "name": "flushMillis",
+                  "documentation": "Flush every __ milliseconds (default: `120e3`, i.e,\n`120` seconds).",
+                  "type": "number",
+                  "optional": true,
+                  "isConfigParam": false
+                },
+                {
+                  "name": "filenameSuffix",
+                  "documentation": "Suffix of the protocol buffer file names to be\nwritten in the `logdir` (default: `.v2`).",
+                  "type": "string",
+                  "optional": true,
+                  "isConfigParam": false
+                }
+              ],
+              "returnType": "SummaryFileWriter",
+              "documentation": "Create a summary file writer for TensorBoard.\n\nExample:\n```js\nconst tf = require('@tensorflow/tfjs-node');\n\nconst summaryWriter = tf.node.summaryFileWriter('/tmp/tfjs_tb_logdir');\n\nfor (let step = 0; step < 100; ++step) {\n  summaryWriter.scalar('dummyValue', Math.sin(2 * Math.PI * step / 8), step);\n}\n```",
+              "fileName": "#122",
+              "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-v4.8.0/tfjs-node/src/tensorboard.ts#L122-L140",
+              "tags": [],
+              "isFunction": true,
+              "displayName": "tf.node.summaryFileWriter",
+              "urlHash": "node.summaryFileWriter"
+            },
+            {
+              "docInfo": {
+                "heading": "TensorBoard",
+                "namespace": "node"
+              },
+              "symbolName": "tensorBoard",
+              "namespace": "node",
+              "paramStr": "(logdir?, args?)",
+              "parameters": [
+                {
+                  "name": "logdir",
+                  "documentation": "Directory to which the logs will be written.",
+                  "type": "string",
+                  "optional": true,
+                  "isConfigParam": false
+                },
+                {
+                  "name": "args",
+                  "documentation": "Optional configuration arguments.",
+                  "type": "Object",
+                  "optional": true,
+                  "isConfigParam": false
+                },
+                {
+                  "name": "updateFreq",
+                  "type": "'batch'|'epoch'",
+                  "documentation": "The frequency at which loss and metric values are written to logs.\n\nCurrently supported options are:\n\n- 'batch': Write logs at the end of every batch of training, in addition\n   to the end of every epoch of training.\n- 'epoch': Write logs at the end of every epoch of training.\n\nNote that writing logs too often slows down the training.\n\nDefault: 'epoch'.",
+                  "optional": false,
+                  "isConfigParam": true
+                },
+                {
+                  "name": "histogramFreq",
+                  "type": "number",
+                  "documentation": "The frequency (in epochs) at which to compute activation and weight\nhistograms for the layers of the model.\n\nIf set to 0, histograms won't be computed.\n\nValidation data (or split) must be specified for histogram visualizations.\n\nDefault: 0.",
+                  "optional": false,
+                  "isConfigParam": true
+                }
+              ],
+              "returnType": "TensorBoardCallback",
+              "documentation": "Callback for logging to TensorBoard during training.\n\nWrites the loss and metric values (if any) to the specified log directory\n(`logdir`) which can be ingested and visualized by TensorBoard.\nThis callback is usually passed as a callback to `tf.Model.fit()` or\n`tf.Model.fitDataset()` calls during model training. The frequency at which\nthe values are logged can be controlled with the `updateFreq` field of the\nconfiguration object (2nd argument).\n\nUsage example:\n```js\n// Constructor a toy multilayer-perceptron regressor for demo purpose.\nconst model = tf.sequential();\nmodel.add(\n     tf.layers.dense({units: 100, activation: 'relu', inputShape: [200]}));\nmodel.add(tf.layers.dense({units: 1}));\nmodel.compile({\n   loss: 'meanSquaredError',\n   optimizer: 'sgd',\n   metrics: ['MAE']\n});\n\n// Generate some random fake data for demo purpose.\nconst xs = tf.randomUniform([10000, 200]);\nconst ys = tf.randomUniform([10000, 1]);\nconst valXs = tf.randomUniform([1000, 200]);\nconst valYs = tf.randomUniform([1000, 1]);\n\n// Start model training process.\nawait model.fit(xs, ys, {\n   epochs: 100,\n   validationData: [valXs, valYs],\n    // Add the tensorBoard callback here.\n   callbacks: tf.node.tensorBoard('/tmp/fit_logs_1')\n});\n```\n\nThen you can use the following commands to point tensorboard\nto the logdir:\n\n```sh\npip install tensorboard  # Unless you've already installed it.\ntensorboard --logdir /tmp/fit_logs_1\n```",
+              "fileName": "#363",
+              "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-v4.8.0/tfjs-node/src/callbacks.ts#L363-L366",
+              "tags": [],
+              "isFunction": true,
+              "displayName": "tf.node.tensorBoard",
+              "urlHash": "node.tensorBoard"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Operations",
+      "description": "",
+      "subheadings": [
+        {
+          "name": "Images",
+          "symbols": [
+            {
+              "docInfo": {
+                "heading": "Operations",
+                "subheading": "Images",
+                "namespace": "node"
+              },
+              "symbolName": "decodeBmp",
+              "namespace": "node",
+              "paramStr": "(contents, channels?)",
+              "parameters": [
+                {
+                  "name": "contents",
+                  "documentation": "The BMP-encoded image in an Uint8Array.",
+                  "type": "Uint8Array",
+                  "optional": false,
+                  "isConfigParam": false
+                },
+                {
+                  "name": "channels",
+                  "documentation": "An optional int. Defaults to 0. Accepted values are\n0: use the number of channels in the BMP-encoded image.\n3: output an RGB image.\n4: output an RGBA image.",
+                  "type": "number",
+                  "optional": true,
+                  "isConfigParam": false
+                }
+              ],
+              "returnType": "Tensor3D",
+              "documentation": "Decode the first frame of a BMP-encoded image to a 3D Tensor of dtype\n`int32`.",
+              "fileName": "#110",
+              "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-v4.8.0/tfjs-node/src/image.ts#L110-L115",
+              "tags": [],
+              "isFunction": true,
+              "displayName": "tf.node.decodeBmp",
+              "urlHash": "node.decodeBmp"
+            },
+            {
+              "docInfo": {
+                "heading": "Operations",
+                "subheading": "Images",
+                "namespace": "node"
+              },
+              "symbolName": "decodeGif",
+              "namespace": "node",
+              "paramStr": "(contents)",
+              "parameters": [
+                {
+                  "name": "contents",
+                  "documentation": "The GIF-encoded image in an Uint8Array.",
+                  "type": "Uint8Array",
+                  "optional": false,
+                  "isConfigParam": false
+                }
+              ],
+              "returnType": "Tensor4D",
+              "documentation": "Decode the frame(s) of a GIF-encoded image to a 4D Tensor of dtype `int32`.",
+              "fileName": "#126",
+              "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-v4.8.0/tfjs-node/src/image.ts#L126-L131",
+              "tags": [],
+              "isFunction": true,
+              "displayName": "tf.node.decodeGif",
+              "urlHash": "node.decodeGif"
+            },
+            {
+              "docInfo": {
+                "heading": "Operations",
+                "subheading": "Images",
+                "namespace": "node"
+              },
+              "symbolName": "decodeImage",
+              "namespace": "node",
+              "paramStr": "(content, channels?, dtype?, expandAnimations?)",
+              "parameters": [
+                {
+                  "name": "content",
+                  "documentation": "The encoded image in an Uint8Array.",
+                  "type": "Uint8Array",
+                  "optional": false,
+                  "isConfigParam": false
+                },
+                {
+                  "name": "channels",
+                  "documentation": "An optional int. Defaults to 0, use the number of channels in\nthe image. Number of color channels for the decoded image. It is used\nwhen image is type Png, Bmp, or Jpeg.",
+                  "type": "number",
+                  "optional": true,
+                  "isConfigParam": false
+                },
+                {
+                  "name": "dtype",
+                  "documentation": "The data type of the result. Only `int32` is supported at this\ntime.",
+                  "type": "string",
+                  "optional": true,
+                  "isConfigParam": false
+                },
+                {
+                  "name": "expandAnimations",
+                  "documentation": "A boolean which controls the shape of the returned\nop's output. If True, the returned op will produce a 3-D tensor for PNG,\nJPEG, and BMP files; and a 4-D tensor for all GIFs, whether animated or\nnot. If, False, the returned op will produce a 3-D tensor for all file\ntypes and will truncate animated GIFs to the first frame.",
+                  "type": "boolean",
+                  "optional": true,
+                  "isConfigParam": false
+                }
+              ],
+              "returnType": "Tensor3D|Tensor4D",
+              "documentation": "Given the encoded bytes of an image, it returns a 3D or 4D tensor of the\ndecoded image. Supports BMP, GIF, JPEG and PNG formats.",
+              "fileName": "#155",
+              "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-v4.8.0/tfjs-node/src/image.ts#L155-L186",
+              "tags": [],
+              "isFunction": true,
+              "displayName": "tf.node.decodeImage",
+              "urlHash": "node.decodeImage"
+            },
+            {
+              "docInfo": {
+                "heading": "Operations",
+                "subheading": "Images",
+                "namespace": "node"
+              },
+              "symbolName": "decodeJpeg",
+              "namespace": "node",
+              "paramStr": "(contents, channels?, ratio?, fancyUpscaling?, tryRecoverTruncated?, acceptableFraction?, dctMethod?)",
+              "parameters": [
+                {
+                  "name": "contents",
+                  "documentation": "The JPEG-encoded image in an Uint8Array.",
+                  "type": "Uint8Array",
+                  "optional": false,
+                  "isConfigParam": false
+                },
+                {
+                  "name": "channels",
+                  "documentation": "An optional int. Defaults to 0. Accepted values are\n0: use the number of channels in the JPEG-encoded image.\n1: output a grayscale image.\n3: output an RGB image.",
+                  "type": "number",
+                  "optional": true,
+                  "isConfigParam": false
+                },
+                {
+                  "name": "ratio",
+                  "documentation": "An optional int. Defaults to 1. Downscaling ratio. It is used\nwhen image is type Jpeg.",
+                  "type": "number",
+                  "optional": true,
+                  "isConfigParam": false
+                },
+                {
+                  "name": "fancyUpscaling",
+                  "documentation": "An optional bool. Defaults to True. If true use a\nslower but nicer upscaling of the chroma planes. It is used when image is\ntype Jpeg.",
+                  "type": "boolean",
+                  "optional": true,
+                  "isConfigParam": false
+                },
+                {
+                  "name": "tryRecoverTruncated",
+                  "documentation": "An optional bool. Defaults to False. If true try\nto recover an image from truncated input. It is used when image is type\nJpeg.",
+                  "type": "boolean",
+                  "optional": true,
+                  "isConfigParam": false
+                },
+                {
+                  "name": "acceptableFraction",
+                  "documentation": "An optional float. Defaults to 1. The minimum\nrequired fraction of lines before a truncated input is accepted. It is\nused when image is type Jpeg.",
+                  "type": "number",
+                  "optional": true,
+                  "isConfigParam": false
+                },
+                {
+                  "name": "dctMethod",
+                  "documentation": "An optional string. Defaults to \"\". string specifying a hint\nabout the algorithm used for decompression. Defaults to \"\" which maps to\na system-specific default. Currently valid values are [\"INTEGER_FAST\",\n\"INTEGER_ACCURATE\"]. The hint may be ignored (e.g., the internal jpeg\nlibrary changes to a version that does not have that specific option.) It\nis used when image is type Jpeg.",
+                  "type": "string",
+                  "optional": true,
+                  "isConfigParam": false
+                }
+              ],
+              "returnType": "Tensor3D",
+              "documentation": "Decode a JPEG-encoded image to a 3D Tensor of dtype `int32`.",
+              "fileName": "#57",
+              "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-v4.8.0/tfjs-node/src/image.ts#L57-L69",
+              "tags": [],
+              "isFunction": true,
+              "displayName": "tf.node.decodeJpeg",
+              "urlHash": "node.decodeJpeg"
+            },
+            {
+              "docInfo": {
+                "heading": "Operations",
+                "subheading": "Images",
+                "namespace": "node"
+              },
+              "symbolName": "decodePng",
+              "namespace": "node",
+              "paramStr": "(contents, channels?, dtype?)",
+              "parameters": [
+                {
+                  "name": "contents",
+                  "documentation": "The PNG-encoded image in an Uint8Array.",
+                  "type": "Uint8Array",
+                  "optional": false,
+                  "isConfigParam": false
+                },
+                {
+                  "name": "channels",
+                  "documentation": "An optional int. Defaults to 0. Accepted values are\n0: use the number of channels in the PNG-encoded image.\n1: output a grayscale image.\n3: output an RGB image.\n4: output an RGBA image.",
+                  "type": "number",
+                  "optional": true,
+                  "isConfigParam": false
+                },
+                {
+                  "name": "dtype",
+                  "documentation": "The data type of the result. Only `int32` is supported at this\ntime.",
+                  "type": "string",
+                  "optional": true,
+                  "isConfigParam": false
+                }
+              ],
+              "returnType": "Tensor3D",
+              "documentation": "Decode a PNG-encoded image to a 3D Tensor of dtype `int32`.",
+              "fileName": "#86",
+              "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-v4.8.0/tfjs-node/src/image.ts#L86-L95",
+              "tags": [],
+              "isFunction": true,
+              "displayName": "tf.node.decodePng",
+              "urlHash": "node.decodePng"
+            },
+            {
+              "docInfo": {
+                "heading": "Operations",
+                "subheading": "Images",
+                "namespace": "node"
+              },
+              "symbolName": "encodeJpeg",
+              "namespace": "node",
+              "paramStr": "(image, format?, quality?, progressive?, optimizeSize?, chromaDownsampling?, densityUnit?, xDensity?, yDensity?, xmpMetadata?)",
+              "parameters": [
+                {
+                  "name": "image",
+                  "documentation": "A 3-D uint8 Tensor of shape [height, width, channels].",
+                  "type": "Tensor3D",
+                  "optional": false,
+                  "isConfigParam": false
+                },
+                {
+                  "name": "format",
+                  "documentation": "An optional string from: \"\", \"grayscale\", \"rgb\".\nDefaults to \"\". Per pixel image format.\n- '': Use a default format based on the number of channels in the image.\n- grayscale: Output a grayscale JPEG image. The channels dimension of\nimage must be 1.\n- rgb: Output an RGB JPEG image. The channels dimension of image must\nbe 3.",
+                  "type": "''|'grayscale'|'rgb'",
+                  "optional": true,
+                  "isConfigParam": false
+                },
+                {
+                  "name": "quality",
+                  "documentation": "An optional int. Defaults to 95. Quality of the compression\nfrom 0 to 100 (higher is better and slower).",
+                  "type": "number",
+                  "optional": true,
+                  "isConfigParam": false
+                },
+                {
+                  "name": "progressive",
+                  "documentation": "An optional bool. Defaults to False. If True, create a\nJPEG that loads progressively (coarse to fine).",
+                  "type": "boolean",
+                  "optional": true,
+                  "isConfigParam": false
+                },
+                {
+                  "name": "optimizeSize",
+                  "documentation": "An optional bool. Defaults to False. If True, spend\nCPU/RAM to reduce size with no quality change.",
+                  "type": "boolean",
+                  "optional": true,
+                  "isConfigParam": false
+                },
+                {
+                  "name": "chromaDownsampling",
+                  "documentation": "An optional bool. Defaults to True.\nSee http://en.wikipedia.org/wiki/Chroma_subsampling.",
+                  "type": "boolean",
+                  "optional": true,
+                  "isConfigParam": false
+                },
+                {
+                  "name": "densityUnit",
+                  "documentation": "An optional string from: \"in\", \"cm\". Defaults to \"in\".\nUnit used to specify x_density and y_density: pixels per inch ('in') or\ncentimeter ('cm').",
+                  "type": "'in'|'cm'",
+                  "optional": true,
+                  "isConfigParam": false
+                },
+                {
+                  "name": "xDensity",
+                  "documentation": "An optional int. Defaults to 300. Horizontal pixels per\ndensity unit.",
+                  "type": "number",
+                  "optional": true,
+                  "isConfigParam": false
+                },
+                {
+                  "name": "yDensity",
+                  "documentation": "An optional int. Defaults to 300. Vertical pixels per\ndensity unit.",
+                  "type": "number",
+                  "optional": true,
+                  "isConfigParam": false
+                },
+                {
+                  "name": "xmpMetadata",
+                  "documentation": "An optional string. Defaults to \"\". If not empty, embed\nthis XMP metadata in the image header.",
+                  "type": "string",
+                  "optional": true,
+                  "isConfigParam": false
+                }
+              ],
+              "returnType": "Promise<Uint8Array>",
+              "documentation": "Encodes an image tensor to JPEG.",
+              "fileName": "#220",
+              "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-v4.8.0/tfjs-node/src/image.ts#L220-L233",
+              "tags": [],
+              "isFunction": true,
+              "displayName": "tf.node.encodeJpeg",
+              "urlHash": "node.encodeJpeg"
+            },
+            {
+              "docInfo": {
+                "heading": "Operations",
+                "subheading": "Images",
+                "namespace": "node"
+              },
+              "symbolName": "encodePng",
+              "namespace": "node",
+              "paramStr": "(image, compression?)",
+              "parameters": [
+                {
+                  "name": "image",
+                  "documentation": "A 3-D uint8 Tensor of shape [height, width, channels].",
+                  "type": "Tensor3D",
+                  "optional": false,
+                  "isConfigParam": false
+                },
+                {
+                  "name": "compression",
+                  "documentation": "An optional int. Defaults to 1. Compression level.",
+                  "type": "number",
+                  "optional": true,
+                  "isConfigParam": false
+                }
+              ],
+              "returnType": "Promise<Uint8Array>",
+              "documentation": "Encodes an image tensor to PNG.",
+              "fileName": "#244",
+              "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-v4.8.0/tfjs-node/src/image.ts#L244-L251",
+              "tags": [],
+              "isFunction": true,
+              "displayName": "tf.node.encodePng",
+              "urlHash": "node.encodePng"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Models",
+      "description": "",
+      "subheadings": [
+        {
+          "name": "SavedModel",
+          "symbols": [
+            {
+              "docInfo": {
+                "heading": "Models",
+                "subheading": "SavedModel",
+                "namespace": "node"
+              },
+              "symbolName": "TFSavedModel",
+              "namespace": "node",
+              "documentation": "A `tf.TFSavedModel` is a signature loaded from a SavedModel\nmetagraph, and allows inference execution.",
+              "fileName": "#196",
+              "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-v4.8.0/tfjs-node/src/saved_model.ts#L196-L368",
+              "methods": [
+                {
+                  "docInfo": {
+                    "heading": "Models",
+                    "subheading": "SavedModel"
+                  },
+                  "symbolName": "dispose",
+                  "paramStr": "()",
+                  "parameters": [],
+                  "returnType": "void",
+                  "documentation": "Delete the SavedModel from nodeBackend and delete corresponding session in\nthe C++ backend if the session is only used by this TFSavedModel.",
+                  "fileName": "#238",
+                  "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-v4.8.0/tfjs-node/src/saved_model.ts#L238-L253",
+                  "tags": [],
+                  "isFunction": true,
+                  "urlHash": "tf.node.TFSavedModel.dispose"
+                },
+                {
+                  "docInfo": {
+                    "heading": "Models",
+                    "subheading": "SavedModel"
+                  },
+                  "symbolName": "predict",
+                  "paramStr": "(inputs, config?)",
+                  "parameters": [
+                    {
+                      "name": "inputs",
+                      "documentation": "",
+                      "type": "Tensor|Tensor[]|NamedTensorMap",
+                      "optional": false,
+                      "isConfigParam": false
+                    },
+                    {
+                      "name": "config",
+                      "documentation": "Prediction configuration for specifying the batch size.",
+                      "type": "ModelPredictConfig",
+                      "optional": true,
+                      "isConfigParam": false
+                    }
+                  ],
+                  "returnType": "Tensor|Tensor[]|NamedTensorMap",
+                  "documentation": "Execute the inference for the input tensors.",
+                  "fileName": "#292",
+                  "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-v4.8.0/tfjs-node/src/saved_model.ts#L292-L343",
+                  "tags": [],
+                  "isFunction": true,
+                  "urlHash": "tf.node.TFSavedModel.predict"
+                },
+                {
+                  "docInfo": {
+                    "heading": "Models",
+                    "subheading": "SavedModel"
+                  },
+                  "symbolName": "execute",
+                  "paramStr": "(inputs, outputs)",
+                  "parameters": [
+                    {
+                      "name": "inputs",
+                      "documentation": "",
+                      "type": "Tensor|Tensor[]|NamedTensorMap",
+                      "optional": false,
+                      "isConfigParam": false
+                    },
+                    {
+                      "name": "outputs",
+                      "documentation": "string|string[]. List of output node names to retrieve\nactivation from.",
+                      "type": "string|string[]",
+                      "optional": false,
+                      "isConfigParam": false
+                    }
+                  ],
+                  "returnType": "Tensor|Tensor[]",
+                  "documentation": "Execute the inference for the input tensors and return activation\nvalues for specified output node names without batching.",
+                  "fileName": "#364",
+                  "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-v4.8.0/tfjs-node/src/saved_model.ts#L364-L367",
+                  "tags": [],
+                  "isFunction": true,
+                  "urlHash": "tf.node.TFSavedModel.execute"
+                }
+              ],
+              "tags": [],
+              "isClass": true,
+              "inheritsFrom": "InferenceModel",
+              "displayName": "tf.node.TFSavedModel",
+              "urlHash": "class:node.TFSavedModel"
+            },
+            {
+              "docInfo": {
+                "heading": "Models",
+                "subheading": "SavedModel",
+                "namespace": "node"
+              },
+              "symbolName": "getMetaGraphsFromSavedModel",
+              "namespace": "node",
+              "paramStr": "(path)",
+              "parameters": [
+                {
+                  "name": "path",
+                  "documentation": "Path to SavedModel folder.",
+                  "type": "string",
+                  "optional": false,
+                  "isConfigParam": false
+                }
+              ],
+              "returnType": "Promise<MetaGraph[]>",
+              "documentation": "Inspect the MetaGraphs of the SavedModel from the provided path. This\nfunction will return an array of `MetaGraphInfo` objects.",
+              "fileName": "#85",
+              "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-v4.8.0/tfjs-node/src/saved_model.ts#L85-L164",
+              "tags": [],
+              "isFunction": true,
+              "displayName": "tf.node.getMetaGraphsFromSavedModel",
+              "urlHash": "node.getMetaGraphsFromSavedModel"
+            },
+            {
+              "docInfo": {
+                "heading": "Models",
+                "subheading": "SavedModel",
+                "namespace": "node"
+              },
+              "symbolName": "loadSavedModel",
+              "namespace": "node",
+              "paramStr": "(path, tags?, signature?)",
+              "parameters": [
+                {
+                  "name": "path",
+                  "documentation": "The path to the SavedModel.",
+                  "type": "string",
+                  "optional": false,
+                  "isConfigParam": false
+                },
+                {
+                  "name": "tags",
+                  "documentation": "The tags of the MetaGraph to load. The available tags of a\nSavedModel can be retrieved through tf.node.getMetaGraphsFromSavedModel()\nAPI. Defaults to ['serve'].",
+                  "type": "{}",
+                  "optional": true,
+                  "isConfigParam": false
+                },
+                {
+                  "name": "signature",
+                  "documentation": "The name of the SignatureDef to load. The available\nSignatureDefs of a SavedModel can be retrieved through\ntf.node.getMetaGraphsFromSavedModel() API. Defaults to 'serving_default'.",
+                  "type": "string",
+                  "optional": true,
+                  "isConfigParam": false
+                }
+              ],
+              "returnType": "Promise<[tf.node.TFSavedModel](#class:node.TFSavedModel)>",
+              "documentation": "Load a TensorFlow SavedModel from disk. TensorFlow SavedModel is different\nfrom TensorFlow.js model format. A SavedModel is a directory containing\nserialized signatures and the states needed to run them. The directory has a\nsaved_model.pb (or saved_model.pbtxt) file storing the actual TensorFlow\nprogram, or model, and a set of named signatures, each identifying a\nfunction. The directory also has a variables directory contains a standard\ntraining checkpoint. The directory may also has a assets directory contains\nfiles used by the TensorFlow graph, for example text files used to initialize\nvocabulary tables. These are supported datatypes: float32, int32, complex64,\nstring.For more information, see this guide:\nhttps://www.tensorflow.org/guide/saved_model.",
+              "fileName": "#393",
+              "githubUrl": "https://github.com/tensorflow/tfjs/tree/tfjs-v4.8.0/tfjs-node/src/saved_model.ts#L393-L423",
+              "tags": [],
+              "isFunction": true,
+              "displayName": "tf.node.loadSavedModel",
+              "urlHash": "node.loadSavedModel"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
