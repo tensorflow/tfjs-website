@@ -131,10 +131,49 @@ function makeEditable(codeBlock) {
   codeBlock.codeMirror = myCodeMirror;
 }
 
+// WebGPU is supported since version 4.6.0, WebGL is 2.0.0, Wasm is 1.7.0.
+const firstWebgpuVersion = '4.6.0';
+const firstWebglVersion = '2.0.0';
+const firstWasmVersion = '1.7.0';
+function isVersionSupported(version, oldVersion) {
+  const versionArray = version.split('.');
+  const oldVersionArray = oldVersion.split('.');
+  for (var i = 0; i < versionArray.length; i++) {
+    const a = ~~versionArray[i];
+    const b = ~~oldVersionArray[i];
+    if (a > b) {
+      return true
+    };
+    if (a < b) {
+      return false;
+    }
+  }
+  return true;
+}
+
+function initBackendSelect(consoleBackendSelectorElement, version) {
+  var menuListStr = '';
+  const webgpuOption = `<option value="webgpu">webgpu</option>`;
+  const webglOption = `<option value="webgl">webgl</option>`;
+  const wasmOption = `<option value="wasm">wasm</option>`;
+  if (isVersionSupported(version, firstWebgpuVersion)) {
+    menuListStr += `${webgpuOption}${webglOption}${wasmOption}`;
+  } else if (isVersionSupported(version, firstWebglVersion)) {
+    menuListStr += `${webglOption}${wasmOption}`;
+  } else if (isVersionSupported(version, firstWasmVersion)) {
+    menuListStr += `${wasmOption}`;
+  }
+  menuListStr += `<option value="cpu">cpu</option>`;
+
+  consoleBackendSelectorElement.innerHTML = menuListStr;
+}
+
 function initCodeBlocks(selector) {
   // Find all the code blocks.
   var jsBlocks =
       Array.prototype.slice.call(document.querySelectorAll(selector));
+  const version =
+      document.querySelector('.mdc-select__selected-text').innerText;
 
   jsBlocks.forEach(function(block) {
     var consoleElement = document.createElement('div');
@@ -151,10 +190,14 @@ function initCodeBlocks(selector) {
     var consoleLogElement = document.createElement('div');
     consoleLogElement.className = 'snippet-console-log';
 
+    var consoleBackendSelectorElement = document.createElement('select');
+    consoleBackendSelectorElement.innerText = 'webgpu';
+    consoleBackendSelectorElement.className = 'snippet-backend-select';
+    initBackendSelect(consoleBackendSelectorElement, version);
     consoleElement.appendChild(consoleLogElement);
     consoleElement.appendChild(consoleEditElement);
     consoleElement.appendChild(consoleRunElement);
-
+    consoleElement.appendChild(consoleBackendSelectorElement);
     block.parentElement.insertAdjacentElement('afterend', consoleElement);
 
     consoleRunElement.addEventListener('click', async function() {
@@ -171,6 +214,12 @@ function initCodeBlocks(selector) {
       if (tf == null || tf.ready == null) {
         throw new Error('Failed to load TFJS.');
       }
+
+      const backendName =
+          consoleBackendSelectorElement
+              .options[consoleBackendSelectorElement.selectedIndex]
+              .text;
+      tf.setBackend(backendName);
       await tf.ready();
 
       executeCodeSnippet(consoleLogElement, snippetText);

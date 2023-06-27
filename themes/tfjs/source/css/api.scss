@@ -326,6 +326,14 @@ header {
 
     .snippet-run-button {
       position: absolute;
+      right: 74px;
+      top: 5px;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    .snippet-backend-select {
+      position: absolute;
       right: 4px;
       top: 5px;
       font-size: 12px;
@@ -334,8 +342,9 @@ header {
 
     .snippet-edit-button {
       position: absolute;
-      right: 60px;
+      right: 144px;
       top: 5px;
+      height: 20px;
       font-size: 12px;
       font-weight: bold;
     }
