@@ -326,15 +326,7 @@ header {
 
     .snippet-run-button {
       position: absolute;
-      right: 74px;
-      top: 5px;
-      font-size: 12px;
-      font-weight: bold;
-    }
-
-    .snippet-backend-select {
-      position: absolute;
-      right: 4px;
+      right: 35px;
       top: 5px;
       font-size: 12px;
       font-weight: bold;
@@ -342,7 +334,7 @@ header {
 
     .snippet-edit-button {
       position: absolute;
-      right: 144px;
+      right: 90px;
       top: 5px;
       height: 20px;
       font-size: 12px;
@@ -357,6 +349,77 @@ header {
       .snippet-error-msg {
         margin-left: 8px;
       }
+    }
+
+    .snippet-backend-dropdown {
+      position: absolute;
+      right: 8px;
+      top: 5px;
+      height: 20px;
+      display: inline-block;
+
+      .snippet-backend-button {
+        color: #f4f4f4;
+        padding: 10px;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+      }
+
+      .snippet-backend-button:hover,
+      .snippet-backend-button:focus {
+        background-color: #d4d4d4;
+      }
+
+      .snippet-backend-list {
+        display: none;
+        position: absolute;
+        background-color: #f1f1f1;
+        min-width: 103px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+
+        .snippet-ul {
+          list-style-type: none;
+          margin: 5px 5px 5px 12px;
+          padding: 0;
+
+          .li {
+            margin: 5px 5px 5px 12px;
+            padding: 0;
+          }
+        }
+      }
+
+      .snippet-show {
+        display: block;
+      }
+    }
+
+    /*From https://css.gg/chevron-down*/
+    .gg-chevron-down {
+      box-sizing: border-box;
+      position: relative;
+      display: block;
+      transform: scale(var(--ggs, 1));
+      width: 22px;
+      height: 22px;
+      border: 2px solid transparent;
+    }
+
+    .gg-chevron-down::after {
+      content: "";
+      display: block;
+      box-sizing: border-box;
+      position: absolute;
+      color: black;
+      width: 8px;
+      height: 8px;
+      border-bottom: 2px solid;
+      border-right: 2px solid;
+      transform: rotate(45deg);
+      left: 6.5px;
+      top: 5px
     }
 
   }
