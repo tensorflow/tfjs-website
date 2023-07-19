@@ -1,0 +1,10 @@
+[
+  {
+    "name": "TensorBoard",
+    "description": [
+      "<p>Functions for visualizing training in  ",
+      "<a href=\"https://github.com/tensorflow/tensorboard\">TensorBoard</a></p>"
+    ],
+    "subheadings": []
+  }
+]
