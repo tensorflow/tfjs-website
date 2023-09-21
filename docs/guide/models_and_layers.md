@@ -15,7 +15,7 @@ There are two ways to create a model using the Layers API: A _sequential_ model,
 
 ### The sequential model
 
-The most common type of model is the <code>[Sequential](https://js.tensorflow.org/api/0.15.1/#class:Sequential)</code> model, which is a linear stack of layers. You can create a <code>Sequential</code> model by passing a list of layers to the <code>[sequential()](https://js.tensorflow.org/api/0.15.1/#sequential)</code> function:
+The most common type of model is the <code>[Sequential](https://js.tensorflow.org/api/latest/#sequential)</code> model, which is a linear stack of layers. You can create a <code>Sequential</code> model by passing a list of layers to the <code>[sequential()](https://js.tensorflow.org/api/latest/#sequential)</code> function:
 
 ```js
 const model = tf.sequential({
