@@ -46,7 +46,7 @@ function getLineNumber(error) {
 async function executeCodeSnippet(consoleLogElement, codeSnippet) {
   consoleLogElement.innerText = '';
   var oldLog = console.log;
-  console.log = function(...values) {
+  console.log = function (...values) {
     let logStrs = [];
     for (let i = 0; i < values.length; i++) {
       const value = values[i];
@@ -86,7 +86,7 @@ async function executeCodeSnippet(consoleLogElement, codeSnippet) {
   // It is important that codeSnippet and 'try {' be on the same line
   // in order to not modify the line number on an error.
   const evalString = '(async function runner() { try { ' + codeSnippet +
-      '\n} catch (e) { reportError(e); } })()';
+    '\n} catch (e) { reportError(e); } })()';
 
   if (window._tfengine && window._tfengine.startScope) {
     window._tfengine.startScope();
@@ -96,7 +96,7 @@ async function executeCodeSnippet(consoleLogElement, codeSnippet) {
 
   // this outer try is for errors that prevent the snippet from being parsed.
   try {
-    await eval(evalString).catch(function(e) {
+    await eval(evalString).catch(function (e) {
       // This catch is for errors within promises within snippets
       reportError(e);
     });
@@ -131,12 +131,70 @@ function makeEditable(codeBlock) {
   codeBlock.codeMirror = myCodeMirror;
 }
 
+function isVersionSupported(version, oldVersion) {
+  const versionArray = version.split('.');
+  const oldVersionArray = oldVersion.split('.');
+  for (var i = 0; i < versionArray.length; i++) {
+    const a = ~~versionArray[i];
+    const b = ~~oldVersionArray[i];
+    if (a > b) {
+      return true
+    };
+    if (a < b) {
+      return false;
+    }
+  }
+  return true;
+}
+
+function genBackendListString(version) {
+  const openLiStr = `<li><input type="radio" name='backend' value=`;
+  const closeLiStr = `</li>`;
+  var genLiStr = function (backendName) {
+    return `${openLiStr}"${backendName}">${backendName}${closeLiStr}`;
+  }
+  var genLiCheckedStr = function (backendName) {
+    return `${openLiStr}"${backendName}" checked="checked"/>${backendName}` +
+      `${closeLiStr}`;
+  }
+
+  // WebGPU is supported since version 4.6.0, WebGL is 2.0.0, Wasm is 1.7.0.
+  const firstWebgpuVersion = '4.6.0';
+  const firstWebglVersion = '2.0.0';
+  const firstWasmVersion = '1.7.0';
+  var backendListStr =
+    `<button class="snippet-backend-button gg-chevron-down">` +
+    `</button><div class="snippet-backend-list"><ul class="snippet-ul">`;
+  var backendName;
+  if (isVersionSupported(version, firstWebgpuVersion)) {
+    backendName = 'webgpu';
+    backendListStr += `${genLiCheckedStr(backendName)}` +
+      `${genLiStr('webgl')}${genLiStr('wasm')}${genLiStr('cpu')}`;
+  } else if (isVersionSupported(version, firstWebglVersion)) {
+    backendName = 'webgl';
+    backendListStr += `${genLiCheckedStr(backendName)}` +
+      `${genLiStr('wasm')}${genLiStr('cpu')}`;
+  } else if (isVersionSupported(version, firstWasmVersion)) {
+    backendName = 'wasm';
+    backendListStr += `${genLiCheckedStr(backendName)}${genLiStr('cpu')}`;
+  } else {
+    backendName = 'cpu';
+    backendListStr += `${genLiCheckedStr(backendName)}`;
+  }
+  backendListStr += `</ul></div>`;
+  return [backendName, backendListStr];
+}
+
 function initCodeBlocks(selector) {
   // Find all the code blocks.
   var jsBlocks =
-      Array.prototype.slice.call(document.querySelectorAll(selector));
+    Array.prototype.slice.call(document.querySelectorAll(selector));
+  const version =
+    document.querySelector('.mdc-select__selected-text').innerText;
+  const [backendName, backendListStr] = genBackendListString(version);
+  tf.setBackend(backendName);
 
-  jsBlocks.forEach(function(block) {
+  jsBlocks.forEach(function (block) {
     var consoleElement = document.createElement('div');
     consoleElement.className = 'snippet-console';
 
@@ -151,15 +209,53 @@ function initCodeBlocks(selector) {
     var consoleLogElement = document.createElement('div');
     consoleLogElement.className = 'snippet-console-log';
 
+    const consoleBackendSelectorElement = document.createElement('div');
+    consoleBackendSelectorElement.innerText = 'webgpu';
+    consoleBackendSelectorElement.className = 'snippet-backend-dropdown';
+    consoleBackendSelectorElement.innerHTML = backendListStr;
+
     consoleElement.appendChild(consoleLogElement);
     consoleElement.appendChild(consoleEditElement);
     consoleElement.appendChild(consoleRunElement);
-
+    consoleElement.appendChild(consoleBackendSelectorElement);
     block.parentElement.insertAdjacentElement('afterend', consoleElement);
 
-    consoleRunElement.addEventListener('click', async function() {
+    const backendDropdown =
+      consoleElement.querySelector('.snippet-backend-dropdown');
+    backendDropdown.querySelector('.snippet-backend-button.gg-chevron-down')
+      .onclick = function (evt) {
+        const lastBackendList = window.backendListGlobal;
+        window.backendListGlobal =
+          backendDropdown.querySelector('.snippet-backend-list');
+        // If there is any dropdown list open, close it first.
+        if (lastBackendList &&
+            !lastBackendList.isSameNode(window.backendListGlobal)) {
+          if (lastBackendList.classList.contains('snippet-show')) {
+            lastBackendList.classList.remove('snippet-show');
+          }
+        }
+
+        // Close or show current dropdown list.
+        if (window.backendListGlobal.classList.contains('snippet-show')) {
+          window.backendListGlobal.classList.remove('snippet-show');
+          window.backendListGlobal = null;
+          setBackend();
+        } else {
+          const backendButtons =
+            window.backendListGlobal.querySelectorAll('input[name="backend"]');
+          for (const backendButton of backendButtons) {
+            if (backendButton.value === tf.getBackend()) {
+              backendButton.checked = true;
+              break;
+            }
+          }
+          window.backendListGlobal.classList.add('snippet-show');
+        }
+      };
+
+    consoleRunElement.addEventListener('click', async function () {
       var consoleLogElement =
-          this.parentElement.querySelector('.snippet-console-log');
+        this.parentElement.querySelector('.snippet-console-log');
 
       var snippetText;
       if (block.codeMirror) {
@@ -176,9 +272,30 @@ function initCodeBlocks(selector) {
       executeCodeSnippet(consoleLogElement, snippetText);
     });
 
-    consoleEditElement.addEventListener('click', function() {
+    consoleEditElement.addEventListener('click', function () {
       makeEditable(block);
       this.disabled = true;
     });
   });
+
+  function setBackend() {
+    const backendButtons = document.querySelectorAll('input[name="backend"]');
+    for (const backendButton of backendButtons) {
+      if (backendButton.checked) {
+        tf.setBackend(backendButton.value);
+        return;
+      }
+    }
+  }
+
+  window.onclick = function (event) {
+    // Close the dropdown list if the user clicks outside of it.
+    if (!event.target.matches('.snippet-backend-button')) {
+      if (window.backendListGlobal &&
+          window.backendListGlobal.classList.contains('snippet-show')) {
+        window.backendListGlobal.classList.remove('snippet-show');
+        setBackend();
+      }
+    }
+  }
 }
