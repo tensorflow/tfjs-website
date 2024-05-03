@@ -55,7 +55,7 @@
     "@types/node": "~9.4.6",
     "clang-format": "~1.2.4",
     "fastify": "^3.29.4",
-    "firebase-tools": "~9.8.0"
+    "firebase-tools": "~13.6.0"
   },
   "resolutions": {
     "vega": "5.17.3",
