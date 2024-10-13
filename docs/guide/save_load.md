@@ -12,9 +12,9 @@ Loading these models are covered in the following two tutorials:
 - [Import Graphdef models](../tutorials/conversion/import_saved_model.md)
 
 
-## Save a tf.model
+## Save a tf.Model
 
-[`tf.model`](https://js.tensorflow.org/api/latest/#model) and [`tf.Sequential`](https://js.tensorflow.org/api/latest/#class:Sequential)
+[`tf.Model`](https://js.tensorflow.org/api/0.14.2/#class:Model) and [`tf.Sequential`](https://js.tensorflow.org/api/0.14.2/#class:Model)
 both provide a function [`model.save`](https://js.tensorflow.org/api/0.14.2/#tf.Model.save) that allow you to save the
 _topology_ and _weights_ of a model.
 
