@@ -23,8 +23,8 @@
   },
   "dependencies": {
     "@tensorflow-models/tasks": "0.0.1-alpha.8",
-    "@tensorflow/tfjs": "4.21.0",
-    "@tensorflow/tfjs-node": "4.21.0",
+    "@tensorflow/tfjs": "4.22.0",
+    "@tensorflow/tfjs-node": "4.22.0",
     "@tensorflow/tfjs-react-native": "1.0.0",
     "@tensorflow/tfjs-tflite": "0.0.1-alpha.10",
     "@tensorflow/tfjs-vis": "1.5.1",
