@@ -42,7 +42,7 @@
     "hexo-server": "^3.0.0",
     "hexo-theme-landscape": "^0.0.3",
     "highlight.js": "^11.6.0",
-    "markdown-it": "^13.0.1",
+    "markdown-it": "^14.1.1",
     "material-components-web": "0.32.0",
     "mkdirp": "0.5.0",
     "semver-compare": "^1.0.0",
