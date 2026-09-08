@@ -109,7 +109,7 @@ If you are using tfjs-node package before version 1.2.4, the package requires g+
 ###Prerequisites
 
 1. Have a valid Google Cloud Project with billing account
-2. Install Google Cloud [client tool](https://cloud.google.com/storage/docs/gsutil_install)
+2. Install Google Cloud [client tool](https://docs.cloud.google.com/sdk/docs/install-sdk)
 3. Add app.yaml file to configure the [Node.js Runtime](https://cloud.google.com/appengine/docs/flexible/nodejs/runtime)
 
 ### Deploy app to GCloud
